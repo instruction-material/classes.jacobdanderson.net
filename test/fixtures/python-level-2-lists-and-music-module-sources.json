@@ -1,0 +1,456 @@
+{
+  "repository": "Python-Level-2",
+  "revision": "25e131ee66467d9c05e07b1895ff7a7e96feb1c6",
+  "moduleId": "python-level-2-ps6-lists-and-music",
+  "files": {
+    "PS6-Lists-Practice-1/starter/README.md": {
+      "content": "# Lists Practice starter\n\nRun the starter and verify the eleven descending values from 10 through 0. Read a word and build a list of its characters in order. Generate the 100 squares of integers 1 through 100, then remove the ten whose values range from 2000 through 3000. Build a list from 1! through 25! by calling the factorial function. Return the sum and largest number using separate loops. For the list [-8, -3, -10], the sum is -21 and the maximum is -3. Guard the empty input to the maximum function.\n",
+      "byteLength": 510,
+      "sha256": "59e8ba7ee57f0725213d74207f573ce818d78ca587bc430c2c3f2d1f77369d0f",
+      "gitBlob": "2bd318c459d153a48470f8d65a8f95dc528cc237"
+    },
+    "PS6-Lists-Practice-1/starter/main.py": {
+      "content": "numbers = []\nfor value in range(10, -1, -1):\n    numbers.append(value)\nprint(numbers)\n\n# Read a word and build the character list, squares, and factorials.\n# Write functions to find a total and maximum without editing their input lists.\n",
+      "byteLength": 237,
+      "sha256": "6bef512ca264e03e94e2c95ed90828c0d4f4532408709bc38bba7c341e385585",
+      "gitBlob": "1ce3ac158121a29d7a74c8e2eaf16be127049091"
+    },
+    "PS6-Lists-Practice-1/solution/main.py": {
+      "content": "# Create a list called nums. Add the numbers 10 to 0 to the list using a loop. Then, print out nums.\n\nnums = []\nfor i in range(10, -1, -1):\n    nums.append(i)\nprint(nums)\n\n# Ask the user for a word. Create a list of all of the letters in the word. Then, print out the list.\n\nword = input(\"Type in a word: \")\nletters = []\nfor letter in word:\n    letters.append(letter)\nprint(letters)\n\n# Create a list of all of the perfect squares between 1 to 10,000. Then, print out the list.\n\nsquares = []\nfor i in range(1, 101):\n    squares.append(i * i)\nprint(squares)\n\n# Take your list of perfect squares and remove the numbers any numbers between 2000 and 3000. Then, print out the list.\n\nfor i in range(2000, 3001):\n    if i in squares:\n        squares.remove(i)\nprint(squares)\n\n# Copy and paste your factorial function from the other day. Use that function to create a list of all the factorials from 1! to 25!. Then, print out the list.\n\n\ndef factorial(n):\n    answer = 1\n    for i in range(1, n + 1):\n        answer *= i\n    return answer\n\n\nfactorials = []\nfor i in range(1, 26):\n    factorials.append(factorial(i))\nprint(factorials)\n\n# Write a function that takes in a list and returns the sum of the numbers.\n\n\ndef sum_list(x):\n    answer = 0\n    for num in x:\n        answer += num\n    return answer\n\n\nprint(sum_list(factorials))\n\n# Challenge: Write a function that takes in a list and returns the largest number in the list. Don't forget that lists can have all negative numbers!\n\n\ndef find_max_num(x):\n    if not x:\n        raise ValueError(\"A maximum requires at least one number.\")\n    max_num = x[0]\n    for num in x:\n        if num > max_num:\n            max_num = num\n    return max_num\n\n\nprint(find_max_num(factorials))\n",
+      "byteLength": 1724,
+      "sha256": "460bc7af9d2b63b01866b3825fe11eefadfe1d93e6e121405cce1a60629f198a",
+      "gitBlob": "b472fa465af1765e8e0a5e571428b315a6632bb2"
+    },
+    "PS6-Build-a-Song/starter/README.md": {
+      "content": "# Build a Song starter\n\nRun `main.py` to hear a quarter-note C and E. Change the first tuple from `(\"c4\", 4)` to `(\"c4\", 2)`. At 120 beats per minute, this adds half a second to the first pitch.\n\nAdd different pitches and a rest. Use a note name such as `f4`, or `r` for a rest. Keep each entry a pair of a pitch and a duration. Download the WAV from the IDE or run `python3 main.py` beside the `native_pysynth` folder.\n",
+      "byteLength": 420,
+      "sha256": "89bc812179bfd8f879f68e4bb324623cd67d0a634da2842a67b2c9640114a58b",
+      "gitBlob": "ba6c8141f694cef66f1514d01fa5f2493704dfb3"
+    },
+    "PS6-Build-a-Song/starter/main.py": {
+      "content": "import sys\n\nif sys.platform == \"emscripten\":\n    from pysynth import make_wav\nelse:\n    from native_pysynth import make_wav\n\n\nnotes = [(\"c4\", 4), (\"e4\", 4)]\nmake_wav(notes, bpm=120, fn=\"melody.wav\", silent=True)\nprint(\"Wrote melody.wav.\")\n\n# Add more pitches, a rest, and at least two different duration values.\n",
+      "byteLength": 312,
+      "sha256": "00677315710d308df358a00c6e83937e5cd4342cc78ed4f2096728dbe39ac50b",
+      "gitBlob": "528574f5a110e840450dd028949e6a24366048e4"
+    },
+    "PS6-Build-a-Song/starter/native_pysynth/__init__.py": {
+      "content": "from . import pysynth\nfrom .pysynth import *\n",
+      "byteLength": 45,
+      "sha256": "02df851e83689604b56f47d013882b9880325818781592f97a2e8adf2084fa03",
+      "gitBlob": "64c0d170b3a2bb8150d623f8f33c32b72d850726"
+    },
+    "PS6-Build-a-Song/starter/native_pysynth/pysynth.py": {
+      "content": "#!/usr/bin/env python\n\"\"\"\n##########################################################################\n#                       * * *  PySynth  * * *\n#       A very basic audio synthesizer in Python (www.python.org)\n#\n#          Martin C. Doege, 2009-04-07 (mdoege@compuserve.com)\n##########################################################################\n# Based on a program by Tyler Eaves (tyler at tylereaves.com) found at\n#   http://mail.python.org/pipermail/python-list/2000-August/049968.html\n##########################################################################\n# 'song' is a Python list (or tuple) in which the song is defined,\n#   the format is [['note', value]]\n# Notes are 'a' through 'g' of course,\n# optionally with '#' or 'b' appended for sharps or flats.\n# Finally the octave number (defaults to octave 4 if not given).\n# An asterisk at the end makes the note a little louder (useful for the beat).\n# 'r' is a rest.\n# Note value is a number:\n# 1=Whole Note; 2=Half Note; 4=Quarter Note, etc.\n# Dotted notes can be written in two ways:\n# 1.33 = -2 = dotted half\n# 2.66 = -4 = dotted quarter\n# 5.33 = -8 = dotted eighth\n\"\"\"\n\nimport sys\n\nassert sys.version_info >= (3, 3), \"This program does not work with older versions of Python.\\\n Please install Python 3.3 or later.\"\n\n##########################################################################\n# Compute and print piano key frequency table\n##########################################################################\n\npitchhz, keynum = {}, {}\n\nkeys_s = (\"a\", \"a#\", \"b\", \"c\", \"c#\", \"d\", \"d#\", \"e\", \"f\", \"f#\", \"g\", \"g#\")\nkeys_f = (\"a\", \"bb\", \"b\", \"c\", \"db\", \"d\", \"eb\", \"e\", \"f\", \"gb\", \"g\", \"ab\")\nkeys_e = (\"a\", \"bb\", \"cb\", \"b#\", \"db\", \"d\", \"eb\", \"fb\", \"e#\", \"gb\", \"g\", \"ab\")\n\n\ndef getfreq(pr=False):\n    if pr:\n        print(\"Piano key frequencies (for equal temperament):\")\n        print(\"Key number\\tScientific name\\tFrequency (Hz)\")\n    for k in range(88):\n        freq = 27.5 * 2.0 ** (k / 12.0)\n        oct = (k + 9) // 12\n        note = \"%s%u\" % (keys_s[k % 12], oct)\n        if pr:\n            print(\"%10u\\t%15s\\t%14.2f\" % (k + 1, note.upper(), freq))\n        pitchhz[note] = freq\n        keynum[note] = k\n        note = \"%s%u\" % (keys_f[k % 12], oct)\n        pitchhz[note] = freq\n        keynum[note] = k\n        note = \"%s%u\" % (keys_e[k % 12], oct)\n        pitchhz[note] = freq\n        keynum[note] = k\n    return pitchhz, keynum\n\n\n# construct filnames for Salamander piano samples\n\nsampfn = {}\nfacs = 1, 2 ** (1 / 12), 2 ** (2 / 12)\nnam = \"A\", \"C\", \"D#\", \"F#\"\n\n\ndef getfn(layer):\n    for k in range(88):\n        oct = (k + 9) // 12\n\n        sampfn[k] = \"%s%uv%u.wav\" % (nam[(k // 3) % 4], oct, layer), facs[k % 3]\n    return sampfn\n\n\npitchhz, keynum = getfreq(pr=True)\n\n##########################################################################\n#### Main program starts below\n##########################################################################\n# Some parameters:\n\n# Beats (quarters) per minute\n# e.g. bpm = 95\n\n# Octave shift (neg. integer -> lower; pos. integer -> higher)\n# e.g. transpose = 0\n\n# Pause between notes as a fraction (0. = legato and e.g., 0.5 = staccato)\n# e.g. pause = 0.05\n\n# Volume boost for asterisk notes (1. = no boost)\n# e.g. boost = 1.2\n\n# Output file name\n# fn = 'pysynth_output.wav'\n\n# Other parameters:\n\n# Influences the decay of harmonics over frequency. Lowering the\n# value eliminates even more harmonics at high frequencies.\n# Suggested range: between 3. and 5., depending on the frequency response\n#  of speakers/headphones used\nharm_max = 4.0\n\n##########################################################################\n\nimport wave, math, struct\n\n\ndef mix_files(a, b, c, chann=2, phase=-1.0):\n    f1 = wave.open(a, \"r\")\n    f2 = wave.open(b, \"r\")\n    f3 = wave.open(c, \"w\")\n    f3.setnchannels(chann)\n    f3.setsampwidth(2)\n    f3.setframerate(44100)\n    f3.setcomptype(\"NONE\", \"Not Compressed\")\n    frames = min(f1.getnframes(), f2.getnframes())\n\n    print(\"Mixing files, total length %.2f s...\" % (frames / 44100.0))\n    d1 = f1.readframes(frames)\n    d2 = f2.readframes(frames)\n    for n in range(frames):\n        if not n % (5 * 44100):\n            print(n // 44100, \"s\")\n        if chann < 2:\n            d3 = struct.pack(\n                \"h\",\n                int(\n                    0.5\n                    * (\n                        struct.unpack(\"h\", d1[2 * n : 2 * n + 2])[0]\n                        + struct.unpack(\"h\", d2[2 * n : 2 * n + 2])[0]\n                    )\n                ),\n            )\n        else:\n            d3 = struct.pack(\n                \"h\",\n                int(\n                    phase * 0.3 * struct.unpack(\"h\", d1[2 * n : 2 * n + 2])[0]\n                    + 0.7 * struct.unpack(\"h\", d2[2 * n : 2 * n + 2])[0]\n                ),\n            ) + struct.pack(\n                \"h\",\n                int(\n                    0.7 * struct.unpack(\"h\", d1[2 * n : 2 * n + 2])[0]\n                    + phase * 0.3 * struct.unpack(\"h\", d2[2 * n : 2 * n + 2])[0]\n                ),\n            )\n        f3.writeframesraw(d3)\n    f3.close()\n\n\ndef make_wav(\n    song,\n    bpm=120,\n    transpose=0,\n    pause=0.05,\n    boost=1.1,\n    repeat=0,\n    fn=\"out.wav\",\n    silent=False,\n):\n    f = wave.open(fn, \"w\")\n\n    f.setnchannels(1)\n    f.setsampwidth(2)\n    f.setframerate(44100)\n    f.setcomptype(\"NONE\", \"Not Compressed\")\n\n    bpmfac = 120.0 / bpm\n\n    def length(l):\n        return 88200.0 / l * bpmfac\n\n    def waves2(hz, l):\n        a = 44100.0 / hz\n        b = float(l) / 44100.0 * hz\n        return [a, round(b)]\n\n    def sixteenbit(x):\n        return struct.pack(\"h\", round(32000 * x))\n\n    def asin(x):\n        return math.sin(2.0 * math.pi * x)\n\n    def render2(a, b, vol):\n        b2 = (1.0 - pause) * b\n        l = waves2(a, b2)\n        ow = b\"\"\n        q = int(l[0] * l[1])\n\n        # harmonics are frequency-dependent:\n        lf = math.log(a)\n        lf_fac = (lf - 3.0) / harm_max\n        if lf_fac > 1:\n            harm = 0\n        else:\n            harm = 2.0 * (1 - lf_fac)\n        decay = 2.0 / lf\n        t = (lf - 3.0) / (8.5 - 3.0)\n        volfac = 1.0 + 0.8 * t * math.cos(math.pi / 5.3 * (lf - 3.0))\n\n        for x in range(q):\n            fac = 1.0\n            if x < 100:\n                fac = x / 80.0\n            if 100 <= x < 300:\n                fac = 1.25 - (x - 100) / 800.0\n            if x > q - 400:\n                fac = 1.0 - ((x - q + 400) / 400.0)\n            s = float(x) / float(q)\n            dfac = 1.0 - s + s * decay\n            ow = ow + sixteenbit(\n                (\n                    asin(float(x) / l[0])\n                    + harm * asin(float(x) / (l[0] / 2.0))\n                    + 0.5 * harm * asin(float(x) / (l[0] / 4.0))\n                )\n                / 4.0\n                * fac\n                * vol\n                * dfac\n                * volfac\n            )\n        fill = max(int(ex_pos - curpos - q), 0)\n        f.writeframesraw((ow) + (sixteenbit(0) * fill))\n        return q + fill\n\n    ##########################################################################\n    # Write to output file (in WAV format)\n    ##########################################################################\n\n    if silent == False:\n        print(\"Writing to file\", fn)\n    curpos = 0\n    ex_pos = 0.0\n    for rp in range(repeat + 1):\n        for nn, x in enumerate(song):\n            if not nn % 4 and silent == False:\n                print(\"[%u/%u]\\t\" % (nn + 1, len(song)))\n            if x[0] != \"r\":\n                if x[0][-1] == \"*\":\n                    vol = boost\n                    note = x[0][:-1]\n                else:\n                    vol = 1.0\n                    note = x[0]\n                try:\n                    a = pitchhz[note]\n                except:\n                    a = pitchhz[note + \"4\"]  # default to fourth octave\n                a = a * 2**transpose\n                if x[1] < 0:\n                    b = length(-2.0 * x[1] / 3.0)\n                else:\n                    b = length(x[1])\n                ex_pos = ex_pos + b\n                curpos = curpos + render2(a, b, vol)\n\n            if x[0] == \"r\":\n                b = length(x[1])\n                ex_pos = ex_pos + b\n                f.writeframesraw(sixteenbit(0) * int(b))\n                curpos = curpos + int(b)\n\n    f.writeframes(b\"\")\n    f.close()\n    print()\n",
+      "byteLength": 8352,
+      "sha256": "25cc90d803deb4c0652c7ecb9a5ee5deb89ce5b5e191b45ddb1b8e9293d4b2b6",
+      "gitBlob": "295ff0b5216ff56daaa0373a102b77a9c24ac545"
+    },
+    "PS6-Build-a-Song/solution/main.py": {
+      "content": "import sys\n\nif sys.platform == \"emscripten\":\n    from pysynth import make_wav\nelse:\n    from native_pysynth import make_wav\n\n\nnotes = [(\"c4\", 4), (\"e4\", 8), (\"f4\", 8), (\"r\", 4), (\"d4\", 4), (\"a4\", 2)]\nmake_wav(notes, bpm=120, fn=\"melody.wav\", silent=True)\nprint(\"Wrote melody.wav.\")\n",
+      "byteLength": 282,
+      "sha256": "8802821e74110abc749b496414aacdeb8a03b541554fb5e3519fec69e8c9b90c",
+      "gitBlob": "05b873402c553c3e2b3579d5a6a3c5d3da53dfce"
+    },
+    "PS6-Build-a-Song/solution/native_pysynth/__init__.py": {
+      "content": "from . import pysynth\nfrom .pysynth import *\n",
+      "byteLength": 45,
+      "sha256": "02df851e83689604b56f47d013882b9880325818781592f97a2e8adf2084fa03",
+      "gitBlob": "64c0d170b3a2bb8150d623f8f33c32b72d850726"
+    },
+    "PS6-Build-a-Song/solution/native_pysynth/pysynth.py": {
+      "content": "#!/usr/bin/env python\n\"\"\"\n##########################################################################\n#                       * * *  PySynth  * * *\n#       A very basic audio synthesizer in Python (www.python.org)\n#\n#          Martin C. Doege, 2009-04-07 (mdoege@compuserve.com)\n##########################################################################\n# Based on a program by Tyler Eaves (tyler at tylereaves.com) found at\n#   http://mail.python.org/pipermail/python-list/2000-August/049968.html\n##########################################################################\n# 'song' is a Python list (or tuple) in which the song is defined,\n#   the format is [['note', value]]\n# Notes are 'a' through 'g' of course,\n# optionally with '#' or 'b' appended for sharps or flats.\n# Finally the octave number (defaults to octave 4 if not given).\n# An asterisk at the end makes the note a little louder (useful for the beat).\n# 'r' is a rest.\n# Note value is a number:\n# 1=Whole Note; 2=Half Note; 4=Quarter Note, etc.\n# Dotted notes can be written in two ways:\n# 1.33 = -2 = dotted half\n# 2.66 = -4 = dotted quarter\n# 5.33 = -8 = dotted eighth\n\"\"\"\n\nimport sys\n\nassert sys.version_info >= (3, 3), \"This program does not work with older versions of Python.\\\n Please install Python 3.3 or later.\"\n\n##########################################################################\n# Compute and print piano key frequency table\n##########################################################################\n\npitchhz, keynum = {}, {}\n\nkeys_s = (\"a\", \"a#\", \"b\", \"c\", \"c#\", \"d\", \"d#\", \"e\", \"f\", \"f#\", \"g\", \"g#\")\nkeys_f = (\"a\", \"bb\", \"b\", \"c\", \"db\", \"d\", \"eb\", \"e\", \"f\", \"gb\", \"g\", \"ab\")\nkeys_e = (\"a\", \"bb\", \"cb\", \"b#\", \"db\", \"d\", \"eb\", \"fb\", \"e#\", \"gb\", \"g\", \"ab\")\n\n\ndef getfreq(pr=False):\n    if pr:\n        print(\"Piano key frequencies (for equal temperament):\")\n        print(\"Key number\\tScientific name\\tFrequency (Hz)\")\n    for k in range(88):\n        freq = 27.5 * 2.0 ** (k / 12.0)\n        oct = (k + 9) // 12\n        note = \"%s%u\" % (keys_s[k % 12], oct)\n        if pr:\n            print(\"%10u\\t%15s\\t%14.2f\" % (k + 1, note.upper(), freq))\n        pitchhz[note] = freq\n        keynum[note] = k\n        note = \"%s%u\" % (keys_f[k % 12], oct)\n        pitchhz[note] = freq\n        keynum[note] = k\n        note = \"%s%u\" % (keys_e[k % 12], oct)\n        pitchhz[note] = freq\n        keynum[note] = k\n    return pitchhz, keynum\n\n\n# construct filnames for Salamander piano samples\n\nsampfn = {}\nfacs = 1, 2 ** (1 / 12), 2 ** (2 / 12)\nnam = \"A\", \"C\", \"D#\", \"F#\"\n\n\ndef getfn(layer):\n    for k in range(88):\n        oct = (k + 9) // 12\n\n        sampfn[k] = \"%s%uv%u.wav\" % (nam[(k // 3) % 4], oct, layer), facs[k % 3]\n    return sampfn\n\n\npitchhz, keynum = getfreq(pr=True)\n\n##########################################################################\n#### Main program starts below\n##########################################################################\n# Some parameters:\n\n# Beats (quarters) per minute\n# e.g. bpm = 95\n\n# Octave shift (neg. integer -> lower; pos. integer -> higher)\n# e.g. transpose = 0\n\n# Pause between notes as a fraction (0. = legato and e.g., 0.5 = staccato)\n# e.g. pause = 0.05\n\n# Volume boost for asterisk notes (1. = no boost)\n# e.g. boost = 1.2\n\n# Output file name\n# fn = 'pysynth_output.wav'\n\n# Other parameters:\n\n# Influences the decay of harmonics over frequency. Lowering the\n# value eliminates even more harmonics at high frequencies.\n# Suggested range: between 3. and 5., depending on the frequency response\n#  of speakers/headphones used\nharm_max = 4.0\n\n##########################################################################\n\nimport wave, math, struct\n\n\ndef mix_files(a, b, c, chann=2, phase=-1.0):\n    f1 = wave.open(a, \"r\")\n    f2 = wave.open(b, \"r\")\n    f3 = wave.open(c, \"w\")\n    f3.setnchannels(chann)\n    f3.setsampwidth(2)\n    f3.setframerate(44100)\n    f3.setcomptype(\"NONE\", \"Not Compressed\")\n    frames = min(f1.getnframes(), f2.getnframes())\n\n    print(\"Mixing files, total length %.2f s...\" % (frames / 44100.0))\n    d1 = f1.readframes(frames)\n    d2 = f2.readframes(frames)\n    for n in range(frames):\n        if not n % (5 * 44100):\n            print(n // 44100, \"s\")\n        if chann < 2:\n            d3 = struct.pack(\n                \"h\",\n                int(\n                    0.5\n                    * (\n                        struct.unpack(\"h\", d1[2 * n : 2 * n + 2])[0]\n                        + struct.unpack(\"h\", d2[2 * n : 2 * n + 2])[0]\n                    )\n                ),\n            )\n        else:\n            d3 = struct.pack(\n                \"h\",\n                int(\n                    phase * 0.3 * struct.unpack(\"h\", d1[2 * n : 2 * n + 2])[0]\n                    + 0.7 * struct.unpack(\"h\", d2[2 * n : 2 * n + 2])[0]\n                ),\n            ) + struct.pack(\n                \"h\",\n                int(\n                    0.7 * struct.unpack(\"h\", d1[2 * n : 2 * n + 2])[0]\n                    + phase * 0.3 * struct.unpack(\"h\", d2[2 * n : 2 * n + 2])[0]\n                ),\n            )\n        f3.writeframesraw(d3)\n    f3.close()\n\n\ndef make_wav(\n    song,\n    bpm=120,\n    transpose=0,\n    pause=0.05,\n    boost=1.1,\n    repeat=0,\n    fn=\"out.wav\",\n    silent=False,\n):\n    f = wave.open(fn, \"w\")\n\n    f.setnchannels(1)\n    f.setsampwidth(2)\n    f.setframerate(44100)\n    f.setcomptype(\"NONE\", \"Not Compressed\")\n\n    bpmfac = 120.0 / bpm\n\n    def length(l):\n        return 88200.0 / l * bpmfac\n\n    def waves2(hz, l):\n        a = 44100.0 / hz\n        b = float(l) / 44100.0 * hz\n        return [a, round(b)]\n\n    def sixteenbit(x):\n        return struct.pack(\"h\", round(32000 * x))\n\n    def asin(x):\n        return math.sin(2.0 * math.pi * x)\n\n    def render2(a, b, vol):\n        b2 = (1.0 - pause) * b\n        l = waves2(a, b2)\n        ow = b\"\"\n        q = int(l[0] * l[1])\n\n        # harmonics are frequency-dependent:\n        lf = math.log(a)\n        lf_fac = (lf - 3.0) / harm_max\n        if lf_fac > 1:\n            harm = 0\n        else:\n            harm = 2.0 * (1 - lf_fac)\n        decay = 2.0 / lf\n        t = (lf - 3.0) / (8.5 - 3.0)\n        volfac = 1.0 + 0.8 * t * math.cos(math.pi / 5.3 * (lf - 3.0))\n\n        for x in range(q):\n            fac = 1.0\n            if x < 100:\n                fac = x / 80.0\n            if 100 <= x < 300:\n                fac = 1.25 - (x - 100) / 800.0\n            if x > q - 400:\n                fac = 1.0 - ((x - q + 400) / 400.0)\n            s = float(x) / float(q)\n            dfac = 1.0 - s + s * decay\n            ow = ow + sixteenbit(\n                (\n                    asin(float(x) / l[0])\n                    + harm * asin(float(x) / (l[0] / 2.0))\n                    + 0.5 * harm * asin(float(x) / (l[0] / 4.0))\n                )\n                / 4.0\n                * fac\n                * vol\n                * dfac\n                * volfac\n            )\n        fill = max(int(ex_pos - curpos - q), 0)\n        f.writeframesraw((ow) + (sixteenbit(0) * fill))\n        return q + fill\n\n    ##########################################################################\n    # Write to output file (in WAV format)\n    ##########################################################################\n\n    if silent == False:\n        print(\"Writing to file\", fn)\n    curpos = 0\n    ex_pos = 0.0\n    for rp in range(repeat + 1):\n        for nn, x in enumerate(song):\n            if not nn % 4 and silent == False:\n                print(\"[%u/%u]\\t\" % (nn + 1, len(song)))\n            if x[0] != \"r\":\n                if x[0][-1] == \"*\":\n                    vol = boost\n                    note = x[0][:-1]\n                else:\n                    vol = 1.0\n                    note = x[0]\n                try:\n                    a = pitchhz[note]\n                except:\n                    a = pitchhz[note + \"4\"]  # default to fourth octave\n                a = a * 2**transpose\n                if x[1] < 0:\n                    b = length(-2.0 * x[1] / 3.0)\n                else:\n                    b = length(x[1])\n                ex_pos = ex_pos + b\n                curpos = curpos + render2(a, b, vol)\n\n            if x[0] == \"r\":\n                b = length(x[1])\n                ex_pos = ex_pos + b\n                f.writeframesraw(sixteenbit(0) * int(b))\n                curpos = curpos + int(b)\n\n    f.writeframes(b\"\")\n    f.close()\n    print()\n",
+      "byteLength": 8352,
+      "sha256": "25cc90d803deb4c0652c7ecb9a5ee5deb89ce5b5e191b45ddb1b8e9293d4b2b6",
+      "gitBlob": "295ff0b5216ff56daaa0373a102b77a9c24ac545"
+    },
+    "PS6-Song-Generator/starter/README.md": {
+      "content": "# Song Generator starter\n\nThe starter builds a one-note sample. Add prompts for pitch and duration, then append one pair for each valid entry. Accept c4, d4, e4, f4, g4, a4, b4, c5, or r for a rest. Accept 1, 2, 4, and 8 as durations. Reask after an invalid entry, finish after six pairs, or accept q at the pitch prompt to finish earlier.\n\nEnter C4 with duration 4, r with duration 8, and e4 with duration 2. Then enter q to render the three pairs in order. If no pairs were entered, print a message and skip rendering.\n",
+      "byteLength": 521,
+      "sha256": "72c27ccd69bb18ac44d15a5f38ea263721fea7de9a6b667f8295a2667802e82f",
+      "gitBlob": "d218092c52374f88771178cacc310ad67b5c73d4"
+    },
+    "PS6-Song-Generator/starter/main.py": {
+      "content": "import sys\n\nif sys.platform == \"emscripten\":\n    from pysynth import make_wav\nelse:\n    from native_pysynth import make_wav\n\n\nsong = [(\"c4\", 4)]\nprint(f\"Song: {song}\")\nmake_wav(song, bpm=120, fn=\"song.wav\", silent=True)\nprint(\"Wrote song.wav.\")\n\n# Read each pitch and duration before appending it. Stop at six pairs or q.\n",
+      "byteLength": 322,
+      "sha256": "d472ab534e53fc4d38ac363989c1e5079c17ac6cc0c6182a76bbbf0626362c68",
+      "gitBlob": "a5a8e2ef9a9de46842a44ffcf1ce8d54f3894e21"
+    },
+    "PS6-Song-Generator/starter/native_pysynth/__init__.py": {
+      "content": "from . import pysynth\nfrom .pysynth import *\n",
+      "byteLength": 45,
+      "sha256": "02df851e83689604b56f47d013882b9880325818781592f97a2e8adf2084fa03",
+      "gitBlob": "64c0d170b3a2bb8150d623f8f33c32b72d850726"
+    },
+    "PS6-Song-Generator/starter/native_pysynth/pysynth.py": {
+      "content": "#!/usr/bin/env python\n\"\"\"\n##########################################################################\n#                       * * *  PySynth  * * *\n#       A very basic audio synthesizer in Python (www.python.org)\n#\n#          Martin C. Doege, 2009-04-07 (mdoege@compuserve.com)\n##########################################################################\n# Based on a program by Tyler Eaves (tyler at tylereaves.com) found at\n#   http://mail.python.org/pipermail/python-list/2000-August/049968.html\n##########################################################################\n# 'song' is a Python list (or tuple) in which the song is defined,\n#   the format is [['note', value]]\n# Notes are 'a' through 'g' of course,\n# optionally with '#' or 'b' appended for sharps or flats.\n# Finally the octave number (defaults to octave 4 if not given).\n# An asterisk at the end makes the note a little louder (useful for the beat).\n# 'r' is a rest.\n# Note value is a number:\n# 1=Whole Note; 2=Half Note; 4=Quarter Note, etc.\n# Dotted notes can be written in two ways:\n# 1.33 = -2 = dotted half\n# 2.66 = -4 = dotted quarter\n# 5.33 = -8 = dotted eighth\n\"\"\"\n\nimport sys\n\nassert sys.version_info >= (3, 3), \"This program does not work with older versions of Python.\\\n Please install Python 3.3 or later.\"\n\n##########################################################################\n# Compute and print piano key frequency table\n##########################################################################\n\npitchhz, keynum = {}, {}\n\nkeys_s = (\"a\", \"a#\", \"b\", \"c\", \"c#\", \"d\", \"d#\", \"e\", \"f\", \"f#\", \"g\", \"g#\")\nkeys_f = (\"a\", \"bb\", \"b\", \"c\", \"db\", \"d\", \"eb\", \"e\", \"f\", \"gb\", \"g\", \"ab\")\nkeys_e = (\"a\", \"bb\", \"cb\", \"b#\", \"db\", \"d\", \"eb\", \"fb\", \"e#\", \"gb\", \"g\", \"ab\")\n\n\ndef getfreq(pr=False):\n    if pr:\n        print(\"Piano key frequencies (for equal temperament):\")\n        print(\"Key number\\tScientific name\\tFrequency (Hz)\")\n    for k in range(88):\n        freq = 27.5 * 2.0 ** (k / 12.0)\n        oct = (k + 9) // 12\n        note = \"%s%u\" % (keys_s[k % 12], oct)\n        if pr:\n            print(\"%10u\\t%15s\\t%14.2f\" % (k + 1, note.upper(), freq))\n        pitchhz[note] = freq\n        keynum[note] = k\n        note = \"%s%u\" % (keys_f[k % 12], oct)\n        pitchhz[note] = freq\n        keynum[note] = k\n        note = \"%s%u\" % (keys_e[k % 12], oct)\n        pitchhz[note] = freq\n        keynum[note] = k\n    return pitchhz, keynum\n\n\n# construct filnames for Salamander piano samples\n\nsampfn = {}\nfacs = 1, 2 ** (1 / 12), 2 ** (2 / 12)\nnam = \"A\", \"C\", \"D#\", \"F#\"\n\n\ndef getfn(layer):\n    for k in range(88):\n        oct = (k + 9) // 12\n\n        sampfn[k] = \"%s%uv%u.wav\" % (nam[(k // 3) % 4], oct, layer), facs[k % 3]\n    return sampfn\n\n\npitchhz, keynum = getfreq(pr=True)\n\n##########################################################################\n#### Main program starts below\n##########################################################################\n# Some parameters:\n\n# Beats (quarters) per minute\n# e.g. bpm = 95\n\n# Octave shift (neg. integer -> lower; pos. integer -> higher)\n# e.g. transpose = 0\n\n# Pause between notes as a fraction (0. = legato and e.g., 0.5 = staccato)\n# e.g. pause = 0.05\n\n# Volume boost for asterisk notes (1. = no boost)\n# e.g. boost = 1.2\n\n# Output file name\n# fn = 'pysynth_output.wav'\n\n# Other parameters:\n\n# Influences the decay of harmonics over frequency. Lowering the\n# value eliminates even more harmonics at high frequencies.\n# Suggested range: between 3. and 5., depending on the frequency response\n#  of speakers/headphones used\nharm_max = 4.0\n\n##########################################################################\n\nimport wave, math, struct\n\n\ndef mix_files(a, b, c, chann=2, phase=-1.0):\n    f1 = wave.open(a, \"r\")\n    f2 = wave.open(b, \"r\")\n    f3 = wave.open(c, \"w\")\n    f3.setnchannels(chann)\n    f3.setsampwidth(2)\n    f3.setframerate(44100)\n    f3.setcomptype(\"NONE\", \"Not Compressed\")\n    frames = min(f1.getnframes(), f2.getnframes())\n\n    print(\"Mixing files, total length %.2f s...\" % (frames / 44100.0))\n    d1 = f1.readframes(frames)\n    d2 = f2.readframes(frames)\n    for n in range(frames):\n        if not n % (5 * 44100):\n            print(n // 44100, \"s\")\n        if chann < 2:\n            d3 = struct.pack(\n                \"h\",\n                int(\n                    0.5\n                    * (\n                        struct.unpack(\"h\", d1[2 * n : 2 * n + 2])[0]\n                        + struct.unpack(\"h\", d2[2 * n : 2 * n + 2])[0]\n                    )\n                ),\n            )\n        else:\n            d3 = struct.pack(\n                \"h\",\n                int(\n                    phase * 0.3 * struct.unpack(\"h\", d1[2 * n : 2 * n + 2])[0]\n                    + 0.7 * struct.unpack(\"h\", d2[2 * n : 2 * n + 2])[0]\n                ),\n            ) + struct.pack(\n                \"h\",\n                int(\n                    0.7 * struct.unpack(\"h\", d1[2 * n : 2 * n + 2])[0]\n                    + phase * 0.3 * struct.unpack(\"h\", d2[2 * n : 2 * n + 2])[0]\n                ),\n            )\n        f3.writeframesraw(d3)\n    f3.close()\n\n\ndef make_wav(\n    song,\n    bpm=120,\n    transpose=0,\n    pause=0.05,\n    boost=1.1,\n    repeat=0,\n    fn=\"out.wav\",\n    silent=False,\n):\n    f = wave.open(fn, \"w\")\n\n    f.setnchannels(1)\n    f.setsampwidth(2)\n    f.setframerate(44100)\n    f.setcomptype(\"NONE\", \"Not Compressed\")\n\n    bpmfac = 120.0 / bpm\n\n    def length(l):\n        return 88200.0 / l * bpmfac\n\n    def waves2(hz, l):\n        a = 44100.0 / hz\n        b = float(l) / 44100.0 * hz\n        return [a, round(b)]\n\n    def sixteenbit(x):\n        return struct.pack(\"h\", round(32000 * x))\n\n    def asin(x):\n        return math.sin(2.0 * math.pi * x)\n\n    def render2(a, b, vol):\n        b2 = (1.0 - pause) * b\n        l = waves2(a, b2)\n        ow = b\"\"\n        q = int(l[0] * l[1])\n\n        # harmonics are frequency-dependent:\n        lf = math.log(a)\n        lf_fac = (lf - 3.0) / harm_max\n        if lf_fac > 1:\n            harm = 0\n        else:\n            harm = 2.0 * (1 - lf_fac)\n        decay = 2.0 / lf\n        t = (lf - 3.0) / (8.5 - 3.0)\n        volfac = 1.0 + 0.8 * t * math.cos(math.pi / 5.3 * (lf - 3.0))\n\n        for x in range(q):\n            fac = 1.0\n            if x < 100:\n                fac = x / 80.0\n            if 100 <= x < 300:\n                fac = 1.25 - (x - 100) / 800.0\n            if x > q - 400:\n                fac = 1.0 - ((x - q + 400) / 400.0)\n            s = float(x) / float(q)\n            dfac = 1.0 - s + s * decay\n            ow = ow + sixteenbit(\n                (\n                    asin(float(x) / l[0])\n                    + harm * asin(float(x) / (l[0] / 2.0))\n                    + 0.5 * harm * asin(float(x) / (l[0] / 4.0))\n                )\n                / 4.0\n                * fac\n                * vol\n                * dfac\n                * volfac\n            )\n        fill = max(int(ex_pos - curpos - q), 0)\n        f.writeframesraw((ow) + (sixteenbit(0) * fill))\n        return q + fill\n\n    ##########################################################################\n    # Write to output file (in WAV format)\n    ##########################################################################\n\n    if silent == False:\n        print(\"Writing to file\", fn)\n    curpos = 0\n    ex_pos = 0.0\n    for rp in range(repeat + 1):\n        for nn, x in enumerate(song):\n            if not nn % 4 and silent == False:\n                print(\"[%u/%u]\\t\" % (nn + 1, len(song)))\n            if x[0] != \"r\":\n                if x[0][-1] == \"*\":\n                    vol = boost\n                    note = x[0][:-1]\n                else:\n                    vol = 1.0\n                    note = x[0]\n                try:\n                    a = pitchhz[note]\n                except:\n                    a = pitchhz[note + \"4\"]  # default to fourth octave\n                a = a * 2**transpose\n                if x[1] < 0:\n                    b = length(-2.0 * x[1] / 3.0)\n                else:\n                    b = length(x[1])\n                ex_pos = ex_pos + b\n                curpos = curpos + render2(a, b, vol)\n\n            if x[0] == \"r\":\n                b = length(x[1])\n                ex_pos = ex_pos + b\n                f.writeframesraw(sixteenbit(0) * int(b))\n                curpos = curpos + int(b)\n\n    f.writeframes(b\"\")\n    f.close()\n    print()\n",
+      "byteLength": 8352,
+      "sha256": "25cc90d803deb4c0652c7ecb9a5ee5deb89ce5b5e191b45ddb1b8e9293d4b2b6",
+      "gitBlob": "295ff0b5216ff56daaa0373a102b77a9c24ac545"
+    },
+    "PS6-Song-Generator/solution/main.py": {
+      "content": "import sys\n\nif sys.platform == \"emscripten\":\n    from pysynth import make_wav\nelse:\n    from native_pysynth import make_wav\n\n\nPITCHES = {\"c4\", \"d4\", \"e4\", \"f4\", \"g4\", \"a4\", \"b4\", \"c5\", \"r\"}\nDURATIONS = {\"1\", \"2\", \"4\", \"8\"}\nMAX_NOTES = 6\n\n\ndef read_song():\n    song = []\n    while len(song) < MAX_NOTES:\n        try:\n            pitch = input(\"Pitch c4 through b4, c5, r, or q: \").strip().lower()\n            if pitch in {\"q\", \"1\"}:\n                break\n            if pitch not in PITCHES:\n                print(\"Choose one of the listed pitches or r for a rest.\")\n                continue\n\n            duration = input(\"Duration 1, 2, 4 or 8: \").strip()\n            while duration not in DURATIONS:\n                print(\"Choose 1, 2, 4 or 8.\")\n                duration = input(\"Duration 1, 2, 4 or 8: \").strip()\n        except EOFError:\n            break\n        song.append((pitch, int(duration)))\n        print(f\"Added {pitch} with duration {duration}.\")\n    return song\n\n\nsong = read_song()\nif song:\n    print(f\"Song: {song}\")\n    make_wav(song, bpm=120, fn=\"song.wav\", silent=True)\n    print(\"Wrote song.wav.\")\nelse:\n    print(\"No notes entered.\")\n",
+      "byteLength": 1155,
+      "sha256": "0b0206ffd694df5ab5afd2c49a4afeb062b0986b95cf69044871e4bf41ea3c9f",
+      "gitBlob": "20a0971b1ec2aab5f15a8dcbe843981e791c3727"
+    },
+    "PS6-Song-Generator/solution/native_pysynth/__init__.py": {
+      "content": "from . import pysynth\nfrom .pysynth import *\n",
+      "byteLength": 45,
+      "sha256": "02df851e83689604b56f47d013882b9880325818781592f97a2e8adf2084fa03",
+      "gitBlob": "64c0d170b3a2bb8150d623f8f33c32b72d850726"
+    },
+    "PS6-Song-Generator/solution/native_pysynth/pysynth.py": {
+      "content": "#!/usr/bin/env python\n\"\"\"\n##########################################################################\n#                       * * *  PySynth  * * *\n#       A very basic audio synthesizer in Python (www.python.org)\n#\n#          Martin C. Doege, 2009-04-07 (mdoege@compuserve.com)\n##########################################################################\n# Based on a program by Tyler Eaves (tyler at tylereaves.com) found at\n#   http://mail.python.org/pipermail/python-list/2000-August/049968.html\n##########################################################################\n# 'song' is a Python list (or tuple) in which the song is defined,\n#   the format is [['note', value]]\n# Notes are 'a' through 'g' of course,\n# optionally with '#' or 'b' appended for sharps or flats.\n# Finally the octave number (defaults to octave 4 if not given).\n# An asterisk at the end makes the note a little louder (useful for the beat).\n# 'r' is a rest.\n# Note value is a number:\n# 1=Whole Note; 2=Half Note; 4=Quarter Note, etc.\n# Dotted notes can be written in two ways:\n# 1.33 = -2 = dotted half\n# 2.66 = -4 = dotted quarter\n# 5.33 = -8 = dotted eighth\n\"\"\"\n\nimport sys\n\nassert sys.version_info >= (3, 3), \"This program does not work with older versions of Python.\\\n Please install Python 3.3 or later.\"\n\n##########################################################################\n# Compute and print piano key frequency table\n##########################################################################\n\npitchhz, keynum = {}, {}\n\nkeys_s = (\"a\", \"a#\", \"b\", \"c\", \"c#\", \"d\", \"d#\", \"e\", \"f\", \"f#\", \"g\", \"g#\")\nkeys_f = (\"a\", \"bb\", \"b\", \"c\", \"db\", \"d\", \"eb\", \"e\", \"f\", \"gb\", \"g\", \"ab\")\nkeys_e = (\"a\", \"bb\", \"cb\", \"b#\", \"db\", \"d\", \"eb\", \"fb\", \"e#\", \"gb\", \"g\", \"ab\")\n\n\ndef getfreq(pr=False):\n    if pr:\n        print(\"Piano key frequencies (for equal temperament):\")\n        print(\"Key number\\tScientific name\\tFrequency (Hz)\")\n    for k in range(88):\n        freq = 27.5 * 2.0 ** (k / 12.0)\n        oct = (k + 9) // 12\n        note = \"%s%u\" % (keys_s[k % 12], oct)\n        if pr:\n            print(\"%10u\\t%15s\\t%14.2f\" % (k + 1, note.upper(), freq))\n        pitchhz[note] = freq\n        keynum[note] = k\n        note = \"%s%u\" % (keys_f[k % 12], oct)\n        pitchhz[note] = freq\n        keynum[note] = k\n        note = \"%s%u\" % (keys_e[k % 12], oct)\n        pitchhz[note] = freq\n        keynum[note] = k\n    return pitchhz, keynum\n\n\n# construct filnames for Salamander piano samples\n\nsampfn = {}\nfacs = 1, 2 ** (1 / 12), 2 ** (2 / 12)\nnam = \"A\", \"C\", \"D#\", \"F#\"\n\n\ndef getfn(layer):\n    for k in range(88):\n        oct = (k + 9) // 12\n\n        sampfn[k] = \"%s%uv%u.wav\" % (nam[(k // 3) % 4], oct, layer), facs[k % 3]\n    return sampfn\n\n\npitchhz, keynum = getfreq(pr=True)\n\n##########################################################################\n#### Main program starts below\n##########################################################################\n# Some parameters:\n\n# Beats (quarters) per minute\n# e.g. bpm = 95\n\n# Octave shift (neg. integer -> lower; pos. integer -> higher)\n# e.g. transpose = 0\n\n# Pause between notes as a fraction (0. = legato and e.g., 0.5 = staccato)\n# e.g. pause = 0.05\n\n# Volume boost for asterisk notes (1. = no boost)\n# e.g. boost = 1.2\n\n# Output file name\n# fn = 'pysynth_output.wav'\n\n# Other parameters:\n\n# Influences the decay of harmonics over frequency. Lowering the\n# value eliminates even more harmonics at high frequencies.\n# Suggested range: between 3. and 5., depending on the frequency response\n#  of speakers/headphones used\nharm_max = 4.0\n\n##########################################################################\n\nimport wave, math, struct\n\n\ndef mix_files(a, b, c, chann=2, phase=-1.0):\n    f1 = wave.open(a, \"r\")\n    f2 = wave.open(b, \"r\")\n    f3 = wave.open(c, \"w\")\n    f3.setnchannels(chann)\n    f3.setsampwidth(2)\n    f3.setframerate(44100)\n    f3.setcomptype(\"NONE\", \"Not Compressed\")\n    frames = min(f1.getnframes(), f2.getnframes())\n\n    print(\"Mixing files, total length %.2f s...\" % (frames / 44100.0))\n    d1 = f1.readframes(frames)\n    d2 = f2.readframes(frames)\n    for n in range(frames):\n        if not n % (5 * 44100):\n            print(n // 44100, \"s\")\n        if chann < 2:\n            d3 = struct.pack(\n                \"h\",\n                int(\n                    0.5\n                    * (\n                        struct.unpack(\"h\", d1[2 * n : 2 * n + 2])[0]\n                        + struct.unpack(\"h\", d2[2 * n : 2 * n + 2])[0]\n                    )\n                ),\n            )\n        else:\n            d3 = struct.pack(\n                \"h\",\n                int(\n                    phase * 0.3 * struct.unpack(\"h\", d1[2 * n : 2 * n + 2])[0]\n                    + 0.7 * struct.unpack(\"h\", d2[2 * n : 2 * n + 2])[0]\n                ),\n            ) + struct.pack(\n                \"h\",\n                int(\n                    0.7 * struct.unpack(\"h\", d1[2 * n : 2 * n + 2])[0]\n                    + phase * 0.3 * struct.unpack(\"h\", d2[2 * n : 2 * n + 2])[0]\n                ),\n            )\n        f3.writeframesraw(d3)\n    f3.close()\n\n\ndef make_wav(\n    song,\n    bpm=120,\n    transpose=0,\n    pause=0.05,\n    boost=1.1,\n    repeat=0,\n    fn=\"out.wav\",\n    silent=False,\n):\n    f = wave.open(fn, \"w\")\n\n    f.setnchannels(1)\n    f.setsampwidth(2)\n    f.setframerate(44100)\n    f.setcomptype(\"NONE\", \"Not Compressed\")\n\n    bpmfac = 120.0 / bpm\n\n    def length(l):\n        return 88200.0 / l * bpmfac\n\n    def waves2(hz, l):\n        a = 44100.0 / hz\n        b = float(l) / 44100.0 * hz\n        return [a, round(b)]\n\n    def sixteenbit(x):\n        return struct.pack(\"h\", round(32000 * x))\n\n    def asin(x):\n        return math.sin(2.0 * math.pi * x)\n\n    def render2(a, b, vol):\n        b2 = (1.0 - pause) * b\n        l = waves2(a, b2)\n        ow = b\"\"\n        q = int(l[0] * l[1])\n\n        # harmonics are frequency-dependent:\n        lf = math.log(a)\n        lf_fac = (lf - 3.0) / harm_max\n        if lf_fac > 1:\n            harm = 0\n        else:\n            harm = 2.0 * (1 - lf_fac)\n        decay = 2.0 / lf\n        t = (lf - 3.0) / (8.5 - 3.0)\n        volfac = 1.0 + 0.8 * t * math.cos(math.pi / 5.3 * (lf - 3.0))\n\n        for x in range(q):\n            fac = 1.0\n            if x < 100:\n                fac = x / 80.0\n            if 100 <= x < 300:\n                fac = 1.25 - (x - 100) / 800.0\n            if x > q - 400:\n                fac = 1.0 - ((x - q + 400) / 400.0)\n            s = float(x) / float(q)\n            dfac = 1.0 - s + s * decay\n            ow = ow + sixteenbit(\n                (\n                    asin(float(x) / l[0])\n                    + harm * asin(float(x) / (l[0] / 2.0))\n                    + 0.5 * harm * asin(float(x) / (l[0] / 4.0))\n                )\n                / 4.0\n                * fac\n                * vol\n                * dfac\n                * volfac\n            )\n        fill = max(int(ex_pos - curpos - q), 0)\n        f.writeframesraw((ow) + (sixteenbit(0) * fill))\n        return q + fill\n\n    ##########################################################################\n    # Write to output file (in WAV format)\n    ##########################################################################\n\n    if silent == False:\n        print(\"Writing to file\", fn)\n    curpos = 0\n    ex_pos = 0.0\n    for rp in range(repeat + 1):\n        for nn, x in enumerate(song):\n            if not nn % 4 and silent == False:\n                print(\"[%u/%u]\\t\" % (nn + 1, len(song)))\n            if x[0] != \"r\":\n                if x[0][-1] == \"*\":\n                    vol = boost\n                    note = x[0][:-1]\n                else:\n                    vol = 1.0\n                    note = x[0]\n                try:\n                    a = pitchhz[note]\n                except:\n                    a = pitchhz[note + \"4\"]  # default to fourth octave\n                a = a * 2**transpose\n                if x[1] < 0:\n                    b = length(-2.0 * x[1] / 3.0)\n                else:\n                    b = length(x[1])\n                ex_pos = ex_pos + b\n                curpos = curpos + render2(a, b, vol)\n\n            if x[0] == \"r\":\n                b = length(x[1])\n                ex_pos = ex_pos + b\n                f.writeframesraw(sixteenbit(0) * int(b))\n                curpos = curpos + int(b)\n\n    f.writeframes(b\"\")\n    f.close()\n    print()\n",
+      "byteLength": 8352,
+      "sha256": "25cc90d803deb4c0652c7ecb9a5ee5deb89ce5b5e191b45ddb1b8e9293d4b2b6",
+      "gitBlob": "295ff0b5216ff56daaa0373a102b77a9c24ac545"
+    },
+    "PS6-Tower-of-Terror/starter/README.md": {
+      "content": "# Tower of Terror starter\n\nThis calculations exercise uses fictional rider weights. Start with one positive whole-number entry. Add a loop for at most ten valid entries, with q to finish early. Replace an invalid entry without advancing the count. Print the list, the total, and the arithmetic mean. Inputs 80, 120, and q give a total of 200 and a mean of 100. If q is the first response, print that the mean is unavailable.\n",
+      "byteLength": 425,
+      "sha256": "894446a37f94436b5cc84658ba38f43d199d41fa2c8e0e966af1fd57fd63be00",
+      "gitBlob": "de92437e783273eb2a79550604b1021285bc05ed"
+    },
+    "PS6-Tower-of-Terror/starter/main.py": {
+      "content": "weights = []\nentry = input(\"Fictional rider weight or q: \").strip().lower()\nif entry.isascii() and entry.isdecimal() and int(entry) > 0:\n    weights.append(int(entry))\nelif entry != \"q\":\n    print(\"Enter a positive whole number or q.\")\n\nprint(f\"Recorded weights: {weights}\")\n\n# Read up to ten valid entries, then compute the total and mean.\n",
+      "byteLength": 341,
+      "sha256": "c0b8a906e71877b4df1aa4e02e97eb28a64d309d0a9d7b605b30fb235ac1456b",
+      "gitBlob": "66a64a4d15d5c0fa1d66ee259da7407519411e4b"
+    },
+    "PS6-Tower-of-Terror/solution/main.py": {
+      "content": "def get_weights():\n    weights = []\n    while len(weights) < 10:\n        entry = input(f\"Fictional rider {len(weights) + 1} weight or q: \").strip().lower()\n        if entry == \"q\":\n            break\n        if entry.isascii() and entry.isdecimal() and int(entry) > 0:\n            weights.append(int(entry))\n        else:\n            print(\"Enter a positive whole number or q.\")\n    return weights\n\n\nweights = get_weights()\ntotal = 0\nfor weight in weights:\n    total += weight\nprint(f\"Recorded weights: {weights}\")\nprint(f\"Total: {total}\")\nif weights:\n    print(f\"Average: {total / len(weights):g}\")\nelse:\n    print(\"Average unavailable. No weights recorded.\")\n",
+      "byteLength": 660,
+      "sha256": "e5ddcb471aec5db99946bd6b3ddf8f576749c06d07a04236884112ad01d910cb",
+      "gitBlob": "ab2035ec1e9b144b78ab6dabb99bdcc66b436772"
+    },
+    "PS6-Basketball-Stars/starter/README.md": {
+      "content": "# Basketball Stars starter\n\nThe starter makes five independent rows with three values for points, rebounds, and assists. Update one statistic in the first row and verify that the other four rows stay unchanged. Read three whole-number statistics for each player. Report every player with at least 10 in each column. The row [10, 10, 9] misses the threshold and [10, 10, 10] meets it.\n",
+      "byteLength": 384,
+      "sha256": "f31cb06778de2a385c689e48bf79159bd35431ac083624b360ac8d52947df1eb",
+      "gitBlob": "c97edca85dbac35ca6d7dcfa5061b239bbb4b5b8"
+    },
+    "PS6-Basketball-Stars/starter/main.py": {
+      "content": "players = []\nfor player in range(5):\n    players.append([0, 0, 0])\nprint(f\"Starting rows: {players}\")\n\n# Fill each row from the input and check all three thresholds.\n",
+      "byteLength": 166,
+      "sha256": "240fdcddc75a8d307036fef9d19baabc5434856db01d18073cd1291752035153",
+      "gitBlob": "8b1e56b89aadb17247241fc4f72fb261e4e9b8a3"
+    },
+    "PS6-Basketball-Stars/solution/main.py": {
+      "content": "players = []\nnum_players = 5\n\n# Add one list for each player into players\nfor i in range(num_players):\n    players.append([])\n\n# For each player's list, fill it with three 0s: points, rebounds, and assists\nfor player in players:\n    for i in range(3):\n        player.append(0)\n\nprint(\"The starting data: \")\nprint(players)\nprint()\n\n# Ask the user to fill in the data\nfor i in range(num_players):\n    players[i][0] = int(input(\"Enter player \" + str(1 + i) + \"'s points: \"))\n    players[i][1] = int(input(\"Enter player \" + str(1 + i) + \"'s rebounds: \"))\n    players[i][2] = int(input(\"Enter player \" + str(1 + i) + \"'s assists: \"))\n\n    print(\"Updated list: \")\n    print(players)\n    print()\n\nprint(\"The final data: \")\nprint(players)\n\n# Check who had a triple double (i.e. double digits for all three stats)\nfor i in range(num_players):\n    if players[i][0] >= 10 and players[i][1] >= 10 and players[i][2] >= 10:\n        print(\"Player \" + str(i + 1) + \" had a triple double!\")\n",
+      "byteLength": 974,
+      "sha256": "e7ac4949bdc6952fb7dfcbb5cabfba3a71598ed21ee5f14f2fb3f060f028842f",
+      "gitBlob": "0dee78cd83c9216d3cc4ad15dea3741e3a17410c"
+    },
+    "PS6-Stock-Trader/starter/README.md": {
+      "content": "# Stock Trader starter\n\nHistories are ordered from earliest to latest. Run the starter to see the most recent GOOGL value, 1122.00. Use one function to summarize each history. Skip calculations for an empty history, and display values to two decimal places.\n\nA short history of 10, 20, and 30 has latest 30.00 and mean 20.00. A single value of 10 has latest and mean 10.00.\n",
+      "byteLength": 374,
+      "sha256": "9b4a8b85fec76c71de9b09cf71a8c02063a2493f6fec9bb6fb2afc9d81857ece",
+      "gitBlob": "267a24c54bae291740d054c790ccb0af21e1e70d"
+    },
+    "PS6-Stock-Trader/starter/main.py": {
+      "content": "GOOGL = [\n    1119.94,\n    1118.61,\n    1124.12,\n    1121.43,\n    1119.54,\n    1123.21,\n    1119.32,\n    1122.41,\n    1118.99,\n    1119.69,\n    1122.00,\n]\nAAPL = [\n    177.38,\n    178.26,\n    175.22,\n    179.11,\n    173.99,\n    177.99,\n    175.32,\n    176.41,\n    174.59,\n    177.50,\n    175.0,\n]\nHD = [\n    189.99,\n    184.26,\n    190.22,\n    189.11,\n    191.99,\n    188.99,\n    180.32,\n    189.14,\n    188.69,\n    183.42,\n    185.32,\n]\n\nprint(f\"GOOGL latest: {GOOGL[-1]:.2f}\")\n\n# Compute the mean of each nonempty list and summarize all three companies.\n",
+      "byteLength": 556,
+      "sha256": "ca19e8d87364e69ac09afcf0636dcd16fd4b4421cfdd04775fcc35886a4bbb8e",
+      "gitBlob": "c1f3baf8a3232d25a25f865b9ce2a43e7979e676"
+    },
+    "PS6-Stock-Trader/solution/main.py": {
+      "content": "GOOGL = [\n    1119.94,\n    1118.61,\n    1124.12,\n    1121.43,\n    1119.54,\n    1123.21,\n    1119.32,\n    1122.41,\n    1118.99,\n    1119.69,\n    1122.00,\n]\nAAPL = [\n    177.38,\n    178.26,\n    175.22,\n    179.11,\n    173.99,\n    177.99,\n    175.32,\n    176.41,\n    174.59,\n    177.50,\n    175.0,\n]\nHD = [\n    189.99,\n    184.26,\n    190.22,\n    189.11,\n    191.99,\n    188.99,\n    180.32,\n    189.14,\n    188.69,\n    183.42,\n    185.32,\n]\n\n\ndef summarize(company, history):\n    if not history:\n        print(f\"{company}: No prices.\")\n        return\n    latest = history[-1]\n    mean = sum(history) / len(history)\n    print(f\"{company}: Latest {latest:.2f}, mean {mean:.2f}.\")\n\n\nfor company, history in [(\"GOOGL\", GOOGL), (\"AAPL\", AAPL), (\"HD\", HD)]:\n    summarize(company, history)\n",
+      "byteLength": 781,
+      "sha256": "e2b640430f40f1c73ca7ef4805a667a3cec2fc0d0fa5a06835b2429c92ad34d2",
+      "gitBlob": "8113212dca4d808c070553f427c8a952c48152c2"
+    },
+    "PS6-Dog-Breeds/starter/README.md": {
+      "content": "# Dog Breeds starter\n\nThe starter prints the first breed in a seven-item list. Loop through all seven breed names. For each one, print the name, its first character, and its length. Beagle starts with b and has six letters. Greyhound starts with g and has nine. Pug starts with p and has three.\n",
+      "byteLength": 295,
+      "sha256": "b6df4339fd5b35d7818479b07e1f122be2a55fb6f4da1810310f17369cb6f75c",
+      "gitBlob": "e55352afff2d7b0ba1a32688979ab9fb2bc33381"
+    },
+    "PS6-Dog-Breeds/starter/main.py": {
+      "content": "dogs = [\"beagle\", \"collie\", \"greyhound\", \"komondor\", \"mastiff\", \"pug\", \"terrier\"]\nprint(f\"First breed: {dogs[0]}\")\n\n# Use a loop to print the first letter and length for every breed.\n",
+      "byteLength": 183,
+      "sha256": "78c5411d1109b66109f4fc8604282e0beb32c340999ed2859205e80a552e5de2",
+      "gitBlob": "1b9e5639ef5682b741513de4e27f9cdc086fbb2a"
+    },
+    "PS6-Dog-Breeds/solution/main.py": {
+      "content": "dogs = [\n    \"beagle\",\n    \"collie\",\n    \"greyhound\",\n    \"komondor\",\n    \"mastiff\",\n    \"pug\",\n    \"terrier\",\n]\n\nfor dog in dogs:\n    first_letter = dog[0]\n    num_letters = str(len(dog))\n    print(\n        \"A \"\n        + dog\n        + \" is a dog breed. Its name starts with the letter \"\n        + first_letter\n        + \", and its name has \"\n        + num_letters\n        + \" letters in it.\\n\"\n    )\n",
+      "byteLength": 402,
+      "sha256": "77ebb3acad768f65f7c064c771ecb944fb7aae8ac6c0223dd3e458aa58b84e20",
+      "gitBlob": "e00dc0a8d0013da3e185c613e46e967bc172e41b"
+    },
+    "PS6-Card-Shuffler/starter/README.md": {
+      "content": "# Card Shuffler starter\n\nThe starter builds 52 numeric ranks. Each rank from 1 through 13 appears four times. Pick two indexes from 0 through 51 and swap the existing values. Put the swap in a loop and return the deck after the requested number of swaps. Compare 0, 10, 50, 100, and 500 swaps. Zero swaps keeps the sorted starting order. After every shuffle, there are still 52 cards and four of each rank.\n",
+      "byteLength": 407,
+      "sha256": "7eabc5686c9b649f7a209c34b1e953fc4963a9a0f8a0a70216e4ddc99a7e2604",
+      "gitBlob": "c21138824a479760ee0aca1a9a11a79fd0147f46"
+    },
+    "PS6-Card-Shuffler/starter/main.py": {
+      "content": "def create_deck():\n    deck = []\n    for rank in range(1, 14):\n        for copy in range(4):\n            deck.append(rank)\n    return deck\n\n\nprint(\"Sorted deck:\")\nprint(create_deck())\n\n# Pick two valid indexes and swap the cards. Repeat inside a function.\n",
+      "byteLength": 256,
+      "sha256": "9400c07914f102b3cd6b377417100594e7a45075ecb10f84d4079992cdb23de4",
+      "gitBlob": "62a14dbc98d3983ab871936205388b1d00ea5cec"
+    },
+    "PS6-Card-Shuffler/solution/main.py": {
+      "content": "import random\n\n\ndef create_deck():\n    deck = []\n    for i in range(1, 14):\n        for j in range(4):\n            deck.append(i)\n    return deck\n\n\ndef shuffle(num_shuffles):\n    deck = create_deck()\n\n    for i in range(num_shuffles):\n        index1 = random.randint(0, len(deck) - 1)\n        index2 = random.randint(0, len(deck) - 1)\n\n        temp = deck[index1]\n        deck[index1] = deck[index2]\n        deck[index2] = temp\n\n\n    return deck\n\n\nprint(\"Sorted deck:\")\nprint(create_deck())\n\nfor swaps in (10, 50, 100, 500):\n    print(f\"Shuffled deck after {swaps} swaps:\")\n    print(shuffle(swaps))\n",
+      "byteLength": 600,
+      "sha256": "6f814065da9aa35d3ff5aa2deb8a24f3f8044a2e33bf46ba2a4ca799590f84e4",
+      "gitBlob": "4106fe3e1867c00bd312185cb11c8fb57b4cde54"
+    },
+    "PS6-Debugging-Lists/starter/README.md": {
+      "content": "# Debugging Lists starter\n\nRun the starter to find the first syntax error. Fix the empty-list expression, then trace how each survey answer is appended and read back. Use five fixed answers to check each repair.\n\nEnter chocolate mudslide, vanilla, pistachio, CHOCOLATE MUDSLIDE, and strawberry. After trimming spaces and using lowercase, the list contains two chocolate mudslide entries and one pistachio entry. The program should print all five responses before the counts.\n",
+      "byteLength": 475,
+      "sha256": "91a0dbcf940d5fc78e28a606a126792b3386156ff1fa93325af9b4539d62c904",
+      "gitBlob": "628f9dcfbdf2cd3290260118f90cc79cf3d98f05"
+    },
+    "PS6-Debugging-Lists/starter/main.py": {
+      "content": "# Repair the syntax error first. Then check how the list changes after input.\nflavors = flavor[]\n\nfor index in range(5):\n    suggestion = input(f\"Flavor {index + 1}: \").strip().lower()\n    flavors = flavors + suggestion\n\nfor flavor in flavors:\n    print(flavors[index])\n\nchocolate_count = 0\npistachio_count = 0\nfor flavor in range(flavors):\n    if flavor == \"chocolate mudslide\":\n        chocolate_count += 1\n    elif flavor == \"pistachio\":\n        pistachio_count += 1\n\nprint(f\"Chocolate mudslide: {chocolate_count}\")\nprint(f\"Pistachio: {pistachio_count}\")\n",
+      "byteLength": 558,
+      "sha256": "b91975d0bd8a1fa585499383880c28e87c13e1f8c25ce3473045dad1493ea651",
+      "gitBlob": "b19290203fa36494d26da6c599e9d1a61beffb76"
+    },
+    "PS6-Debugging-Lists/solution/main.py": {
+      "content": "flavors = []\nfor index in range(5):\n    suggestion = input(f\"Flavor {index + 1}: \").strip().lower()\n    flavors.append(suggestion)\n\nchocolate_count = 0\npistachio_count = 0\nfor flavor in flavors:\n    print(flavor)\n    if flavor == \"chocolate mudslide\":\n        chocolate_count += 1\n    elif flavor == \"pistachio\":\n        pistachio_count += 1\n\nprint(f\"Chocolate mudslide: {chocolate_count}\")\nprint(f\"Pistachio: {pistachio_count}\")\n",
+      "byteLength": 430,
+      "sha256": "2eb6d98da2faa4e7caa594d490d20170051d0b6194265ba7309216820c92a215",
+      "gitBlob": "2cc4665b8e290e97ad2de6c476f426383405efb7"
+    }
+  },
+  "exercises": [
+    {
+      "pack": "PS6-Lists-Practice-1",
+      "itemId": "python-level-2-ps6-lists-and-music-curriculum-ps6-project-1-lists-practice",
+      "examples": {
+        "starter": {
+          "input": "",
+          "expected": [
+            "[10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0]"
+          ]
+        },
+        "solution": {
+          "input": "cat\n",
+          "expected": [
+            "['c', 'a', 't']"
+          ]
+        }
+      },
+      "classroomMainSha256": "5f84c20b223abeacecbd7cf5c7ea62892e96dd821f2c9c0fa35cf20d8bfc9636"
+    },
+    {
+      "pack": "PS6-Build-a-Song",
+      "itemId": "python-level-2-ps6-lists-and-music-curriculum-ps6-project-2-build-a-song",
+      "examples": {
+        "starter": {
+          "input": "",
+          "expected": [
+            "Wrote melody.wav."
+          ]
+        },
+        "solution": {
+          "input": "",
+          "expected": [
+            "Wrote melody.wav."
+          ]
+        }
+      },
+      "audio": {
+        "starter": {
+          "filename": "melody.wav",
+          "frames": 45864,
+          "editedFrames": 67914,
+          "edit": {
+            "from": "(\"c4\", 4)",
+            "to": "(\"c4\", 2)"
+          }
+        },
+        "solution": {
+          "filename": "melody.wav",
+          "frames": 137592,
+          "editedFrames": 159642,
+          "edit": {
+            "from": "(\"c4\", 4)",
+            "to": "(\"c4\", 2)"
+          }
+        }
+      },
+      "classroomMainSha256": "73e465ce56363cb851f05d3f697261c204553cd412935798360ae711e91ec824"
+    },
+    {
+      "pack": "PS6-Song-Generator",
+      "itemId": "python-level-2-ps6-lists-and-music-curriculum-ps6-project-3-song-generator",
+      "examples": {
+        "starter": {
+          "input": "",
+          "expected": [
+            "Song: [('c4', 4)]",
+            "Wrote song.wav."
+          ]
+        },
+        "solution": {
+          "input": "C4\n4\nr\n8\ne4\n2\nq\n",
+          "expected": [
+            "Song: [('c4', 4), ('r', 8), ('e4', 2)]",
+            "Wrote song.wav."
+          ]
+        }
+      },
+      "audio": {
+        "starter": {
+          "filename": "song.wav",
+          "frames": 22932,
+          "editedFrames": 44982,
+          "edit": {
+            "from": "(\"c4\", 4)",
+            "to": "(\"c4\", 2)"
+          },
+          "editedExample": {
+            "input": "",
+            "expected": [
+              "Song: [('c4', 2)]",
+              "Wrote song.wav."
+            ]
+          }
+        },
+        "solution": {
+          "filename": "song.wav",
+          "frames": 79821,
+          "editedFrames": 101871,
+          "edit": {
+            "from": "if song:\n    print(f\"Song: {song}\")",
+            "to": "if song:\n    song[0] = (song[0][0], 2)\n    print(f\"Song: {song}\")"
+          },
+          "editedExample": {
+            "input": "C4\n4\nr\n8\ne4\n2\nq\n",
+            "expected": [
+              "Song: [('c4', 2), ('r', 8), ('e4', 2)]",
+              "Wrote song.wav."
+            ]
+          }
+        }
+      },
+      "classroomMainSha256": "d8ba1477de6f329c2bb8be2304a59dcc358755fab63d97e6fe8e1d2104aac282"
+    },
+    {
+      "pack": "PS6-Tower-of-Terror",
+      "itemId": "python-level-2-ps6-lists-and-music-supplemental-ps6-supplemental-project-1-tower-of-terror",
+      "examples": {
+        "starter": {
+          "input": "80\n",
+          "expected": [
+            "Recorded weights: [80]"
+          ]
+        },
+        "solution": {
+          "input": "80\n120\nq\n",
+          "expected": [
+            "Recorded weights: [80, 120]",
+            "Total: 200",
+            "Average: 100"
+          ]
+        }
+      },
+      "classroomMainSha256": "576af06ebf31a1c0594d7d5c6e45e6e171be30b537a431f3c7bf74b69bb6a098"
+    },
+    {
+      "pack": "PS6-Basketball-Stars",
+      "itemId": "python-level-2-ps6-lists-and-music-supplemental-ps6-supplemental-project-2-basketball-stars",
+      "examples": {
+        "starter": {
+          "input": "",
+          "expected": [
+            "Starting rows: [[0, 0, 0]"
+          ]
+        },
+        "solution": {
+          "input": "10\n10\n9\n10\n10\n10\n11\n12\n13\n8\n11\n12\n0\n0\n0\n",
+          "expected": [
+            "Player 2 had a triple double!",
+            "Player 3 had a triple double!"
+          ]
+        }
+      },
+      "classroomMainSha256": "b20c9cbfd7862b72d2e82455d94c1a9a27de892742b06f3c0e2ee51c1e9b3a6a"
+    },
+    {
+      "pack": "PS6-Stock-Trader",
+      "itemId": "python-level-2-ps6-lists-and-music-supplemental-ps6-supplemental-project-3-stock-trader",
+      "examples": {
+        "starter": {
+          "input": "",
+          "expected": [
+            "GOOGL latest: 1122.00"
+          ]
+        },
+        "solution": {
+          "input": "",
+          "expected": [
+            "GOOGL: Latest 1122.00, mean",
+            "AAPL: Latest 175.00, mean",
+            "HD: Latest 185.32, mean"
+          ]
+        }
+      },
+      "classroomMainSha256": "13aa6014e6666ce325995a87fe8ab5931e7189a075a120551ce8fb74b8e93421"
+    },
+    {
+      "pack": "PS6-Dog-Breeds",
+      "itemId": "python-level-2-ps6-lists-and-music-supplemental-ps6-supplemental-project-4-dog-breeds",
+      "examples": {
+        "starter": {
+          "input": "",
+          "expected": [
+            "First breed: beagle"
+          ]
+        },
+        "solution": {
+          "input": "",
+          "expected": [
+            "A beagle is a dog breed.",
+            "starts with the letter g, and its name has 9 letters",
+            "A pug is a dog breed."
+          ]
+        }
+      },
+      "classroomMainSha256": "4d81d653ea468f1a8ee32281decf7b8dae5dd9a99f875360c74dd4282a5539bd"
+    },
+    {
+      "pack": "PS6-Card-Shuffler",
+      "itemId": "python-level-2-ps6-lists-and-music-supplemental-ps6-supplemental-project-5-card-shuffler",
+      "examples": {
+        "starter": {
+          "input": "",
+          "expected": [
+            "Sorted deck:"
+          ]
+        },
+        "solution": {
+          "input": "",
+          "expected": [
+            "Shuffled deck after 10 swaps:",
+            "Shuffled deck after 500 swaps:"
+          ]
+        }
+      },
+      "classroomMainSha256": "c7d3937cd035c4908c985fa4c6e2b55bb179b0ba6faedbd92752efd3348f4e5c"
+    },
+    {
+      "pack": "PS6-Debugging-Lists",
+      "itemId": "python-level-2-ps6-lists-and-music-supplemental-ps6-supplemental-project-6-debugging-lists",
+      "examples": {
+        "starter": {
+          "input": "",
+          "expected": [
+            "SyntaxError"
+          ],
+          "expectsSyntaxError": true
+        },
+        "solution": {
+          "input": "chocolate mudslide\nvanilla\npistachio\n CHOCOLATE MUDSLIDE \nstrawberry\n",
+          "expected": [
+            "Chocolate mudslide: 2",
+            "Pistachio: 1"
+          ]
+        }
+      },
+      "classroomMainSha256": "cb6eafccb96cd0537ceeaeb2dc9355304790a707a4c9407eaa79a4ab34de19e9"
+    }
+  ]
+}

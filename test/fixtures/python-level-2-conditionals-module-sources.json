@@ -1,0 +1,351 @@
+{
+  "repository": "Python-Level-2",
+  "revision": "5d787e78f9d0e72096046c49ee25e9fab53fe045",
+  "moduleId": "python-level-2-ps4-conditionals",
+  "exercises": [
+    {
+      "pack": "PS4-Rock-Paper-Scissors",
+      "itemId": "python-level-2-ps4-conditionals-curriculum-ps4-project-1-rock-paper-scissors",
+      "examples": {
+        "starter": {
+          "input": "rock\npaper\n",
+          "expected": [
+            "Different valid moves."
+          ]
+        },
+        "solution": {
+          "input": "rock\npaper\n",
+          "expected": [
+            "Player 2 wins!"
+          ]
+        }
+      },
+      "classroomMainSha256": "b391c62952eee74b1fc0f28a1c3dd1d5a9acb5e0b8e629d3859119f27c01d57a"
+    },
+    {
+      "pack": "PS4-FizzBuzz",
+      "itemId": "python-level-2-ps4-conditionals-curriculum-ps4-project-2-fizzbuzz",
+      "examples": {
+        "starter": {
+          "input": "",
+          "expected": [
+            "Fizz\n4\n5"
+          ]
+        },
+        "solution": {
+          "input": "",
+          "expected": [
+            "Fizz\n4\nBuzz",
+            "FizzBuzz\n16"
+          ]
+        }
+      },
+      "classroomMainSha256": "cbbd664c863ef26bfddd2da31ff176d6d398985d5321a11f3a565843aa078460"
+    },
+    {
+      "pack": "PS4-Credit-Card-Validator",
+      "itemId": "python-level-2-ps4-conditionals-curriculum-ps4-project-3-credit-card-validator",
+      "examples": {
+        "starter": {
+          "input": "1479\n",
+          "expected": [
+            "Unweighted sum: 21"
+          ]
+        },
+        "solution": {
+          "input": "1479\n",
+          "expected": [
+            "Checksum total: 20",
+            "Checksum passes."
+          ]
+        }
+      },
+      "classroomMainSha256": "f84258bb3803e907797b0509ad47521a9fe8e9c76f4d97cacb067bed8bcbc9a1"
+    },
+    {
+      "pack": "PS4-Carnival-Strength-Tester",
+      "itemId": "python-level-2-ps4-conditionals-supplemental-ps4-supplemental-project-1-carnival-strength-tester",
+      "examples": {
+        "starter": {
+          "input": "49\n",
+          "expected": [
+            "Height: 49 inches",
+            "No prize."
+          ]
+        },
+        "solution": {
+          "input": "150\n",
+          "expected": [
+            "Height: 150 inches",
+            "Large stuffed animal."
+          ]
+        }
+      },
+      "classroomMainSha256": "ae799327f39e910f5b6a2a44ee5f4e4569731f30db14450bd84de7a249e33f28"
+    },
+    {
+      "pack": "PS4-Test-Statistics",
+      "itemId": "python-level-2-ps4-conditionals-supplemental-ps4-supplemental-project-2-test-statistics",
+      "examples": {
+        "starter": {
+          "input": "0\n70\n100\n70\n100\n",
+          "expected": [
+            "Average: 68.0"
+          ]
+        },
+        "solution": {
+          "input": "0\n70\n100\n70\n100\n",
+          "expected": [
+            "Highest: 100",
+            "Lowest: 0",
+            "Average: 68.0"
+          ]
+        }
+      },
+      "classroomMainSha256": "f3c53cc6e9ac48cd4a7f723f0c91ff6c0482a9b78aaed8ab4b5df9404aa0f3f0"
+    },
+    {
+      "pack": "PS4-Relay-Race-Statistics",
+      "itemId": "python-level-2-ps4-conditionals-supplemental-ps4-supplemental-project-3-relay-race-statistics",
+      "examples": {
+        "starter": {
+          "input": "50\n60\n55\n55\n",
+          "expected": [
+            "Average: 55.0 seconds",
+            "Runner 1 was faster."
+          ]
+        },
+        "solution": {
+          "input": "50\n60\n55\n55\n",
+          "expected": [
+            "55.0 seconds",
+            "Runner 1 was faster",
+            "Player 2 was slower",
+            "Player 3 ran the average"
+          ]
+        }
+      },
+      "classroomMainSha256": "a3628309891152427ba80936be8a28847ccc037073318138fff5e0e896a48f1f"
+    },
+    {
+      "pack": "PS4-Joes-Donuts-Opening-Day",
+      "itemId": "python-level-2-ps4-conditionals-supplemental-ps4-supplemental-project-4-joe-s-donuts-opening-day",
+      "examples": {
+        "starter": {
+          "input": "1\n",
+          "expected": [
+            "Free donuts for a year!",
+            "13th free."
+          ]
+        },
+        "solution": {
+          "input": "144\n",
+          "expected": [
+            "Free donuts for a month",
+            "13th free."
+          ]
+        }
+      },
+      "classroomMainSha256": "86046cc29a535259e3ac7e5e3b94f4fa556e4f7c3f9f21a9b60c3427dfce316d"
+    },
+    {
+      "pack": "PS4-Number-Guesser",
+      "itemId": "python-level-2-ps4-conditionals-supplemental-ps4-supplemental-project-5-number-guesser",
+      "examples": {
+        "starter": {
+          "input": "30\n",
+          "expected": [
+            "Too high!"
+          ]
+        },
+        "solution": {
+          "input": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n30\n31\n32\n33\n34\n35\n36\n37\n38\n39\n40\n41\n42\n43\n44\n45\n46\n47\n48\n49\n50\n",
+          "expected": [
+            "You got it! I was thinking of the number",
+            "tries to guess my number."
+          ]
+        }
+      },
+      "classroomMainSha256": "1f034021ab088c18a478a22aff899c93fd3103628276a28782e557d60b8962eb"
+    },
+    {
+      "pack": "PS4-Debugging-Conditionals",
+      "itemId": "python-level-2-ps4-conditionals-supplemental-ps4-supplemental-project-6-debugging-conditionals",
+      "examples": {
+        "starter": {
+          "input": "",
+          "expected": [
+            "SyntaxError"
+          ],
+          "expectsSyntaxError": true
+        },
+        "solution": {
+          "input": "256\n",
+          "expected": [
+            "you'll only have 6 tickets left",
+            "You can get matching t-shirts!"
+          ]
+        }
+      },
+      "classroomMainSha256": "07713ad57b848d6316cd6f1702eb6182ac60b0b322bb4a6168e53128dbbd3ddc"
+    }
+  ],
+  "files": {
+    "PS4-Rock-Paper-Scissors/starter/README.md": {
+      "content": "# Rock, Paper, Scissors starter\n\nPlayer 1 and Player 2 each enter rock, paper, or scissors. The starter trims spaces, accepts mixed case, and detects a tie from matching valid moves. Enter Rock and rock to see the working first case.\n\nComplete the three Player 1 win cases: rock beats scissors, scissors beats paper, and paper beats rock. The remaining valid unequal pairs are Player 2 wins. Check all nine valid pairs and enter lizard for a move to check that the round ends without a winner.\n",
+      "byteLength": 494,
+      "sha256": "c5d0d2b7650c71b82087d6846dc89553106d2b0ef8ca00850004385b6266dfa0",
+      "gitBlob": "1f8dcc8521d8f1bfa98a5d797e360d890308e245"
+    },
+    "PS4-Rock-Paper-Scissors/starter/main.py": {
+      "content": "move1 = input(\"Player 1 move: \").strip().lower()\nmove2 = input(\"Player 2 move: \").strip().lower()\n\nif move1 not in (\"rock\", \"paper\", \"scissors\") or move2 not in (\"rock\", \"paper\", \"scissors\"):\n    print(\"Each move must be rock, paper, or scissors.\")\nelif move1 == move2:\n    print(\"Tie!\")\nelse:\n    # Replace this line with the conditions for determining the winner.\n    print(\"Different valid moves.\")\n",
+      "byteLength": 402,
+      "sha256": "8dfd2bdf27db4dc2793764de32aa640a3ed3f0b02c45859aef8f4c97a1fc3332",
+      "gitBlob": "ad4c6d349a6eb89497218e783a9b9efeebd15888"
+    },
+    "PS4-Rock-Paper-Scissors/solution/main.py": {
+      "content": "move1 = input(\"Player 1 move: \").strip().lower()\nmove2 = input(\"Player 2 move: \").strip().lower()\n\nif move1 not in (\"rock\", \"paper\", \"scissors\") or move2 not in (\"rock\", \"paper\", \"scissors\"):\n    print(\"Each move must be rock, paper, or scissors.\")\nelif move1 == move2:\n    print(\"Tie!\")\nelif (\n    (move1 == \"rock\" and move2 == \"scissors\")\n    or (move1 == \"scissors\" and move2 == \"paper\")\n    or (move1 == \"paper\" and move2 == \"rock\")\n):\n    print(\"Player 1 wins!\")\nelse:\n    print(\"Player 2 wins!\")\n",
+      "byteLength": 502,
+      "sha256": "19820cc20df601367a9dc136b052d3feb8943c40f1972abbf1e3a7b36deccfef",
+      "gitBlob": "afca287a87ac768291b7db0f437c45a70564d553"
+    },
+    "PS4-FizzBuzz/starter/README.md": {
+      "content": "# FizzBuzz starter\n\nRun the starter to see 50 lines. The branch for multiples of 3 already prints Fizz. Add the check for numbers divisible by both 3 and 5 before the single-divisor checks, then add Buzz for remaining multiples of 5. Compare lines 3, 5, 15, 16, and 50. They should read Fizz, Buzz, FizzBuzz, 16, and Buzz.\n",
+      "byteLength": 323,
+      "sha256": "1139e61d8f7d9696abe4bbd62bd94c864279f1a0044750d9ae8e29a792ab88ef",
+      "gitBlob": "338ece7d533fc9357dfa2abd877d2ec3bb66a6cb"
+    },
+    "PS4-FizzBuzz/starter/main.py": {
+      "content": "for number in range(1, 51):\n    # Check the combined case before the two single-divisor cases.\n    if number % 3 == 0:\n        print(\"Fizz\")\n    else:\n        print(number)\n",
+      "byteLength": 173,
+      "sha256": "ae69187d03559dc1795bfa59f5b758f0136a6ad58266fc82dc2321f16d581c3e",
+      "gitBlob": "2c20bac8007e4598cd5c571d2bdcab39b14763b0"
+    },
+    "PS4-FizzBuzz/solution/main.py": {
+      "content": "for i in range(1, 51):\n    if i % 15 == 0:\n        print(\"FizzBuzz\")\n    elif i % 3 == 0:\n        print(\"Fizz\")\n    elif i % 5 == 0:\n        print(\"Buzz\")\n    else:\n        print(i)\n",
+      "byteLength": 182,
+      "sha256": "385e1b121c9a8111601f49a416e2d55c508905c9ce5be85891dc2f617701a786",
+      "gitBlob": "19464cad0efd1991311d7c5a4a1663646d01bf4c"
+    },
+    "PS4-Credit-Card-Validator/starter/README.md": {
+      "content": "# Credit Card Validator starter\n\nUse short fictional digit strings. Run with 1479 to see the unweighted sum, 21. Read digits from right to left and leave the rightmost digit unchanged. Double alternate digits, reducing any doubled result above 9 by subtracting 9. Add the processed digits. The checksum passes when the total is divisible by 10. The processed total for 1479 is 20. Compare 1478 and the odd-length example 109. This is a checksum exercise for input errors.\n",
+      "byteLength": 472,
+      "sha256": "dd3c0b585f74aed9dc509516a503ed190a3e4b8cd4cbac1b2eba8eb8df09bf57",
+      "gitBlob": "81c0e4172d6bff71bb51e89a334ddbd9186c83e7"
+    },
+    "PS4-Credit-Card-Validator/starter/main.py": {
+      "content": "sample = input(\"Fictional digit string: \").strip()\n\nif len(sample) < 2 or not sample.isascii() or not sample.isdigit():\n    print(\"Enter at least two ASCII digits.\")\nelse:\n    total = 0\n    for character in sample:\n        total += int(character)\n    print(f\"Unweighted sum: {total}\")\n\n    # Add a second total that applies the alternating rule from the right.\n",
+      "byteLength": 361,
+      "sha256": "a75ff199dd75a7f578ee3c516c2aaf95be42e913823a87744afc1c398731caff",
+      "gitBlob": "d73dc852ca627aa39055522ac0d16fe9c7539786"
+    },
+    "PS4-Credit-Card-Validator/solution/main.py": {
+      "content": "sample = input(\"Fictional digit string: \").strip()\n\nif len(sample) < 2 or not sample.isascii() or not sample.isdigit():\n    print(\"Enter at least two ASCII digits.\")\nelse:\n    total = 0\n    double_digit = False\n    for character in sample[::-1]:\n        digit = int(character)\n        if double_digit:\n            digit *= 2\n            if digit > 9:\n                digit -= 9\n        total += digit\n        double_digit = not double_digit\n\n    print(f\"Checksum total: {total}\")\n    if total % 10 == 0:\n        print(\"Checksum passes.\")\n    else:\n        print(\"Checksum fails.\")\n",
+      "byteLength": 581,
+      "sha256": "4ca052c4588284ae8967001e16e96b17ab7e14bb0a4ba4da25eba85f8dc31b0a",
+      "gitBlob": "25e1dc103522c5eb3d89c5df160e389c5ec22932"
+    },
+    "PS4-Carnival-Strength-Tester/starter/README.md": {
+      "content": "# Carnival Strength Tester starter\n\nUse a whole-number height in inches. The starter handles heights below 50. Complete the remaining tiers. Heights 50 through 99 earn a small stuffed animal, 100 through 149 earn a frisbee, and 150 or more earn a large stuffed animal. Test both sides of each cutoff and display the measured value with the prize.\n",
+      "byteLength": 347,
+      "sha256": "ec2d12b7eab02da2d20e31e248add5d163ca0055bbad9597f73a6bc2062cbfe8",
+      "gitBlob": "7f8f45bf94ac5e97c9a36f58179348be28630367"
+    },
+    "PS4-Carnival-Strength-Tester/starter/main.py": {
+      "content": "height = int(input(\"Height in inches: \"))\nprint(f\"Height: {height} inches\")\n\nif height < 50:\n    print(\"No prize.\")\nelse:\n    # Add the three remaining prize tiers.\n    print(\"Prize tier pending.\")\n",
+      "byteLength": 198,
+      "sha256": "79f74a714855a88b962bc034be3eb3be1f37a5c68423edb4c887340b724a92f3",
+      "gitBlob": "f47a13442d53b788b6d357a378fec708ee0acb84"
+    },
+    "PS4-Carnival-Strength-Tester/solution/main.py": {
+      "content": "height = int(input(\"Height in inches: \"))\nprint(f\"Height: {height} inches\")\n\nif height < 50:\n    print(\"No prize.\")\nelif height < 100:\n    print(\"Small stuffed animal.\")\nelif height < 150:\n    print(\"Frisbee.\")\nelse:\n    print(\"Large stuffed animal.\")\n",
+      "byteLength": 252,
+      "sha256": "22b9d1ea00906142c8a88073692e5de1dea4319f6819a5822539515d509b0558",
+      "gitBlob": "ac527c93de3e7fa5a6ad41d28e12727e8ed7fc43"
+    },
+    "PS4-Test-Statistics/starter/README.md": {
+      "content": "# Test Statistics starter\n\nEnter five whole-number scores from 0 through 100. The starter calculates the average. Add two independent comparisons that update the highest and lowest scores inside the loop. Use scores 0, 70, 100, 70, 100 to check an average of 68, a low of 0, and a high of 100. An invalid entry should be replaced before that score is counted.\n",
+      "byteLength": 360,
+      "sha256": "cb5b1bfb5c03c5688e21f8e73a97f23c18a3c6320d287209b9cc87c1791c7426",
+      "gitBlob": "951ff21dacbc09b8d837743e3b43a799626aa441"
+    },
+    "PS4-Test-Statistics/starter/main.py": {
+      "content": "total = 0\nfor student in range(1, 6):\n    entry = input(f\"Score {student}: \").strip()\n    while not (entry.isascii() and entry.isdecimal() and int(entry) <= 100):\n        entry = input(\"Enter a whole-number score from 0 to 100: \").strip()\n    score = int(entry)\n    total += score\n    # Compare this score with the highest and lowest values so far.\n\nprint(f\"Average: {total / 5}\")\n",
+      "byteLength": 381,
+      "sha256": "b9213245eefefd4b5eef4c4c7b0620be21752101e8eef909f353c8f6047227bf",
+      "gitBlob": "a92a17fe18ad09ddfd8fc8fec8a98f7b66f08b49"
+    },
+    "PS4-Test-Statistics/solution/main.py": {
+      "content": "total = 0\nlowest = 100\nhighest = 0\nfor student in range(1, 6):\n    entry = input(f\"Score {student}: \").strip()\n    while not (entry.isascii() and entry.isdecimal() and int(entry) <= 100):\n        entry = input(\"Enter a whole-number score from 0 to 100: \").strip()\n    score = int(entry)\n    total += score\n    if score < lowest:\n        lowest = score\n    if score > highest:\n        highest = score\n\nprint(f\"Highest: {highest}\")\nprint(f\"Lowest: {lowest}\")\nprint(f\"Average: {total / 5}\")\n",
+      "byteLength": 488,
+      "sha256": "03c10934ea68061b0a4f5119d96acd68db78d2cf725ce1139e8b9b2f5717733b",
+      "gitBlob": "f3bfd3d16c4efd4cc0c03be80fca20385ef9aee2"
+    },
+    "PS4-Relay-Race-Statistics/starter/README.md": {
+      "content": "# Relay Race Statistics starter\n\nEnter four times in seconds. The starter calculates the average and compares runner 1 with it. Add the comparison for each of the other three runners. For 50, 60, 55, 55, expect an average of 55, with one faster, one slower, and two at the average. A lower time is faster. The reference also reports the fastest runner or a tie.\n",
+      "byteLength": 362,
+      "sha256": "779430b5981f40377ac674661e72f96ce58d8409e1f4d8a67e9595adc487ebd9",
+      "gitBlob": "3d196ba2e7a957a7eafaca9e24b3481333e2807e"
+    },
+    "PS4-Relay-Race-Statistics/starter/main.py": {
+      "content": "runner1 = float(input(\"Runner 1 time in seconds: \"))\nrunner2 = float(input(\"Runner 2 time in seconds: \"))\nrunner3 = float(input(\"Runner 3 time in seconds: \"))\nrunner4 = float(input(\"Runner 4 time in seconds: \"))\n\naverage = (runner1 + runner2 + runner3 + runner4) / 4\nprint(f\"Average: {average} seconds\")\n\nif runner1 < average:\n    print(\"Runner 1 was faster.\")\nelif runner1 == average:\n    print(\"Runner 1 ran the average pace.\")\nelse:\n    print(\"Runner 1 was slower.\")\n\n# Add the corresponding comparison for the other three runners.\n",
+      "byteLength": 535,
+      "sha256": "e467ce5568d517a12265447f242cfed470260ba72fbc66af5c2d149effe5f220",
+      "gitBlob": "325c17fa2f5f53b173c96fcc17206847ab12567a"
+    },
+    "PS4-Relay-Race-Statistics/solution/main.py": {
+      "content": "print(\"Let's see how your team did in the 4x400 relay!\")\n\nplayer1 = float(input(\"Runner 1, enter your time in seconds: \"))\nplayer2 = float(input(\"Runner 2, enter your time in seconds: \"))\nplayer3 = float(input(\"Runner 3, enter your time in seconds: \"))\nplayer4 = float(input(\"Runner 4, enter your time in seconds: \"))\n\ntotal_time = player1 + player2 + player3 + player4\n\nif player1 < player2 and player1 < player3 and player1 < player4:\n    print(\"Runner 1 had the fastest time!\")\nelif player2 < player1 and player2 < player3 and player2 < player4:\n    print(\"Runner 2 had the fastest time!\")\nelif player3 < player1 and player3 < player2 and player3 < player4:\n    print(\"Runner 3 had the fastest time!\")\nelif player4 < player1 and player4 < player2 and player4 < player3:\n    print(\"Runner 4 had the fastest time!\")\nelse:\n    print(\"There was a tie for the fastest runner!\")\n\naverage_time = total_time / 4\nprint(\"The average time of each lap \" + str(average_time) + \" seconds\")\n\nif player1 < average_time:\n    print(\"Runner 1 was faster than average\")\nelif player1 == average_time:\n    print(\"Player 1 ran the average pace\")\nelse:\n    print(\"Player 1 was slower than average\")\n\nif player2 < average_time:\n    print(\"Player 2 was faster than average\")\nelif player2 == average_time:\n    print(\"Player 2 ran the average pace\")\nelse:\n    print(\"Player 2 was slower than average\")\n\nif player3 < average_time:\n    print(\"Player 3 was faster than average\")\nelif player3 == average_time:\n    print(\"Player 3 ran the average pace\")\nelse:\n    print(\"Player 3 was slower than average\")\n\nif player4 < average_time:\n    print(\"Player 4 was faster than average\")\nelif player4 == average_time:\n    print(\"Player 4 ran the average pace\")\nelse:\n    print(\"Player 4 was slower than average\")\n",
+      "byteLength": 1775,
+      "sha256": "ffac7e672e53bb618534798b5187b2bdbe818ba6d5f30df07b7b7e5a03479862",
+      "gitBlob": "963ca6c8d096eb342450a4b39a2a672aefee7b20"
+    },
+    "PS4-Joes-Donuts-Opening-Day/starter/README.md": {
+      "content": "# Joe's Donuts Opening Day starter\n\nEnter a positive whole-number line position. The starter gives position 1 an extra offer and prints the year-round offer. Add one opening-day tier. Positions 1–12 get a free dozen, 13–200 can buy the first dozen for $1, position 144 gets a free month in place of its tier, 201–500 receive 50% off, and 501 and above get the third donut free with two purchases. Position 1 also gets free donuts for a year. All positive positions get the year-round 13th-free offer with a dozen.\n",
+      "byteLength": 520,
+      "sha256": "df73299c537a5c988e78777ddfd7e4328bc3890c3b54689aede79597dbbaad6d",
+      "gitBlob": "bfe9492fa5b2fe4bd3a8107b0bb4ce7f8d372fb9"
+    },
+    "PS4-Joes-Donuts-Opening-Day/starter/main.py": {
+      "content": "position = int(input(\"Customer position: \"))\n\nif position < 1:\n    print(\"Enter a positive customer position.\")\nelse:\n    if position == 1:\n        print(\"Free donuts for a year!\")\n    # Use one chain for the opening-day tier.\n    print(\"Year-round offer: buy a dozen and get the 13th free.\")\n",
+      "byteLength": 293,
+      "sha256": "5598f4b79366201e6b7e93fa2ddcf201405237ce1cc2acdab69ac73dffe952cd",
+      "gitBlob": "a7c5411f140d40d7eb00c92a015455642582693c"
+    },
+    "PS4-Joes-Donuts-Opening-Day/solution/main.py": {
+      "content": "position = int(input(\"Customer position: \"))\n\nif position < 1:\n    print(\"Enter a positive customer position.\")\nelse:\n    if position == 1:\n        print(\"Free donuts for a year!\")\n\n    if position <= 12:\n        print(\"One dozen free donuts!\")\n    elif position == 144:\n        print(\"Free donuts for a month!\")\n    elif position <= 200:\n        print(\"The first dozen costs $1.\")\n    elif position <= 500:\n        print(\"50% off this purchase!\")\n    else:\n        print(\"Buy two donuts and get the third free!\")\n\n    print(\"Year-round offer: buy a dozen and get the 13th free.\")\n",
+      "byteLength": 581,
+      "sha256": "dd2f62b6afd61ad54d04e3391615b6dc1b4d52df05512a3c7f885cc3cd319785",
+      "gitBlob": "20295ccb8685479172fb8003cb5d7cb218286a04"
+    },
+    "PS4-Number-Guesser/starter/README.md": {
+      "content": "# Number Guesser starter\n\nStart with the fixed target of 27 and observe one guess. Add a loop that keeps asking until the target is reached and keeps a count of accepted numeric guesses. With input 20, 30, 27, expect too low, too high, then success in three tries. Use random.randint(1, 50) once before the loop after the fixed-target tests pass.\n",
+      "byteLength": 347,
+      "sha256": "dd95e1b6637812209a665765be4891712a5978f3714d21d8b6b7f014ba061efd",
+      "gitBlob": "be03dc3faee9daa7fb086bfd8cd555d70c94d9f9"
+    },
+    "PS4-Number-Guesser/starter/main.py": {
+      "content": "target = 27\nguess = int(input(\"Guess a whole number from 1 to 50: \"))\n\nif guess == target:\n    print(\"Correct!\")\nelif guess < target:\n    print(\"Too low!\")\nelse:\n    print(\"Too high!\")\n\n# Repeat and count guesses before switching to a random target.\n",
+      "byteLength": 250,
+      "sha256": "830e6ce5cf2a7451d0a2e72a3ea8c1c9b6a6211962d0bc64ed1df39906bfbd19",
+      "gitBlob": "ae85d7165684ef3662fa6c1a509a4c68e2b34afb"
+    },
+    "PS4-Number-Guesser/solution/main.py": {
+      "content": "import random\n\nrand_num = random.randint(1, 50)\nnum_guesses = 1\n\nguess = int(\n    input(\n        \"I am thinking of a random number between 1 and 50. Guess what it is! \"\n    )\n)\n\nwhile guess != rand_num:\n    if guess > rand_num:\n        print(\"That's too high!\")\n    else:\n        print(\"That's too low!\")\n\n    guess = int(input(\"Enter a new guess: \"))\n    num_guesses += 1\n\nprint(\"You got it! I was thinking of the number \" + str(guess) + \"!\")\nprint(\"It took you \" + str(num_guesses) + \" tries to guess my number.\")\n",
+      "byteLength": 516,
+      "sha256": "d57292d7d65a1c10e43056a6d58c0ecc96e6a071a338ba97aed15613089676de",
+      "gitBlob": "46ba5812b7f29b7ac95bcc368e603e2c131cf578"
+    },
+    "PS4-Debugging-Conditionals/starter/main.py": {
+      "content": "numTickets = int(input(\"How many tickets did you win? \"))\n\nlollipopPrice = 10\nactionFigurePrice = 75\ntshirtPrice = 250\nstuffedAnimalPrice = 350\n\n# Print out which items you can afford, and how many tickets you'd have left if you bought it\nif numTickets < lollipopPrice or numTickets < actionFigurePrice or numTickets < tshirtPrice or numTickets < stuffedAnimalPrice:\n  print(\"You can't afford anything by yourself\")\nelif numTickets > lollipopPrice\n  print(\"You can buy a lollipop, but you'll only have \" + str(numTickets - lollipopPrice) + \" tickets left\")\nelif numTickets > actionFigurePrice:\n  print(\"You can buy an action figure, but you'll only have \" + str(numTickets - actionFigurePrice) + \" tickets left\")\nelif numTickets > tshirtPrice:\n  print(\"You can buy a t-shirt, but you'll only have \" + str(numTickets - tshirtPrice) + \" tickets left\")\nelse:\n  print(\"You can buy a stuffed animal, but you'll only have \" + str(numTickets - stuffedAnimalPrice) + \" tickets left\")\n\n# You and Kant want to buy matching t-shirts, but he is short 6 tickets. Can you afford to loan him 6 tickets and still buy a t-shirt yourself?\n# If you can't afford to get two t-shirts, can you afford to get just one? (remember Kant already has 244 tickets)\nif numTickets > tshirtPrice and numTickets > tshirtPrice + 6:\n    print(\"You can get matching t-shirts!\")\nif numTickets >= 6:\n    print(\"Sorry, you can't get matching t-shirts, but you can afford a single t-shirt!\")",
+      "byteLength": 1451,
+      "sha256": "462962240c41baf226de0452f7d03952f8ba57b5ee8456fcdc0e55f4262fdd52",
+      "gitBlob": "cc6fde2e88c8bc1268b75bd17c8c905bdec74a9e"
+    },
+    "PS4-Debugging-Conditionals/solution/main.py": {
+      "content": "num_tickets = int(input(\"How many tickets did you win? \"))\n\nlollipop_price = 10\naction_figure_price = 75\ntshirt_price = 250\nstuffed_animal_price = 350\n\n# Print out which items you can afford, and how many tickets you'd have left if you bought it\nif (\n    num_tickets < lollipop_price\n    and num_tickets < action_figure_price\n    and num_tickets < tshirt_price\n    and num_tickets < stuffed_animal_price\n):\n    print(\"You can't afford anything by yourself\")\nif num_tickets >= lollipop_price:\n    print(\n        \"You can buy a lollipop, but you'll only have \"\n        + str(num_tickets - lollipop_price)\n        + \" tickets left\"\n    )\nif num_tickets >= action_figure_price:\n    print(\n        \"You can buy an action figure, but you'll only have \"\n        + str(num_tickets - action_figure_price)\n        + \" tickets left\"\n    )\nif num_tickets >= tshirt_price:\n    print(\n        \"You can buy a t-shirt, but you'll only have \"\n        + str(num_tickets - tshirt_price)\n        + \" tickets left\"\n    )\nif num_tickets >= stuffed_animal_price:\n    print(\n        \"You can buy a stuffed animal, but you'll only have \"\n        + str(num_tickets - stuffed_animal_price)\n        + \" tickets left\"\n    )\n\n# You and Kant want to buy matching t-shirts, but he is short 6 tickets. Can you afford to loan him 6 tickets and still buy a t-shirt yourself?\n# If you can't afford to get two t-shirts, can you afford to get just one? (remember Kant already has 244 tickets)\nif num_tickets >= tshirt_price + 6:\n    print(\"You can get matching t-shirts!\")\nelif num_tickets >= tshirt_price:\n    print(\n        \"Sorry, you can't get matching t-shirts, but you can afford a single t-shirt!\"\n    )\n",
+      "byteLength": 1673,
+      "sha256": "7f39b0669f5b6b574957f86fbd460dc9368d250c4814c78b2ea89f3c7b9ad91d",
+      "gitBlob": "bac4214a3cf282adbeb05f95108ed0cea37838e4"
+    }
+  }
+}

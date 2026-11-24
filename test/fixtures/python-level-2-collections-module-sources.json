@@ -1,0 +1,373 @@
+{
+  "repository": "Python-Level-2",
+  "revision": "2dec846ce80283885dfe01579a181906e6748985",
+  "files": {
+    "PS7-Dictionaries-Practice/starter/README.md": {
+      "content": "# Dictionaries Practice starter\n\nRun the starter to see a five-word glossary and a lookup for cake. Build dictionaries that map 1 through 25 to their squares and factorials. Check that the square for 25 is 625 and the factorial for 5 is 120. Count letters in a word by adding to the count for each key. For Banana, use lowercase and expect a: 3, b: 1, n: 2. Ignore punctuation and spaces.\n",
+      "byteLength": 389,
+      "sha256": "4933fcd4dae365e8eb678851791a7a6686ff566d0c1e21ea4d2cb9baf8db3c0c",
+      "gitBlob": "6ea6ba9275c51eacc1704ac310408ae98f3913a1"
+    },
+    "PS7-Dictionaries-Practice/starter/main.py": {
+      "content": "glossary = {\n    \"cake\": \"A baked dessert.\",\n    \"chocolate\": \"A food made from cacao.\",\n    \"sherbet\": \"A frozen fruit dessert.\",\n    \"pie\": \"A filling baked in pastry.\",\n    \"gelatin\": \"An ingredient that helps liquids set.\",\n}\nprint(f\"cake: {glossary['cake']}\")\n\n# Generate the dictionaries of squares, factorials, and letter counts.\n",
+      "byteLength": 337,
+      "sha256": "538f12613a3c2a87a88ece8c1855afd2830323ac623e4be57bc2a791387065c8",
+      "gitBlob": "45b722f924e7c3e93a377721dda269a9cc7bccea"
+    },
+    "PS7-Dictionaries-Practice/solution/main.py": {
+      "content": "glossary = {\n    \"cake\": \"A baked dessert.\",\n    \"chocolate\": \"A food made from cacao.\",\n    \"sherbet\": \"A frozen fruit dessert.\",\n    \"pie\": \"A filling baked in pastry.\",\n    \"gelatin\": \"An ingredient that helps liquids set.\",\n}\nprint(f\"Glossary: {glossary}\")\n\n\ndef factorial(number):\n    result = 1\n    for factor in range(1, number + 1):\n        result *= factor\n    return result\n\n\nsquares = {}\nfactorials = {}\nfor number in range(1, 26):\n    squares[number] = number * number\n    factorials[number] = factorial(number)\nprint(f\"Squares: {squares}\")\nprint(f\"Factorials: {factorials}\")\n\nword = input(\"Word or short phrase: \").lower()\ncounts = {}\nfor character in word:\n    if character.isalpha():\n        counts[character] = counts.get(character, 0) + 1\nprint(f\"Letters: {dict(sorted(counts.items()))}\")\n",
+      "byteLength": 806,
+      "sha256": "e020bdedd88466d7873d26ec217616e0897c929342a0b7f34dd841c13a0a7ded",
+      "gitBlob": "bc261d7048ef1b8575d14b1617b1907ff34aa524"
+    },
+    "PS7-Test-Scores/starter/README.md": {
+      "content": "# Test Scores starter\n\nRun the starter to see two score lists for the fictional names ari and bea. Complete a program that asks for the number of names and the number of tests. Trim names and use lowercase keys. A blank or repeated name should prompt for a replacement. Collect each test's scores for all names before moving to the next test. Scores are whole numbers from 0 through 100.\n\nFor names ari and bea, enter 80 and 100 for the first test, then 90 and 70 for the second. The two averages are both 85. With one name and zero tests, display No scores for that name.\n",
+      "byteLength": 573,
+      "sha256": "a8ce752628100f4ea86c35e99419a93f323164a967776d7c860d5dfd76444692",
+      "gitBlob": "db721cd6c3802285c8acd31e0ddaf773ef25b820"
+    },
+    "PS7-Test-Scores/starter/main.py": {
+      "content": "scores = {\"ari\": [80, 90], \"bea\": [100, 70]}\nfor name, results in scores.items():\n    print(f\"{name}: {results}\")\n\n# Collect the dimensions, names, and scores. Then compute each name's average.\n",
+      "byteLength": 194,
+      "sha256": "bd55f3c6c40d0bb9d1d1e0fdc466d248adea554e24c055fa96b61c09b3a2657c",
+      "gitBlob": "394b754e42dd650b4110d95557fda66b4f0b5e7b"
+    },
+    "PS7-Test-Scores/solution/main.py": {
+      "content": "def read_count(prompt):\n    while True:\n        entry = input(prompt).strip()\n        if entry.isascii() and entry.isdecimal():\n            return int(entry)\n        print(\"Enter a nonnegative whole number.\")\n\n\nstudent_count = read_count(\"Number of names: \")\ntest_count = read_count(\"Number of tests: \")\nscores = {}\nwhile len(scores) < student_count:\n    name = input(\"Fictional name: \").strip().lower()\n    if name and name not in scores:\n        scores[name] = []\n    else:\n        print(\"Enter a new, nonempty name.\")\n\nfor test in range(1, test_count + 1):\n    for name, results in scores.items():\n        score = read_count(f\"Score for {name} on test {test}: \")\n        while score > 100:\n            print(\"Use a score from 0 through 100.\")\n            score = read_count(f\"Score for {name} on test {test}: \")\n        results.append(score)\n\nif not scores:\n    print(\"No names entered.\")\nfor name, results in scores.items():\n    print(f\"{name} scores: {results}\")\n    if results:\n        print(f\"{name} average: {sum(results) / len(results):g}\")\n    else:\n        print(f\"{name}: No scores.\")\n",
+      "byteLength": 1097,
+      "sha256": "87c13cafb341357c2e52524235e05c1af8a6f2263f15e51c20251aa225718800",
+      "gitBlob": "bed9aabb7921441009ab208ded4bffbaca70e8ba"
+    },
+    "PS9-Sets-Practice/starter/README.md": {
+      "content": "# Sets Practice starter\n\nRun the starter to see how duplicate values collapse. With {1, 2, 3, 4, 5} and {4, 5, 6, 7, 8}, the union contains 1 through 8 and the intersection is {4, 5}. Repeat with two randomly chosen sets of five distinct integers from 1 through 10. Report whether the second set includes 1. Find unique letters in two words without treating case or punctuation as separate letters.\n\nBanana and Band share a, b, and n. Create separate functions that return only even numbers and only words with three letters. Keep the supplied sets intact.\n",
+      "byteLength": 557,
+      "sha256": "fa299f4d8e86191423dcd3819882bca7427ad57e90aebfab9de8b2b7b79e633c",
+      "gitBlob": "3d211da869c2ebc0c0a2756e78f28ac2089d7c84"
+    },
+    "PS9-Sets-Practice/starter/main.py": {
+      "content": "first = set([1, 1, 2, 3, 4, 5])\nsecond = {4, 5, 6, 7, 8}\nprint(f\"Union: {sorted(first.union(second))}\")\n\n# Add an intersection, a membership check, and functions to filter values.\n",
+      "byteLength": 180,
+      "sha256": "677040639ac73a5ff9a6887bc41cbc35f601af8b16b37561def78f48efaea4de",
+      "gitBlob": "b930a648c5bc419f9cca17a12b779bc38da94495"
+    },
+    "PS9-Sets-Practice/solution/main.py": {
+      "content": "import random\n\n\ndef letters(text):\n    result = set()\n    for character in text.lower():\n        if character.isalpha():\n            result.add(character)\n    return result\n\n\ndef get_evens(numbers):\n    result = set()\n    for number in numbers:\n        if number % 2 == 0:\n            result.add(number)\n    return result\n\n\ndef get_three_letter_words(words):\n    result = set()\n    for word in words:\n        if len(word) == 3:\n            result.add(word)\n    return result\n\n\nfirst = set(random.sample(range(1, 11), 5))\nsecond = set(random.sample(range(1, 11), 5))\nprint(f\"First set: {sorted(first)}\")\nprint(f\"Second set: {sorted(second)}\")\nprint(f\"Union: {sorted(first.union(second))}\")\nprint(f\"Intersection: {sorted(first.intersection(second))}\")\nprint(f\"Second set includes 1: {1 in second}\")\n\nfirst_letters = letters(input(\"First word: \"))\nsecond_letters = letters(input(\"Second word: \"))\nprint(f\"Unique first letters: {', '.join(sorted(first_letters)) or 'none'}\")\nprint(f\"Unique first letter count: {len(first_letters)}\")\nprint(f\"Shared letters: {', '.join(sorted(first_letters & second_letters)) or 'none'}\")\nprint(f\"Even numbers: {sorted(get_evens({1, 2, 3, 4}))}\")\nprint(f\"Three-letter words: {', '.join(sorted(get_three_letter_words({'cat', 'bat', 'house'})))}\")\n",
+      "byteLength": 1274,
+      "sha256": "0c2329f592a35853bd535e7f441d6278624657192640890741571a529cd8c42f",
+      "gitBlob": "40fbe2152bba39174edd8ecd6b225d47d5001c02"
+    },
+    "PS9-Wheel-of-Fortune/starter/README.md": {
+      "content": "# Letter Puzzle starter\n\nThe starter reveals all copies of one guessed letter in the sample word programming. Extend it into a complete console puzzle. Use a set for all unique target letters and a set for guesses already entered. Accept one ASCII letter at a time and normalize uppercase. Invalid and repeated entries do not consume a guess. Each new valid guess uses one of the fifteen attempts.\n\nGuessing r reveals both r positions. The distinct guesses p, r, o, g, a, m, i, n reveal the whole word in eight attempts. End with the visible word and a win message, or disclose the word after all fifteen valid attempts are used.\n",
+      "byteLength": 630,
+      "sha256": "490190245db3b3cabc5cfbf1404e40eea7c29ffd65ae8503043260837e616013",
+      "gitBlob": "9e07d0dc22f5f79f9ced9d74af6655a2492905ac"
+    },
+    "PS9-Wheel-of-Fortune/starter/main.py": {
+      "content": "target = \"programming\"\nguess = input(\"Guess one letter: \").strip().lower()\nvisible = []\nfor letter in target:\n    visible.append(letter if letter == guess else \"_\")\nprint(\" \".join(visible))\n\n# Keep a set of guesses and draw the updated puzzle after each attempt.\n",
+      "byteLength": 263,
+      "sha256": "2e782d3424bea91dfbf3b4b414af1aca1729d1c3efe22a702a3e5e103d4680d2",
+      "gitBlob": "2b4f54cb03a2aa435fb5dd7641d83168d583f8c9"
+    },
+    "PS9-Wheel-of-Fortune/solution/main.py": {
+      "content": "target = \"programming\"\ntarget_letters = set(target)\nattempts = set()\nremaining = 15\n\n\ndef reveal(word, guesses):\n    visible = []\n    for letter in word:\n        visible.append(letter if letter in guesses else \"_\")\n    return \" \".join(visible)\n\n\nwhile remaining > 0:\n    print(reveal(target, attempts))\n    guess = input(f\"Guess a letter ({remaining} remaining): \").strip().lower()\n    if len(guess) != 1 or not guess.isascii() or not guess.isalpha():\n        print(\"Enter one letter from A to Z.\")\n        continue\n    if guess in attempts:\n        print(\"That letter has already been guessed.\")\n        continue\n    attempts.add(guess)\n    remaining -= 1\n    if target_letters.issubset(attempts):\n        print(reveal(target, attempts))\n        print(f\"Puzzle solved in {15 - remaining} guesses!\")\n        break\nelse:\n    print(f\"No guesses remain. The word was {target}.\")\n",
+      "byteLength": 876,
+      "sha256": "07ae3df613358b6513d46f45fc0644f5493fbed2537676422f8cb04f3300e000",
+      "gitBlob": "56bbc304cb87a7d3ff4137ff7ca5ad665384aacd"
+    },
+    "PS9-Class-Registration-II/starter/README.md": {
+      "content": "# Class Registration II starter\n\nUse a capacity of six. Scan the fictional sign-ups in the order they arrived. Use a set to remember names already seen. Put each new name in the enrolled list until there are six. Put later new names in the waiting list. Repeated sign-ups never take a second place in either group.\n\nThe Design roster has repeated entries for Ari and Gus. The first six distinct names are Ari, Bea, Cleo, Dara, Eli, and Fay. Gus and Hana wait in that order. Also check an exactly full class and one below capacity.\n",
+      "byteLength": 531,
+      "sha256": "7e66b5348a5f9827a21c4dcd531b8cba26da717c7747004448e75e577ad7b30c",
+      "gitBlob": "496808aa212d0a56810b013893a94823df152801"
+    },
+    "PS9-Class-Registration-II/starter/main.py": {
+      "content": "design = [\"Ari\", \"Ari\", \"Bea\", \"Cleo\", \"Dara\", \"Eli\", \"Fay\", \"Gus\", \"Gus\", \"Hana\"]\nseen = set()\nfor name in design:\n    if name not in seen:\n        seen.add(name)\n        print(name)\n\n# Keep separate ordered lists for enrollment and the waiting list.\n",
+      "byteLength": 252,
+      "sha256": "2dca251adbfab7a3427c47c85ef2dfb7ad95c482b03930118faa410510c01519",
+      "gitBlob": "177972fad06084fb5e86a1e96f4412aaee450cbd"
+    },
+    "PS9-Class-Registration-II/solution/main.py": {
+      "content": "def register(signups, capacity):\n    seen = set()\n    enrolled = []\n    waiting = []\n    for name in signups:\n        if name in seen:\n            continue\n        seen.add(name)\n        if len(enrolled) < capacity:\n            enrolled.append(name)\n        else:\n            waiting.append(name)\n    return enrolled, waiting\n\n\nrosters = {\n    \"Design\": [\"Ari\", \"Ari\", \"Bea\", \"Cleo\", \"Dara\", \"Eli\", \"Fay\", \"Gus\", \"Gus\", \"Hana\"],\n    \"Computing\": [\"Ira\", \"Jai\", \"Kit\", \"Lee\", \"Mo\", \"Nia\", \"Nia\"],\n    \"Studio\": [\"Paz\", \"Quin\", \"Rey\", \"Paz\"],\n}\nfor course, signups in rosters.items():\n    enrolled, waiting = register(signups, 6)\n    print(f\"{course} enrolled: {', '.join(enrolled) or 'none'}\")\n    print(f\"{course} waiting: {', '.join(waiting) or 'none'}\")\n",
+      "byteLength": 756,
+      "sha256": "fa5d3508c2fb3180c48f9903c98f6f137b3bc8b536562432ef089c159cce8764",
+      "gitBlob": "e33007575cfa56bdc6eff715e271282678946277"
+    },
+    "PS9-Favorite-Foods/starter/README.md": {
+      "content": "# Favorite Foods starter\n\nThe starter compares two fixed sets. Add a function to collect five food names per group. Trim spaces and use lowercase so Pear and pear match. Ask again for a blank entry. A repeated food counts as one favorite in its set. Use an intersection for shared foods and two differences for the foods unique to either group.\n\nWith Group A {pear, apple, rice} and Group B {pear, rice, pasta}, shared foods are pear and rice. Only Group A has apple and only Group B has pasta.\n",
+      "byteLength": 495,
+      "sha256": "1f8466e6c0a271fc1549e7d29428b42758de7858a23873b0d8e1b23f62105505",
+      "gitBlob": "a8eeb10e4eed20e3dcebed07e83157bd35d57571"
+    },
+    "PS9-Favorite-Foods/starter/main.py": {
+      "content": "group_a = {\"pear\", \"apple\", \"rice\"}\ngroup_b = {\"pear\", \"rice\", \"pasta\"}\nprint(f\"Shared sample: {', '.join(sorted(group_a & group_b))}\")\n\n# Collect the two lists from input and compare the differences as well.\n",
+      "byteLength": 209,
+      "sha256": "e62e1cd3fe0c33a0ab769c2ea1a4695135caa39f9857311c926408b1f74a33d9",
+      "gitBlob": "b1e8deb6f59092d106f1ca4fc4a7a25f2683c044"
+    },
+    "PS9-Favorite-Foods/solution/main.py": {
+      "content": "def read_foods(group):\n    foods = set()\n    for index in range(1, 6):\n        food = input(f\"{group} food {index} of 5: \").strip().lower()\n        while not food:\n            food = input(\"Enter a food name: \").strip().lower()\n        foods.add(food)\n    return foods\n\n\ngroup_a = read_foods(\"Group A\")\ngroup_b = read_foods(\"Group B\")\nshared = group_a.intersection(group_b)\nonly_a = group_a.difference(group_b)\nonly_b = group_b.difference(group_a)\nprint(f\"Shared: {', '.join(sorted(shared)) or 'none'}\")\nprint(f\"Only Group A: {', '.join(sorted(only_a)) or 'none'}\")\nprint(f\"Only Group B: {', '.join(sorted(only_b)) or 'none'}\")\n",
+      "byteLength": 628,
+      "sha256": "787aa4a367eecd6bc62a58067a503c2cddc44b87a3e13351297a2dc280c3e6e2",
+      "gitBlob": "69b6945eb3fb552c1ab2ab4da65e7d8d9010e928"
+    },
+    "PS10-Todo-List/starter/README.md": {
+      "content": "# To-Do List starter\n\nRun the starter and use 1 to add a task, 4 to display the list, and 3 to quit. Add command 2 to remove a task by its displayed position. Positions begin at 1. Reject invalid positions without changing the list. When there are no tasks, print an empty-list message.\n\nAdd read, stretch, and read. Removing position 3 leaves read followed by stretch. Then try positions 0, 20, and text. They should leave the list unchanged.\n",
+      "byteLength": 444,
+      "sha256": "2d537191144fe959d9b19d6c27b38a435a9d27d27dbd0a5e3fa5eaab9b3b2b2b",
+      "gitBlob": "1d65609ef6c7e6464fe6edd60ae17ecd9967ab9d"
+    },
+    "PS10-Todo-List/starter/main.py": {
+      "content": "tasks = []\n\nwhile True:\n    command = input(\"1 add, 2 remove, 3 exit, 4 show: \").strip()\n    if command == \"3\":\n        break\n    if command == \"1\":\n        task = input(\"Task: \").strip()\n        if task:\n            tasks.append(task)\n        else:\n            print(\"Enter a task.\")\n    elif command == \"2\":\n        # Read and validate the displayed position before removing the task.\n        print(\"Add the remove behavior here.\")\n    elif command != \"4\":\n        print(\"Choose a command from 1 through 4.\")\n\n    if tasks:\n        for position, task in enumerate(tasks, start=1):\n            print(f\"{position}. {task}\")\n    else:\n        print(\"No tasks.\")\n",
+      "byteLength": 661,
+      "sha256": "e2db4ad00b50c27e9df781f8d64e30296bf2d7fd732a5d230e26d57df994849a",
+      "gitBlob": "0af3b1b3e066c81dfed52a9ecff870b08e6a317a"
+    },
+    "PS10-Todo-List/solution/main.py": {
+      "content": "def show_tasks(tasks):\n    if tasks:\n        for position, task in enumerate(tasks, start=1):\n            print(f\"{position}. {task}\")\n    else:\n        print(\"No tasks.\")\n\n\ntasks = []\nwhile True:\n    command = input(\"1 add, 2 remove, 3 exit, 4 show: \").strip()\n    if command == \"3\":\n        break\n    if command == \"1\":\n        task = input(\"Task: \").strip()\n        if task:\n            tasks.append(task)\n        else:\n            print(\"Enter a task.\")\n    elif command == \"2\":\n        if tasks:\n            position = input(\"Position to remove: \").strip()\n            if position.isascii() and position.isdecimal() and 1 <= int(position) <= len(tasks):\n                print(f\"Removed: {tasks.pop(int(position) - 1)}\")\n            else:\n                print(\"Choose one of the displayed positions.\")\n    elif command != \"4\":\n        print(\"Choose a command from 1 through 4.\")\n    show_tasks(tasks)\n",
+      "byteLength": 906,
+      "sha256": "1cb60c97f486e0ed71b66e923aef870729bbe24160380cdc230df41ea22fa76e",
+      "gitBlob": "1f1becee614257e6d59cd9e76bc9494029021f0b"
+    },
+    "PS10-Field-Day/starter/README.md": {
+      "content": "# Field Day starter\n\nThe starter records one fictional participant. Complete the program for ten different names. Enter 1 for kickball, 2 for capture the flag, 3 for both, or 4 for neither. Ask again after a blank or repeated name or an invalid choice. Make two event rosters and a separate list for participants who chose neither. Keep the order in which names were entered.\n\nWith ari choosing 1, bea choosing 2, cleo choosing 3, and dara choosing 4, ari and cleo belong to kickball, bea and cleo belong to flag, and dara belongs to neither.\n",
+      "byteLength": 543,
+      "sha256": "3af1f1001add90e5c85c1dda8a02dc25850d568395718f7e1f78e21eba5cd30a",
+      "gitBlob": "ad629ec63f4d24593f83e75c96a65c330425d10e"
+    },
+    "PS10-Field-Day/starter/main.py": {
+      "content": "name = input(\"Fictional name: \").strip().lower()\nchoice = input(\"1 kickball, 2 flag, 3 both, 4 neither: \").strip()\nprint(f\"Recorded {name}: {choice}\")\n\n# Gather ten valid entries and build the three lists.\n",
+      "byteLength": 206,
+      "sha256": "2296a4cac9b4170e08c89df32843ef0646928dfc6fc1797329c0f3dbbfcc683e",
+      "gitBlob": "45dfe1f0f0173b5028bae257e126473001d69934"
+    },
+    "PS10-Field-Day/solution/main.py": {
+      "content": "choices_by_name = {}\nwhile len(choices_by_name) < 10:\n    name = input(\"Fictional name: \").strip().lower()\n    if not name or name in choices_by_name:\n        print(\"Enter a new, nonempty name.\")\n        continue\n\n    choice = input(\"1 kickball, 2 flag, 3 both, 4 neither: \").strip()\n    while choice not in (\"1\", \"2\", \"3\", \"4\"):\n        choice = input(\"Choose 1, 2, 3, or 4: \").strip()\n    choices_by_name[name] = choice\n\nkickball = []\nflag = []\nneither = []\nfor name, choice in choices_by_name.items():\n    if choice in (\"1\", \"3\"):\n        kickball.append(name)\n    if choice in (\"2\", \"3\"):\n        flag.append(name)\n    if choice == \"4\":\n        neither.append(name)\n\nprint(f\"Kickball: {', '.join(kickball) or 'none'}\")\nprint(f\"Capture the flag: {', '.join(flag) or 'none'}\")\nprint(f\"Neither: {', '.join(neither) or 'none'}\")\n",
+      "byteLength": 829,
+      "sha256": "2de9facd3310ee5243ab03345bdcaeb5592edc4b967fb1b1fae33bb21690cc85",
+      "gitBlob": "6ede553885a72112c2b516e5d3c3a410e689fbab"
+    },
+    "PS10-Field-Day-II/starter/README.md": {
+      "content": "# Field Day II starter\n\nThe starter makes a working copy of a roster and picks the first red team member. Take each assigned name out of the working copy. Alternate Team Red and Team Blue. After each round, print the two team lists and the count still unassigned. Stop when every name is assigned. The original roster stays available.\n\nTen distinct names produce five on either team. With three names, Red gets two and Blue gets one. Test a one-person roster and an empty roster. The two teams should have no members in common.\n",
+      "byteLength": 528,
+      "sha256": "230fd4ec7e89971dcd4cb057f427a4d3c8caaf23ecc02bfa47a3f7514ea4cd14",
+      "gitBlob": "2f8baa0fe0794c30315422a80152187db52b171f"
+    },
+    "PS10-Field-Day-II/starter/main.py": {
+      "content": "import random\n\n\nroster = [\"Ari\", \"Bea\", \"Cleo\", \"Dara\", \"Eli\", \"Fay\", \"Gus\", \"Hana\", \"Ira\", \"Jai\"]\nunassigned = roster.copy()\nfirst_index = random.randrange(len(unassigned))\nred = [unassigned.pop(first_index)]\nblue = []\nprint(f\"First red team member: {red[0]}\")\nprint(f\"Unassigned: {len(unassigned)}\")\n\n# Keep alternating teams until the working list is empty.\n",
+      "byteLength": 361,
+      "sha256": "fc3bf6018d878abcc8f11667e56d32fb61384fbd011d1cd05907701c3635ec4b",
+      "gitBlob": "da5d0efdb644da0c26506803a9a54d65ddaf3375"
+    },
+    "PS10-Field-Day-II/solution/main.py": {
+      "content": "import random\n\n\ndef assign_teams(roster, trace=False):\n    unassigned = list(dict.fromkeys(roster))\n    red = []\n    blue = []\n    next_team = red\n    while unassigned:\n        index = random.randrange(len(unassigned))\n        next_team.append(unassigned.pop(index))\n        next_team = blue if next_team is red else red\n        if trace and (next_team is red or not unassigned):\n            print(f\"Red: {', '.join(red) or 'none'}\")\n            print(f\"Blue: {', '.join(blue) or 'none'}\")\n            print(f\"Unassigned: {len(unassigned)}\")\n    return red, blue\n\n\nroster = [\"Ari\", \"Bea\", \"Cleo\", \"Dara\", \"Eli\", \"Fay\", \"Gus\", \"Hana\", \"Ira\", \"Jai\"]\nred, blue = assign_teams(roster, trace=True)\nprint(f\"Team Red ({len(red)}): {', '.join(red) or 'none'}\")\nprint(f\"Team Blue ({len(blue)}): {', '.join(blue) or 'none'}\")\n",
+      "byteLength": 816,
+      "sha256": "762878af119cdf6e63c8a33f1fa7ab6f4eb42687be271335ccbb789aa5467af8",
+      "gitBlob": "b76ce6b290bc33042e793474e1e267d5cc20dc60"
+    }
+  },
+  "exercises": [
+    {
+      "moduleId": "python-level-2-ps7-dictionaries",
+      "pack": "PS7-Dictionaries-Practice",
+      "itemId": "python-level-2-ps7-dictionaries-curriculum-ps7-project-1-dictionaries-practice",
+      "examples": {
+        "starter": {
+          "input": "",
+          "expected": [
+            "cake: A baked dessert."
+          ]
+        },
+        "solution": {
+          "input": "Banana!\n",
+          "expected": [
+            "Letters: {'a': 3, 'b': 1, 'n': 2}",
+            "25: 625",
+            "5: 120"
+          ]
+        }
+      },
+      "classroomMainSha256": "cf21c7a4273af480b81625c6690be5c8d201d33fd7a0b8160b48efe852277ece"
+    },
+    {
+      "moduleId": "python-level-2-ps7-dictionaries",
+      "pack": "PS7-Test-Scores",
+      "itemId": "python-level-2-ps7-dictionaries-supplemental-ps7-supplemental-project-2-test-scores",
+      "examples": {
+        "starter": {
+          "input": "",
+          "expected": [
+            "ari: [80, 90]",
+            "bea: [100, 70]"
+          ]
+        },
+        "solution": {
+          "input": "2\n2\nAri\nBea\n80\n100\n90\n70\n",
+          "expected": [
+            "ari scores: [80, 90]",
+            "bea scores: [100, 70]",
+            "ari average: 85",
+            "bea average: 85"
+          ]
+        }
+      },
+      "classroomMainSha256": "4f344e2c63db10a5e81e097a5a2f35594f31807b1e5f721ac22fe6f22611b914"
+    },
+    {
+      "moduleId": "python-level-2-ps9-sets",
+      "pack": "PS9-Sets-Practice",
+      "itemId": "python-level-2-ps9-sets-curriculum-ps9-project-1-sets-practice",
+      "examples": {
+        "starter": {
+          "input": "",
+          "expected": [
+            "Union: [1, 2, 3, 4, 5, 6, 7, 8]"
+          ]
+        },
+        "solution": {
+          "input": "Banana!\nBand\n",
+          "expected": [
+            "Unique first letter count: 3",
+            "Shared letters: a, b, n",
+            "Even numbers: [2, 4]",
+            "Three-letter words: bat, cat"
+          ]
+        }
+      },
+      "classroomMainSha256": "8b12425996136556a789d50414aaf1b9a1c49b2cae2c1b92c516e67ea15c5a23"
+    },
+    {
+      "moduleId": "python-level-2-ps9-sets",
+      "pack": "PS9-Wheel-of-Fortune",
+      "itemId": "python-level-2-ps9-sets-curriculum-ps9-project-2-wheel-of-fortune",
+      "examples": {
+        "starter": {
+          "input": "r\n",
+          "expected": [
+            "_ r _ _ r _ _ _ _ _ _"
+          ]
+        },
+        "solution": {
+          "input": "p\nr\no\ng\na\nm\ni\nn\n",
+          "expected": [
+            "p r o g r a m m i n g",
+            "Puzzle solved in 8 guesses!"
+          ]
+        }
+      },
+      "classroomMainSha256": "0b21811ef9cfa446a2d47fb0f13d2701016387663c25dc2973dba759cc4e5609"
+    },
+    {
+      "moduleId": "python-level-2-ps9-sets",
+      "pack": "PS9-Class-Registration-II",
+      "itemId": "python-level-2-ps9-sets-supplemental-ps9-supplemental-project-2-class-registration-ii",
+      "examples": {
+        "starter": {
+          "input": "",
+          "expected": [
+            "Ari\nBea\nCleo\nDara",
+            "Gus\nHana"
+          ]
+        },
+        "solution": {
+          "input": "",
+          "expected": [
+            "Design enrolled: Ari, Bea, Cleo, Dara, Eli, Fay",
+            "Design waiting: Gus, Hana",
+            "Computing waiting: none",
+            "Studio waiting: none"
+          ]
+        }
+      },
+      "classroomMainSha256": "cb30151540a793108bf265bb32f212c20453b31e52ad85792a567dc663f8e508"
+    },
+    {
+      "moduleId": "python-level-2-ps9-sets",
+      "pack": "PS9-Favorite-Foods",
+      "itemId": "python-level-2-ps9-sets-supplemental-ps9-supplemental-project-3-favorite-foods",
+      "examples": {
+        "starter": {
+          "input": "",
+          "expected": [
+            "Shared sample: pear, rice"
+          ]
+        },
+        "solution": {
+          "input": "Pear\nApple\nRice\npear\nAPPLE\nPear\nRice\nPasta\nrice\nPASTA\n",
+          "expected": [
+            "Shared: pear, rice",
+            "Only Group A: apple",
+            "Only Group B: pasta"
+          ]
+        }
+      },
+      "classroomMainSha256": "4acd964f2c52b333937ce59d03f3808fcf2e1b542ebbfcb0cfe20e656bd3a481"
+    },
+    {
+      "moduleId": "python-level-2-ps10-to-do-list",
+      "pack": "PS10-Todo-List",
+      "itemId": "python-level-2-ps10-to-do-list-curriculum-ps10-project-1-to-do-list",
+      "examples": {
+        "starter": {
+          "input": "1\nread\n4\n3\n",
+          "expected": [
+            "1. read"
+          ]
+        },
+        "solution": {
+          "input": "1\nread\n1\nstretch\n1\nread\n2\n3\n4\n3\n",
+          "expected": [
+            "Removed: read",
+            "1. read\n2. stretch"
+          ]
+        }
+      },
+      "classroomMainSha256": "2a9ee2faa0e7526df477cbc7e0c9527f18c5ca378aa7e7e0031ff3eb33c12d35"
+    },
+    {
+      "moduleId": "python-level-2-ps10-to-do-list",
+      "pack": "PS10-Field-Day",
+      "itemId": "python-level-2-ps10-to-do-list-supplemental-ps10-supplemental-project-2-field-day",
+      "examples": {
+        "starter": {
+          "input": "Ari\n3\n",
+          "expected": [
+            "Recorded ari: 3"
+          ]
+        },
+        "solution": {
+          "input": "ari\n1\nbea\n2\ncleo\n3\ndara\n4\neli\n1\nfay\n2\ngus\n3\nhana\n4\nira\n1\njai\n2\n",
+          "expected": [
+            "Kickball: ari, cleo, eli, gus, ira",
+            "Capture the flag: bea, cleo, fay, gus, jai",
+            "Neither: dara, hana"
+          ]
+        }
+      },
+      "classroomMainSha256": "61f4b78bf02c9b2589fe9f54f9463b8bfc5b7b8c021213f8eb30f6d8fbb56e1e"
+    },
+    {
+      "moduleId": "python-level-2-ps10-to-do-list",
+      "pack": "PS10-Field-Day-II",
+      "itemId": "python-level-2-ps10-to-do-list-supplemental-ps10-supplemental-project-3-field-day-ii",
+      "examples": {
+        "starter": {
+          "input": "",
+          "expected": [
+            "First red team member:",
+            "Unassigned: 9"
+          ]
+        },
+        "solution": {
+          "input": "",
+          "expected": [
+            "Unassigned: 8",
+            "Unassigned: 0",
+            "Team Red (5):",
+            "Team Blue (5):"
+          ]
+        }
+      },
+      "classroomMainSha256": "8b663881c040ed06f1f7722f1ce382b3f4f36e0d1f0dbf6f0aa5c880eff65b29"
+    }
+  ]
+}

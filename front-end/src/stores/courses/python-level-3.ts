@@ -8,7 +8,6 @@ import {
 	gitCourseGuideLink,
 	mergeSortFrameGuide
 } from "./classroomReferenceGuides";
-import { isCoreProjectTitle } from "./projectGrouping";
 import { isKnownPendingStaticMedia, staticMediaUrl } from "./staticMedia";
 
 const SORT_ANIMATIONS = {
@@ -178,9 +177,9 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 						]
 					}),
 					projectLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM1-Mad-Libs/starter",
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM1-Mad-Libs/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM1-Mad-Libs/solution"
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM1-Mad-Libs/solution"
 				},
 				{
 					title: "Loops",
@@ -211,9 +210,9 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 						]
 					}),
 					projectLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM1-Junian-Language-Verifier/starter",
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM1-Junian-Language-Verifier/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM1-Junian-Language-Verifier/solution"
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM1-Junian-Language-Verifier/solution"
 				},
 				{
 					title: "AM1 Project 3: Command Assistant",
@@ -233,9 +232,9 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 						]
 					}),
 					projectLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM1-Juni-Assistant/starter",
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM1-Juni-Assistant/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM1-Juni-Assistant/solution"
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM1-Juni-Assistant/solution"
 				}
 			],
 			supplementalProjects: []
@@ -270,9 +269,9 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 							"Trace inputs, accumulator and return values before coding; write independent assertions, compare traces with an instructor, then test different data. Keep incomplete starter code and completed references separate."
 					}),
 					projectLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM2-Functions-Practice/starter",
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM2-Functions-Practice/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM2-Functions-Practice/solution"
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM2-Functions-Practice/solution"
 				},
 				{
 					title: "Lists",
@@ -302,9 +301,9 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 							"Trace accumulators and flattening order with an instructor, then check different inputs independently. Built-in helpers may be test oracles, not substitutes for the practice loops; consult the separate reference only after attempting the tasks."
 					}),
 					projectLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM2-Lists-Practice/starter",
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM2-Lists-Practice/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM2-Lists-Practice/solution"
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM2-Lists-Practice/solution"
 				}
 			],
 			supplementalProjects: []
@@ -348,9 +347,9 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 							"Trace and attempt each of the sixteen functions before consulting the separate reference. Review one trace with an instructor, then test different data independently and record what changed after a failed first approach."
 					}),
 					projectLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM3-Python-Fundamentals-Problem-Set/starter",
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM3-Python-Fundamentals-Problem-Set/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM3-Python-Fundamentals-Problem-Set/solution"
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM3-Python-Fundamentals-Problem-Set/solution"
 				}
 			],
 			supplementalProjects: []
@@ -360,71 +359,74 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 			curriculum: [
 				{
 					title: "Introduction to Recursion",
-					content:
-						"A recursive function is a function that calls itself on a smaller version of the same problem. Each recursive solution needs at least one base case, where the answer is known directly, and a recursive step, where the problem is reduced toward that base case. Everyday examples such as nested dolls or repeated divide-and-repeat processes make the frame-by-frame structure easier to trace."
+					content: [
+						"A recursive function answers a problem by asking the same function to solve a smaller one. A base case supplies an answer directly. Each recursive call needs a smaller input that can reach that case.",
+						"Trace a function that counts down from 3 to 0. Calls open for 3, 2, 1, and 0. If the function prints before its recursive call, output appears while those calls open. If it prints after the call returns, output appears in the reverse order. A function can also return a value to its caller without printing it.",
+						"For each trace, record the input, the stopping rule, and the action that waits for the smaller call. Try 0 and 1 before tracing a longer chain."
+					].join("\n\n")
 				},
 				{
 					title: "AM4 Project 1: Recursive Factorials",
 					content: projectBrief({
 						goal: "Write a recursive factorial function and trace how it reaches its base case.",
 						build: [
-							"Define the factorial meaning for positive integers.",
-							"Add a base case such as `1! = 1`.",
-							"Add the recursive step `factorial(n) = n * factorial(n - 1)`.",
+							"Implement `recursive_factorial(num)` for nonnegative integers. Work with small inputs while tracing the call stack.",
+							"Use `0! = 1` as the base case.",
+							"Multiply num by the result of calling the same function with num - 1.",
 							"Print or trace at least one example so the chain of calls is visible."
 						],
 						checkpoints: [
-							"`factorial(1)` returns the base-case value.",
-							"`factorial(5)` produces 120.",
+							"`recursive_factorial(0)` and `recursive_factorial(1)` both return 1.",
+							"`recursive_factorial(5)` returns 120.",
 							"The explanation identifies the base case, recursive step, and why the input gets smaller."
 						]
 					}),
 					projectLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM4-Recursive-Factorials/starter",
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM4-Recursive-Factorials/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM4-Recursive-Factorials/solution"
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM4-Recursive-Factorials/solution"
 				},
 				{
 					title: "AM4 Project 2: Recursive Exponents",
 					content: projectBrief({
 						goal: "Write a recursive exponent function that computes `b` raised to the power `p`.",
 						build: [
-							"Define the function inputs: base `b` and exponent `p`.",
-							"Choose a base case for the smallest exponent handled by the function.",
-							"Create the recursive step that multiplies by `b` while reducing `p` by 1.",
+							"Implement `exponent(base, power)` for an integer base and a nonnegative integer power.",
+							"Return 1 when the power is zero, including when the base is zero.",
+							"Keep the base fixed and multiply it by the result for power - 1.",
 							"Compare the recursive result with Python's `**` operator for several values."
 						],
 						checkpoints: [
-							"Small powers such as `2^1`, `2^3`, and `5^2` work correctly.",
+							"`exponent(2, 0)`, `exponent(2, 3)`, and `exponent(-2, 3)` return 1, 8, and -8.",
 							"The base case prevents infinite recursion.",
 							"The trace shows the exponent moving toward the base case."
 						]
 					}),
 					projectLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM4-Recursive-Exponents/starter",
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM4-Recursive-Exponents/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM4-Recursive-Exponents/solution"
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM4-Recursive-Exponents/solution"
 				},
 				{
 					title: "AM4 Project 3: Recursive Fibonacci Numbers",
 					content: projectBrief({
 						goal: "Write a recursive function that returns the `n`th Fibonacci number.",
 						build: [
-							"Define the first two Fibonacci values used by the project.",
+							"Use one-based positions. Position 1 is 0, position 2 is 1, and the function accepts a positive integer position.",
 							"Add one base case for each starting value.",
 							"Create the recursive step that adds the two previous Fibonacci numbers.",
 							"Trace a small call such as `fibonacci(5)` to see the repeated subproblems."
 						],
 						checkpoints: [
-							"The first two sequence values return immediately.",
+							"Positions 1, 2, 5, and 8 return 0, 1, 3, and 13.",
 							"A later value is built from two smaller recursive calls.",
 							"The explanation names why this simple recursive version repeats work."
 						]
 					}),
 					projectLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM4-Fibonacci-Numbers/starter",
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM4-Fibonacci-Numbers/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM4-Fibonacci-Numbers/solution"
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM4-Fibonacci-Numbers/solution"
 				}
 			],
 			supplementalProjects: [
@@ -433,21 +435,21 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 					content: projectBrief({
 						goal: "Convert decimal numbers to binary with both iterative and recursive approaches.",
 						build: [
-							"Review how place value differs between base 10 and base 2.",
+							"Implement `to_binary_iterative(number)` and `to_binary_recursive(number)` for nonnegative integers. Both return a string of binary digits.",
 							"Build an iterative version by repeatedly dividing by 2 and tracking remainders.",
 							"Build a recursive version that solves the same task on `n // 2` and appends the final bit.",
 							"Compare the order in which each approach produces the binary digits."
 						],
 						checkpoints: [
 							"Several decimal inputs match Python's `bin()` result after removing the `0b` prefix.",
-							"The recursive version has a clear base case.",
+							"Both functions return `'0'` for zero and `'110'` for 6. Use integer division to preserve digits in large inputs.",
 							"The comparison explains what is easier or harder in each approach."
 						]
 					}),
 					projectLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM4-Binary-Converter/starter",
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM4-Binary-Converter/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM4-Binary-Converter/solution"
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM4-Binary-Converter/solution"
 				}
 			]
 		},
@@ -456,8 +458,10 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 			curriculum: [
 				{
 					title: "Substrings",
-					content:
-						"Slicing extracts part of a string with `x[start:end]`, where the ending index is exclusive. Shortcuts such as `s[:i]`, `s[i:]`, and `s[:-1]` make common slices concise. `split()` is useful when a string needs to be separated into pieces based on a delimiter."
+					content: [
+						"A slice `s[start:end]` includes the character at start and stops before end. For `s = 'robot'`, `s[1:4]` is `'obo'`, `s[:2]` is `'ro'`, and `s[:-1]` is `'robo'`.",
+						"A substring occupies one contiguous range. The letters `rt` occur in robot in that order, but skipping the middle characters creates a subsequence. Predict `s[1:-1]` before evaluating it, then trace the same end-removal step on an empty string and a one-letter string."
+					].join("\n\n")
 				},
 				{
 					title: "AM5 Project 1: Recursive Cascade",
@@ -477,9 +481,9 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 						]
 					}),
 					projectLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM5-Recursive-Cascade/starter",
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM5-Recursive-Cascade/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM5-Recursive-Cascade/solution"
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM5-Recursive-Cascade/solution"
 				},
 				{
 					title: "AM5 Project 2: Recursive Palindrome Checker",
@@ -499,14 +503,16 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 						]
 					}),
 					projectLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM5-Recursive-Palindrome-Checker/starter",
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM5-Recursive-Palindrome-Checker/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM5-Recursive-Palindrome-Checker/solution"
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM5-Recursive-Palindrome-Checker/solution"
 				},
 				{
 					title: "Stacks",
-					content:
-						"A stack is a last-in, first-out data structure. In Python, a stack can be represented with a list by adding items with `append()`, inspecting the top item with `myStack[-1]`, and removing the top item with `pop()`. Compare stack behavior with real-world examples such as a stack of papers or plates."
+					content: [
+						"A stack removes its most recent item first. With a Python list, `append(value)` pushes a value, `stack[-1]` inspects the top, and `pop()` removes and returns it. Check whether the list is empty before inspecting or removing the top.",
+						"Start with an empty stack, push `'('` and then `'['`. A closing `']'` matches the top and removes it. A closing `')'` now matches the remaining opener. If `')'` arrived first, it would mismatch the top even though the stack contains a matching opener farther down."
+					].join("\n\n")
 				},
 				{
 					title: "AM5 Project 3: Parentheses Validator",
@@ -518,18 +524,18 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 							"Scan the input string and reject mismatched or premature closing brackets.",
 							"Accept the string only when the stack is empty at the end.",
 							"Use a bracket-only contract: empty input is balanced, but any non-bracket character is rejected by both approaches.",
-							"Explore a recursive version that removes complete pairs such as `()`, `[]`, or `{}` until no more valid reductions are possible."
+							"Implement `rec_parentheses(brackets)` by removing a complete adjacent pair and recursing on the shorter input. `parentheses(brackets)` uses the stack."
 						],
 						checkpoints: [
 							"Examples such as `([])` are accepted.",
-							"Examples such as `([)]`, `(()`, and `())` are rejected.",
+							"Both versions reject `([)]`, `(()`, `())`, and `(a)`.",
 							"The comparison explains why the stack version is usually clearer for nested structures."
 						]
 					}),
 					projectLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM5-Parentheses-Validator/starter",
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM5-Parentheses-Validator/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM5-Parentheses-Validator/solution"
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM5-Parentheses-Validator/solution"
 				}
 			],
 			supplementalProjects: [
@@ -551,9 +557,9 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 						]
 					}),
 					projectLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM5-Recursive-Sum-and-Max/starter",
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM5-Recursive-Sum-and-Max/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM5-Recursive-Sum-and-Max/solution"
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM5-Recursive-Sum-and-Max/solution"
 				},
 				{
 					title: "AM5 Supplemental Project 2: Substring Generator",
@@ -566,16 +572,16 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 							"Return a sorted list in stable order, including the empty string, and trace only short inputs while exploring the branching recursion."
 						],
 						checkpoints: [
-							"Short inputs such as `ab` and `aba` are easy to verify by hand.",
+							"For `ab`, return `['', 'a', 'ab', 'b']`. Empty input returns a list containing just the empty string.",
 							"Duplicate substrings are removed from the final output.",
 							"The result for abc excludes ac, because a substring must be contiguous.",
 							"The explanation connects the recursive tree to the generated result."
 						]
 					}),
 					projectLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM5-Substring-Generator/starter",
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM5-Substring-Generator/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM5-Substring-Generator/solution"
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM5-Substring-Generator/solution"
 				}
 			]
 		},
@@ -594,7 +600,11 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 						],
 						evidence:
 							"The review notes name at least one strength and one specific skill that needs continued practice."
-					})
+					}),
+					projectLink:
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM-Check-In-1/starter",
+					solutionLink:
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM-Check-In-1/solution"
 				},
 				{
 					title: "Check-In #1: String Functions",
@@ -654,9 +664,9 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 						]
 					}),
 					projectLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM-Check-In-1-Additional-Project/starter",
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM-Check-In-1-Additional-Project/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM-Check-In-1-Additional-Project/solution"
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM-Check-In-1-Additional-Project/solution"
 				}
 			],
 			supplementalProjects: []
@@ -666,8 +676,10 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 			curriculum: [
 				{
 					title: "Introduction to Algorithms",
-					content:
-						"An algorithm is a step-by-step process for completing a task. Compare different ways to solve the same problem and discuss why some methods are more efficient than others. Searching for an element in a list is one common example that leads naturally into algorithm analysis."
+					content: [
+						"An algorithm is a finite sequence of steps that solves a stated problem. Define the input, the result, and the stopping condition before choosing the steps. Searching an unsorted list for a value needs a yes-or-no result even when the list is empty.",
+						"For the list `[8, 3, 6]`, a left-to-right search for 3 uses two equality checks. A search for 9 uses three and returns False. Trace both, then predict the comparison counts for the first value and an empty list. Compare how much information each check rules out."
+					].join("\n\n")
 				},
 				{
 					title: "AM6 Project 1: Linear Search Implementation",
@@ -686,37 +698,45 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 						]
 					}),
 					projectLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM6-Linear-Search/starter",
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM6-Linear-Search/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM6-Linear-Search/solution"
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM6-Linear-Search/solution"
 				},
 				{
 					title: "Runtime Analysis & Big-O Notation",
-					content:
-						"Big-O notation describes how an algorithm's runtime grows as the input size grows. The dominant term matters most, while lower-order terms and constant factors are ignored. This connects directly to best-case, average-case, and worst-case reasoning."
+					content: [
+						"Choose an input size and an operation to count. In a search over n elements, count comparisons under the assumption that each comparison takes constant time. A first-item match uses one comparison and an absent target uses n. State which case a bound describes.",
+						"Big-O is an upper bound on growth for sufficiently large input. Theta describes a tight growth class. A loop that performs exactly `3n + 2` operations grows as Theta(n) and has an O(n) upper bound. Doubling n roughly doubles the work once n is large. A tighter upper bound is more informative when several are valid.",
+						"Trace a loop with n iterations and a fixed inner loop of three iterations. Compare it with a loop whose two independent bounds are n and m. Keep both size variables when the inputs can grow independently."
+					].join("\n\n")
 				},
 				{
 					title: "AM6 Project 2: Big-O Notation",
-					content: projectBrief({
-						goal: "Classify runtime expressions by their dominant Big-O behavior.",
-						verification:
-							"The completed worksheet states the input domain and growth model, gives a justified classification for each of the ten prompts, and keeps independent variables separate. Attempt each prompt before consulting the reference key.",
-						build: [
-							"Simplify expressions such as `12n^2 + n`, `n - sqrt(n)`, and `log(n) + 2`.",
-							"Read the ten-prompt mathematical worksheet in the starter README; this task does not require an IDE import. State the growth model and keep independent variables separate.",
-							"Analyze recursive definitions such as `f(n) = 1 + f(n/2)`.",
-							"Include challenge problems with multiple variables or known summations such as `1 + 2 + ... + n`."
-						],
-						checkpoints: [
-							"The dominant term is identified for each expression.",
-							"Constants and lower-order terms are removed for the right reason.",
-							"At least one answer includes a short explanation rather than only the final notation."
-						]
-					}),
+					content: [
+						projectBrief({
+							goal: "Classify runtime expressions by their dominant Big-O behavior.",
+							verification:
+								"The completed worksheet states the input domain and growth model, gives a justified classification for each of the ten prompts, and keeps independent variables separate. Attempt each prompt before consulting the reference key.",
+							build: [
+								"Simplify expressions such as `12n^2 + n`, `n - sqrt(n)`, and `log(n) + 2`.",
+								"For each prompt, record a growth class, a justification, and the input assumptions. The starter link contains the same worksheet for download.",
+								"Analyze recursive definitions such as `f(n) = 1 + f(n/2)`.",
+								"Include challenge problems with multiple variables or known summations such as `1 + 2 + ... + n`."
+							],
+							checkpoints: [
+								"The dominant term is identified for each expression.",
+								"Constants and lower-order terms are removed for the right reason.",
+								"At least one answer includes a short explanation rather than only the final notation."
+							]
+						}),
+						"### Worksheet",
+						"Assume n and m are positive integers. In a two-variable prompt they grow independently. The expressions represent the amount of work. The symbol ^ means a mathematical power, and log_2 is a base-2 logarithm. Use a tight growth class to give the corresponding Big-O bound.",
+						"1. `12n^2 + n`\n2. `n - sqrt(n) + 0`\n3. `11,000,000n + 5`\n4. `1,000,000n - 1,000,000`\n5. `1,234,567 + 6 - 5`\n6. `log_2(n) + 2`\n7. `n + log_2(n)`\n8. `1 + 2 + ... + n`\n9. `3 log_2(n) + m^2`\n10. `T(n) = 1 + T(n/2), T(1) = 0; n = 2^k`"
+					].join("\n\n"),
 					projectLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM6-Big-O-Analysis/starter",
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM6-Big-O-Analysis/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM6-Big-O-Analysis/solution"
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM6-Big-O-Analysis/solution"
 				},
 				{
 					title: "AM6 Project 3: Function Analysis",
@@ -738,9 +758,9 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 						]
 					}),
 					projectLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM6-Function-Analysis/starter",
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM6-Function-Analysis/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM6-Function-Analysis/solution"
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM6-Function-Analysis/solution"
 				}
 			],
 			supplementalProjects: []
@@ -750,8 +770,10 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 			curriculum: [
 				{
 					title: "Binary Search Introduction",
-					content:
-						"Binary search searches sorted lists by comparing the target with the middle item and eliminating half of the remaining search space. This repeated halving gives logarithmic comparison counts. Index-bound implementations avoid the additional copying work of recursive list slices."
+					content: [
+						"Binary search uses an ascending list to discard a range after each midpoint comparison. Keep an inclusive interval from low to high. If the target is larger than the midpoint value, continue to its right with low set to mid + 1. If it is smaller, set high to mid - 1. An empty interval ends an unsuccessful search.",
+						"Search for 7 in `[2, 4, 7, 9, 13, 18]`. The initial bounds are 0 and 5. With integer division the first midpoint is index 2, which contains 7. Now trace 8 through the same input and record the interval after each unsuccessful comparison. Sorting an unsorted input is a separate step."
+					].join("\n\n")
 				},
 				{
 					title: "AM7 Project 1: Binary Search Implementation",
@@ -770,9 +792,9 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 						]
 					}),
 					projectLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM7-Binary-Search/starter",
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM7-Binary-Search/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM7-Binary-Search/solution"
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM7-Binary-Search/solution"
 				},
 				{
 					title: "Binary Search Big-O Analysis",
@@ -797,9 +819,9 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 						]
 					}),
 					projectLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM7-Reverse-Number-Guesser/starter",
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM7-Reverse-Number-Guesser/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM7-Reverse-Number-Guesser/solution"
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM7-Reverse-Number-Guesser/solution"
 				},
 				{
 					title: "AM7 Project 3: Runtime Comparator",
@@ -821,9 +843,9 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 						]
 					}),
 					projectLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM7-Runtime-Comparator/starter",
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM7-Runtime-Comparator/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM7-Runtime-Comparator/solution"
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM7-Runtime-Comparator/solution"
 				}
 			],
 			supplementalProjects: [
@@ -845,9 +867,9 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 						]
 					}),
 					projectLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM7-Number-Guesser/starter",
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM7-Number-Guesser/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM7-Number-Guesser/solution"
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM7-Number-Guesser/solution"
 				}
 			]
 		},
@@ -881,9 +903,9 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 						]
 					}),
 					projectLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM8-Selection-Sort/starter",
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM8-Selection-Sort/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM8-Selection-Sort/solution"
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM8-Selection-Sort/solution"
 				},
 				{
 					title: "Selection Sort Big-O Analysis",
@@ -917,9 +939,9 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 						]
 					}),
 					projectLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM8-Insertion-Sort/starter",
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM8-Insertion-Sort/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM8-Insertion-Sort/solution"
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM8-Insertion-Sort/solution"
 				},
 				{
 					title: "Insertion Sort Big-O Analysis",
@@ -944,7 +966,11 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 						],
 						evidence:
 							"The review identifies both the final answers and the reasoning used to reach them."
-					})
+					}),
+					projectLink:
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM-Check-In-2/starter",
+					solutionLink:
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM-Check-In-2/solution"
 				},
 				{
 					title: "Check-In #2: Time Complexity",
@@ -1035,8 +1061,10 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 						verification:
 							"Predict work, compare actual results and discuss the experiment with a course facilitator. Test empty/small lists and invalid bounds; retain measured samples rather than historical timing guesses."
 					}),
+					projectLink:
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM-Check-In-2-Additional-Project/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM-Check-In-2-Additional-Project/solution"
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM-Check-In-2-Additional-Project/solution"
 				}
 			],
 			supplementalProjects: []
@@ -1072,9 +1100,9 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 						]
 					}),
 					projectLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM9-Bubble-Sort/starter",
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM9-Bubble-Sort/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM9-Bubble-Sort/solution"
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM9-Bubble-Sort/solution"
 				},
 				{
 					title: "Bubble Sort Big-O Analysis",
@@ -1101,9 +1129,9 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 							"Confirm opening the starter in the Python IDE or run from starter with Python 3. Discuss one adjacent pass with a course facilitator, then test different synthetic records independently. Compare with an independently computed expected ranking and save/export the project. Completed reference code stays separate in solution."
 					}),
 					projectLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM9-Baseball-Analytics/starter",
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM9-Baseball-Analytics/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM9-Baseball-Analytics/solution"
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM9-Baseball-Analytics/solution"
 				}
 			],
 			supplementalProjects: []
@@ -1138,9 +1166,9 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 						]
 					}),
 					projectLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM10-Merge-Sort/starter",
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM10-Merge-Sort/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM10-Merge-Sort/solution"
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM10-Merge-Sort/solution"
 				},
 				{
 					title: "AM10 Project 2: Split",
@@ -1159,9 +1187,9 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 						]
 					}),
 					projectLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM10-Merge-Sort/starter",
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM10-Merge-Sort/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM10-Merge-Sort/solution"
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM10-Merge-Sort/solution"
 				},
 				{
 					title: "AM10 Project 3: Merge Sort",
@@ -1181,9 +1209,9 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 						]
 					}),
 					projectLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM10-Merge-Sort/starter",
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM10-Merge-Sort/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM10-Merge-Sort/solution"
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM10-Merge-Sort/solution"
 				},
 				{
 					title: "Merge Sort Big-O Analysis",
@@ -1231,9 +1259,9 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 						]
 					}),
 					projectLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM11-Quicksort/starter",
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM11-Quicksort/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM11-Quicksort/solution"
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM11-Quicksort/solution"
 				},
 				{
 					title: "AM11 Project 2: Quicksort",
@@ -1252,9 +1280,9 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 						]
 					}),
 					projectLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM11-Quicksort/starter",
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM11-Quicksort/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM11-Quicksort/solution"
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM11-Quicksort/solution"
 				},
 				{
 					title: "Quicksort Big-O Analysis",
@@ -1278,9 +1306,9 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 						]
 					}),
 					projectLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM11-Sorting-Comparison/starter",
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM11-Sorting-Comparison/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM11-Sorting-Comparison/solution"
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM11-Sorting-Comparison/solution"
 				}
 			],
 			supplementalProjects: []
@@ -1315,9 +1343,9 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 							"Confirm importing the incomplete starter main.py and complete README.md into the Python IDE, or run from a starter working copy with python3 main.py. Initial Run is a reminder. Discuss one index/file trace with a course facilitator, implement the guarded console entry point, enter a name, reopen output.txt and check exact contents. Independently test another name, save/export and reopen the saved work. Completed reference answers stay separate in solution."
 					}),
 					projectLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM12-Crazy-Name-Tags-Printer/starter",
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM12-Crazy-Name-Tags-Printer/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM12-Crazy-Name-Tags-Printer/solution"
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM12-Crazy-Name-Tags-Printer/solution"
 				},
 				{
 					title: "Reading From a File",
@@ -1344,9 +1372,9 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 							"Confirm importing main.py and input.txt into the Python IDE, or run from starter with Python 3. Discuss one record-index trace with a course facilitator, then use independent expected dictionaries and temporary synthetic files. Inspect the result and save/export; reference answers remain in solution."
 					}),
 					projectLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM12-File-IO-and-Dictionaries/starter",
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM12-File-IO-and-Dictionaries/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM12-File-IO-and-Dictionaries/solution"
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM12-File-IO-and-Dictionaries/solution"
 				},
 				{
 					title: "AM12 Project 3: Word Translator with File I/O",
@@ -1373,9 +1401,9 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 							"Confirm importing the starter and original inputs in the Python IDE, or run from starter with Python 3. Discuss one trace with a course facilitator, independently test the stages, reopen output and save/export. The optional path also checks clustered/punctuation-only tokens and the original curly apostrophe in wasn’t. Completed reference code stays separate."
 					}),
 					projectLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM12-Juni-Latin-with-File-IO/starter",
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM12-Juni-Latin-with-File-IO/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM12-Juni-Latin-with-File-IO/solution"
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM12-Juni-Latin-with-File-IO/solution"
 				}
 			],
 			supplementalProjects: []
@@ -1395,7 +1423,11 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 						],
 						evidence:
 							"The final review names one sorting concept and one file-I/O concept that can be explained without notes."
-					})
+					}),
+					projectLink:
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM-Check-In-3/starter",
+					solutionLink:
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM-Check-In-3/solution"
 				},
 				{
 					title: "Check-In #3: Bubble Sort",
@@ -1473,8 +1505,10 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 						verification:
 							"Predict one fixture, walk through its record handling and sorting with a course facilitator, then test different data independently. Compare exact input/output bytes and fresh-list identity; completed reference code stays separate from the starter."
 					}),
+					projectLink:
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM-Check-In-3-Additional-Project/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM-Check-In-3-Additional-Project/solution"
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM-Check-In-3-Additional-Project/solution"
 				}
 			],
 			supplementalProjects: []
@@ -1507,9 +1541,9 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 						"For an instructor walkthrough, use the same sequence: predict, implement one\nhelper, compare evidence, then integrate. In the presentation, explain the\nfinite boundary, simultaneous update and file-to-board path with one cell trace."
 					].join("\n\n"),
 					projectLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM13-Conways-Game-of-Life/starter",
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM13-Conways-Game-of-Life/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM13-Conways-Game-of-Life/solution"
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM13-Conways-Game-of-Life/solution"
 				},
 				{
 					title: "AM13 Project 2: Two-Player Conway's Game of Life",
@@ -1530,9 +1564,9 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 						"- Read the indexed board before entering `row column`, for example `0 0`.\n  Do not enter Python tuple syntax. With the supplied patterns, O can grow at\n  `0 0` and kill X at `4 8`. Predict the edited board and generation before\n  running; those moves are an input example, not a strategy recommendation.\n- Before editing the loop, trace surviving ownership under an opposing majority,\n  majority births, a corner and simultaneous extinction. Test invalid grow,\n  own-cell kill, out-of-range coordinates, cancellation at each prompt and an\n  invalid pair followed by a valid pair. The invalid attempt must change nothing.\n- Check an initial terminal board, post-edit last-opponent removal,\n  post-generation wins/draw and a full-board automatic pass. Counts do not select\n  the next player. Keep original inputs and intermediate generations distinct.\n- Default Run caps accepted turns at 50; invalid attempts do not use this cap\n  and repeated invalid input may still need cancellation. Select the original\n  continue-until-terminal game explicitly with `main(max_turns=None)`.\n  Cycles need not end naturally. Use `quit` or local Ctrl-C during input;\n  IDE Stop may terminate the worker without a returned outcome.\n- To use different patterns, change the guarded filename arguments. All original\n  bytes stay unchanged. Save/export both `.in` files with the project ZIP,\n  reopen saved work and repeat a short game. Import never runs the game.\n- Walk through the same predict/implement/check sequence alone or with a course\n  facilitator. Present a complete turn trace, explaining why edits precede the\n  generation and why a survivor keeps its owner. O(height × width) generation\n  work assumes constant-size private neighbor checks after one validation pass."
 					].join("\n\n"),
 					projectLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM13-Two-Player-Conways/starter",
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM13-Two-Player-Conways/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM13-Two-Player-Conways/solution"
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM13-Two-Player-Conways/solution"
 				},
 				{
 					title: "Master Project Presentation",
@@ -1585,9 +1619,9 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 							"Confirm the distinct starter import, predict a fixture and explain a trace with a course facilitator, then independently check the required functions. Run the guarded entry point, save and export the learner project, and reopen the saved work. Completed reference answers remain separate."
 					}),
 					projectLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM14-Tic-Tac-Toe-UI/starter",
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM14-Tic-Tac-Toe-UI/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM14-Tic-Tac-Toe-UI/solution"
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM14-Tic-Tac-Toe-UI/solution"
 				},
 				{
 					title: "AM14 Project 2: Tic Tac Toe AI",
@@ -1616,9 +1650,9 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 							"Confirm the distinct starter import, predict a fixture and explain a trace with a course facilitator, then independently check the required functions. Run the guarded entry point, save and export the learner project, and reopen the saved work. Completed reference answers remain separate."
 					}),
 					projectLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM14-Tic-Tac-Toe-AI/starter",
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM14-Tic-Tac-Toe-AI/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM14-Tic-Tac-Toe-AI/solution"
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM14-Tic-Tac-Toe-AI/solution"
 				},
 				{
 					title: "AM14 Project 3: Tic Tac Toe AI Test",
@@ -1650,9 +1684,9 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 							"Confirm the distinct starter import, predict a fixture and explain a trace with a course facilitator, then independently check the required functions. Run the guarded entry point, save and export the learner project, and reopen the saved work. Completed reference answers remain separate."
 					}),
 					projectLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM14-Tic-Tac-Toe-AI-Test/starter",
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM14-Tic-Tac-Toe-AI-Test/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM14-Tic-Tac-Toe-AI-Test/solution"
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM14-Tic-Tac-Toe-AI-Test/solution"
 				},
 				{
 					title: "AM14 Project 4: Advanced Tic Tac Toe AI",
@@ -1684,9 +1718,9 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 							"Confirm the distinct starter import, predict a fixture and explain a trace with a course facilitator, then independently check the required functions. Run the guarded entry point, save and export the learner project, and reopen the saved work. Completed reference answers remain separate."
 					}),
 					projectLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM14-Tic-Tac-Toe-AI-with-Forks/starter",
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM14-Tic-Tac-Toe-AI-with-Forks/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Python-Level-3/tree/main/AM14-Tic-Tac-Toe-AI-with-Forks/solution"
+						"https://github.com/instruction-material/Python-Level-3/tree/12ce8ebe9ccdc6fac56a287bc4993380688900a3/AM14-Tic-Tac-Toe-AI-with-Forks/solution"
 				},
 				{
 					title: "Master Project Presentation",
@@ -1725,8 +1759,6 @@ interface PythonLevel3FlowConfig {
 	title: string;
 	estimatedTime: string;
 	keyBlocks: string[];
-	choiceCurriculumTitles?: string[];
-	challengeCurriculumTitles?: string[];
 	projectThread: string;
 }
 
@@ -1741,9 +1773,8 @@ const PYTHON_LEVEL_3_FLOW: PythonLevel3FlowConfig[] = [
 			"if / elif / else",
 			"command loop"
 		],
-		choiceCurriculumTitles: ["AM1 Project 3: Command Assistant"],
 		projectThread:
-			"Use Mad Libs and Fictional Language Verifier as a placement-quality review of data flow and branching. Command Assistant is an optional sustained-loop application when review evidence shows readiness."
+			"Use Mad Libs and Fictional Language Verifier to review data flow and branching. Then complete Command Assistant to exercise a loop that continues until an explicit exit command."
 	},
 	{
 		title: "AM2 Review: Functions & Lists",
@@ -1781,11 +1812,8 @@ const PYTHON_LEVEL_3_FLOW: PythonLevel3FlowConfig[] = [
 			"call stack",
 			"return unwinding"
 		],
-		challengeCurriculumTitles: [
-			"AM4 Project 3: Recursive Fibonacci Numbers"
-		],
 		projectThread:
-			"Trace factorial and exponent calls before coding them, labeling the base case, smaller input, and returned value. Recursive Fibonacci is the challenge because repeated subproblems expose efficiency limits."
+			"Trace factorial and exponent calls before coding them. In the required Fibonacci project, use the call tree to identify repeated subproblems. The optional Binary Converter compares recursive and iterative approaches."
 	},
 	{
 		title: "AM5 Recursion Part 2",
@@ -1797,9 +1825,8 @@ const PYTHON_LEVEL_3_FLOW: PythonLevel3FlowConfig[] = [
 			"push / pop",
 			"balanced delimiter"
 		],
-		choiceCurriculumTitles: ["AM5 Project 1: Recursive Cascade"],
 		projectThread:
-			"Connect recursive string reduction to the runtime stack, then implement palindrome checking and an explicit stack-based parentheses validator. Recursive Cascade remains a visual warm-up choice."
+			"Trace when the Recursive Cascade prints as calls open and return. Then check literal palindromes by reducing the string and validate nested brackets with an explicit stack."
 	},
 	{
 		title: "Check-In #1",
@@ -1824,9 +1851,8 @@ const PYTHON_LEVEL_3_FLOW: PythonLevel3FlowConfig[] = [
 			"best / worst case",
 			"operation count"
 		],
-		challengeCurriculumTitles: ["AM6 Project 3: Function Analysis"],
 		projectThread:
-			"Implement and trace linear search before naming its growth rate. Big-O work compares operation counts as input grows; Function Analysis is the transfer challenge."
+			"Trace and implement linear search before comparing operation counts as input grows. Apply the notation to the worksheet and then to the fourteen supplied functions."
 	},
 	{
 		title: "AM7 Binary Search",
@@ -1903,7 +1929,6 @@ const PYTHON_LEVEL_3_FLOW: PythonLevel3FlowConfig[] = [
 			"average O(n log n)",
 			"worst O(n²)"
 		],
-		challengeCurriculumTitles: ["AM11 Project 3: Sorting Comparison"],
 		projectThread:
 			"Verify partition independently, then trace pivot values across recursive calls. Sorting Comparison remains a required project: independently verify each sorter, then compare measured behavior across shared input shapes."
 	},
@@ -2012,37 +2037,10 @@ function configurePythonLevel3Module(
 	module.id ??= legacyModuleId;
 	preservePythonLevel3Ids(module, legacyModuleId);
 
-	const choiceTitles = new Set(
-		(config.choiceCurriculumTitles ?? []).filter(
-			title => !isCoreProjectTitle(title)
-		)
-	);
-	const challengeTitles = new Set(
-		(config.challengeCurriculumTitles ?? []).filter(
-			title => !isCoreProjectTitle(title)
-		)
-	);
-	const movedPractice = module.curriculum.filter(
-		item => choiceTitles.has(item.title) || challengeTitles.has(item.title)
-	);
-	module.curriculum = module.curriculum.filter(
-		item =>
-			!choiceTitles.has(item.title) && !challengeTitles.has(item.title)
-	);
-
 	for (const item of module.curriculum) item.learningPath = "core";
-	for (const item of movedPractice) {
-		item.learningPath = challengeTitles.has(item.title)
-			? "challenge"
-			: "choice";
-	}
 	for (const item of module.supplementalProjects) {
 		item.learningPath = pythonLevel3SupplementalPath(item);
 	}
-	module.supplementalProjects = [
-		...movedPractice,
-		...module.supplementalProjects
-	];
 
 	module.estimatedTime = config.estimatedTime;
 	module.keyBlocks = [...config.keyBlocks];

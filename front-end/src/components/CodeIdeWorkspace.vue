@@ -11571,6 +11571,10 @@ html.dark .editor-shortcuts ul {
 	.ide-grid.mobile-view-console .result-panel {
 		grid-template-rows: auto minmax(0, 1fr);
 	}
+	.ide-grid.mobile-view-console
+		.result-panel--visual:has(.result-visuals--audio) {
+		grid-template-rows: auto minmax(0, 40%) minmax(0, 1fr);
+	}
 	.ide-grid {
 		min-height: 50vh;
 	}

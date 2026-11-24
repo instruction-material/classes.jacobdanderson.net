@@ -655,30 +655,42 @@ const visibleAppendixModules = computed<VisibleModule[]>(() =>
 	visibleModuleList(appendixCourseModules.value, normalizedQuery.value)
 );
 
-const visibleModules = computed<VisibleModule[]>(() => [
-	...visibleCoreModules.value,
-	...visibleTransitionModules.value,
-	...visibleAppendixModules.value
-]);
-
-const visibleOutlineGroups = computed(() =>
-	[
+const visibleOutlineGroups = computed(() => {
+	const bridgeCourse =
+		selectedCourseId.value === "python-to-java-and-cpp-bridge";
+	const capstoneId = bridgeCourse
+		? coreCourseModules.value.at(-1)?.id
+		: undefined;
+	return [
 		{
 			key: "modules",
 			label: "Modules",
-			modules: visibleCoreModules.value
+			modules: visibleCoreModules.value.filter(
+				module => module.id !== capstoneId
+			)
 		},
 		{
 			key: "next-steps",
-			label: "Next Steps",
+			label: bridgeCourse ? "Java or C++" : "Next Steps",
 			modules: visibleTransitionModules.value
+		},
+		{
+			key: "capstone",
+			label: "Capstone",
+			modules: visibleCoreModules.value.filter(
+				module => module.id === capstoneId
+			)
 		},
 		{
 			key: "references",
 			label: "References",
 			modules: visibleAppendixModules.value
 		}
-	].filter(group => group.modules.length > 0)
+	].filter(group => group.modules.length > 0);
+});
+
+const visibleModules = computed(() =>
+	visibleOutlineGroups.value.flatMap(group => group.modules)
 );
 
 function visibleModuleList(modules: CourseModule[], query: string) {

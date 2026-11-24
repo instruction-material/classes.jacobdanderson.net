@@ -3608,6 +3608,13 @@ function isAppliedStudioContext(context: CourseTextContext) {
 	);
 }
 
+function isAuthoredBridgeCapstone(context: CourseTextContext) {
+	return (
+		context.courseId === "python-to-java-and-cpp-bridge" &&
+		context.module.title.startsWith("Language Bridge Lab 17:")
+	);
+}
+
 function isBriefContent(content: string) {
 	return wordCount(content) < 82 || compactWhitespace(content).length < 460;
 }
@@ -8406,6 +8413,7 @@ function rewritePlaceholderCourseText(course: RawCourse, courseId: string) {
 				}
 
 				if (
+					!isAuthoredBridgeCapstone(context) &&
 					isAppliedStudioContext(context) &&
 					wordCount(item.content) < 90
 				) {
@@ -8484,6 +8492,7 @@ function normalizeCourseTextQuality(course: RawCourse, courseId: string) {
 		for (const section of ["curriculum", "supplementalProjects"] as const) {
 			for (const item of module[section]) {
 				const context = { courseId, course, module, item, section };
+				if (isAuthoredBridgeCapstone(context)) continue;
 				item.content =
 					contextualizeGenericRepresentationPrompt(context);
 
@@ -9193,62 +9202,6 @@ function adaptClassroomCourse(course: RawCourse, courseId: string) {
 	}
 }
 
-function normalizePythonLevel2(course: RawCourse) {
-	setItemLinks(course, "Check-In #2", "Check-In #2 Overview", {
-		solutionLink: githubTree("Python-Level-2", "PS-Check-in-2/solution")
-	});
-}
-
-function normalizePythonLevel3(course: RawCourse) {
-	for (const checkIn of [1, 2, 3]) {
-		setItemLinks(
-			course,
-			`Check-In #${checkIn}`,
-			`Check-In #${checkIn} Overview`,
-			{
-				projectLink: githubTree(
-					"Python-Level-3",
-					`AM-Check-In-${checkIn}/starter`
-				),
-				solutionLink: githubTree(
-					"Python-Level-3",
-					`AM-Check-In-${checkIn}/solution`
-				)
-			}
-		);
-	}
-	setItemLinks(
-		course,
-		"Check-In #2",
-		"Check-In #2: Additional Practice Project",
-		{
-			projectLink: githubTree(
-				"Python-Level-3",
-				"AM-Check-In-2-Additional-Project/starter"
-			),
-			solutionLink: githubTree(
-				"Python-Level-3",
-				"AM-Check-In-2-Additional-Project/solution"
-			)
-		}
-	);
-	setItemLinks(
-		course,
-		"Check-In #3",
-		"Check-In #3: Additional Practice Project",
-		{
-			projectLink: githubTree(
-				"Python-Level-3",
-				"AM-Check-In-3-Additional-Project/starter"
-			),
-			solutionLink: githubTree(
-				"Python-Level-3",
-				"AM-Check-In-3-Additional-Project/solution"
-			)
-		}
-	);
-}
-
 function normalizeJavaLevel2(course: RawCourse) {
 	const earlyFileSupplementals = new Set([
 		"Project 2 File IO and Maps",
@@ -9623,9 +9576,6 @@ const normalizers: Record<string, (course: RawCourse) => void> = {
 	"machine-learning": normalizeMachineLearning,
 	"python-level-1": normalizePythonLevel1,
 	"python-level-1-classroom": normalizePythonLevel1,
-	"python-level-2": normalizePythonLevel2,
-	"python-level-2-classroom": normalizePythonLevel2,
-	"python-level-3": normalizePythonLevel3,
 	"python-to-java-and-cpp-bridge": normalizePythonBridge,
 	"pythonic-design-patterns": normalizePythonicDesignPatterns,
 	"rust-systems-security": normalizeRustSystemsSecurity

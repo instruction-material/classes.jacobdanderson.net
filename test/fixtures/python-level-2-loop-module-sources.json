@@ -1,0 +1,398 @@
+{
+  "repository": "Python-Level-2",
+  "revision": "40e195905b59faa845ca0b4418e9fa7537c7e51d",
+  "moduleId": "python-level-2-ps2-for-loops-and-while-loops",
+  "exercises": [
+    {
+      "pack": "PS2-Crazy-Nametags",
+      "itemId": "python-level-2-ps2-for-loops-and-while-loops-curriculum-ps2-project-1-crazy-nametags",
+      "examples": {
+        "starter": {
+          "input": "Ada\n",
+          "expected": [
+            "Forward:\nA\nd\na"
+          ]
+        },
+        "solution": {
+          "input": "Ada\n",
+          "expected": [
+            "Spelling your name...\nA\nd\na",
+            "every other letter in your name... \nA\na",
+            "backward... \na\nd\nA"
+          ]
+        }
+      },
+      "classroomMainSha256": "731e9b1b3c8f6f9f9b1b81a097a068708843d6da35425adfdd65e902aafd6691"
+    },
+    {
+      "pack": "PS2-Change-Machine",
+      "itemId": "python-level-2-ps2-for-loops-and-while-loops-curriculum-ps2-project-2-change-machine",
+      "examples": {
+        "starter": {
+          "input": "99\n",
+          "expected": [
+            "Quarters: 3",
+            "Remaining cents: 24"
+          ]
+        },
+        "solution": {
+          "input": "99\n",
+          "expected": [
+            "Quarters: 3",
+            "Dimes: 2",
+            "Nickels: 0",
+            "Pennies: 4",
+            "Remaining cents: 0"
+          ]
+        }
+      },
+      "classroomMainSha256": "5bba824c2da4695a76fdd275a5321b6632eab2bd051ba9fcb385126e6ca23e20"
+    },
+    {
+      "pack": "PS2-Interest-Aggregator",
+      "itemId": "python-level-2-ps2-for-loops-and-while-loops-supplemental-ps2-supplemental-project-1-interest-aggregator",
+      "examples": {
+        "starter": {
+          "input": "100\n5\n",
+          "expected": [
+            "Year 1: 105.00"
+          ]
+        },
+        "solution": {
+          "input": "100\n5\n",
+          "expected": [
+            "Year 1: 105.00",
+            "Year 2: 110.25",
+            "Year 20: 265.33"
+          ]
+        }
+      },
+      "classroomMainSha256": "ad159774e0cf719f2155f27424adfd681fc83c3ee30a0128a98da27887c87778"
+    },
+    {
+      "pack": "PS2-Password-Guesser",
+      "itemId": "python-level-2-ps2-for-loops-and-while-loops-supplemental-ps2-supplemental-project-2-password-guesser",
+      "examples": {
+        "starter": {
+          "input": "guess\n",
+          "expected": [
+            "First attempt recorded."
+          ]
+        },
+        "solution": {
+          "input": "blue\nBlue Comet\nblue comet\n",
+          "expected": [
+            "Phrase matched. Attempts: 3"
+          ]
+        }
+      },
+      "classroomMainSha256": "9c70558ebb1e62d4f923b4acc55f9591233ffb5bcdaa8154d0f5718739a58678"
+    },
+    {
+      "pack": "PS2-For-Loop-Fun",
+      "itemId": "python-level-2-ps2-for-loops-and-while-loops-supplemental-ps2-supplemental-project-3-for-loop-fun",
+      "examples": {
+        "starter": {
+          "input": "",
+          "expected": [
+            "12345"
+          ]
+        },
+        "solution": {
+          "input": "",
+          "expected": [
+            "12345\n12345",
+            "54321\n54321",
+            "12345\n23456",
+            "1\n12\n123",
+            "12345\n1234\n123\n12\n1"
+          ]
+        }
+      },
+      "classroomMainSha256": "bdc9fb4daec3bb4c659f2fce48e924441ec1c146fcb6a4c305e9cd914fc47335"
+    },
+    {
+      "pack": "PS2-Calendar-Machine",
+      "itemId": "python-level-2-ps2-for-loops-and-while-loops-supplemental-ps2-supplemental-project-4-calendar-machine",
+      "examples": {
+        "starter": {
+          "input": "400\n",
+          "expected": [
+            "Years: 1",
+            "Days remaining: 35"
+          ]
+        },
+        "solution": {
+          "input": "0\n",
+          "expected": [
+            "30-day month",
+            "0 years, 0 months, 0 weeks, and 0 days"
+          ]
+        }
+      },
+      "classroomMainSha256": "0a8a07cf1e40ea76e67db444e3e0658f272782c91dda9117cd2a8a836819de6b"
+    },
+    {
+      "pack": "PS2-Double-or-Nothing",
+      "itemId": "python-level-2-ps2-for-loops-and-while-loops-supplemental-ps2-supplemental-project-5-double-or-nothing",
+      "examples": {
+        "starter": {
+          "input": "q\n",
+          "expected": [
+            "Starting points: 10"
+          ]
+        },
+        "solution": {
+          "input": "q\n",
+          "expected": [
+            "Final points: 10"
+          ]
+        }
+      },
+      "classroomMainSha256": "4ee5351a58a99179e8be2cd066c3eb2273d63b33dd5231cacee7898e328341ce"
+    },
+    {
+      "pack": "PS2-Debugging-Loops",
+      "itemId": "python-level-2-ps2-for-loops-and-while-loops-supplemental-ps2-supplemental-project-6-debugging-loops",
+      "examples": {
+        "starter": {
+          "input": "",
+          "expected": [
+            "SyntaxError"
+          ],
+          "expectsSyntaxError": true
+        },
+        "solution": {
+          "input": "N\nY\n",
+          "expected": [
+            "Rechecking critical systems",
+            "Final Countdown:\n10\n9\n8\n7\n6\n5\n4\n3\n2\n1",
+            "0 minutes and 0 seconds",
+            "4 minutes and 45 seconds",
+            "exited the atmosphere after 5 minutes"
+          ]
+        }
+      },
+      "classroomMainSha256": "3322bb5935219a794caedaddcd7ad4fa2ff27c8f66663eb123b96016fa6dca83"
+    },
+    {
+      "pack": "PS2-Multiplication-Tables",
+      "itemId": "python-level-2-ps2-for-loops-and-while-loops-supplemental-ps2-supplemental-project-7-multiplication-tables",
+      "examples": {
+        "starter": {
+          "input": "",
+          "expected": [
+            "1 x 1 = 1",
+            "1 x 12 = 12"
+          ]
+        },
+        "solution": {
+          "input": "",
+          "expected": [
+            "1 x 1 = 1",
+            "12 x 12 = 144"
+          ]
+        }
+      },
+      "classroomMainSha256": "44fffb32722402a9085fbb064bfd9184a7ee719a7322ea82b480a698be7f23d5"
+    },
+    {
+      "pack": "PS2-Juni-Archery",
+      "itemId": "python-level-2-ps2-for-loops-and-while-loops-supplemental-ps2-supplemental-project-8-archery-simulator",
+      "examples": {
+        "starter": {
+          "input": "",
+          "expected": [
+            "Round 1, shot 1:",
+            "Round 1, shot 3:"
+          ]
+        },
+        "solution": {
+          "input": "",
+          "expected": [
+            "Round 1, arrow 1:",
+            "Round 5, arrow 3:",
+            "times!"
+          ]
+        }
+      },
+      "classroomMainSha256": "1a04982c42eca05e32765016b2ef48f7f877a9d1e80dce9bb5ce764cd311acf0"
+    }
+  ],
+  "files": {
+    "PS2-Crazy-Nametags/starter/README.md": {
+      "content": "# Crazy Nametags starter\n\nRun the forward pattern with Ada. Add an every-other-letter pattern and a backward pattern. Use a while loop for at least one of the added versions and test a single letter.\n",
+      "byteLength": 200,
+      "gitBlob": "943639a2c6392ba98a8032e9950c05288243bbbb",
+      "sha256": "53316c6f35a0933bf60a4ad0f19c00b83b85c7d88929e0a133a61b28b7c95ce4"
+    },
+    "PS2-Crazy-Nametags/starter/main.py": {
+      "content": "name = input(\"Name for the tag: \")\n\nprint(\"Forward:\")\nfor index in range(len(name)):\n    print(name[index])\n\n# Add alternating and backward patterns. Use a while loop for one.\n",
+      "byteLength": 176,
+      "gitBlob": "95024542de885d4a01cfcc2cc9f831f9866ae47b",
+      "sha256": "440fb4387affc8438c4be3a5159c970b0c4069dec1c5625fe045bac98a0a2873"
+    },
+    "PS2-Crazy-Nametags/solution/main.py": {
+      "content": "name = input(\"What is your name? \")\n\nprint(\"Spelling your name...\")\n\nfor i in range(len(name)):\n    print(name[i])\n\nprint(\"Spelling every other letter in your name... \")\n\nfor i in range(0, len(name), 2):\n    print(name[i])\n\nprint(\"Spelling your name backward... \")\n\nfor i in range(len(name) - 1, -1, -1):\n    print(name[i])\n\nprint(\"Spelling your name...\")\n\ni = 0\nwhile i < len(name):\n    print(name[i])\n    i += 1\n\nprint(\"Spelling every other letter in your name... \")\n\ni = 0\nwhile i < len(name):\n    print(name[i])\n    i += 2\n\nprint(\"Spelling your name backward... \")\n\ni = len(name) - 1\nwhile i >= 0:\n    print(name[i])\n    i -= 1\n",
+      "byteLength": 632,
+      "gitBlob": "ea15c0252ad1c4cba618d1ff8e807160d8739ea5",
+      "sha256": "212ffd7435350e48d6c1d9abc6f49beccf5241cf0f914a6fdec0723d83ea44c3"
+    },
+    "PS2-Change-Machine/starter/README.md": {
+      "content": "# Change Machine starter\n\nRun the quarter counter with 99 cents and check for three quarters with 24 cents left. Repeat the counter pattern for dimes, nickels, and pennies to account for the full amount.\n",
+      "byteLength": 204,
+      "gitBlob": "08ec081c502ed8dd2e79b26f5ec03de708538f4a",
+      "sha256": "fbee54e78adb45cbf5d6c5cec91c13d51f0e8dea8188d6359f8b513547d6587e"
+    },
+    "PS2-Change-Machine/starter/main.py": {
+      "content": "remaining = int(input(\"Amount in cents: \"))\nquarters = 0\n\nwhile remaining >= 25:\n    remaining -= 25\n    quarters += 1\n\nprint(\"Quarters:\", quarters)\nprint(\"Remaining cents:\", remaining)\n\n# Add counters for dimes, nickels, and pennies using the same remaining value.\n",
+      "byteLength": 266,
+      "gitBlob": "1a60f7210b3758e4541f6bae3f1e96de7f632fb5",
+      "sha256": "a84e380d61ed805c384167ecfd42f6879b39f466ff8e993fa1337e80b01fa7b2"
+    },
+    "PS2-Change-Machine/solution/main.py": {
+      "content": "remaining = int(input(\"Amount in cents: \"))\nquarters = 0\ndimes = 0\nnickels = 0\npennies = 0\n\nwhile remaining >= 25:\n    remaining -= 25\n    quarters += 1\nwhile remaining >= 10:\n    remaining -= 10\n    dimes += 1\nwhile remaining >= 5:\n    remaining -= 5\n    nickels += 1\nwhile remaining >= 1:\n    remaining -= 1\n    pennies += 1\n\nprint(\"Quarters:\", quarters)\nprint(\"Dimes:\", dimes)\nprint(\"Nickels:\", nickels)\nprint(\"Pennies:\", pennies)\nprint(\"Remaining cents:\", remaining)\n",
+      "byteLength": 471,
+      "gitBlob": "df02ae5d57474a0a3b8f4f6651b7151271bc66b1",
+      "sha256": "e2d40e53903d019f6ba1df6247354515c18ef045592046c6b0210f5b36b8d468"
+    },
+    "PS2-Interest-Aggregator/starter/README.md": {
+      "content": "# Interest Aggregator starter\n\nRun the first-year calculation using a balance of 100 and an annual rate of 5 percent. Repeat the update for 20 years. Check that each year uses the previous year’s balance.\n",
+      "byteLength": 207,
+      "gitBlob": "ae1e426c4223cb2f1518136373dd0cad72b4a552",
+      "sha256": "51dfa4f9a9f3bb34cb9b594e39e51648ea66a687ff7ba844c629c4cef895f533"
+    },
+    "PS2-Interest-Aggregator/starter/main.py": {
+      "content": "balance = float(input(\"Starting balance: \"))\nannual_percent = float(input(\"Annual rate as a percent: \"))\nannual_rate = annual_percent / 100\n\nbalance *= 1 + annual_rate\nprint(f\"Year 1: {balance:.2f}\")\n\n# Replace the single update with a loop that projects all 20 years.\n",
+      "byteLength": 269,
+      "gitBlob": "735298501fc8fe5420792ec6745ca1f2dc43a172",
+      "sha256": "4a72e244fa498764cfdc88b3cb235c1e6cd2e28195c0a47da80122aabb6a6ca8"
+    },
+    "PS2-Interest-Aggregator/solution/main.py": {
+      "content": "balance = float(input(\"Starting balance: \"))\nannual_percent = float(input(\"Annual rate as a percent: \"))\nannual_rate = annual_percent / 100\n\nprint(f\"Starting balance: {balance:.2f}\")\nfor year in range(1, 21):\n    balance *= 1 + annual_rate\n    print(f\"Year {year}: {balance:.2f}\")\n",
+      "byteLength": 281,
+      "gitBlob": "724de2dc90952eec01a71209721606f5ed4de26c",
+      "sha256": "a12319a7594f01681bef7f8439a3a5acd74c458ae7a67c93acde21b580a1fb25"
+    },
+    "PS2-Password-Guesser/starter/README.md": {
+      "content": "# Target Phrase Game starter\n\nThe target is a public phrase for an offline guessing game. Try entering an incorrect phrase. Add a while loop so the player can enter a new guess, and count each attempt exactly once.\n",
+      "byteLength": 215,
+      "gitBlob": "1de9b36bf97e0876f548f18cebea3b6e9b775527",
+      "sha256": "14590c74fc795aa8caf61bdf5ca831f12b42a03e45ac6d9afd642b3977db2571"
+    },
+    "PS2-Password-Guesser/starter/main.py": {
+      "content": "target_phrase = \"blue comet\"\nguess = input(\"Enter a guess for the target phrase: \")\nattempts = 1\n\nprint(\"First attempt recorded.\")\n\n# After a mismatch, read another guess and update attempts.\n# When the phrase matches, print the number of attempts.\n",
+      "byteLength": 249,
+      "gitBlob": "9871601a91fcd06e64e7f2b0f66c44b36831f304",
+      "sha256": "85de9ea3b497a74ed12fbecf3e54ee008486885a33550926cfdaefa36ab518e5"
+    },
+    "PS2-Password-Guesser/solution/main.py": {
+      "content": "target_phrase = \"blue comet\"\nguess = input(\"Enter a guess for the target phrase: \")\nattempts = 1\n\nwhile guess != target_phrase:\n    guess = input(\"Different phrase. Try again: \")\n    attempts += 1\n\nprint(\"Phrase matched. Attempts:\", attempts)\n",
+      "byteLength": 243,
+      "gitBlob": "31ad4a9bb22df38ff9a5d7cab45a62fbf7fdb27d",
+      "sha256": "c1300f469b11612b7b1cb66377192c06d4f53a72c697308d8916b40c1f1465cd"
+    },
+    "PS2-For-Loop-Fun/starter/README.md": {
+      "content": "# For Loop Fun starter\n\nRun the first row and check that it reads 12345. Use an outer loop to repeat the row. Change the inner range to make a growing triangle and then a shrinking triangle.\n",
+      "byteLength": 191,
+      "gitBlob": "ebccb8b34926bcd677abddf7c072394f6dd0bebd",
+      "sha256": "c4616b9b8ae56f39771b1f8c6e125d49eb17eddb966546baa5e88a0548287625"
+    },
+    "PS2-For-Loop-Fun/starter/main.py": {
+      "content": "for column in range(1, 6):\n    print(column, end=\"\")\nprint()\n\n# Add an outer loop for rows, then vary the inner range.\n",
+      "byteLength": 119,
+      "gitBlob": "a1998c823a02ced81c9ad446f8b5874d2b5015d7",
+      "sha256": "35c647b745e0bb338dc02abacad1a938f7a010dfad89ce2efb5efca1650c0ba3"
+    },
+    "PS2-For-Loop-Fun/solution/main.py": {
+      "content": "# Part 1\nfor i in range(5):\n    for j in range(1, 6):\n        print(j, end=\"\")\n    print()\n\n# Part 2\nfor i in range(5):\n    for j in range(5, 0, -1):\n        print(j, end=\"\")\n    print()\n\n# Part 3\nfor i in range(5):\n    for j in range(1, 6):\n        print(j + i, end=\"\")\n    print()\n\n# Part 4\nfor i in range(1, 6):\n    for j in range(1, i + 1):\n        print(j, end=\"\")\n    print()\n\n# Part 5\nfor i in range(5, 0, -1):\n    for j in range(1, i + 1):\n        print(j, end=\"\")\n    print()\n",
+      "byteLength": 485,
+      "gitBlob": "a7d4046c24ec0329cb8b78bb2f460483ce3ccf2b",
+      "sha256": "e203b2fdbf2e752ec1eb5edcc4df1b61afe1b933dd2cad6d7a03d19d04c64802"
+    },
+    "PS2-Calendar-Machine/starter/README.md": {
+      "content": "# Calendar Machine starter\n\nRun the year counter with 400 days. The model uses a 365-day year, a 30-day month, and a 7-day week. Continue subtracting from the remainder to find the months, weeks, and days.\n",
+      "byteLength": 206,
+      "gitBlob": "b3f7282581068fba9c42ce252f4a0abf5f242a42",
+      "sha256": "e6942d3cea4fcafc68095981ebb5ebd8b87264b382407c0b44d68b4de46245cf"
+    },
+    "PS2-Calendar-Machine/starter/main.py": {
+      "content": "remaining_days = int(input(\"Elapsed days: \"))\nyears = 0\n\nwhile remaining_days >= 365:\n    remaining_days -= 365\n    years += 1\n\nprint(\"Years:\", years)\nprint(\"Days remaining:\", remaining_days)\n\n# Count 30-day months and 7-day weeks using the same remainder.\n",
+      "byteLength": 257,
+      "gitBlob": "f29a8ff5928282f1f7efe536949e3177f372fd1a",
+      "sha256": "817e730cd2c4c768effd18bed99c4d8825b0f6545c7fa96eec9659abfcd2ad51"
+    },
+    "PS2-Calendar-Machine/solution/main.py": {
+      "content": "print(\"Model units: 365-day year, 30-day month, 7-day week.\")\ndays = int(\n    input(\n        \"Enter in a number of days, and I will tell you how many years, months (assuming 30 days), weeks, and days this is: \"\n    )\n)\n\nyears = 0\nmonths = 0\nweeks = 0\n\nwhile days >= 365:\n    days -= 365\n    years += 1\n\nwhile days >= 30:\n    days -= 30\n    months += 1\n\nwhile days >= 7:\n    days -= 7\n    weeks += 1\n\nprint(\n    \"This is \"\n    + str(years)\n    + \" years, \"\n    + str(months)\n    + \" months, \"\n    + str(weeks)\n    + \" weeks, and \"\n    + str(days)\n    + \" days.\"\n)\n",
+      "byteLength": 563,
+      "gitBlob": "1a0309d991c4375545bc1c553d7b6e391bf450f0",
+      "sha256": "c412de5f59580eef33a1929655461268c0f818aa9fe866938729c7a9184a4222"
+    },
+    "PS2-Double-or-Nothing/starter/README.md": {
+      "content": "# Double or Nothing starter\n\nUse simulated points. Press Enter to see one coin flip, or q to stop. Add a loop so a win doubles the points and another round is possible. A loss ends the game with zero.\n",
+      "byteLength": 201,
+      "gitBlob": "42f640c0d8ed78a58c4a054e2f78375d0264fa4b",
+      "sha256": "3e01d06eb7b2f2a628aa329507f9af99bda20b3eeaf1d8902c33dfdfba645e4c"
+    },
+    "PS2-Double-or-Nothing/starter/main.py": {
+      "content": "import random\n\npoints = 10\nprint(\"Starting points:\", points)\nchoice = input(\"Press Enter to flip, or q to quit: \")\nif choice == \"\":\n    print(\"Flip:\", random.choice((\"heads\", \"tails\")))\n\n# Add the point update and repeat until a loss or a quit.\n",
+      "byteLength": 245,
+      "gitBlob": "efa8dab56a6657991a2098b2fac33a6ff256b7de",
+      "sha256": "5ba6b45e85fe7a7d8e52c7a81c5a68c103cd8bc3ebe9b4f7a8f84f1446add3a8"
+    },
+    "PS2-Double-or-Nothing/solution/main.py": {
+      "content": "import random\n\npoints = 10\nwhile points > 0:\n    print(\"Current points:\", points)\n    choice = input(\"Press Enter to flip, or q to quit: \")\n    if choice == \"q\":\n        break\n    if choice != \"\":\n        print(\"Use Enter to flip or q to quit.\")\n        continue\n\n    flip = random.choice((\"heads\", \"tails\"))\n    if flip == \"heads\":\n        points *= 2\n        print(\"Heads. Points doubled.\")\n    else:\n        points = 0\n        print(\"Tails. The round ends.\")\n\nprint(\"Final points:\", points)\n",
+      "byteLength": 494,
+      "gitBlob": "44389377d02fb36400b2e9a074af60725b32e11e",
+      "sha256": "2671442095febefa483fd4ddcd90a310a65a5638dbd072044dc7cc5894a2b81b"
+    },
+    "PS2-Debugging-Loops/starter/main.py": {
+      "content": "# Ask the astronauts if they are ready to take off. Keep asking them until they say they are ready\nwhile input(\"Are we ready for takeoff yet?(Y/N): \") != \"Y\"\nprint(\"Rechecking critical systems...\")\n\n# Print the countdown to takeoff (print the numbers from 10 down to 1)\nprint()\nprint(\"Final Countdown:\")\nfor i in range(10, 0)\n  print(i)\nprint(\"Blastoff!!\")\n\nprint()\n\n# Print out whether the spaceship is still in earth's atmosphere every 15 seconds. For example, it should print \"0 minutes and 0 seconds\", \"0 minutes and 15 seconds\", \"0 minutes and 30 seconds\" ... \"4 minutes and 45 seconds\"\n# The spaceship should exit the atmosphere after 5 minutes\nprint(\"The spaceship has been in the atmosphere for:\")\nfor i in range(5):\n  for i in range(15):\n  print(i, \"minutes and\", i, \"seconds\")\nprint(\"The spaceship has exited the atmosphere after 5 minutes\")",
+      "byteLength": 851,
+      "gitBlob": "4bc998b53b29e26a3ecc9be4a22e59135f1c1eae",
+      "sha256": "56f1b6aa0da1292b771cb6d3038ca424e1679c8da0620e5694faab185e133ea0"
+    },
+    "PS2-Debugging-Loops/solution/main.py": {
+      "content": "# Ask the astronauts if they are ready to take off. Keep asking them until they say they are ready\nwhile input(\"Are we ready for takeoff yet? (Y/N): \") != \"Y\":\n    print(\"Rechecking critical systems...\")\n\n# Print the countdown to takeoff (print the numbers from 10 down to 1)\nprint()\nprint(\"Final Countdown:\")\nfor i in range(10, 0, -1):\n    print(i)\nprint(\"Blastoff!!\")\n\nprint()\n\n# Print out whether the spaceship is still in earth's atmosphere every 15 seconds. For example, it should print \"0 minutes and 0 seconds\", \"0 minutes and 15 seconds\", \"0 minutes and 30 seconds\" ... \"4 minutes and 45 seconds\"\n# The spaceship should exit the atmosphere after 5 minutes\nprint(\"The spaceship has been in the atmosphere for:\")\nfor i in range(5):\n    for j in range(0, 60, 15):\n        print(i, \"minutes and\", j, \"seconds\")\nprint(\"The spaceship has exited the atmosphere after 5 minutes\")\n",
+      "byteLength": 880,
+      "gitBlob": "d2f2e0bb3f8db6e631f3d48e4405316032d28b99",
+      "sha256": "8d7912d34cc739faeb3177a7feafff28877e95fb7a23311525189c88f97e4ea7"
+    },
+    "PS2-Multiplication-Tables/starter/README.md": {
+      "content": "# Multiplication Tables starter\n\nRun the first row. It contains twelve facts with the first factor fixed at 1. Add an outer loop so the first factor runs from 1 to 12 and the entire table has 144 facts.\n",
+      "byteLength": 203,
+      "gitBlob": "dd9d5862c6245145c3b9afcc34313f6ee6780b0f",
+      "sha256": "3609742a4281fa736f1ba5be79a1bd344b5aac943c30e4aac9ae9116fb24eb1a"
+    },
+    "PS2-Multiplication-Tables/starter/main.py": {
+      "content": "for second_factor in range(1, 13):\n    print(f\"1 x {second_factor} = {second_factor}\")\n\n# Add an outer loop for the first factor.\n",
+      "byteLength": 130,
+      "gitBlob": "e02f25e3b78b06c8e17b6c848e9782717ec96f52",
+      "sha256": "cf4b52a9143d8b40befe9ae438dfc2aacfdff0c88fdc7eee7a04e45dfcbbe41c"
+    },
+    "PS2-Multiplication-Tables/solution/main.py": {
+      "content": "for i in range(1, 13):\n    for j in range(1, 13):\n        print(str(i) + \" x \" + str(j) + \" = \" + str(i * j))\n    print()\n",
+      "byteLength": 122,
+      "gitBlob": "7e7f8e5c90c93a00bad4c356c7f0da810454f2a8",
+      "sha256": "512c70a43a0c63fc6430eab0b1bb983f1d687f493414f69706036453a1b73574"
+    },
+    "PS2-Juni-Archery/starter/README.md": {
+      "content": "# Archery Simulator starter\n\nRun a single round with three simulated shots. Add an outer loop for five rounds. Count each X as one bullseye and compare the final count with the printed shot results.\n",
+      "byteLength": 199,
+      "gitBlob": "8a639db67182697bac61aace8d73b8b98fdc96ce",
+      "sha256": "f79b1230e452b3779e09cc3490b07ade65719929f44ce604405623aa7d62c245"
+    },
+    "PS2-Juni-Archery/starter/main.py": {
+      "content": "import random\n\nfor shot in range(1, 4):\n    result = \"X\" if random.randint(1, 3) == 1 else \"O\"\n    print(f\"Round 1, shot {shot}: {result}\")\n\n# Add four rounds and track the total number of X results.\n",
+      "byteLength": 200,
+      "gitBlob": "4e390e51f348723eac06cf4353872ae97f37d1f4",
+      "sha256": "03aac59b34e6ef52f0e4a0d3e19598c614904f00dc2450e5fae79c2b927168e1"
+    },
+    "PS2-Juni-Archery/solution/main.py": {
+      "content": "import random\n\nprint(\"Welcome to Juni Archery, prepare your bow!\")\n\nnum_hits = 0\nfor i in range(1, 6):\n    for j in range(1, 4):\n        if random.randint(1, 3) == 1:\n            print(\"Round\", str(i) + \", arrow\", str(j) + \": X\")\n            num_hits += 1\n        else:\n            print(\"Round\", str(i) + \", arrow\", str(j) + \": O\")\n\nprint(\"You hit the bullseye \" + str(num_hits) + \" times!\")\n",
+      "byteLength": 393,
+      "gitBlob": "0cbb2d7e9374c9ed646bb0dfda48d4fa34b0ada4",
+      "sha256": "00ef2d632c16489b53ecd4c9fcaf36a77697c363a7c2b5c34fdb01e7452fe586"
+    }
+  }
+}

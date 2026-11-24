@@ -1,0 +1,220 @@
+{
+  "repository": "Python-Level-2",
+  "revision": "96f7196ea540fce55644e2a2d1d0ce97f16de9e8",
+  "files": {
+    "PS3-Password-Cracker/starter/README.md": {
+      "content": "# Caesar Shift Detective starter\n\nRun the starter to apply shift 3 to the encoded sample phrase `Eoxh frphw!`. Expect `Blue comet!`. The alphabet wraps around, so decoding `C` with shift 3 gives `Z`.\n\nExtend the starter to print each candidate from shift 0 through shift 25 with its shift number. The readable phrase should appear only at shift 3. Leave spaces and punctuation in place and preserve the case of each letter.\n",
+      "byteLength": 424,
+      "sha256": "6b4efa67c8a83c4d35119490c28af6841121de1c4bea81cf2e49e98fa70d3970",
+      "gitBlob": "e0f27703fc6a88f8e727db618c8c561b540c65c3"
+    },
+    "PS3-Password-Cracker/starter/main.py": {
+      "content": "message = \"Eoxh frphw!\"\nshift = 3\ndecoded = \"\"\nfor letter in message:\n    if \"a\" <= letter <= \"z\":\n        decoded += chr(ord(\"a\") + (ord(letter) - ord(\"a\") - shift) % 26)\n    elif \"A\" <= letter <= \"Z\":\n        decoded += chr(ord(\"A\") + (ord(letter) - ord(\"A\") - shift) % 26)\n    else:\n        decoded += letter\nprint(f\"Shift {shift}: {decoded}\")\n\n# Put the decoding into a function and print every numbered candidate.\n",
+      "byteLength": 419,
+      "sha256": "ae5fa695839375cdf8f8e1f77688a1cff6def342f313db021a2fc2efdd289459",
+      "gitBlob": "35d4519ffd5bf05bf7b91875ffbdd38a718589f5"
+    },
+    "PS3-Password-Cracker/solution/main.py": {
+      "content": "def decode(message, shift):\n    decoded = \"\"\n    for letter in message:\n        if \"a\" <= letter <= \"z\":\n            first = ord(\"a\")\n        elif \"A\" <= letter <= \"Z\":\n            first = ord(\"A\")\n        else:\n            decoded += letter\n            continue\n        index = (ord(letter) - first - shift) % 26\n        decoded += chr(first + index)\n    return decoded\n\n\nsample = \"Eoxh frphw!\"\nfor shift in range(26):\n    print(f\"Shift {shift}: {decode(sample, shift)}\")\n",
+      "byteLength": 473,
+      "sha256": "46c3d243bcb475f1bff90fda20caa51162d9a8c97f25f571585d1a5c3304c5ae",
+      "gitBlob": "9ad6977ff1cc1037473346214bf387c7c6fbc426"
+    },
+    "PS11-Bank-Account/starter/README.md": {
+      "content": "# Bank Account starter\n\nUse the fictional accounts ari with demo-ari and bea with demo-bea. The starter checks one login and prints that account's balance. Add a menu for deposits, withdrawals, balance checks, changing the sample access phrase, and logging out. After logout, return to login and offer an exit command there.\n\nDeposit 20 whole dollars and withdraw 7. The balance should be 13. An attempt to withdraw 14, deposit a negative number, or enter text should leave it at 13. Log out and sign in as bea. That balance should still be 0. Keep the data in memory for the exercise and use fictional access phrases.\n",
+      "byteLength": 619,
+      "sha256": "473a40a53a41da8d65dda39ae91994fe6dee94304e42180712c7f2a202bb83a6",
+      "gitBlob": "44902da4cb5f9c88796b965fde49df026af4ced7"
+    },
+    "PS11-Bank-Account/starter/main.py": {
+      "content": "accounts = {\n    \"ari\": {\"access_phrase\": \"demo-ari\", \"balance\": 0},\n    \"bea\": {\"access_phrase\": \"demo-bea\", \"balance\": 0},\n}\n\nusername = input(\"Fictional account name: \").strip().lower()\naccess_phrase = input(\"Sample access phrase: \")\naccount = accounts.get(username)\nif account is not None and account[\"access_phrase\"] == access_phrase:\n    print(f\"{username} has ${account['balance']}.\")\n    # Add the account menu and validated deposits and withdrawals.\nelse:\n    print(\"Account name or access phrase did not match.\")\n\n# Repeat login after logout and retain each account's own balance.\n",
+      "byteLength": 591,
+      "sha256": "b53e25706537c91c1cf5ab6ae9fbb6c11399e828992b3eaeaeb939a505c879b0",
+      "gitBlob": "63c0ca87ac9752d9e36dffc8a30b8284e07fe717"
+    },
+    "PS11-Bank-Account/solution/main.py": {
+      "content": "accounts = {\n    \"ari\": {\"access_phrase\": \"demo-ari\", \"balance\": 0},\n    \"bea\": {\"access_phrase\": \"demo-bea\", \"balance\": 0},\n}\n\n\ndef read_amount():\n    try:\n        amount = int(input(\"Whole dollars: \"))\n    except ValueError:\n        return 0\n    return amount\n\n\ndef run_account(username, account):\n    print(f\"{username} has ${account['balance']}.\")\n    while True:\n        command = input(\"1 deposit, 2 withdraw, 3 change phrase, 4 log out, 5 balance: \").strip()\n        if command == \"4\":\n            return\n        if command in {\"1\", \"2\"}:\n            amount = read_amount()\n            if amount <= 0:\n                print(\"Enter a positive whole-dollar amount.\")\n            elif command == \"2\" and amount > account[\"balance\"]:\n                print(\"Insufficient balance.\")\n            else:\n                account[\"balance\"] += amount if command == \"1\" else -amount\n                print(f\"Balance: ${account['balance']}\")\n        elif command == \"3\":\n            old_phrase = input(\"Current sample phrase: \")\n            if old_phrase != account[\"access_phrase\"]:\n                print(\"The current phrase did not match.\")\n                continue\n            new_phrase = input(\"New sample phrase: \").strip()\n            if new_phrase:\n                account[\"access_phrase\"] = new_phrase\n                print(\"Sample phrase updated.\")\n            else:\n                print(\"Enter a nonempty phrase.\")\n        elif command == \"5\":\n            print(f\"Balance: ${account['balance']}\")\n        else:\n            print(\"Choose a command from 1 through 5.\")\n\n\nwhile True:\n    username = input(\"Fictional account name (or q): \").strip().lower()\n    if username == \"q\":\n        break\n    access_phrase = input(\"Sample access phrase: \")\n    account = accounts.get(username)\n    if account is None or account[\"access_phrase\"] != access_phrase:\n        print(\"Account name or access phrase did not match.\")\n    else:\n        run_account(username, account)\n",
+      "byteLength": 1965,
+      "sha256": "71b6c2b964d9971fd3bd740f587adeb807c9ae30ee09586199811baf11553f28",
+      "gitBlob": "0ce8fc57034090d8684f487c90b38e599384d618"
+    },
+    "PS11-Calculator/starter/README.md": {
+      "content": "# Calculator starter\n\nThe starter reads two whole numbers and shows an addition expression. Write one helper per operation and send each menu choice to its helper. Ask for one operand for factorial and two for the other operations. Show the original expression and its result. Use q to exit.\n\nUse whole numbers from -1000 through 1000. Factorials and exponents use inputs from 0 through 100. When the second number is zero, division and remainder should print a message and return to the operation menu. Try 12 / 3, 12 / 0, 0!, and 2 ^ 5. Expect 4.0, an explanation, 1, and 32.\n",
+      "byteLength": 578,
+      "sha256": "3a565e229c485abb9242056fbce77e16979173607aa60809a435540986ca2a10",
+      "gitBlob": "e721ce6f07714e02cf2b150d623809a7cce943a0"
+    },
+    "PS11-Calculator/starter/main.py": {
+      "content": "def add(left, right):\n    return left + right\n\n\nleft = int(input(\"First whole number: \"))\nright = int(input(\"Second whole number: \"))\nprint(f\"{left} + {right} = {add(left, right)}\")\n\n# Add the operation menu and the remaining arithmetic helpers.\n# Ask again after invalid input, or exit when the user enters q.\n",
+      "byteLength": 311,
+      "sha256": "6b5f73b4aa79dfdc84cdb2e1a37fed5bac704e3ca87d70e67cac4c36ab29825c",
+      "gitBlob": "d0a07d7ca40dcfa840896f8680c5d9240ebe228a"
+    },
+    "PS11-Calculator/solution/main.py": {
+      "content": "def add(left, right):\n    return left + right\n\n\ndef subtract(left, right):\n    return left - right\n\n\ndef multiply(left, right):\n    return left * right\n\n\ndef divide(left, right):\n    return left / right\n\n\ndef remainder(left, right):\n    return left % right\n\n\ndef factorial(number):\n    if not 0 <= number <= 100:\n        raise ValueError(\"Use a factorial input from 0 through 100.\")\n    result = 1\n    for factor in range(2, number + 1):\n        result *= factor\n    return result\n\n\ndef power(base, exponent):\n    if not 0 <= exponent <= 100:\n        raise ValueError(\"Use an exponent from 0 through 100.\")\n    return base**exponent\n\n\ndef read_number(prompt):\n    try:\n        number = int(input(prompt))\n    except ValueError:\n        raise ValueError(\"Enter a whole number.\") from None\n    if not -1000 <= number <= 1000:\n        raise ValueError(\"Use whole numbers from -1000 through 1000.\")\n    return number\n\n\noperations = {\n    \"+\": add,\n    \"-\": subtract,\n    \"*\": multiply,\n    \"/\": divide,\n    \"%\": remainder,\n    \"^\": power,\n}\n\nwhile True:\n    operator = input(\"Operation (+, -, *, /, %, ^, !, or q): \").strip().lower()\n    if operator == \"q\":\n        break\n    if operator != \"!\" and operator not in operations:\n        print(\"Choose a listed operation.\")\n        continue\n    try:\n        left = read_number(\"First whole number: \")\n        if operator == \"!\":\n            print(f\"{left}! = {factorial(left)}\")\n        else:\n            right = read_number(\"Second whole number: \")\n            print(f\"{left} {operator} {right} = {operations[operator](left, right)}\")\n    except ZeroDivisionError:\n        print(\"Division and remainder require a nonzero second number.\")\n    except ValueError as error:\n        print(error)\n",
+      "byteLength": 1735,
+      "sha256": "1b7622adfa136a85044cc0e5247dfdd492ec3d1ea7cc3bc24e3427701e8d3988",
+      "gitBlob": "730e4437b2f5884c03116511a89fbf6d9f3270ec"
+    },
+    "PS12-Type-Racer/starter/README.md": {
+      "content": "# Typing Speed Practice starter\n\nRun the starter twice. Enter exactly `Rain taps on the glass.` for a match, then try it with a missing period for a mismatch.\n\nAdd a countdown, a random choice from a list of sentences, and a fixed practice option. Use `time.monotonic()` after the sentence appears and again when the response matches. A mismatch adds to the attempt count and keeps the same clock running. Offer `:quit` to end the round.\n",
+      "byteLength": 438,
+      "sha256": "6b31412f8ebf58b31fda0b4c7f88f6a6be0ade3c88fdc6c6820516a83b3693c8",
+      "gitBlob": "4632ab5d82c4943e1ce59ef5aead8e2a537a72e6"
+    },
+    "PS12-Type-Racer/starter/main.py": {
+      "content": "target = \"Rain taps on the glass.\"\nprint(f\"Target: {target}\")\nresponse = input(\"Type the sentence: \")\nif response == target:\n    print(\"Exact match.\")\nelse:\n    print(\"The text differs from the target.\")\n\n# Add a countdown, measure elapsed time, and allow another attempt.\n",
+      "byteLength": 273,
+      "sha256": "1e40b368f123a8cb13831b3eb9d022b4bb635755f7a4fb93e306a559ca9b1f71",
+      "gitBlob": "05fb1c2fefab001a364caa2413b244ac913ca3f1"
+    },
+    "PS12-Type-Racer/solution/main.py": {
+      "content": "import random\nimport time\n\nPRACTICE_SENTENCE = \"Rain taps on the glass.\"\nSENTENCES = [\n    PRACTICE_SENTENCE,\n    \"A yellow kite crossed the field.\",\n    \"Six green beads rolled off the table.\",\n]\n\n\ndef run_round(target, read=input, write=print, clock=time.monotonic):\n    write(f\"Target: {target}\")\n    start = clock()\n    attempts = 0\n    while True:\n        try:\n            response = read(\"Type the sentence (or :quit): \")\n        except EOFError:\n            response = \":quit\"\n        if response == \":quit\":\n            write(\"Round ended.\")\n            return\n        attempts += 1\n        if response == target:\n            elapsed = clock() - start\n            write(f\"Exact match in {attempts} attempt(s).\")\n            write(f\"Elapsed: {elapsed:.2f} seconds.\")\n            return elapsed, attempts\n        write(\"The text differs from the target. Try again.\")\n\n\ndef main():\n    try:\n        mode = input(\"Enter for a random target, or p for practice: \").strip().lower()\n    except EOFError:\n        print(\"Round ended.\")\n        return\n    if mode == \"p\":\n        run_round(PRACTICE_SENTENCE)\n        return\n    for label in (\"Ready\", \"Set\"):\n        print(label)\n        time.sleep(1)\n    print(\"Type!\")\n    run_round(random.choice(SENTENCES))\n\n\nif __name__ == \"__main__\":\n    main()\n",
+      "byteLength": 1298,
+      "sha256": "8e60b6aae5dda1271ce07d1b885299dbd6bb3675529148d1c194cc3f11e47b6d",
+      "gitBlob": "a6d7dd3632e3b4ce9083690f3537e786a9ca1303"
+    },
+    "PS13-Advanced-Typewriter-Monkeys/starter/README.md": {
+      "content": "# Advanced Typewriter Monkeys starter\n\nRun the starter with the supplied `valid_words.txt` beside `main.py`. It uses `xcatmint` to show the windows `xca` and `cat`, then finds `cat` on letter 4. The first two letters cannot form a three-letter window.\n\nGeneralize the window and word list to the selected length. At length 4 the sample finds `mint` on letter 8. Add a random mode that generates one letter at a time and stops after 20,000 letters if it finds no word. Report the number generated in either case.\n",
+      "byteLength": 512,
+      "sha256": "608f9401924e0c9803b6c75b5be9b810758b1334542332686f0a358ed21d0541",
+      "gitBlob": "b5880f6ec101312fce4f6fc3cddb2782f7153359"
+    },
+    "PS13-Advanced-Typewriter-Monkeys/starter/main.py": {
+      "content": "with open(\"valid_words.txt\", encoding=\"utf-8\") as file:\n    words = {line.strip() for line in file if len(line.strip()) == 3}\n\nwindow = \"\"\nfor count, letter in enumerate(\"xcatmint\", start=1):\n    window = (window + letter)[-3:]\n    if len(window) == 3:\n        print(f\"Window: {window}\")\n        if window in words:\n            print(f\"Found {window} after {count} letters.\")\n            break\n\n# Read a target length, filter its words, and add a bounded random stream.\n",
+      "byteLength": 470,
+      "sha256": "32bf0bf2f597979a3848cd8d24b3d49bb103b98502fdd67b504e9dc9a832b0a1",
+      "gitBlob": "b05f0713267ed7802d16cb3183da98f24835b82d"
+    },
+    "PS13-Advanced-Typewriter-Monkeys/starter/valid_words.txt": {
+      "content": "at\nbe\ngo\nin\nup\ncat\ndog\nink\nmap\nsun\nfern\nlime\nmint\nreed\nwren\n",
+      "byteLength": 60,
+      "sha256": "6916a90e7f41fa400a43c968aef5a9c07edc519508977d950cbff2a1c11d0e99",
+      "gitBlob": "08aaf85425a7b89421104dcfe3020070dabe5404"
+    },
+    "PS13-Advanced-Typewriter-Monkeys/solution/main.py": {
+      "content": "import random\nfrom string import ascii_lowercase\n\nPRACTICE_LETTERS = \"xcatmint\"\nRANDOM_LIMIT = 20_000\n\n\ndef load_words_by_length():\n    by_length = {}\n    with open(\"valid_words.txt\", encoding=\"utf-8\") as file:\n        for line in file:\n            word = line.strip().lower()\n            if word and all(letter in ascii_lowercase for letter in word):\n                by_length.setdefault(str(len(word)), set()).add(word)\n    return by_length\n\n\ndef find_word(letters, words, length):\n    window = \"\"\n    count = 0\n    for count, letter in enumerate(letters, start=1):\n        window = (window + letter)[-length:]\n        if len(window) == length and window in words:\n            return window, count\n    return None, count\n\n\ndef main():\n    by_length = load_words_by_length()\n    lengths = \", \".join(sorted(by_length, key=int))\n    try:\n        choice = input(f\"Word length ({lengths}): \").strip()\n        if choice not in by_length:\n            print(\"Choose a length from the word list.\")\n            return\n        mode = input(\"p for practice or Enter for random: \").strip().lower()\n    except EOFError:\n        print(\"Search cancelled.\")\n        return\n    if mode == \"p\":\n        letters = PRACTICE_LETTERS\n    else:\n        letters = (random.choice(ascii_lowercase) for _ in range(RANDOM_LIMIT))\n    word, count = find_word(letters, by_length[choice], int(choice))\n    if word is None:\n        print(f\"No match after {count} letters.\")\n    else:\n        print(f\"Found {word} after {count} letters.\")\n\n\nif __name__ == \"__main__\":\n    main()\n",
+      "byteLength": 1547,
+      "sha256": "b5c687d9831b0737250172ca83afae96249a2f6431cb5872e9662158f9bc9ee5",
+      "gitBlob": "9c1daa83b768d791e995a0c51e65ac86075c4e30"
+    },
+    "PS13-Advanced-Typewriter-Monkeys/solution/valid_words.txt": {
+      "content": "at\nbe\ngo\nin\nup\ncat\ndog\nink\nmap\nsun\nfern\nlime\nmint\nreed\nwren\n",
+      "byteLength": 60,
+      "sha256": "6916a90e7f41fa400a43c968aef5a9c07edc519508977d950cbff2a1c11d0e99",
+      "gitBlob": "08aaf85425a7b89421104dcfe3020070dabe5404"
+    }
+  },
+  "exercises": [
+    {
+      "pack": "PS3-Password-Cracker",
+      "moduleId": "python-level-2-ps3-ascii-and-ciphers",
+      "itemId": "python-level-2-ps3-ascii-and-ciphers-supplemental-ps3-supplemental-project-4-password-cracker",
+      "examples": {
+        "starter": {
+          "input": "",
+          "expected": [
+            "Shift 3: Blue comet!"
+          ]
+        },
+        "solution": {
+          "input": "",
+          "expected": [
+            "Shift 0: Eoxh frphw!",
+            "Shift 3: Blue comet!",
+            "Shift 25:"
+          ]
+        }
+      },
+      "classroomMainSha256": "9e7e8328e561178fe4999393a927b386e6ec5c2d3a659ad5841c8089f60a3c89"
+    },
+    {
+      "pack": "PS11-Bank-Account",
+      "moduleId": "python-level-2-ps11-bank-account",
+      "itemId": "python-level-2-ps11-bank-account-curriculum-ps11-project-1-bank-account",
+      "examples": {
+        "starter": {
+          "input": "ari\ndemo-ari\n",
+          "expected": [
+            "ari has $0."
+          ]
+        },
+        "solution": {
+          "input": "ari\ndemo-ari\n1\n20\n2\n7\n2\n14\n4\nbea\ndemo-bea\n4\nq\n",
+          "expected": [
+            "Balance: $20",
+            "Balance: $13",
+            "Insufficient balance.",
+            "bea has $0."
+          ]
+        }
+      },
+      "classroomMainSha256": "446550c2a87442b3e39cf1238c920301ca61edd88feb47873cac490fd2c71c11"
+    },
+    {
+      "pack": "PS11-Calculator",
+      "moduleId": "python-level-2-ps11-bank-account",
+      "itemId": "python-level-2-ps11-bank-account-supplemental-ps11-supplemental-project-1-calculator",
+      "examples": {
+        "starter": {
+          "input": "3\n-7\n",
+          "expected": [
+            "3 + -7 = -4"
+          ]
+        },
+        "solution": {
+          "input": "/\n12\n3\n/\n12\n0\n!\n0\nq\n",
+          "expected": [
+            "12 / 3 = 4.0",
+            "require a nonzero second number",
+            "0! = 1"
+          ]
+        }
+      },
+      "classroomMainSha256": "c6e79a74841f05b6ba2a1030f1b5defab31978e275c2559bb67c648641485e4f"
+    },
+    {
+      "pack": "PS12-Type-Racer",
+      "moduleId": "python-level-2-ps12-type-racer",
+      "itemId": "python-level-2-ps12-type-racer-curriculum-ps12-project-1-type-racer",
+      "examples": {
+        "starter": {
+          "input": "Rain taps on the glass.\n",
+          "expected": [
+            "Exact match."
+          ]
+        },
+        "solution": {
+          "input": "p\nRain taps on the glass\nRain taps on the glass.\n",
+          "expected": [
+            "Try again.",
+            "Exact match in 2 attempt(s).",
+            "Elapsed:"
+          ]
+        }
+      },
+      "classroomMainSha256": "e8a60868aacf0494463eed35565e4431fff7578d677b994de30b4b0322bcc0cc"
+    },
+    {
+      "pack": "PS13-Advanced-Typewriter-Monkeys",
+      "moduleId": "python-level-2-ps13-wordsmith",
+      "itemId": "python-level-2-ps13-wordsmith-supplemental-ps13-supplemental-project-2-advanced-typewriter-monkeys",
+      "examples": {
+        "starter": {
+          "input": "",
+          "expected": [
+            "Window: xca",
+            "Found cat after 4 letters."
+          ]
+        },
+        "solution": {
+          "input": "4\np\n",
+          "expected": [
+            "Found mint after 8 letters."
+          ]
+        }
+      },
+      "classroomMainSha256": "ce73201cb45fcd141860fb192a42b737bb2218d05190420050b471c0f62d16ae"
+    }
+  ]
+}

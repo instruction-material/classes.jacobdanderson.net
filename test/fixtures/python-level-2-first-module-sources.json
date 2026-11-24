@@ -1,0 +1,209 @@
+{
+  "repository": "Python-Level-2",
+  "revision": "b58d958347f0c3ca6f9d96963a674cc3d00813bf",
+  "moduleId": "python-level-2-ps1-variables-strings-and-input",
+  "exercises": [
+    {
+      "pack": "PS1-Mad-Libs",
+      "itemId": "python-level-2-ps1-variables-strings-and-input-curriculum-ps1-project-1-mad-libs",
+      "title": "PS1 Project 1: Mad Libs",
+      "examples": {
+        "starter": {
+          "input": "funny\n",
+          "expected": [
+            "cafeteria at our school is very funny."
+          ]
+        },
+        "solution": {
+          "input": "bright\ncrispy\nnoodles\nskip\nlaughed\n",
+          "expected": [
+            "bright",
+            "crispy pizza",
+            "noodles",
+            "skip across",
+            "Everybody laughed!"
+          ]
+        }
+      },
+      "classroomMainSha256": "b2a8761bc0b6d49d2f789b5b40508fe4e736d555b6ac61f012c9ab5daf247baf"
+    },
+    {
+      "pack": "PS1-Index-Picker",
+      "itemId": "python-level-2-ps1-variables-strings-and-input-curriculum-ps1-project-2-index-picker",
+      "title": "PS1 Project 2: Index Picker",
+      "examples": {
+        "starter": {
+          "input": "planet\n",
+          "expected": [
+            "Word: planet"
+          ]
+        },
+        "solution": {
+          "input": "planet\n0\n",
+          "expected": [
+            "Character at index 0: p"
+          ]
+        }
+      },
+      "classroomMainSha256": "c258a7af133ba72e0a691e89f61b21450a0ffe58453d6508ce9f3e12b3f8acc0"
+    },
+    {
+      "pack": "PS1-Space-Mountain",
+      "itemId": "python-level-2-ps1-variables-strings-and-input-supplemental-ps1-supplemental-project-1-space-mountain",
+      "title": "PS1 Supplemental Project 1: Space Mountain",
+      "examples": {
+        "starter": {
+          "input": "200\n",
+          "expected": [
+            "Remaining capacity: 700 pounds"
+          ]
+        },
+        "solution": {
+          "input": "200\n200\n200\n200\n",
+          "expected": [
+            "700 pounds",
+            "500 pounds",
+            "300 pounds",
+            "Model capacity remaining: 100 pounds"
+          ]
+        }
+      },
+      "classroomMainSha256": "5c5cbbaee44ce15a8da11381803a487834543fd267094192200c1a0db0cba7fa"
+    },
+    {
+      "pack": "PS1-Tip-Calculator",
+      "itemId": "python-level-2-ps1-variables-strings-and-input-supplemental-ps1-supplemental-project-2-tip-calculator",
+      "title": "PS1 Supplemental Project 2: Tip Calculator",
+      "examples": {
+        "starter": {
+          "input": "27.50\n",
+          "expected": [
+            "Bill: $27.50"
+          ]
+        },
+        "solution": {
+          "input": "27.50\n0.18\n",
+          "expected": [
+            "rounded down: $4",
+            "Tip: $4.95",
+            "Total: $32.45"
+          ]
+        }
+      },
+      "classroomMainSha256": "8bd5b61df22ac3286bd57db58f25b0164828920f8136f04cba0366457f90c4ec"
+    },
+    {
+      "pack": "PS1-Relay-Race",
+      "itemId": "python-level-2-ps1-variables-strings-and-input-supplemental-ps1-supplemental-project-3-relay-race",
+      "title": "PS1 Supplemental Project 3: Relay Race",
+      "examples": {
+        "starter": {
+          "input": "60\n",
+          "expected": [
+            "First split: 60.0 seconds"
+          ]
+        },
+        "solution": {
+          "input": "60\n61\n62\n63\n",
+          "expected": [
+            "246.0 seconds",
+            "61.5 seconds"
+          ]
+        }
+      },
+      "classroomMainSha256": "4e40d1384dc5b93301b0400ba100c3f8b54323f71b2dbc67ddad65049f9a6fcb"
+    }
+  ],
+  "files": {
+    "PS1-Mad-Libs/starter/README.md": {
+      "content": "# Mad Libs starter\n\nEnter the first adjective and check the opening sentence. Add four prompts for another adjective, a noun, a present-tense verb, and a past-tense verb. Use all five answers in the completed story.\n",
+      "byteLength": 216,
+      "gitBlob": "7673db823120095eac01e70fc097cc30539d20e2",
+      "sha256": "fa6ff90ecb981e814cf91c6e659316c5da4028ec000f43758c208440f30b5f6a"
+    },
+    "PS1-Mad-Libs/starter/main.py": {
+      "content": "adjective = input(\"Enter an adjective: \")\n\n# Add the other four inputs here, then use them in a complete story.\nprint(\"The cafeteria at our school is very \" + adjective + \".\")\n",
+      "byteLength": 176,
+      "gitBlob": "a6d4d986cd9ab564be707cb44b0b3925c824d454",
+      "sha256": "683937ce7a5810b775e9eb9c3de6ea1505c22e39cbed1c70da1f542fc4db6084"
+    },
+    "PS1-Mad-Libs/solution/main.py": {
+      "content": "adjective = input(\"Enter an adjective: \")\nadjective2 = input(\"Enter another adjective: \")\nnoun = input(\"Enter a noun: \")\nverb = input(\"Enter a verb: \")\nverb2 = input(\"Enter another verb, in past tense: \")\n\nprint(\n    \"The cafeteria at our school is very \"\n    + adjective\n    + \". For example, they serve \"\n    + adjective2\n    + \" pizza. They also serve \"\n    + noun\n    + \". One time, I saw somebody \"\n    + verb\n    + \" across the cafeteria. Everybody \"\n    + verb2\n    + \"!\"\n)\n",
+      "byteLength": 481,
+      "gitBlob": "5f66d6f51e0bae8290095c6cba259c88524c461e",
+      "sha256": "f12b13ec21e85ceb11213242c6a337dbe3a6f5bc432d15ec6710ac2491d5f1c0"
+    },
+    "PS1-Index-Picker/starter/README.md": {
+      "content": "# Index Picker starter\n\nEnter a word and check that it prints back. Add an integer input and print the character at that index. With \"planet\", check positions 0, 2, and 5. Handle out-of-range indices as an extension.\n",
+      "byteLength": 217,
+      "gitBlob": "623ee9b3e101935b5f08e74ba6492547a1661fd5",
+      "sha256": "b3de81ec3985072680c29a2e4999b745f289adb8a21da6d0a5734ed1e1fd3011"
+    },
+    "PS1-Index-Picker/starter/main.py": {
+      "content": "word = input(\"Enter a word or phrase: \")\nprint(\"Word:\", word)\n\n# Ask for a position, then use the index to select a character.\n",
+      "byteLength": 127,
+      "gitBlob": "134c98cd47a77f1119e5c86210637b2942dac705",
+      "sha256": "b1919ea7f7ac42c67d0a7db15221b25065a3eb3e189c63b895a3079dbdf05e82"
+    },
+    "PS1-Index-Picker/solution/main.py": {
+      "content": "word = input(\"Enter a word or phrase: \")\nprint(\"Word:\", word)\n\ntry:\n    index = int(input(\"Enter an index: \"))\nexcept ValueError:\n    print(\"Enter a whole-number index.\")\nelse:\n    if 0 <= index < len(word):\n        print(f\"Character at index {index}: {word[index]}\")\n    else:\n        print(\"That index is outside the word.\")\n",
+      "byteLength": 327,
+      "gitBlob": "b0e7e13454e0a01f29fad2749a0767b937933a9b",
+      "sha256": "10ba5cf4dca6f7432dbd5e5383e94b9dd5d744219ba5cac5ac14ec27cc91057b"
+    },
+    "PS1-Space-Mountain/starter/README.md": {
+      "content": "# Space Mountain starter\n\nEnter a fictional rider weight and check the remaining capacity. Repeat the same update for the other three riders. Report whether the final modeled capacity is positive, zero, or below zero.\n",
+      "byteLength": 218,
+      "gitBlob": "8b0e05818ef2bf8220ef46f3be9e4133ec7806da",
+      "sha256": "dfb0796fc44236abd30a910cb31e9bd255f81b7bc5c2322c10d9f2240934a70b"
+    },
+    "PS1-Space-Mountain/starter/main.py": {
+      "content": "remaining_capacity = 900\nfirst_rider_weight = int(input(\"Rider 1 weight in pounds: \"))\nremaining_capacity = remaining_capacity - first_rider_weight\nprint(\"Remaining capacity:\", remaining_capacity, \"pounds\")\n\n# Add three fictional riders and report the final capacity.\n",
+      "byteLength": 268,
+      "gitBlob": "47e8c8006839210135c318a5f5118ec80a83dccd",
+      "sha256": "ce17115e63e031ec197c4501462e71f0db231b28e20ff8cab6b12699e61234cc"
+    },
+    "PS1-Space-Mountain/solution/main.py": {
+      "content": "capacity = 900\n\np1_weight = int(input(\"Enter person 1's weight: \"))\ncapacity = capacity - p1_weight\nprint(\"Remaining weight capacity \" + str(capacity) + \" pounds\")\n\np2_weight = int(input(\"Enter person 2's weight: \"))\ncapacity = capacity - p2_weight\nprint(\"Remaining weight capacity \" + str(capacity) + \" pounds\")\n\np3_weight = int(input(\"Enter person 3's weight: \"))\ncapacity = capacity - p3_weight\nprint(\"Remaining weight capacity \" + str(capacity) + \" pounds\")\n\np4_weight = int(input(\"Enter person 4's weight: \"))\ncapacity = capacity - p4_weight\nprint(\"Remaining weight capacity \" + str(capacity) + \" pounds\")\n\nif capacity < 0:\n    print(\"Model capacity exceeded by\", -capacity, \"pounds\")\nelif capacity == 0:\n    print(\"Model capacity reached exactly\")\nelse:\n    print(\"Model capacity remaining:\", capacity, \"pounds\")\n",
+      "byteLength": 819,
+      "gitBlob": "470be17b9f55b2ff05dbc879d56775cf7726170c",
+      "sha256": "408234f8a870e7fb6a56fe634caa2aa8ea8b4468ce0643c6be8d6ba250bae847"
+    },
+    "PS1-Tip-Calculator/starter/README.md": {
+      "content": "# Tip Calculator starter\n\nEnter a nonnegative bill in dollars and check the displayed amount. Ask for a decimal tip rate, such as 0.18 for 18 percent. Print the tip and total to cents and add a separate whole-dollar tip estimate.\n",
+      "byteLength": 230,
+      "gitBlob": "638bb0b1d35dae228951109433f20eeb30eb1e97",
+      "sha256": "51d4049ffd219450377b2d0588c71c5f42b6fe273344e1e4359d20db422af613"
+    },
+    "PS1-Tip-Calculator/starter/main.py": {
+      "content": "bill = float(input(\"Bill amount in dollars: \"))\nprint(f\"Bill: ${bill:.2f}\")\n\n# Ask for the tip rate as a decimal and calculate the tip and total.\n",
+      "byteLength": 146,
+      "gitBlob": "7e3690961bde55a44e3ea6109fa5f1fde06fbabb",
+      "sha256": "3c3887d927b11737e7316838ee27c8a879706b1050c2cbd98a46a129869d03a9"
+    },
+    "PS1-Tip-Calculator/solution/main.py": {
+      "content": "bill = float(input(\"Bill amount in dollars: \"))\ntip_rate = float(input(\"Tip rate as a decimal, such as 0.18: \"))\n\ntip = bill * tip_rate\ntotal = bill + tip\n\nprint(f\"Whole-dollar tip estimate, rounded down: ${int(tip)}\")\nprint(f\"Tip: ${tip:.2f}\")\nprint(f\"Total: ${total:.2f}\")\n",
+      "byteLength": 275,
+      "gitBlob": "f9871bada9917d7864c662a1fe8f378bdbff656f",
+      "sha256": "c2cffa7da8ec17ac15d90b77dd702b1f74655e4429950c11e7da8fb0f973cac2"
+    },
+    "PS1-Relay-Race/starter/README.md": {
+      "content": "# Relay Race starter\n\nEnter the first runner time in seconds. Read three more times, then print the full time and average split in seconds. Check 60, 61, 62, and 63 seconds against 246 total and 61.5 per runner.\n",
+      "byteLength": 212,
+      "gitBlob": "4e24608b5a98ebd0170370bd5d0ab81da9d8cdc2",
+      "sha256": "e9b50e7c1b27d356eb85a32247d2aa620e6b185d857acd6b919c2dc6c5edf5e9"
+    },
+    "PS1-Relay-Race/starter/main.py": {
+      "content": "first_split = float(input(\"Runner 1 time in seconds: \"))\nprint(\"First split:\", first_split, \"seconds\")\n\n# Read the remaining three splits and calculate the total and average.\n",
+      "byteLength": 175,
+      "gitBlob": "4cc9bc5550b299de299046a440aafa6378929ba2",
+      "sha256": "148076bd0ec0211b8b6aa2154d69a4dc2769c487f2c5ccbbc15f402099b90b3b"
+    },
+    "PS1-Relay-Race/solution/main.py": {
+      "content": "print(\"Let's see how your team did in the 4x400 relay!\")\n\nplayer1 = float(input(\"Runner 1, enter your time in seconds: \"))\nplayer2 = float(input(\"Runner 2, enter your time in seconds: \"))\nplayer3 = float(input(\"Runner 3, enter your time in seconds: \"))\nplayer4 = float(input(\"Runner 4, enter your time in seconds: \"))\n\ntotal_time = player1 + player2 + player3 + player4\nprint(\"Your team's time was \" + str(total_time) + \" seconds\")\nprint(\"The average time of each lap was \" + str(total_time / 4) + \" seconds\")\n",
+      "byteLength": 510,
+      "gitBlob": "54dc33a884b315d2b3451d2b3e2f5b73b9d76586",
+      "sha256": "01ec095f6bd286d524f810b95286069cffdfad7b17dc77d2228b07c49a530fec"
+    }
+  }
+}

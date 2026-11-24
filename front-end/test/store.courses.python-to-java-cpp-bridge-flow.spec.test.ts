@@ -29,6 +29,33 @@ function allItems() {
 }
 
 describe("Python to Java and C++ Bridge learner flow", () => {
+	it("keeps the authored capstone instructions specific to the chosen port", async () => {
+		const course = await loadRawCourse("python-to-java-and-cpp-bridge");
+		const capstone = course?.modules.find(
+			module => module.title === EXPECTED_MODULE_SEQUENCE[6]
+		);
+		expect(capstone).toBeDefined();
+		const items = [
+			...capstone!.curriculum,
+			...capstone!.supplementalProjects
+		];
+		expect(items).toHaveLength(8);
+		for (const item of items) {
+			expect(item.content).not.toMatch(
+				/\*\*(?:Lab|Approach|Studio focus|Build steps):\*\*/
+			);
+		}
+		expect(items[3]!.content).toContain(
+			"One working Java or C++ task-tracker port"
+		);
+		expect(items[4]!.content).toContain("Starting Python behavior");
+		expect(items[5]!.content).toContain("Use JDK 21");
+		expect(items[6]!.content).toContain("Use a C++17 compiler");
+		expect(items[7]!.content).toContain(
+			"After completing the capstone in one target"
+		);
+	});
+
 	it("keeps the published catalog free of generated replacement practice", async () => {
 		const course = await loadRawCourse("python-to-java-and-cpp-bridge");
 		expect(course?.modules.map(module => module.title)).toEqual(

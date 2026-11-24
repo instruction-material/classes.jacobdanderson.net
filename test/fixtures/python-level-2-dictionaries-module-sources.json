@@ -1,0 +1,164 @@
+{
+  "repository": "Python-Level-2",
+  "revision": "e2808fac8733ae1ec4fa4882848f14c8d372ff74",
+  "moduleId": "python-level-2-ps7-dictionaries",
+  "files": {
+    "PS7-Birthday-Converter/starter/main.py": {
+      "content": "months = {1: \"January\", 2: \"February\", 3: \"March\", 4: \"April\",\n          5: \"May\", 6: \"June\", 7: \"July\", 8: \"August\",\n          9: \"September\", 10: \"October\", 11: \"November\", 12: \"December\"}\nprint(f\"Sample month: {months[2]}\")\n\n# Validate a sample date and apply a day ending before formatting it.\n",
+      "byteLength": 298,
+      "sha256": "bbed5fb11458ee2d2202a9440296583614da72ea2a727584881bdced63c5bc52",
+      "gitBlob": "b975f361e14b085a19b2a40759cdc2002ac0aeec"
+    },
+    "PS7-Birthday-Converter/starter/README.md": {
+      "content": "# Birthday Converter starter\n\nRun the starter to see how 2 maps to February. Add a prompt for a sample date in mm/dd/yyyy. Reject inputs with missing parts, a month outside 1 through 12, or a day that does not exist in that month and year.\n\nExpect 02/29/2024 to give February 29th, 2024. The same date in 2023 is invalid. Check 11th, 12th, and 13th before using the last digit for ordinary endings such as 21st, 22nd, and 23rd.\n",
+      "byteLength": 428,
+      "sha256": "795d89484880575ecac9a003864a906e363efccf5be8ff0a09754e2a30513c99",
+      "gitBlob": "33f00725e64712a94142aca99571f802ac497db9"
+    },
+    "PS7-Birthday-Converter/solution/main.py": {
+      "content": "from datetime import date\n\nMONTH_NAMES = {1: \"January\", 2: \"February\", 3: \"March\", 4: \"April\",\n               5: \"May\", 6: \"June\", 7: \"July\", 8: \"August\",\n               9: \"September\", 10: \"October\", 11: \"November\", 12: \"December\"}\nORDINAL_ENDINGS = {1: \"st\", 2: \"nd\", 3: \"rd\"}\n\n\ndef display_date(sample):\n    parts = sample.strip().split(\"/\")\n    if [len(part) for part in parts] != [2, 2, 4] or not all(\n        part.isascii() and part.isdecimal() for part in parts\n    ):\n        raise ValueError(\"Use mm/dd/yyyy.\")\n    month, day, year = [int(part) for part in parts]\n    try:\n        date(year, month, day)\n    except ValueError:\n        raise ValueError(\"This date does not exist.\") from None\n\n    ending = \"th\" if 11 <= day <= 13 else ORDINAL_ENDINGS.get(day % 10, \"th\")\n    return f\"{MONTH_NAMES[month]} {day}{ending}, {year:04d}\"\n\n\nif __name__ == \"__main__\":\n    try:\n        sample = input(\"Sample date (mm/dd/yyyy): \")\n        print(f\"Date: {display_date(sample)}\")\n    except ValueError as error:\n        print(error)\n    except EOFError:\n        print(\"No date entered.\")\n",
+      "byteLength": 1086,
+      "sha256": "5603b1f3a561b2d380f3b4c18c8ede1118c447482bf49ba45526dac976578b16",
+      "gitBlob": "7d075ca9524e9af17494733b6e9c56a2fe2ed7d8"
+    },
+    "PS7-Coffee-Shop/starter/main.py": {
+      "content": "drinks = [\n    \"Coffee\",\n    \"Decaf\",\n    \"Vanilla Latte\",\n    \"Mocha\",\n    \"Hot Chocolate\",\n    \"Iced Coffee\",\n    \"Smoothie\",\n]\nprices = [2.50, 2.50, 4.00, 4.25, 3.00, 2.75, 5.25]\nprint(f\"First item: {drinks[0]} at ${prices[0]:.2f}\")\n\n# Build a dictionary and display each item and its price.\n",
+      "byteLength": 295,
+      "sha256": "685a266bcef6c158e54679734ca3a2e977649dd7c52f84afce19ac4d5c4ea753",
+      "gitBlob": "63f7902e2912d725495efb934db7500022533f29"
+    },
+    "PS7-Coffee-Shop/starter/README.md": {
+      "content": "# Coffee Shop starter\n\nRun the starter to see the Coffee price. Combine the item and price lists into one dictionary. Check that the lists have the same length and contain distinct names before using them.\n\nPrint the resulting menu with two decimal places for each price. Coffee should show $2.50 and Vanilla Latte should show $4.00. Try adding a new item and its price, then leave out the price to check the mismatch message.\n",
+      "byteLength": 427,
+      "sha256": "2beee455eab0f8b01c7e39ee7e4b80ed805ed25cb9b188a2c90f8fe2103e41f8",
+      "gitBlob": "4514cb5c87d0de2c17fe0916e022e3e23d60c255"
+    },
+    "PS7-Coffee-Shop/solution/main.py": {
+      "content": "drinks = [\n    \"Coffee\",\n    \"Decaf\",\n    \"Vanilla Latte\",\n    \"Mocha\",\n    \"Hot Chocolate\",\n    \"Iced Coffee\",\n    \"Smoothie\",\n]\nprices = [2.50, 2.50, 4.00, 4.25, 3.00, 2.75, 5.25]\n\n\ndef build_menu(names, costs):\n    if len(names) != len(costs):\n        raise ValueError(\"Give each item one price.\")\n    if len(set(names)) != len(names):\n        raise ValueError(\"Use each item name once.\")\n    return dict(zip(names, costs))\n\n\nmenu = build_menu(drinks, prices)\nfor drink, cost in menu.items():\n    print(f\"{drink}: ${cost:.2f}\")\n",
+      "byteLength": 531,
+      "sha256": "fdfd125691847b2970c5622137f282679281ed4c75bdcd7b93841d84731accc2",
+      "gitBlob": "8865613276b2a57e965ddeaafb5b721aeec0e6f2"
+    },
+    "PS7-Dictionary-Indexing/starter/main.py": {
+      "content": "d = {\n    'd2': {'d3': {'d4': 'eight'}},\n    'l3': [1, 'two'],\n    't2': ('three', ('four', ('five', 6))),\n    'l2': ['six', {'d5': 'seven'}],\n    's2': 'one',\n}\n\nprint(d[\"s2\"])\n\n# Trace each remaining key or index to print two through eight.\n",
+      "byteLength": 243,
+      "sha256": "5b4a142b036df73f3c8293ecece52446c1bef3414d124ed438f55a754eaac61d",
+      "gitBlob": "9898800b22f5f527d2b24533ea874846ef372af1"
+    },
+    "PS7-Dictionary-Indexing/starter/README.md": {
+      "content": "# Dictionary Indexing starter\n\nRun the starter and trace the key that retrieves one. Retrieve the other seven words from the same data. List and tuple indexes start at zero. Dictionary entries use named keys.\n\nTo get seven, start from key l2, select index 1 in the list, and then use key d5. The final output should contain eight lines in numerical word order.\n",
+      "byteLength": 361,
+      "sha256": "76a803a84ca1090c109541cff17e2b4fc9efe92359c67c8b09483fcd90a6dca5",
+      "gitBlob": "446bd5583105af1fa741f949f1bc98b1250bdfbd"
+    },
+    "PS7-Dictionary-Indexing/solution/main.py": {
+      "content": "d = {\n    \"d2\": {\"d3\": {\"d4\": \"eight\"}},\n    \"l3\": [1, \"two\"],\n    \"t2\": (\"three\", (\"four\", (\"five\", 6))),\n    \"l2\": [\"six\", {\"d5\": \"seven\"}],\n    \"s2\": \"one\",\n}\n\n# print \"one\"\nprint(d[\"s2\"])\n\n# print \"two\"\nprint(d[\"l3\"][1])\n\n# print \"three\"\nprint(d[\"t2\"][0])\n\n# print \"four\"\nprint(d[\"t2\"][1][0])\n\n# print \"five\"\nprint(d[\"t2\"][1][1][0])\n\n# print \"six\"\nprint(d[\"l2\"][0])\n\n# print \"seven\"\nprint(d[\"l2\"][1][\"d5\"])\n\n# print \"eight\"\nprint(d[\"d2\"][\"d3\"][\"d4\"])\n",
+      "byteLength": 455,
+      "sha256": "aca7b3b8101b886b788155009f80adff87de9037cc51aeaa537deba75f4144c3",
+      "gitBlob": "9fdab1c83a8ade987410179df5e73744849f1137"
+    },
+    "PS7-Debugging-Dictionaries/starter/main.py": {
+      "content": "# Repair the dictionary literal before running the other checks.\ncandies = {\n    \"Caramel\" 15,\n    \"Almond chocolate\": 7,\n    \"Wafer bar\": 6,\n    \"Crisp bar\": 9,\n    \"Peanut cup\": 3,\n    \"Toffee\": 2,\n}\n\nfor candy in candies:\n    print(f\"{candy}: {candies[index]}\")\n\nfor candy in candies:\n    candy = candy - 1\n\ncandies[\"Wafer bar\"] = 0\ncandies[\"Mint\"] = candies[\"Mint\"] + 4\n\nfor candy in candies:\n    print(f\"{candy}: {candies[candy]}\")\nprint(f\"Final total: {sum(candies.values())}\")\n",
+      "byteLength": 484,
+      "sha256": "4a8e75daa2279799751443370d61ce3b6a24fc274486913ed089a936bc30c110",
+      "gitBlob": "26823b62e06e857a0eac5e485e4b7e7a78bd0e4a"
+    },
+    "PS7-Debugging-Dictionaries/starter/README.md": {
+      "content": "# Debugging Dictionaries starter\n\nRepair the first syntax error and run the program again. Access each count with its candy key. Subtract one from every positive count, update the wafer bar count to zero, and add four mint pieces. Supply a default if Mint is absent.\n\nThe original total is 42. The expected final inventory includes Caramel 14, Wafer bar 0, and Mint 4. The final count is 35.\n",
+      "byteLength": 392,
+      "sha256": "8b80e104fa2de198124408fc3f0b74f15e2e36a1e3a1319c2be2a8390ff1c9a2",
+      "gitBlob": "12e0d80d5c3221622f89471a90462d468decc915"
+    },
+    "PS7-Debugging-Dictionaries/solution/main.py": {
+      "content": "candies = {\n    \"Caramel\": 15,\n    \"Almond chocolate\": 7,\n    \"Wafer bar\": 6,\n    \"Crisp bar\": 9,\n    \"Peanut cup\": 3,\n    \"Toffee\": 2,\n}\n\nprint(f\"Original total: {sum(candies.values())}\")\nfor candy in candies:\n    candies[candy] = max(0, candies[candy] - 1)\n\ncandies[\"Wafer bar\"] = 0\ncandies[\"Mint\"] = candies.get(\"Mint\", 0) + 4\nfor candy, count in candies.items():\n    print(f\"{candy}: {count}\")\nprint(f\"Final total: {sum(candies.values())}\")\n",
+      "byteLength": 445,
+      "sha256": "3991ad76234b353d926c0b8afa61a6baad4a7307984d717edc3859a67336e2dc",
+      "gitBlob": "de08820b733ad7d4f30c8c951e0d2f2810a20773"
+    }
+  },
+  "exercises": [
+    {
+      "pack": "PS7-Birthday-Converter",
+      "itemId": "python-level-2-ps7-dictionaries-supplemental-ps7-supplemental-project-1-birthday-converter",
+      "examples": {
+        "starter": {
+          "input": "",
+          "expected": [
+            "Sample month: February"
+          ]
+        },
+        "solution": {
+          "input": "02/29/2024\n",
+          "expected": [
+            "Date: February 29th, 2024"
+          ]
+        }
+      },
+      "classroomMainSha256": "16ad2167963b7360fa10d7da68e944a550cedfd95fb98bd7c7cf5c08b9f6effb"
+    },
+    {
+      "pack": "PS7-Coffee-Shop",
+      "itemId": "python-level-2-ps7-dictionaries-supplemental-ps7-supplemental-project-3-coffee-shop",
+      "examples": {
+        "starter": {
+          "input": "",
+          "expected": [
+            "First item: Coffee at $2.50"
+          ]
+        },
+        "solution": {
+          "input": "",
+          "expected": [
+            "Coffee: $2.50",
+            "Vanilla Latte: $4.00",
+            "Smoothie: $5.25"
+          ]
+        }
+      },
+      "classroomMainSha256": "7737e6d20929ad826661a0cdbfdead4a016e62b7fb90ab1280dab602615caa6c"
+    },
+    {
+      "pack": "PS7-Dictionary-Indexing",
+      "itemId": "python-level-2-ps7-dictionaries-supplemental-ps7-supplemental-project-4-dictionary-indexing",
+      "examples": {
+        "starter": {
+          "input": "",
+          "expected": [
+            "one"
+          ]
+        },
+        "solution": {
+          "input": "",
+          "expected": [
+            "one\ntwo\nthree\nfour\nfive\nsix\nseven\neight"
+          ]
+        }
+      },
+      "classroomMainSha256": "882d50851416d5bdb6f6f78bea45e55049059b59448a920bb842ff86b6945b4e"
+    },
+    {
+      "pack": "PS7-Debugging-Dictionaries",
+      "itemId": "python-level-2-ps7-dictionaries-supplemental-ps7-supplemental-project-5-debugging-dictionaries",
+      "examples": {
+        "starter": {
+          "input": "",
+          "expected": [
+            "SyntaxError"
+          ],
+          "expectsSyntaxError": true
+        },
+        "solution": {
+          "input": "",
+          "expected": [
+            "Original total: 42",
+            "Caramel: 14",
+            "Wafer bar: 0",
+            "Mint: 4",
+            "Final total: 35"
+          ]
+        }
+      },
+      "classroomMainSha256": "ea7172efae62787e5a23107f3d06e10006a0c7bc953af3cbfd040ebb5d5edcdd"
+    }
+  ]
+}

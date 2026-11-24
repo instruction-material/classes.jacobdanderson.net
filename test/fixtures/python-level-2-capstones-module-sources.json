@@ -1,0 +1,167 @@
+{
+  "repository": "Python-Level-2",
+  "revision": "4451de4a1f7dccd55a0175bbf9fe3f2fbe183f70",
+  "moduleId": "python-level-2-ps14-blackjack",
+  "files": {
+    "PS14-Simple-Blackjack/starter/README.md": {
+      "content": "# Simple Twenty-One starter\n\nWork with integer card values from 2 through 11. Deal two cards to each hand. Use h to draw, s to stay, or q to quit. A hand above 21 busts. The dealer draws below 17. Compare the totals when neither hand busts.\n\nUse practice mode for a player hand of 10 and 7 and a dealer hand of 9 and 6. If the player stays, the dealer draws 3 and wins with 18. Replay the same mode to verify that neither hand carries over.\n",
+      "byteLength": 441,
+      "sha256": "5ee2fb09d4a82b8c65f6b3115cbd2bdacfd1deea56d4afd545d0fe045c09c531",
+      "gitBlob": "9673cff1aa761ba36f56e17c020e0e8af0b845c8"
+    },
+    "PS14-Simple-Blackjack/starter/main.py": {
+      "content": "hand = [10, 7]\nprint(f\"Player: {hand} = {sum(hand)}\")\n\n# Deal each hand from the deck. Use h to hit, s to stay, and q to quit.\n# Have the dealer draw below 17, then compare the final totals.\n",
+      "byteLength": 191,
+      "sha256": "ac808a51e3cf158f8188265ad215a4e125a03c235fb1cc4aec3e03b27d643bac",
+      "gitBlob": "b166ba4952fdcff5242704f2423c3591e83d8eb3"
+    },
+    "PS14-Simple-Blackjack/solution/main.py": {
+      "content": "import random\n\nPRACTICE = (10, 7, 9, 6, 3)\n\n\ndef play_round(deck):\n    player = [next(deck), next(deck)]\n    dealer = [next(deck), next(deck)]\n    print(f\"Player: {player} = {sum(player)}\")\n    while sum(player) < 21:\n        action = input(\"h to hit, s to stay, q to quit: \").strip().lower()\n        if action == \"q\":\n            return False\n        if action == \"s\":\n            break\n        if action == \"h\":\n            player.append(next(deck))\n            print(f\"Player: {player} = {sum(player)}\")\n        else:\n            print(\"Choose h, s or q.\")\n\n    player_total = sum(player)\n    if player_total > 21:\n        print(\"Player busts. Dealer wins.\")\n        return True\n\n    print(f\"Dealer: {dealer} = {sum(dealer)}\")\n    while sum(dealer) < 17:\n        dealer.append(next(deck))\n        print(f\"Dealer draws: {dealer} = {sum(dealer)}\")\n    dealer_total = sum(dealer)\n\n    if dealer_total > 21:\n        print(\"Dealer busts. Player wins.\")\n    elif player_total > dealer_total:\n        print(\"Player wins.\")\n    elif player_total < dealer_total:\n        print(\"Dealer wins.\")\n    else:\n        print(\"Tie.\")\n    return True\n\n\ndef main():\n    while True:\n        mode = input(\"p for practice, Enter to deal, q to quit: \").strip().lower()\n        if mode == \"q\":\n            return\n        deck = list(range(2, 12)) * 4\n        if mode == \"p\":\n            for card in PRACTICE:\n                deck.remove(card)\n            deck = list(PRACTICE) + deck\n        else:\n            random.shuffle(deck)\n        if not play_round(iter(deck)):\n            return\n\n\nif __name__ == \"__main__\":\n    try:\n        main()\n    except EOFError:\n        print(\"Session ended.\")\n",
+      "byteLength": 1673,
+      "sha256": "0f6228f4f4670b1a13cf6468c12669aba82ba4c255bb4062652f91ce08930f9f",
+      "gitBlob": "d8f0d598431cc0fddadbf86a75475528b17b45d5"
+    },
+    "PS14-Advanced-Blackjack/starter/README.md": {
+      "content": "# Named-Card Twenty-One starter\n\nCount Jack, Queen and King as ten. Count every ace as one. If an ace is present and adding ten keeps the total at or below 21, add ten. Ace and 6 total 17, then Ace, 6 and 8 total 15. Use the same helper for each hand and have the dealer stop at a best total of 17 or higher.\n\nIn practice mode, hit twice and then stay. The player totals are 17, 15 and 19. The dealer draws from 16 to 18. Check dual two-card 21 as a tie.\n",
+      "byteLength": 455,
+      "sha256": "1bf7722d8458d4def62c63737b8e599eed846a7fb71f816acd1ddf03a1c0b409",
+      "gitBlob": "8b93f7d3954e50395534aad051a3663520683efc"
+    },
+    "PS14-Advanced-Blackjack/starter/main.py": {
+      "content": "face_values = {\"J\": 10, \"Q\": 10, \"K\": 10, \"A\": 1}\n\n\ndef base_total(hand):\n    total = 0\n    for rank in hand:\n        if rank in face_values:\n            total += face_values[rank]\n        else:\n            total += int(rank)\n    return total\n\n\nhand = [\"A\", \"6\"]\nprint(f\"Base total: {base_total(hand)}\")\n\n# Treat an ace as 11 when adding ten keeps the hand at 21 or below.\n",
+      "byteLength": 373,
+      "sha256": "866bf06b6ee359c0ad3c6ce5cd797d8961ef3dc574b02c872d654d62091acd54",
+      "gitBlob": "d223db6423514b410b521325facb8038c55dce73"
+    },
+    "PS14-Advanced-Blackjack/solution/main.py": {
+      "content": "import random\n\nRANKS = (\"A\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\", \"J\", \"Q\", \"K\")\nNAMES = {\"A\": \"Ace\", \"J\": \"Jack\", \"Q\": \"Queen\", \"K\": \"King\"}\nPRACTICE = (\"A\", \"6\", \"9\", \"7\", \"8\", \"4\", \"2\")\n\n\ndef hand_value(hand):\n    total = 0\n    for rank in hand:\n        if rank == \"A\":\n            total += 1\n        elif rank in NAMES:\n            total += 10\n        else:\n            total += int(rank)\n    if \"A\" in hand and total + 10 <= 21:\n        total += 10\n    return total\n\n\ndef show_hand(label, hand):\n    cards = \", \".join(NAMES.get(rank, rank) for rank in hand)\n    print(f\"{label}: {cards} = {hand_value(hand)}\")\n\n\ndef play_round(deck):\n    player = [next(deck), next(deck)]\n    dealer = [next(deck), next(deck)]\n    show_hand(\"Player\", player)\n    player_natural = hand_value(player) == 21\n    dealer_natural = hand_value(dealer) == 21\n    if player_natural or dealer_natural:\n        show_hand(\"Dealer\", dealer)\n        if player_natural and dealer_natural:\n            print(\"Tie: both start with 21.\")\n        elif player_natural:\n            print(\"Player wins with a two-card 21.\")\n        else:\n            print(\"Dealer wins with a two-card 21.\")\n        return True\n\n    while hand_value(player) < 21:\n        action = input(\"h to hit, s to stay, q to quit: \").strip().lower()\n        if action == \"q\":\n            return False\n        if action == \"s\":\n            break\n        if action == \"h\":\n            player.append(next(deck))\n            show_hand(\"Player\", player)\n        else:\n            print(\"Choose h, s or q.\")\n\n    player_total = hand_value(player)\n    if player_total > 21:\n        print(\"Player busts. Dealer wins.\")\n        return True\n    show_hand(\"Dealer\", dealer)\n    while hand_value(dealer) < 17:\n        dealer.append(next(deck))\n        show_hand(\"Dealer draws\", dealer)\n    dealer_total = hand_value(dealer)\n    if dealer_total > 21:\n        print(\"Dealer busts. Player wins.\")\n    elif player_total > dealer_total:\n        print(\"Player wins.\")\n    elif player_total < dealer_total:\n        print(\"Dealer wins.\")\n    else:\n        print(\"Tie.\")\n    return True\n\n\ndef main():\n    while True:\n        mode = input(\"p for practice, Enter to deal, q to quit: \").strip().lower()\n        if mode == \"q\":\n            return\n        deck = list(RANKS) * 4\n        if mode == \"p\":\n            for card in PRACTICE:\n                deck.remove(card)\n            deck = list(PRACTICE) + deck\n        else:\n            random.shuffle(deck)\n        if not play_round(iter(deck)):\n            return\n\n\nif __name__ == \"__main__\":\n    try:\n        main()\n    except EOFError:\n        print(\"Session ended.\")\n",
+      "byteLength": 2644,
+      "sha256": "532558d645dce933457328d6dee76713d056f31661d09f1ec5e4bd01207bab47",
+      "gitBlob": "16929d9259d8f30527bbe28a04b93fae71a13341"
+    },
+    "PS14-Game-of-War/starter/README.md": {
+      "content": "# High Card Rounds starter\n\nUse values from 2 through 10. Compare two draws each round. Increment only one win count or the tie count, then report the overall winner or an overall tie. Wins and ties should add to ten.\n\nEnter Ari and Bea as the names and p for practice. The fixed ten rounds produce Ari 4, Bea 3, ties 3. Press Enter instead of p to test random draws.\n",
+      "byteLength": 368,
+      "sha256": "de99a388e3e34410b315bc9aab0a740818b0e379586059575dfbfe9e4396ab8d",
+      "gitBlob": "7e3e59ddd4bffb76a7851b15c6b968ca488b96eb"
+    },
+    "PS14-Game-of-War/starter/main.py": {
+      "content": "left = 9\nright = 4\nprint(f\"Round 1: {left} versus {right}\")\nif left > right:\n    print(\"Player 1 wins this round.\")\nelif right > left:\n    print(\"Player 2 wins this round.\")\nelse:\n    print(\"Round tied.\")\n\n# Play ten rounds and count the wins for each player and all ties.\n",
+      "byteLength": 273,
+      "sha256": "e3059ac93c62f30e46c42eecc2585711782fd5509065e18561bc7644551d6b15",
+      "gitBlob": "ecfbfb446ca381a32b4e192ca1c27044be0f50ae"
+    },
+    "PS14-Game-of-War/solution/main.py": {
+      "content": "import random\n\nPRACTICE_DRAWS = [(9, 4), (2, 8), (5, 5), (6, 2), (7, 10),\n                  (8, 8), (10, 3), (4, 9), (2, 2), (7, 6)]\n\n\ndef play_rounds(first, second, cards):\n    wins = [0, 0]\n    ties = 0\n    for round_number, (left, right) in enumerate(cards, start=1):\n        print(f\"Round {round_number}: {left} versus {right}\")\n        if left > right:\n            wins[0] += 1\n            print(f\"{first} wins this round.\")\n        elif right > left:\n            wins[1] += 1\n            print(f\"{second} wins this round.\")\n        else:\n            ties += 1\n            print(\"Round tied.\")\n    print(f\"Final scores: {first} {wins[0]}, {second} {wins[1]}, ties {ties}.\")\n    if wins[0] == wins[1]:\n        print(\"Overall tie.\")\n    elif wins[0] > wins[1]:\n        print(f\"{first} wins overall.\")\n    else:\n        print(f\"{second} wins overall.\")\n    return wins, ties\n\n\ndef main():\n    first = input(\"Player 1 name: \").strip() or \"Player 1\"\n    second = input(\"Player 2 name: \").strip() or \"Player 2\"\n    mode = input(\"p for practice, or Enter for random: \").strip().lower()\n    if mode == \"p\":\n        draws = PRACTICE_DRAWS\n    else:\n        draws = ((random.randint(2, 10), random.randint(2, 10))\n                 for _ in range(10))\n    play_rounds(first, second, draws)\n\n\nif __name__ == \"__main__\":\n    try:\n        main()\n    except EOFError:\n        print(\"Session ended.\")\n",
+      "byteLength": 1390,
+      "sha256": "af8f9208cbcf712910a4185de9c57d5e6a59ff6ecd675f5d7524596019f5641f",
+      "gitBlob": "c1529e4b1d7be3ac995141a1092def9f5e51d3ea"
+    },
+    "PS14-Mastermind/starter/README.md": {
+      "content": "# Signal Digits starter\n\nThe signal has four digits from 0 through 5. Count exact matches first and set those positions aside. Count each remaining signal digit at most as many times as it occurs. For signal 2032 and trial 2230, expect two exact and two misplaced. Trial 2222 gives two exact and zero misplaced.\n\nGive each round eight trials. A hint reveals the sum of the hidden digits and spends one trial. Invalid input uses none. Choose p to practice with 2032.\n",
+      "byteLength": 466,
+      "sha256": "c7ff05e351923be4ff9d6dc144f4e63d1c27ec0c7e47322ced832b7b48284400",
+      "gitBlob": "2ed4a111696f713561bb6cb6eeefb3e20344ced8"
+    },
+    "PS14-Mastermind/starter/main.py": {
+      "content": "sample_signal = \"2032\"\nsample_trial = \"2230\"\nexact = 0\n\nfor signal_digit, trial_digit in zip(sample_signal, sample_trial):\n    if signal_digit == trial_digit:\n        exact += 1\nprint(f\"Exact: {exact}\")\n\n# Count misplaced digits after removing the already-matched positions.\n",
+      "byteLength": 275,
+      "sha256": "e3bb142343b0ef4a8d99eb569864c9b7c6c6b00d6ea4c25b05b15b75d1b455ef",
+      "gitBlob": "39744abd4518630a84a3013a9290e28efa39a91e"
+    },
+    "PS14-Mastermind/solution/main.py": {
+      "content": "import random\n\nDIGITS = \"012345\"\nATTEMPTS = 8\n\n\ndef score(signal, trial):\n    exact = 0\n    available_digits = {}\n    unmatched_trials = []\n    for signal_digit, trial_digit in zip(signal, trial):\n        if trial_digit == signal_digit:\n            exact += 1\n        else:\n            available_digits[signal_digit] = available_digits.get(signal_digit, 0) + 1\n            unmatched_trials.append(trial_digit)\n\n    misplaced = 0\n    for digit in unmatched_trials:\n        if available_digits.get(digit, 0) > 0:\n            available_digits[digit] -= 1\n            misplaced += 1\n    return exact, misplaced\n\n\ndef run_trial(signal):\n    remaining = ATTEMPTS\n    hinted = False\n    while remaining > 0:\n        trial = input(f\"{remaining} trials left. Four digits, hint, or q: \").strip().lower()\n        if trial == \"q\":\n            print(\"Trial ended.\")\n            return\n        if trial == \"hint\":\n            if hinted:\n                print(\"The hint was already used.\")\n            else:\n                print(f\"Digit sum: {sum(int(digit) for digit in signal)}\")\n                hinted = True\n                remaining -= 1\n            continue\n        if len(trial) != len(signal) or any(digit not in DIGITS for digit in trial):\n            print(\"Use four digits from 0 through 5.\")\n            continue\n        remaining -= 1\n        exact, misplaced = score(signal, trial)\n        print(f\"Exact: {exact}. Misplaced: {misplaced}.\")\n        if exact == len(signal):\n            print(\"Signal matched.\")\n            return\n    print(f\"No trials left. The signal was {signal}.\")\n\n\ndef main():\n    mode = input(\"p for practice, or Enter for a random signal: \").strip().lower()\n    signal = \"2032\" if mode == \"p\" else \"\".join(random.choices(DIGITS, k=4))\n    run_trial(signal)\n\n\nif __name__ == \"__main__\":\n    try:\n        main()\n    except EOFError:\n        print(\"Session ended.\")\n",
+      "byteLength": 1886,
+      "sha256": "85b55989f444fa3cf240afc5d57cffc10a19ead4d31b174a411ac7127dccd154",
+      "gitBlob": "e3b57e4c35e2170f603df28249c5a4fbb8846b75"
+    }
+  },
+  "exercises": [
+    {
+      "pack": "PS14-Simple-Blackjack",
+      "itemId": "python-level-2-ps14-blackjack-curriculum-ps14-project-1-simple-blackjack",
+      "examples": {
+        "starter": {
+          "input": "",
+          "expected": [
+            "Player: [10, 7] = 17"
+          ]
+        },
+        "solution": {
+          "input": "p\ns\nq\n",
+          "expected": [
+            "Dealer draws: [9, 6, 3] = 18",
+            "Dealer wins."
+          ]
+        }
+      },
+      "classroomMainSha256": "e09ea0a8614891de7a64f16831d29a326934380710861573614aafd285f9ed46"
+    },
+    {
+      "pack": "PS14-Advanced-Blackjack",
+      "itemId": "python-level-2-ps14-blackjack-curriculum-ps14-project-2-advanced-blackjack",
+      "examples": {
+        "starter": {
+          "input": "",
+          "expected": [
+            "Base total: 7"
+          ]
+        },
+        "solution": {
+          "input": "p\nh\nh\ns\nq\n",
+          "expected": [
+            "Player: Ace, 6 = 17",
+            "Player: Ace, 6, 8 = 15",
+            "Player: Ace, 6, 8, 4 = 19",
+            "Dealer draws: 9, 7, 2 = 18",
+            "Player wins."
+          ]
+        }
+      },
+      "classroomMainSha256": "4f155a831c56178b6891c66bab88524d0232981e00b2dd91f11cafeaf0f51ef5"
+    },
+    {
+      "pack": "PS14-Game-of-War",
+      "itemId": "python-level-2-ps14-blackjack-supplemental-ps14-supplemental-project-1-game-of-war",
+      "examples": {
+        "starter": {
+          "input": "",
+          "expected": [
+            "Round 1: 9 versus 4",
+            "Player 1 wins this round."
+          ]
+        },
+        "solution": {
+          "input": "Ari\nBea\np\n",
+          "expected": [
+            "Final scores: Ari 4, Bea 3, ties 3.",
+            "Ari wins overall."
+          ]
+        }
+      },
+      "classroomMainSha256": "dd32d9bb7e270c769d2b4e5574e60d23ca32e08cecbbff84d6ed68610ffd31fb"
+    },
+    {
+      "pack": "PS14-Mastermind",
+      "itemId": "python-level-2-ps14-blackjack-supplemental-ps14-supplemental-project-2-mastermind",
+      "examples": {
+        "starter": {
+          "input": "",
+          "expected": [
+            "Exact: 2"
+          ]
+        },
+        "solution": {
+          "input": "p\nhint\n2230\n2222\n2032\n",
+          "expected": [
+            "Digit sum: 7",
+            "Exact: 2. Misplaced: 2.",
+            "Exact: 2. Misplaced: 0.",
+            "Signal matched."
+          ]
+        }
+      },
+      "classroomMainSha256": "b5e9067e807310437f5fd4e4833a6ead062fbc72cf017c5f48801ab1f561e522"
+    }
+  ]
+}

@@ -1,0 +1,193 @@
+{
+  "repository": "Python-Level-2",
+  "revision": "017313722ab219e4fccd9c1e186c7323033af7df",
+  "files": {
+    "PS10-US-Capitals-Quiz/solution/capitals.txt": {
+      "content": "Montgomery\nJuneau\nPhoenix\nLittle Rock\nSacramento\nDenver\nHartford\nDover\nTallahassee\nAtlanta\nHonolulu\nBoise\nSpringfield\nIndianapolis\nDes Moines\nTopeka\nFrankfort\nBaton Rouge\nAugusta\nAnnapolis\nBoston\nLansing\nSaint Paul\nJackson\nJefferson City\nHelena\nLincoln\nCarson City\nConcord\nTrenton\nSanta Fe\nAlbany\nRaleigh\nBismarck\nColumbus\nOklahoma City\nSalem\nHarrisburg\nProvidence\nColumbia\nPierre\nNashville\nAustin\nSalt Lake City\nMontpelier\nRichmond\nOlympia\nCharleston\nMadison\nCheyenne",
+      "byteLength": 468,
+      "sha256": "d5af3e2391e1cdf11daa1670c8a5ae03e75ad9c8966e16551094bae2caa7aed4",
+      "gitBlob": "d50beb1cb35cc65a840dc2cb15c68ea4f379abec"
+    },
+    "PS10-US-Capitals-Quiz/solution/main.py": {
+      "content": "import random\n\n\ndef read_names(filename):\n    with open(filename, encoding=\"utf-8\") as source:\n        return [line.strip() for line in source]\n\n\nstates = read_names(\"states.txt\")\ncapitals = read_names(\"capitals.txt\")\n\nif (\n    not states or len(states) != len(capitals)\n    or not all(states) or not all(capitals)\n    or len(set(states)) != len(states)\n):\n    raise ValueError(\"The files must contain one capital per distinct state.\")\n\nanswers = dict(zip(states, capitals))\nscore = 0\n\nwhile True:\n    state = random.choice(states)\n    try:\n        guess = input(f\"What is the capital of {state}? \")\n    except EOFError:\n        break\n    if guess.strip().casefold() != answers[state].casefold():\n        print(f\"Incorrect. The capital of {state} is {answers[state]}.\")\n        break\n\n    print(\"Correct!\")\n    score += 1\n\nprint(f\"Final score: {score}\")\n",
+      "byteLength": 854,
+      "sha256": "a630722787fb9b42e199b1ec3ed59df80f5d82d13efc9016b56c5b1c8f8edf82",
+      "gitBlob": "2b9ad2b9b5d672da23b6a4745e5a741b2a3ee08f"
+    },
+    "PS10-US-Capitals-Quiz/solution/states.txt": {
+      "content": "Alabama\nAlaska\nArizona\nArkansas\nCalifornia\nColorado\nConnecticut\nDelaware\nFlorida\nGeorgia\nHawaii\nIdaho\nIllinois\nIndiana\nIowa\nKansas\nKentucky\nLouisiana\nMaine\nMaryland\nMassachusetts\nMichigan\nMinnesota\nMississippi\nMissouri\nMontana\nNebraska\nNevada\nNew Hampshire\nNew Jersey\nNew Mexico\nNew York\nNorth Carolina\nNorth Dakota\nOhio\nOklahoma\nOregon\nPennsylvania\nRhode Island\nSouth Carolina\nSouth Dakota\nTennessee\nTexas\nUtah\nVermont\nVirginia\nWashington\nWest Virginia\nWisconsin\nWyoming",
+      "byteLength": 471,
+      "sha256": "c09e40c0b6fa044f6ccc5eec6ba5a209bfd2cb8b89af6f67607b3e2ab8bb14da",
+      "gitBlob": "ad6632e6c7da2fa18b292546babdaa272546f3e9"
+    },
+    "PS10-US-Capitals-Quiz/starter/README.md": {
+      "content": "# US Capitals Quiz\n\nKeep both text files beside `main.py` and run `python3 main.py` from that\nfolder. Line one of each file forms the first pair, Alabama and Montgomery.\nPair corresponding lines, choose a state, and give one point per correct\nanswer. Ignore case and surrounding spaces. Stop at the first wrong answer\nand show the correct capital and final score.\n",
+      "byteLength": 364,
+      "sha256": "1e4447e9a0eb09194e78d64061d3f4134a1b2f3b9117eff6deeaece92d9a1e36",
+      "gitBlob": "96f4a2f4abbdbdd8f720175dd3322778a1236cbe"
+    },
+    "PS10-US-Capitals-Quiz/starter/capitals.txt": {
+      "content": "Montgomery\nJuneau\nPhoenix\nLittle Rock\nSacramento\nDenver\nHartford\nDover\nTallahassee\nAtlanta\nHonolulu\nBoise\nSpringfield\nIndianapolis\nDes Moines\nTopeka\nFrankfort\nBaton Rouge\nAugusta\nAnnapolis\nBoston\nLansing\nSaint Paul\nJackson\nJefferson City\nHelena\nLincoln\nCarson City\nConcord\nTrenton\nSanta Fe\nAlbany\nRaleigh\nBismarck\nColumbus\nOklahoma City\nSalem\nHarrisburg\nProvidence\nColumbia\nPierre\nNashville\nAustin\nSalt Lake City\nMontpelier\nRichmond\nOlympia\nCharleston\nMadison\nCheyenne",
+      "byteLength": 468,
+      "sha256": "d5af3e2391e1cdf11daa1670c8a5ae03e75ad9c8966e16551094bae2caa7aed4",
+      "gitBlob": "d50beb1cb35cc65a840dc2cb15c68ea4f379abec"
+    },
+    "PS10-US-Capitals-Quiz/starter/main.py": {
+      "content": "def read_names(filename):\n    with open(filename, encoding=\"utf-8\") as source:\n        return [line.strip() for line in source]\n\n\nstates = read_names(\"states.txt\")\ncapitals = read_names(\"capitals.txt\")\n\nprint(f\"Loaded {len(states)} states and {len(capitals)} capitals.\")\n",
+      "byteLength": 271,
+      "sha256": "9d0c801727d33b6af3cce37b350ff9beab5215f164bd873fc4d2f4126a72ab02",
+      "gitBlob": "f8ce3dd87ddda0c089ce487fb5d8f8b5d8fb20b8"
+    },
+    "PS10-US-Capitals-Quiz/starter/states.txt": {
+      "content": "Alabama\nAlaska\nArizona\nArkansas\nCalifornia\nColorado\nConnecticut\nDelaware\nFlorida\nGeorgia\nHawaii\nIdaho\nIllinois\nIndiana\nIowa\nKansas\nKentucky\nLouisiana\nMaine\nMaryland\nMassachusetts\nMichigan\nMinnesota\nMississippi\nMissouri\nMontana\nNebraska\nNevada\nNew Hampshire\nNew Jersey\nNew Mexico\nNew York\nNorth Carolina\nNorth Dakota\nOhio\nOklahoma\nOregon\nPennsylvania\nRhode Island\nSouth Carolina\nSouth Dakota\nTennessee\nTexas\nUtah\nVermont\nVirginia\nWashington\nWest Virginia\nWisconsin\nWyoming",
+      "byteLength": 471,
+      "sha256": "c09e40c0b6fa044f6ccc5eec6ba5a209bfd2cb8b89af6f67607b3e2ab8bb14da",
+      "gitBlob": "ad6632e6c7da2fa18b292546babdaa272546f3e9"
+    },
+    "PS11-Juni-World/solution/main.py": {
+      "content": "rides_dict = {\n    'Tower of Turtles': 90,\n    'String Mountain': 130,\n    'Debug Track': 5,\n    'Concatenation Carousel': 100,\n    'Cinderella Casting': 90,\n    'Magic For Loop': 10,\n    'Pythons of the Caribbean': 30,\n}\n\nminutes_remaining = 360\nvisited_rides = []\nshortest_ride = min(rides_dict.values())\n\nprint(f\"Starting time: {minutes_remaining} minutes.\")\nwhile minutes_remaining >= shortest_ride:\n    for ride, duration in rides_dict.items():\n        print(f\"{ride}: {duration} minutes\")\n    try:\n        choice = input(\"Choose a ride or q to finish: \").strip()\n    except EOFError:\n        break\n    if choice.lower() == \"q\":\n        break\n    if choice not in rides_dict:\n        print(\"Choose a ride from the menu.\")\n        continue\n\n    duration = rides_dict[choice]\n    if duration > minutes_remaining:\n        print(f\"{choice} takes {duration} minutes. Remaining: {minutes_remaining} minutes.\")\n        continue\n\n    minutes_remaining -= duration\n    visited_rides.append(choice)\n    print(f\"Added {choice}. Remaining: {minutes_remaining} minutes.\")\n\nprint(\"Plan:\")\nfor ride in visited_rides:\n    print(ride)\nif not visited_rides:\n    print(\"No rides selected.\")\nprint(f\"Unused time: {minutes_remaining} minutes.\")\n",
+      "byteLength": 1229,
+      "sha256": "e8823a278c68de1214df5f3132fc994bd98b618d7a393c2375cb8cd1a5174795",
+      "gitBlob": "9d6ec9ea5a938aa97e16e852b5018be927574af4"
+    },
+    "PS11-Juni-World/starter/README.md": {
+      "content": "# Theme Park Planner\n\nRun `python3 main.py` to see the ride durations and the 360-minute budget.\nChoosing String Mountain twice uses 260 minutes. With 100 minutes left,\na third visit to String Mountain does not fit. Concatenation Carousel uses\nthe remaining 100 minutes exactly. Print the plan and the time left when\nthe user enters `q` or no ride fits.\n",
+      "byteLength": 354,
+      "sha256": "3cd3c7a12f527b212d151c70fcf2e650785abd75ac4123718c3a840137fd0076",
+      "gitBlob": "c7859b76f27c85a4fb9801ab7ec17d52c7dda97e"
+    },
+    "PS11-Juni-World/starter/main.py": {
+      "content": "rides_dict = {\n    'Tower of Turtles': 90,\n    'String Mountain': 130,\n    'Debug Track': 5,\n    'Concatenation Carousel': 100,\n    'Cinderella Casting': 90,\n    'Magic For Loop': 10,\n    'Pythons of the Caribbean': 30,\n}\n\nminutes_remaining = 360\n\nprint(f\"Starting time: {minutes_remaining} minutes.\")\nfor ride, duration in rides_dict.items():\n    print(f\"{ride}: {duration} minutes\")\n",
+      "byteLength": 385,
+      "sha256": "580b0df82d607ec7fb4d588e8e6717d1c9517b171586e9854023158459ba36d0",
+      "gitBlob": "f1b1ab29dc7fe51e2e55eb3da5987109cf15568c"
+    },
+    "PS12-Review-Sentiment/solution/main.py": {
+      "content": "import re\n\n\npositive_words = {\n    \"good\",\n    \"great\",\n    \"excellent\",\n    \"awesome\",\n    \"beautiful\",\n    \"amazing\",\n    \"glad\",\n    \"joy\",\n    \"happy\",\n    \"positive\",\n    \"cool\",\n}\n\nnegative_words = {\n    \"bad\",\n    \"mediocre\",\n    \"poor\",\n    \"lousy\",\n    \"sad\",\n    \"unacceptable\",\n    \"awful\",\n    \"negative\",\n    \"inferior\",\n    \"lame\",\n    \"disappointing\",\n}\n\n\ndef classify_review(review):\n    words = re.findall(r\"[a-z]+\", review.lower())\n    if not words:\n        print(\"No words to score.\")\n        return\n\n    positive = sum(word in positive_words for word in words)\n    negative = sum(word in negative_words for word in words)\n    print(f\"Positive: {positive}/{len(words)} ({positive / len(words):.1%})\")\n    print(f\"Negative: {negative}/{len(words)} ({negative / len(words):.1%})\")\n    if positive > negative:\n        print(\"Sentiment: positive\")\n    elif negative > positive:\n        print(\"Sentiment: negative\")\n    else:\n        print(\"Sentiment: neutral\")\n\n\ntry:\n    review = input(\"Enter a short English review: \")\nexcept EOFError:\n    review = \"\"\nclassify_review(review)\n",
+      "byteLength": 1093,
+      "sha256": "45bdc65dc3aed2d917b397ffa95d506696306e9d9a95f4a17a58f72953dcd40c",
+      "gitBlob": "1b240e94afa28f97b3fddad3b9789f2826c6df75"
+    },
+    "PS12-Review-Sentiment/starter/README.md": {
+      "content": "# Review Sentiment\n\nUse the provided word sets as a simple English vocabulary. Lowercase the\ninput and split it into runs of letters a through z. Count both categories\nagainst all words. For `Great, but BAD.` there are three words, one positive\nmatch and one negative match, so the result is neutral. An empty or\npunctuation-only review has no words to score.\n",
+      "byteLength": 360,
+      "sha256": "d4f914d5e2159e98f4206bdcded4b687691ebc7caa392af06c0009cbb15b6682",
+      "gitBlob": "7b0a9f486debe07ccffdaf59d5119ea2d64a9ea4"
+    },
+    "PS12-Review-Sentiment/starter/main.py": {
+      "content": "positive_words = {\n    \"good\",\n    \"great\",\n    \"excellent\",\n    \"awesome\",\n    \"beautiful\",\n    \"amazing\",\n    \"glad\",\n    \"joy\",\n    \"happy\",\n    \"positive\",\n    \"cool\",\n}\n\nnegative_words = {\n    \"bad\",\n    \"mediocre\",\n    \"poor\",\n    \"lousy\",\n    \"sad\",\n    \"unacceptable\",\n    \"awful\",\n    \"negative\",\n    \"inferior\",\n    \"lame\",\n    \"disappointing\",\n}\n\nprint(f\"Loaded {len(positive_words)} positive and {len(negative_words)} negative words.\")\n",
+      "byteLength": 448,
+      "sha256": "b67e8cc9a6511381b99fa9318d5e4373ab0dc19e933938610817f1b7d03969db",
+      "gitBlob": "1907622b048f3eccd3fda80f3a868114107ee532"
+    },
+    "PS9-Class-Registration/solution/main.py": {
+      "content": "biology = [\n    \"Sarah\",\n    \"Ahmed\",\n    \"Fred\",\n    \"Gillian\",\n    \"Shradah\",\n    \"Max\",\n    \"Max\",\n    \"Sara\",\n    \"Max\",\n    \"Esther\",\n]\n\ncomputer_science = [\n    \"Sarah\",\n    \"John\",\n    \"Fred\",\n    \"Gillian\",\n    \"Jermaine\",\n    \"Max\",\n    \"Sara\",\n    \"Juan\",\n    \"Esther\",\n]\n\nenglish = [\n    \"Nico\",\n    \"Sharjeel\",\n    \"Isabella\",\n    \"Taylor\",\n    \"Ali\",\n    \"Ali\",\n    \"Jean-Baptiste\",\n    \"Jean-Baptiste\",\n    \"Jean-Baptiste\",\n    \"William\",\n]\n\n\nrosters = {\n    \"Biology\": biology,\n    \"Computer Science\": computer_science,\n    \"English\": english,\n}\n\nfor class_name, roster in rosters.items():\n    students = sorted(set(roster))\n    print(f\"{class_name}: {len(students)} students enrolled.\")\n    print(\", \".join(students))\n",
+      "byteLength": 734,
+      "sha256": "b0d8d3c593a7736b0272220548abfd14e1a971657a8e6cfbd3003c29ef34af73",
+      "gitBlob": "4499df35573a91434724d1b71324d61660ea1869"
+    },
+    "PS9-Class-Registration/starter/README.md": {
+      "content": "# Class Registration\n\nRun `python3 main.py` to see the reported registrations. Convert each list to\na set before counting. The Biology list has ten entries and eight unique\nnames. Preserve both Sarah and Sara. Sort the unique names when printing the\nclean roster. The sorted list and set both discard the original order.\n",
+      "byteLength": 321,
+      "sha256": "e97977daea3dd4e82f2b15218eb08dfd53f1e11c1a05ca7b45ce3d58af1d0d15",
+      "gitBlob": "4f8ab915ebd33644911ddb8b8c60808fc48eae46"
+    },
+    "PS9-Class-Registration/starter/main.py": {
+      "content": "biology = [\n    \"Sarah\",\n    \"Ahmed\",\n    \"Fred\",\n    \"Gillian\",\n    \"Shradah\",\n    \"Max\",\n    \"Max\",\n    \"Sara\",\n    \"Max\",\n    \"Esther\",\n]\n\ncomputer_science = [\n    \"Sarah\",\n    \"John\",\n    \"Fred\",\n    \"Gillian\",\n    \"Jermaine\",\n    \"Max\",\n    \"Sara\",\n    \"Juan\",\n    \"Esther\",\n]\n\nenglish = [\n    \"Nico\",\n    \"Sharjeel\",\n    \"Isabella\",\n    \"Taylor\",\n    \"Ali\",\n    \"Ali\",\n    \"Jean-Baptiste\",\n    \"Jean-Baptiste\",\n    \"Jean-Baptiste\",\n    \"William\",\n]\n\n\nrosters = {\n    \"Biology\": biology,\n    \"Computer Science\": computer_science,\n    \"English\": english,\n}\n\nfor class_name, roster in rosters.items():\n    print(f\"{class_name}: {len(roster)} registrations before removing duplicates.\")\n",
+      "byteLength": 689,
+      "sha256": "81d10048fab251407e2ce72252347a5febc1143bde8b22e2805e9a7e04a296e8",
+      "gitBlob": "deecfd90fc2c089dc6b8f01d359fb1e3fe18492e"
+    }
+  },
+  "exercises": [
+    {
+      "pack": "PS9-Class-Registration",
+      "moduleId": "python-level-2-ps9-sets",
+      "itemId": "python-level-2-ps9-sets-supplemental-ps9-supplemental-project-1-class-registration",
+      "examples": {
+        "starter": {
+          "input": "",
+          "expected": [
+            "Biology: 10 registrations",
+            "English: 10 registrations"
+          ]
+        },
+        "solution": {
+          "input": "",
+          "expected": [
+            "Biology: 8 students",
+            "Computer Science: 9 students",
+            "English: 7 students"
+          ]
+        }
+      },
+      "classroomMainSha256": "487ab9d3a76c40ed3599d7f3dc30611926a3e94f988a1af68c823dd18a9ab622"
+    },
+    {
+      "pack": "PS10-US-Capitals-Quiz",
+      "moduleId": "python-level-2-ps10-to-do-list",
+      "itemId": "python-level-2-ps10-to-do-list-supplemental-ps10-supplemental-project-1-us-capitals-quiz",
+      "examples": {
+        "starter": {
+          "input": "",
+          "expected": [
+            "Loaded 50 states and 50 capitals."
+          ]
+        },
+        "solution": {
+          "input": "wrong\n",
+          "expected": [
+            "Incorrect. The capital of",
+            "Final score: 0"
+          ]
+        }
+      },
+      "classroomMainSha256": "6ecb84e02f4dffdf2d8bcaefc99d4b428be23a58a37619626aa3bbcb134fb7a6"
+    },
+    {
+      "pack": "PS11-Juni-World",
+      "moduleId": "python-level-2-ps11-bank-account",
+      "itemId": "python-level-2-ps11-bank-account-supplemental-ps11-supplemental-project-2-theme-park-planner",
+      "examples": {
+        "starter": {
+          "input": "",
+          "expected": [
+            "Starting time: 360 minutes.",
+            "String Mountain: 130 minutes"
+          ]
+        },
+        "solution": {
+          "input": "String Mountain\nString Mountain\nString Mountain\nConcatenation Carousel\n",
+          "expected": [
+            "String Mountain takes 130 minutes. Remaining: 100 minutes.",
+            "Added Concatenation Carousel. Remaining: 0 minutes.",
+            "Unused time: 0 minutes."
+          ]
+        }
+      },
+      "classroomMainSha256": "539787acc104226ee9dd1fa1b8518223a87910cf28bf5984f4d0f3affcf9b4c1"
+    },
+    {
+      "pack": "PS12-Review-Sentiment",
+      "moduleId": "python-level-2-ps12-type-racer",
+      "itemId": "python-level-2-ps12-type-racer-supplemental-ps12-supplemental-project-1-review-sentiment",
+      "examples": {
+        "starter": {
+          "input": "",
+          "expected": [
+            "Loaded 11 positive and 11 negative words."
+          ]
+        },
+        "solution": {
+          "input": "Great, but BAD.\n",
+          "expected": [
+            "Positive: 1/3 (33.3%)",
+            "Negative: 1/3 (33.3%)",
+            "Sentiment: neutral"
+          ]
+        }
+      },
+      "classroomMainSha256": "9083b3724880e8e7ec7224c55c1cad2b6d470e1fd2d5bbc40ac5e4ecb770fc03"
+    }
+  ]
+}

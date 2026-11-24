@@ -251,7 +251,9 @@ describe("Python Level 2 and PyGames classroom editions", () => {
 				madLibs!.projectLink!,
 				"https://example.com"
 			).searchParams.get("classroomSource")
-		).toBe("Python-Level-2/tree/main/PS1-Mad-Libs/solution");
+		).toBe(
+			"Python-Level-2/tree/b58d958347f0c3ca6f9d96963a674cc3d00813bf/PS1-Mad-Libs/solution"
+		);
 		expect(
 			new URL(
 				bouncingAlien!.projectLink!,

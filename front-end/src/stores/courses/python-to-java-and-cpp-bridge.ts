@@ -113,6 +113,11 @@ const BRIDGE_PROJECT_FOLDERS = {
 } as const;
 
 type BridgeProject = keyof typeof bridgeProjectBriefs;
+type BridgeLesson = [
+	title: string,
+	content: string,
+	contentKind?: RawCourseModuleItem["contentKind"]
+];
 
 function projectChoice(
 	project: BridgeProject,
@@ -123,10 +128,14 @@ function projectChoice(
 	const branch =
 		project === "java" || project === "cpp" ? "" : `/${language}`;
 	const label = language === "java" ? "Java" : "C++";
+	const completionCheck =
+		project === "capstone"
+			? "\n\n**Completion checks:** Run the extracted project with the shared console fixture. Record the exact build command and compare task IDs, output order and final totals with the Python baseline."
+			: "";
 	return {
 		title: `${title}: ${label} Starter`,
 		learningPath: "choice",
-		content: `Choose this ${label} starter to complete the shared project above. Only one target is required. The IDE button opens a confirmation before downloading this language’s source and complete README; it imports the starter, not the separate reference. Keep all files together, save and download the project ZIP, then extract and compile it with the README’s native commands. ${language === "java" ? "Use JDK 21; the Java browser runner is a limited preview and native compilation is the completion gate." : "Use a C++17 compiler; the source workspace does not execute C++ in the browser."} Compare the separate ${label} reference after a working draft and fixture record.`,
+		content: `Choose this ${label} starter to complete the shared project above. Only one target is required. The IDE button opens a confirmation before downloading this language’s source and complete README; it imports the starter, not the separate reference. Keep all files together, save and download the project ZIP, then extract and compile it with the README’s native commands. ${language === "java" ? "Use JDK 21; the Java browser runner is a limited preview and native compilation is the completion gate." : "Use a C++17 compiler; the source workspace does not execute C++ in the browser."} Compare the separate ${label} reference after a working draft and fixture record.${completionCheck}`,
 		projectLink: `${BRIDGE_SOURCE_BASE}/${folder}/starter${branch}`,
 		solutionLink: `${BRIDGE_SOURCE_BASE}/${folder}/solution${branch}`
 	};
@@ -134,7 +143,7 @@ function projectChoice(
 
 function bridgeModule(
 	title: string,
-	lessons: [string, string][],
+	lessons: BridgeLesson[],
 	projectTitle: string,
 	project: BridgeProject,
 	extension: [string, string]
@@ -143,13 +152,14 @@ function bridgeModule(
 	const path = isBranch ? ("choice" as const) : ("core" as const);
 	const flow = BRIDGE_MODULE_FLOW[title];
 	const curriculum: RawCourseModuleItem[] = lessons.map(
-		([lessonTitle, content], index) => ({
+		([lessonTitle, content, contentKind], index) => ({
 			title: lessonTitle,
 			content:
 				index === 0
 					? `**Course flow:** ${flow.flowNote}\n\n${content}`
 					: content,
-			learningPath: path
+			learningPath: path,
+			...(contentKind ? { contentKind } : {})
 		})
 	);
 	const projectItem: RawCourseModuleItem = {
@@ -241,7 +251,8 @@ export const pythonToJavaAndCppBridgeCourse: RawCourse = {
 				],
 				[
 					"Functions, Parameters, and Return Types: Verification and Reflection",
-					"Make a fixture table with input, predicted output, actual output and pass/fail. Cover each helper, integer extremes where supported, a zero price, both membership values, and ASCII text with no vowels, repeated vowels and punctuation. Record the floating-point tolerance. Keep at least one corrected compiler diagnostic and one corrected behavior mismatch, with their causes. Explain which checks concern types and which concern the algorithm. Completion requires the chosen target’s full callable contract, not only the supplied sample output."
+					"Make a fixture table with input, predicted output, actual output and pass/fail. Cover each helper, integer extremes where supported, a zero price, both membership values, and ASCII text with no vowels, repeated vowels and punctuation. Record the floating-point tolerance. Keep at least one corrected compiler diagnostic and one corrected behavior mismatch, with their causes. Explain which checks concern types and which concern the algorithm. Completion requires the chosen target’s full callable contract, not only the supplied sample output.",
+					"assignment"
 				]
 			],
 			"Project: Function Port Pack",
@@ -268,7 +279,8 @@ export const pythonToJavaAndCppBridgeCourse: RawCourse = {
 				],
 				[
 					"Collections, Strings, and Indexing: Verification and Reflection",
-					"Verify empty and single-word inputs, lengths around the filter threshold, all-short lists, duplicates and equal-length ties. Record the ordered returned elements and confirm the input is unchanged. Explain the difference between fixed arrays and growing collections, the slice endpoint/count distinction, and the ASCII limitation. During a session, pause after each loop iteration to predict the partial result; independently, write the same trace before execution. Completion requires both helpers in one chosen target and evidence for boundaries, order and non-mutation."
+					"Verify empty and single-word inputs, lengths around the filter threshold, all-short lists, duplicates and equal-length ties. Record the ordered returned elements and confirm the input is unchanged. Explain the difference between fixed arrays and growing collections, the slice endpoint/count distinction, and the ASCII limitation. During a session, pause after each loop iteration to predict the partial result; independently, write the same trace before execution. Completion requires both helpers in one chosen target and evidence for boundaries, order and non-mutation.",
+					"assignment"
 				]
 			],
 			"Project: Text and Collection Port Lab",
@@ -295,7 +307,8 @@ export const pythonToJavaAndCppBridgeCourse: RawCourse = {
 				],
 				[
 					"Classes and Objects across Languages: Verification and Reflection",
-					"Trace a successful deposit and withdrawal, full withdrawal to zero, an overdraft, zero/negative/non-finite amounts, invalid starting balance and deposit overflow. Compare the summary before and after each rejected operation. Verify exactly two decimal places and a decimal point independent of locale. Create independent accounts, then distinguish Java aliasing from C++ value copying in a separate check. A working sample is insufficient if a rejected transaction corrupts state. Completion evidence includes the chosen target’s files, native build/run commands, an unchanged-state trace and the object-model explanation."
+					"Trace a successful deposit and withdrawal, full withdrawal to zero, an overdraft, zero/negative/non-finite amounts, invalid starting balance and deposit overflow. Compare the summary before and after each rejected operation. Verify exactly two decimal places and a decimal point independent of locale. Create independent accounts, then distinguish Java aliasing from C++ value copying in a separate check. A working sample is insufficient if a rejected transaction corrupts state. Completion evidence includes the chosen target’s files, native build/run commands, an unchanged-state trace and the object-model explanation.",
+					"assignment"
 				],
 				[
 					"Choose a Java or C++ Exit Branch",
@@ -314,7 +327,8 @@ export const pythonToJavaAndCppBridgeCourse: RawCourse = {
 			[
 				[
 					"Scanner, main, and Java Project Rhythm",
-					"The supplied `public static void main(String[] args)` is the entry point. `Scanner` reads console input; `hasNextLine()` tests availability before `nextLine()` consumes a complete line. A blank line is an answer containing no characters, while end of input means no further line exists. The quiz driver handles EOF by reporting cancellation and retaining the score already earned. Keep that input lifecycle and implement the scoring helper. Read the full native source contract before using the browser preview; native Java compilation and console fixtures are the completion gate. Test correct and incorrect answers, surrounding spaces, mixed case, blank lines and input ending after the first question. Predict the accumulated score after each accepted answer."
+					"The supplied `public static void main(String[] args)` is the entry point. `Scanner` reads console input; `hasNextLine()` tests availability before `nextLine()` consumes a complete line. A blank line is an answer containing no characters, while end of input means no further line exists. The quiz driver handles EOF by reporting cancellation and retaining the score already earned. Keep that input lifecycle and implement the scoring helper. Read the full native source contract before using the browser preview; native Java compilation and console fixtures are the completion gate. Test correct and incorrect answers, surrounding spaces, mixed case, blank lines and input ending after the first question. Predict the accumulated score after each accepted answer.",
+					"reading"
 				],
 				[
 					"String Equality and Reference Habits",
@@ -326,7 +340,8 @@ export const pythonToJavaAndCppBridgeCourse: RawCourse = {
 				],
 				[
 					"Java Specific Adaptation: Verification and Reflection",
-					"Create the full fixture table from the project brief. Verify points stay between zero and two, empty input is distinguished from an empty line, and cancellation does not erase earned points. Record exact native commands, predicted and observed output, and one corrected String comparison mistake. Explain how `Scanner` and `main` adapt the Python workflow. A facilitated walkthrough pauses before reading a line and before changing the score; independent study writes those predictions in the record."
+					"Create the full fixture table from the project brief. Verify points stay between zero and two, empty input is distinguished from an empty line, and cancellation does not erase earned points. Record exact native commands, predicted and observed output, and one corrected String comparison mistake. Explain how `Scanner` and `main` adapt the Python workflow. A facilitated walkthrough pauses before reading a line and before changing the score; independent study writes those predictions in the record.",
+					"assignment"
 				]
 			],
 			"Project: Python to Java Quiz Game",
@@ -353,7 +368,8 @@ export const pythonToJavaAndCppBridgeCourse: RawCourse = {
 				],
 				[
 					"C++ Specific Adaptation: Verification and Reflection",
-					"Test exact membership, missing words, case changes, empty/duplicate secret lists, repeated accepted guesses, blank whitespace, immediate EOF and EOF after one match. The last case must score one rather than replaying the previous token. Record the accepted round count and unchanged input vector. Explain why token input differs from Python line input and document the actual native build/run command. Completion requires the whole fixture set and a corrected failure trace, not only a successful three-token sample."
+					"Test exact membership, missing words, case changes, empty/duplicate secret lists, repeated accepted guesses, blank whitespace, immediate EOF and EOF after one match. The last case must score one rather than replaying the previous token. Record the accepted round count and unchanged input vector. Explain why token input differs from Python line input and document the actual native build/run command. Completion requires the whole fixture set and a corrected failure trace, not only a successful three-token sample.",
+					"assignment"
 				]
 			],
 			"Project: Python to C++ Console Port",
@@ -368,7 +384,8 @@ export const pythonToJavaAndCppBridgeCourse: RawCourse = {
 			[
 				[
 					"Language Bridge Lab 17: Core Concepts",
-					"The task tracker combines typed functions, ordered collections, encapsulated state, validation and a supplied console loop. Read the full contract before selecting the Java or C++ starter. A task’s ID is distinct from its current list position; removal must not recycle an ID or restore the lifetime add budget. Repeated titles are allowed. Model each operation as input, validation, state transition and output. A rejected operation must preserve the same tasks, flags, order and next ID. The list operation returns fresh data so callers cannot mutate the tracker through its result. Use the same chosen language as the exit project; the other target is optional."
+					"The task tracker combines typed functions, ordered collections, encapsulated state, validation and a supplied console loop. Read the full contract before selecting the Java or C++ starter. A task’s ID is distinct from its current list position; removal must not recycle an ID or restore the lifetime add budget. Repeated titles are allowed. Model each operation as input, validation, state transition and output. A rejected operation must preserve the same tasks, flags, order and next ID. The list operation returns fresh data so callers cannot mutate the tracker through its result. Use the same chosen language as the exit project; the other target is optional.\n\n**Worked example:** An empty tracker assigns ID 1 to `ADD Read notes`. An `ADD ` with a blank title returns `ERROR: title` and leaves the list and the next ID unchanged. `ADD Plan check` then returns `ADDED 2`. The result distinguishes a rejected attempt from a successful add.",
+					"reading"
 				],
 				[
 					"Language Bridge Lab 17: Guided Example",
@@ -376,18 +393,18 @@ export const pythonToJavaAndCppBridgeCourse: RawCourse = {
 				],
 				[
 					"Language Bridge Lab 17: Review and Reflection",
-					"Compare the chosen port with Python using the shared ordinary, boundary and invalid-input fixtures. Record state before and after each rejected operation, verify fresh list results and independent trackers, and check the 100-successful-add lifetime boundary after a removal. Compile and run the real console protocol with LF/CRLF and EOF, including input after QUIT that must be ignored. Explain one syntax difference, one type or object-model difference and one diagnosed mismatch. Consult the separately linked target reference only after a working draft, and explain any revision rather than replacing the learner implementation."
+					"**Completion checks:** Compare the chosen port with Python using the shared ordinary, boundary and invalid-input fixtures. Record state before and after each rejected operation, verify fresh list results and independent trackers, and check the 100-successful-add lifetime boundary after a removal. Compile and run the real console protocol with LF/CRLF and EOF, including input after QUIT that must be ignored. Explain one syntax difference, one type or object-model difference and one diagnosed mismatch. Consult the separately linked target reference after a working draft and explain any revisions."
 				],
 				[
 					"Chosen-Language Capstone Contract",
-					"**Completion evidence:**\n- One working Java or C++ task-tracker port of the supplied Python baseline.\n- Shared fixtures with predicted and actual output, including title/ID boundaries, ordering, repeated operations and the lifetime add limit.\n- State-preserving rejection and fresh-result evidence.\n- The exact native build/run commands and all required files.\n- A comparison record with a type/object difference, a diagnosed failure and the next-course readiness decision. The second target is optional."
+					"**Completion evidence:**\n- One working Java or C++ task-tracker port of the supplied Python baseline.\n- Shared fixtures with predicted and actual output, including title/ID boundaries, ordering, repeated operations and the lifetime add limit.\n- State-preserving rejection and fresh-result evidence. Include the task list and next successful ID after one rejection.\n- The exact native build/run commands and all required files. Include the compiler version so the run can be repeated on another machine.\n- A comparison record with a type/object difference, a diagnosed failure and the next-course readiness decision. The second target is optional."
 				]
 			],
 			"Language Bridge Lab 17: Core Project",
 			"capstone",
 			[
 				"Language Bridge Lab 17: Extension Challenge",
-				"After completing the capstone in one target, use the other target starter and preserve the same task and console contract. Compare Java reference aliasing with ordinary C++ value copying and explain how separate trackers keep separate state. A GUI, sorting or persistence needs a separate explicit behavior contract and is not required for bridge completion."
+				"After completing the capstone in one target, use the other target starter and preserve the same task and console contract. Compare Java reference aliasing with ordinary C++ value copying and explain how separate trackers keep separate state. A GUI, sorting or persistence needs a separate explicit behavior contract and is optional.\n\n**Completion checks:** Use two trackers with the same initial contents. Change a task in one tracker and compare the other tracker’s list and totals before and after that change. Repeat the check in both languages and explain why the other tracker’s state stays independent."
 			]
 		)
 	]

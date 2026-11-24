@@ -1,0 +1,172 @@
+{
+  "repository": "Python-Level-2",
+  "revision": "8bc76e6927ae40683bfb79170c378dac2b266cf2",
+  "exercises": [
+    {
+      "moduleId": "python-level-2-check-in-1",
+      "pack": "PS-Check-in-1",
+      "itemId": "python-level-2-check-in-1-curriculum-check-in-1-overview",
+      "examples": {
+        "starter": {
+          "input": "dog\nblack\n",
+          "expected": [
+            "Animal length: 3"
+          ]
+        },
+        "solution": {
+          "input": "dog\nblack\n",
+          "expected": [
+            "Third color character: a",
+            "Guess: black dog",
+            "Correct answer!",
+            "Bonus loop from 1 to 10:"
+          ]
+        }
+      },
+      "classroomMainSha256": "19ae849a7c517fb3bd6d53ce0a43db27ba887b71816d360a2c647a5d2cf76c03"
+    },
+    {
+      "moduleId": "python-level-2-check-in-1",
+      "pack": "PS-Check-in-1/practice",
+      "itemId": "python-level-2-check-in-1-curriculum-check-in-1-additional-practice-project",
+      "examples": {
+        "starter": {
+          "input": "Az!\n",
+          "expected": [
+            "Input length: 3"
+          ]
+        },
+        "solution": {
+          "input": "Az!\nAz!\n",
+          "expected": [
+            "Length rule: Zy!",
+            "Index rule: By!"
+          ]
+        }
+      },
+      "classroomMainSha256": "2928b23b99e3916066e21c96882f6e06a21ecb95b486bb768fb6a4efb0e6599f"
+    },
+    {
+      "moduleId": "python-level-2-check-in-2",
+      "pack": "PS-Check-in-2",
+      "itemId": "python-level-2-check-in-2-curriculum-check-in-2-overview",
+      "examples": {
+        "starter": {
+          "input": "",
+          "expected": [
+            "15 times 22: 330",
+            "Starting guests:"
+          ]
+        },
+        "solution": {
+          "input": "",
+          "expected": [
+            "15 times 22: 330",
+            "Final guest list:\nBen\nMina",
+            "Curry: 30",
+            "Shared ingredients: salt",
+            "Different letters in banana: 3"
+          ]
+        }
+      },
+      "classroomMainSha256": "fffaa7498a68520d293badb65fc3dfea8df6a914fe49e91fae3bbf75553a06a2"
+    },
+    {
+      "moduleId": "python-level-2-check-in-2",
+      "pack": "PS-Check-in-2/practice",
+      "itemId": "python-level-2-check-in-2-curriculum-check-in-2-additional-practice-project",
+      "examples": {
+        "starter": {
+          "input": "Banana, banana!\n",
+          "expected": [
+            "Unique letter count: 3"
+          ]
+        },
+        "solution": {
+          "input": "Banana, banana!\nRed,blue red\n",
+          "expected": [
+            "Unique letters: abn",
+            "Unique letter count: 3",
+            "Unique words: blue, red",
+            "Unique word count: 2 of 3 total"
+          ]
+        }
+      },
+      "classroomMainSha256": "4d06036e90258df52c22cad619007a957a81788affcca9ced3eb23ec70ab62e6"
+    }
+  ],
+  "files": {
+    "PS-Check-in-1/starter/main.py": {
+      "content": "animal = input(\"Animal: \").strip().lower()\ncolor = input(\"Color: \").strip().lower()\nprint(f\"Animal length: {len(animal)}\")\n\n# Variables: convert 42 to text, check the third color character,\n# and display the combined guess.\n\n# Loops: trace each counter and print the requested sequences.\n\n# Conditionals: classify both, one, or neither matching input.\n\n# Extra practice: compare the two character-shifting rules.\n",
+      "byteLength": 413,
+      "sha256": "44f58783a61078adc8d6b2dc3c3d762994a20c8608f289980847b55b0dd04b17",
+      "gitBlob": "461267931b415cc216d5f36299e5db7c979f22c9"
+    },
+    "PS-Check-in-1/starter/README.md": {
+      "content": "# Check-In 1 starter\n\n1. Run with dog and black. The starter prints the animal length, 3. Add the third color character (a), the combined guess, and an explicit conversion of 42 to text. For a color shorter than three letters, print a message and continue.\n2. Print 0 through 10 with a for loop, the color characters in order, and 6, 9, 12, 15 with a stepped range. Print 0 through 15 with a while loop and every other animal character starting at index 1. For dog, that last sequence is o.\n3. Compare the inputs with dog and black. Both matching gives Correct answer!, just one matching gives Almost there!, and neither gives Incorrect answer. Test dog/black, dog/tan, cat/black, and cat/red. A separate cat message can appear before the result. The optional loop prints 1 through 10 and terminates with a break when the counter reaches 11.\n",
+      "byteLength": 842,
+      "sha256": "7b0829928cef7292a43055a7f5c9e09c66104a533637e3e8579c0807489e9bdb",
+      "gitBlob": "8184ce4b573acbe90384c721d5bfc83186339660"
+    },
+    "PS-Check-in-1/solution/main.py": {
+      "content": "word = \"animal\"\nnumber = 42\nnumber_text = str(number)\nprint(f\"Stored word: {word}\")\nprint(f\"42 converted to text: {number_text}\")\n\nanimal = input(\"Animal: \").strip().lower()\ncolor = input(\"Color: \").strip().lower()\nprint(f\"Animal length: {len(animal)}\")\nif len(color) >= 3:\n    print(f\"Third color character: {color[2]}\")\nelse:\n    print(\"No third color character.\")\nprint(f\"Guess: {color} {animal}\")\n\nprint(\"For loop from 0 to 10:\")\nfor number in range(11):\n    print(number)\n\nprint(\"Color characters:\")\nfor character in color:\n    print(character)\n\nprint(\"Every third number from 6 to 15:\")\nfor number in range(6, 16, 3):\n    print(number)\n\nprint(\"While loop from 0 to 15:\")\ncounter = 0\nwhile counter < 16:\n    print(counter)\n    counter += 1\n\nprint(\"Every other animal character from index 1:\")\nindex = 1\nwhile index < len(animal):\n    print(animal[index])\n    index += 2\n\nif animal == \"cat\":\n    print(\"Cat guess recorded.\")\n\nif animal == \"dog\" and color == \"black\":\n    print(\"Correct answer!\")\nelif animal == \"dog\" or color == \"black\":\n    print(\"Almost there!\")\nelse:\n    print(\"Incorrect answer.\")\n\nprint(\"Nested version:\")\nif animal == \"dog\":\n    if color == \"black\":\n        print(\"Correct answer!\")\n    else:\n        print(\"Almost there!\")\nelif color == \"black\":\n    print(\"Almost there!\")\nelse:\n    print(\"Incorrect answer.\")\n\nprint(\"Bonus loop from 1 to 10:\")\ncounter = 1\nwhile True:\n    print(counter)\n    counter += 1\n    if counter == 11:\n        break\n",
+      "byteLength": 1469,
+      "sha256": "3c51d9cc7e50e77eaca1bca814c90f349c8bb1931460b3b8d6917e546cea72f1",
+      "gitBlob": "2579ad4e5b84fdf8ef6f632818220928e555c88f"
+    },
+    "PS-Check-in-1/practice/starter/main.py": {
+      "content": "text = input(\"Text for the length rule: \")\nprint(f\"Input length: {len(text)}\")\n\n# Apply one shift to all ASCII letters based on input length.\n# Then read a second input and apply a separate shift for each index.\n",
+      "byteLength": 212,
+      "sha256": "fb59ef38decd557553b173940b49b652945bdfa03c5e278fc8e795d86e86fee8",
+      "gitBlob": "db18e6744cb115c739b3e4c119d2601ace55ed27"
+    },
+    "PS-Check-in-1/practice/starter/README.md": {
+      "content": "# Check-In 1 practice starter\n\nThe first rule shifts all letters forward for even input length and backward for odd length. For the second rule, read another string and shift characters forward at even indexes and backward at odd indexes. Treat the indexes as zero-based. Wrap letters within their uppercase or lowercase alphabet and copy punctuation and spaces through unchanged. The length and index count include every entered character.\n\nFor Az!, the length rule gives Zy! and the index rule gives By!. For za, both length-rule letters move forward to ab, and the index rule produces az.\n",
+      "byteLength": 592,
+      "sha256": "c127fd1ba69a4f6a34df2919b1273f43f7f7e5773d58a1a983b50c6166e34a70",
+      "gitBlob": "0f331f0cfe1c4d17af33025d2582d96568ef3d8c"
+    },
+    "PS-Check-in-1/practice/solution/main.py": {
+      "content": "# Extra practice. This helper applies the same alphabet rule in both loops.\ndef shift_letter(character, change):\n    if \"A\" <= character <= \"Z\":\n        start = ord(\"A\")\n    elif \"a\" <= character <= \"z\":\n        start = ord(\"a\")\n    else:\n        return character\n    return chr(start + (ord(character) - start + change) % 26)\n\n\nlength_sample = input(\"Text for the length rule: \")\nlength_shift = 1 if len(length_sample) % 2 == 0 else -1\nshifted_by_length = \"\"\nfor character in length_sample:\n    shifted_by_length += shift_letter(character, length_shift)\nprint(f\"Length rule: {shifted_by_length}\")\n\nindex_sample = input(\"Text for the index rule: \")\nshifted_by_index = \"\"\nfor index in range(len(index_sample)):\n    index_shift = 1 if index % 2 == 0 else -1\n    shifted_by_index += shift_letter(index_sample[index], index_shift)\nprint(f\"Index rule: {shifted_by_index}\")\n",
+      "byteLength": 868,
+      "sha256": "5fb0416f1e9c61161db83123e54b391f3e769451d281e49b7910ab27ded37a01",
+      "gitBlob": "1ac2b71c1827615c0d6375301350fbedf8e07491"
+    },
+    "PS-Check-in-2/starter/main.py": {
+      "content": "def multiply(left, right):\n    return left * right\n\n\nprint(f\"15 times 22: {multiply(15, 22)}\")\n\nguests = [\"Ava\", \"Ben\", \"Mina\"]\njerseys = {\"Parker\": 3, \"Reed\": 11, \"Rivera\": 7}\nrecipe = {\"garlic\", \"onion\", \"salt\"}\nsecond_recipe = {\"apple\", \"cinnamon\", \"salt\"}\nprint(f\"Starting guests: {guests}\")\n\n# Add the lottery result function and complete the list, dictionary,\n# and set tasks in the project instructions.\n",
+      "byteLength": 411,
+      "sha256": "e9c901a3a33cca7bb79e7457fe6577048beb46b05b10b0d98a99711da0581399",
+      "gitBlob": "868a6d0426a12f857573972e195eba2c5ac2c71c"
+    },
+    "PS-Check-in-2/starter/README.md": {
+      "content": "# Check-In 2 starter\n\n1. The starter calls multiply with 15 and 22 and displays 330. Write a lottery-result function that accepts a win flag and an amount and returns a message. Compare a fixed loss with a fixed win of 75 before using random values.\n2. Build a guest list by appending Ava, Ben, and Mina to an empty list. Remove Ava and print Ben and Mina on separate lines. Make a list from 1 through 20 and the list of ten even numbers from that range.\n3. Create three player-to-jersey mappings. Add one entry, then add Curry with number 30 if that key is missing. Use fifteen distinct randomly selected keys from 0 through 1000 and store the length of each key's decimal representation as its value.\n4. Compare garlic, onion, and salt with apple, cinnamon, and salt. Remove onion from the first recipe. Print the union, the intersection, and garlic's membership. Then make a set from banana and check that it has three different letters.\n",
+      "byteLength": 941,
+      "sha256": "8656f14d08609a9d143f22254ac7fc1462c54f815f875c96e0f45eb0d15a61f4",
+      "gitBlob": "fb02b58aca2e527e0c0315905f0161eec55c27b2"
+    },
+    "PS-Check-in-2/solution/main.py": {
+      "content": "import random\n\n\ndef multiply(left, right):\n    return left * right\n\n\ndef lottery_result(won, amount):\n    if won:\n        return f\"The lottery prize is {amount} dollars.\"\n    return \"No lottery prize.\"\n\n\nprint(f\"15 times 22: {multiply(15, 22)}\")\nprint(lottery_result(random.randint(0, 1), random.randint(1, 1000)))\n\nguests = []\nguests.append(\"Ava\")\nguests.append(\"Ben\")\nguests.append(\"Mina\")\nprint(f\"Starting guests: {guests}\")\nguests.remove(\"Ava\")\nprint(f\"First remaining guest: {guests[0]}\")\nprint(\"Final guest list:\")\nfor guest in guests:\n    print(guest)\n\nnumbers = []\nevens = []\nfor number in range(1, 21):\n    numbers.append(number)\n    if number % 2 == 0:\n        evens.append(number)\nprint(f\"Numbers: {numbers}\")\nprint(f\"Evens: {evens}\")\n\njerseys = {\"Parker\": 3, \"Reed\": 11, \"Rivera\": 7}\nprint(f\"Reed: {jerseys['Reed']}\")\njerseys[\"Diaz\"] = 10\nif \"Curry\" not in jerseys:\n    jerseys[\"Curry\"] = 30\nfor player in jerseys:\n    print(f\"{player}: {jerseys[player]}\")\n\ndigit_counts = {}\nfor number in random.sample(range(1001), 15):\n    digit_counts[number] = len(str(number))\nprint(f\"Digit counts: {digit_counts}\")\n\nrecipe = {\"garlic\", \"onion\", \"salt\"}\nrecipe.remove(\"onion\")\nsecond_recipe = {\"apple\", \"cinnamon\", \"salt\"}\nshared_ingredients = recipe.intersection(second_recipe)\nall_ingredients = recipe.union(second_recipe)\nprint(f\"All ingredients: {', '.join(sorted(all_ingredients))}\")\nprint(f\"Shared ingredients: {', '.join(sorted(shared_ingredients))}\")\nif \"garlic\" in shared_ingredients:\n    print(\"Garlic is in both recipes.\")\nelif \"garlic\" in all_ingredients:\n    print(\"Garlic is in one recipe.\")\nelse:\n    print(\"Garlic is in neither recipe.\")\nprint(f\"Different letters in banana: {len(set('banana'))}\")\n",
+      "byteLength": 1715,
+      "sha256": "fb68bfd8359fbbafed038e41c8a6ec5e21456eea199c73873cc9b82b0b7b1d4a",
+      "gitBlob": "d2abc72ee1f75cd058d65e7a468e2d883667edbf"
+    },
+    "PS-Check-in-2/practice/starter/main.py": {
+      "content": "sentence = input(\"Sentence for letter counts: \")\nletters = set()\nfor character in sentence.lower():\n    if character.isalpha():\n        letters.add(character)\nprint(f\"Unique letter count: {len(letters)}\")\n\n# Ask for a paragraph. Count every word and build a set of unique words.\n",
+      "byteLength": 279,
+      "sha256": "b9cb5bd331348b101724cfc30bd57ecd73e6ac77ba33e27fb66ffb654b8143e8",
+      "gitBlob": "b8de2024ef9418fac8ff90e3f4da078189ab9f1f"
+    },
+    "PS-Check-in-2/practice/starter/README.md": {
+      "content": "# Check-In 2 practice starter\n\nThe starter counts unique letters after changing case and discarding spaces, digits, and punctuation. Banana, banana! gives three letters. Add a second prompt and count words in the paragraph. Convert to lowercase and replace nonletters with spaces, then split on whitespace and turn the word list into a set. Red blue red. gives two unique words out of three. Red,blue red also gives two out of three because punctuation separates adjacent words.\n",
+      "byteLength": 479,
+      "sha256": "b6f1bdd3f9798638b857f51b702df39a52e7b6b5bd2e5108bc53c991e39a1739",
+      "gitBlob": "fecde172d19e937df48704f6721618ca356cce4d"
+    },
+    "PS-Check-in-2/practice/solution/main.py": {
+      "content": "sentence = input(\"Sentence for letter counts: \").lower()\nletters = set()\nfor character in sentence:\n    if character.isalpha():\n        letters.add(character)\nprint(f\"Unique letters: {''.join(sorted(letters))}\")\nprint(f\"Unique letter count: {len(letters)}\")\n\nparagraph = input(\"Paragraph for word counts: \").lower()\nnormalized = \"\"\nfor character in paragraph:\n    if character.isalpha():\n        normalized += character\n    else:\n        normalized += \" \"\nall_words = normalized.split()\nprint(f\"Unique words: {', '.join(sorted(set(all_words)))}\")\nprint(f\"Unique word count: {len(set(all_words))} of {len(all_words)} total\")\n",
+      "byteLength": 624,
+      "sha256": "a93cf3fcb324a4075428e910b6bd45e13db43e14bda0d251a73032e5e0425639",
+      "gitBlob": "40b225799b96dfd6cb690f6d6e3ea87e8c790763"
+    }
+  }
+}

@@ -1,0 +1,197 @@
+{
+  "repository": "Python-Level-2",
+  "revision": "db7809a1c101e6d5e5943c8e22bbfed744ded734",
+  "moduleId": "python-level-2-ps3-ascii-and-ciphers",
+  "exercises": [
+    {
+      "pack": "PS3-Simple-Cipher",
+      "itemId": "python-level-2-ps3-ascii-and-ciphers-curriculum-ps3-project-1-simple-cipher",
+      "examples": {
+        "starter": {
+          "input": "Az!\n",
+          "expected": [
+            "Original codes: 65 122 33"
+          ]
+        },
+        "solution": {
+          "input": "Az!\n2\n",
+          "expected": [
+            "Original codes: 65 122 33",
+            "Shifted codes: 67 124 35"
+          ]
+        }
+      },
+      "classroomMainSha256": "ffec4780f723dc533ce34fbca231dc483084ddac8385905337e920703b12c097"
+    },
+    {
+      "pack": "PS3-Caesar-Cipher",
+      "itemId": "python-level-2-ps3-ascii-and-ciphers-curriculum-ps3-project-2-caesar-cipher",
+      "examples": {
+        "starter": {
+          "input": "z!\n1\n",
+          "expected": [
+            "z shifted position: 26"
+          ]
+        },
+        "solution": {
+          "input": "Zebra-z! 9\n1\n",
+          "expected": [
+            "Shifted: Afcsb-a! 9",
+            "Restored: Zebra-z! 9"
+          ]
+        }
+      },
+      "classroomMainSha256": "13072100cd30cebacbb8dd5c7a1662732949e9fd4650c5b842ff9181fc08b455"
+    },
+    {
+      "pack": "PS3-ASCII-Art",
+      "itemId": "python-level-2-ps3-ascii-and-ciphers-supplemental-ps3-supplemental-project-1-ascii-art",
+      "examples": {
+        "starter": {
+          "input": "4\n",
+          "expected": [
+            "####"
+          ]
+        },
+        "solution": {
+          "input": "4\n",
+          "expected": [
+            "####\n####\n####\n####"
+          ]
+        }
+      },
+      "classroomMainSha256": "ef4417d9edf8fe63cc5988cb82cc7c22fe14e9a159623724caab03871f4a5237"
+    },
+    {
+      "pack": "PS3-Uppercase-to-Lowercase",
+      "itemId": "python-level-2-ps3-ascii-and-ciphers-supplemental-ps3-supplemental-project-2-uppercase-to-lowercase",
+      "examples": {
+        "starter": {
+          "input": "Z9\n",
+          "expected": [
+            "Z 90",
+            "9 57"
+          ]
+        },
+        "solution": {
+          "input": "AZ!\n",
+          "expected": [
+            "Converted: az!"
+          ]
+        }
+      },
+      "classroomMainSha256": "a88e73409b627dc64ab64efd93b77d571e84d4a2e2dc0386a693799c41f95443"
+    },
+    {
+      "pack": "PS3-Nested-Boxes",
+      "itemId": "python-level-2-ps3-ascii-and-ciphers-supplemental-ps3-supplemental-project-3-nested-boxes",
+      "examples": {
+        "starter": {
+          "input": "",
+          "expected": [
+            "###"
+          ]
+        },
+        "solution": {
+          "input": "3\n",
+          "expected": [
+            "###\n# #\n###"
+          ]
+        }
+      },
+      "classroomMainSha256": "a4b6343e28c03ec3818e5bf9cc51f08ea94398bea5c84bc5197b6b948928f2c3"
+    }
+  ],
+  "files": {
+    "PS3-Simple-Cipher/starter/README.md": {
+      "content": "# Simple Cipher starter\n\nRun the character-code list with the sample Az!. The starting codes are 65, 122, and 33. Ask for an integer offset, add it to each code, and print the shifted list below the original list.\n",
+      "byteLength": 214,
+      "sha256": "a9efd1f6cc24b470db1b2cd7f1c14aae0883a54a1a8e269b4f78ec73a309f4c2",
+      "gitBlob": "e6ba328dcdf0f45e0858078d3e9b08517a4dda9c"
+    },
+    "PS3-Simple-Cipher/starter/main.py": {
+      "content": "message = input(\"Sample message: \")\ncodes = \"\"\n\nfor letter in message:\n    codes += str(ord(letter)) + \" \"\n\nprint(\"Original codes:\", codes.rstrip())\n\n# Read an integer offset and print the shifted codes for the same message.\n",
+      "byteLength": 225,
+      "sha256": "9110216a0068573d560b5030555ae8d923ddcd8afb91996dd9b98fd634c91b48",
+      "gitBlob": "a57a75fc49d8a4f8e938a95e53c6f91030b8d71b"
+    },
+    "PS3-Simple-Cipher/solution/main.py": {
+      "content": "message = input(\"Sample message: \")\noffset = int(input(\"Numeric offset: \"))\noriginal = \"\"\nshifted = \"\"\n\nfor letter in message:\n    code = ord(letter)\n    original += str(code) + \" \"\n    shifted += str(code + offset) + \" \"\n\nprint(\"Original codes:\", original.rstrip())\nprint(\"Shifted codes:\", shifted.rstrip())\n",
+      "byteLength": 309,
+      "sha256": "7b86d72528b6ed686cd4842edd89d841d2de893c45e39dfc530856b0bf1ac98a",
+      "gitBlob": "367a0835f1800b78f8f5a2ee9eba3251b037a2e2"
+    },
+    "PS3-Caesar-Cipher/starter/README.md": {
+      "content": "# Caesar Cipher starter\n\nEnter z and a shift of 1. The diagnostic shows a shifted position of 26. Wrap positions within 0 through 25, convert them back to letters, and use the opposite shift to restore the message. Handle uppercase separately and carry other characters through unchanged.\n",
+      "byteLength": 289,
+      "sha256": "5520adfe1b74e3ff4d747117be2c002f00d9557d19ae7e8ab6a1e1c55df9c503",
+      "gitBlob": "08e544717c398870ed7b402bb6ac35cb68df2316"
+    },
+    "PS3-Caesar-Cipher/starter/main.py": {
+      "content": "message = input(\"Sample message: \")\nshift = int(input(\"Shift: \"))\n\nfor letter in message:\n    if \"a\" <= letter <= \"z\":\n        position = ord(letter) - ord(\"a\")\n        print(letter, \"shifted position:\", position + shift)\n    else:\n        print(letter)\n\n# Wrap a shifted position with modulo 26 and convert it back to a letter.\n# Add the uppercase range and print the assembled result.\n",
+      "byteLength": 387,
+      "sha256": "1a31d930a20a644d9b792add67e3cc3f186f113f8cb0ead5fadc6855288566e4",
+      "gitBlob": "ed950726eb4c49fec1e03fcee4d856eb8312ab6b"
+    },
+    "PS3-Caesar-Cipher/solution/main.py": {
+      "content": "def shift_ascii(message, shift):\n    result = \"\"\n    for letter in message:\n        if \"a\" <= letter <= \"z\":\n            base = ord(\"a\")\n        elif \"A\" <= letter <= \"Z\":\n            base = ord(\"A\")\n        else:\n            result += letter\n            continue\n\n        position = ord(letter) - base\n        wrapped = (position + shift) % 26\n        result += chr(base + wrapped)\n    return result\n\n\nmessage = input(\"Sample message: \")\nshift = int(input(\"Shift: \"))\nshifted = shift_ascii(message, shift)\nprint(\"Shifted:\", shifted)\nprint(\"Restored:\", shift_ascii(shifted, -shift))\n",
+      "byteLength": 583,
+      "sha256": "2653324f44280f1284ed34cc846bee3072575522c5ffbe9bad6c493840f89773",
+      "gitBlob": "944c4148abfc1ead6a54634ced0cf6c11e689038"
+    },
+    "PS3-ASCII-Art/starter/README.md": {
+      "content": "# ASCII Art starter\n\nEnter 4 to print one row of four marks. Repeat that row with an outer loop so the number of rows matches the width. Compare the result for sizes 1, 4, and 10.\n",
+      "byteLength": 180,
+      "sha256": "88d501b83c1c9c1524e7bda91c705a8252c3a0d8902db7e740d94751ce9bb411",
+      "gitBlob": "10c022d16e1ba9aec99ea7b7dbd74d6fad763b92"
+    },
+    "PS3-ASCII-Art/starter/main.py": {
+      "content": "size = int(input(\"Square size: \"))\nfor column in range(size):\n    print(\"#\", end=\"\")\nprint()\n\n# Add an outer loop to repeat the row size times.\n",
+      "byteLength": 144,
+      "sha256": "39338b9fa559f22c7270594e45c9a575ad050e5f80c7d88247eb196813b87940",
+      "gitBlob": "f132485d783f0cbb717a91a5321ac31b9d503342"
+    },
+    "PS3-ASCII-Art/solution/main.py": {
+      "content": "size = int(input(\"Enter the size of the box: \"))\n\nfor i in range(size):\n    for j in range(size):\n        print(\"#\", end=\"\")\n    print()\n",
+      "byteLength": 137,
+      "sha256": "8db935f45195a2e8e84748faa4f15c77ba8d03b30d16459dd901db0ba2c3e452",
+      "gitBlob": "9fd3aaf687bb2e4fe34aaf968a827e446ec175ae"
+    },
+    "PS3-Uppercase-to-Lowercase/starter/README.md": {
+      "content": "# Uppercase to Lowercase starter\n\nRun the character-code trace for Z. The uppercase-to-lowercase offset is ord(\"a\") minus ord(\"A\"). Add it only for A through Z. Preserve lowercase letters, spaces, numbers, and punctuation.\n",
+      "byteLength": 223,
+      "sha256": "a02120f2370e5df55ec9583bc2077fc241c94ee8677d4b4a7ebf140f214036d7",
+      "gitBlob": "343e372a8d8b700734e7e73474381cc68a7bea2b"
+    },
+    "PS3-Uppercase-to-Lowercase/starter/main.py": {
+      "content": "text = input(\"Enter a short line: \")\noffset = ord(\"a\") - ord(\"A\")\n\nfor letter in text:\n    print(letter, ord(letter))\n\n# When a code is between ord(\"A\") and ord(\"Z\"), add offset.\n# Assemble the changed and unchanged characters into one output.\n",
+      "byteLength": 244,
+      "sha256": "137b4087522173f0ec3d8159ed1e3e24758bac6f2481ce45576351d0df7d790b",
+      "gitBlob": "e0a64779366fc4e5c81049ee2135c677b1da9507"
+    },
+    "PS3-Uppercase-to-Lowercase/solution/main.py": {
+      "content": "text = input(\"Enter a short line: \")\noffset = ord(\"a\") - ord(\"A\")\nconverted = \"\"\n\nfor letter in text:\n    code = ord(letter)\n    if ord(\"A\") <= code <= ord(\"Z\"):\n        code += offset\n    converted += chr(code)\n\nprint(\"Converted:\", converted)\n",
+      "byteLength": 244,
+      "sha256": "fe0423960fbb8c76df88d9e6944fc1b1eb2f8b0dd077db332cf00fd72aeecb06",
+      "gitBlob": "da2b9dcf9b06668b4cbd5fff34f34d0e0ba01089"
+    },
+    "PS3-Nested-Boxes/starter/README.md": {
+      "content": "# Nested Boxes starter\n\nRun the top border of a three-character box. Add side borders with spaces between them, then add the bottom border. Repeat for box sizes 3 through a chosen maximum and keep the boxes separate.\n",
+      "byteLength": 217,
+      "sha256": "e76dd9a966abbf13db33d1a4149fe86dbf33a3f92941f2b56011781074a15d34",
+      "gitBlob": "dfcde949b1f7d47b026bfa8e320570b82ef014c2"
+    },
+    "PS3-Nested-Boxes/starter/main.py": {
+      "content": "size = 3\n\nfor column in range(size):\n    print(\"#\", end=\"\")\nprint()\n\n# Add the interior rows and bottom border, then repeat at larger sizes.\n",
+      "byteLength": 141,
+      "sha256": "78ebf1b3b3177582f892eea2fd0a021f9ffc4a34f0350a1488ef73584d6f33c9",
+      "gitBlob": "fe775270765c9d0f51411df7d6d68928902aa006"
+    },
+    "PS3-Nested-Boxes/solution/main.py": {
+      "content": "maximum = int(input(\"Largest box size, at least 3: \"))\n\nfor size in range(3, maximum + 1):\n    for row in range(size):\n        for column in range(size):\n            if row in (0, size - 1) or column in (0, size - 1):\n                print(\"#\", end=\"\")\n            else:\n                print(\" \", end=\"\")\n        print()\n    print()\n",
+      "byteLength": 334,
+      "sha256": "fa63aa802526de652c986b5c4aa3bca404271329e01a37af5ff3f3d055c520de",
+      "gitBlob": "92e352d9b33e284e481b6c85d8570ec8807acfbe"
+    }
+  }
+}

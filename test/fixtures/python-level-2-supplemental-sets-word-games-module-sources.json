@@ -1,0 +1,194 @@
+{
+  "repository": "Python-Level-2",
+  "revision": "6d2a63b50aa113e48935af046b65b118313b8733",
+  "files": {
+    "PS12-Evil-Wheel-of-Fortune/solution/dictionary.txt": {
+      "sharedDictionary": true,
+      "byteLength": 613188,
+      "sha256": "d4e5064c60c1a9ff68fe77d12d32b1ebc3bec50a7ce2bd077adb6dae900bb36f",
+      "gitBlob": "c0fa03298221f919ed294b921efd085e9a779109"
+    },
+    "PS12-Evil-Wheel-of-Fortune/solution/main.py": {
+      "content": "import random\n\n\ndef get_guess():\n    while True:\n        try:\n            guess = input(\"Enter a letter or quit: \").lower().strip()\n        except EOFError:\n            return None\n        if guess == \"quit\":\n            return None\n        if guess in previous_guesses:\n            print(\"You already guessed that! Try again!\")\n        elif len(guess) != 1 or not guess.isascii() or not guess.isalpha():\n            print(\"Enter one letter from a through z.\")\n        else:\n            return guess\n\n\ndef get_groups(letter, words):\n    word_groups = {}\n    for word in words:\n        pattern = get_pattern(letter, word)\n        if pattern in word_groups:\n            word_groups[pattern].add(word)\n        else:\n            word_groups[pattern] = set({word})\n    return word_groups\n\n\ndef get_pattern(letter, word):\n    pattern = \"\"\n    for c in word:\n        if c == letter or c in correct_guesses:\n            pattern += c\n        else:\n            pattern += \"_\"\n        pattern += \" \"\n    return pattern\n\n\ndef get_max_pattern(word_groups):\n    max_group_size = 0\n    max_patterns = []\n    for pattern in word_groups:\n        if len(word_groups[pattern]) > max_group_size:\n            max_group_size = len(word_groups[pattern])\n            max_patterns = []\n            max_patterns.append(pattern)\n        elif len(word_groups[pattern]) == max_group_size:\n            max_patterns.append(pattern)\n    return random.choice(max_patterns)\n\n\ndef get_words_of_length(length, words):\n    temp = set()\n    for word in words:\n        if len(word) == length:\n            temp.add(word)\n    return temp\n\n\n# -----------------------------------------------------\n\nwith open(\"dictionary.txt\", encoding=\"utf-8\") as source:\n    words = set(source.read().split())\n\nlength = random.randint(3, 8)\nstatus = \"_ \" * length\n\nwords = get_words_of_length(length, words)\n\ncorrect_guesses = set()\nprevious_guesses = []\nnum_guesses = 15\n\nwhile True:\n    print(status + \"\\n\")\n    print(str(num_guesses) + \" guesses left!\")\n    print(\"Previous Guesses: \" + \" \".join(previous_guesses))\n\n    guess = get_guess()\n    if guess is None:\n        print(\"Game ended.\")\n        break\n    previous_guesses.append(guess)\n\n    # choose the worst case scenario (that's still possible)\n    word_groups = get_groups(guess, words)\n    new_status = get_max_pattern(word_groups)\n\n    # update words and status\n    words = word_groups[new_status]\n    if new_status == status:  # \"incorrect guess\"\n        # the worst case (that's still possible) is to not reveal any letters!\n        num_guesses -= 1\n    else:  # \"correct guess\"\n        # the worst case (that's still possible) is to reveal letters...\n        correct_guesses.add(guess)\n        status = new_status\n\n    if \"_\" not in status:\n        print(\"\\nYOU WIN!\\nThe word was: \" + list(words)[0])\n        break\n    elif num_guesses == 0:\n        print(\"\\nYOU LOSE!\\nThe word was: \" + random.choice(list(words)))\n        break\n",
+      "byteLength": 2939,
+      "sha256": "ed4cd0095e9706bf09a80bc4ef513ed6c27e7fdd42b96a3685de38647ab106d8",
+      "gitBlob": "797f6be3a73e40cb42c75369f3a702052c5e04ce"
+    },
+    "PS12-Evil-Wheel-of-Fortune/starter/README.md": {
+      "content": "# Evil Wheel of Fortune\n\nKeep `dictionary.txt` beside `main.py`. Run the starter to count three-letter\ncandidates. Have the program choose a word length from three through eight. For each guess,\ngroup the remaining words by where the letter appears, including the family\nwith no occurrence. Display a pattern from a largest family and keep only\nthat family's words. A guess that reveals no letter costs one turn. Type\n`quit` to leave an unfinished game.\n",
+      "byteLength": 454,
+      "sha256": "104e29fcf1a3705d91a51d46b306474df557b99cdee8e782a909cec8a68ea2c4",
+      "gitBlob": "37d76fb6cb63e7908cea0ea653e8fecf7cf73701"
+    },
+    "PS12-Evil-Wheel-of-Fortune/starter/dictionary.txt": {
+      "sharedDictionary": true,
+      "byteLength": 613188,
+      "sha256": "d4e5064c60c1a9ff68fe77d12d32b1ebc3bec50a7ce2bd077adb6dae900bb36f",
+      "gitBlob": "c0fa03298221f919ed294b921efd085e9a779109"
+    },
+    "PS12-Evil-Wheel-of-Fortune/starter/main.py": {
+      "content": "with open(\"dictionary.txt\", encoding=\"utf-8\") as source:\n    words = set(source.read().split())\n\nsample = {word for word in words if len(word) == 3}\nprint(f\"Three-letter candidates: {len(sample)}\")\n",
+      "byteLength": 198,
+      "sha256": "31f4d528abda3e722b235863c7865ffe580fa4454106e2163f45162276c7c1c8",
+      "gitBlob": "8412894c71cff0d24d32dc0f5e8ac4a0a1c363dc"
+    },
+    "PS13-Typewriter-Monkeys/solution/main.py": {
+      "content": "import random\nimport string\n\nwith open(\"valid_words.txt\", encoding=\"utf-8\") as source:\n    valid_words = set(source.read().split())\n\nprint(f\"Loaded {len(valid_words)} three-letter words.\")\n\n\nwindow = \"\"\nfor count in range(1, 10_001):\n    window = (window + random.choice(string.ascii_lowercase))[-3:]\n    if window in valid_words:\n        print(f\"Found {window} after {count} generated letters.\")\n        break\nelse:\n    print(\"No word found in 10000 generated letters.\")\n",
+      "byteLength": 472,
+      "sha256": "057f02d9ba66e13fb43416c2a19ee948f4cbdeb7a4665bed1b9add2647e0ba13",
+      "gitBlob": "ce550cf396345882c5c33b37eef3cb0d22e95053"
+    },
+    "PS13-Typewriter-Monkeys/solution/valid_words.txt": {
+      "content": "aah\naal\naas\naba\nabo\naby\nace\nact\nadd\nado\nads\nadz\naff\naft\naga\nage\nago\naha\naid\nail\naim\nain\nair\nais\nait\nala\nalb\nale\nall\nalp\nals\nalt\nama\nami\namp\namu\nana\nand\nane\nani\nant\nany\nape\napt\narb\narc\nare\narf\nark\narm\nars\nart\nash\nask\nasp\nate\nauk\nava\nave\navo\nawa\nawe\nawl\nawn\naxe\naye\nays\nazo\nbaa\nbad\nbag\nbah\nbal\nbam\nban\nbar\nbas\nbat\nbay\nbed\nbee\nbeg\nbel\nben\nbet\nbey\nbib\nbid\nbig\nbin\nbio\nbis\nbit\nbiz\nboa\nbob\nbod\nbog\nboo\nbop\nbos\nbot\nbow\nbox\nboy\nbra\nbrr\nbub\nbud\nbug\nbun\nbur\nbus\nbut\nbuy\nbye\nbys\ncab\ncad\ncam\ncan\ncap\ncar\ncat\ncaw\ncay\ncee\ncep\nchi\ncis\ncob\ncod\ncog\ncol\ncon\ncoo\ncop\ncor\ncos\ncot\ncow\ncoy\ncoz\ncry\ncub\ncud\ncue\ncup\ncur\ncut\ncwm\ndab\ndad\ndag\ndah\ndak\ndal\ndam\ndap\ndaw\nday\ndeb\ndee\ndei\ndel\nden\ndes\ndev\ndew\ndex\ndey\ndib\ndid\ndie\ndig\ndim\ndin\ndip\ndit\ndoc\ndoe\ndog\ndol\ndom\ndon\ndor\ndos\ndot\ndow\ndry\ndub\ndud\ndue\ndug\ndui\ndun\nduo\ndup\ndye\near\neat\neau\nebb\necu\nedh\neel\neff\nefs\neft\negg\nego\neke\neld\nelf\nelk\nell\nelm\nels\neme\nems\nemu\nend\neng\nens\neon\nera\nere\nerg\nern\nerr\ners\ness\neta\neth\neve\newe\neye\nfad\nfan\nfar\nfas\nfat\nfax\nfay\nfed\nfee\nfeh\nfem\nfen\nfer\nfet\nfeu\nfew\nfey\nfez\nfib\nfid\nfie\nfig\nfil\nfin\nfir\nfit\nfix\nfiz\nflu\nfly\nfob\nfoe\nfog\nfoh\nfon\nfop\nfor\nfou\nfox\nfoy\nfro\nfry\nfub\nfud\nfug\nfun\nfur\ngab\ngad\ngae\ngag\ngal\ngam\ngan\ngap\ngar\ngas\ngat\ngay\nged\ngee\ngel\ngem\nget\ngey\nghi\ngib\ngid\ngie\ngig\ngin\ngip\ngit\ngnu\ngoa\ngob\ngod\ngoo\ngor\ngot\ngox\ngoy\ngul\ngum\ngun\ngut\nguv\nguy\ngym\ngyp\nhad\nhae\nhag\nhah\nhaj\nham\nhao\nhap\nhas\nhat\nhaw\nhay\nheh\nhem\nhen\nhep\nher\nhes\nhet\nhew\nhex\nhey\nhic\nhid\nhie\nhim\nhin\nhip\nhis\nhit\nhmm\nhob\nhod\nhoe\nhog\nhon\nhop\nhot\nhow\nhoy\nhub\nhue\nhug\nhuh\nhum\nhun\nhup\nhut\nhyp\nice\nich\nick\nicy\nids\nifs\nilk\nill\nimp\nink\ninn\nins\nion\nire\nirk\nism\nits\nivy\njab\njag\njam\njar\njaw\njay\njee\njet\njeu\njew\njib\njig\njin\njob\njoe\njog\njot\njow\njoy\njug\njun\njus\njut\nkab\nkae\nkaf\nkas\nkat\nkay\nkea\nkef\nkeg\nken\nkep\nkev\nkex\nkey\nkhi\nkid\nkif\nkin\nkip\nkir\nkit\nkoa\nkob\nkop\nkor\nkos\nkue\nlab\nlac\nlad\nlag\nlam\nlap\nlar\nlas\nlat\nlav\nlaw\nlax\nlay\nlea\nled\nlee\nleg\nlei\nlek\nlet\nleu\nlev\nlex\nley\nlez\nlib\nlid\nlie\nlin\nlip\nlis\nlit\nlob\nlog\nloo\nlop\nlot\nlow\nlox\nlug\nlum\nluv\nlux\nlye\nmac\nmad\nmae\nmag\nman\nmap\nmar\nmas\nmat\nmaw\nmay\nmed\nmel\nmem\nmen\nmet\nmew\nmho\nmib\nmid\nmig\nmil\nmim\nmir\nmis\nmix\nmoa\nmob\nmod\nmog\nmol\nmom\nmon\nmoo\nmop\nmor\nmos\nmot\nmow\nmud\nmug\nmum\nmun\nmus\nmut\nnab\nnae\nnag\nnah\nnam\nnap\nnaw\nnay\nneb\nnee\nnet\nnew\nnib\nnil\nnim\nnip\nnit\nnix\nnod\nnog\nnoh\nnom\nnoo\nnor\nnos\nnot\nnow\nnth\nnub\nnun\nnus\nnut\noaf\noak\noar\noat\nobe\nobi\noca\nodd\node\nods\noes\noff\noft\nohm\noho\nohs\noil\noka\noke\nold\nole\noms\none\nons\nooh\noot\nope\nops\nopt\nora\norb\norc\nore\nors\nort\nose\noud\nour\nout\nova\nowe\nowl\nown\noxo\noxy\npac\npad\npah\npal\npam\npan\npap\npar\npas\npat\npaw\npax\npay\npea\nped\npee\npeg\npeh\npen\npep\nper\npes\npet\npew\nphi\npht\npia\npic\npie\npig\npin\npip\npis\npit\npiu\npix\nply\npod\npoh\npoi\npol\npom\npop\npot\npow\npox\npro\npry\npsi\npub\npud\npug\npul\npun\npup\npur\npus\nput\npya\npye\npyx\nqat\nqua\nrad\nrag\nrah\nraj\nram\nran\nrap\nras\nrat\nraw\nrax\nray\nreb\nrec\nred\nree\nref\nreg\nrei\nrem\nrep\nres\nret\nrev\nrex\nrho\nria\nrib\nrid\nrif\nrig\nrim\nrin\nrip\nrob\nroc\nrod\nroe\nrom\nrot\nrow\nrub\nrue\nrug\nrum\nrun\nrut\nrya\nrye\nsab\nsac\nsad\nsae\nsag\nsal\nsap\nsat\nsau\nsaw\nsax\nsay\nsea\nsec\nsee\nseg\nsei\nsel\nsen\nser\nset\nsew\nsha\nshe\nshh\nshy\nsib\nsic\nsim\nsin\nsip\nsir\nsis\nsit\nsix\nska\nski\nsky\nsly\nsob\nsod\nsol\nson\nsop\nsos\nsot\nsou\nsow\nsox\nsoy\nspa\nspy\nsri\nsty\nsub\nsue\nsum\nsun\nsup\nsyn\ntab\ntad\ntae\ntag\ntaj\ntam\ntan\ntao\ntap\ntar\ntas\ntat\ntau\ntav\ntaw\ntax\ntea\nted\ntee\nteg\ntel\nten\ntet\ntew\nthe\ntho\nthy\ntic\ntie\ntil\ntin\ntip\ntis\ntod\ntoe\ntog\ntom\nton\ntoo\ntop\ntor\ntot\ntow\ntoy\ntry\ntsk\ntub\ntug\ntui\ntun\ntup\ntut\ntux\ntwa\ntwo\ntye\nudo\nugh\nuke\nulu\numm\nump\nuns\nupo\nups\nurb\nurd\nurn\nuse\nuta\nuts\nvac\nvan\nvar\nvas\nvat\nvau\nvav\nvaw\nvee\nveg\nvet\nvex\nvia\nvie\nvig\nvim\nvin\nvis\nvoe\nvon\nvow\nvox\nvug\nwab\nwad\nwae\nwag\nwan\nwap\nwar\nwas\nwat\nwaw\nwax\nway\nweb\nwed\nwee\nwen\nwet\nwha\nwho\nwhy\nwig\nwin\nwis\nwit\nwiz\nwoe\nwog\nwok\nwon\nwoo\nwop\nwos\nwot\nwow\nwry\nwud\nwye\nwyn\nxis\nyah\nyak\nyam\nyap\nyar\nyaw\nyay\nyea\nyeh\nyen\nyep\nyes\nyet\nyew\nyid\nyin\nyip\nyob\nyod\nyok\nyom\nyon\nyou\nyow\nyuk\nyum\nyup\nzag\nzap\nzax\nzed\nzee\nzek\nzig\nzip\nzit\nzoa\nzoo\n",
+      "byteLength": 3812,
+      "sha256": "49d260b8f53881c026f1d4d52525b195eccf1c114146b975add4c3cc64f727be",
+      "gitBlob": "64a314c40d803992be1d17bf8b272fd663f34e3c"
+    },
+    "PS13-Typewriter-Monkeys/starter/README.md": {
+      "content": "# Typewriter Monkeys\n\nKeep `valid_words.txt` beside `main.py`. Run the starter to load the 953\nthree-letter words. Generate one lowercase letter per step. Keep only the\nlatest three letters and compare them to the word set. Stop at the first\nmatch or at 10,000 letters. Report the found word and number of attempts.\n",
+      "byteLength": 316,
+      "sha256": "0927e962b69e30d8cbbb9cbb5a6b5981b04950151427dd51807530ae31c9abc7",
+      "gitBlob": "88387a0e02af4480d5ea54397e08a17ebcf5efcf"
+    },
+    "PS13-Typewriter-Monkeys/starter/main.py": {
+      "content": "with open(\"valid_words.txt\", encoding=\"utf-8\") as source:\n    valid_words = set(source.read().split())\n\nprint(f\"Loaded {len(valid_words)} three-letter words.\")\n",
+      "byteLength": 160,
+      "sha256": "cfdb11c24fa6568247462ece16ffa203f2e965b13381060ad0329992da4007b2",
+      "gitBlob": "8ad1b3e7fa982a47fac99454b77514b15df7bf18"
+    },
+    "PS13-Typewriter-Monkeys/starter/valid_words.txt": {
+      "content": "aah\naal\naas\naba\nabo\naby\nace\nact\nadd\nado\nads\nadz\naff\naft\naga\nage\nago\naha\naid\nail\naim\nain\nair\nais\nait\nala\nalb\nale\nall\nalp\nals\nalt\nama\nami\namp\namu\nana\nand\nane\nani\nant\nany\nape\napt\narb\narc\nare\narf\nark\narm\nars\nart\nash\nask\nasp\nate\nauk\nava\nave\navo\nawa\nawe\nawl\nawn\naxe\naye\nays\nazo\nbaa\nbad\nbag\nbah\nbal\nbam\nban\nbar\nbas\nbat\nbay\nbed\nbee\nbeg\nbel\nben\nbet\nbey\nbib\nbid\nbig\nbin\nbio\nbis\nbit\nbiz\nboa\nbob\nbod\nbog\nboo\nbop\nbos\nbot\nbow\nbox\nboy\nbra\nbrr\nbub\nbud\nbug\nbun\nbur\nbus\nbut\nbuy\nbye\nbys\ncab\ncad\ncam\ncan\ncap\ncar\ncat\ncaw\ncay\ncee\ncep\nchi\ncis\ncob\ncod\ncog\ncol\ncon\ncoo\ncop\ncor\ncos\ncot\ncow\ncoy\ncoz\ncry\ncub\ncud\ncue\ncup\ncur\ncut\ncwm\ndab\ndad\ndag\ndah\ndak\ndal\ndam\ndap\ndaw\nday\ndeb\ndee\ndei\ndel\nden\ndes\ndev\ndew\ndex\ndey\ndib\ndid\ndie\ndig\ndim\ndin\ndip\ndit\ndoc\ndoe\ndog\ndol\ndom\ndon\ndor\ndos\ndot\ndow\ndry\ndub\ndud\ndue\ndug\ndui\ndun\nduo\ndup\ndye\near\neat\neau\nebb\necu\nedh\neel\neff\nefs\neft\negg\nego\neke\neld\nelf\nelk\nell\nelm\nels\neme\nems\nemu\nend\neng\nens\neon\nera\nere\nerg\nern\nerr\ners\ness\neta\neth\neve\newe\neye\nfad\nfan\nfar\nfas\nfat\nfax\nfay\nfed\nfee\nfeh\nfem\nfen\nfer\nfet\nfeu\nfew\nfey\nfez\nfib\nfid\nfie\nfig\nfil\nfin\nfir\nfit\nfix\nfiz\nflu\nfly\nfob\nfoe\nfog\nfoh\nfon\nfop\nfor\nfou\nfox\nfoy\nfro\nfry\nfub\nfud\nfug\nfun\nfur\ngab\ngad\ngae\ngag\ngal\ngam\ngan\ngap\ngar\ngas\ngat\ngay\nged\ngee\ngel\ngem\nget\ngey\nghi\ngib\ngid\ngie\ngig\ngin\ngip\ngit\ngnu\ngoa\ngob\ngod\ngoo\ngor\ngot\ngox\ngoy\ngul\ngum\ngun\ngut\nguv\nguy\ngym\ngyp\nhad\nhae\nhag\nhah\nhaj\nham\nhao\nhap\nhas\nhat\nhaw\nhay\nheh\nhem\nhen\nhep\nher\nhes\nhet\nhew\nhex\nhey\nhic\nhid\nhie\nhim\nhin\nhip\nhis\nhit\nhmm\nhob\nhod\nhoe\nhog\nhon\nhop\nhot\nhow\nhoy\nhub\nhue\nhug\nhuh\nhum\nhun\nhup\nhut\nhyp\nice\nich\nick\nicy\nids\nifs\nilk\nill\nimp\nink\ninn\nins\nion\nire\nirk\nism\nits\nivy\njab\njag\njam\njar\njaw\njay\njee\njet\njeu\njew\njib\njig\njin\njob\njoe\njog\njot\njow\njoy\njug\njun\njus\njut\nkab\nkae\nkaf\nkas\nkat\nkay\nkea\nkef\nkeg\nken\nkep\nkev\nkex\nkey\nkhi\nkid\nkif\nkin\nkip\nkir\nkit\nkoa\nkob\nkop\nkor\nkos\nkue\nlab\nlac\nlad\nlag\nlam\nlap\nlar\nlas\nlat\nlav\nlaw\nlax\nlay\nlea\nled\nlee\nleg\nlei\nlek\nlet\nleu\nlev\nlex\nley\nlez\nlib\nlid\nlie\nlin\nlip\nlis\nlit\nlob\nlog\nloo\nlop\nlot\nlow\nlox\nlug\nlum\nluv\nlux\nlye\nmac\nmad\nmae\nmag\nman\nmap\nmar\nmas\nmat\nmaw\nmay\nmed\nmel\nmem\nmen\nmet\nmew\nmho\nmib\nmid\nmig\nmil\nmim\nmir\nmis\nmix\nmoa\nmob\nmod\nmog\nmol\nmom\nmon\nmoo\nmop\nmor\nmos\nmot\nmow\nmud\nmug\nmum\nmun\nmus\nmut\nnab\nnae\nnag\nnah\nnam\nnap\nnaw\nnay\nneb\nnee\nnet\nnew\nnib\nnil\nnim\nnip\nnit\nnix\nnod\nnog\nnoh\nnom\nnoo\nnor\nnos\nnot\nnow\nnth\nnub\nnun\nnus\nnut\noaf\noak\noar\noat\nobe\nobi\noca\nodd\node\nods\noes\noff\noft\nohm\noho\nohs\noil\noka\noke\nold\nole\noms\none\nons\nooh\noot\nope\nops\nopt\nora\norb\norc\nore\nors\nort\nose\noud\nour\nout\nova\nowe\nowl\nown\noxo\noxy\npac\npad\npah\npal\npam\npan\npap\npar\npas\npat\npaw\npax\npay\npea\nped\npee\npeg\npeh\npen\npep\nper\npes\npet\npew\nphi\npht\npia\npic\npie\npig\npin\npip\npis\npit\npiu\npix\nply\npod\npoh\npoi\npol\npom\npop\npot\npow\npox\npro\npry\npsi\npub\npud\npug\npul\npun\npup\npur\npus\nput\npya\npye\npyx\nqat\nqua\nrad\nrag\nrah\nraj\nram\nran\nrap\nras\nrat\nraw\nrax\nray\nreb\nrec\nred\nree\nref\nreg\nrei\nrem\nrep\nres\nret\nrev\nrex\nrho\nria\nrib\nrid\nrif\nrig\nrim\nrin\nrip\nrob\nroc\nrod\nroe\nrom\nrot\nrow\nrub\nrue\nrug\nrum\nrun\nrut\nrya\nrye\nsab\nsac\nsad\nsae\nsag\nsal\nsap\nsat\nsau\nsaw\nsax\nsay\nsea\nsec\nsee\nseg\nsei\nsel\nsen\nser\nset\nsew\nsha\nshe\nshh\nshy\nsib\nsic\nsim\nsin\nsip\nsir\nsis\nsit\nsix\nska\nski\nsky\nsly\nsob\nsod\nsol\nson\nsop\nsos\nsot\nsou\nsow\nsox\nsoy\nspa\nspy\nsri\nsty\nsub\nsue\nsum\nsun\nsup\nsyn\ntab\ntad\ntae\ntag\ntaj\ntam\ntan\ntao\ntap\ntar\ntas\ntat\ntau\ntav\ntaw\ntax\ntea\nted\ntee\nteg\ntel\nten\ntet\ntew\nthe\ntho\nthy\ntic\ntie\ntil\ntin\ntip\ntis\ntod\ntoe\ntog\ntom\nton\ntoo\ntop\ntor\ntot\ntow\ntoy\ntry\ntsk\ntub\ntug\ntui\ntun\ntup\ntut\ntux\ntwa\ntwo\ntye\nudo\nugh\nuke\nulu\numm\nump\nuns\nupo\nups\nurb\nurd\nurn\nuse\nuta\nuts\nvac\nvan\nvar\nvas\nvat\nvau\nvav\nvaw\nvee\nveg\nvet\nvex\nvia\nvie\nvig\nvim\nvin\nvis\nvoe\nvon\nvow\nvox\nvug\nwab\nwad\nwae\nwag\nwan\nwap\nwar\nwas\nwat\nwaw\nwax\nway\nweb\nwed\nwee\nwen\nwet\nwha\nwho\nwhy\nwig\nwin\nwis\nwit\nwiz\nwoe\nwog\nwok\nwon\nwoo\nwop\nwos\nwot\nwow\nwry\nwud\nwye\nwyn\nxis\nyah\nyak\nyam\nyap\nyar\nyaw\nyay\nyea\nyeh\nyen\nyep\nyes\nyet\nyew\nyid\nyin\nyip\nyob\nyod\nyok\nyom\nyon\nyou\nyow\nyuk\nyum\nyup\nzag\nzap\nzax\nzed\nzee\nzek\nzig\nzip\nzit\nzoa\nzoo\n",
+      "byteLength": 3812,
+      "sha256": "49d260b8f53881c026f1d4d52525b195eccf1c114146b975add4c3cc64f727be",
+      "gitBlob": "64a314c40d803992be1d17bf8b272fd663f34e3c"
+    },
+    "PS9-Debugging-Sets/solution/main.py": {
+      "content": "# Start the game with all of the players free (i.e. no one has been captured yet)\nteam1free = set()\nteam1free.add(\"Jared\")\nteam1free.add(\"Rachel\")\nteam1free.add(\"Khalif\")\nteam1free.add(\"Claudia\")\nteam2free = set()\nteam2free.add(\"Zeinab\")\nteam2free.add(\"Michael\")\nteam2free.add(\"Matthew\")\nteam2free.add(\"Valerie\")\n\nteam1captured = set()\nteam2captured = set()\n\n\n# Keep playing until either someone steals the flag or an entire team gets captured\nwhile True:\n    try:\n        captured_flag = input(\"Did someone capture the flag? (Y/N): \").strip()\n    except EOFError:\n        break\n    if captured_flag.lower() == \"y\":\n        print(\"Game over, someone captured the flag!\")\n        break\n    else:\n        try:\n            captured = input(\"Did someone get captured? (Y/N): \").strip()\n            name = input(\"Who got captured? \").strip() if captured.lower() == \"y\" else \"\"\n        except EOFError:\n            break\n        if captured.lower() == \"y\":\n            # Check which team the player was on\n            if name in team1free:\n                # Move captured player from free to captured set\n                team1free.remove(name)\n                team1captured.add(name)\n            elif name in team2free:\n                # Move captured player from free to captured set\n                team2free.remove(name)\n                team2captured.add(name)\n            else:\n                print(\"I don't see that player out on the field!\")\n\n        # Print everyone who is free on each team\n        print(\"Here are the players who are still on the field for team 1:\")\n        for name in sorted(team1free):\n            print(name)\n        print(\"Here are the players who are still on the field for team 2:\")\n        for name in sorted(team2free):\n            print(name)\n\n        # Print everyone who is in jail\n        print(\"Here are the players who are in jail:\")\n        total_captured = team1captured.union(team2captured)\n        for name in sorted(total_captured):\n            print(name)\n\n        # Check if an entire team has been captured\n        if len(team1free) == 0:\n            print(\"All of team 1 is in jail, so team 2 wins!\")\n            break\n        elif len(team2free) == 0:\n            print(\"All of team 2 is in jail, so team 1 wins!\")\n            break\n",
+      "byteLength": 2279,
+      "sha256": "c2d666e6c281858f5bf9bc8154b1efe770ad85199f5a8c5936e285b0dbf2a848",
+      "gitBlob": "60b00d10a943887104288bf1fa65648ec92148e6"
+    },
+    "PS9-Debugging-Sets/starter/README.md": {
+      "content": "# Debugging Sets\n\nRun `python3 main.py` and locate the first exception. Repair setup, moving\nplayers between sets, reporting the two rosters, combining the captured\nsets, and detecting an empty team. After setup passes, answer n, y, Jared.\nJared should appear in the captured roster and disappear from team 1's\nfield roster. Try that capture again and then enter y to end the game.\n",
+      "byteLength": 382,
+      "sha256": "780a051aadd702bbb4897e02be6ea252c4e82d012724303f44a62a0ee7cd1f75",
+      "gitBlob": "f7c13b746daa90d9ce72a9ad3cf11ace2ccfb7ba"
+    },
+    "PS9-Debugging-Sets/starter/main.py": {
+      "content": "# Repair each set operation in order. The first run stops during setup.\n\n# Start the game with all of the players free (i.e. no one has been captured yet)\nteam1free = set()\nteam1free.append(\"Jared\", \"Rachel\", \"Khalif\", \"Claudia\")\nteam2free = set()\nteam2.append(\"Zeinab\", \"Michael\", \"Matthew\", \"Valerie\")\n\nteam1captured = set()\nteam2captured = set()\n\n\n# Keep playing until either someone steals the flag or an entire team gets captured\nwhile True:\n  capturedFlag = input(\"Did someone capture the flag? (Y/N): \")\n  if capturedFlag.lower() == \"y\":\n    print(\"Game over, someone captured the flag!\")\n    break\n  else:\n    captured = input(\"Did someone get captured? (Y/N): \")\n    if captured.lower() == \"y\":\n      name = input(\"Who got captured? \")\n      # Check which team the player was on\n      if name in team1free:\n        # Move captured player from free to captured set\n        team1free[name] = 0\n        team1captured.append(name)\n      elif name in team2free:\n        # Move captured player from free to captured set\n        team2free[name] = 0\n        team2captured.append(name)\n      else:\n        print(\"I don't see that player out on the field!\")\n\n    # Print everyone who is free on each team\n    print(\"Here are the players who are still on the field for team 1:\")\n    for i in range(len(team1free)):\n      print(team1free[i])\n    print(\"Here are the players who are still on the field for team 2:\")\n    for i in range(len(team2free)):\n      print(team2free[i])\n\n    # Print everyone who is in jail\n    print(\"Here are the players who are in jail:\")\n    totalCaptured = team1captured.team2captured.union()\n    for name in totalCaptured:\n      print(name)\n\n    # Check if an entire team has been captured\n    if team1free == 0:\n      print(\"All of team 1 is in jail, so team 2 wins!\")\n      break\n    elif team2free == 0:\n      print(\"All of team 2 is in jail, so team 1 wins!\")\n      break\n",
+      "byteLength": 1902,
+      "sha256": "e2afbf42eec180262869dfcb8ef8bc4d5178fc7f551dbd4345d8bd310e070484",
+      "gitBlob": "15c0d7f07ca1009886651b8c47ca2cbc6f59a2c1"
+    },
+    "PS9-Soccer-Nationalities/solution/main.py": {
+      "content": "players = {\n    \"Suarez\": \"Uruguay\",\n    \"Messi\": \"Argentina\",\n    \"Coutinho\": \"Brazil\",\n    \"Vidal\": \"Chile\",\n    \"Rakitic\": \"Croatia\",\n    \"Busquets\": \"Spain\",\n    \"Roberto\": \"Spain\",\n    \"Pique\": \"Spain\",\n    \"Lenglet\": \"France\",\n    \"Alba\": \"Spain\",\n    \"Ter Stegen\": \"Germany\",\n}\n\ncountries = set()\nfor player in players:\n    countries.add(players[player])\n\nprint(f\"Sample players: {len(players)}\")\nprint(f\"Distinct countries: {len(countries)}\")\nfor country in sorted(countries):\n    print(country)\n",
+      "byteLength": 504,
+      "sha256": "58f6312464332f395f741e5757dd537bbac4372aa4d6931c01a9f3b14a8acddd",
+      "gitBlob": "3c52c3b346dcba2e7a183b5afea20cd0db82c5a1"
+    },
+    "PS9-Soccer-Nationalities/starter/README.md": {
+      "content": "# Soccer Nationalities\n\nRun `python3 main.py` to count the players in the sample roster. Add each\ncountry to a set and display the set's size and its countries in\nalphabetical order. The eleven players represent eight distinct countries.\nFour of the players are from Spain, which counts once.\n",
+      "byteLength": 293,
+      "sha256": "5f9048c60226f9596117a8a3663c5f7419896ceaf05bd603bf9993c4389e44df",
+      "gitBlob": "e08b4d7f74c544c2651c0c48eed794904abdaffb"
+    },
+    "PS9-Soccer-Nationalities/starter/main.py": {
+      "content": "players = {\n    \"Suarez\": \"Uruguay\",\n    \"Messi\": \"Argentina\",\n    \"Coutinho\": \"Brazil\",\n    \"Vidal\": \"Chile\",\n    \"Rakitic\": \"Croatia\",\n    \"Busquets\": \"Spain\",\n    \"Roberto\": \"Spain\",\n    \"Pique\": \"Spain\",\n    \"Lenglet\": \"France\",\n    \"Alba\": \"Spain\",\n    \"Ter Stegen\": \"Germany\",\n}\n\nprint(f\"Sample players: {len(players)}\")\n",
+      "byteLength": 327,
+      "sha256": "09269cea4b4ff32bfb752ebb53f760827a944b504a36134a4369424a9c4ddf2b",
+      "gitBlob": "7b2a55fe40699230991043c89ce6a3a3bfab1a73"
+    }
+  },
+  "exercises": [
+    {
+      "pack": "PS9-Soccer-Nationalities",
+      "moduleId": "python-level-2-ps9-sets",
+      "itemId": "python-level-2-ps9-sets-supplemental-ps9-supplemental-project-4-soccer-nationalities",
+      "examples": {
+        "starter": {
+          "input": "",
+          "expected": [
+            "Sample players: 11"
+          ]
+        },
+        "solution": {
+          "input": "",
+          "expected": [
+            "Sample players: 11",
+            "Distinct countries: 8",
+            "Spain"
+          ]
+        }
+      },
+      "classroomMainSha256": "f0932e924c4be72c969322f06d96d4601a2187f81bc52af581c283a57a36596a"
+    },
+    {
+      "pack": "PS9-Debugging-Sets",
+      "moduleId": "python-level-2-ps9-sets",
+      "itemId": "python-level-2-ps9-sets-supplemental-ps9-supplemental-project-5-debugging-sets",
+      "examples": {
+        "starter": {
+          "input": "",
+          "expected": [
+            "AttributeError"
+          ],
+          "expectedError": "has no attribute 'append'"
+        },
+        "solution": {
+          "input": "n\ny\nJared\nn\ny\nJared\ny\n",
+          "expected": [
+            "Here are the players who are in jail:",
+            "Jared",
+            "I don't see that player out on the field!",
+            "Game over, someone captured the flag!"
+          ]
+        }
+      },
+      "classroomMainSha256": "cbf24ec0193dddb545cb7e99747bfafb8f039801615c83a21e9aaa51ae499333"
+    },
+    {
+      "pack": "PS12-Evil-Wheel-of-Fortune",
+      "moduleId": "python-level-2-ps12-type-racer",
+      "itemId": "python-level-2-ps12-type-racer-supplemental-ps12-supplemental-project-2-evil-wheel-of-fortune",
+      "examples": {
+        "starter": {
+          "input": "",
+          "expected": [
+            "Three-letter candidates: 953"
+          ]
+        },
+        "solution": {
+          "input": "é\nA\na\nquit\n",
+          "expected": [
+            "15 guesses left!",
+            "Enter one letter from a through z.",
+            "You already guessed that!",
+            "Game ended."
+          ]
+        }
+      },
+      "classroomMainSha256": "5318dfc6350fa3ca663326c6dfdf74a18fdbe09415f1e3d3d3af15ee3602afb8"
+    },
+    {
+      "pack": "PS13-Typewriter-Monkeys",
+      "moduleId": "python-level-2-ps13-wordsmith",
+      "itemId": "python-level-2-ps13-wordsmith-supplemental-ps13-supplemental-project-1-typewriter-monkeys",
+      "examples": {
+        "starter": {
+          "input": "",
+          "expected": [
+            "Loaded 953 three-letter words."
+          ]
+        },
+        "solution": {
+          "input": "",
+          "expected": [
+            "Loaded 953 three-letter words.",
+            "generated letters."
+          ]
+        }
+      },
+      "classroomMainSha256": "e077416539c4ca7a8667c6356677caa3fe1b2ad5f0196ac0adb41ebdd726b359"
+    }
+  ]
+}

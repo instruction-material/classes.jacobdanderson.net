@@ -1,0 +1,312 @@
+{
+  "repository": "Python-Level-2",
+  "revision": "6c8442dd68067e1f8cee1f14a5e08bf8e4b06c17",
+  "moduleId": "python-level-2-ps5-functions",
+  "exercises": [
+    {
+      "pack": "PS5-Functions-Practice",
+      "itemId": "python-level-2-ps5-functions-curriculum-ps5-project-1-functions-practice",
+      "examples": {
+        "starter": {
+          "input": "",
+          "expected": [
+            "2 + 3 = 5"
+          ]
+        },
+        "solution": {
+          "input": "",
+          "expected": [
+            "product of 2, 3, and 4 is: 24",
+            "factorial of 4 is: 24",
+            "power is: 8"
+          ]
+        }
+      },
+      "classroomMainSha256": "8a922869bab90772f573d1cb7756e0a701495cc70c47c8bc8cb40057534817dc"
+    },
+    {
+      "pack": "PS5-Parameter-Tracing",
+      "itemId": "python-level-2-ps5-functions-curriculum-parameter-tracing",
+      "examples": {
+        "starter": {
+          "input": "",
+          "expected": [
+            "Trace 1: 5"
+          ]
+        },
+        "solution": {
+          "input": "",
+          "expected": [
+            "Trace 1: 5",
+            "Trace 3: 17",
+            "Trace 6: 37",
+            "Trace 7: 37"
+          ]
+        }
+      },
+      "classroomMainSha256": "47e8afd984e2ffe3c5ce0b8c55a4a84bf2f5ecab1c037a3b2e17f215da9158c2"
+    },
+    {
+      "pack": "PS5-Coin-Flipper",
+      "itemId": "python-level-2-ps5-functions-curriculum-ps5-project-2-coin-flipper",
+      "examples": {
+        "starter": {
+          "input": "",
+          "expected": [
+            "One flip:"
+          ]
+        },
+        "solution": {
+          "input": "",
+          "expected": [
+            "Heads:",
+            "tails:",
+            "% of your flips were heads.",
+            "% of your flips were tails."
+          ]
+        }
+      },
+      "classroomMainSha256": "ea650906c472a77675d0692615067beeb2af325bdc3458e39a9e3ce121dea24c"
+    },
+    {
+      "pack": "PS5-Dice-Roller",
+      "itemId": "python-level-2-ps5-functions-curriculum-ps5-project-3-dice-roller",
+      "examples": {
+        "starter": {
+          "input": "",
+          "expected": [
+            "First pair:",
+            "total"
+          ]
+        },
+        "solution": {
+          "input": "",
+          "expected": [
+            "% of your rolls were 2.",
+            "% of your rolls were 12."
+          ]
+        }
+      },
+      "classroomMainSha256": "e42e6b87640b14a777f030d1650e25a493262d47aaf9e4b119d39415a1aadf5d"
+    },
+    {
+      "pack": "PS5-Squawka-Zilly-Floog",
+      "itemId": "python-level-2-ps5-functions-supplemental-ps5-supplemental-project-1-squawka-zilly-floog",
+      "examples": {
+        "starter": {
+          "input": "",
+          "expected": [
+            "zilly(4) = 9"
+          ]
+        },
+        "solution": {
+          "input": "",
+          "expected": [
+            "9\n4\n30"
+          ]
+        }
+      },
+      "classroomMainSha256": "62f3ea0507022cd827744a712d0142d9f91da01e271f95e07cc24cb603635806"
+    },
+    {
+      "pack": "PS5-Juni-Latin",
+      "itemId": "python-level-2-ps5-functions-supplemental-ps5-supplemental-project-2-word-translator",
+      "examples": {
+        "starter": {
+          "input": "Cat\n",
+          "expected": [
+            "First character: C"
+          ]
+        },
+        "solution": {
+          "input": "Cat\n",
+          "expected": [
+            "Cat becomes atCay."
+          ]
+        }
+      },
+      "classroomMainSha256": "69349bbdc112cbd306522900bbe04c21d2586e62dd95a461ea489ba37d08c42c"
+    },
+    {
+      "pack": "PS5-Number-Games",
+      "itemId": "python-level-2-ps5-functions-supplemental-ps5-supplemental-project-3-number-games",
+      "examples": {
+        "starter": {
+          "input": "",
+          "expected": [
+            "Even numbers:\n2\n4"
+          ]
+        },
+        "solution": {
+          "input": "",
+          "expected": [
+            "14\n28\n42",
+            "prime numbers between 1 and 50 are...\n2\n3\n5"
+          ]
+        }
+      },
+      "classroomMainSha256": "d5a041f543f10bac44dc164afce4c2c9f357f55a44caf8790a6092b299b53aa2"
+    },
+    {
+      "pack": "PS5-Debugging-Functions",
+      "itemId": "python-level-2-ps5-functions-supplemental-ps5-supplemental-project-4-debugging-functions",
+      "examples": {
+        "starter": {
+          "input": "",
+          "expected": [
+            "SyntaxError"
+          ],
+          "expectsSyntaxError": true
+        },
+        "solution": {
+          "input": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n30\n31\n32\n33\n34\n35\n36\n37\n38\n39\n40\n41\n42\n43\n44\n45\n46\n47\n48\n49\n50\n51\n52\n53\n54\n55\n56\n57\n58\n59\n60\n61\n62\n63\n64\n65\n66\n67\n68\n69\n70\n71\n72\n73\n74\n75\n76\n77\n78\n79\n80\n81\n82\n83\n84\n85\n86\n87\n88\n89\n90\n91\n92\n93\n94\n95\n96\n97\n98\n99\n100\n",
+          "expected": [
+            "You got it!",
+            "guesses to guess my number"
+          ]
+        }
+      },
+      "classroomMainSha256": "0b6ea4455b0098a896bb8fe1c2f3b3586cdb082d25203a545dbbcf939ec0e8b6"
+    }
+  ],
+  "files": {
+    "PS5-Functions-Practice/starter/README.md": {
+      "content": "# Functions Practice starter\n\nStart with add and use the returned value in the output. Define subtract with two inputs, multiply with three, and average with two. Use loops for factorial of a nonnegative integer and an integer raised to a nonnegative whole-number power. For 2, 3, and 4, check sum 5, difference -1, product 24, and mean 2.5. The factorial of 4 is 24 and 2 to the third power is 8. Both 0 factorial and any supplied base raised to 0 return 1.\n",
+      "byteLength": 459,
+      "sha256": "056b6455f935e4cbbb2046c0720674ddfa25c4a4359cd4e1b6567efbb5719997",
+      "gitBlob": "4bb9a52d8fe32b99ae90071d03b055e3fa295ccf"
+    },
+    "PS5-Functions-Practice/starter/main.py": {
+      "content": "def add(left, right):\n    return left + right\n\n\nprint(f\"2 + 3 = {add(2, 3)}\")\n\n# Define the remaining arithmetic helpers and print their returned results.\n",
+      "byteLength": 155,
+      "sha256": "56e764fd9c1d2f16c2acf87ce034ec6fa025e05146c9e386fe6cd050f905849e",
+      "gitBlob": "f1eb8e8589426da272b2fa1f7e8844aaca8e9025"
+    },
+    "PS5-Functions-Practice/solution/main.py": {
+      "content": "def add(x, y):\n    return x + y\n\n\ndef subtract(x, y):\n    return x - y\n\n\ndef multiply(x, y, z):\n    return x * y * z\n\n\ndef average(x, y):\n    return (x + y) / 2\n\n\ndef factorial(n):\n    if n < 0:\n        raise ValueError(\"Factorial requires a nonnegative integer.\")\n    answer = 1\n    for i in range(1, n + 1):\n        answer *= i\n    return answer\n\n\ndef exponent(b, p):\n    if p < 0:\n        raise ValueError(\"Use a nonnegative exponent in this exercise.\")\n    answer = 1\n    for i in range(0, p):\n        answer *= b\n    return answer\n\n\nprint(\"The sum of 2 and 3 is: \" + str(add(2, 3)))\nprint(\"The difference of 2 and 3 is: \" + str(subtract(2, 3)))\nprint(\"The product of 2, 3, and 4 is: \" + str(multiply(2, 3, 4)))\nprint(\"The average of 2 and 3 is: \" + str(average(2, 3)))\nprint(\"The factorial of 4 is: \" + str(factorial(4)))\nprint(\"2 raised to the 3rd power is: \" + str(exponent(2, 3)))\n",
+      "byteLength": 889,
+      "sha256": "e24b32ae06ce23ea01d0c4c66be391d1314c4199472b1a59586dc3979bafce07",
+      "gitBlob": "d51e0fa71b6b859006c33b2d0137bc4de64082b2"
+    },
+    "PS5-Parameter-Tracing/starter/README.md": {
+      "content": "# Parameter Tracing starter\n\nPredict the result of each call before printing it. Map the arguments by position, trace the local names, and record the return. Run the starter to check the first answer. Enable one print at a time for the remaining six calls. Compare the result of function2(2, 3, 4) with the final call when x equals 1. The reversed parameter names in function2 matter when it passes the values to function1.\n",
+      "byteLength": 424,
+      "sha256": "9c9aa60c00a32d93d662ce984060787eb8b96f8f6e776089cf141497384f3545",
+      "gitBlob": "80c68bb5dc94c9b02e0b7d912e5023062ef0b55b"
+    },
+    "PS5-Parameter-Tracing/starter/main.py": {
+      "content": "# Read through the following code, and figure out what will print out each time\n\n\ndef function1(a, b, c):\n    temp = a + b\n    c = temp * a\n    return c + b\n\n\ndef function2(c, b, a):\n    x = function1(a, b, c)\n    return x + b + 3\n\n\nanswer1 = function1(1, 2, 3)\nprint(f'Trace 1: {answer1}')\n\nanswer2 = function1(-2, 4, 1)\n# print(answer2)\n\na = 1\nb = 2\nc = 3\n\nanswer3 = function1(c, b, a)\n# print(answer3)\n\nanswer4 = function1(a, 2, a)\n# print(answer4)\n\nanswer5 = function1(c, c, c)\n# print(answer5)\n\nanswer6 = function2(2, 3, 4)\n# print(answer6)\n\nx = 1\nanswer7 = function2(x + 1, x + 2, x + 3)\n# print(answer7)\n",
+      "byteLength": 611,
+      "sha256": "072674a48526c8af3a0cfeb123b1e3e1be1078acf52468cd082a146b4d2ac1fc",
+      "gitBlob": "f50c7dd7474c406c1a0615536d8798e5214da45d"
+    },
+    "PS5-Parameter-Tracing/solution/main.py": {
+      "content": "# Read through the following code, and figure out what will print out each time\n\n\ndef function1(a, b, c):\n    temp = a + b\n    c = temp * a\n    return c + b\n\n\ndef function2(c, b, a):\n    x = function1(a, b, c)\n    return x + b + 3\n\n\nanswer1 = function1(1, 2, 3)\nprint(f\"Trace 1: {answer1}\")\n\nanswer2 = function1(-2, 4, 1)\nprint(f\"Trace 2: {answer2}\")\n\na = 1\nb = 2\nc = 3\n\nanswer3 = function1(c, b, a)\nprint(f\"Trace 3: {answer3}\")\n\nanswer4 = function1(a, 2, a)\nprint(f\"Trace 4: {answer4}\")\n\nanswer5 = function1(c, c, c)\nprint(f\"Trace 5: {answer5}\")\n\nanswer6 = function2(2, 3, 4)\nprint(f\"Trace 6: {answer6}\")\n\nx = 1\nanswer7 = function2(x + 1, x + 2, x + 3)\nprint(f\"Trace 7: {answer7}\")\n",
+      "byteLength": 683,
+      "sha256": "2f71f2f083e7d281542d20ad10da0b2faa2fe0ae1a9fd9945cdf2c2e8e71ba5b",
+      "gitBlob": "e40c86c3ee26cdffb16fa5698855cdeaa790acb0"
+    },
+    "PS5-Coin-Flipper/starter/README.md": {
+      "content": "# Coin Flipper starter\n\nThe starter calls flip_coin once and prints the returned label. Run it several times to see both heads and tails. Call it 1000 times in a loop, count each result once, and report both counts and percentages. For a small dry run with heads, tails, heads, tails, the two counts are both 2 and the percentages are both 50. A random run can differ from that exact split.\n",
+      "byteLength": 391,
+      "sha256": "05b0dd9479acf3fba0e7373825cd113e7b8616463a9879c405c59166bf54f702",
+      "gitBlob": "026f93028c685ef19d0b8de865e72e4f470cf29e"
+    },
+    "PS5-Coin-Flipper/starter/main.py": {
+      "content": "import random\n\n\ndef flip_coin():\n    if random.randint(0, 1) == 0:\n        return \"heads\"\n    return \"tails\"\n\n\nprint(f\"One flip: {flip_coin()}\")\n\n# Add a loop and separate counts for heads and tails.\n",
+      "byteLength": 200,
+      "sha256": "95aa79360ce79813bd4e1cd7a52bf0be89f06ea498f6a1ad5a1135b60b56c2ca",
+      "gitBlob": "d6488c0e78737036c4206197058e95ed2635ca5c"
+    },
+    "PS5-Coin-Flipper/solution/main.py": {
+      "content": "import random\n\n\ndef flip_coin():\n    if random.randint(0, 1) == 0:\n        return \"heads\"\n    else:\n        return \"tails\"\n\n\nnum_flips = 1000\nnum_heads = 0\nnum_tails = 0\n\nfor i in range(0, num_flips):\n    heads_or_tails = flip_coin()\n    if heads_or_tails == \"heads\":\n        num_heads += 1\n    else:\n        num_tails += 1\nprint(f\"Heads: {num_heads}, tails: {num_tails}\")\nprint(str((num_heads / num_flips) * 100) + \"% of your flips were heads.\")\nprint(str((num_tails / num_flips) * 100) + \"% of your flips were tails.\")\n",
+      "byteLength": 521,
+      "sha256": "67cc3a48b65ff3a7ebc0dcadd5621725bb8cd26c38126d398a174b7a6eb64d98",
+      "gitBlob": "5796a3f1150212ca7bf4f30880f656ec079eca10"
+    },
+    "PS5-Dice-Roller/starter/README.md": {
+      "content": "# Dice Roller starter\n\nThe starter rolls two six-sided dice and reports their total. Repeat this for 1000 pairs and report the relative frequency of each sum from 2 to 12. For a dry run, pairs 1/1, 1/6, 2/5, and 6/6 give sums 2, 7, 7, and 12. The counts for those sums are 1, 2, and 1. Explain why several different pairs make 7 while only 1/1 makes 2.\n",
+      "byteLength": 353,
+      "sha256": "af61d1578763a3c9c7ede37af4c5f095fbb709135553e692e8c4ee05b5f55497",
+      "gitBlob": "b20f84add0e2569597659ef8cf8398d3c42ff879"
+    },
+    "PS5-Dice-Roller/starter/main.py": {
+      "content": "import random\n\n\ndef dice_roll():\n    return random.randint(1, 6)\n\n\nfirst = dice_roll()\nsecond = dice_roll()\nprint(f\"First pair: {first} and {second}, total {first + second}\")\n\n# Repeat and count each possible sum from 2 through 12.\n",
+      "byteLength": 232,
+      "sha256": "f043ce44c949c47b2b4daea7fa27e3a4936ba04564025c7fbfa65b727f5c80e2",
+      "gitBlob": "a079f1b1e009a10a0ac862df5d1171d237cd0010"
+    },
+    "PS5-Dice-Roller/solution/main.py": {
+      "content": "import random\n\n\ndef dice_roll():\n    return random.randint(1, 6)\n\n\nnum_rolls = 1000\nnum_twos = 0\nnum_threes = 0\nnum_fours = 0\nnum_fives = 0\nnum_sixes = 0\nnum_sevens = 0\nnum_eights = 0\nnum_nines = 0\nnum_tens = 0\nnum_elevens = 0\nnum_twelves = 0\n\nfor i in range(0, num_rolls):\n    roll_num = dice_roll() + dice_roll()\n    if roll_num == 2:\n        num_twos += 1\n    elif roll_num == 3:\n        num_threes += 1\n    elif roll_num == 4:\n        num_fours += 1\n    elif roll_num == 5:\n        num_fives += 1\n    elif roll_num == 6:\n        num_sixes += 1\n    elif roll_num == 7:\n        num_sevens += 1\n    elif roll_num == 8:\n        num_eights += 1\n    elif roll_num == 9:\n        num_nines += 1\n    elif roll_num == 10:\n        num_tens += 1\n    elif roll_num == 11:\n        num_elevens += 1\n    elif roll_num == 12:\n        num_twelves += 1\n\nprint(str((num_twos / num_rolls) * 100) + \"% of your rolls were 2.\")\nprint(str((num_threes / num_rolls) * 100) + \"% of your rolls were 3.\")\nprint(str((num_fours / num_rolls) * 100) + \"% of your rolls were 4.\")\nprint(str((num_fives / num_rolls) * 100) + \"% of your rolls were 5.\")\nprint(str((num_sixes / num_rolls) * 100) + \"% of your rolls were 6.\")\nprint(str((num_sevens / num_rolls) * 100) + \"% of your rolls were 7.\")\nprint(str((num_eights / num_rolls) * 100) + \"% of your rolls were 8.\")\nprint(str((num_nines / num_rolls) * 100) + \"% of your rolls were 9.\")\nprint(str((num_tens / num_rolls) * 100) + \"% of your rolls were 10.\")\nprint(str((num_elevens / num_rolls) * 100) + \"% of your rolls were 11.\")\nprint(str((num_twelves / num_rolls) * 100) + \"% of your rolls were 12.\")\n",
+      "byteLength": 1617,
+      "sha256": "dea79854bc67cd6cbc4d2e983dd7e55a1f3f7620db35cbf1e88c4b6f8a7e983d",
+      "gitBlob": "4b287093733d9fbb791fb1ffe0c39f7c2b1bc162"
+    },
+    "PS5-Squawka-Zilly-Floog/starter/README.md": {
+      "content": "# Squawka Zilly Floog starter\n\nRun the starter to verify zilly(4) equals 9. Define floog(x) as x squared minus 6 times x plus 12. Define squawka(x) as twice zilly(x) plus three times floog(x), using calls to both helpers. At x = 4, the three outputs are 9, 4, and 30. At x = 0, verify 1, 12, and 38.\n",
+      "byteLength": 300,
+      "sha256": "b99406a470c09b90ab6d7e92515e222d3acda8bfd25127b4c952a650ec0a169a",
+      "gitBlob": "90317243794266fb7e65f26db1073412cb7d38ef"
+    },
+    "PS5-Squawka-Zilly-Floog/starter/main.py": {
+      "content": "def zilly(number):\n    return 2 * number + 1\n\n\nprint(f\"zilly(4) = {zilly(4)}\")\n\n# Define floog and call both helpers from squawka.\n",
+      "byteLength": 131,
+      "sha256": "ebaa0c8ae62ade6301f9a28095ae566e7aaf8bf4ea2692e38af3c717827a9649",
+      "gitBlob": "9294b6a5d2114ca81bdb146eb0e4ad4611c785bb"
+    },
+    "PS5-Squawka-Zilly-Floog/solution/main.py": {
+      "content": "def zilly(x):\n    return 2 * x + 1\n\n\ndef floog(x):\n    return x * x - 6 * x + 12\n\n\ndef squawka(x):\n    return 2 * zilly(x) + 3 * floog(x)\n\n\nprint(zilly(4))\nprint(floog(4))\nprint(squawka(4))\n",
+      "byteLength": 190,
+      "sha256": "12fa801889b781e99f604be6855f69bbbcac8b5eef95b39d7380d5fa29648a45",
+      "gitBlob": "29885b21e52156ce4ce7a1488a4700b82fed8472"
+    },
+    "PS5-Juni-Latin/starter/README.md": {
+      "content": "# Word Translator starter\n\nUse a single word made of letters. Move its first character to the end and append ay. Cat becomes atCay if the original starts with a capital C. The one-letter word a becomes aay. Return the translated result from the function. For an empty entry or two words, display a message instead of indexing the input.\n",
+      "byteLength": 337,
+      "sha256": "ac5f2d847cce5bf0a2e0d7c2af64582b514d59546fa695aefe0c4b4a0519c716",
+      "gitBlob": "b26ab6688af2572d5d3ba5af620bfc2cbfe1adeb"
+    },
+    "PS5-Juni-Latin/starter/main.py": {
+      "content": "word = input(\"One word: \").strip()\nif word.isalpha():\n    print(f\"First character: {word[0]}\")\n    # Move this logic into a function and assemble the translated word.\nelse:\n    print(\"Enter one word made of letters.\")\n",
+      "byteLength": 218,
+      "sha256": "4dccbbb4604bc6553a7c4ce2cb09130579de2c9e5e0f6fb19c1ba0486261ad90",
+      "gitBlob": "5c5ce2abb0d0465bb436abe91c3cb64ff705914d"
+    },
+    "PS5-Juni-Latin/solution/main.py": {
+      "content": "def translate(word):\n    if not word.isalpha():\n        return \"\"\n    return word[1:] + word[0] + \"ay\"\n\n\nword = input(\"One word: \").strip()\ntranslation = translate(word)\nif translation:\n    print(f\"{word} becomes {translation}.\")\nelse:\n    print(\"Enter one word made of letters.\")\n",
+      "byteLength": 281,
+      "sha256": "32a9e89d9dc4e6f0e7e5f4f86e2511602e3ae4db22579972960d58fcad754e76",
+      "gitBlob": "57223f74ede557563f434286fab42e328b6e32bf"
+    },
+    "PS5-Number-Games/starter/README.md": {
+      "content": "# Number Games starter\n\nThe starter defines is_even and prints the even numbers from 1 through 50. Write is_odd, then derive it a second way by negating is_even. Add helpers for multiples of 7 and 14. The multiples of 14 in this range are 14, 28, and 42. A second implementation of that rule combines is_even and is_multiple7. Define is_prime using divisibility by smaller integers. Values below 2 are not prime. Check 0, 1, 2, and 49.\n",
+      "byteLength": 436,
+      "sha256": "56eb30fc941614efb5a1be428a8bb9f558aabc4e31988ecf9c510d6fe7c1a28f",
+      "gitBlob": "1e06c798105c20073ecddb234ce7d2b9f7b3e667"
+    },
+    "PS5-Number-Games/starter/main.py": {
+      "content": "def is_even(number):\n    return number % 2 == 0\n\n\nprint(\"Even numbers:\")\nfor number in range(1, 51):\n    if is_even(number):\n        print(number)\n\n# Add the other predicates and reuse the existing helper where possible.\n",
+      "byteLength": 221,
+      "sha256": "92472a515f0fe9408a0447a3990ac350512c43e84851b20f1d798328cd3816f7",
+      "gitBlob": "09061c06f9695961eda58322eee5d513f3511d77"
+    },
+    "PS5-Number-Games/solution/main.py": {
+      "content": "def is_even(n):\n    return n % 2 == 0\n\n\nprint(\"The even numbers between 1 and 50 are...\")\nfor i in range(1, 51):\n    if is_even(i):\n        print(i)\nprint()\n\n##########\n\n\ndef is_odd(n):\n    return n % 2 != 0\n\n\nprint(\"The odd numbers between 1 and 50 are...\")\nfor i in range(1, 51):\n    if is_odd(i):\n        print(i)\nprint()\n\n##########\n\n\ndef is_odd2(n):\n    return not is_even(n)\n\n\nprint(\"The odd numbers between 1 and 50 are...\")\nfor i in range(1, 51):\n    if is_odd2(i):\n        print(i)\nprint()\n\n##########\n\n\ndef is_multiple7(n):\n    return n % 7 == 0\n\n\nprint(\"The multiples of 7 between 1 and 50 are...\")\nfor i in range(1, 51):\n    if is_multiple7(i):\n        print(i)\nprint()\n\n##########\n\n\ndef is_multiple14(n):\n    return n % 14 == 0\n\n\nprint(\"The multiples of 14 between 1 and 50 are...\")\nfor i in range(1, 51):\n    if is_multiple14(i):\n        print(i)\nprint()\n\n##########\n\n\ndef is_multiple14v2(n):\n    return is_even(n) and is_multiple7(n)\n\n\nprint(\"The multiples of 14 between 1 and 50 are...\")\nfor i in range(1, 51):\n    if is_multiple14v2(i):\n        print(i)\nprint()\n\n##########\n\n\ndef is_prime(n):\n    if n < 2:\n        return False\n    for i in range(2, n):\n        if n % i == 0:\n            return False\n    return True\n\n\nprint(\"The prime numbers between 1 and 50 are...\")\nfor i in range(1, 51):\n    if is_prime(i):\n        print(i)\nprint()\n",
+      "byteLength": 1356,
+      "sha256": "8d2c1890f5da4d03c3416cc97181c49edbb88340e44061d46961a4b41b768255",
+      "gitBlob": "0a85c8f28bb3a06466573a1eae36208abeae9260"
+    },
+    "PS5-Debugging-Functions/starter/main.py": {
+      "content": "# Your friend, Kant D. Bugg, is learning how to use functions and wrote a script to play a guessing game against the computer. Unfortunately, his script has some bugs in it. Help Kant find the bugs and get his script running!\n\n# Each time you run the code, read the error messages in the console. Each message will tell you which line to look for a bug, and even give you a hint about what the bug is.\n\n# After you find and fix the bug, run the code again. Read the new error message and find the next bug, until the program runs fully!\n\n# If you can't remember how to fix a certain line of code, look at one of your past projects for an example.\n\nimport random\n\ndef printWelcome()\n  print(\"I am thinking of a random number between 1 and 100. Guess what it is!\")\n\n\n# Get my secret number between 1 and 100!\ndef getRandomNumber():\n  myRandomNumber = random.randint(0,100)\n  return myRandomNumber\n\n\n# Ask the user to guess my secret number\ndef getGuessFromUser:\n  guess = int(input(\"Enter a new guess: \"))\n  return guess\n\n\n# If the guess is correct, then return True. Otherwise, print out if the guess was too high or too low, and return False\ndef answerIsRight(answer, guess):\n  if answer == guess:\n    return \"True\"\n  elif guess < answer:\n    print(\"You guessed too low!\")\n    return \"False\"\n  else:\n    print(\"You guessed too high!\")\n    return \"False\"\n\n\ndef printScore():\n  print('It took you ' + str(numGuesses) + ' guesses to guess my number.')\n  if numGuesses == 1:\n    print(\"Lucky you, you guessed my secret number on the first try!\")\n  elif numGuesses < 5:\n    print(\"Pretty solid guessing, it took you less than 5 tries to guess my number!\")\n  elif numGuesses < 15:\n    print(\"Pretty average guessing!\")\n  else:\n    print(\"Wow, it took you forever to guess my number!\")\n\n\ndef playGame()\n  printWelcome\n  answer = getRandomNumber(0,100)\n\n  # Ask the user to guess the secret number, then check if they got it right. If they didn't get it right, let them keep guessing until they guess correctly!\n  guess = getGuessFromUser()\n  numGuesses = 1 # Count how many guesses it took for the user to guess the number\n  while not answerIsRight(answer, getGuessFromUser()):\n    guess = getGuessFromUser()\n    numGuesses = numGuesses + 1\n\n  printScore()\n\nplayGame()\n\n# Bonus: Allow the user type in Y or N at the end of each game to decide whether or not to play again.",
+      "byteLength": 2365,
+      "sha256": "46cf304c6db3ba462b5c0f4b77780d27015c6fb0d15b4fc3ba23534202218b9a",
+      "gitBlob": "1dd64195426c1165fdc4f2fc31ebc2e0d309bbed"
+    },
+    "PS5-Debugging-Functions/solution/main.py": {
+      "content": "import random\n\n\ndef print_welcome():\n    print(\n        \"I am thinking of a random number between 1 and 100. Guess what it is!\"\n    )\n\n\n# Get my secret number between 1 and 100!\ndef get_random_number():\n    return random.randint(1, 100)\n\n\n# Ask the user to guess my secret number\ndef get_guess_from_user():\n    return int(input(\"Enter a new guess: \"))\n\n\n# If the guess is correct, then return True. Otherwise, print out if the guess was too high or too low, and return False\ndef answer_is_right(answer, guess):\n    if answer == guess:\n        print(\"You got it!\")\n        return True\n    elif guess < answer:\n        print(\"You guessed too low!\")\n        return False\n    else:\n        print(\"You guessed too high!\")\n        return False\n\n\ndef print_score(num_guesses):\n    print(\"It took you \" + str(num_guesses) + \" guesses to guess my number.\")\n    if num_guesses == 1:\n        print(\"Lucky you, you guessed my secret number on the first try!\")\n    elif num_guesses < 5:\n        print(\n            \"Pretty solid guessing, it took you less than 5 tries to guess my number!\"\n        )\n    elif num_guesses < 15:\n        print(\"Pretty average guessing!\")\n    else:\n        print(\"Wow, it took you forever to guess my number!\")\n\n\ndef play_game():\n    print_welcome()\n    answer = get_random_number()\n\n    # Ask the user to guess the secrete number, then check if they got it right. If they didn't get it right, let them keep guessing until they guess correctly!\n    guess = get_guess_from_user()\n    num_guesses = (\n        1  # Count how many guesses it took for the user to guess the number\n    )\n    while not answer_is_right(answer, guess):\n        guess = get_guess_from_user()\n        num_guesses = num_guesses + 1\n\n    print_score(num_guesses)\n\n\nplay_game()\n",
+      "byteLength": 1764,
+      "sha256": "57d7ee1d6a0d8dd34493509be424c57341fbb98a8a0c56a3a9527a2bb3570476",
+      "gitBlob": "770e73d2295308ffb9b994556740ee71725f4ccd"
+    }
+  }
+}

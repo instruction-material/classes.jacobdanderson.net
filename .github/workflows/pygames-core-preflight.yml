@@ -20,6 +20,11 @@ on:
       self_study_courses:
         description: Optional comma-separated self-study course IDs; validated by the browser check
         type: string
+      python_project_scope:
+        description: Python Level 2 browser exercises when both Python formats are selected
+        type: choice
+        options: [opening-and-loops, loops-and-check-ins, ascii-and-conditionals, functions, functions-and-collections, console-and-typing, console-and-capstones, lists-and-music, named-music-and-morse, dictionaries-and-morse, dictionaries-and-music, supplemental-practice]
+        default: opening-and-loops
       browser_artifact_id:
         description: Networking browser export artifact
         type: string
@@ -1334,7 +1339,7 @@ jobs:
   javascript-hundred-squares:
     if: inputs.course == 'javascript-hundred-squares'
     runs-on: ubuntu-24.04
-    timeout-minutes: 25
+    timeout-minutes: ${{ inputs.self_study_courses == 'python-level-2,python-level-2-classroom' && 45 || 25 }}
     env:
       CLASSES_FAMILY_TASK_ID: javascript-hundred-squares-${{ github.run_id }}
       JAVASCRIPT_HUNDRED_SQUARES_BROWSER_DIR: output/javascript-hundred-squares-browser
@@ -1463,8 +1468,35 @@ jobs:
           test/store.courses.python-level-2-flow.spec.test.ts
           test/store.courses.python-pygames-classroom.spec.test.ts
           --no-file-parallelism --maxWorkers=1
+      - name: Verify Python project roles, runtime and saved exports
+        if: inputs.self_study_courses == 'python-level-2,python-level-2-classroom'
+        env:
+          PYTHON_PROJECT_SCOPE: ${{ inputs.python_project_scope }}
+        run: |
+          npm exec -w front-end -- vitest run test/python-level-2-first-module.spec.test.ts test/store.courses.python-level-2-flow.spec.test.ts --maxWorkers=1
+          case "$PYTHON_PROJECT_SCOPE" in
+            loops-and-check-ins) modules=(check-ins loops) ;;
+            ascii-and-conditionals) modules=(ascii conditionals) ;;
+            functions) modules=(functions) ;;
+            functions-and-collections) modules=(functions collections) ;;
+            console-and-typing) modules=(console) ;;
+            console-and-capstones) modules=(console capstones) ;;
+            lists-and-music) modules=(lists-and-music) ;;
+            named-music-and-morse) modules=(named-music-and-morse) ;;
+            dictionaries-and-morse) modules=(dictionaries named-music-and-morse) ;;
+            dictionaries-and-music) modules=(lists-and-music dictionaries named-music-and-morse) ;;
+            supplemental-practice) modules=(supplemental-practice supplemental-sets-word-games) ;;
+            *) modules=(first loops) ;;
+          esac
+          for module in "${modules[@]}"; do
+            test_filter=()
+            if [[ "$PYTHON_PROJECT_SCOPE" == "dictionaries-and-music" && "$module" == "lists-and-music" ]]; then
+              test_filter=(--test-name-pattern='^PS6-(Build-a-Song|Song-Generator) ')
+            fi
+            PYTHON_LEVEL_2_BROWSER_MODULE="$module" node scripts/classes-family-heavy-task.mjs -- node --test --test-concurrency=1 "${test_filter[@]}" test/python-level-2-project-browser.test.mjs
+          done
       - name: Verify actual Wordsmith role imports, saved scoring edits and complete dictionary exports
-        if: inputs.self_study_courses != 'javascript-collisions' && inputs.self_study_courses != 'javascript-canvas-games' && inputs.self_study_courses != 'javascript-api-projects' && inputs.self_study_courses != 'javascript-local-persistence' && inputs.self_study_courses != 'javascript-us-capitals' && inputs.self_study_courses != 'javascript-master-fundamentals' && inputs.self_study_courses != 'javascript-master-checkpoint-one' && inputs.self_study_courses != 'javascript-master-checkpoint-two'
+        if: inputs.self_study_courses != 'javascript-collisions' && inputs.self_study_courses != 'javascript-canvas-games' && inputs.self_study_courses != 'javascript-api-projects' && inputs.self_study_courses != 'javascript-local-persistence' && inputs.self_study_courses != 'javascript-us-capitals' && inputs.self_study_courses != 'javascript-master-fundamentals' && inputs.self_study_courses != 'javascript-master-checkpoint-one' && inputs.self_study_courses != 'javascript-master-checkpoint-two' && (inputs.self_study_courses != 'python-level-2,python-level-2-classroom' || inputs.python_project_scope == 'opening-and-loops')
         env:
           PYTHON_WORDSMITH_BROWSER_DIR: output/python-wordsmith-browser
         run: node scripts/classes-family-heavy-task.mjs -- node --test --test-concurrency=1 test/python-wordsmith-course-browser.test.mjs
@@ -1560,6 +1592,7 @@ jobs:
             output/javascript-coastal-cruise-browser/
             output/javascript-juggling-paddle-browser/
             output/python-wordsmith-browser/
+            output/python-*-module-browser/
             output/javascript-collision-browser/
             output/javascript-canvas-games-browser/
             output/javascript-api-projects-browser/
@@ -3110,6 +3143,11 @@ jobs:
         run: |
           node --test test/self-study-browser-batches.test.mjs
           node scripts/classes-family-heavy-task.mjs -- node scripts/verify-self-study-browser-batches.mjs
+      - name: Verify Python Level 3 imports, runtime, saved attempts and exports
+        if: inputs.course == 'self-study' && contains(format(',{0},', inputs.self_study_courses), ',python-level-3,')
+        env:
+          PYTHON_LEVEL_3_BROWSER_PROOF_DIR: ${{ github.workspace }}/output/self-study-browser/python-level-3
+        run: node scripts/classes-family-heavy-task.mjs -- node --test --test-concurrency=1 test/python-level-3-course-browser.test.mjs
       - name: Verify Pythonic opening consent, saved attempts and actual Python exports
         if: inputs.course == 'self-study' && inputs.self_study_courses == 'pythonic-design-patterns'
         env:
