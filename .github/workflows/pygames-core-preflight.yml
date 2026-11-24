@@ -2039,6 +2039,7 @@ jobs:
           SWIFT_COURSE: map
           CLASSES_FAMILY_TASK_ID: swift-canonical-ios-map
           CLASSES_FAMILY_MIN_DISK_GB: 8
+          CLASSES_FAMILY_START_WAIT_MS: 600000
           CLASSES_FAMILY_HEAVY_TIMEOUT_MS: 3300000
       steps:
           - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
