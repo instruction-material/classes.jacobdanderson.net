@@ -2,7 +2,10 @@ import fs from "node:fs";
 import { describe, expect, it } from "vitest";
 import {
 	apBinarySearchResources,
-	apComputerScienceAProjectKey
+	apBlobEraseResources,
+	apComputerScienceAProjectKey,
+	apMergeSortResources,
+	apRecursionPracticeResources
 } from "@/modules/apComputerScienceAResources";
 import { pythonIdeModeForCourseResource } from "@/modules/pythonIde";
 import { apComputerScienceACourse } from "@/stores/courses/ap-computer-science-a";
@@ -188,6 +191,46 @@ describe("AP Computer Science A learner flow", () => {
 			expect(apComputerScienceAProjectKey(course, item, role, url)).toBe(
 				`${previousKey}:binary-search-trace`
 			);
+		}
+	});
+
+	it("preserves the runnable merge trace and three optional projects", () => {
+		const recursion = requireModule("APCS15 Recursion");
+		const sorting = requireModule("APCS16 Binary Search and Merge Sort");
+		const tasks = [
+			[
+				sorting.curriculum, "Merge Step Visual", "core",
+				apMergeSortResources, "merge-sort"
+			],
+			[
+				recursion.supplementalProjects, "Project: Recursion Practice", "challenge",
+				apRecursionPracticeResources, "recursion-practice"
+			],
+			[
+				recursion.supplementalProjects, "Project: Blob Erase", "challenge",
+				apBlobEraseResources, "blob-erase"
+			],
+			[
+				sorting.supplementalProjects, "Project: Merge Sort", "challenge",
+				apMergeSortResources, "merge-sort"
+			]
+		] as const;
+		for (const [items, title, learningPath, links, projectKind] of tasks) {
+			const task = items.find(item => item.title === title);
+			expect(task).toMatchObject({
+				learningPath,
+				ideImport: true,
+				preserveInstructions: true,
+				projectLink: links.starter,
+				solutionLink: links.reference
+			});
+			for (const role of ["starter", "reference"] as const) {
+				const course = "ap-computer-science-a";
+				expect(pythonIdeModeForCourseResource(course, links[role])).toBe("java");
+				expect(apComputerScienceAProjectKey(course, title, role, links[role])).toBe(
+					`${course}:${title}:${role}:${projectKind}`
+				);
+			}
 		}
 	});
 

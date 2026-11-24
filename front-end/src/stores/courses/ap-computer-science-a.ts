@@ -1,5 +1,10 @@
 import type { RawCourse, RawCourseModuleItem } from "./types";
-import { apBinarySearchResources } from "@/modules/apComputerScienceAResources";
+import {
+	apBinarySearchResources,
+	apBlobEraseResources,
+	apMergeSortResources,
+	apRecursionPracticeResources
+} from "@/modules/apComputerScienceAResources";
 import { gitCourseGuideLink } from "./classroomReferenceGuides";
 import {
 	staticMediaFilename,
@@ -1369,6 +1374,7 @@ const apComputerScienceASourceCourse: RawCourse = {
 					content: apProject({
 						goal: "Implement classic recursive methods while keeping the base case, smaller subproblem, and return path explicit.",
 						steps: [
+							"Run the starter and trace the supplied string-length method on the word cat. Use the README cases to check your own methods.",
 							"Write the base case before the recursive case.",
 							"Reduce the input in a way that reaches the base case.",
 							"Return or print in the correct order for factorials, powers, Fibonacci-style sequences, and string cascades.",
@@ -1384,8 +1390,11 @@ const apComputerScienceASourceCourse: RawCourse = {
 						extension:
 							"Compare a recursive solution with an iterative version and explain which state is implicit in the call stack."
 					}),
-					projectLink: repo("APCS15-Recursion-Practice/starter"),
-					solutionLink: repo("APCS15-Recursion-Practice/solution"),
+					projectLink: apRecursionPracticeResources.starter,
+					solutionLink: apRecursionPracticeResources.reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true,
 					mediaLink: media("apcs15-project-2-recursion-practice.mp4")
 				},
 				{
@@ -1393,6 +1402,7 @@ const apComputerScienceASourceCourse: RawCourse = {
 					content: apProject({
 						goal: "Use recursion to erase a connected region in a 2D grid while avoiding repeated visits and out-of-bounds access.",
 						steps: [
+							"Run the starter and predict which filled cells disappear from the fixed grid when erasing from row 0, column 0.",
 							"Represent the image as a 2D array of filled and empty cells.",
 							"Reject invalid positions, empty cells, and already-erased cells as base cases.",
 							"Erase or mark the current cell before exploring neighbors.",
@@ -1408,8 +1418,11 @@ const apComputerScienceASourceCourse: RawCourse = {
 						extension:
 							"Return the number of erased cells or add diagonal connectivity, then explain how the base cases and recursive calls changed."
 					}),
-					projectLink: repo("APCS15-Blob-Erase/starter"),
-					solutionLink: repo("APCS15-Blob-Erase/solution"),
+					projectLink: apBlobEraseResources.starter,
+					solutionLink: apBlobEraseResources.reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true,
 					mediaLink: media("apcs15-project-3-blob-erase.mp4")
 				},
 				{
@@ -1500,9 +1513,9 @@ const apComputerScienceASourceCourse: RawCourse = {
 				{
 					title: "Merge Step Visual",
 					content: apProject({
-						goal: "Use the merge visual to isolate the sorted-merge operation before implementing the full recursive sort.",
+						goal: "Trace the supplied Java merge helper to see how it combines two sorted arrays.",
 						steps: [
-							"Start with two already sorted lists.",
+							"Open and run the starter. Trace the inputs `[-3, 4, 4]` and `[-1, 2, 8]` using one index per input and one for the output.",
 							"Compare the first remaining value from each list.",
 							"Move the smaller value into the output list.",
 							"Append the rest of the non-empty list after the other side is exhausted."
@@ -1515,8 +1528,11 @@ const apComputerScienceASourceCourse: RawCourse = {
 							"The output remains sorted after every move."
 						]
 					}),
-					projectLink: repo("APCS16-Merge-Sort/starter"),
-					solutionLink: repo("APCS16-Merge-Sort/solution"),
+					projectLink: apMergeSortResources.starter,
+					solutionLink: apMergeSortResources.reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true,
 					mediaLink: media("am_10_merge.mp4")
 				}
 			],
@@ -1526,6 +1542,7 @@ const apComputerScienceASourceCourse: RawCourse = {
 					content: apProject({
 						goal: "Implement recursive merge sort and explain how splitting plus merging creates `O(n log n)` behavior.",
 						steps: [
+							"Run the supplied merge example first. Implement mergeSort in MergeSort.java, then call it separately in Main.java.",
 							"Use an array of length zero or one as the base case.",
 							"Split larger arrays into left and right halves.",
 							"Recursively sort each half.",
@@ -1541,8 +1558,11 @@ const apComputerScienceASourceCourse: RawCourse = {
 						extension:
 							"Track temporary-array allocation or implement an index-range version, then compare clarity and space usage."
 					}),
-					projectLink: repo("APCS16-Merge-Sort/starter"),
-					solutionLink: repo("APCS16-Merge-Sort/solution"),
+					projectLink: apMergeSortResources.starter,
+					solutionLink: apMergeSortResources.reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true,
 					mediaLink: media("apcs16-project-2-merge-sort.mp4")
 				}
 			]
