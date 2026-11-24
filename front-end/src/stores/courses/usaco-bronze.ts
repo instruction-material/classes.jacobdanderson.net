@@ -1,5 +1,4 @@
 import type { RawCourse, RawCourseModuleItem } from "./types";
-import { buildImplementationLabGuidance } from "./implementationLabGuidance";
 import { buildProjectGuidance } from "./projectGuidance";
 
 const USACO_CONTESTS = "https://usaco.org/index.php?page=contests";

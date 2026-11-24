@@ -592,7 +592,7 @@ const designPatternsInCppSourceCourse: RawCourse = {
 					preserveInstructions: true,
 					contentKind: "assignment",
 					content:
-						"Extend the scanner for a command-line editor. Compile main.cpp as C++20 and enter one instruction per line. The starter recognizes mode draft, mode review and undo. Add append and replace, each followed by one quoted string. Check the opening quote and use std::quoted to read spaces, escaped quotes and empty text. Reject unfinished strings or extra tokens before sending a command to the editor.\n\n**Checkpoints:** Append \"first draft\", enter review mode, try a quoted replacement, append \"!\" and undo. The document finishes as first draft. An unquoted replacement reports a syntax error. A quoted replacement in review reaches the editor and reports a mode rejection.",
+						'Extend the scanner for a command-line editor. Compile main.cpp as C++20 and enter one instruction per line. The starter recognizes mode draft, mode review and undo. Add append and replace, each followed by one quoted string. Check the opening quote and use std::quoted to read spaces, escaped quotes and empty text. Reject unfinished strings or extra tokens before sending a command to the editor.\n\n**Checkpoints:** Append "first draft", enter review mode, try a quoted replacement, append "!" and undo. The document finishes as first draft. An unquoted replacement reports a syntax error. A quoted replacement in review reaches the editor and reports a mode rejection.',
 					projectLink:
 						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/e2c2200e69ae97d5f807fe210aeab3c183018101/DPC-15-dpc7-command-and-state-supplemental-2/starter",
 					solutionLink:
