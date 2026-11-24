@@ -878,6 +878,21 @@ describe("AP Computer Science A learner flow", () => {
 		expect(prompts[0].aliases).toContain("applied-challenge");
 	});
 
+	it("retains the archived assessment identity and exposes the official rubric to learners", async () => {
+		setActivePinia(createPinia());
+		const course = (await useCoursesStore().loadCourseById("ap-computer-science-a"))!;
+		const module = course.modules.find(item => item.title === "APCS17 Master Projects and Test Prep")!;
+		const exam = module.supplementalProjects.find(item => item.title === "2024 FRQ and Scoring Guidelines")!;
+		expect(exam.id).toBe("ap-computer-science-a-apcs17-master-projects-and-test-prep-supplemental-2022-frq-and-scoring-guidelines");
+		expect(exam.content).toContain("ap24-sg-computer-science-a.pdf");
+		expect(exam.content).toContain("independent state");
+		const guide = course.modules.find(item => item.title === "Project Practice Guide")!;
+		expect(guide.supplementalProjects).toHaveLength(6);
+		for (const brief of guide.supplementalProjects) {
+			expect(brief.content).toContain("](/courses#ap-computer-science-a-");
+		}
+	});
+
 	it("keeps both written collection prompts and their runnable check-in visible", async () => {
 		setActivePinia(createPinia());
 		const course = (await useCoursesStore().loadCourseById("ap-computer-science-a"))!;
@@ -1032,7 +1047,7 @@ describe("AP Computer Science A learner flow", () => {
 		expect(unit4).toContain("privacy");
 		expect(unit4).toContain("complete protected check-ins");
 		expect(finalResources).toContain("ap26-frq-computer-science-a.pdf");
-		expect(finalPrep).toContain("2022 FRQs");
+		expect(finalPrep).toContain("2024 scoring guide");
 		expect(finalPrep).toContain("2020 repository exam");
 		expect(guide).toContain(
 			"inheritance/polymorphism appendix is optional Java enrichment"

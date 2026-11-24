@@ -32,10 +32,10 @@ import {
 const STATIC_MEDIA_BASE = "https://static.classes.jacobdanderson.net";
 const BARRONS_TEXTBOOK =
 	"https://www.simonandschuster.com/books/AP-Computer-Science-A-Premium-13th-Edition-Prep-Book-with-6-Practice-Tests-%2B-Comprehensive-Review/Roselyn-Teukolsky/Barrons-AP-Prep/9798349700354";
-const AP_2022_FRQ =
-	"https://apcentral.collegeboard.org/media/pdf/ap22-frq-computer-science-a.pdf";
-const AP_2022_FRQ_SCORING =
-	"https://apcentral.collegeboard.org/media/pdf/ap22-sg-computer-science-a.pdf";
+const AP_2024_FRQ =
+	"https://apcentral.collegeboard.org/media/pdf/ap24-frq-comp-sci-a.pdf";
+const AP_2024_FRQ_SCORING =
+	"https://apcentral.collegeboard.org/media/pdf/ap24-sg-computer-science-a.pdf";
 const AP_2026_FRQ =
 	"https://apcentral.collegeboard.org/media/pdf/ap26-frq-computer-science-a.pdf";
 const AP_CSA_CED =
@@ -1435,13 +1435,43 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 			curriculum: [
 				{
 					title: "Superclass and Subclass Design",
-					content:
-						"Inheritance captures shared state and behavior without copy-pasting class logic. A valid subclass relationship needs a clear justification."
+					contentKind: "reading",
+					preserveInstructions: true,
+					learningPath: "challenge",
+					content: [
+						"Every picture book in this model is a book. `Book` stores a title, author, and page number. `PictureBook extends Book` adds an illustrator. Both objects can use `hasSameAuthor(Book other)` because `PictureBook` inherits that method. Trace these calls in the Book project’s `main` method.",
+						"",
+						"```java",
+						'Book guide = new Book("Forest", "Lee", 3);',
+						'PictureBook atlas = new PictureBook("Trail", "Lee", 7, "Kim");',
+						"System.out.println(guide.hasSameAuthor(atlas));",
+						"System.out.println(atlas.hasSameAuthor(guide));",
+						"```",
+						"",
+						"Both calls print `true`. The `Book` method compares the text of the authors, even when one argument is a `PictureBook`. Change only the illustrator and predict both results. Then change the author and repeat. Which field belongs in the superclass if both kinds of book need to compare it?",
+						"",
+						"[Open Book and PictureBook Class practice](/courses#ap-computer-science-a-optional-inheritance-and-polymorphism-enrichment-ap-computer-science-a-optional-inheritance-and-polymorphism-enrichment-supplemental-core-project-book-and-picturebook-class)"
+					].join("\n")
 				},
 				{
 					title: "Constructors, `super`, and Overriding",
-					content:
-						"Make constructor chaining and method overriding explicit: what gets inherited, what gets customized, and when `super(...)` is required."
+					contentKind: "reading",
+					preserveInstructions: true,
+					learningPath: "challenge",
+					content: [
+						"The `PictureBook` constructor calls `super(title, author, page)` to initialize the book portion of the object, then assigns `this.illustrator`. The completed `toString()` calls `super.toString()` for the book description and appends the illustrator. Use the following calls with the completed project.",
+						"",
+						"```java",
+						'Book first = new Book("Moss", "Lee", 4);',
+						'Book second = new PictureBook("Moss", "Lee", 4, "Kim");',
+						"System.out.println(first.toString());",
+						"System.out.println(second.toString());",
+						"```",
+						"",
+						"The first line is `Moss by Lee (page 4)`. The second adds `, illustrated by Kim`. Both variables have declared type `Book`. At runtime the second object supplies the override. In the starter, `PictureBook.toString()` returns only `super.toString()`. Compare the two outputs before and after completing the override.",
+						"",
+						"[Open Book and PictureBook Class practice](/courses#ap-computer-science-a-optional-inheritance-and-polymorphism-enrichment-ap-computer-science-a-optional-inheritance-and-polymorphism-enrichment-supplemental-core-project-book-and-picturebook-class)"
+					].join("\n")
 				},
 				{
 					title: "Core Project: Book and PictureBook Class",
@@ -1570,13 +1600,43 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 			curriculum: [
 				{
 					title: "Superclass References and Dynamic Dispatch",
-					content:
-						"Polymorphism combines shared method contracts with runtime method selection based on the actual object type. The AP skill is explaining both compile-time reference restrictions and runtime overridden-method selection."
+					contentKind: "reading",
+					preserveInstructions: true,
+					learningPath: "challenge",
+					content: [
+						"A `Shape` reference can hold a `Square` or `Rectangle`. The compiler allows a call to `getArea()` because `Shape` declares it. Java selects the implementation using the actual object at that moment. Trace this loop with the completed Many Shapes project.",
+						"",
+						"```java",
+						"Shape[] shapes = {new Square(3), new Rectangle(2, 5)};",
+						"for (Shape shape : shapes) {",
+						'    System.out.println(shape.getName() + " " + shape.getArea());',
+						"}",
+						"```",
+						"",
+						"The first iteration prints `Square 9.0`. The second prints `Rectangle 10.0`. The square multiplies its side by itself. The rectangle multiplies its height by its width. Reversing the array reverses the two output lines. Explain why the loop can process both shapes without checking the class name.",
+						"",
+						"[Open Many Shapes practice](/courses#ap-computer-science-a-optional-inheritance-and-polymorphism-enrichment-ap-computer-science-a-optional-inheritance-and-polymorphism-enrichment-supplemental-core-project-many-shapes)"
+					].join("\n")
 				},
 				{
 					title: "Type Reasoning and Invalid Calls",
-					content:
-						"Explain which method runs, which calls fail at compile time, and why a reference type constrains what members are visible."
+					contentKind: "reading",
+					preserveInstructions: true,
+					learningPath: "challenge",
+					content: [
+						"The declared type determines which methods the compiler accepts. `Square` declares `getSideLength()` and inherits `getName()` from `Shape`. A `Shape` reference exposes the methods declared by `Shape`, even when it points to a square.",
+						"",
+						"```java",
+						"Square tile = new Square(4);",
+						"Shape figure = tile;",
+						"System.out.println(figure.getArea());",
+						"System.out.println(tile.getSideLength());",
+						"```",
+						"",
+						"The output is `16.0` followed by `4.0`. Now predict the result of changing the last expression to `figure.getSideLength()`. Compilation fails because `Shape` has no such method. Restore the working version. Draw the two references pointing at the same object and explain why `figure.getArea()` runs the square override.",
+						"",
+						"[Open Many Shapes practice](/courses#ap-computer-science-a-optional-inheritance-and-polymorphism-enrichment-ap-computer-science-a-optional-inheritance-and-polymorphism-enrichment-supplemental-core-project-many-shapes)"
+					].join("\n")
 				},
 				{
 					title: "Core Project: Many Shapes",
@@ -2021,10 +2081,11 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 				},
 				{
 					title: "Free Response Practice",
-					content:
-						"Use the 2022 AP CS A FRQ set and official scoring guidelines for Problem 4. Keep the prompt and rubric together so practice includes both solving and scoring. The useful routine is to write a solution under light timing, then score it line by line against the official rubric. Mark whether lost points came from loop bounds, array indexing, missing return values, incorrect conditionals, or incomplete explanation so the next review target is specific. Preserve one revised version that fixes only the first lost point, making the scoring improvement explicit.",
-					projectLink: AP_2022_FRQ,
-					solutionLink: AP_2022_FRQ_SCORING
+					contentKind: "assignment",
+					preserveInstructions: true,
+					content: `Use Question 4, GridPath, in the [2024 questions](${AP_2024_FRQ}). Trace a path that moves down or right to the smaller available neighbor. When only one neighbor remains, the next move is forced. On the grid {{2, 7, 6}, {4, 1, 3}}, record each visited coordinate from the top left to the bottom right. The values are 2, 4, 1, and 3, so their sum is 10. Write your two method bodies before checking the [official scoring guide](${AP_2024_FRQ_SCORING}). Test one starting location in the last row and one in the last column.`,
+					projectLink: AP_2024_FRQ,
+					solutionLink: AP_2024_FRQ_SCORING
 				}
 			]
 		},
@@ -3169,11 +3230,14 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 					mediaLink: media("apcs17-master-project-3-decode.mp4")
 				},
 				{
-					title: "2022 FRQ and Scoring Guidelines",
-					content:
-						"The 2022 AP CS A FRQ set and official scoring guidelines support timed practice and post-run scoring conversations. Attempt the prompt before reading the scoring document, then annotate the solution with where each point would be earned or lost. The goal is to learn AP scoring precision: correct idea, correct Java syntax, complete edge handling, and no extra behavior that contradicts the prompt. The follow-up pass rewrites only the missing or contradictory section, then records the exact rubric phrase that the revision now satisfies.",
-					projectLink: AP_2022_FRQ,
-					solutionLink: AP_2022_FRQ_SCORING
+					title: "2024 FRQ and Scoring Guidelines",
+					id: "ap-computer-science-a-apcs17-master-projects-and-test-prep-supplemental-2022-frq-and-scoring-guidelines",
+					contentKind: "assignment",
+					preserveInstructions: true,
+					learningPath: "challenge",
+					content: `Use Question 2, Scoreboard, in the [2024 questions](${AP_2024_FRQ}) for a timed class-design response. Follow its public member specifications. Before compiling, trace two teams named East and West. Starting with East active, record 3 points, then 0, then 2. The resulting scores are East 3 and West 2, with West active. Create a second scoreboard and confirm it has independent state. Apply the [2024 scoring guide](${AP_2024_FRQ_SCORING}) to the original response. For each missed point, identify the required behavior, revise the affected code, and replay the same calls. Use the 2026 set in this module for current-format practice.`,
+					projectLink: AP_2024_FRQ,
+					solutionLink: AP_2024_FRQ_SCORING
 				},
 				{
 					title: "2020 Repo Practice Exam",
@@ -3578,14 +3642,6 @@ function strengthenApCsaItem(item: RawCourseModuleItem): RawCourseModuleItem {
 		};
 	}
 
-	if (item.title === "2022 FRQ and Scoring Guidelines") {
-		return {
-			...item,
-			content:
-				"**Legacy practice:** The 2022 FRQs and scoring guidelines predate the Fall 2025 revision. Use only questions or parts that map cleanly to a current method/control, class-design, ArrayList, or 2D-array target, and label any out-of-scope inheritance or legacy format before assigning the task. Record the mapped current FRQ family, attempted rubric rows, first lost behavior, and corrected response so older material remains targeted practice rather than a substitute exam blueprint."
-		};
-	}
-
 	return item;
 }
 
@@ -3731,7 +3787,7 @@ function decorateApCsaModule(
 			contentKind: "assignment",
 			preserveInstructions: true,
 			content:
-				"Use the linked 2026 free-response questions. For each part, copy the required method or class header, identify what the caller supplies, and write the response without compiler feedback. Use the Java Quick Reference from the setup module. Trace one ordinary input and one boundary input through the completed response. Record the expected return value, any change to an object or collection, and the line responsible for that change. Before comparing with any available official scoring material, save the original response. Mark the first place it misses a requirement, revise that part, and repeat the same two traces.",
+				"Use the linked 2026 free-response questions. For each part, copy the required method or class header, identify what the caller supplies, and write the response without compiler feedback. Use the Java Quick Reference from the setup module. Trace one ordinary input and one boundary input through the completed response. Record the expected return value, any change to an object or collection, and the line responsible for that change. Save the original response and compare it with the [2026 scoring guide](https://apcentral.collegeboard.org/media/pdf/ap26-sg-computer-science-a.pdf). Mark the first place it misses a requirement, revise that part, and repeat the same two traces.",
 			projectLink: AP_2026_FRQ,
 			learningPath: "core"
 		});

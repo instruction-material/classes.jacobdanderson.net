@@ -2252,18 +2252,30 @@ function addApCsaAlignmentModule(courseId: string, course: RawCourse) {
 			},
 			{
 				title: "FRQ Cadence",
-				content:
-					"**Concept path:** Add one short FRQ-style task after class design, arrays/ArrayLists, 2D arrays, inheritance/polymorphism, and recursion. Use official-style rubrics: correctness, object state, loop bounds, method contract, and edge cases. The task is short enough to review carefully, but close enough to exam style that tracing and rubric language become familiar.\n\n**Evidence target:** The work demonstrates the ability to explain where points would be earned or lost."
+				contentKind: "reading",
+				preserveInstructions: true,
+				content: [
+					"After Unit 2, write a method that uses selection and iteration. After Unit 3, write a complete class from its contract. In Unit 4, complete one ArrayList response and one rectangular 2D array response. For each, save a first attempt before using a compiler, trace a boundary input, then score it against the prompt. The separate inheritance projects are optional Java enrichment.",
+					"[Open Check-In #4 practice](/courses#ap-computer-science-a-check-in-4-ap-computer-science-a-check-in-4-curriculum-core-check-in-prompt-bank)"
+				].join("\n\n")
 			},
 			{
 				title: "MCQ Distractor Analysis",
-				content:
-					"**Readiness check:** After each MCQ practice set, classify missed questions by distractor type: off-by-one, reference vs value, integer division, boolean logic, object state, array bounds, or method dispatch. The purpose is to find repeatable misconception patterns rather than simply record a score.\n\n**Review routine:** For every missed item, write the wrong answer chosen, the tempting assumption behind it, the Java rule that resolves it, and a smaller example that exposes the same trap. A loop-bound miss might become a three-element trace; a method-dispatch miss might become a two-class inheritance trace.\n\n**Evidence target:** The error log records each miss, groups repeated mistake types, and repeats a targeted review problem."
+				contentKind: "reading",
+				preserveInstructions: true,
+				content: [
+					"Which array results after the first outer pass of insertion sort on [3, 2, 1]? Compare [1, 2, 3], [2, 3, 1], and [3, 1, 2]. The saved value is 2. Only 3 shifts right, so [2, 3, 1] is correct. The first answer sorts the entire input too soon. The last answer changes an element outside the current prefix. For a missed question, identify the first operation at which the prediction differs from the trace.",
+					"[Open Insertion Sort practice](/courses#ap-computer-science-a-apcs14-selection-and-insertion-sort-ap-computer-science-a-apcs14-selection-and-insertion-sort-supplemental-project-insertion-sort)"
+				].join("\n\n")
 			},
 			{
 				title: "Answer-Check Review Rule",
-				content:
-					"**Concept path:** Any AP CSA project without an answer-check path needs local review material or a discussion-only label. Answer checks can be tests, expected output, trace tables, rubric bullets, or explanation prompts, but the project must not leave correctness completely implicit.\n\n**Review rule:** If a project answer cannot be checked automatically, define a human-checkable artifact: method signatures, sample trace, expected console output, object-state table, or FRQ-style rubric bullets. For algorithms, include at least one standard scenario and one boundary scenario. For class design, include one state change or method-contract explanation.\n\n**Evidence target:** Each project states whether the work is checked by tests, discussion, trace, rubric, or expected-output comparison."
+				contentKind: "reading",
+				preserveInstructions: true,
+				content: [
+					"Before running a solution, write the predicted return value and final state for one ordinary input and one boundary input. For a SupplyBin of capacity 5 starting at 4, add(1) returns true and leaves 5 units. Another add(1) returns false and leaves the bin at 5. A result that prints false but changes the quantity still violates the contract. Use the same two calls on the reference and identify the first point of disagreement.",
+					"[Open Check-In #3 practice](/courses#ap-computer-science-a-check-in-3-ap-computer-science-a-check-in-3-curriculum-core-check-in-prompt-bank)"
+				].join("\n\n")
 			}
 		],
 		supplementalProjects: [

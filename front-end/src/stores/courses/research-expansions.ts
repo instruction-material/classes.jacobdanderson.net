@@ -10,6 +10,7 @@ interface ResearchExpansionProfile {
 	topics: string[];
 	moduleAdditions: string[];
 	projectTypes: string[];
+	projectBriefs?: Record<string, string>;
 	assessments: string[];
 	materials: string[];
 	safety?: string;
@@ -632,15 +633,27 @@ function buildProjectModule(
 				].join("\n\n")
 			}
 		],
-		supplementalProjects: projects.map(project => ({
-			title: `Practice Project: ${projectTitle(project)}`,
-			content: [
-				projectOptionGoal(profile, courseLabel, project),
-				projectOptionRequiredOutcome(profile, courseLabel, project),
-				`**Checkpoints:**\n${bullets(projectOptionCheckpoints(profile, project))}`,
-				projectOptionExtension(profile, project)
-			].join("\n\n")
-		}))
+		supplementalProjects: projects.map(project => {
+			const title = `Practice Project: ${projectTitle(project)}`;
+			const brief = profile.projectBriefs?.[project];
+			if (brief) {
+				return {
+					title,
+					content: brief,
+					contentKind: "assignment",
+					preserveInstructions: true
+				};
+			}
+			return {
+				title,
+				content: [
+					projectOptionGoal(profile, courseLabel, project),
+					projectOptionRequiredOutcome(profile, courseLabel, project),
+					`**Checkpoints:**\n${bullets(projectOptionCheckpoints(profile, project))}`,
+					projectOptionExtension(profile, project)
+				].join("\n\n")
+			};
+		})
 	};
 }
 
@@ -1261,6 +1274,51 @@ const javaProfile: ResearchExpansionProfile = {
 	]
 };
 
+const apCsaProjectBriefs: Record<string, string> = {
+	"AP-style class design mini-FRQs.": [
+		"Two classrooms each have a supply bin of capacity 6. Write the `SupplyBin` constructor, `getQuantity()`, `add(int amount)` and `take(int amount)`. Each bin starts at the supplied quantity. A positive transfer succeeds only when the resulting quantity is between zero and capacity, inclusive. Both mutators return whether the transfer succeeded and preserve the quantity on failure.",
+		"",
+		"Start one bin at 4 and the other at 1. On the first bin, add 2, take 7, then take 6. Record the three return values and both final quantities. Check for `true, false, true` and quantities 0 and 1. Identify the line that prevents a failed withdrawal from changing the field. Try a deposit of zero.",
+		"",
+		"[Open Check-In #3 practice](/courses#ap-computer-science-a-check-in-3-ap-computer-science-a-check-in-3-curriculum-core-check-in-prompt-bank)"
+	].join("\n"),
+	"Array and ArrayList traversal drills with written explanations.": [
+		"A list of route labels contains `A, BC, D, E, FGH`. Use `removeShortLabels(labels, 2)` to keep every label of length two or greater in its original order. Before running it, trace the index and the list after each deletion. For an array holding the same labels, describe how to build a new array of exactly the required size using one counting pass and one copying pass.",
+		"",
+		"Both results must contain `BC, FGH`. In the list version, removing D moves E into the vacated index. Explain why always advancing a forward index would skip it. Check an empty input, two consecutive short labels at the end, and a label exactly two characters long.",
+		"",
+		"[Open Check-In #4 practice](/courses#ap-computer-science-a-check-in-4-ap-computer-science-a-check-in-4-curriculum-core-check-in-prompt-bank)"
+	].join("\n"),
+	"2D array grid problems.": [
+		"Two rooms report hourly attendance as the rows of `{{2, 0, 3}, {1, 3, 1}}`. Each row here represents one room and each column represents one hour. Trace `sumRow` for both rows, then use `isRowMagic` to test whether all row totals agree. Record the row, column, value, and running sum after each visit.",
+		"",
+		"Both row totals are 5 and the grid total is 10. Change the second row’s last entry from 1 to 2. Predict the new row total and the boolean result before checking the reference. Repeat on a one-row, three-column room report and explain why swapping the row and column bounds would fail.",
+		"",
+		"[Open Practice With Two-Dimensional Arrays practice](/courses#ap-computer-science-a-apcs10-arrays-ap-computer-science-a-apcs10-arrays-supplemental-project-practice-with-two-dimensional-arrays)"
+	].join("\n"),
+	"Inheritance and polymorphism trace projects.": [
+		"For this optional Java exercise, make a shelf with a plain `Book` and a `PictureBook`. Give both the title `Tides`, author `Lee`, and page 8. Give the picture book illustrator `Kim`. Store both in a `Book[]`. Write a loop that prints each object, then compare the authors with `hasSameAuthor`. Predict which class supplies each printed description.",
+		"",
+		"The ordinary book prints `Tides by Lee (page 8)`. The picture book adds `, illustrated by Kim`. The author check returns true. Compare the completed override with the starter’s version. Explain why the shared author method works through a `Book` reference and why the picture book’s formatting still appears when that reference is printed.",
+		"",
+		"[Open Book and PictureBook Class practice](/courses#ap-computer-science-a-optional-inheritance-and-polymorphism-enrichment-ap-computer-science-a-optional-inheritance-and-polymorphism-enrichment-supplemental-core-project-book-and-picturebook-class)"
+	].join("\n"),
+	"Recursion tracing and implementation projects.": [
+		'Trace the project’s `f3` with `"sun"`. Draw one row per call showing the argument, the next suffix, and the character waiting to print after the recursive call. Include the empty suffix. Predict the output before running `f3`, then repeat with an empty string and with `"a"`.',
+		"",
+		"The frames descend through `sun`, `un`, `n`, and the empty string. On return they print `nus`. The empty input prints no characters and the one-character input prints `a`. For optional implementation practice, move the print before the recursive call in a separate method. Use the same inputs to explain which outputs change.",
+		"",
+		"[Open Tracing Recursion practice](/courses#ap-computer-science-a-apcs15-recursion-ap-computer-science-a-apcs15-recursion-curriculum-core-project-tracing-recursion)"
+	].join("\n"),
+	"Released-FRQ-inspired practice with modified contexts.": [
+		"A bus dispatches every third minute relative to minute zero. Write `public static int countMultiples(int low, int high, int divisor)` to count departures in the inclusive interval from `low` to `high`. Assume a positive divisor, bounds between −1000 and 1000, and `low <= high`. Use a loop and a remainder check. This is an original practice prompt.",
+		"",
+		"From −4 through 4, the departures at −3, 0, and 3 give a count of 3. From 6 through 6 the count is 1. From 7 through 8 it is 0. Score the response separately for visiting both endpoints, recognizing multiples, and returning the count. Change the divisor to 2 and predict the first result before running it again.",
+		"",
+		"[Open Check-In #2 practice](/courses#ap-computer-science-a-check-in-2-ap-computer-science-a-check-in-2-curriculum-core-check-in-prompt-bank)"
+	].join("\n")
+};
+
 const apCsaProfile: ResearchExpansionProfile = {
 	family: "AP Computer Science A",
 	priority: "soon",
@@ -1281,14 +1339,8 @@ const apCsaProfile: ResearchExpansionProfile = {
 		"Unit review modules keyed to AP CSA units.",
 		"Timed practice exam cadence."
 	],
-	projectTypes: [
-		"AP-style class design mini-FRQs.",
-		"Array and ArrayList traversal drills with written explanations.",
-		"2D array grid problems.",
-		"Inheritance and polymorphism trace projects.",
-		"Recursion tracing and implementation projects.",
-		"Released-FRQ-inspired practice with modified contexts."
-	],
+	projectTypes: Object.keys(apCsaProjectBriefs),
+	projectBriefs: apCsaProjectBriefs,
 	assessments: [
 		"Timed MCQ checkpoints.",
 		"FRQ scoring with official-style rubrics.",
