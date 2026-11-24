@@ -275,7 +275,12 @@ export const apStoryShuffleTraceResources = {
 	)
 };
 
+export const apTextFileInputResources = projectRoles(
+	"https://github.com/instruction-material/APCS/tree/3fee7235ff4ddd1bf6794cfeaf04eb094715efa0/APCS9-Text-File-Input"
+);
+
 const restoredProjects = {
+	"gate-log": apTextFileInputResources,
 	...apStoryShuffleTraceResources,
 	...apFarmAndShapeResources,
 	"runtime-analysis": apRuntimeAnalysisResources,
@@ -315,6 +320,10 @@ export function apComputerScienceAProjectKey(
 }
 
 const nativeClassWorkspaces = {
+	"gate-log": {
+		item: "ap-computer-science-a-apcs9-software-development-lifecycle-curriculum-unit-4-text-file-input-contract",
+		files: ["GateLog.java"]
+	},
 	"card-shuffler": {
 		item: "ap-computer-science-a-apcs11-arraylists-supplemental-project-card-shuffler",
 		files: ["Card.java"]

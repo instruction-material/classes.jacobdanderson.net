@@ -12,6 +12,7 @@ import {
 	apEnrichmentResources,
 	apInputAndCardResources,
 	apStoryShuffleTraceResources,
+	apTextFileInputResources,
 	apFarmAndShapeResources,
 	apExpressionsAndClassResources,
 	apFoundationsSupplementalResources,
@@ -754,6 +755,14 @@ describe("AP Computer Science A learner flow", () => {
 		],
 		[
 			"APCS9 Software Development Lifecycle",
+			"Unit 4 Text-File Input Contract",
+			"gate-log",
+			"ap-computer-science-a-apcs9-software-development-lifecycle-curriculum-unit-4-text-file-input-contract",
+			"core",
+			"GateLog.java"
+		],
+		[
+			"APCS9 Software Development Lifecycle",
 			"Core Project: Robust Input Practice",
 			"robust-input",
 			"ap-computer-science-a-apcs9-software-development-lifecycle-curriculum-core-project-robust-input-practice",
@@ -827,7 +836,8 @@ describe("AP Computer Science A learner flow", () => {
 			...apEnrichmentResources,
 			...apInputAndCardResources,
 			...apFarmAndShapeResources,
-			...apStoryShuffleTraceResources
+			...apStoryShuffleTraceResources,
+			"gate-log": apTextFileInputResources
 		}[kind];
 		expect(item.id).toBe(itemId);
 		expect(rawItem).toMatchObject({
@@ -850,6 +860,17 @@ describe("AP Computer Science A learner flow", () => {
 				expect(javaNativeBuildInstructions(key)).toBeNull();
 			}
 		}
+	});
+
+	it("keeps both written collection prompts and their runnable check-in visible", async () => {
+		setActivePinia(createPinia());
+		const course = (await useCoursesStore().loadCourseById("ap-computer-science-a"))!;
+		const module = course.modules.find(item => item.title === "Check-In #4")!;
+		const prompt = module.curriculum.find(item => item.title.startsWith("FRQ Families 3 and 4"))!;
+		const project = module.curriculum.find(item => item.title === "Core Check-In Prompt Bank")!;
+		expect(prompt.content).toContain("removeShortLabels(ArrayList<String> labels, int minimumLength)");
+		expect(prompt.content).toContain("countPositive(int[][] grid)");
+		expect(prompt.content).toContain(`/courses#${module.id}-${project.id}`);
 	});
 
 	it.each([

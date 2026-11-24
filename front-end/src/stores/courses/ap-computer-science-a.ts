@@ -20,6 +20,7 @@ import {
 	apRuntimeAnalysisResources,
 	apStoryShuffleTraceResources,
 	apStudentClassResources,
+	apTextFileInputResources,
 	apVariablesAndLoopsResources
 } from "@/modules/apComputerScienceAResources";
 import { gitCourseGuideLink } from "./classroomReferenceGuides";
@@ -1070,13 +1071,54 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 			curriculum: [
 				{
 					title: "Classes, Fields, and Constructors",
-					content:
-						"Start the object sequence by focusing on how a class groups state and behavior. The design check is naming what belongs as an instance variable and what belongs in a method."
+					contentKind: "reading",
+					preserveInstructions: true,
+					content: [
+						"A class defines the fields and methods its objects have. Each `new Ticket(...)` creates a separate object and calls the constructor once. The constructor has the class name and no return type. Here, `this.seat` names the field on the new ticket and `seat` names the constructor parameter.",
+						"",
+						"```java",
+						"class Ticket {",
+						"    private final int seat;",
+						"",
+						"    Ticket(int seat) {",
+						"        this.seat = seat;",
+						"    }",
+						"",
+						"    int getSeat() {",
+						"        return seat;",
+						"    }",
+						"}",
+						"```",
+						"",
+						"Use the following calls in the `main` method.",
+						"",
+						"```java",
+						"Ticket first = new Ticket(12);",
+						"Ticket second = new Ticket(4);",
+						"System.out.println(first.getSeat());",
+						"System.out.println(second.getSeat());",
+						"```",
+						"",
+						"The calls print 12 and 4. Trace which ticket supplies `this` on each call. Creating the second ticket assigns its own seat field."
+					].join("\n")
 				},
 				{
 					title: "Accessors, Mutators, and Method Practice",
-					content:
-						"Short object builds make getters, setters, parameters, return values, and `this` references concrete. A finished example shows both reading state safely and changing state only through methods that preserve the class contract."
+					contentKind: "reading",
+					preserveInstructions: true,
+					content: [
+						"In the Student Class project, `getSchoolType()` reads the current grade and returns a label. Grades 6 through 8 are middle school and grades 9 through 12 are high school. `passGrade()` advances the stored grade by one while it is below 13. Try this sequence in the project's `main` method.",
+						"",
+						"```java",
+						'Student learner = new Student("Sam", "Lee", 8);',
+						"System.out.println(learner.getSchoolType());",
+						"learner.passGrade();",
+						"System.out.println(learner.getSchoolType());",
+						"learner.printInfo();",
+						"```",
+						"",
+						"The first call returns `middle school`. After the mutator runs, the accessor returns `high school` and the last call prints `Sam Lee, grade 9`. Predict the grade after a second call to `passGrade()`, then use `printInfo()` to check."
+					].join("\n")
 				},
 				{
 					title: "Core Project: Student Class",
@@ -1219,13 +1261,52 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 			curriculum: [
 				{
 					title: "State Mutation and Reference Semantics",
-					content:
-						"Continue class work with object references, side effects, and method calls that mutate encapsulated state. The central tracing skill is predicting what changes inside an object after each method call and what remains unchanged. Use before/after state tables for at least one object: field values before the call, parameter values during the call, field values after the call, and any returned value. This prevents a common mistake where a printed result is confused with the object's actual stored state."
+					contentKind: "reading",
+					preserveInstructions: true,
+					content: [
+						"Use the Vending Machine Class project. A new machine starts with zero peanuts. `setPeanuts` accepts counts from 0 to 100 inclusive, `vendPeanuts` removes one when stock is available, and `getPeanuts` reads the current count. Trace the three variables through this sequence in `main`.",
+						"",
+						"```java",
+						"VendingMachine first = new VendingMachine();",
+						"first.setPeanuts(2);",
+						"VendingMachine alias = first;",
+						"VendingMachine second = new VendingMachine();",
+						"alias.vendPeanuts();",
+						"System.out.println(first.getPeanuts());",
+						"System.out.println(second.getPeanuts());",
+						"```",
+						"",
+						"The outputs are 1 and 0. Assigning `alias = first` copies the reference. Both names reach the machine whose stock changed from 2 to 1. The second `new` created another machine. Predict both outputs if the vending call uses `second` instead."
+					].join("\n")
 				},
 				{
 					title: "Getters, Setters, `this`, and Primitive vs. Reference",
-					content:
-						"The APCS6 reference packs distinguish field access, parameter shadowing, and the difference between primitive copies and object references. The important comparison is whether a method receives an independent primitive value or a reference to an object whose fields can be changed. A strong explanation traces one setter call, one getter call, and one object-reference example without using public field access as a shortcut. Include a before/after table with parameter values, field values, and returned values so mutation is separated from local reassignment."
+					contentKind: "reading",
+					preserveInstructions: true,
+					content: [
+						"Java passes every argument by value. Put this helper inside the Vending Machine project's `Main` class, outside `main`. It receives a copy of the caller's number and a copy of the reference to the caller's machine.",
+						"",
+						"```java",
+						"static void restock(int count, VendingMachine machine) {",
+						"    count = count + 1;",
+						"    machine.setPeanuts(count);",
+						"    machine = new VendingMachine();",
+						"    machine.setPeanuts(9);",
+						"}",
+						"```",
+						"",
+						"Use the following calls in the project's `main` method.",
+						"",
+						"```java",
+						"int count = 2;",
+						"VendingMachine counter = new VendingMachine();",
+						"restock(count, counter);",
+						"System.out.println(count);",
+						"System.out.println(counter.getPeanuts());",
+						"```",
+						"",
+						"The caller prints 2 and 3. The helper's local count becomes 3. Its first setter changes the original machine. Reassigning `machine` makes the last setter act on a new object. In an instance method, `this` identifies the receiver. Trace the receiver of each setter to explain where the 9 went."
+					].join("\n")
 				},
 				{
 					title: "Core Project: Vending Machine Class",
@@ -1673,8 +1754,28 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 			curriculum: [
 				{
 					title: "Specifications, Design, and Testability",
-					content:
-						"APCS9 focuses on reading a spec, identifying missing requirements, and designing code that can be tested cleanly instead of guessed into existence.",
+					contentKind: "reading",
+					preserveInstructions: true,
+					content: [
+						"A method contract gives each test a predicted result. Suppose `canReserve(int free, int requested)` must accept a positive request that fits the available seats. Its precondition is `free >= 0`. The method returns a boolean and leaves the seat count unchanged.",
+						"",
+						"```java",
+						"static boolean canReserve(int free, int requested) {",
+						"    return requested > 0 && requested <= free;",
+						"}",
+						"```",
+						"",
+						"Use the following calls in the `main` method.",
+						"",
+						"```java",
+						"System.out.println(canReserve(3, 2));",
+						"System.out.println(canReserve(3, 3));",
+						"System.out.println(canReserve(3, 4));",
+						"System.out.println(canReserve(3, 0));",
+						"```",
+						"",
+						"The outputs are true, true, false, and false. The second case catches an implementation that rejects the last seat. The fourth catches one that accepts any request below capacity. Add a test for an empty room and state its expected result before running it."
+					].join("\n"),
 					mediaLink: media("apcs9-software-development-lifecycle.png")
 				},
 				{
@@ -1730,13 +1831,54 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 			curriculum: [
 				{
 					title: "Arrays, Indexing, and Fixed Size",
-					content:
-						"One-dimensional arrays are fixed-size ordered collections with constant-time indexed access and strict bounds. The essential habit is tracing valid indexes from `0` through `length - 1` before writing traversal code."
+					contentKind: "reading",
+					preserveInstructions: true,
+					content: [
+						"An array fixes its length when it is created. With three elements, the valid indexes are 0, 1, and 2. In `main`, predict the value of `total` after each iteration.",
+						"",
+						"```java",
+						"int[] scores = {4, 7, 2};",
+						"int total = 0;",
+						"for (int i = 0; i < scores.length; i++) {",
+						"    total += scores[i];",
+						"}",
+						"System.out.println(total);",
+						"```",
+						"",
+						"The running totals are 4, 11, and 13. At `i == 3`, the loop condition is false. Using `<=` would attempt to read `scores[3]` and throw an exception. With an empty array, the loop runs zero times and prints 0."
+					].join("\n")
 				},
 				{
-					title: "Pass-by-Reference Effects and 2D Arrays",
-					content:
-						"Arrays show how object references behave in methods, then extend that reasoning into two-dimensional arrays and matrix-style traversal. The key AP idea is that a method can modify the contents of an array object even when the parameter variable itself is local. For 2D arrays, trace rows and columns separately: row index, column index, accessed value, update rule, and whether the loop visits the whole matrix or only part of it. Include one example where a method changes an element and one where reassigning the parameter leaves the caller's array reference unchanged."
+					id: "ap-computer-science-a-apcs10-arrays-curriculum-pass-by-reference-effects-and-2d-arrays",
+					title: "Array References and 2D Traversal",
+					contentKind: "reading",
+					preserveInstructions: true,
+					content: [
+						"Java copies an array reference into a method parameter. The caller can observe writes to the shared array. In this helper, the outer loop selects a row, and the inner loop visits every column in that row.",
+						"",
+						"```java",
+						"static void mark(int[][] grid) {",
+						"    for (int r = 0; r < grid.length; r++) {",
+						"        for (int c = 0; c < grid[r].length; c++) {",
+						"            grid[r][c] += 1;",
+						"        }",
+						"    }",
+						"    grid = new int[][] {{99}};",
+						"}",
+						"```",
+						"",
+						"Use the following calls in the `main` method.",
+						"",
+						"```java",
+						"int[][] seats = {{2, 4, 6}, {0, 1, 3}};",
+						"mark(seats);",
+						"System.out.println(seats.length);",
+						"System.out.println(seats[0][2]);",
+						"System.out.println(seats[1][0]);",
+						"```",
+						"",
+						"The caller still has two rows. Its last column in row 0 now holds 7 and its first column in row 1 holds 1. Reassigning the local `grid` parameter leaves the caller's `seats` reference pointing to the updated original. Trace the six visited positions in row-major order."
+					].join("\n")
 				},
 				{
 					title: "Core Project: Practice With Arrays",
@@ -1891,8 +2033,23 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 			curriculum: [
 				{
 					title: "ArrayLists, Wrapper Constraints, and Core Methods",
-					content:
-						"`ArrayList` is a resizable ordered collection with method-based access, dynamic size, and object-only storage. The key contrast with arrays is that size changes through methods, while indexes still require careful bounds reasoning."
+					contentKind: "reading",
+					preserveInstructions: true,
+					content: [
+						"Place `import java.util.ArrayList;` above the class declaration. A list grows and shrinks as elements are added and removed. `ArrayList<Integer>` stores integer wrapper objects. Java boxes each `int` passed to `add` or `set`. Trace these operations in `main`.",
+						"",
+						"```java",
+						"ArrayList<Integer> scores = new ArrayList<>();",
+						"scores.add(4);",
+						"scores.add(7);",
+						"System.out.println(scores.set(0, 9));",
+						"System.out.println(scores.remove(1));",
+						"System.out.println(scores.get(0));",
+						"System.out.println(scores.size());",
+						"```",
+						"",
+						"The outputs are 4, 7, 9, and 1. `set` returns the replaced value and keeps the list size. Here `remove(1)` selects index 1, returns its value, and shortens the list. Only index 0 remains valid. Predict the outputs after adding 5 before the final size check."
+					].join("\n")
 				},
 				{
 					title: "Mutation, Traversal, and Removal Rules",
@@ -3217,6 +3374,8 @@ function strengthenApCsaItem(item: RawCourseModuleItem): RawCourseModuleItem {
 	if (item.title === "Past FRQ Archive") {
 		return {
 			...item,
+			contentKind: "reading",
+			preserveInstructions: true,
 			content:
 				"Use the official College Board archive with year labels and scope checks. The 2026 released FRQs align to the revised exam; older questions can still provide useful method, class, array, or list practice but do not completely align with the current framework. Record year, FRQ family, rubric row, lost behavior, and targeted correction.",
 			projectLink: AP_FRQ_ARCHIVE
@@ -3286,6 +3445,7 @@ function decorateApCsaModule(
 	if (module.title === "APCS4 Loops and Exceptions") {
 		curriculum.push({
 			title: "AP Scope Boundary: Iteration and Exceptions",
+			preserveInstructions: true,
 			content: [
 				"**Required AP evidence:** Trace and write conditional, `for`, `while`, and nested-loop code; explain initialization, condition, update, termination, output, and runtime failures.",
 				"",
@@ -3298,12 +3458,22 @@ function decorateApCsaModule(
 	if (module.title === "APCS6 Classes Part II") {
 		curriculum.push({
 			title: "FRQ Family 2: Class Design Contract",
+			preserveInstructions: true,
+			preserveAssignment: true,
+			contentKind: "assignment",
 			content: [
-				"**Completion evidence:**",
-				"- Translate the specification table into a class header, private instance variables, a constructor, and the requested method.",
-				"- Match names, parameter types, return types, visibility, initial state, and behavior exactly.",
-				"- Test ordinary, boundary, and repeated-call state without adding an inheritance hierarchy or unrequested public API.",
-				"- Type one complete response without compiler feedback, then score each required element separately."
+				"Write a public Java class named `SupplyBin` without compiler feedback first. Store the fixed capacity and current quantity in private instance fields. Each bin keeps its own state.",
+				"",
+				"| Public member | Required behavior |",
+				"| --- | --- |",
+				"| `SupplyBin(int capacity, int quantity)` | Set the capacity and starting quantity. Assume capacity is positive and quantity is between zero and capacity, inclusive. |",
+				"| `int getQuantity()` | Return the current quantity. |",
+				"| `boolean add(int amount)` | Add a positive amount if it fits in the remaining space. Return true on success. Otherwise return false and preserve the quantity. |",
+				"| `boolean take(int amount)` | Remove a positive amount if it is available. Return true on success. Otherwise return false and preserve the quantity. |",
+				"",
+				"**Check the response.** Starting at 2 in a bin with capacity 5, adding 3 succeeds, adding 1 fails, and taking 4 succeeds. The final quantity is 1. Trace zero, an exact withdrawal, and an oversized request. Check that two independently created bins can hold different quantities.",
+				"",
+				"Score the field declarations, constructor, accessor, and each mutator separately against the table. Then open [Check-In #3 practice](/courses#ap-computer-science-a-check-in-3-ap-computer-science-a-check-in-3-curriculum-core-check-in-prompt-bank) to run the response and compare it with the reference."
 			].join("\n"),
 			learningPath: "core"
 		});
@@ -3314,13 +3484,17 @@ function decorateApCsaModule(
 			{
 				title: "Unit 4 Text-File Input Contract",
 				content: [
-					"**Completion evidence:**",
-					"- Read a documented course-owned text file with `File` and `Scanner`, using only the current Java Quick Reference methods.",
-					"- State the file precondition or `throws IOException` boundary and close the scanner after use.",
-					"- Test missing-file policy separately from empty, one-record, malformed, and ordinary fixtures.",
-					"- If `nextLine()` and token methods appear in enrichment work, explain whitespace behavior; mixed-method analysis and keyboard input remain outside current exam scope."
-				].join("\n"),
-				projectLink: AP_CSA_CED,
+					"Read the observations in `gates.txt` and report how many are open. Each observation is one lowercase word, `open` or `closed`. Spaces and line breaks separate observations. An empty file is valid. Any other word invalidates the entire log.",
+					"Open the starter and inspect `Main.java`. A File names the path. Constructing a Scanner opens it for reading. In `GateLog.countOpen`, `hasNext()` checks whether a token remains and `next()` consumes it. Complete the counter update. Main closes the scanner after the method returns, including when it returns -1 for an invalid token.",
+					"Download and extract the ZIP. From the folder containing `gates.txt`, run `javac Main.java GateLog.java` and then `java Main`. The supplied file gives `Open: 3` in the completed program. An empty file or a single `closed` gives `Open: 0`. For `open unknown open`, expect `Invalid observation.`",
+					"Temporarily rename the file. The program cannot open it and propagates an IOException before it starts counting. Restore its name and explain why an empty file produces a result."
+				].join("\n\n"),
+				projectLink: apTextFileInputResources.starter,
+				solutionLink: apTextFileInputResources.reference,
+				datasetLink: AP_CSA_CED,
+				ideImport: true,
+				preserveInstructions: true,
+				preserveAssignment: true,
 				learningPath: "core"
 			},
 			{
@@ -3339,12 +3513,17 @@ function decorateApCsaModule(
 	if (module.title === "Check-In #4") {
 		curriculum.push({
 			title: "FRQ Families 3 and 4: Data Collections Contract",
+			contentKind: "assignment",
+			preserveAssignment: true,
+			preserveInstructions: true,
 			content: [
-				"**ArrayList response:** Match the supplied class and method specification, traverse typed objects, mutate without skipped indexes or concurrent modification, and return exactly the requested result.",
+				"Write both method bodies before opening the runnable [Check-In #4 practice](/courses#ap-computer-science-a-check-in-4-ap-computer-science-a-check-in-4-curriculum-core-check-in-prompt-bank).",
 				"",
-				"**2D-array response:** Treat exam arrays as rectangular, keep row and column indexes distinct, trace requested traversal order, and verify edge rows, edge columns, and the smallest valid grid.",
+				'**ArrayList response.** Implement `public static void removeShortLabels(ArrayList<String> labels, int minimumLength)`. The list and its elements are non-null. Remove every string shorter than the minimum in place and preserve the order of the remaining strings. For the list `["desk", "ox", "i", "shelf"]` and a minimum of 3, the caller must see `["desk", "shelf"]`. Trace what happens to the index of the next entry after a removal. Test an empty list and a label exactly as long as the minimum.',
 				"",
-				"Type both responses without compiler feedback and score required behavior, syntax, and boundary handling by row."
+				"**2D-array response.** Implement `public static int countPositive(int[][] grid)` for a rectangular grid. Return the number of entries strictly greater than zero and preserve every entry. For `{{0, 3, -1}, {2, -3, 5}}`, the result is 3. Trace which coordinates contribute. Check an empty grid, a zero-width row, and a one-cell grid.",
+				"",
+				"Score the first response for removal, adjacency, and order. Score the second for row and column bounds, the positive-value condition, and the returned count. Run both on the same inputs to compare the observations with the predictions."
 			].join("\n"),
 			learningPath: "core"
 		});
@@ -3353,8 +3532,10 @@ function decorateApCsaModule(
 	if (module.title === "APCS17 Master Projects and Test Prep") {
 		curriculum = insertApCsaItem(curriculum, "Past FRQ Archive", {
 			title: "2026 Released FRQ Set",
+			contentKind: "assignment",
+			preserveInstructions: true,
 			content:
-				"Use the released 2026 FRQs as the current-framework benchmark. Complete each question in the digital family it represents, type without compiler feedback, use only the supplied classes and current Java Quick Reference, and record uncertain syntax or omitted behavior before comparing with any available official scoring material.",
+				"Use the linked 2026 free-response questions. For each part, copy the required method or class header, identify what the caller supplies, and write the response without compiler feedback. Use the Java Quick Reference from the setup module. Trace one ordinary input and one boundary input through the completed response. Record the expected return value, any change to an object or collection, and the line responsible for that change. Before comparing with any available official scoring material, save the original response. Mark the first place it misses a requirement, revise that part, and repeat the same two traces.",
 			projectLink: AP_2026_FRQ,
 			learningPath: "core"
 		});
