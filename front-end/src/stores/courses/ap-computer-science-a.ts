@@ -3821,7 +3821,7 @@ function decorateApCsaModule(
 			contentKind: "assignment",
 			preserveInstructions: true,
 			content: [
-				"**Readiness evidence:**",
+				"Complete the timed practice exam and keep the first set of responses for scoring.",
 				"- Two timed 90-minute digital sections using 42 multiple-choice questions and four typed FRQs, with the current Quick Reference available.",
 				"- FRQ coverage includes Methods and Control Structures, Class Design, Data Analysis with ArrayList, and 2D Array.",
 				"- Error log records unit, computational thinking practice, rubric row or reasoning error, correction, and a later successful transfer check.",

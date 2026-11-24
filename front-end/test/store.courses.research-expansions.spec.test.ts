@@ -395,6 +395,16 @@ describe("research-backed course family expansions", () => {
 					for (const detail of ["PDP9", "PDP12", "models.py", "test_contract.py", "requirements-dev.txt", "complete export", "dependency diagram", "successful clean reproduction"])
 						expect(roadmapText, courseId).toContain(detail);
 				}
+				else if (courseId === "ap-computer-science-a") {
+					const readings = [...roadmapModule!.curriculum, ...roadmapModule!.supplementalProjects];
+					expect(readings).toHaveLength(6);
+					for (const item of readings) {
+						expect(item.contentKind, item.title).toBe("reading");
+						expect(item.content, item.title).toContain("](/courses#ap-computer-science-a-");
+					}
+					expect(roadmapText).toContain("Binary search assumes sorted input");
+					expect(roadmapText).toContain("GateLog.java counts the observations");
+				}
 				else {
 					for (const label of [
 						"Map purpose",
