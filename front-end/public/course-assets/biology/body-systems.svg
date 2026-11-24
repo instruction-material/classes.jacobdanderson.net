@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="809" viewBox="0 0 480 809" role="img" aria-labelledby="title description">
+  <title id="title">Human body systems</title>
+  <desc id="description">Ten systems paired with representative structures and functions. The Body Systems Scenario Cards give the same reference in text.</desc>
+  <rect x="0" y="0" width="480" height="809" fill="#fcfdfa"/>
+  <g font-family="Arial, Helvetica, sans-serif" fill="#18352e">
+    <text x="16" y="40" font-size="32" font-weight="bold">Human body systems</text>
+    <rect x="0" y="60" width="480" height="41" fill="#24564c"/>
+    <text x="16" y="88" font-size="20" fill="white" font-weight="bold">System and structure</text>
+    <text x="237" y="88" font-size="20" fill="white" font-weight="bold">Function</text>
+    <rect x="0" y="101" width="480" height="68" fill="#edf3ee"/>
+    <text x="16" y="127" font-size="22" font-weight="bold">Skeletal</text>
+    <text x="16" y="152" font-size="18">Bones</text>
+    <text x="237" y="127" font-size="18">Support and protect;</text>
+    <text x="237" y="151" font-size="18">work with muscles.</text>
+    <text x="16" y="195" font-size="22" font-weight="bold">Nervous</text>
+    <text x="16" y="220" font-size="18">Brain and nerves</text>
+    <text x="237" y="195" font-size="18">Send signals to</text>
+    <text x="237" y="219" font-size="18">coordinate responses.</text>
+    <rect x="0" y="237" width="480" height="68" fill="#edf3ee"/>
+    <text x="16" y="263" font-size="22" font-weight="bold">Integumentary</text>
+    <text x="16" y="288" font-size="18">Skin and sweat glands</text>
+    <text x="237" y="263" font-size="18">Protect the boundary;</text>
+    <text x="237" y="287" font-size="18">exchange heat.</text>
+    <text x="16" y="331" font-size="22" font-weight="bold">Respiratory</text>
+    <text x="16" y="356" font-size="18">Lungs</text>
+    <text x="237" y="331" font-size="18">Exchange oxygen and</text>
+    <text x="237" y="355" font-size="18">carbon dioxide with air.</text>
+    <rect x="0" y="373" width="480" height="68" fill="#edf3ee"/>
+    <text x="16" y="399" font-size="22" font-weight="bold">Circulatory</text>
+    <text x="16" y="424" font-size="18">Heart and blood vessels</text>
+    <text x="237" y="399" font-size="18">Carry gases, nutrients,</text>
+    <text x="237" y="423" font-size="18">signals and other materials.</text>
+    <text x="16" y="467" font-size="22" font-weight="bold">Digestive</text>
+    <text x="16" y="492" font-size="18">Stomach and intestines</text>
+    <text x="237" y="467" font-size="18">Process food and</text>
+    <text x="237" y="491" font-size="18">absorb nutrients.</text>
+    <rect x="0" y="509" width="480" height="68" fill="#edf3ee"/>
+    <text x="16" y="535" font-size="22" font-weight="bold">Excretory / urinary</text>
+    <text x="16" y="560" font-size="18">Kidneys</text>
+    <text x="237" y="535" font-size="18">Filter, reabsorb and secrete</text>
+    <text x="237" y="559" font-size="18">to form urine.</text>
+    <text x="16" y="603" font-size="22" font-weight="bold">Endocrine</text>
+    <text x="16" y="628" font-size="18">Hormone-releasing</text>
+    <text x="16" y="650" font-size="18">pancreatic cells</text>
+    <text x="237" y="603" font-size="18">Release chemical signals</text>
+    <text x="237" y="627" font-size="18">that travel through blood.</text>
+    <rect x="0" y="659" width="480" height="82" fill="#edf3ee"/>
+    <text x="16" y="685" font-size="22" font-weight="bold">Immune</text>
+    <text x="16" y="710" font-size="18">Lymph nodes and</text>
+    <text x="16" y="732" font-size="18">immune cells</text>
+    <text x="237" y="685" font-size="18">Recognize and respond</text>
+    <text x="237" y="709" font-size="18">to biological threats.</text>
+    <text x="16" y="767" font-size="22" font-weight="bold">Muscular</text>
+    <text x="16" y="792" font-size="18">Skeletal muscles</text>
+    <text x="237" y="767" font-size="18">Contract to produce</text>
+    <text x="237" y="791" font-size="18">movement.</text>
+  </g>
+</svg>

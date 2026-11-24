@@ -127,6 +127,54 @@ describe("Intro to Biology complete supplied teaching and cases", () => {
 		expect(pack).toContain("For this puzzle only");
 		expect(answers).toContain("unknown, not zero");
 	});
+	it("plots each worksheet value from zero with three distinct series and leaves the matches open", () => {
+		const item = introToBiologyCourse.modules[1].curriculum.find(
+			entry => entry.title === "Mission Dossier Graph"
+		)!;
+		const file = item.sourceMedia!.replacement;
+		expect(item.content).toContain(`](${file})`);
+		const svg = new DOMParser().parseFromString(
+			fs.readFileSync("public" + file, "utf8"),
+			"image/svg+xml"
+		);
+		const groups = Array.from(svg.querySelectorAll('g[id^="guest-"]'));
+		const rows = table("For the Dinner Mystery");
+		expect(groups).toHaveLength(rows.length);
+		// Derive the zero line and unit spacing from the chart's labelled ticks.
+		const ticks = Array.from(svg.querySelectorAll("line + text"));
+		const gridY = (value: string) =>
+			Number(
+				ticks
+					.find(tick => tick.textContent === value)!
+					.previousElementSibling!.getAttribute("y1")
+			);
+		const zero = gridY("0");
+		const unit = (zero - gridY("4")) / 4;
+		expect(unit).toBeGreaterThan(0);
+		for (const [i, group] of groups.entries()) {
+			const [guest, ...values] = rows[i];
+			expect(group.id).toBe(`guest-${guest.toLowerCase()}`);
+			expect(
+				Array.from(group.querySelectorAll("text"), el => el.textContent)
+			).toEqual([...values, guest]);
+			const bars = Array.from(group.querySelectorAll("rect"));
+			expect(
+				new Set(bars.map(bar => bar.getAttribute("fill"))).size
+			).toBe(3);
+			expect(
+				bars.map(bar => Number(bar.getAttribute("height")) / unit)
+			).toEqual(values.map(Number));
+			for (const bar of bars) {
+				expect(
+					Number(bar.getAttribute("y")) +
+						Number(bar.getAttribute("height"))
+				).toBe(zero);
+			}
+		}
+		expect(svg.documentElement.textContent).not.toMatch(
+			/starch|protein|lipid|mixed|dish/i
+		);
+	});
 	it("supplies separate pH and substrate evidence without inventing an exact optimum", () => {
 		const rows = table("### Fictional E1 graph values");
 		const first = rows.slice(0, 4).map(row => row.map(Number));

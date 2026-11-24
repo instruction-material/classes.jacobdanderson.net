@@ -1,10 +1,6 @@
 import type { RawCourse, RawCourseModuleItem } from "./types";
 import { introBiologyLessons } from "./introBiologyLessons";
-import {
-	pendingStaticMediaNotice,
-	staticMediaFilename,
-	staticMediaUrl
-} from "./staticMedia";
+import { staticMediaUrl } from "./staticMedia";
 
 const BIOLOGY_REFERENCES = {
 	hhmiMembraneTransport:
@@ -35,6 +31,22 @@ function biologyMaterial(section: string) {
 
 function biologyAnswerKey(section: string) {
 	return `${BIOLOGY_MATERIALS.answerKey}#${section}`;
+}
+
+const bodySystemsAlternative =
+	"**Accessible media alternative:** The Body Systems Scenario Cards supply text-described organs, interactions, and arrow meanings.";
+
+function biologyVisual(
+	originalFilename: string,
+	filename: string,
+	alt: string,
+	alternative: string
+) {
+	const replacement = `/course-assets/biology/${filename}`;
+	return {
+		content: `![${alt}](${replacement})\n\n${alternative}`,
+		sourceMedia: { original: staticMediaUrl(originalFilename), replacement }
+	};
 }
 
 function concept({
@@ -94,33 +106,21 @@ const introToBiologySourceCourse: RawCourse = {
 				},
 				{
 					title: "Body Systems Reference A",
-					content: [
-						concept({
-							investigation:
-								"Use the human-body diagram file `biomod1pro1im1.jpg` as the reference image for this body-systems map when it is included in the course materials.",
-							model: "Body systems are coordinated groups of organs. A useful systems map includes at least one representative organ and the main job for each system.",
-							evidence:
-								"Label skeletal, nervous, integumentary, respiratory, circulatory, digestive, excretory, endocrine, immune, and muscular examples.",
-							focus: "Trace one everyday action, such as running or eating, across at least three interacting systems."
-						}),
-						pendingStaticMediaNotice("biomod1pro1im1.jpg")
-					].join("\n\n"),
-					mediaLink: staticMediaUrl("biomod1pro1im1.jpg")
+					...biologyVisual(
+						"biomod1pro1im1.jpg",
+						"body-systems.svg",
+						"Ten body systems paired with a representative structure and its function, including lungs for gas exchange and blood vessels for transport.",
+						bodySystemsAlternative
+					)
 				},
 				{
 					title: "Body Systems Reference B",
-					content: [
-						concept({
-							investigation:
-								"Use the body-systems reference file `biomod1pro1im2.jpg` to compare how major systems overlap and coordinate responses.",
-							model: "Systems overlap rather than operating as isolated boxes. Respiratory and circulatory systems exchange and transport gases; nervous and endocrine systems coordinate signals; immune and integumentary systems protect boundaries.",
-							evidence:
-								"Use arrows to show which system receives information, which system moves material, and which system changes the body's response.",
-							focus: "Name one system interaction and explain what would break if either system stopped contributing."
-						}),
-						pendingStaticMediaNotice("biomod1pro1im2.jpg")
-					].join("\n\n"),
-					mediaLink: staticMediaUrl("biomod1pro1im2.jpg")
+					...biologyVisual(
+						"biomod1pro1im2.jpg",
+						"walking-in-warmth.svg",
+						"Walking in warmth: oxygen moves from lungs through blood to muscle, nerves signal sweat glands, and evaporating sweat transfers heat from skin to the surroundings.",
+						bodySystemsAlternative
+					)
 				},
 				{
 					title: "Scenario-Based System Interactions",
@@ -200,18 +200,12 @@ const introToBiologySourceCourse: RawCourse = {
 				},
 				{
 					title: "Mission Dossier Graph",
-					content: [
-						concept({
-							investigation:
-								"A dinner-mystery graph can match guests with the dishes they ate by comparing nutrient clues. The graph image file is `biomod2pro1im1.png`.",
-							model: "A graph can represent relative molecule levels before and after a meal. Changes in carbohydrate, amino-acid, and fatty-acid levels act as clues.",
-							evidence:
-								"Match each guest to a dish by naming the strongest graph clue and ruling out at least one alternative.",
-							focus: "Explain why a graph pattern supports a meal hypothesis without claiming certainty beyond the evidence."
-						}),
-						pendingStaticMediaNotice("biomod2pro1im1.png")
-					].join("\n\n"),
-					mediaLink: staticMediaUrl("biomod2pro1im1.png")
+					...biologyVisual(
+						"biomod2pro1im1.png",
+						"dinner-mystery.svg",
+						"Fictional relative changes in simple sugar, amino acid and fatty acid, respectively: A (16, 2, 1), B (1, 14, 2), C (2, 1, 15), D (6, 7, 5).",
+						"**Accessible media alternative:** The Nutrient and Macromolecule Evidence Table supplies all twelve values and the matching rule in text."
+					)
 				},
 				{
 					title: "Nutrient Recipe Book",
@@ -753,7 +747,7 @@ const introToBiologySourceCourse: RawCourse = {
 			"Claim-evidence-reasoning"
 		],
 		sourcePolicy:
-			"Adapted from the BIO1-BIO8 sequence with neutral wording, equipment-free activities, and pending static-media entries for missing images.",
+			"Adapted from the BIO1-BIO8 sequence with neutral wording, equipment-free activities, and original course diagrams based on the supplied cases.",
 		assessmentCadence: [
 			"One diagram or model per module",
 			"One short CER or evidence explanation per module",
@@ -763,8 +757,7 @@ const introToBiologySourceCourse: RawCourse = {
 			"Shared screen",
 			"Notebook or digital document",
 			"Diagrams",
-			"Provided case scenarios",
-			"Pending static images"
+			"Provided case scenarios"
 		],
 		safetyPolicy: [
 			"No required food handling",
@@ -785,7 +778,6 @@ const introToBiologySourceCourse: RawCourse = {
 		],
 		recommendedNextWork: [
 			"Add vetted open biology reference links by module",
-			"Upload missing biology diagrams to static.classes",
 			"Cross-link Intro to Environmental Science where ecosystems, energy flow, and evidence modeling continue the biology sequence"
 		]
 	}
@@ -1185,14 +1177,6 @@ function introBiologyProjectPath(title: string) {
 		: ("choice" as const);
 }
 
-function introBiologyMediaAlternative(mediaLink: string | undefined) {
-	if (!mediaLink) return "";
-	if (mediaLink.endsWith("biomod2pro1im1.png")) {
-		return "**Accessible media alternative:** The Nutrient and Macromolecule Evidence Table supplies the same comparison task in text and table form. Complete evidence, confidence, and rejected-alternative fields even when the image is available.";
-	}
-	return "**Accessible media alternative:** The Body Systems Scenario Cards supply text-described organs, interactions, and arrow meanings. Use those cards when the image is unavailable, difficult to perceive, or not useful for the selected representation.";
-}
-
 const INTRO_BIOLOGY_BACKGROUND: Record<string, string> = {
 	BIO1: "https://openstax.org/books/biology-2e/pages/33-1-animal-form-and-function",
 	BIO2: BIOLOGY_REFERENCES.openStaxMacromolecules,
@@ -1243,13 +1227,8 @@ export const introToBiologyCourse: RawCourse = {
 								]
 							})`
 						: lesson.tasks[index - 1],
-					resources,
-					item.mediaLink
-						? pendingStaticMediaNotice(
-								staticMediaFilename(item.mediaLink)
-							)
-						: "",
-					introBiologyMediaAlternative(item.mediaLink)
+					item.sourceMedia ? item.content : "",
+					resources
 				]
 					.filter(Boolean)
 					.join("\n\n"),
@@ -1288,7 +1267,7 @@ export const introToBiologyCourse: RawCourse = {
 			"Claim-evidence-reasoning with uncertainty"
 		],
 		sourcePolicy:
-			"Preserves the BIO1-BIO8 Digestive Odyssey sequence while adding authoritative NGSS, NIDDK and OpenStax references; eight worked readings and complete supplied fictional cases; accessible media alternatives; and explicit medical, nutrition, privacy, and course-scope boundaries.",
+			"Preserves the BIO1-BIO8 Digestive Odyssey sequence while adding authoritative NGSS, NIDDK and OpenStax references; eight worked readings and complete supplied fictional cases; original diagrams based on the supplied worksheets with accessible media alternatives; and explicit medical, nutrition, privacy, and course-scope boundaries.",
 		assessmentCadence: [
 			"One model with a named boundary, scale, evidence source, and limitation per module",
 			"One curated media, supplied-data, or authoritative-reference evidence check per module",
@@ -1325,7 +1304,6 @@ export const introToBiologyCourse: RawCourse = {
 			"Before-and-after revision and oral or written defense"
 		],
 		recommendedNextWork: [
-			"Replace the three pending legacy image files with licensed, locally archived, text-described diagrams while retaining the supplied nonvisual alternatives.",
 			"Add anonymized exemplar responses at multiple proficiency levels using the CER/model-rubric without introducing personal health data.",
 			"Cross-link genetics, evolution, cell biology, and Intro to Environmental Science pathways when those catalog transitions have dedicated readiness maps."
 		]

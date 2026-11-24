@@ -10416,14 +10416,27 @@ describe("course text quality normalization", () => {
 			/\bplaceholder\b|class static host URL|hosted file becomes available|when the file is available/i
 		);
 		expect(recommendedNextWork).not.toMatch(/original biology images/i);
-		expect(mediaLinks).toEqual([
-			"https://static.classes.jacobdanderson.net/biomod1pro1im1.jpg",
-			"https://static.classes.jacobdanderson.net/biomod1pro1im2.jpg",
-			"https://static.classes.jacobdanderson.net/biomod2pro1im1.png"
+		expect(mediaLinks).toEqual([]);
+		const visuals = course!.modules.flatMap(module =>
+			module.curriculum.flatMap(item =>
+				item.sourceMedia ? [item.sourceMedia] : []
+			)
+		);
+		expect(visuals).toEqual([
+			{
+				original: staticMediaUrl("biomod1pro1im1.jpg"),
+				replacement: "/course-assets/biology/body-systems.svg"
+			},
+			{
+				original: staticMediaUrl("biomod1pro1im2.jpg"),
+				replacement: "/course-assets/biology/walking-in-warmth.svg"
+			},
+			{
+				original: staticMediaUrl("biomod2pro1im1.png"),
+				replacement: "/course-assets/biology/dinner-mystery.svg"
+			}
 		]);
-		expect(text).toContain("biomod1pro1im1.jpg");
-		expect(text).toContain("biomod1pro1im2.jpg");
-		expect(text).toContain("biomod2pro1im1.png");
+		expect(text).not.toMatch(/biomod[12]pro1im[12]|Pending media:/i);
 	});
 
 	it("adds Intro to Environmental Science from the original science source sequence", async () => {
