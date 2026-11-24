@@ -2830,7 +2830,7 @@ function evaluateNumericExpression(
 	if (/^(?:[A-Z_]\w*\.)?[A-Z_]\w*\s*\([^()]*\)$/i.test(trimmed)) return null;
 
 	const tokens = trimmed.match(
-		/[A-Z_]\w*(?:\s*\[[^\][]+\])+|(?:[A-Z_]\w*\.)?[A-Z_]\w*\s*\([^()]*\)|[A-Z_]\w*\.[A-Z_]\w*|'(?:\\.|[^'\\])'|\d+(?:\.\d+)?|[A-Z_]\w*|[()+\-*/%]/gi
+		/[A-Z_]\w*(?:\s*\[[^\][]+\])+(?:\.length\b)?|(?:[A-Z_]\w*\.)?[A-Z_]\w*\s*\([^()]*\)|[A-Z_]\w*\.[A-Z_]\w*|'(?:\\.|[^'\\])'|\d+(?:\.\d+)?|[A-Z_]\w*|[()+\-*/%]/gi
 	);
 	if (
 		!tokens ||
@@ -2855,6 +2855,15 @@ function evaluateNumericExpression(
 		},
 		parseFactor(): JavaConsoleValue {
 			const token = tokens[index++];
+			if (token?.endsWith(".length")) {
+				const length = evaluateJavaCollectionExpression(
+					token,
+					context,
+					output
+				);
+				if (length?.type === "number") return length;
+				throw new Error("Invalid array length");
+			}
 			if (token === "+" || token === "-") {
 				const operand = parser.parseFactor();
 				const value = javaValueToNumber(operand);

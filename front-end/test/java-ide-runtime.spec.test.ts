@@ -1050,6 +1050,7 @@ public class Main {
         System.out.println(Arrays.toString(moreNames));
         System.out.println(Arrays.toString(moreFlags));
         System.out.println("total=" + total);
+        System.out.println("Last valid index: " + (scores.length - 1));
         System.out.println(names[1]);
     }
 }`
@@ -1066,6 +1067,7 @@ public class Main {
 			"[Ada, Grace, null]",
 			"[true, false, false]",
 			"total=15",
+			"Last valid index: 2",
 			"Grace"
 		]);
 	});
@@ -1124,6 +1126,7 @@ public class Main {
 
         System.out.println(grid.length);
         System.out.println(grid[0].length);
+        System.out.println("First row last index: " + (grid[0].length - 1));
         System.out.println(total);
         System.out.println(Arrays.deepToString(grid));
         System.out.println(Arrays.deepToString(blank));
@@ -1138,6 +1141,7 @@ public class Main {
 		expect(result.stdout).toEqual([
 			"2",
 			"3",
+			"First row last index: 2",
 			"24",
 			"[[1, 2, 3], [4, 5, 9]]",
 			"[[0, 24], [0, 0]]"
