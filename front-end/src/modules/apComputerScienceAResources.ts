@@ -252,7 +252,12 @@ export const apInputAndCardResources = {
 	)
 };
 
+export const apRuntimeAnalysisResources = projectRoles(
+	"https://github.com/instruction-material/APCS/tree/1579d8c80e31869e053b60d6fadc067fa61b7573/APCS13-Runtime-Analysis"
+);
+
 const restoredProjects = {
+	"runtime-analysis": apRuntimeAnalysisResources,
 	...apInputAndCardResources,
 	"binary-search-trace": apBinarySearchResources,
 	"recursion-practice": apRecursionPracticeResources,

@@ -16,6 +16,7 @@ import {
 	apRecursionPracticeResources,
 	apRecursionReferenceResources,
 	apRemainingCoreResources,
+	apRuntimeAnalysisResources,
 	apStudentClassResources,
 	apVariablesAndLoopsResources
 } from "@/modules/apComputerScienceAResources";
@@ -2078,10 +2079,10 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 				},
 				{
 					title: "Runtime Analysis Starter",
+					contentKind: "reading",
+					preserveInstructions: true,
 					content:
-						"The runtime starter supports weak step-counting or loop-cost reasoning. The goal is to connect a loop structure to growth rate before using Big-O notation as shorthand.",
-					projectLink: repo("APCS13-Runtime-Analysis/starter"),
-					solutionLink: repo("APCS13-Runtime-Analysis/solution")
+						"Trace two loops on a four-element array. Visiting every ordered pair takes 16 iterations. Visiting the first element once, the second twice, the third three times, and the fourth four times takes 10. Check the counts in the [Runtime Analysis project](/courses#ap-computer-science-a-apcs13-algorithmic-runtime-and-linear-search-ap-computer-science-a-apcs13-algorithmic-runtime-and-linear-search-curriculum-core-project-runtime-analysis)."
 				}
 			]
 		},
@@ -2209,7 +2210,7 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 						goal: "Use the runtime-analysis starter to connect Java loop structure to growth-rate reasoning.",
 						steps: [
 							"Identify the input size for each method before counting anything.",
-							"Mark the line or operation that represents the repeated work.",
+							"Count each execution of `count++`. In f6, include the increment after the inner loop.",
 							"Count the operation for small input sizes and look for the pattern.",
 							"Classify the growth rate after the count is visible."
 						],
@@ -2217,14 +2218,17 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 							"AP CSA Java reasoning expects the answer to cite code structure: loop bounds, nested loops, early exits, or recursive calls. The notation is a summary of that evidence, not a replacement for it.",
 						checks: [
 							"The counted operation is named explicitly.",
-							"At least one small input trace supports the formula.",
+							"The six supplied calls print 20, 100, 21, 8, 16, and 10. Trace the eight halvings from 128 through 1 to 0.",
 							"The final growth class matches the dominant term rather than a copied guess."
 						],
 						extension:
 							"Compare two implementations of the same task and explain which input sizes would make the difference noticeable."
 					}),
-					projectLink: repo("APCS13-Runtime-Analysis/starter"),
-					solutionLink: repo("APCS13-Runtime-Analysis/solution")
+					projectLink: apRuntimeAnalysisResources.starter,
+					solutionLink: apRuntimeAnalysisResources.reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true
 				}
 			],
 			supplementalProjects: [
