@@ -500,3 +500,40 @@ describe("Bronze reading contracts after course normalization", () => {
 		expect(keyboard).not.toContain("test one impossible case");
 	});
 });
+
+describe("Bronze language mirrors and independent retries", () => {
+	beforeEach(() => setActivePinia(createPinia()));
+
+	it("retains the coached predictions in the linked Java and Python exercises", async () => {
+		const course = await useCoursesStore().loadCourseById("usaco-bronze");
+		const items = course!.modules.flatMap(module => module.supplementalProjects);
+		for (const [title, prediction] of [
+			["Square Pasture Java", "area of 36"],
+			["Transformations Java", "one-cell `@` mapped to itself for 1"],
+			["Friday the Thirteenth", "2 1 1 3 1 2 2"],
+			["Combination Lock", "combo.out should contain 250"],
+			["Core Project: UB 13 Combination Lock Java", "to get 186"],
+			["Review: UB 13 Combination Lock Java", "(9,4,1)"]
+		]) {
+			expect(items.find(item => item.title === title)?.content, title)
+				.toContain(prediction);
+		}
+	});
+
+	it("keeps the standalone changed inputs and answer keys on their original practice cards", async () => {
+		const course = await useCoursesStore().loadCourseById("usaco-bronze-on-demand");
+		const items = course!.modules.flatMap(module => module.supplementalProjects);
+		for (const [title, prediction] of [
+			["Practice Map: Square Pasture", "(4,0)–(5,1)"],
+			["Practice Map: Transformations", "after that reflection gives 5"],
+			["Extension Review: Transformations", "impossible, giving 7"],
+			["UB3 Friday the Thirteenth: Practice Map: Friday the Thirteenth", "4 3 2 4 4 3 4"],
+			["UB3 Friday the Thirteenth: Extension Review: Friday the Thirteenth", "174 172 174 172 174 173 173"],
+			["UB13 Combination Lock: Practice Map: Combination Lock", "64 triples counted twice to get 186"],
+			["UB13 Combination Lock: Extension Review: Combination Lock", "64 ordered triples"]
+		]) {
+			expect(items.find(item => item.title === title)?.content, title)
+				.toContain(prediction);
+		}
+	});
+});

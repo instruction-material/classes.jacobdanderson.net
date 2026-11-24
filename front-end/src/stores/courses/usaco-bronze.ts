@@ -152,13 +152,9 @@ const usacoBronzeSourceCourse: RawCourse = {
 				},
 				{
 					title: "Square Pasture Java",
-					content: buildProjectGuidance({
-						courseFamily: "USACO",
-						moduleTitle:
-							"Unit 1: Simulation and Careful Translation",
-						projectKind: "core",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					content:
+						"Draw the two pastures from square.in on one set of axes. Each line gives the lower-left corner followed by the upper-right corner. For `0 0 1 1` and `3 0 5 2`, ask which pair of edges forces the side of the new square. The width is 5 and the height is 2, so square.out should contain 25. Implement the four bounds in Main.java and compare your drawing with the result.\n\n**Checkpoints:** Change the second line to `0 3 2 6`. Predict the area of 36 from the vertical span. Reverse the lines and explain why the same four bounds survive.",
 					projectLink:
 						"https://github.com/instruction-material/USACO-Bronze/tree/main/UB1-Square-Pasture-Java/starter",
 					solutionLink:
@@ -302,12 +298,9 @@ const usacoBronzeSourceCourse: RawCourse = {
 				},
 				{
 					title: "Transformations Java",
-					content: buildProjectGuidance({
-						courseFamily: "USACO",
-						moduleTitle: "Unit 3: Counting, Sorting, and Ranking",
-						projectKind: "core",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					content:
+						"Draw the source grid `@-- / -@@ / @-@` and mark its upper-left cell. Ask where that cell lands after a clockwise quarter-turn. With zero-based indices, (row, column) becomes (column, N−1−row). Use a fresh Java array so writing a destination cannot erase a source cell. In transform.in write 3, the three source rows and then the three target rows, each on its own line. For target `@-@ / -@- / @@-`, transform.out should contain 1.\n\n**Checkpoints:** Compare the cells in every row. Try the unchanged asymmetric grid for 6, then a one-cell `@` mapped to itself for 1. Explain which earlier match wins.",
 					projectLink:
 						"https://github.com/instruction-material/USACO-Bronze/tree/main/UB10-Transformations-Java/starter",
 					solutionLink:
@@ -593,12 +586,9 @@ const usacoBronzeSourceCourse: RawCourse = {
 				},
 				{
 					title: "Combination Lock",
-					content: buildProjectGuidance({
-						courseFamily: "USACO",
-						moduleTitle: "UB 12 Barn Repair Java: Practice Studio",
-						projectKind: "core",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					content:
+						"Start a Python file for the linked practice problem. Put 10, then `1 1 1`, then `6 6 6` on separate lines in combo.in. Draw a ten-position dial and circle the five settings within two steps of 1. Repeat for 6. Ask whether `(1,6,1)` opens the lock. Its positions match parts of different keys, so neither complete key admits it.\n\n**Checkpoints:** Each key admits 125 ordered triples here. The two sets are disjoint, so combo.out should contain 250. Change the second key to match the first and predict why the count falls to 125.",
 					projectLink:
 						"https://github.com/instruction-material/USACO-Bronze/tree/main/UB13-Combination-Lock/starter",
 					solutionLink:
@@ -624,31 +614,21 @@ const usacoBronzeSourceCourse: RawCourse = {
 			curriculum: [
 				{
 					title: "UB 13 Combination Lock Java: Core Concepts",
-					content: buildImplementationLabGuidance({
-						courseFamily: "USACO",
-						moduleTitle:
-							"UB 13 Combination Lock Java: Practice Studio",
-						section: "concepts"
-					})
+					preserveInstructions: true,
+					content:
+						"A dial labeled 1 through N wraps from N back to 1. For labels a and b, compare their direct distance with the distance around the other side. On a ten-position dial, 9 is two steps from 1. A three-dial setting opens the lock if every dial is within two steps of the corresponding dial on one complete key. With keys `(1,1,1)` and `(6,6,6)`, ask which key admits `(10,2,1)` and why neither admits `(1,6,1)`."
 				},
 				{
 					title: "UB 13 Combination Lock Java: Guided Example",
-					content: buildImplementationLabGuidance({
-						courseFamily: "USACO",
-						moduleTitle:
-							"UB 13 Combination Lock Java: Practice Studio",
-						section: "example"
-					})
+					preserveInstructions: true,
+					content:
+						"Draw the two neighborhoods on a ten-position dial. Around 1 the labels are 9, 10, 1, 2 and 3. Around 2 they are 10, 1, 2, 3 and 4. For keys `(1,1,1)` and `(2,2,2)`, each key admits 5³ settings. Ask how many would be counted twice. Four shared labels on each dial give 4³ shared settings, so the union contains 125 + 125 − 64 = 186."
 				},
 				{
 					title: "UB 13 Combination Lock Java: Core Project",
-					content: buildImplementationLabGuidance({
-						courseFamily: "USACO",
-						moduleTitle:
-							"UB 13 Combination Lock Java: Practice Studio",
-						section: "coreProject",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					content:
+						"In Main.java read combo.in as N followed by two lines with three dial labels each. Enumerate each ordered triple of labels from 1 through N. Count the triple once when it passes the three distance checks for either complete key. Write the total on one line in combo.out.\n\n**Checkpoints:** With N = 10, use `1 1 1` and `2 2 2` to get 186. Have a partner move the second key to `6 6 6`. Predict 250 and point to the condition that keeps mixed-key triples out.",
 					projectLink:
 						"https://github.com/instruction-material/USACO-Bronze/tree/main/UB-13-Combination-Lock-Java/starter",
 					solutionLink:
@@ -656,24 +636,17 @@ const usacoBronzeSourceCourse: RawCourse = {
 				},
 				{
 					title: "UB 13 Combination Lock Java: Review and Reflection",
-					content: buildImplementationLabGuidance({
-						courseFamily: "USACO",
-						moduleTitle:
-							"UB 13 Combination Lock Java: Practice Studio",
-						section: "review"
-					})
+					preserveInstructions: true,
+					content:
+						"Compare two wrong totals for the ten-position example with keys `(1,1,1)` and `(2,2,2)`. A total of 250 counts the shared 64 triples twice. A total of 216 accepts every combination of the six labels in the two neighborhoods. Ask which of those triples uses labels unique to opposite keys. For instance `(9,4,1)` fails both complete keys. Use that triple to explain the difference between the two mistakes."
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "UB 13 Combination Lock Java: Extension Challenge",
-					content: buildImplementationLabGuidance({
-						courseFamily: "USACO",
-						moduleTitle:
-							"UB 13 Combination Lock Java: Practice Studio",
-						section: "extension",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					content:
+						"Shrink the dial until a turn of two steps in opposite directions can reach the same label. Use keys `1 1 1` and `2 2 2`. For N = 5, each key reaches every label, so the answer is 125. Predict the answer for N = 4 before running Main.java.\n\n**Checkpoints:** List the distinct labels reachable on one four-position dial and justify the total of 64 triples. At N = 1 both keys must be `1 1 1`. Check that the program counts exactly one setting.",
 					projectLink:
 						"https://github.com/instruction-material/USACO-Bronze/tree/main/UB-13-Combination-Lock-Java/starter",
 					solutionLink:
@@ -1391,12 +1364,9 @@ const usacoBronzeSourceCourse: RawCourse = {
 				},
 				{
 					title: "Friday the Thirteenth",
-					content: buildProjectGuidance({
-						courseFamily: "USACO",
-						moduleTitle: "UB 21 Cow Tipping Java: Practice Studio",
-						projectKind: "core",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					content:
+						"Draw a January 1900 calendar together, starting Monday. The 13th falls on Saturday. January has 31 days, so February’s 13th is three weekdays later, Tuesday. Mark March’s 13th before opening the Python reference. February 1900 has 28 days, so March also lands on Tuesday. Use friday.in with 1 year and tally every month.\n\n**Checkpoints:** Read friday.out from Saturday through Friday. The row should be `2 1 1 3 1 2 2`. Match the Tuesday count to the calendar and explain why all seven counts sum to 12.",
 					projectLink:
 						"https://github.com/instruction-material/USACO-Bronze/tree/main/UB3-Friday-the-Thirteenth/starter",
 					solutionLink:
