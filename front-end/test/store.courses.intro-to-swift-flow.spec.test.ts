@@ -746,15 +746,21 @@ describe("intro to Swift App Development learner flow", () => {
 				}
 			}
 		}
+		const conciseTitles: Record<string, string> = {
+			"SW3": "SwiftUI Layout Readiness Check",
+			"SW8": "Media and Maps Readiness Check",
+			"SW16": "Distribution Readiness Check"
+		};
 		for (const module of modules.filter(
 			module => module.kind === "module"
 		)) {
-			expect(
-				module.supplementalProjects.some(
-					item => item.title === `${module.title}: Readiness Check`
-				),
-				module.title
-			).toBe(true);
+			const concise = conciseTitles[module.title.split(" ")[0]];
+			const title = concise ?? `${module.title}: Readiness Check`;
+			const item = module.supplementalProjects.find(row => row.title === title);
+			expect(item, module.title).toBeDefined();
+			if (concise) {
+				expect(item?.id).toBe(`${module.id}-supplemental-readiness-check`);
+			}
 		}
 	});
 

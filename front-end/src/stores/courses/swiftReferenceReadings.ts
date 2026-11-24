@@ -1,6 +1,15 @@
 import type { RawCourse } from "./types";
 import readings from "./swiftReferenceReadings.json";
 
+const readinessTitles: Record<string, string> = {
+	"SW3 SwiftUI Views, Layout, and Modifiers":
+		"SwiftUI Layout Readiness Check",
+	"SW8 Media, Maps, and Permission-Aware Features":
+		"Media and Maps Readiness Check",
+	"SW16 Apple Development and Distribution Map":
+		"Distribution Readiness Check"
+};
+
 export function applySwiftReferenceReadings(
 	course: RawCourse,
 	progressId: (value: string) => string
@@ -35,9 +44,15 @@ export function applySwiftReferenceReadings(
 				`intro-to-swift-app-development-${module.title}-supplemental-${readiness.title}`
 			);
 			readiness.aliases = [
-				...new Set([...(readiness.aliases ?? []), readiness.title])
+				...new Set([
+					...(readiness.aliases ?? []),
+					readiness.title,
+					`${module.title}: Readiness Check`
+				])
 			];
-			readiness.title = `${module.title}: Readiness Check`;
+			readiness.title =
+				readinessTitles[module.title] ??
+				`${module.title}: Readiness Check`;
 		}
 	}
 }
