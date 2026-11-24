@@ -9,6 +9,9 @@ const remainingCorePacks =
 const introductoryPacks =
 	"https://github.com/instruction-material/APCS/tree/55c644daf81e78318e3539f82ae027e69437bc76";
 
+const foundationsSupplementalPacks =
+	"https://github.com/instruction-material/APCS/tree/95a28a1dd6668063be598bf517cf248c27d1bdc9";
+
 function projectRoles(pack: string) {
 	return {
 		starter: `${pack}/starter`,
@@ -63,6 +66,28 @@ export const apIntroductoryResources = {
 	"two-in-one": projectRoles(`${introductoryPacks}/APCS2-Two-In-One`)
 };
 
+export const apFoundationsSupplementalResources = {
+	"strings-printing": projectRoles(
+		`${foundationsSupplementalPacks}/APCS1-Strings-and-Printing-Reference`
+	),
+	"boolean-crossing": projectRoles(
+		`${foundationsSupplementalPacks}/APCS2-Too-Chicken-To-Cross-The-Road`
+	),
+	"conditional-crossing": projectRoles(
+		`${foundationsSupplementalPacks}/APCS3-Too-Chicken-Take-Two`
+	),
+	"math-reference": projectRoles(
+		`${foundationsSupplementalPacks}/APCS3-Math-Package-Reference`
+	),
+	"random-range": projectRoles(
+		`${foundationsSupplementalPacks}/APCS3-Random-Numbers-Reference`
+	),
+	"math-demo": projectRoles(`${foundationsSupplementalPacks}/APCS3-Math-Fun`),
+	"conditionals-reference": projectRoles(
+		`${foundationsSupplementalPacks}/APCS3-Conditionals-Reference`
+	)
+};
+
 const restoredProjects = {
 	"binary-search-trace": apBinarySearchResources,
 	"recursion-practice": apRecursionPracticeResources,
@@ -72,7 +97,8 @@ const restoredProjects = {
 	"elevator-warning": apElevatorWarningResources,
 	"student-class": apStudentClassResources,
 	...apRemainingCoreResources,
-	...apIntroductoryResources
+	...apIntroductoryResources,
+	...apFoundationsSupplementalResources
 };
 
 export function apComputerScienceAProjectKey(

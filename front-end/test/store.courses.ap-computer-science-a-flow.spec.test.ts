@@ -1,10 +1,12 @@
 import fs from "node:fs";
+import { createPinia, setActivePinia } from "pinia";
 import { describe, expect, it } from "vitest";
 import {
 	apBinarySearchResources,
 	apBlobEraseResources,
 	apComputerScienceAProjectKey,
 	apElevatorWarningResources,
+	apFoundationsSupplementalResources,
 	apIntroductoryResources,
 	apMergeSortResources,
 	apRecursionPracticeResources,
@@ -13,6 +15,7 @@ import {
 	apStudentClassResources
 } from "@/modules/apComputerScienceAResources";
 import { pythonIdeModeForCourseResource } from "@/modules/pythonIde";
+import { useCoursesStore } from "@/stores/courses";
 import { apComputerScienceACourse } from "@/stores/courses/ap-computer-science-a";
 import { loadRawCourse } from "@/stores/courses/index";
 
@@ -300,6 +303,99 @@ describe("AP Computer Science A learner flow", () => {
 				`${course}:${title}:${role}:${key}`
 			);
 		}
+	});
+
+
+	it.each([
+		[
+			"APCS1 Variables and Input/Output",
+			"Strings and Printing Reference",
+			"strings-printing",
+			"APCS1-Strings-and-Printing-Reference"
+		],
+		[
+			"APCS2 Operators",
+			"Project: Too Chicken to Cross the Road",
+			"boolean-crossing",
+			"APCS2-Too-Chicken-To-Cross-The-Road"
+		],
+		[
+			"APCS3 Conditionals and Packages",
+			"Reference Pack",
+			"conditionals-reference",
+			"APCS3-Conditionals-Reference"
+		],
+		[
+			"APCS3 Conditionals and Packages",
+			"Project: Too Chicken Take Two",
+			"conditional-crossing",
+			"APCS3-Too-Chicken-Take-Two"
+		],
+		[
+			"APCS3 Conditionals and Packages",
+			"Reference: Math Package",
+			"math-reference",
+			"APCS3-Math-Package-Reference"
+		],
+		[
+			"APCS3 Conditionals and Packages",
+			"Reference: Random Numbers",
+			"random-range",
+			"APCS3-Random-Numbers-Reference"
+		],
+		[
+			"APCS3 Conditionals and Packages",
+			"Project: Math Demo",
+			"math-demo",
+			"APCS3-Math-Fun"
+		]
+	] as const)("opens both Java roles for the %s supplemental item %s", (moduleTitle, title, key, pack) => {
+		const task = requireModule(moduleTitle).supplementalProjects.find(
+			item => item.title === title
+		);
+		const resources = apFoundationsSupplementalResources[key];
+		expect(task).toMatchObject({
+			learningPath: "choice",
+			ideImport: true,
+			preserveInstructions: true,
+			preserveAssignment: true,
+			projectLink: resources.starter,
+			solutionLink: resources.reference
+		});
+		const course = "ap-computer-science-a";
+		for (const role of ["starter", "reference"] as const) {
+			const baseKey = `${course}:${title}:${role}`;
+			const folder = role === "starter" ? "starter" : "solution";
+			const rolePath = `${pack}/${folder}`;
+			expect(resources[role]).toMatch(
+				new RegExp(`/tree/[0-9a-f]{40}/${rolePath}$`)
+			);
+			expect(pythonIdeModeForCourseResource(course, resources[role])).toBe("java");
+			expect(apComputerScienceAProjectKey(course, title, role, resources[role])).toBe(
+				`${baseKey}:${key}`
+			);
+			expect(apComputerScienceAProjectKey(course, title, role, `https://github.com/instruction-material/APCS/tree/main/${rolePath}`)).toBe(baseKey);
+		}
+	});
+
+
+	it("links the General strings reading to the APCS1 workspace", async () => {
+		setActivePinia(createPinia());
+		const course = (await useCoursesStore().loadCourseById("ap-computer-science-a"))!;
+		const general = course.modules.find(
+			module => module.title === "General: Course Introduction and Setup"
+		)!;
+		const apcs1 = course.modules.find(
+			module => module.title === "APCS1 Variables and Input/Output"
+		)!;
+		const title = "Strings and Printing Reference";
+		const entry = general.supplementalProjects.find(item => item.title === title)!;
+		const canonical = apcs1.supplementalProjects.find(item => item.title === title)!;
+		expect(entry.contentKind).toBe("reading");
+		expect(entry.content).toContain(`/courses#${apcs1.id}-${canonical.id}`);
+		expect(entry.projectLink).toBeUndefined();
+		expect(entry.solutionLink).toBeUndefined();
+		expect(canonical.ideImport).toBe(true);
 	});
 
 	it("preserves inherited source projects while moving references out of the required path", () => {

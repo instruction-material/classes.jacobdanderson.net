@@ -3,6 +3,7 @@ import {
 	apBinarySearchResources,
 	apBlobEraseResources,
 	apElevatorWarningResources,
+	apFoundationsSupplementalResources,
 	apIntroductoryResources,
 	apMergeSortResources,
 	apRecursionPracticeResources,
@@ -198,13 +199,10 @@ const apComputerScienceASourceCourse: RawCourse = {
 				{
 					title: "Strings and Printing Reference",
 					content:
-						"This reference build reinforces output formatting, concatenation, escape characters, and readable console output. The checkpoint is being able to predict the exact printed text, including spaces, quotation marks, and line breaks. Use it when a project result is logically correct but visually messy. The expected evidence is a before/after output comparison and a short note explaining which part came from a literal string, which part came from a variable, and where `print` versus `println` changes the layout. This prevents formatting bugs from hiding otherwise correct logic.",
-					projectLink: repo(
-						"APCS1-Strings-and-Printing-Reference/starter"
-					),
-					solutionLink: repo(
-						"APCS1-Strings-and-Printing-Reference/solution"
-					)
+						"Open the [Strings and Printing Reference in APCS1](/courses#ap-computer-science-a-apcs1-variables-and-input-output-ap-computer-science-a-apcs1-variables-and-input-output-supplemental-strings-and-printing-reference) to practice concatenation, line breaks, and quotation marks in the Java IDE.",
+					contentKind: "reading",
+					preserveInstructions: true,
+					preserveAssignment: true
 				},
 				{
 					title: "Casting Reference",
@@ -350,14 +348,30 @@ const apComputerScienceASourceCourse: RawCourse = {
 				},
 				{
 					title: "Strings and Printing Reference",
-					content:
-						"Keep the strings and printing reference nearby for review of escape characters, concatenation, and output layout. It is especially useful when the code is logically correct but the displayed result has spacing or formatting bugs. Use the reference to compare expected output against actual output character by character. A good repair names the exact missing literal, extra space, newline, quote, or variable placement that caused the formatting mismatch. Include one example that prints values on the same line and one that intentionally moves to the next line.",
-					projectLink: repo(
-						"APCS1-Strings-and-Printing-Reference/starter"
-					),
-					solutionLink: repo(
-						"APCS1-Strings-and-Printing-Reference/solution"
-					)
+					content: apProject({
+						goal: "Predict exact console output when Java combines text and values.",
+						steps: [
+							"Trace `Main.java` before running. Mark where `print` keeps the cursor on the active line and where `println` starts a new line.",
+							"Add a label and a value on the same line, followed by a line break.",
+							'In the reference, compare `"" + 2 + 3` with `"" + (2 + 3)`.'
+						],
+						apReasoning:
+							"Java evaluates addition and concatenation from left to right at the same precedence. Parentheses can make arithmetic happen first.",
+						checks: [
+							"Name: Fern and Score: 4 appear on separate lines.",
+							"The newline escape separates First line and Second line. The quotes around Ready appear in the output.",
+							"The reference joins the digits as 23 and adds the values as 5."
+						]
+					}),
+					projectLink:
+						apFoundationsSupplementalResources["strings-printing"]
+							.starter,
+					solutionLink:
+						apFoundationsSupplementalResources["strings-printing"]
+							.reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true
 				}
 			]
 		},
@@ -419,14 +433,30 @@ const apComputerScienceASourceCourse: RawCourse = {
 				},
 				{
 					title: "Project: Too Chicken to Cross the Road",
-					content:
-						"The boolean-only version keeps logic encoded cleanly before conditionals are added in APCS3. A strong solution names each boolean expression, tests both true and false paths, and avoids hiding the decision inside vague variable names.",
-					projectLink: repo(
-						"APCS2-Too-Chicken-To-Cross-The-Road/starter"
-					),
-					solutionLink: repo(
-						"APCS2-Too-Chicken-To-Cross-The-Road/solution"
-					),
+					content: apProject({
+						goal: "Return one Boolean result from four input flags.",
+						steps: [
+							"Run `Main.java` with four `true` or `false` tokens in this order: left side clear, right side clear, scared, companion present.",
+							"In `canCross`, require both directions to be clear.",
+							"Require either that the character is unafraid or that a companion is present. Combine that group with the safety check."
+						],
+						apReasoning:
+							"Use `&&`, `||`, `!`, and parentheses to group the rules. Trace each group before evaluating the full expression.",
+						checks: [
+							"`true true false false` and `true true true true` both return true.",
+							"`true true true false` returns false.",
+							"A false safety flag always gives false."
+						]
+					}),
+					projectLink:
+						apFoundationsSupplementalResources["boolean-crossing"]
+							.starter,
+					solutionLink:
+						apFoundationsSupplementalResources["boolean-crossing"]
+							.reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true,
 					mediaLink: media(
 						"apcs2-project-3-too-chicken-to-cross-the-road.mp4"
 					)
@@ -497,43 +527,140 @@ const apComputerScienceASourceCourse: RawCourse = {
 				},
 				{
 					title: "Reference Pack",
-					content:
-						"Keep the conditionals, math-package, and random-number references available as short focused reviews instead of burying those examples inside larger projects. This pack is useful when a larger project fails for a small reason: incorrect branch order, missing `else`, wrong `Math` return type, or an off-by-one random range. A completed reference pass names one exact decision point, one boundary value, and one printed result that proves the rule works. The pack is also useful for separating a syntax problem from a logic problem before continuing a larger project.",
-					projectLink: repo("APCS3-Conditionals-Reference/starter"),
-					solutionLink: repo("APCS3-Conditionals-Reference/solution")
+					content: apProject({
+						goal: "Trace an if/else chain and a nested boundary check for session capacity.",
+						steps: [
+							"Inspect `status` in `Main.java`. Use nonnegative reservation counts and a capacity of 10.",
+							"Trace the branches for counts below, at, and above capacity. Add calls for 11 and 12.",
+							"Explain when the nested condition tests whether exactly one extra seat is needed."
+						],
+						apReasoning:
+							"An if/else chain selects its first matching branch. The nested test runs only after both earlier conditions fail.",
+						checks: [
+							"9 reports available seats. 10 reports a full session.",
+							"11 needs one extra seat. 12 needs multiple extra seats."
+						]
+					}),
+					projectLink:
+						apFoundationsSupplementalResources[
+							"conditionals-reference"
+						].starter,
+					solutionLink:
+						apFoundationsSupplementalResources[
+							"conditionals-reference"
+						].reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "Project: Too Chicken Take Two",
-					content:
-						"Redo the APCS2 boolean problem with explicit conditionals and nested branches. Compare this version to the boolean-only version by naming which part became easier to read, which part became longer, and how the same truth cases are preserved.",
-					projectLink: repo("APCS3-Too-Chicken-Take-Two/starter"),
-					solutionLink: repo("APCS3-Too-Chicken-Take-Two/solution"),
+					content: apProject({
+						goal: "Use nested conditionals to give a specific reason for each crossing decision.",
+						steps: [
+							"Run `Main.java` with four `true` or `false` tokens: left side clear, right side clear, scared, companion present.",
+							"Keep the starter's left-side check and add the right-side check. Report the first blocked direction and stop.",
+							"When both sides are clear, report that the character crosses alone if unafraid, crosses with a companion if scared and accompanied, or waits otherwise."
+						],
+						apReasoning:
+							"Compare each branch with the APCS2 Boolean version. A crossing message corresponds to true. A blocked or waiting message corresponds to false.",
+						checks: [
+							"`false false true true` reports Blocked on the left. `true false false false` reports Blocked on the right.",
+							"`true true false false` reports Cross alone. `true true true true` reports Cross with a companion.",
+							"`true true true false` reports Wait for a companion."
+						]
+					}),
+					projectLink:
+						apFoundationsSupplementalResources[
+							"conditional-crossing"
+						].starter,
+					solutionLink:
+						apFoundationsSupplementalResources[
+							"conditional-crossing"
+						].reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true,
 					mediaLink: media("apcs3-project-1-too-chicken-take-two.mp4")
 				},
 				{
 					title: "Reference: Math Package",
-					content:
-						"This reference project supports focused review of `abs`, `pow`, `sqrt`, and round-off behavior. Connect each method call to its argument types, return type, and any casting needed before storing the result. Use it to prevent a common AP mistake: treating a library method as magic instead of tracing its input and output type. The evidence includes one call with a predictable answer and one call where `double` behavior or casting changes how the result must be stored or printed. A useful review also distinguishes the `Math` class from an object instance.",
-					projectLink: repo("APCS3-Math-Package-Reference/starter"),
-					solutionLink: repo("APCS3-Math-Package-Reference/solution")
+					content: apProject({
+						goal: "Predict the value and return type of a Java Math method call.",
+						steps: [
+							"Run `Main.java` and record the values and types stored from `Math.abs(-9)`, `Math.pow(3, 2)`, and `Math.sqrt(15)`.",
+							"Cast the square root to `int` and compare the result with `Math.round`.",
+							"Explain which calls return a `double` value and which return an integer value."
+						],
+						apReasoning:
+							"Math provides static methods in `java.lang`. Here `abs` returns `int`, `pow` and `sqrt` return `double`, and `round` with a `double` argument returns `long`.",
+						checks: [
+							"The absolute value is 9 and the power is 9.0.",
+							"The square root is between 3 and 4. Casting gives 3 and rounding gives 4."
+						]
+					}),
+					projectLink:
+						apFoundationsSupplementalResources["math-reference"]
+							.starter,
+					solutionLink:
+						apFoundationsSupplementalResources["math-reference"]
+							.reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true
 				},
 				{
 					title: "Reference: Random Numbers",
-					content:
-						"This reference tightens integer-range generation and helps avoid off-by-one mistakes with `Math.random()`. A strong explanation names the lowest possible value, highest possible value, and why the cast happens after scaling. Use the reference to build several ranges, such as `0` through `9`, `1` through `10`, or `99` through `199`, and explain the formula as `low + (int)(Math.random() * count)`. The finished check identifies the number of possible outcomes, not only the endpoints. Include one range where the lower bound is not zero.",
-					projectLink: repo("APCS3-Random-Numbers-Reference/starter"),
-					solutionLink: repo(
-						"APCS3-Random-Numbers-Reference/solution"
-					)
+					content: apProject({
+						goal: "Convert a draw from 0.0 inclusive to 1.0 exclusive into an integer in an inclusive range.",
+						steps: [
+							"Trace the fixed draws through `fromDraw` in `Main.java`. Count the outcomes as high minus low plus one.",
+							"Multiply the draw by the count, cast the product to `int`, then add the lowest value.",
+							"After checking both bounds with fixed draws, pass `Math.random()` as the draw in a separate call."
+						],
+						apReasoning:
+							"Multiplying first produces a value below the count. The cast selects a bucket numbered 0 through count minus 1. Adding the lower bound shifts those buckets to the target range.",
+						checks: [
+							"A draw of 0 produces 0 for the range 0 through 9. A draw of 0.9999 produces 10 for the range 1 through 10.",
+							"99 through 199 contains 101 outcomes. Draws 0 and 0.9999 produce 99 and 199 respectively."
+						]
+					}),
+					projectLink:
+						apFoundationsSupplementalResources["random-range"]
+							.starter,
+					solutionLink:
+						apFoundationsSupplementalResources["random-range"]
+							.reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true
 				},
 				{
 					title: "Project: Math Demo",
-					content:
-						"Use the `APCS3-Math-Fun` project to practice `Math` methods, packages, casting, and readable output. The finished program demonstrates each calculation with inputs and output that make the method behavior easy to verify.",
-					projectLink: repo("APCS3-Math-Fun/starter"),
-					solutionLink: repo("APCS3-Math-Fun/solution"),
+					content: apProject({
+						goal: "Calculate a power, its square and fourth roots, and the absolute value of a separate input.",
+						steps: [
+							"Run `Main.java` with a base from 1 through 20, a power from 0 through 8, and a signed integer from −10000 through 10000.",
+							"Keep the supplied `Math.pow` calculation. Take its square root, then take the square root of that result to get the fourth root.",
+							"Use `Math.abs` on the signed input. Print each of the four results with its label."
+						],
+						apReasoning:
+							"The power and both roots are `double` results. The signed input and its absolute value remain `int`.",
+						checks: [
+							"`2 4 -7` gives power 16.0, square root 4.0, fourth root 2.0, and absolute value 7.",
+							"With an exponent of zero, both roots and the power equal 1.0."
+						]
+					}),
+					projectLink:
+						apFoundationsSupplementalResources["math-demo"].starter,
+					solutionLink:
+						apFoundationsSupplementalResources["math-demo"]
+							.reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true,
 					mediaLink: media("apcs3-project-2-math-demo.mp4")
 				}
 			]
