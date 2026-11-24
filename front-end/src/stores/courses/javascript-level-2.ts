@@ -25,12 +25,7 @@ import javascriptPainAtThePumpReading from "@/assets/course-guides/javascript-ma
 import javascriptRockPaperScissorsReading from "@/assets/course-guides/javascript-master-functions/rock-paper-scissors.md?raw";
 import javascriptWhichMetrocardReading from "@/assets/course-guides/javascript-master-functions/which-metrocard.md?raw";
 import { buildProjectGuidance } from "./projectGuidance";
-import {
-	pendingStaticMediaNotice,
-	staticMediaFilename,
-	staticMediaUrl,
-	withPendingStaticMediaNotice
-} from "./staticMedia";
+import { pendingStaticMediaNotice, staticMediaUrl } from "./staticMedia";
 import { buildSupportSectionGuidance } from "./supportSectionGuidance";
 
 const JAVASCRIPT_LEVEL_2_ORIGINAL_MEDIA = [
@@ -96,22 +91,6 @@ const JAVASCRIPT_LEVEL_2_PRACTICE_PACK =
 	"/course-assets/javascript-level-2/javascript-level-2-practice-pack.md";
 const JAVASCRIPT_LEVEL_2_VERIFICATION_GUIDE =
 	"/course-assets/javascript-level-2/javascript-level-2-verification-guide.md";
-
-function applyJavaScriptLevel2PendingMediaNotices(course: RawCourse) {
-	for (const module of course.modules) {
-		for (const item of [
-			...module.curriculum,
-			...module.supplementalProjects
-		]) {
-			if (!item.mediaLink) continue;
-
-			const filename = staticMediaFilename(item.mediaLink);
-			if (!filename) continue;
-
-			item.content = withPendingStaticMediaNotice(item.content, filename);
-		}
-	}
-}
 
 const javascriptLevel2SourceCourse: RawCourse = {
 	name: "JavaScript Level 2: JavaScript Master",
@@ -336,6 +315,7 @@ board, and why a bounded random run may finish without a match.
 						projectKind: "extension",
 						hasReference: true
 					}),
+					internal: true,
 					projectLink:
 						"https://github.com/instruction-material/Web-Development-Foundations/tree/main/JSM-01-check-in-1-supplemental-2/starter",
 					solutionLink:
@@ -351,6 +331,7 @@ board, and why a bounded random run may finish without a match.
 						projectKind: "extension",
 						hasReference: true
 					}),
+					internal: true,
 					projectLink:
 						"https://github.com/instruction-material/Web-Development-Foundations/tree/main/JSM-02-check-in-1-supplemental-3/starter",
 					solutionLink:
@@ -445,6 +426,7 @@ board, and why a bounded random run may finish without a match.
 						projectKind: "extension",
 						hasReference: true
 					}),
+					internal: true,
 					projectLink:
 						"https://github.com/instruction-material/Web-Development-Foundations/tree/main/JSM-03-check-in-2-supplemental-2/starter",
 					solutionLink:
@@ -460,6 +442,7 @@ board, and why a bounded random run may finish without a match.
 						projectKind: "extension",
 						hasReference: true
 					}),
+					internal: true,
 					projectLink:
 						"https://github.com/instruction-material/Web-Development-Foundations/tree/main/JSM-04-check-in-2-supplemental-3/starter",
 					solutionLink:
@@ -581,9 +564,7 @@ the original assignment and the offline output adaptation.`,
 					projectLink:
 						"https://codepen.io/junilearning/pen/546a7d889ffe394b3efeca62a005209c",
 					solutionLink:
-						"https://codepen.io/junilearning/pen/2b0624ece93522ec526afca3700ede22",
-					mediaLink:
-						"https://static.classes.jacobdanderson.net/ps2_double_or_nothing.gif"
+						"https://codepen.io/junilearning/pen/2b0624ece93522ec526afca3700ede22"
 				},
 				{
 					title: "Drawing in JavaScript",
@@ -693,6 +674,7 @@ Record predicted and observed scores for both policies in CASES.md. Keep the nul
 						projectKind: "extension",
 						hasReference: true
 					}),
+					internal: true,
 					projectLink:
 						"https://github.com/instruction-material/Web-Development-Foundations/tree/main/JSM-05-jsm1-fundamentals-review-supplemental-2/starter",
 					solutionLink:
@@ -706,6 +688,7 @@ Record predicted and observed scores for both policies in CASES.md. Keep the nul
 						projectKind: "extension",
 						hasReference: true
 					}),
+					internal: true,
 					projectLink:
 						"https://github.com/instruction-material/Web-Development-Foundations/tree/main/JSM-06-jsm1-fundamentals-review-supplemental-3/starter",
 					solutionLink:
@@ -720,6 +703,8 @@ Record predicted and observed scores for both policies in CASES.md. Keep the nul
 					title: "Functions",
 					content: `**Concept path:** Functions turn a repeated process into a named operation. Parameters are the names used inside the function, arguments are the actual values passed during a call, and return values allow the result to be reused by other code.
 
+Suppose two rooms charge the same booking fee. In \`function total(hours) { return hours * 3 + 2; }\`, the 2 is charged once per booking. Calling \`total(4)\` returns 14, which the caller can add to another booking. Writing \`const total = hours => hours * 3 + 2\` expresses the same calculation, but that binding becomes available only after its declaration runs.
+
 **Practice targets:** Write the same small calculation as a function declaration and as an arrow function. Call each function before and after its definition where JavaScript allows it, then compare the calling-order behavior. Add one example where an inner function closes over a variable from an outer scope.
 
 **Evidence target:** Each function has one clear job, the parameter names match the meaning of the data, and at least one returned value is used in a later calculation rather than only printed.`
@@ -727,6 +712,8 @@ Record predicted and observed scores for both policies in CASES.md. Keep the nul
 				{
 					title: "String Interpolation",
 					content: `**Concept path:** Template strings make dynamic text easier to read by placing expressions directly inside backticks. This is especially useful when output combines labels, numbers, and calculated values.
+
+With three available seats, the expression seats - 1 evaluates to 2. Surround the text with backticks and place the expression inside a dollar-sign brace pair: \`Seats left: \${seats - 1}\`. The displayed sentence is “Seats left: 2”. Ordinary quotes would leave the dollar sign and braces in the string.
 
 **Practice targets:** Rewrite a concatenated string using embedded expressions inside backticks. Include at least one variable, one arithmetic expression, and one function call inside a template string. Compare the result to the older concatenation version.
 
@@ -757,9 +744,7 @@ Record predicted and observed scores for both policies in CASES.md. Keep the nul
 					projectLink:
 						"https://codepen.io/junilearning/pen/30e42b5cf6775bbf059a3d313c96f7c5",
 					solutionLink:
-						"https://codepen.io/junilearning/pen/2813f8a526379aefbabc47ad2f65fcd3",
-					mediaLink:
-						"https://static.classes.jacobdanderson.net/ps4_rock_paper_scissors.gif"
+						"https://codepen.io/junilearning/pen/2813f8a526379aefbabc47ad2f65fcd3"
 				}
 			],
 			supplementalProjects: [
@@ -808,6 +793,8 @@ Record predicted and observed scores for both policies in CASES.md. Keep the nul
 					title: "Conditionals",
 					content: `**Concept path:** Complex conditionals are about ordering decisions carefully. The first matching branch runs, so overlapping conditions need to be arranged from most specific to most general or split into separate checks when multiple outcomes can apply.
 
+Suppose an exhibit is open unless it is closed for cleaning. With \`open = true\`, \`cleaning = true\` and a reservation, \`open && !cleaning && reserved\` is false. Testing only the reservation first would admit someone during cleaning. Write the exceptional closure branch before the reservation branch.
+
 **Practice targets:** Build examples with simple \`if/else\`, chained \`else if\`, nested conditions, and compound boolean expressions using \`&&\` and \`||\`. Trace each example with values that hit the first branch, a middle branch, the final \`else\`, and an edge case.
 
 **Evidence target:** Every branch has a test value, overlapping conditions are intentional, and the code avoids unreachable branches caused by a broad condition appearing too early.`
@@ -815,6 +802,8 @@ Record predicted and observed scores for both policies in CASES.md. Keep the nul
 				{
 					title: "Ternary Operators",
 					content: `**Concept path:** A ternary expression chooses between two values with \`condition ? valueIfTrue : valueIfFalse\`. It is best for short value selection, not for multi-step behavior.
+
+In \`const label = seats === 1 ? "seat" : "seats"\`, one comparison selects one string. At 1 the label is singular; at 0 and 2 it is plural. Assign the result before rendering so the count and its label use the same value.
 
 **Practice targets:** Rewrite simple assignment-based \`if/else\` logic as ternary expressions. Keep standard conditionals for cases with several statements, many branches, or side effects such as printing and score updates.
 
@@ -867,6 +856,7 @@ Record predicted and observed scores for both policies in CASES.md. Keep the nul
 						projectKind: "extension",
 						hasReference: true
 					}),
+					internal: true,
 					projectLink:
 						"https://github.com/instruction-material/Web-Development-Foundations/tree/main/JSM-07-jsm3-complex-conditionals-supplemental-2/starter",
 					solutionLink:
@@ -880,6 +870,7 @@ Record predicted and observed scores for both policies in CASES.md. Keep the nul
 						projectKind: "extension",
 						hasReference: true
 					}),
+					internal: true,
 					projectLink:
 						"https://github.com/instruction-material/Web-Development-Foundations/tree/main/JSM-08-jsm3-complex-conditionals-supplemental-3/starter",
 					solutionLink:
@@ -893,6 +884,8 @@ Record predicted and observed scores for both policies in CASES.md. Keep the nul
 				{
 					title: "The Canvas API",
 					content: `**Concept path:** The Canvas API draws pixels into a rectangular coordinate space. The origin is the top-left corner, x increases to the right, and y increases downward. Unlike SVG, canvas does not preserve each drawn shape as a separate page element.
+
+On a 640-by-360 canvas, \`ctx.fillRect(40, 20, 80, 30)\` starts 40 units from the left and 20 from the top. Its right edge is at 120. Changing the third argument to 100 moves that edge to 140 while the left edge stays fixed. Drawing again paints over pixels; clearing the frame removes the old rectangle.
 
 **Practice targets:** Create a canvas element, set width and height, retrieve the 2D context, and draw simple test marks at known coordinates. Clear the canvas and redraw to verify that the current frame is fully controlled by the code.
 
@@ -953,6 +946,7 @@ Record predicted and observed scores for both policies in CASES.md. Keep the nul
 						projectKind: "extension",
 						hasReference: true
 					}),
+					internal: true,
 					projectLink:
 						"https://github.com/instruction-material/Web-Development-Foundations/tree/main/JSM-09-jsm4-canvas-supplemental-3/starter",
 					solutionLink:
@@ -992,6 +986,8 @@ Record predicted and observed scores for both policies in CASES.md. Keep the nul
 					title: "Advanced Iterators",
 					content: `**Concept path:** \`map\`, \`filter\`, and \`reduce\` express common transformations. \`map\` changes each element into a new value, \`filter\` keeps matching elements, and \`reduce\` combines all elements into one result.
 
+Start with \`[2, 5, 8]\`. Filtering with \`n => n % 2 === 0\` keeps 2 and 8. Mapping the filtered array with \`n => n * 10\` produces 20 and 80. Reducing those with \`(sum, n) => sum + n\` and initial value 0 yields 100. An empty input yields 0 because the accumulator has an explicit starting value.
+
 **Practice targets:** Use \`map\` to double numbers, \`filter\` to keep values divisible by a chosen number, and \`reduce\` to calculate a sum. Print the original array after each operation to confirm whether it changed.
 
 **Evidence target:** Each iterator has a clear input array and output value, the callback return value is correct for the method, and \`reduce\` includes an explicit starting value when that makes the result safer.`
@@ -1017,6 +1013,8 @@ Record predicted and observed scores for both policies in CASES.md. Keep the nul
 				{
 					title: "Two-Dimensional Arrays",
 					content: `**Concept path:** A two-dimensional array is an array whose elements are also arrays. It is useful for grid data because values can be addressed by row and column.
+
+For \`const rows = [["red", "blue"], ["gold", "gray"]]\`, \`rows[1][0]\` selects “gold”: first choose row 1, then column 0. Before reading column 1 of a new row, check that it has two elements. A short row otherwise supplies undefined to the drawing step.
 
 **Practice targets:** Create a small 2D array manually, access values with \`arr[row][col]\`, then generate a 12 by 12 multiplication table with nested loops. Print row and column labels so the grid meaning is clear.
 
@@ -1059,6 +1057,7 @@ Record predicted and observed scores for both policies in CASES.md. Keep the nul
 						projectKind: "extension",
 						hasReference: true
 					}),
+					internal: true,
 					projectLink:
 						"https://github.com/instruction-material/Web-Development-Foundations/tree/main/JSM-10-jsm5-arrays-and-iterators-supplemental-3/starter",
 					solutionLink:
@@ -1072,6 +1071,8 @@ Record predicted and observed scores for both policies in CASES.md. Keep the nul
 				{
 					title: "Objects",
 					content: `**Concept path:** Objects store related values as key-value pairs. They are useful when several pieces of information describe the same thing, such as one business, one player, one card, or one animated shape.
+
+Given \`const ball = { x: 4, speed: 2 }\`, the update \`ball.x += ball.speed\` makes x equal 6. Assigning \`const other = ball\` names the same object: setting other.x also changes ball.x. For an independent trace of these numeric fields, start with \`const other = { ...ball }\`.
 
 **Practice targets:** Create objects with string, number, boolean, and array properties. Read properties with dot notation and bracket notation, add a new property after creation, and update an existing property. Compare object organization with parallel arrays to see why named properties make code easier to read.
 
@@ -1161,7 +1162,7 @@ Print a location/CEO sentence and a products sentence for each object. All prope
 					contentKind: "reading",
 					preserveInstructions: true,
 					content:
-						"The original worked example animates one black square on an 800-by-500 canvas. The square is 50 units wide and high, with its top at y = 50. Its state is stored in x and direction; move returns x + 1 when the direction is right and x - 1 otherwise.\n\nEach moveSquare call clears the whole canvas, draws at the current x, updates x, changes direction when the updated position reaches 0 or 500, and schedules the next call with requestAnimationFrame. Calling moveSquare once starts one animation chain.\n\n**Worked trace:** The first call draws at x = 0, then updates x to 1. A call drawing at 499 updates x to 500 and selects left. The next call draws at 500 and updates to 499. The later call drawing at 1 while moving left updates to 0 and selects right; the next draw is at 0. The turning positions are 0 and 500, even though the canvas extends to 800.\n\nClearing before every draw removes the previous square. Updating after drawing determines which position appears in the current frame. This example moves one unit per callback.",
+						"The original worked example animates one black square on an 800-by-500 canvas. The square is 50 units wide and high, with its top at y = 50. Its state is stored in x and direction; move returns x + 1 when the direction is right and x - 1 otherwise.\n\nEach moveSquare call clears the whole canvas, draws at the current x, updates x, changes direction when the updated position reaches 0 or 500, and schedules the next call with requestAnimationFrame. Calling moveSquare once starts one animation chain.\n\n**Worked trace:** The first call draws at x = 0, then updates x to 1. A call drawing at 499 updates x to 500 and selects left. The next call draws at 500 and updates to 499. The later call drawing at 1 while moving left updates to 0 and selects right; the next draw is at 0. The turning positions are 0 and 500, even though the canvas extends to 800.\n\nClearing before every draw removes the previous square. Updating after drawing determines which position appears in the current frame. This example moves one unit per callback.\n\nThe local editable demo starts paused at x = 0. Use Step one frame to compare the text position with the square, then Play or Reset. Change the turning point in model.js, save and reopen the project.",
 					projectLink: "https://codepen.io/junilearning/pen/zYBjpZE"
 				},
 				{
@@ -1170,7 +1171,7 @@ Print a location/CEO sentence and a products sentence for each object. All prope
 					preserveInstructions: true,
 					preserveAssignment: true,
 					content:
-						'Create a ball object with x, y, radius and color. Animate it growing to one size, changing color, shrinking to another size, then repeating.\n\n**Canvas setup:** Add `<canvas id="my-canvas"></canvas>` in HTML. In JavaScript, obtain that element with `document.getElementById("my-canvas")` and its 2D context with `getContext("2d")`. The starter has empty HTML/CSS and a JavaScript entry area; no external library is needed.\n\n**Build:** Write drawBall to begin a path, set the fill color, draw a full circle from the ball properties and fill it. Write inflate and deflate to change radius and color. In one pumpBall loop, clear the previous frame, select the phase, update the ball, draw it and schedule the next callback with requestAnimationFrame. Start that loop once.\n\n**Worked reference:** The canvas is 1000 by 800. The ball begins at (300,300), radius 20, green. Inflation adds 5 and uses green; deflation subtracts 5 and uses red. A separate inflating boolean stores the phase. The loop switches to deflation when the current radius is greater than 200 and to inflation when it is less than 10, then performs the update.\n\nThe first drawn radius is 25. Near the upper turn, rendered states are 200 green,205 green,200 red. Near the lower turn, they are 10 red,5 red,10 green. Those strict comparisons happen before a 5 unit step, so the reference\u2019s actual extrema are 5 and 205. A version intended to stop exactly at 10 and 200 needs explicit clamping or a different switching rule.\n\n**Check:** Show both colors and both direction changes over repeated cycles. Keep the center fixed, keep the radius positive and bounded, and clear the previous frame. Explain the reference\u2019s first drawn radius and both three-frame turn traces.',
+						'Create a ball object with x, y, radius and color. Animate it growing to one size, changing color, shrinking to another size, then repeating.\n\n**Canvas setup:** Add `<canvas id="my-canvas"></canvas>` in HTML. In JavaScript, obtain that element with `document.getElementById("my-canvas")` and its 2D context with `getContext("2d")`. The starter has empty HTML/CSS and a JavaScript entry area; no external library is needed.\n\n**Build:** Write drawBall to begin a path, set the fill color, draw a full circle from the ball properties and fill it. Write inflate and deflate to change radius and color. In one pumpBall loop, clear the previous frame, select the phase, update the ball, draw it and schedule the next callback with requestAnimationFrame. Start that loop once.\n\n**Worked reference:** The canvas is 1000 by 800. The ball begins at (300,300), radius 20, green. Inflation adds 5 and uses green; deflation subtracts 5 and uses red. A separate inflating boolean stores the phase. The loop switches to deflation when the current radius is greater than 200 and to inflation when it is less than 10, then performs the update.\n\nThe first drawn radius is 25. Near the upper turn, rendered states are 200 green,205 green,200 red. Near the lower turn, they are 10 red,5 red,10 green. Those strict comparisons happen before a 5 unit step, so the reference\u2019s actual extrema are 5 and 205. A version intended to stop exactly at 10 and 200 needs explicit clamping or a different switching rule.\n\n**Check:** Show both colors and both direction changes over repeated cycles. Keep the center fixed, keep the radius positive and bounded, and clear the previous frame. Explain the reference\u2019s first drawn radius and both three-frame turn traces.\n\nOpen the starter in the editor and add the canvas and script yourself. The local worked version starts paused so you can inspect both turns with Step one frame. Save your attempt and reopen the exported index.html beside its script.',
 					projectLink:
 						"https://codepen.io/junilearning/pen/d0195323eaa77fa2a273961fa3df61c3",
 					solutionLink:
@@ -1222,6 +1223,7 @@ The first drawn positions include (1,1) and (481,181). For the circle that begin
 						projectKind: "extension",
 						hasReference: true
 					}),
+					internal: true,
 					projectLink:
 						"https://github.com/instruction-material/Web-Development-Foundations/tree/main/JSM-11-jsm6-objects-and-properties-supplemental-3/starter",
 					solutionLink:
@@ -1262,6 +1264,8 @@ The first drawn positions include (1,1) and (481,181). For the circle that begin
 				{
 					title: "Mouse Events",
 					content: `**Concept path:** Mouse events carry information about what happened and where it happened. Canvas programs usually need to translate page coordinates into canvas coordinates before deciding what was clicked.
+
+A 600-unit canvas displayed 300 pixels wide begins at client x = 40. A press at client x = 100 is 60 CSS pixels inside the surface, so the drawing coordinate is 120. Use \`(event.clientX - rect.left) * canvas.width / rect.width\`; apply the vertical scale separately.
 
 **Practice targets:** Add \`click\`, \`mousedown\`, and \`mouseup\` listeners to a canvas. Log event coordinates, convert them relative to the canvas, and display the converted coordinates on the page or console.
 
@@ -1354,6 +1358,7 @@ The first drawn positions include (1,1) and (481,181). For the circle that begin
 						projectKind: "extension",
 						hasReference: true
 					}),
+					internal: true,
 					projectLink:
 						"https://github.com/instruction-material/Web-Development-Foundations/tree/main/JSM-12-jsm7-helper-functions-and-event-listeners-supplemental-3/starter",
 					solutionLink:
@@ -1367,6 +1372,8 @@ The first drawn positions include (1,1) and (481,181). For the circle that begin
 				{
 					title: "Object Collisions",
 					content: `**Concept path:** Collision detection turns geometry into boolean logic. Circle collision compares distance between centers with the combined radii, while rectangle collision checks whether edges overlap on both axes.
+
+Two circle centers at (1,2) and (4,6) are 5 units apart because 3² + 4² = 25. With radii 2 and 3 they touch exactly. Compare squared distance with the square of the radius sum; using a strict comparison would miss this touching case. Store whether the pair was touching last frame to avoid scoring again while they remain in contact.
 
 **Practice targets:** Write one circle-collision function and one rectangle-collision function. Test with clearly separated objects, touching objects, overlapping objects, and edge cases where one object is exactly on the boundary.
 
@@ -1445,6 +1452,7 @@ Show an ascent,a damped rebound,the floor and eventual rest. CASES.md gives exac
 						projectKind: "extension",
 						hasReference: true
 					}),
+					internal: true,
 					projectLink:
 						"https://github.com/instruction-material/Web-Development-Foundations/tree/main/JSM-13-jsm8-collisions-and-controls-supplemental-2/starter",
 					solutionLink:
@@ -1458,6 +1466,7 @@ Show an ascent,a damped rebound,the floor and eventual rest. CASES.md gives exac
 						projectKind: "extension",
 						hasReference: true
 					}),
+					internal: true,
 					projectLink:
 						"https://github.com/instruction-material/Web-Development-Foundations/tree/main/JSM-14-jsm8-collisions-and-controls-supplemental-3/starter",
 					solutionLink:
@@ -1558,6 +1567,7 @@ Accept the selected starter or reference import in the site IDE. README.md conta
 						projectKind: "extension",
 						hasReference: true
 					}),
+					internal: true,
 					projectLink:
 						"https://github.com/instruction-material/Web-Development-Foundations/tree/main/JSM-15-jsm9-games-in-the-canvas-supplemental-2/starter",
 					solutionLink:
@@ -1571,6 +1581,7 @@ Accept the selected starter or reference import in the site IDE. README.md conta
 						projectKind: "extension",
 						hasReference: true
 					}),
+					internal: true,
 					projectLink:
 						"https://github.com/instruction-material/Web-Development-Foundations/tree/main/JSM-16-jsm9-games-in-the-canvas-supplemental-3/starter",
 					solutionLink:
@@ -1657,6 +1668,7 @@ Accept the selected role in the site IDE. README.md contains the full assignment
 						projectKind: "extension",
 						hasReference: true
 					}),
+					internal: true,
 					projectLink:
 						"https://github.com/instruction-material/Web-Development-Foundations/tree/main/JSM-17-jsm10-apis-and-requests-supplemental-2/starter",
 					solutionLink:
@@ -1670,6 +1682,7 @@ Accept the selected role in the site IDE. README.md contains the full assignment
 						projectKind: "extension",
 						hasReference: true
 					}),
+					internal: true,
 					projectLink:
 						"https://github.com/instruction-material/Web-Development-Foundations/tree/main/JSM-18-jsm10-apis-and-requests-supplemental-3/starter",
 					solutionLink:
@@ -1692,6 +1705,8 @@ Accept the selected role in the site IDE. README.md contains the full assignment
 					title: "SQL Queries",
 					content: `**Concept path:** SQL separates the requested result from the steps a database uses to produce it. \`SELECT\` chooses columns, \`FROM\` chooses tables, \`WHERE\` filters rows, and \`ORDER BY\` makes output order explicit.
 
+In the supplied library, \`SELECT title FROM books WHERE shelf_id = 1\` returns Orbit. \`WHERE shelf_id IS NULL\` instead returns Loose. SQL uses IS NULL for a missing relationship because ordinary equality against NULL does not evaluate to true.
+
 **Practice targets:** Predict results for supplied \`SELECT\`, \`WHERE\`, \`ORDER BY\`, and \`LIMIT\` queries before comparing with the answer set. For one fictional update, write the matching preview \`SELECT\`, identify the exact target rows, and describe a rollback or transaction boundary.
 
 **Evidence target:** Every query names its input table shape, expected columns and rows, ordering assumption, \`NULL\` behavior, and whether it reads or changes data.`
@@ -1699,7 +1714,7 @@ Accept the selected role in the site IDE. README.md contains the full assignment
 				{
 					title: "JSM11 Project 1: SQL SELECT Practice",
 					content:
-						"Complete SQLBolt lessons 1-4 and record the core `SELECT` patterns used: selecting specific columns, filtering with `WHERE`, ordering results, and limiting output. After the practice, write two original query examples and explain what table shape each query expects.",
+						"Run the catalog and shelf-1 queries in the supplied local case, or complete SQLBolt lessons 1-4. Record the core `SELECT` patterns used: selecting specific columns, filtering with `WHERE`, ordering results, and limiting output. After the practice, write two original query examples and explain what table shape each query expects.",
 					projectLink:
 						"https://sqlbolt.com/lesson/select_queries_introduction"
 				},
@@ -1714,7 +1729,7 @@ Accept the selected role in the site IDE. README.md contains the full assignment
 				{
 					title: "JSM11 Project 2: Join Tables Practice",
 					content:
-						"Complete SQLBolt lessons 6-7 and focus on why `JOIN` requires a relationship between tables. Identify the key columns being matched, describe what rows appear in the result, and write one extra join query that would answer a realistic question about related records.",
+						"Compare the two joins in the supplied local case, or complete SQLBolt lessons 6-7. Explain why `JOIN` requires a relationship between tables. Identify the key columns being matched, describe what rows appear in the result, and write one extra join query that would answer a realistic question about related records.",
 					projectLink:
 						"https://sqlbolt.com/lesson/select_queries_with_joins"
 				},
@@ -1729,7 +1744,7 @@ Accept the selected role in the site IDE. README.md contains the full assignment
 				{
 					title: "JSM11 Project 3: Apartment Building",
 					content:
-						"Design a fictional apartment-building schema locally with units, residents, and occupancy history. Give each entity a stable key, use foreign keys for relationships, include at least five purposeful attributes across the model, and represent residents moving between units without overwriting history. Add representative rows and two query questions. Optionally reproduce the finished local diagram in dbdiagram; no account, real address, resident identity, or hosted database is required.",
+						"Design a fictional apartment-building schema locally with units, residents, and occupancy history. Give each entity a stable key, use foreign keys for relationships, include at least five purposeful attributes in each of the units and residents tables, and represent residents moving between units without overwriting history. Add representative rows and two query questions. Optionally reproduce the finished local diagram in dbdiagram; no account, real address, resident identity, or hosted database is required.",
 					projectLink: "https://dbdiagram.io/d",
 					solutionLink:
 						"https://dbdiagram.io/d/5facb8cf3a78976d7b7b8d44"
@@ -1739,7 +1754,7 @@ Accept the selected role in the site IDE. README.md contains the full assignment
 				{
 					title: "JSM11 Supplemental Project 1: Advanced SQL Queries",
 					content:
-						"Complete SQLBolt lessons 8-12 with attention to `NULL`, aggregation, grouping, and query cleanup. For each new query feature, write down one case where it changes the answer compared with a simpler `SELECT` query, then test at least one query that handles missing data deliberately.",
+						"Run the shelf-count query in the supplied local case, or complete SQLBolt lessons 8-12. Pay attention to `NULL`, aggregation, grouping, and query cleanup. For each new query feature, write down one case where it changes the answer compared with a simpler `SELECT` query, then test at least one query that handles missing data deliberately.",
 					projectLink:
 						"https://sqlbolt.com/lesson/select_queries_with_nulls"
 				},
@@ -1754,7 +1769,7 @@ Accept the selected role in the site IDE. README.md contains the full assignment
 				{
 					title: "JSM11 Supplemental Project 3: Altering Tables",
 					content:
-						"Complete SQLBolt lessons 13-18 and focus on how data changes after `INSERT`, `UPDATE`, `DELETE`, and table-altering commands. For each operation, identify the before-and-after state of the table and write one safety check that would prevent accidental data loss or malformed records.",
+						"Use the local case’s disposable library tables, or complete SQLBolt lessons 13-18. Track how data changes after `INSERT`, `UPDATE`, `DELETE`, and table-altering commands. For each operation, identify the before-and-after state of the table and write one safety check that would prevent accidental data loss or malformed records.",
 					projectLink: "https://sqlbolt.com/lesson/inserting_rows"
 				}
 			]
@@ -1802,9 +1817,7 @@ Add two notes, including duplicate text, and refresh at the same origin. Each no
 Accept the selected role in the site IDE. README.md contains the complete assignment;CASES.md supplies the checks. Save,export and reopen the same files.`,
 					projectLink:
 						"https://codepen.io/junilearning/pen/1f218d8aafbcc33fd6409a8ab1616e29",
-					solutionLink: "https://codepen.io/junilearning/pen/MWZzbmK",
-					mediaLink:
-						"https://static.classes.jacobdanderson.net/ps10_todo_list.gif"
+					solutionLink: "https://codepen.io/junilearning/pen/MWZzbmK"
 				},
 				{
 					title: "JSM12 Project 2: Deleting Notes",
@@ -1847,6 +1860,7 @@ Accept the selected role in the site IDE. README.md contains the complete assign
 						projectKind: "extension",
 						hasReference: true
 					}),
+					internal: true,
 					projectLink:
 						"https://github.com/instruction-material/Web-Development-Foundations/tree/main/JSM-19-jsm12-nosql-and-crud-supplemental-2/starter",
 					solutionLink:
@@ -1860,6 +1874,7 @@ Accept the selected role in the site IDE. README.md contains the complete assign
 						projectKind: "extension",
 						hasReference: true
 					}),
+					internal: true,
 					projectLink:
 						"https://github.com/instruction-material/Web-Development-Foundations/tree/main/JSM-20-jsm12-nosql-and-crud-supplemental-3/starter",
 					solutionLink:
@@ -1944,6 +1959,7 @@ Accept the selected role in the site IDE. README.md contains the complete assign
 						projectKind: "extension",
 						hasReference: true
 					}),
+					internal: true,
 					projectLink:
 						"https://github.com/instruction-material/Web-Development-Foundations/tree/main/JSM-21-jsm13-message-board-supplemental-2/starter",
 					solutionLink:
@@ -1957,6 +1973,7 @@ Accept the selected role in the site IDE. README.md contains the complete assign
 						projectKind: "extension",
 						hasReference: true
 					}),
+					internal: true,
 					projectLink:
 						"https://github.com/instruction-material/Web-Development-Foundations/tree/main/JSM-22-jsm13-message-board-supplemental-3/starter",
 					solutionLink:
@@ -2004,9 +2021,7 @@ Check correct, wrong, blank, repeated and final answers with keyboard and pointe
 					projectLink:
 						"https://codepen.io/junilearning/pen/f8ec7312634d2011e58c44d691d1da13",
 					solutionLink:
-						"https://codepen.io/junilearning/pen/540c4d060641bb749cefde340d69acd6",
-					mediaLink:
-						"https://static.classes.jacobdanderson.net/ps10_us_capitals_quiz.gif"
+						"https://codepen.io/junilearning/pen/540c4d060641bb749cefde340d69acd6"
 				},
 				{
 					title: "Quiz Game: Debugging and Failure Modes",
@@ -2054,6 +2069,7 @@ Check correct, wrong, blank, repeated and final answers with keyboard and pointe
 						projectKind: "extension",
 						hasReference: true
 					}),
+					internal: true,
 					projectLink:
 						"https://github.com/instruction-material/Web-Development-Foundations/tree/main/JSM-23-jsm14-quiz-game-supplemental-2/starter",
 					solutionLink:
@@ -2067,6 +2083,7 @@ Check correct, wrong, blank, repeated and final answers with keyboard and pointe
 						projectKind: "extension",
 						hasReference: true
 					}),
+					internal: true,
 					projectLink:
 						"https://github.com/instruction-material/Web-Development-Foundations/tree/main/JSM-24-jsm14-quiz-game-supplemental-3/starter",
 					solutionLink:
@@ -2080,7 +2097,7 @@ Check correct, wrong, blank, repeated and final answers with keyboard and pointe
 				{
 					title: "JSM15 Project 1: Master Project",
 					content:
-						"Plan and build one browser-only app or game for a fictional audience over roughly two weeks. Define one primary task, non-goals, state and event model, data shape, failure states, and a smallest complete vertical slice before adding polish. Separate pure logic from DOM, canvas, storage, and optional public-GET boundaries. A chat-style interface may be simulated locally, but do not add real accounts, public messages, browser-held write secrets, or an implied secure back end. Include a supplied-fixture route, bounded local persistence where useful, semantic controls, keyboard and pointer operation, visible focus and status, reduced motion, safe text and URL handling, reset and recovery, performance limits, and independent verification checkpoints."
+						"Plan and build one browser-only app or game for a fictional audience over roughly two weeks. Choose a task from your own interests or use the club reservation brief in the Level 2 case. Sketch its screens and write pseudocode for the first interaction. Save the source, reopen it, try the same interaction and include the working result in your portfolio. Define one primary task, non-goals, state and event model, data shape, failure states, and a smallest complete vertical slice before adding polish. Use functions, events and arrays in the working app. Request a small dataset through the Fetch API and read its response. A data URL containing your own JSON runs from local files without a network connection. Separate that request and rendering from the pure state updates. A chat-style interface may be simulated locally, but do not add real accounts, public messages, browser-held write secrets, or an implied secure back end. Include a supplied-fixture route, bounded local persistence where useful, semantic controls, keyboard and pointer operation, visible focus and status, reduced motion, safe text and URL handling, reset and recovery, performance limits, and independent verification checkpoints."
 				},
 				{
 					title: "Handoff to Web Development Foundations",
@@ -2108,6 +2125,7 @@ Check correct, wrong, blank, repeated and final answers with keyboard and pointe
 						projectKind: "core",
 						hasReference: true
 					}),
+					internal: true,
 					projectLink:
 						"https://github.com/instruction-material/Web-Development-Foundations/tree/main/JSM-01-jsm15-master-project/starter",
 					solutionLink:
@@ -2122,6 +2140,7 @@ Check correct, wrong, blank, repeated and final answers with keyboard and pointe
 						moduleTitle: "JSM15 Master Project",
 						section: "extension"
 					}),
+					internal: true,
 					projectLink:
 						"https://github.com/instruction-material/Web-Development-Foundations/tree/main/JSM-01-jsm15-master-project/starter",
 					solutionLink:
@@ -2135,6 +2154,7 @@ Check correct, wrong, blank, repeated and final answers with keyboard and pointe
 						projectKind: "extension",
 						hasReference: true
 					}),
+					internal: true,
 					projectLink:
 						"https://github.com/instruction-material/Web-Development-Foundations/tree/main/JSM-25-jsm15-master-project-supplemental-2/starter",
 					solutionLink:
@@ -2148,6 +2168,7 @@ Check correct, wrong, blank, repeated and final answers with keyboard and pointe
 						projectKind: "extension",
 						hasReference: true
 					}),
+					internal: true,
 					projectLink:
 						"https://github.com/instruction-material/Web-Development-Foundations/tree/main/JSM-26-jsm15-master-project-supplemental-3/starter",
 					solutionLink:
@@ -2157,6 +2178,7 @@ Check correct, wrong, blank, repeated and final answers with keyboard and pointe
 		},
 		{
 			kind: "appendix",
+			internal: true,
 			title: "Pending Demo Media",
 			curriculum: [
 				{
@@ -2174,8 +2196,6 @@ Check correct, wrong, blank, repeated and final answers with keyboard and pointe
 		}
 	]
 };
-
-applyJavaScriptLevel2PendingMediaNotices(javascriptLevel2SourceCourse);
 
 interface JavaScriptLevel2ModuleFlow {
 	stage: string;
@@ -2640,7 +2660,7 @@ const JAVASCRIPT_LEVEL_2_MODULE_FLOW: Record<
 		],
 		practiceSection: "browser-app-capstone-case",
 		answerSection: "browser-app-capstone-key",
-		route: "Build one browser-only app or game through vertical slices: define audience, task and non-goals; model state and events; isolate pure logic from effects; implement bounded interaction; add fixture data and optional resilient reads; persist locally when useful; then verify accessibility, failure, recovery, and performance.",
+		route: "Build one browser-only app or game through vertical slices: define audience, task and non-goals; model state and events; isolate pure logic from effects; implement bounded interaction; read a supplied fixture through the Fetch API and handle a failed request; persist locally when useful; then verify accessibility, failure, recovery, and performance.",
 		standardsRoute:
 			"Use current browser standards, local files, supplied fictional fixtures, and no browser secret. Canvas, public GET APIs, SQL reasoning, and local CRUD appear only when they serve the selected task and retain complete fallback and recovery routes.",
 		evidence:

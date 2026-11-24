@@ -37,6 +37,7 @@ import { javascriptMediaParallaxResources } from "@/modules/javascriptMediaParal
 import { javascriptMoreHtmlCssResources } from "@/modules/javascriptMoreHtmlCssResources";
 import { javascriptNestedLoopsResources } from "@/modules/javascriptNestedLoopsResources";
 import { javascriptNewsResources } from "@/modules/javascriptNewsResources";
+import { javascriptObjectAnimationResources } from "@/modules/javascriptObjectAnimationResources";
 import { javascriptOperatorsResources } from "@/modules/javascriptOperatorsResources";
 import { javascriptPaddleResources } from "@/modules/javascriptPaddleResources";
 import { javascriptRefactoryResources } from "@/modules/javascriptRefactoryResources";
@@ -109,6 +110,7 @@ const roles: readonly CourseRole[] = [
 	...javascriptHundredSquaresResources,
 	...javascriptRefactoryResources,
 	...javascriptWhichCardResources,
+	...javascriptObjectAnimationResources,
 	...javascriptPaddleResources,
 	...javascriptCoastalCruiseResources,
 	...javascriptJugglingPaddleResources,

@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inflate and Deflate</title>
+  <style>body { font: 1rem system-ui; margin: 1rem; } canvas { display: block; max-width: 100%; height: auto; border: 1px solid; margin-block: 1rem; } button { font: inherit; padding: .4rem .8rem; }</style>
+</head>
+<body>
+  <h1>Inflate and Deflate</h1>
+  <button id="step">Step one frame</button>
+  <button id="play">Play</button>
+  <button id="reset">Reset</button>
+  <canvas id="drawing" width="1000" height="800" aria-label="Changing ball"></canvas>
+  <p id="state"></p>
+  <script src="model.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

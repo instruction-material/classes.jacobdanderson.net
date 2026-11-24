@@ -1,0 +1,11 @@
+# Inflate and Deflate
+
+Original Juni starter: https://codepen.io/junilearning/pen/d0195323eaa77fa2a273961fa3df61c3
+
+Observed source: https://codepen.io/junilearning/pen/mdELdLj
+
+Retained CodePen export SHA-256: 9e8aab7669c365290d233052b962fcf5badc495c21465a71cbe0b4ce8017a3c2
+
+Original JavaScript panel SHA-256: e8ae292286ad6957548d94371c789c5c402a3cea67816e265631b39178113e52
+
+The starter retains the original exported HTML, learner JavaScript panel and license. The accompanying task notes are local.

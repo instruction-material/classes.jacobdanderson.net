@@ -1,0 +1,15 @@
+function initialState() {
+  return { x: 300, y: 300, radius: 20, color: "green", growing: true };
+}
+
+function nextFrame(state) {
+  let growing = state.growing;
+  if (state.radius > 200) growing = false;
+  if (state.radius < 10) growing = true;
+  return {
+    ...state,
+    radius: state.radius + (growing ? 5 : -5),
+    color: growing ? "green" : "red",
+    growing
+  };
+}

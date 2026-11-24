@@ -1,0 +1,11 @@
+function initialState() {
+  return { x: 0, y: 50, direction: 1 };
+}
+
+function nextFrame(state) {
+  const x = state.x + state.direction;
+  let direction = state.direction;
+  if (x === 500) direction = -1;
+  if (x === 0) direction = 1;
+  return { ...state, x, direction };
+}

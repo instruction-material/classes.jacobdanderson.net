@@ -1,0 +1,11 @@
+# Animations in the Canvas
+
+Original Juni editable teaching demonstration: https://codepen.io/junilearning/pen/zYBjpZE
+
+Observed source: https://codepen.io/junilearning/pen/zYBjpZE
+
+Retained CodePen export SHA-256: 9694bcaa4d3c9a45e58cd510b3cc490e1b62b31f350b3e65d8ef15191a18f41c
+
+Original JavaScript panel SHA-256: 194a78a81b3b5c4469ed6185b1605fc9f8e83855de10b6dac82dec93ebba7167
+
+This local implementation uses the original dimensions, movement and turning rules. It starts paused, exposes step, play and reset controls and reports frame state in text.

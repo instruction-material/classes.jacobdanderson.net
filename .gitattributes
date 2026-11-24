@@ -32,3 +32,6 @@ front-end/scripts/scratch/originals/projects/*.json -text
 front-end/scripts/scratch/originals/assets/* -text
 front-end/scripts/scratch/originals/compatibility-assets/*.svg -text
 front-end/public/course-assets/machine-learning/*.csv text eol=lf
+
+# Preserve the original CodePen export byte for byte.
+front-end/public/course-assets/javascript-level-2/object-animation-v1/inflate-and-deflate/starter/index.html.txt whitespace=-blank-at-eol

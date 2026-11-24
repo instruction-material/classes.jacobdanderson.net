@@ -178,6 +178,8 @@ describe("JavaScript Level 2 learner flow", () => {
 		);
 
 		expect(githubItems).toHaveLength(28);
+		// These upstream templates all implement the same checkpoint-list button.
+		expect(githubItems.every(item => item.internal)).toBe(true);
 		const githubUrls = new Set(
 			githubItems.flatMap(item => [item.projectLink, item.solutionLink])
 		);

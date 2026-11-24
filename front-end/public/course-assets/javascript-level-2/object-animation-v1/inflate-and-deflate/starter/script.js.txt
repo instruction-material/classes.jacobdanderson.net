@@ -1,0 +1,3 @@
+// Create a ball object with x, y, radius, and color properties. Then, create an animation with the canvas where the ball changes color and grows to a certain size, and then changes color again and shrinks to a certain size indefinitely.
+
+// Enter your code here.

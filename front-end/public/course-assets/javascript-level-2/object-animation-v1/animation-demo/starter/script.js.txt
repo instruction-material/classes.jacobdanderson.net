@@ -1,0 +1,50 @@
+const canvas = document.querySelector("#drawing");
+const context = canvas.getContext("2d");
+const output = document.querySelector("#state");
+const play = document.querySelector("#play");
+let state = initialState();
+let frame = null;
+
+function render() {
+  context?.clearRect(0, 0, canvas.width, canvas.height);
+  if (context) context.fillRect(state.x, state.y, 50, 50);
+  output.textContent = `Square at (${state.x}, ${state.y}), moving ${state.direction === 1 ? "right" : "left"}.`;
+}
+
+function step() {
+  state = nextFrame(state);
+  render();
+}
+
+function tick() {
+  step();
+  frame = requestAnimationFrame(tick);
+}
+
+function pause() {
+  if (frame !== null) cancelAnimationFrame(frame);
+  frame = null;
+  play.textContent = "Play";
+}
+
+play.addEventListener("click", () => {
+  if (frame === null) {
+    play.textContent = "Pause";
+    frame = requestAnimationFrame(tick);
+  } else {
+    pause();
+  }
+});
+document.querySelector("#step").addEventListener("click", () => {
+  pause();
+  step();
+});
+document.querySelector("#reset").addEventListener("click", () => {
+  pause();
+  state = initialState();
+  render();
+});
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) pause();
+});
+render();
