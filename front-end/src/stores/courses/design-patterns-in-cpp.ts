@@ -237,28 +237,38 @@ const designPatternsInCppSourceCourse: RawCourse = {
 			curriculum: [
 				{
 					title: "Ownership-Aware Creation",
+					preserveInstructions: true,
+					contentKind: "reading",
 					content:
 						"The starter builder calls make_unique<MetricCard> directly. That call fixes which widget gets created. Move construction into a virtual creation method and return unique_ptr<Widget>. The concrete factory chooses a product, then transfers ownership to the builder."
 				},
 				{
 					title: "Abstract Factory for Coordinated Families",
+					preserveInstructions: true,
+					contentKind: "reading",
 					content:
 						"A theme factory creates a family of metrics, badges and buttons. The light family uses sky, emerald and paper. The dark family uses lime, amber and slate. The builder asks for a widget by purpose and can assemble either family using the same sequence of calls."
 				},
 				{
 					title: "Builder for Configuration-Heavy Setup",
+					preserveInstructions: true,
+					contentKind: "reading",
 					content:
 						"In one assembly function, add the active-user metric, queue metric, health badge and action button in display order. Keeping the steps together lets a second theme reuse the layout. The builder owns the products in a vector of unique_ptr values. It borrows the factory for the duration of construction."
 				},
 				{
 					title: "Creation Tradeoffs in Practice",
+					preserveInstructions: true,
+					contentKind: "reading",
 					content:
 						"If only a color changes, passing a palette as a value is sufficient. Try a third family that renders plain text instead of styled widgets. Check whether the new implementation can be introduced by changing only the selected factory."
 				},
 				{
 					title: "DPC3 Factory Method, Abstract Factory, and Builder: Core Project",
+					preserveInstructions: true,
+					contentKind: "assignment",
 					content:
-						"Open the dashboard starter and compile main.cpp with C++20. Trace which class actually constructs MetricCard. Implement factory methods for metrics, badges and buttons, then have DashboardBuilder use the supplied factory at every step. Assemble the same four rows with both families. Verify the order and the light and dark styles against README.md.",
+						"Open the dashboard starter and compile main.cpp with C++20. Trace which class actually constructs MetricCard. Implement factory methods for metrics, badges and buttons, then have DashboardBuilder use the supplied factory at every step. Assemble the same four rows with both families. Verify the order and the light and dark styles against README.md.\n\n**Checkpoints:** For each theme, show the two metric rows, then the Healthy badge and the Flush cache button. The builder must accept either factory without switching on its type.",
 					projectLink:
 						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/748ac87bb93688229cb03b8c3618829319578156/DPC1-Factories-and-Builders-Workshop/starter",
 					solutionLink:
@@ -268,8 +278,10 @@ const designPatternsInCppSourceCourse: RawCourse = {
 			supplementalProjects: [
 				{
 					title: "Project: Factories and Builders Workshop",
+					preserveInstructions: true,
+					contentKind: "assignment",
 					content:
-						"Extend the core dashboard with a plain-text product family. Use a separate Widget implementation whose render method returns text such as Active users=184. Supply the new factory to the same assembly function. Verify all four rows, their order, and that DashboardBuilder contains no family-specific branch.",
+						"Extend the core dashboard with a plain-text product family. Use a separate Widget implementation whose render method returns text such as Active users=184. Supply the new factory to the same assembly function. Verify all four rows, their order, and that DashboardBuilder contains no family-specific branch.\n\n**Checkpoints:** The plain-text family renders Active users=184, Build queue=9, status Healthy and action Flush cache in order. The original light and dark dashboards still render correctly.",
 					projectLink:
 						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/748ac87bb93688229cb03b8c3618829319578156/DPC1-Factories-and-Builders-Workshop/starter",
 					solutionLink:
@@ -686,28 +698,38 @@ const designPatternsInCppSourceCourse: RawCourse = {
 			curriculum: [
 				{
 					title: "Why Singleton Is Attractive",
+					preserveInstructions: true,
+					contentKind: "reading",
 					content:
 						"A function-local static object is constructed the first time control reaches its declaration. Later calls return the same object. In a ticket service, two desks can obtain consecutive numbers without either desk receiving a counter in its constructor. Trace the first two calls to globalSequence() in the starter."
 				},
 				{
 					title: "The Real Risks",
+					preserveInstructions: true,
+					contentKind: "reading",
 					content:
 						"A third desk in a different clinic also draws from that counter. Opening north, north, south, north gives 1, 2, 3, 4. The clinics require 1, 2, 1, 3. Reordering tests can therefore change the observed numbers. Thread-safe initialization of a local static alone does not make later increments thread-safe."
 				},
 				{
 					title: "Scoped Services and Injected Dependencies",
+					preserveInstructions: true,
+					contentKind: "reading",
 					content:
 						"The composition root is the place where the application creates and connects its objects. In main, construct a Sequence for each clinic before creating any TicketDesk. Pass the north sequence to both north desks and the south sequence to the south desk. A Sequence& member borrows an existing counter. Copying the counter would give each desk its own sequence. Local objects are destroyed in reverse construction order, so the counters outlive their desks."
 				},
 				{
 					title: "When a Global Really Is Global",
+					preserveInstructions: true,
+					contentKind: "reading",
 					content:
 						"A process-wide sequence would fit a different requirement: every ticket issued by that process must have a different number even across clinics. Write down the scope before choosing a lifetime. If threads can issue tickets concurrently, specify how allocation is synchronized. A restart or a second process changes what a process-local counter can guarantee."
 				},
 				{
 					title: "DPC9 Singleton, Global State, and Dependency Injection: Core Project",
+					preserveInstructions: true,
+					contentKind: "assignment",
 					content:
-						"Open the ticket-desk starter. Export the project and run `c++ -std=c++20 -Wall -Wextra -Wpedantic main.cpp -o lab && ./lab` in its folder. Compare the four observed ticket numbers with the clinic requirements. Change TicketDesk to borrow its constructor argument and remove the global lookup. Run again. The north desks must share one sequence while the south desk starts at 1.",
+						"Open the ticket-desk starter. Export the project and run `c++ -std=c++20 -Wall -Wextra -Wpedantic main.cpp -o lab && ./lab` in its folder. Compare the four observed ticket numbers with the clinic requirements. Change TicketDesk to borrow its constructor argument and remove the global lookup. Run again. The north desks must share one sequence while the south desk starts at 1.\n\n**Checkpoints:** The four calls yield 1, 2, 1, 3 and the executable exits successfully. Explain why copying a Sequence into each desk breaks the second check.",
 					projectLink:
 						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/7a868e5fdc31744cb5e37bc9918288eb1480ace2/DPC-08-dpc9-singleton-global-state-and-dependency-injection/starter",
 					solutionLink:
@@ -717,8 +739,10 @@ const designPatternsInCppSourceCourse: RawCourse = {
 			supplementalProjects: [
 				{
 					title: "Modern C++ Comparison: Singleton, Global State, and Dependency Injection",
+					preserveInstructions: true,
+					contentKind: "assignment",
 					content:
-						"Use the ticket-desk project to compare the old global lookup with the scoped design. Create a temporary north desk inside a nested scope and issue its first ticket after the first two north tickets. Predict what the original north desk will issue after that scope ends. Run the check, then explain which object owns the sequence and why destroying the temporary desk leaves it usable.",
+						"Use the ticket-desk project to compare the old global lookup with the scoped design. Create a temporary north desk inside a nested scope and issue its first ticket after the first two north tickets. Predict what the original north desk will issue after that scope ends. Run the check, then explain which object owns the sequence and why destroying the temporary desk leaves it usable.\n\n**Checkpoints:** The temporary desk issues north ticket 3, then the original north desk issues ticket 4. A new south desk using its original untouched sequence can still issue ticket 1.",
 					projectLink:
 						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/7a868e5fdc31744cb5e37bc9918288eb1480ace2/DPC-08-dpc9-singleton-global-state-and-dependency-injection/starter",
 					solutionLink:
@@ -726,8 +750,10 @@ const designPatternsInCppSourceCourse: RawCourse = {
 				},
 				{
 					title: "Dependency Injection Transfer Practice",
+					preserveInstructions: true,
+					contentKind: "assignment",
 					content:
-						"Open the reservation starter. A reservation expires the instant its clock reaches the deadline. Run main.cpp with C++20, observe the before, at, and after deadline checks, then replace the fixed legacyMinute() call with a borrowed Clock. Each call to expired() must read the current minute. Add a second reservation on the same clock with a different deadline and check both outcomes without sleeping.",
+						"Open the reservation starter. A reservation expires the instant its clock reaches the deadline. Run main.cpp with C++20, observe the before, at, and after deadline checks, then replace the fixed legacyMinute() call with a borrowed Clock. Each call to expired() must read the current minute. Add a second reservation on the same clock with a different deadline and check both outcomes without sleeping.\n\n**Checkpoints:** With the local clock at 9 and two deadlines at 9 and 10, only the first has expired. At minute 10 both have expired. A separate clock at minute 8 remains unchanged.",
 					projectLink:
 						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/7a868e5fdc31744cb5e37bc9918288eb1480ace2/DPC-19-dpc9-singleton-global-state-and-dependency-injection-supplemental-2/starter",
 					solutionLink:
@@ -735,8 +761,10 @@ const designPatternsInCppSourceCourse: RawCourse = {
 				},
 				{
 					title: "Global State Refactor Extension Practice",
+					preserveInstructions: true,
+					contentKind: "assignment",
 					content:
-						"Open the export-receipt starter. Each save must write one line to the stream supplied to that Exporter. Replace the global output lookup while preserving the receipt text, newlines, and order. Build and run main.cpp with C++20. Check that the reports and images stay separate and that destroying one exporter leaves the other destination usable. Add a third destination and inspect its stream after its exporter has gone out of scope.",
+						"Open the export-receipt starter. Each save must write one line to the stream supplied to that Exporter. Replace the global output lookup while preserving the receipt text, newlines, and order. Build and run main.cpp with C++20. Check that the reports and images stay separate and that destroying one exporter leaves the other destination usable. Add a third destination and inspect its stream after its exporter has gone out of scope.\n\n**Checkpoints:** The report stream contains saved notes.txt followed by saved index.csv. Only saved map.png appears in the image stream. Each receipt ends in a newline.",
 					projectLink:
 						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/7a868e5fdc31744cb5e37bc9918288eb1480ace2/DPC-20-dpc9-singleton-global-state-and-dependency-injection-supplemental-3/starter",
 					solutionLink:
