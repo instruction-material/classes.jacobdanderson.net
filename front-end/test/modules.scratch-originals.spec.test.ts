@@ -188,3 +188,29 @@ it("opens Bootcamp answers under their own archive identity and reference role",
 		expect(scratchOriginalProject(id, course, "project")).toBeUndefined();
 	}
 });
+
+it.each([
+	["Extension Review: Event Listeners and Movement", "592008620"],
+	["Practice Map: Loops", "601699148"],
+	["Extension Review: Loops", "592014695"],
+	["Practice Map: Conditionals and Variables", "592019210"],
+	["Extension Review: Conditionals and Variables", "327635693"]
+])("keeps %s bound to its own instructor program", (title, starterId) => {
+	const course = "scratch-level-1-bootcamp";
+	const item = scratchLevel1BootcampCourse.modules
+		.flatMap(module => module.supplementalProjects)
+		.find(project => project.title === title);
+	expect(item?.projectLink).toBe(
+		"https://scratch.mit.edu/projects/" + starterId + "/"
+	);
+	const params = new URL(item!.solutionLink!, "https://classes.local")
+		.searchParams;
+	const archive = starterId + "-reference";
+	expect(params.get("originalProject")).toBe(archive);
+	expect(params.get("role")).toBe("reference");
+	expect(params.get("course")).toBe(course);
+	expect(scratchOriginalProject(archive, course, "reference")?.url).toBe(
+		item?.projectLink
+	);
+	expect(scratchOriginalProject(archive, course, "project")).toBeUndefined();
+});

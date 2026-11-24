@@ -359,7 +359,163 @@ function crabGame(project) {
 	);
 }
 
+const key = value =>
+	block("event_whenkeypressed", {}, { KEY_OPTION: [value, null] });
+const wait = seconds => block("control_wait", { DURATION: seconds });
+const repeat = (count, ...body) =>
+	block("control_repeat", { TIMES: count, SUBSTACK: body });
+const faceRight = () => block("motion_pointindirection", { DIRECTION: 90 });
+
+function showMonitor(project, id, opcode, params, spriteName = null) {
+	project.monitors.push({
+		id,
+		mode: "default",
+		opcode,
+		params,
+		spriteName,
+		value: 0,
+		width: 0,
+		height: 0,
+		x: 5,
+		y: 5 + 28 * project.monitors.length,
+		visible: true,
+		sliderMin: 0,
+		sliderMax: 100,
+		isDiscrete: true
+	});
+}
+
+function visibleCounter(project, name) {
+	const counter = variable(project.targets[0], name);
+	const field = counter.value.variable;
+	showMonitor(project, field[1], "data_variable", { VARIABLE: name });
+	return {
+		...counter,
+		change: amount =>
+			block(
+				"data_changevariableby",
+				{ VALUE: amount },
+				{ VARIABLE: field }
+			)
+	};
+}
+
+function beetleCoordinates(project) {
+	const beetle = project.targets[1];
+	const add = scripts(beetle);
+	project.extensions.push("pen");
+	add(20, 20, flag(), block("pen_penUp"), xy(0, 0), faceRight());
+	add(260, 20, key("right arrow"), block("motion_changexby", { DX: 10 }));
+	add(480, 20, key("up arrow"), block("motion_changeyby", { DY: 10 }));
+	for (const axis of ["xposition", "yposition"])
+		showMonitor(
+			project,
+			beetle.name + "_" + axis,
+			"motion_" + axis,
+			{},
+			beetle.name
+		);
+}
+
+function mousePolygons(project) {
+	const add = scripts(project.targets[1]);
+	project.extensions.push("pen");
+	add(
+		20,
+		20,
+		flag(),
+		block("pen_clear"),
+		block("pen_penUp"),
+		xy(0, 0),
+		faceRight()
+	);
+	for (const [button, sides, angle] of [
+		["1", 4, 90],
+		["2", 3, 120]
+	]) {
+		add(
+			button === "1" ? 260 : 500,
+			20,
+			key(button),
+			block("pen_penDown"),
+			repeat(
+				sides,
+				block("motion_movesteps", { STEPS: 40 }),
+				block("motion_turnright", { DEGREES: angle })
+			),
+			block("pen_penUp")
+		);
+	}
+}
+
+function elephantFlashes(project) {
+	const add = scripts(project.targets[1]);
+	add(
+		20,
+		20,
+		flag(),
+		block("looks_show"),
+		block("looks_cleargraphiceffects")
+	);
+	add(
+		260,
+		20,
+		key("5"),
+		repeat(
+			3,
+			block("looks_hide"),
+			wait(0.5),
+			block("looks_show"),
+			wait(0.5)
+		),
+		block("looks_say", { MESSAGE: "Done" })
+	);
+}
+
+function threeSecondButton(project) {
+	const button = project.targets[1];
+	const add = scripts(button);
+	const clicks = visibleCounter(project, "Clicks");
+	const playing = visibleCounter(project, "Playing");
+	const [[startId]] = entries(button, "event_whenflagclicked");
+	add.after(startId, clicks.set(0), playing.set(0));
+	const [goId] = entries(button, "looks_sayforsecs").find(
+		([, b]) => b.next === null
+	);
+	add.after(goId, playing.set(1), wait(3), playing.set(0));
+	const [[clickId]] = entries(button, "event_whenthisspriteclicked");
+	add.after(
+		clickId,
+		when(compare("equals", playing.value, 1), clicks.change(1))
+	);
+}
+
+function zebraDistance(project) {
+	const add = scripts(project.targets[1]);
+	const steps = visibleCounter(project, "Steps");
+	const distance = visibleCounter(project, "Distance");
+	add(20, 20, flag(), steps.set(0), distance.set(0), xy(0, 0));
+	for (const [button, dx] of [
+		["right arrow", 10],
+		["left arrow", -10]
+	]) {
+		add(
+			dx > 0 ? 260 : 500,
+			20,
+			key(button),
+			block("motion_changexby", { DX: dx }),
+			steps.change(1),
+			distance.change(10)
+		);
+	}
+}
+
 export const bootcampPrograms = {
+	592008620: beetleCoordinates,
+	601699148: mousePolygons,
+	592014695: elephantFlashes,
+	592019210: threeSecondButton,
+	327635693: zebraDistance,
 	287922077: ball,
 	299094220: spiderSmash,
 	327610727: crabGame,

@@ -142,6 +142,7 @@ Move one block so space triggers only the sound and a click triggers only speech
 			preserveInstructions: true,
 			preserveAssignment: true,
 			projectLink: "https://scratch.mit.edu/projects/592008620/",
+			solutionLink: scratchBootcampReferenceHref("beetle-coordinates"),
 			content: `Give the beetle two arrow-key controls that still work after it turns. On the green flag, lift the pen, go to x: 0 y: 0, and point right. On right arrow, change x by 10. On up arrow, change y by 10. Show the beetle’s x position and y position using the monitors in Motion.
 
 Start at the center and tap right twice and up once. Record the coordinates. Point the beetle left, start from the center again without resetting its direction, and repeat the same keys. Compare both runs with x: 20 y: 10. Explain what would differ if the right-arrow stack used move 10 steps instead.`
@@ -155,6 +156,9 @@ Start at the center and tap right twice and up once. Record the coordinates. Poi
 			preserveInstructions: true,
 			preserveAssignment: true,
 			projectLink: "https://scratch.mit.edu/projects/601699148/",
+			solutionLink: scratchBootcampReferenceHref(
+				"mouse-polygon-comparison"
+			),
 			content: `Draw two polygons with the mouse sprite. Add the Pen extension. Use the green flag to erase all, lift the pen, return to the center, and point right. On key 1, lower the pen and repeat four pairs of move 40 steps and turn clockwise 90 degrees. Lift the pen after the loop. Run the script and check whether the fourth edge ends where the first began.
 
 Duplicate the key stack for key 2. Make a triangle with three equal sides by changing both the repeat count and the turn. Test from the same starting position. Explain why three turns of 120 degrees close the triangle and why three turns of 90 degrees leave a gap.`
@@ -166,6 +170,9 @@ Duplicate the key stack for key 2. Make a triangle with three equal sides by cha
 			preserveInstructions: true,
 			preserveAssignment: true,
 			projectLink: "https://scratch.mit.edu/projects/592014695/",
+			solutionLink: scratchBootcampReferenceHref(
+				"elephant-three-flashes"
+			),
 			content: `Make the elephant flash exactly three times when the 5 key is pressed. On the green flag, show the sprite and clear graphic effects. Under the key hat, repeat three times: hide, wait half a second, show, then wait half a second. Leave a say block after the loop so the elephant announces Done.
 
 Move the final wait outside the loop and predict how long the elephant will be visible between flashes. Run both versions. Restore the wait inside and compare repeat 3 with forever: identify which version can reach Done. Save the finite version and describe the observed difference in timing.`
@@ -179,6 +186,7 @@ Move the final wait outside the loop and predict how long the elephant will be v
 			preserveInstructions: true,
 			preserveAssignment: true,
 			projectLink: "https://scratch.mit.edu/projects/592019210/",
+			solutionLink: scratchBootcampReferenceHref("button-three-seconds"),
 			content: `Use the Button Click Timer starter to test when a click earns a point. Make Clicks and Playing variables for all sprites. Reset both to zero at the start of the existing green-flag stack. Keep its show block and Ready, Set, Go messages. After Go, set Playing to 1, wait three seconds, and set Playing to 0. Add a check to the existing click stack: change Clicks by 1 only if Playing equals 1.
 
 Click once during Ready, twice during the three-second round, and once after it. Record Clicks after each phase. A correct run ends at 2 and a restart resets it to 0. Use the Playing monitor to distinguish a late click from a broken guard.`
@@ -190,6 +198,7 @@ Click once during Ready, twice during the three-second round, and once after it.
 			preserveInstructions: true,
 			preserveAssignment: true,
 			projectLink: "https://scratch.mit.edu/projects/327635693/",
+			solutionLink: scratchBootcampReferenceHref("zebra-distance"),
 			content: `Give the zebra a Steps counter and a second counter named Distance. Reset both on the green flag and go to x: 0 y: 0. In the right-arrow stack change x by 10, and in the left-arrow stack change x by -10. Each successful key event adds 1 to Steps and 10 to Distance, regardless of direction.
 
 Tap right twice and left once. Compare x position, Steps and Distance with 10, 3 and 30. Then tap left again. Explain why Distance increases even while the zebra returns to the center. Save a second input sequence and its predicted and observed values.`
