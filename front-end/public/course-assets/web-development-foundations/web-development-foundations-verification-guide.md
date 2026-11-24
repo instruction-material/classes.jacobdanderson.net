@@ -20,7 +20,18 @@ The source uses semantic landmarks and headings, native labeled controls, visibl
 
 ## Front-End State Key
 
-Event normalization is separate from state change and rendering. The duplicate ID and malformed text are rejected without breaking valid history. Ready, loading, connected, empty, error, reconnecting, and reset are visible. History is bounded; text cannot become markup; keyboard, pointer, focus, status, reduced motion, and narrow reflow remain usable. Socket.IO is not required.
+For Workshop, the first two records add e1 and e2. The third is a valid record with a known ID, so it increases the duplicate count even though its sequence also matches e2. The fourth has numeric text, so it increases the rejected count. The accepted sequence remains 2. All shows both rows, Messages shows e1 and Status shows e2. Filtering preserves both counts.
+
+| Data set or action | Expected observation |
+| --- | --- |
+| Empty | No entries or errors. A successful empty batch produces the empty state. |
+| Invalid structure | JSON parsing succeeds. The batch check rejects the non-array before individual records are processed. |
+| Malformed JSON | Parsing fails before any batch or record validation. |
+| History limit | Fifteen valid events arrive. The ten retained IDs are e6 through e15. |
+| Delayed events | Only e2 and e3 enter history. A late e1 is rejected and the repeated e2 is counted as a duplicate. |
+| Disconnect, reconnect, reset | Disconnect shows the disconnected state. Reconnect reloads the selected fixture into fresh counts. Reset clears history and returns to ready. |
+
+Render event text as text, retain keyboard focus during updates, and make status changes available to assistive technology. In this local client a connected state records a successful fixture load.
 
 ## Validated API Key
 

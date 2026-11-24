@@ -53,6 +53,10 @@ export function applyWebNotificationWorkflow(
 		"Notification Views and Asynchronous State",
 		reading.trim()
 	);
+	const worksheetRoot =
+		"/course-assets/web-development-foundations/web-development-foundations";
+	concepts.datasetLink = `${worksheetRoot}-practice-pack.md#front-end-state-case`;
+	concepts.solutionLink = `${worksheetRoot}-verification-guide.md#front-end-state-key`;
 	update(
 		project,
 		"curriculum-core-project-front-end-applications",

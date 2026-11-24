@@ -41,18 +41,20 @@ Use the portfolio scaffold to add one original section and one fictional contact
 
 ## Front-End State Case
 
-Build a multi-view notification interface from this bounded event sequence:
+Use the local notification project’s **Workshop** data set (`events.json`). Start with an empty history. Predict the rows and counters after each of these four events, in order:
 
 ```json
 [
-	{ "id": "e1", "type": "message", "text": "Workshop opens at 4:00." },
-	{ "id": "e2", "type": "status", "text": "Room changed to Lab B." },
-	{ "id": "e2", "type": "status", "text": "duplicate" },
-	{ "type": "message", "text": 42 }
+	{ "id": "e1", "sequence": 1, "type": "message", "text": "Workshop opens at 4:00." },
+	{ "id": "e2", "sequence": 2, "type": "status", "text": "Room changed to Lab B." },
+	{ "id": "e2", "sequence": 2, "type": "status", "text": "duplicate" },
+	{ "id": "e3", "sequence": 3, "type": "message", "text": 42 }
 ]
 ```
 
-Model ready, loading, connected, empty, error, reconnecting, and reset states. Normalize events before state changes, reject malformed or duplicate records, cap visible history, render text safely, and verify keyboard, pointer, focus, status, reduced-motion, and narrow-width behavior.
+Complete `normalizeEvent` and `applyEvents` in the starter’s `state.mjs`. Each valid record needs an ID, integer sequence, accepted type and text string. Check a previously accepted ID before testing whether a valid sequence is late. Use the module reading for the field bounds.
+
+Select **Load notifications**, then use the keyboard to move among **All**, **Messages** and **Status**. Record which rows remain visible and whether switching views changes the counts. Run **Empty**, **Invalid structure**, **Malformed JSON**, **History limit** and **Delayed events** separately. Predict which failures reach the event validator. From Workshop, disconnect, reconnect and reset. Check the status text, focus and list at narrow and desktop widths.
 
 ## Validated API Case
 

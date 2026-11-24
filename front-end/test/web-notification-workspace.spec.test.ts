@@ -56,6 +56,15 @@ afterEach(async () => {
 });
 
 describe("web notification source workflow", () => {
+	it("uses the runnable Workshop event batch in the practice case", () => {
+		const pack = readFileSync(resolve("public/course-assets/web-development-foundations/web-development-foundations-practice-pack.md"), "utf8");
+		const section = pack.split("## Front-End State Case")[1].split("\n## ")[0];
+		const sample = JSON.parse(section.split("```json")[1].split("```")[0]);
+		for (const role of ["starter", "solution"]) {
+			const source = fixture.files[`${fixture.pack}/${role}/events.json`].content;
+			expect(sample).toEqual(JSON.parse(source));
+		}
+	});
 	it("requires the local front-end lab and preserves full reading and reference roles", async () => {
 		setActivePinia(createPinia());
 		const app = useAppStore();
