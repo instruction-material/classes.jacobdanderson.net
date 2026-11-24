@@ -75,6 +75,7 @@ import {
 	staticMediaUrl,
 	staticMediaUrlsFromText
 } from "./staticMedia";
+import { applySwiftReferenceReadings } from "./swiftReferenceReadings";
 import { applyRestoredUsacoProjects } from "./usacoRestoredProjectBriefs";
 import { applyWebContactWorkflow } from "./webContactWorkflow";
 import { applyWebDeploymentWorkflow } from "./webDeploymentWorkflow";
@@ -9913,6 +9914,8 @@ export function normalizeRawCourse(id: string, rawCourse: RawCourse) {
 	}
 	if (id === "algebra-1a")
 		applyAlgebra1ACourseReadings(course, historicalCourseProgressId);
+	if (id === "intro-to-swift-app-development")
+		applySwiftReferenceReadings(course, historicalCourseProgressId);
 	if (id === "pythonic-design-patterns")
 		applyPythonicOpeningGuidance(course, historicalCourseProgressId);
 	if (id === "data-science-in-python") {

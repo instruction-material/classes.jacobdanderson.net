@@ -1,3 +1,4 @@
+import type { RawCourse } from "@/stores/courses/types";
 import fs from "node:fs";
 import path from "node:path";
 import { createPinia, setActivePinia } from "pinia";
@@ -13,11 +14,14 @@ import {
 	swiftMapRoot,
 	swiftNetworkingRoot,
 	swiftShapesStudioRoot,
-	swiftTrackerRoot
+	swiftTrackerRoot,
+	swiftWelcomeRoot
 } from "@/modules/swiftProjectResources";
 import { useCoursesStore } from "@/stores/courses";
 import { loadRawCourse } from "@/stores/courses/index";
 import { introToSwiftAppDevelopmentCourse } from "@/stores/courses/intro-to-swift-app-development";
+import { applySwiftReferenceReadings } from "@/stores/courses/swiftReferenceReadings";
+import swiftReferences from "@/stores/courses/swiftReferenceReadings.json";
 import practiceProgressBefore from "./fixtures/swift-practice-progress-before.json";
 
 const EXPECTED_SEQUENCE = [
@@ -207,29 +211,17 @@ describe("intro to Swift App Development learner flow", () => {
 	});
 
 	it("preserves the seven canonical app projects and their source links", () => {
-		const text = JSON.stringify(introToSwiftAppDevelopmentCourse);
-
-		for (const [title, folder] of [
-			["Project: Welcome Profile App", "SAD1-Welcome-Profile-App"],
-			["Project: Media Gallery App", "SAD2-Media-Gallery-App"],
-			["Project: Multi-Tab Hobby App", "SAD3-Multi-Tab-Hobby-App"],
-			["Project: Map Places App", "SAD4-Map-Places-App"],
-			["Project: Simple Tracker App", "SAD5-Simple-Tracker-App"],
-			["Project: API-Powered Reference App", "SAD6-API-Reference-App"],
-			[
-				"Project: Publish-Ready Capstone App",
-				"SAD7-Publish-Ready-Capstone"
-			]
-		]) {
-			expect(text, title).toContain(title);
-			expect(text, folder).toContain(
-				CANONICAL_PROJECT_ROOTS[title]
-				?? (folder === "SAD6-API-Reference-App"
-					? swiftNetworkingRoot
-					: folder === "SAD5-Simple-Tracker-App"
-						? swiftTrackerRoot
-						: `https://github.com/instruction-material/Swift/tree/main/${folder}`)
-			);
+		const roots = {
+			...CANONICAL_PROJECT_ROOTS,
+			"Project: Welcome Profile App": swiftWelcomeRoot,
+			"Project: Simple Tracker App": swiftTrackerRoot,
+			"Project: API-Powered Reference App": swiftNetworkingRoot
+		};
+		expect(Object.keys(roots)).toHaveLength(7);
+		for (const [title, root] of Object.entries(roots)) {
+			const item = allItems().find(candidate => candidate.title === title);
+			expect(item?.projectLink, title).toBe(`${root}/starter`);
+			expect(item?.solutionLink, title).toBe(`${root}/solution`);
 		}
 	});
 
@@ -668,6 +660,131 @@ describe("intro to Swift App Development learner flow", () => {
 		expect(JSON.stringify(loaded)).toContain(
 			"/course-assets/swift/intro-swift-verification-guide.md#"
 		);
+	});
+
+	it("keeps Swift reference tasks optional and links them to existing course activities", async () => {
+		setActivePinia(createPinia());
+		const course = await useCoursesStore().loadCourseById(
+			"intro-to-swift-app-development"
+		);
+		const modules = course!.modules;
+		const anchors = new Set(
+			modules.flatMap(module => [
+				module.id,
+				...[...module.curriculum, ...module.supplementalProjects].map(
+					item => `${module.id}-${item.id}`
+				)
+			])
+		);
+		const prefix = "Intro to Swift App Development ";
+		const expected = {
+			"Standards Map": [
+				"Reference Guide",
+				"Core Skills",
+				"Next Topics",
+				"Boundaries",
+				"Prerequisite Check",
+				"Pathway Map"
+			],
+			"Course Roadmap": [
+				"Follow-Up Path",
+				"Resource Map",
+				"Module Alignment Guide",
+				"Reference Map",
+				"Prerequisite Map",
+				"Resource Inventory"
+			],
+			"Project Practice Guide": [
+				"Project Ladder",
+				"Checkpoints",
+				"Rubric",
+				"Capstone Gate",
+				"Practice Project: Habit Tracker",
+				"Practice Project: Flashcard App",
+				"Practice Project: Weather or API Reader with Mock Fallback",
+				"Practice Project: Notes App with Persistence",
+				"Practice Project: Multi-screen Personal Dashboard"
+			],
+			"Intro to Swift App Development: Toolchain and Version Assumptions":
+				[
+					"Setup Assumptions",
+					"Upgrade Rule",
+					"Platform Fallbacks",
+					"Reproducibility Notes",
+					"First-Run Smoke Test",
+					"Version Drift Review"
+				]
+		};
+		for (const [title, suffixes] of Object.entries(expected)) {
+			const module = modules.find(candidate => candidate.title === title);
+			expect(module?.kind, title).toBe("appendix");
+			const published = [
+				...module!.curriculum,
+				...module!.supplementalProjects
+			];
+			const entries: Record<string, string> =
+				swiftReferences[title as keyof typeof swiftReferences];
+			for (const suffix of suffixes) {
+				const itemTitle = suffix.startsWith("Practice Project:")
+					? suffix
+					: prefix + suffix;
+				const item = published.find(
+					candidate => candidate.title === itemTitle
+				);
+				expect(entries[itemTitle], itemTitle).toBeTruthy();
+				expect(item?.content, itemTitle).toBe(entries[itemTitle]);
+				if (module!.supplementalProjects.includes(item!)) {
+					expect(item!.contentKind).toBe("assignment");
+					expect(item!.learningPath).toBe("choice");
+				} else {
+					expect(item!.contentKind).toBe("reading");
+				}
+				for (const match of item!.content.matchAll(
+					/\]\(\/courses#([^)]+)\)/g
+				)) {
+					expect(anchors.has(match[1]), itemTitle).toBe(true);
+				}
+			}
+		}
+		for (const module of modules.filter(
+			module => module.kind === "module"
+		)) {
+			expect(
+				module.supplementalProjects.some(
+					item => item.title === `${module.title}: Readiness Check`
+				),
+				module.title
+			).toBe(true);
+		}
+	});
+
+	it("preserves unmapped appendix readings and assignments verbatim", () => {
+		const course: RawCourse = {
+			name: "Intro to Swift App Development",
+			modules: [
+				{
+					title: "Standards Map",
+					kind: "appendix",
+					curriculum: [
+						{
+							title: "New source reading",
+							content: "Original reading."
+						}
+					],
+					supplementalProjects: [
+						{
+							title: "Readiness Check",
+							content: "Original instructions.",
+							learningPath: "challenge",
+							projectLink: "/course-assets/new-case.md"
+						}
+					]
+				}
+			]
+		};
+		const original = structuredClone(course);
+		applySwiftReferenceReadings(course, value => value);
+		expect(course).toEqual(original);
 	});
 
 	it("recognizes saved IDs from the original module and lesson titles", async () => {

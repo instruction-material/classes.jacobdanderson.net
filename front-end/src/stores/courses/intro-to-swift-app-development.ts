@@ -26,7 +26,8 @@ import {
 	swiftNetworkingRoot,
 	swiftProfileInterestsRoot,
 	swiftShapesStudioRoot,
-	swiftTrackerRoot
+	swiftTrackerRoot,
+	swiftWelcomeRoot
 } from "@/modules/swiftProjectResources";
 import { buildProjectGuidance } from "./projectGuidance";
 import swiftPriorTitles from "./swift-title-progress-history.json";
@@ -742,10 +743,8 @@ Both labels reserve padding. Only the first paints that space blue because its b
 					title: "Project: Welcome Profile App",
 					content:
 						"Build a welcome/profile app that turns a simple static screen into a real SwiftUI starter project. The project introduces reading a view tree, customizing hierarchy, and practicing navigation between a landing screen and a detail screen.",
-					projectLink:
-						"https://github.com/instruction-material/Swift/tree/main/SAD1-Welcome-Profile-App/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Swift/tree/main/SAD1-Welcome-Profile-App/solution"
+					projectLink: `${swiftWelcomeRoot}/starter`,
+					solutionLink: `${swiftWelcomeRoot}/solution`
 				},
 				{
 					title: "Reflection Question: Why Does Modifier Order Matter?",
@@ -758,10 +757,8 @@ Both labels reserve padding. Only the first paints that space blue because its b
 					title: "Diagnostic Checkpoint",
 					content:
 						"Readiness check: explain SwiftUI as a declarative system and identify the major branches of a small view tree without help. Prompt: describe what happens first when a `Text` view also has padding, background, and corner radius modifiers.",
-					projectLink:
-						"https://github.com/instruction-material/Swift/tree/main/SAD1-Welcome-Profile-App/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Swift/tree/main/SAD1-Welcome-Profile-App/solution"
+					projectLink: `${swiftWelcomeRoot}/starter`,
+					solutionLink: `${swiftWelcomeRoot}/solution`
 				},
 				{
 					title: "SwiftUI Mental Model Transfer Practice",
@@ -872,29 +869,19 @@ Check the reasoning against two traces. Before the first tap, zero is a known co
 				},
 				{
 					title: "Swift Basics in App Context Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Swift app",
-						moduleTitle: "SAD9 Swift Basics in App Context",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Swift/tree/main/SAD-16-sad9-swift-basics-in-app-context-supplemental-2/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Swift/tree/main/SAD-16-sad9-swift-basics-in-app-context-supplemental-2/solution"
+					preserveInstructions: true,
+					contentKind: "assignment",
+					ideImport: false,
+					content:
+						"Use Avery’s four values from the practice case to sketch the heading before and after completing a lesson. Change the displayed member to Rae with a tagline of “Builds robots” and no interests. Keep the session count. Label the value that changes on completion, the values that belong to the member and the line that handles a missing tagline."
 				},
 				{
 					title: "Swift Basics in App Context Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Swift app",
-						moduleTitle: "SAD9 Swift Basics in App Context",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Swift/tree/main/SAD-17-sad9-swift-basics-in-app-context-supplemental-3/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Swift/tree/main/SAD-17-sad9-swift-basics-in-app-context-supplemental-3/solution"
+					preserveInstructions: true,
+					contentKind: "assignment",
+					ideImport: false,
+					content:
+						"Start with the interest array from the case. Append “Color theory” and search for “O”. Predict the two matching names in display order and write the stored array beside them. Remove all four interests and repeat the same query. Explain why the message changes from a filtered result to “No interests yet”."
 				}
 			]
 		},
@@ -1007,29 +994,19 @@ The output is \`7 Map a trail\` followed by \`7 Map a river\`. The ID still iden
 				},
 				{
 					title: "Functions, Structs, and Enums Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Swift app",
-						moduleTitle: "SAD10 Functions, Structs, and Enums",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Swift/tree/main/SAD-18-sad10-functions-structs-and-enums-supplemental-2/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Swift/tree/main/SAD-18-sad10-functions-structs-and-enums-supplemental-2/solution"
+					preserveInstructions: true,
+					contentKind: "assignment",
+					ideImport: false,
+					content:
+						"Use lesson 7, “Map a trail”, from the case. Copy the active card at 50% and mark only the copy complete on 2026-01-01. Write the ID, status payload and label for each copy. What would go wrong if a view used its changing status label as its identity?"
 				},
 				{
 					title: "Functions, Structs, and Enums Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Swift app",
-						moduleTitle: "SAD10 Functions, Structs, and Enums",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Swift/tree/main/SAD-19-sad10-functions-structs-and-enums-supplemental-3/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Swift/tree/main/SAD-19-sad10-functions-structs-and-enums-supplemental-3/solution"
+					preserveInstructions: true,
+					contentKind: "assignment",
+					ideImport: false,
+					content:
+						"Design a model operation that accepts an active fraction only from 0 through 1. Try −0.1, 0, 0.5, 1 and 1.1 on separate copies of planned lesson 7. Write one expectation for each result. A rejected value must leave the card planned. At 1 the card stays active until a completion date is supplied. Which checks can run without a view?"
 				}
 			]
 		},
@@ -1301,7 +1278,7 @@ Start with A1 Sketch interface incomplete, A2 Build model complete and A3 Build 
 					title: "Images, Icons, Maps, and Permissions",
 					preserveInstructions: true,
 					contentKind: "reading",
-					content: `A gallery card can draw its artwork locally. A map can place markers from stored coordinates.
+					content: `A gallery card can draw its artwork locally. A map can place markers from stored coordinates. Start with Media Gallery here. Trace the supplied Map Places row now, then build the map after Multi-Tab Hobby in SW9 and the list example in SW10.
 
 ## Worked example
 
