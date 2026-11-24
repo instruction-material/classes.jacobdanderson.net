@@ -862,6 +862,22 @@ describe("AP Computer Science A learner flow", () => {
 		}
 	});
 
+	it.each([
+		["APCS13 Algorithmic Runtime and Linear Search", "Shelf B", "Project: Linear Search Implementation"],
+		["APCS14 Selection and Insertion Sort", "3A, 3B, 1C", "Project: Insertion Sort"],
+		["APCS16 Binary Search and Merge Sort", "indices 2, 4, and 3", "Core Project: Binary Search"]
+	])("retains one worked transfer exercise and its project link in %s", async (moduleTitle, fixture, projectTitle) => {
+		setActivePinia(createPinia());
+		const course = (await useCoursesStore().loadCourseById("ap-computer-science-a"))!;
+		const module = course.modules.find(item => item.title === moduleTitle)!;
+		const prompts = module.supplementalProjects.filter(item => item.title.endsWith("Trace and Boundary Case"));
+		expect(prompts).toHaveLength(1);
+		const project = [...module.curriculum, ...module.supplementalProjects].find(item => item.title === projectTitle)!;
+		expect(prompts[0].content).toContain(fixture);
+		expect(prompts[0].content).toContain(`/courses#${module.id}-${project.id}`);
+		expect(prompts[0].aliases).toContain("applied-challenge");
+	});
+
 	it("keeps both written collection prompts and their runnable check-in visible", async () => {
 		setActivePinia(createPinia());
 		const course = (await useCoursesStore().loadCourseById("ap-computer-science-a"))!;
@@ -903,7 +919,7 @@ describe("AP Computer Science A learner flow", () => {
 		);
 
 		expect(curriculumTitles).toHaveLength(76);
-		expect(optionTitles).toHaveLength(76);
+		expect(optionTitles).toHaveLength(79);
 		for (const title of MOVED_REFERENCE_TITLES) {
 			expect(curriculumTitles, title).not.toContain(title);
 			expect(optionTitles, title).toContain(title);

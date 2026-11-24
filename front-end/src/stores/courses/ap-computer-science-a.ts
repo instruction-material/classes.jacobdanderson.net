@@ -2317,13 +2317,48 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 			curriculum: [
 				{
 					title: "Wrapper Types, Autoboxing, and Unboxing",
-					content:
-						"Wrapper classes are the object form of primitive values, with attention to why collections use them and how autoboxing and unboxing hide conversions."
+					contentKind: "reading",
+					preserveInstructions: true,
+					content: [
+						"An `ArrayList<Integer>` stores objects. Adding an `int` boxes its value as an `Integer`. Reading that element into an `int` unboxes it. With `import java.util.ArrayList;` above the class, trace the types in this example.",
+						"",
+						"```java",
+						"ArrayList<Integer> readings = new ArrayList<>();",
+						'readings.add(Integer.parseInt("12"));',
+						"Integer boxed = readings.get(0);",
+						"int next = boxed + 1;",
+						"System.out.println(next);",
+						"System.out.println(readings.get(0));",
+						"```",
+						"",
+						'The outputs are 13 and 12. Parsing produced an integer from text. Addition unboxed the stored value, and assigning the sum to `next` left the list unchanged. A list can also contain `null`. Unboxing that entry in an arithmetic expression throws `NullPointerException`. Predict what happens if the text passed to `parseInt` is `"twelve"`: parsing throws `NumberFormatException` before the list receives anything.',
+						"",
+						"[Minimum and Maximum Search practice](/courses#ap-computer-science-a-apcs12-wrapper-classes-ap-computer-science-a-apcs12-wrapper-classes-supplemental-project-minimum-and-maximum-search)"
+					].join("\n")
 				},
 				{
 					title: "Static Constants and Search Initialization",
-					content:
-						"`Integer.MIN_VALUE` and `Integer.MAX_VALUE` support sane initialization choices for min/max search problems. The concept matters because a bad starting value can make a correct-looking loop fail on all-negative or all-positive data."
+					contentKind: "reading",
+					preserveInstructions: true,
+					content: [
+						"Suppose a weather station reports only negative temperatures. Starting a maximum at zero would report a temperature the station never observed. This scan uses the lowest and highest possible `int` values as starting bounds for a nonempty array.",
+						"",
+						"```java",
+						"int[] temperatures = {-8, -2, -15};",
+						"int low = Integer.MAX_VALUE;",
+						"int high = Integer.MIN_VALUE;",
+						"for (int value : temperatures) {",
+						"    if (value < low) low = value;",
+						"    if (value > high) high = value;",
+						"}",
+						"System.out.println(low);",
+						"System.out.println(high);",
+						"```",
+						"",
+						"After each reading, `(low, high)` is `(-8, -8)`, `(-8, -2)`, then `(-15, -2)`. Either bound can equal a real reading. For an empty input, neither bound describes an observation. The linked project handles that case explicitly and prints `No values`. Trace a single reading of `Integer.MIN_VALUE` to check both bounds.",
+						"",
+						"[Minimum and Maximum Search practice](/courses#ap-computer-science-a-apcs12-wrapper-classes-ap-computer-science-a-apcs12-wrapper-classes-supplemental-project-minimum-and-maximum-search)"
+					].join("\n")
 				},
 				{
 					title: "Core Project: Suits, Decks, and Hands",
@@ -2404,31 +2439,62 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 			curriculum: [
 				{
 					title: "Runtime by Step Counting",
-					content: apConcept({
-						focus: "Runtime analysis compares how work grows as input size grows. Wall-clock time changes with hardware, compiler settings, and background load, so AP CSA reasoning counts loop iterations, comparisons, assignments, recursive calls, or other stable operations.",
-						practice: [
-							"Choose one code fragment and name the operation being counted.",
-							"Trace the count for small inputs such as `n = 1`, `n = 2`, and `n = 5`.",
-							"Rewrite the count as a simple expression in terms of `n`.",
-							"Summarize the growth rate only after the counted work is clear."
-						],
-						evidence:
-							"A complete runtime explanation connects the code structure to the count. The final Big-O label is not enough unless the loop bounds or recursive calls explain why that label fits."
-					})
+					contentKind: "reading",
+					preserveInstructions: true,
+					content: [
+						"Count one comparison each time a linear search checks a value against the target. This method returns the number of comparisons through the first match, or the number needed to exhaust the input. Place it inside `Main`, outside `main`.",
+						"",
+						"```java",
+						"static int comparisons(int[] values, int target) {",
+						"    int checks = 0;",
+						"    for (int value : values) {",
+						"        checks++;",
+						"        if (value == target) break;",
+						"    }",
+						"    return checks;",
+						"}",
+						"```",
+						"",
+						"In `main`:",
+						"",
+						"```java",
+						"int[] route = {7, 2, 7, 1};",
+						"System.out.println(comparisons(route, 7));",
+						"System.out.println(comparisons(route, 1));",
+						"System.out.println(comparisons(route, 9));",
+						"```",
+						"",
+						"The first 7 ends the first search after one comparison. Searching for 1 visits all four values and succeeds. Searching for 9 also visits all four and fails. The count alone cannot distinguish those last two outcomes. The project returns a boolean for that purpose. For a missing target in an array of length `n`, exactly `n` equality checks run, including zero for an empty array.",
+						"",
+						"[Linear Search Implementation practice](/courses#ap-computer-science-a-apcs13-algorithmic-runtime-and-linear-search-ap-computer-science-a-apcs13-algorithmic-runtime-and-linear-search-supplemental-project-linear-search-implementation)"
+					].join("\n")
 				},
 				{
 					title: "Best, Average, and Worst Case",
-					content: apConcept({
-						focus: "The same algorithm can do different amounts of work depending on the input. Search algorithms are the cleanest examples: the target might be first, last, absent, or positioned near the middle.",
-						practice: [
-							"Name one input that makes the algorithm finish quickly.",
-							"Name one input that forces the largest number of checks.",
-							"Explain whether a typical case needs a probability model or only a representative example.",
-							"Connect the case labels to the exact comparison or loop that changes."
-						],
-						evidence:
-							"Best, average, and worst-case labels are supported by concrete inputs and a trace of how many checks those inputs cause."
-					})
+					contentKind: "reading",
+					preserveInstructions: true,
+					content: [
+						"Search the four distinct labels below from left to right. Count the equality check that finds the label. This experiment searches for each present label once, so every possible successful position has equal weight.",
+						"",
+						"```java",
+						"int[] labels = {8, 3, 6, 4};",
+						"int total = 0;",
+						"for (int target : labels) {",
+						"    int checks = 0;",
+						"    for (int value : labels) {",
+						"        checks++;",
+						"        if (value == target) break;",
+						"    }",
+						"    System.out.println(checks);",
+						"    total += checks;",
+						"}",
+						"System.out.println(total / (double) labels.length);",
+						"```",
+						"",
+						"The counts are 1, 2, 3, and 4. Their mean is 2.5 comparisons under the stated model. With half of searches missing and the other half equally divided among these four labels, the expected count becomes `0.5 × 4 + 0.5 × 2.5 = 3.25`. The fastest and slowest counts stay at 1 and 4. Explain how duplicate labels would affect the first-match assumption.",
+						"",
+						"[Linear Search Implementation practice](/courses#ap-computer-science-a-apcs13-algorithmic-runtime-and-linear-search-ap-computer-science-a-apcs13-algorithmic-runtime-and-linear-search-supplemental-project-linear-search-implementation)"
+					].join("\n")
 				},
 				{
 					title: "Core Project: Runtime Analysis",
@@ -2487,6 +2553,21 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 					preserveInstructions: true,
 					preserveAssignment: true,
 					mediaLink: media("apcs13-project-2-linear-search.mp4")
+				},
+				{
+					title: "Algorithmic Runtime and Linear Search Trace and Boundary Case",
+					aliases: ["Applied Challenge"],
+					contentKind: "assignment",
+					learningPath: "challenge",
+					preserveAssignment: true,
+					preserveInstructions: true,
+					content: [
+						"Two shelves use the same inventory search. Shelf A holds IDs `[2, 5, 8, 8, 11]` in ascending order. Shelf B holds `[8, 2, 11, 5, 8]` in arrival order. For targets 5, 7, and 8, list the visited IDs, the boolean result, and the number of entries examined on each shelf.",
+						"",
+						"On A, stop at a match or at the first larger value. On B, stop only at a match or the end. For target 7 the visits on A are 2, 5, 8 and the result is false. B must inspect all five. For target 8 the counts are three and one. Explain why using the sorted rule on B would miss 5. Add an empty shelf to the trace and check the methods with the same inputs.",
+						"",
+						"[Open the Linear Search Implementation project](/courses#ap-computer-science-a-apcs13-algorithmic-runtime-and-linear-search-ap-computer-science-a-apcs13-algorithmic-runtime-and-linear-search-supplemental-project-linear-search-implementation)"
+					].join("\n")
 				}
 			]
 		},
@@ -2495,31 +2576,57 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 			curriculum: [
 				{
 					title: "Selection Sort",
-					content: apConcept({
-						focus: "Selection sort repeatedly finds the next smallest or largest value and moves it into the sorted region. The sorted region grows from one side, while the unsorted region shrinks by one element per pass.",
-						practice: [
-							"Trace one pass and record the current index, candidate extreme index, and comparison result.",
-							"Swap only after the pass identifies the correct extreme value.",
-							"Draw the boundary between sorted and unsorted regions after each pass.",
-							"Count the comparisons to connect the algorithm to quadratic runtime."
-						],
-						evidence:
-							"A correct trace explains the invariant: after pass `k`, the first `k` positions contain the correct values in sorted order."
-					})
+					contentKind: "reading",
+					preserveInstructions: true,
+					content: [
+						"For each open position, scan the unsorted suffix for its smallest value, then swap that value into the open position. With `import java.util.Arrays;` above the class, print the array after each outer pass.",
+						"",
+						"```java",
+						"int[] values = {4, 1, 3, 1};",
+						"for (int i = 0; i < values.length - 1; i++) {",
+						"    int min = i;",
+						"    for (int j = i + 1; j < values.length; j++) {",
+						"        if (values[j] < values[min]) min = j;",
+						"    }",
+						"    int saved = values[i];",
+						"    values[i] = values[min];",
+						"    values[min] = saved;",
+						"    System.out.println(Arrays.toString(values));",
+						"}",
+						"```",
+						"",
+						"The states are `[1, 4, 3, 1]`, `[1, 1, 3, 4]`, and `[1, 1, 3, 4]`. The strict comparison selects the first minimum during a pass. After two passes, the two smallest values occupy their final positions. The last pass still compares 3 and 4. Count the comparisons: `3 + 2 + 1 = 6`, even on an already sorted four-element array. The linked project uses `get` and `set` to perform the same operations on an ArrayList.",
+						"",
+						"[Selection Sort practice](/courses#ap-computer-science-a-apcs14-selection-and-insertion-sort-ap-computer-science-a-apcs14-selection-and-insertion-sort-curriculum-core-project-selection-sort)"
+					].join("\n")
 				},
 				{
 					title: "Insertion Sort",
-					content: apConcept({
-						focus: "Insertion sort grows a sorted prefix by inserting the next value into the correct earlier position. It rewards nearly sorted data because values often do not need to move far.",
-						practice: [
-							"Mark the sorted prefix before each pass.",
-							"Store the current value and shift larger or smaller values until the insertion point is open.",
-							"Compare an already sorted input with a reverse-sorted input.",
-							"Explain why the best case has fewer movements than the worst case."
-						],
-						evidence:
-							"The trace shows both the current value being inserted and the sorted prefix remaining sorted after the insertion."
-					})
+					contentKind: "reading",
+					preserveInstructions: true,
+					content: [
+						"Before pass `i`, positions before `i` form a sorted prefix. Save the next value so shifting its larger neighbors right cannot overwrite it. With `import java.util.Arrays;` above the class, predict the array and number of shifts after each pass.",
+						"",
+						"```java",
+						"int[] values = {4, 1, 3, 1};",
+						"int shifts = 0;",
+						"for (int i = 1; i < values.length; i++) {",
+						"    int saved = values[i];",
+						"    int spot = i;",
+						"    while (spot > 0 && values[spot - 1] > saved) {",
+						"        values[spot] = values[spot - 1];",
+						"        spot--;",
+						"        shifts++;",
+						"    }",
+						"    values[spot] = saved;",
+						'    System.out.println(Arrays.toString(values) + " / " + shifts);',
+						"}",
+						"```",
+						"",
+						"The cumulative shifts are 1, 2, and 4. In the last pass, 4 and 3 move right. The original 1 stays in place because it equals the saved value. Compare the first pass with selection sort on the same input. On `[1, 1, 3, 4]` there are no shifts, even though the outer loop still runs three times.",
+						"",
+						"[Insertion Sort practice](/courses#ap-computer-science-a-apcs14-selection-and-insertion-sort-ap-computer-science-a-apcs14-selection-and-insertion-sort-supplemental-project-insertion-sort)"
+					].join("\n")
 				},
 				{
 					title: "Core Project: Selection Sort",
@@ -2581,6 +2688,21 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 					preserveInstructions: true,
 					preserveAssignment: true,
 					mediaLink: media("apcs14-project-2-insertion-sort.mp4")
+				},
+				{
+					title: "Selection and Insertion Sort Trace and Boundary Case",
+					aliases: ["Applied Challenge"],
+					contentKind: "assignment",
+					learningPath: "challenge",
+					preserveAssignment: true,
+					preserveInstructions: true,
+					content: [
+						"Three runners arrive in the order `3A, 3B, 1C`. Each label records a finish time and a runner ID. Sort by time alone. Track the IDs on paper so equal times remain distinguishable. For selection sort, scan for the first strictly smaller minimum and swap it into the open position. For insertion sort, shift only times strictly greater than the saved time.",
+						"",
+						"Record the order after every outer pass. Selection gives `1C, 3B, 3A` after its first swap. Insertion leaves `3A, 3B, 1C` after its first pass and finishes with `1C, 3A, 3B`. Both sort the times correctly. Only insertion preserves arrival order for the tie in this example. Repeat with three equal times. Predict how changing insertion’s `>` to `>=` affects equal runners before checking the trace.",
+						"",
+						"[Open the Insertion Sort project](/courses#ap-computer-science-a-apcs14-selection-and-insertion-sort-ap-computer-science-a-apcs14-selection-and-insertion-sort-supplemental-project-insertion-sort)"
+					].join("\n")
 				}
 			]
 		},
@@ -2589,32 +2711,58 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 			curriculum: [
 				{
 					title: "Base Cases, Recursive Steps, and Stack Frames",
-					content: apConcept({
-						focus: "A recursive method solves a problem by delegating a smaller version of the same problem to another method call. The base case stops the chain, and the recursive step must move closer to that stop condition.",
-						practice: [
-							"Identify the base case before reading the recursive line.",
-							"Write the smaller subproblem created by one recursive call.",
-							"Draw stack frames for a small input and mark where each call pauses.",
-							"Trace the return path separately from the call path."
-						],
-						evidence:
-							"The explanation names the stopping condition, the shrinking input, and the order in which output or return values appear."
-					}),
+					contentKind: "reading",
+					preserveInstructions: true,
+					content: [
+						"Each method call keeps its own parameter and a place to resume. This method stops on an empty string. For a nonempty string it recurses on the suffix, then prints the first character of the current frame. Put the helper inside the class and the call in `main`.",
+						"",
+						"```java",
+						"static void printReverse(String word) {",
+						"    if (word.length() > 0) {",
+						"        printReverse(word.substring(1));",
+						"        System.out.print(word.charAt(0));",
+						"    }",
+						"}",
+						"```",
+						"",
+						"In `main`:",
+						"",
+						"```java",
+						'printReverse("map");',
+						"System.out.println();",
+						"```",
+						"",
+						'The arguments on the way down are `"map"`, `"ap"`, `"p"`, and `""`. The empty frame returns immediately. The suspended frames then print `p`, `a`, and `m`, producing `pam`. Trace `""` and a one-letter word. Predict how the output changes if the print moves before the recursive call.',
+						"",
+						"[Tracing Recursion practice](/courses#ap-computer-science-a-apcs15-recursion-ap-computer-science-a-apcs15-recursion-curriculum-core-project-tracing-recursion)"
+					].join("\n"),
 					mediaLink: media("apcs15-recursion-1.png")
 				},
 				{
 					title: "Stack Overflow and Tail Recursion",
-					content: apConcept({
-						focus: "Every recursive call consumes a stack frame. A missing base case, a base case that is never reached, or a recursive step that does not shrink the problem eventually exhausts the stack.",
-						practice: [
-							"Find the recursive call and write the next argument value it receives.",
-							"Check whether that next input is closer to the base case.",
-							"Compare a tail-recursive method with a method that still has work after the recursive call returns.",
-							"Explain the error using stack frames rather than only naming `StackOverflowError`."
-						],
-						evidence:
-							"A valid diagnosis points to the exact recursive step that fails to approach the base case or the exact input where the base case is skipped."
-					}),
+					contentKind: "reading",
+					preserveInstructions: true,
+					content: [
+						"A recursive step must approach a reachable base case. For a nonnegative starting value, each call here removes one remaining step and adds one to the running total. The recursive call is the last operation, which makes it a tail call.",
+						"",
+						"```java",
+						"static int countSteps(int remaining, int total) {",
+						"    if (remaining == 0) return total;",
+						"    return countSteps(remaining - 1, total + 1);",
+						"}",
+						"```",
+						"",
+						"In `main`:",
+						"",
+						"```java",
+						"System.out.println(countSteps(3, 0));",
+						"System.out.println(countSteps(0, 8));",
+						"```",
+						"",
+						"The first call visits `(3,0)`, `(2,1)`, `(1,2)`, and `(0,3)`. The base frame returns 3 and every waiting frame returns that same value. The second call returns 8 immediately. If the step added one to `remaining`, starting at 3 would visit 4, 5, and 6 and move away from zero. Java does not guarantee tail-call elimination. A large depth can exhaust the stack even with a correct base case. The linked reference models the faulty steps with a bounded loop.",
+						"",
+						"[Stack Overflow practice](/courses#ap-computer-science-a-apcs15-recursion-ap-computer-science-a-apcs15-recursion-supplemental-reference-stack-overflow)"
+					].join("\n"),
 					mediaLink: media("apcs15-recursion-2.png")
 				},
 				{
@@ -2748,31 +2896,62 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 			curriculum: [
 				{
 					title: "Binary Search Preconditions",
-					content: apConcept({
-						focus: "Binary search is fast because each comparison eliminates half of the remaining sorted search space. Without sorted data, the eliminated half might still contain the target.",
-						practice: [
-							"State the sorted-data precondition before tracing the algorithm.",
-							"Record `low`, `high`, `middle`, and the middle value for each step.",
-							"Choose the left or right half by comparing the target with the middle value.",
-							"Stop when the target is found or when the bounds cross."
-						],
-						evidence:
-							"A complete trace explains both why the selected half is still possible and why the discarded half is impossible."
-					})
+					contentKind: "reading",
+					preserveInstructions: true,
+					content: [
+						"Binary search uses sorted data and inclusive bounds. The middle value tells which half can still contain the target. Print the bounds before each comparison to see why discarding the midpoint makes progress.",
+						"",
+						"```java",
+						"static boolean contains(int[] data, int target, int low, int high) {",
+						"    if (low > high) return false;",
+						"    int mid = low + (high - low) / 2;",
+						'    System.out.println(low + ".." + high + " checks " + data[mid]);',
+						"    if (data[mid] == target) return true;",
+						"    if (target < data[mid]) return contains(data, target, low, mid - 1);",
+						"    return contains(data, target, mid + 1, high);",
+						"}",
+						"```",
+						"",
+						"In `main`:",
+						"",
+						"```java",
+						"int[] sorted = {-6, -1, 2, 2, 5, 9, 14};",
+						"System.out.println(contains(sorted, 7, 0, sorted.length - 1));",
+						"```",
+						"",
+						"The tested values are 2, 9, and 5. The intervals are `0..6`, `4..6`, and `4..4`. The final call receives `5..4` and returns false before indexing. Repeat for 2 and for an empty array. As a counterexample to the sorted-input assumption, trace a search for 8 in `[8, 1, 5]`: the first comparison discards the half containing 8.",
+						"",
+						"[Binary Search practice](/courses#ap-computer-science-a-apcs16-binary-search-and-merge-sort-ap-computer-science-a-apcs16-binary-search-and-merge-sort-curriculum-core-project-binary-search)"
+					].join("\n")
 				},
 				{
 					title: "Merge Sort and Divide-and-Conquer",
-					content: apConcept({
-						focus: "Merge sort divides an array into smaller arrays, sorts those smaller arrays recursively, and then merges sorted halves into one sorted result. The merge step is where most visible work occurs.",
-						practice: [
-							"Draw the split tree until each subarray has length one.",
-							"Merge two sorted one-element arrays by comparing their first values.",
-							"Continue merging while preserving sorted order.",
-							"Count the merge levels and connect them to `n log n` growth."
-						],
-						evidence:
-							"The explanation separates divide, recursive sort, and merge. A result that is merely sorted is not enough unless the merge decisions can be traced."
-					})
+					contentKind: "reading",
+					preserveInstructions: true,
+					content: [
+						"Split `[4, 1, 3, 1]` into `[4, 1]` and `[3, 1]`. Each half splits into singletons, which are already sorted. Merging within each half gives `[1, 4]` and `[1, 3]`. The final merge below consumes those two sorted halves. Add `import java.util.Arrays;` above the class.",
+						"",
+						"```java",
+						"int[] left = {1, 4};",
+						"int[] right = {1, 3};",
+						"int[] merged = new int[left.length + right.length];",
+						"int l = 0;",
+						"int r = 0;",
+						"for (int i = 0; i < merged.length; i++) {",
+						"    if (r == right.length || (l < left.length && left[l] <= right[r])) {",
+						"        merged[i] = left[l++];",
+						"    } else {",
+						"        merged[i] = right[r++];",
+						"    }",
+						"    System.out.println(merged[i]);",
+						"}",
+						"System.out.println(Arrays.toString(merged));",
+						"```",
+						"",
+						"The chosen elements are left 1, right 1, right 3, then left 4. When the right half is exhausted, the first condition keeps the next read on the left. After every step the output prefix is sorted and contains exactly the consumed elements. Check the same loop with an empty left half. A merge processes each value once. Across the roughly `log₂(n)` split levels, a full merge sort takes `O(n log n)` time.",
+						"",
+						"[Merge Step Visual practice](/courses#ap-computer-science-a-apcs16-binary-search-and-merge-sort-ap-computer-science-a-apcs16-binary-search-and-merge-sort-curriculum-merge-step-visual)"
+					].join("\n")
 				},
 				{
 					title: "Core Project: Binary Search",
@@ -2855,6 +3034,21 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 					preserveInstructions: true,
 					preserveAssignment: true,
 					mediaLink: media("apcs16-project-2-merge-sort.mp4")
+				},
+				{
+					title: "Binary Search and Merge Sort Trace and Boundary Case",
+					aliases: ["Applied Challenge"],
+					contentKind: "assignment",
+					learningPath: "challenge",
+					preserveAssignment: true,
+					preserveInstructions: true,
+					content: [
+						"Two sorted station logs contain `[1, 4, 7]` and `[2, 4, 9]`. Merge them, choosing from the first log on a tie. Retain a mark beside each value identifying its log. Then binary-search the merged list for 4, 6, and 9. Start with inclusive bounds, take the lower middle index, and stop when the bounds cross.",
+						"",
+						"The merged values are `[1, 2, 4, 4, 7, 9]`. The first 4 comes from the first log. The search for 6 inspects indices 2, 4, and 3, then stops with low 4 and high 3. Searching for 4 can establish membership after one comparison. Explain which extra condition a search for the first occurrence would have to establish. Check the boundary case where both logs are empty.",
+						"",
+						"[Open the Binary Search project](/courses#ap-computer-science-a-apcs16-binary-search-and-merge-sort-ap-computer-science-a-apcs16-binary-search-and-merge-sort-curriculum-core-project-binary-search)"
+					].join("\n")
 				}
 			]
 		},
@@ -3303,6 +3497,8 @@ function alignApCsaCheckInItem(
 }
 
 function apCsaSupplementalPath(item: RawCourseModuleItem) {
+	if (item.learningPath === "choice" || item.learningPath === "challenge")
+		return item.learningPath;
 	return /extension|challenge|inheritance|polymorphism|optional Java enrichment|legacy|2020|2022|next course/i.test(
 		`${item.title}\n${item.content}`
 	)
