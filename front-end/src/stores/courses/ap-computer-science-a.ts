@@ -2,6 +2,7 @@ import type { RawCourse, RawCourseModuleItem } from "./types";
 import {
 	apBinarySearchResources,
 	apBlobEraseResources,
+	apCheckInAndFrqResources,
 	apClassesAndArraysResources,
 	apElevatorWarningResources,
 	apExpressionsAndClassResources,
@@ -267,10 +268,26 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 				},
 				{
 					title: "Core Check-In Prompt Bank",
-					content:
-						"Run the check-in prompt bank from the APCS repo as the main review source. It collects the variables, conditionals, loops, and exception prompts in one place so the checkpoint stays structured.",
-					projectLink: repo("APCS-Check-in-1/starter"),
-					solutionLink: repo("APCS-Check-in-1/solution")
+					content: apProject({
+						goal: "Use a short Java trace to identify what to review before Unit 1.",
+						steps: [
+							"Predict the type and printed result of `7 / 2` and `7 / 2.0`. Trace `substring(1, 4)` on `crate` using zero-based indexes.",
+							"Complete `completeGroups` for a nonnegative item count and a positive group size. Count full groups only.",
+							"Trace the branch and the loop after making groups of three from seven items. Run the program, then compare with the prediction."
+						],
+						apReasoning:
+							"Record the first mismatch and the rule behind it. Use the mismatch to choose review of expressions, String methods, or loop bounds.",
+						checks: [
+							"The expression results are `3` and `3.5`. The slice is `rat`. The completed program prints two group lines.",
+							"Check zero items and a case with no leftover items."
+						]
+					}),
+					projectLink: apCheckInAndFrqResources["check-in-1"].starter,
+					solutionLink:
+						apCheckInAndFrqResources["check-in-1"].reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true
 				}
 			],
 			supplementalProjects: [
@@ -898,10 +915,26 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 				},
 				{
 					title: "Core Check-In Prompt Bank",
-					content:
-						"The prompt bank supports the full Check-In #2 review. This checkpoint shows whether classes, methods, and inheritance are ready for the main object-oriented sequence.",
-					projectLink: repo("APCS-Check-in-2/starter"),
-					solutionLink: repo("APCS-Check-in-2/solution")
+					content: apProject({
+						goal: "Write a Methods and Control Structures response that counts multiples in an inclusive range.",
+						steps: [
+							"Write `countMultiples(int low, int high, int divisor)` before running it. Both bounds are between -10000 and 10000, `low <= high`, and `divisor > 0`.",
+							"Visit each integer from low through high. Increment the count whenever the remainder after division is zero.",
+							"Predict the counter at each step for the range -2 through 2 with divisor 2. Then run the supplied examples and correct any differences."
+						],
+						apReasoning:
+							"Score the initial count, inclusive loop bounds, condition, update and return independently.",
+						checks: [
+							"From 1 to 12, four values are multiples of 3. From -4 to 4, five values are multiples of 2, including zero.",
+							"A range containing only 5 counts one multiple of 5. From 1 to 3 there are no multiples of 5."
+						]
+					}),
+					projectLink: apCheckInAndFrqResources["check-in-2"].starter,
+					solutionLink:
+						apCheckInAndFrqResources["check-in-2"].reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true
 				}
 			],
 			supplementalProjects: [
@@ -1007,10 +1040,28 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 				},
 				{
 					title: "Free Response Prep",
-					content:
-						"Start free-response style writing here so small-class behavior can be explained before inheritance and polymorphism raise the difficulty. The goal is not full exam timing yet; it is writing method behavior precisely enough for partial-credit scoring. A good response names the instance variables involved, explains each method's contract, and uses test calls or object-state examples to prove that the class behaves as specified. The scoring pass marks constructor correctness, field initialization, return type, side effect, and whether every public method preserves the class invariant.",
-					projectLink: repo("APCS5-Free-Response-Practice/starter"),
-					solutionLink: repo("APCS5-Free-Response-Practice/solution")
+					content: apProject({
+						goal: "Build a class that tracks active days and average daily steps.",
+						steps: [
+							"Draft the class and constructor. Track the minimum, active days, all days and total steps.",
+							"Each `addDailySteps` call records a nonnegative count. The day is active if it meets the minimum.",
+							"Return active days in `totalDaysActive`. Use floating division in `averageSteps`, or return 0.0 if empty.",
+							"Download the ZIP. Run `javac Main.java StepTracker.java` and then `java Main`."
+						],
+						apReasoning:
+							"Score the constructor, each method's signature, both counts, and the total separately. Include a day exactly on the threshold.",
+						checks: [
+							"With a threshold of 100, days of 90, 100 and 114 produce two active days and an average of 304 divided by 3.",
+							"Adding steps to one tracker leaves a second, independently constructed tracker empty."
+						]
+					}),
+					projectLink:
+						apCheckInAndFrqResources["step-tracker-frq"].starter,
+					solutionLink:
+						apCheckInAndFrqResources["step-tracker-frq"].reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true
 				}
 			],
 			supplementalProjects: [
@@ -1142,10 +1193,28 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 				},
 				{
 					title: "Free Response and Multiple Choice Support",
-					content:
-						"Keep the APCS6 free-response and multiple-choice references available here because subtle object-state mistakes become common at this point. Use these resources after a class project runs to check whether the same behavior can be explained in AP language. The evidence includes one written method contract, one object-state trace, and one multiple-choice elimination where the wrong answers fail because of reference behavior, access rules, or parameter scope. Score the free-response attempt by identifying the first line that changes object state and the exact condition that validates or rejects a setter input.",
-					projectLink: repo("APCS6-Free-Response-Practice/starter"),
-					solutionLink: repo("APCS6-Free-Response-Practice/solution")
+					content: apProject({
+						goal: "Use supplied static methods to count leap years and compute a weekday.",
+						steps: [
+							"Count leap years from first through last with `isLeapYear`. Use ordered bounds between 1 and 9999.",
+							"Add `dayOfYear` minus one to `firstDayOfYear`, then take the remainder after dividing by seven.",
+							"Which years from 1900, 2000 and 2100 are leap years? A) 1900 only. B) 2000 only. C) 1900 and 2100. D) All three.",
+							"Download the ZIP. Run `javac Main.java APCalendar.java` and then `java Main`."
+						],
+						apReasoning:
+							"January 1 has ordinal 1, so the offset starts at zero. For a valid Gregorian date, weekday numbers run from 0 for Sunday to 6 for Saturday. Score the range, helper calls, offset and wrap.",
+						checks: [
+							"From 1999 through 2004 there are two leap years. Of the three century years in the choices, only 2000 is a leap year.",
+							"January 1 and February 29 of 2024 give 1 and 4. January 6 and 7 give 6 and 0."
+						]
+					}),
+					projectLink:
+						apCheckInAndFrqResources["calendar-frq"].starter,
+					solutionLink:
+						apCheckInAndFrqResources["calendar-frq"].reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true
 				}
 			],
 			supplementalProjects: [
@@ -1331,10 +1400,27 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 				},
 				{
 					title: "Core Check-In Prompt Bank",
-					content:
-						"The GitHub-backed prompt bank supports the main Check-In #3 review sequence. It confirms that design reasoning, polymorphism, arrays, and ArrayLists are ready before the course moves into AP-style algorithm work.",
-					projectLink: repo("APCS-Check-in-3/starter"),
-					solutionLink: repo("APCS-Check-in-3/solution")
+					content: apProject({
+						goal: "Design a class that adds or takes a quantity within a fixed capacity.",
+						steps: [
+							"Draft the class and constructor. The capacity is positive and the starting quantity is between zero and capacity.",
+							"Complete `add` and `take` for positive amounts. Reject an overfill or overdraw without changing state.",
+							"Compare what an alias and a separate bin see after a successful change.",
+							"Download the ZIP. Run `javac Main.java SupplyBin.java` and then `java Main`."
+						],
+						apReasoning:
+							"Score capacity, starting state, accessor, each state update, and the return values separately.",
+						checks: [
+							"A bin holding two of five slots can add three. Adding one more fails. Taking four then leaves one.",
+							"An alias sees the quantity one. A separate bin initialized to two still holds two."
+						]
+					}),
+					projectLink: apCheckInAndFrqResources["check-in-3"].starter,
+					solutionLink:
+						apCheckInAndFrqResources["check-in-3"].reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true
 				}
 			],
 			supplementalProjects: [
@@ -1712,10 +1798,28 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 				},
 				{
 					title: "Free Response Practice",
-					content:
-						"The APCS11 FRQ practice build bridges list manipulation and AP free-response expectations. The focus is writing correct list updates while explaining index choices, loop direction, and side effects clearly enough for partial credit. Use the solution after an attempt to check whether the algorithm preserves every required element, skips no elements after removal, and returns or mutates exactly what the prompt requested. The scoring pass identifies the first incorrect line, not only the final symptom. Include a trace of the list before the loop, after each removal, and after the final iteration.",
-					projectLink: repo("APCS11-Free-Response-Practice/starter"),
-					solutionLink: repo("APCS11-Free-Response-Practice/solution")
+					content: apProject({
+						goal: "Extract matching delimiter tokens and test whether they are balanced.",
+						steps: [
+							"Use two distinct configured tokens, such as `(` and `)`. Build a new list from the exact matching strings in the input array, keeping their order.",
+							"In `isBalanced`, track unmatched openings. Increase the count on an open token and decrease it on a close token. The input list contains only those two tokens.",
+							"Return false as soon as the count becomes negative. After the loop, return whether the count is zero.",
+							"Download the ZIP. Run `javac Main.java Delimiters.java` and then `java Main`."
+						],
+						apReasoning:
+							"Equal totals alone cannot establish balance. Trace the running count for a close token followed by an open token.",
+						checks: [
+							"Two opens followed by two closes pass. A close before an open fails. An unclosed open fails and an empty list passes.",
+							"With tokens `(` and `)`, ignore a string such as `text(`. The actual list only includes whole-token matches."
+						]
+					}),
+					projectLink:
+						apCheckInAndFrqResources["delimiters-frq"].starter,
+					solutionLink:
+						apCheckInAndFrqResources["delimiters-frq"].reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true
 				},
 				{
 					title: "Card and Deck Classes",
@@ -1760,10 +1864,26 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 				},
 				{
 					title: "Core Check-In Prompt Bank",
-					content:
-						"The GitHub-backed prompt bank supports the full Check-In #4 review sequence. It identifies the highest-priority remaining work: wrappers, recursion, sorting, searching, or AP-style trace explanations.",
-					projectLink: repo("APCS-Check-in-4/starter"),
-					solutionLink: repo("APCS-Check-in-4/solution"),
+					content: apProject({
+						goal: "Complete one Data Analysis with ArrayList response and one 2D Array response.",
+						steps: [
+							"Write `removeShortLabels` to remove strings shorter than the minimum length. Keep the other labels in order and update the supplied list itself.",
+							"Write `countPositive` to return the number of strictly positive entries in a rectangular integer grid without modifying its cells.",
+							"Record a trace for two adjacent removals and visit every row and column of the sample grid. Run the program only after drafting both methods."
+						],
+						apReasoning:
+							"Score traversal, conditions, mutation boundaries and the return value independently for each method.",
+						checks: [
+							"Removing labels below length three from `[desk, ox, i, shelf]` gives `[desk, shelf]`.",
+							"The rows `[0, 3, -1]` and `[2, -3, 5]` contain three positives. An empty grid contains zero."
+						]
+					}),
+					projectLink: apCheckInAndFrqResources["check-in-4"].starter,
+					solutionLink:
+						apCheckInAndFrqResources["check-in-4"].reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true,
 					mediaLink: media("apcs-check-in-4.mp4")
 				}
 			],
@@ -2736,35 +2856,27 @@ const AP_CSA_MODULE_FLOW: Record<
 const AP_CSA_CHECK_IN_COPY: Record<string, Record<string, string>> = {
 	"Check-In #1": {
 		"Review Goal":
-			"Check-In #1 is a placement checkpoint before Unit 1. It samples Java syntax, object creation and method calls, Strings, numeric expressions, and short traces so the supported, standard, quick, challenge, or exam-focused route is selected from concrete evidence.",
+			"Check-In #1 is a placement checkpoint before Unit 1. It samples Java syntax, String method calls, numeric expressions, and short traces to guide the choice of pace.",
 		"Learning Target Coverage":
-			"Use selected prompts for exact output, expression type and value, String methods, object-method effects, and one simple branch or loop. A miss identifies targeted review; it does not turn the placement check into an early cumulative exam.",
-		"Core Check-In Prompt Bank":
-			"Use the repository prompt bank selectively for placement. Record the attempted prompt, prediction, result, correction, and route decision, then begin Unit 1 with the smallest review set that addresses the evidence."
+			"Use selected prompts for exact output, expression type and value, String methods, and one simple branch or loop. Use a missed prediction to choose which topic to review before Unit 1."
 	},
 	"Check-In #2": {
 		"Review Goal":
-			"Check-In #2 closes Units 1 and 2 with object-and-method reasoning plus selection and iteration. It includes one Methods and Control Structures FRQ-style method, exact expression or String traces, and multiple-choice work on conditions, loops, and runtime failures.",
+			"Check-In #2 closes Units 1 and 2 with a Methods and Control Structures response. Use the written method and its trace to check parameter use, selection, and iteration.",
 		"Prompt Bank Coverage":
-			"Use prompt-bank sections on values, method calls, Strings, arithmetic, boolean conditions, `for` and `while` loops, nested iteration, and runtime reasoning. Class-design and inheritance prompts remain for later modules or optional enrichment.",
-		"Core Check-In Prompt Bank":
-			"Complete the Unit 1 and Unit 2 portions of the repository prompt bank, type one method response without compiler feedback, and record the first incorrect state transition or omitted requirement before revising."
+			"Explain method parameters and return values, trace a range with a loop, and use a remainder condition to update a counter. Record the first incorrect state or omitted requirement before revising."
 	},
 	"Check-In #3": {
 		"Review Goal":
 			"Check-In #3 closes Unit 3 Class Creation. The checkpoint verifies a complete class header, private instance variables, constructor initialization, requested methods, controlled state changes, reference reasoning, and exact compliance with a supplied specification.",
 		"Prompt Bank Coverage":
-			"Use class-definition, constructor, accessor, mutator, `this`, reference, and object-state prompts. Inheritance, overriding, and polymorphism prompts belong to the optional enrichment appendix rather than this required checkpoint.",
-		"Core Check-In Prompt Bank":
-			"Use the class-creation portions of the repository prompt bank and complete one Class Design FRQ-family response without compiler feedback. Score the header, fields, constructor, methods, state behavior, and specification match separately."
+			"Check the class definition, constructor, accessor, two mutators, and object state. Explain how an alias observes a change made to the same object."
 	},
 	"Check-In #4": {
 		"Review Goal":
 			"Check-In #4 checks the first Data Collections sequence: 1D arrays, rectangular 2D arrays, `ArrayList`, index shifts, mutation, traversal order, and method contracts before wrapper, recursion, searching, and sorting work continues.",
 		"Prompt Bank Coverage":
-			"Use array, rectangular 2D-array, and `ArrayList` prompts that expose indexes, row-column order, enhanced-loop limits, insertion, removal, and returned or mutated results.",
-		"Core Check-In Prompt Bank":
-			"Complete one Data Analysis with ArrayList response and one 2D Array response without compiler feedback. Score each required behavior, syntax boundary, traversal decision, and edge case, then revise only the missed row."
+			"Trace indexes after a removal and row-column order in a rectangular grid. Explain which method mutates its input and which returns a value."
 	}
 };
 
@@ -2819,14 +2931,6 @@ function strengthenApCsaItem(item: RawCourseModuleItem): RawCourseModuleItem {
 			title: "Nested Loops and Runtime Error Reasoning",
 			content:
 				"Trace nested loops by row, column, and total execution count, then diagnose bounds, arithmetic, and termination failures from the exact state that causes them. Formal try-catch design remains programming enrichment rather than required exam content."
-		};
-	}
-
-	if (item.title === "Free Response Prep") {
-		return {
-			...item,
-			content:
-				"Begin Class Design FRQ-family writing with small, complete specifications. Name the private instance variables, constructor contract, requested methods, return values, and state changes; test ordinary, boundary, and repeated calls. Score each requested class element separately and correct the first missing or contradictory behavior without adding an inheritance hierarchy or unrequested public API."
 		};
 	}
 

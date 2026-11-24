@@ -4,6 +4,7 @@ import { describe, expect, it } from "vitest";
 import {
 	apBinarySearchResources,
 	apBlobEraseResources,
+	apCheckInAndFrqResources,
 	apClassesAndArraysResources,
 	apComputerScienceAProjectKey,
 	apElevatorWarningResources,
@@ -612,6 +613,62 @@ describe("AP Computer Science A learner flow", () => {
 			"ap-computer-science-a-apcs14-selection-and-insertion-sort-supplemental-project-insertion-sort",
 			"challenge",
 			null
+		],
+		[
+			"Check-In #1",
+			"Core Check-In Prompt Bank",
+			"check-in-1",
+			"ap-computer-science-a-check-in-1-curriculum-core-check-in-prompt-bank",
+			"core",
+			null
+		],
+		[
+			"Check-In #2",
+			"Core Check-In Prompt Bank",
+			"check-in-2",
+			"ap-computer-science-a-check-in-2-curriculum-core-check-in-prompt-bank",
+			"core",
+			null
+		],
+		[
+			"Check-In #3",
+			"Core Check-In Prompt Bank",
+			"check-in-3",
+			"ap-computer-science-a-check-in-3-curriculum-core-check-in-prompt-bank",
+			"core",
+			"SupplyBin.java"
+		],
+		[
+			"Check-In #4",
+			"Core Check-In Prompt Bank",
+			"check-in-4",
+			"ap-computer-science-a-check-in-4-curriculum-core-check-in-prompt-bank",
+			"core",
+			null
+		],
+		[
+			"APCS5 Classes Part I",
+			"Free Response Prep",
+			"step-tracker-frq",
+			"ap-computer-science-a-apcs5-classes-part-i-curriculum-free-response-prep",
+			"core",
+			"StepTracker.java"
+		],
+		[
+			"APCS6 Classes Part II",
+			"Free Response and Multiple Choice Support",
+			"calendar-frq",
+			"ap-computer-science-a-apcs6-classes-part-ii-curriculum-free-response-and-multiple-choice-support",
+			"core",
+			"APCalendar.java"
+		],
+		[
+			"APCS11 ArrayLists",
+			"Free Response Practice",
+			"delimiters-frq",
+			"ap-computer-science-a-apcs11-arraylists-supplemental-free-response-practice",
+			"choice",
+			"Delimiters.java"
 		]
 	] as const)("opens both Java roles for %s / %s", async (moduleTitle, title, kind, itemId, path, classFile) => {
 		setActivePinia(createPinia());
@@ -626,7 +683,8 @@ describe("AP Computer Science A learner flow", () => {
 		const links = {
 			...apExpressionsAndClassResources,
 			...apClassesAndArraysResources,
-			...apListsAndAlgorithmsResources
+			...apListsAndAlgorithmsResources,
+			...apCheckInAndFrqResources
 		}[kind];
 		expect(item.id).toBe(itemId);
 		expect(rawItem).toMatchObject({

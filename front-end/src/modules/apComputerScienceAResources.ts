@@ -24,6 +24,9 @@ const classesAndArraysPacks =
 const listsAndAlgorithmsPacks =
 	"https://github.com/instruction-material/APCS/tree/c5519770180b64b744a269c5c83a2d0d022fab9b";
 
+const checkInAndFrqPacks =
+	"https://github.com/instruction-material/APCS/tree/2c31ff05f50d2ba581a70422ccd64997f07f2c53";
+
 function projectRoles(pack: string) {
 	return {
 		starter: `${pack}/starter`,
@@ -194,6 +197,22 @@ export const apListsAndAlgorithmsResources = {
 	)
 };
 
+export const apCheckInAndFrqResources = {
+	"check-in-1": projectRoles(`${checkInAndFrqPacks}/APCS-Check-in-1`),
+	"check-in-2": projectRoles(`${checkInAndFrqPacks}/APCS-Check-in-2`),
+	"check-in-3": projectRoles(`${checkInAndFrqPacks}/APCS-Check-in-3`),
+	"check-in-4": projectRoles(`${checkInAndFrqPacks}/APCS-Check-in-4`),
+	"step-tracker-frq": projectRoles(
+		`${checkInAndFrqPacks}/APCS5-Free-Response-Practice`
+	),
+	"calendar-frq": projectRoles(
+		`${checkInAndFrqPacks}/APCS6-Free-Response-Practice`
+	),
+	"delimiters-frq": projectRoles(
+		`${checkInAndFrqPacks}/APCS11-Free-Response-Practice`
+	)
+};
+
 const restoredProjects = {
 	"binary-search-trace": apBinarySearchResources,
 	"recursion-practice": apRecursionPracticeResources,
@@ -208,7 +227,8 @@ const restoredProjects = {
 	...apVariablesAndLoopsResources,
 	...apExpressionsAndClassResources,
 	...apClassesAndArraysResources,
-	...apListsAndAlgorithmsResources
+	...apListsAndAlgorithmsResources,
+	...apCheckInAndFrqResources
 };
 
 export function apComputerScienceAProjectKey(
@@ -262,6 +282,22 @@ const nativeClassWorkspaces = {
 	"deck-class": {
 		item: "ap-computer-science-a-apcs12-wrapper-classes-supplemental-project-deck-class",
 		files: ["Card.java", "Deck.java", "Luck.java", "Suit.java"]
+	},
+	"check-in-3": {
+		item: "ap-computer-science-a-check-in-3-curriculum-core-check-in-prompt-bank",
+		files: ["SupplyBin.java"]
+	},
+	"step-tracker-frq": {
+		item: "ap-computer-science-a-apcs5-classes-part-i-curriculum-free-response-prep",
+		files: ["StepTracker.java"]
+	},
+	"calendar-frq": {
+		item: "ap-computer-science-a-apcs6-classes-part-ii-curriculum-free-response-and-multiple-choice-support",
+		files: ["APCalendar.java"]
+	},
+	"delimiters-frq": {
+		item: "ap-computer-science-a-apcs11-arraylists-supplemental-free-response-practice",
+		files: ["Delimiters.java"]
 	}
 };
 
