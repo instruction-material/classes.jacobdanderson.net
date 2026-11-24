@@ -12,7 +12,8 @@ import {
 	apRecursionPracticeResources,
 	apRecursionReferenceResources,
 	apRemainingCoreResources,
-	apStudentClassResources
+	apStudentClassResources,
+	apVariablesAndLoopsResources
 } from "@/modules/apComputerScienceAResources";
 import { pythonIdeModeForCourseResource } from "@/modules/pythonIde";
 import { useCoursesStore } from "@/stores/courses";
@@ -348,12 +349,54 @@ describe("AP Computer Science A learner flow", () => {
 			"Project: Math Demo",
 			"math-demo",
 			"APCS3-Math-Fun"
+		],
+		[
+			"General: Course Introduction and Setup",
+			"Reference Pack",
+			"variables-reference",
+			"APCS1-Variables-Reference"
+		],
+		[
+			"General: Course Introduction and Setup",
+			"Casting Reference",
+			"casting-reference",
+			"APCS1-Casting-Reference"
+		],
+		[
+			"Check-In #1",
+			"Additional Practice: FizzBuzz",
+			"fizzbuzz",
+			"APCS-Check-in-1-Additional-Practice-Project"
+		],
+		[
+			"APCS4 Selection, Iteration, and Runtime Reasoning",
+			"Loop Reference Pack",
+			"loop-reference",
+			"APCS4-Loops-Reference"
+		],
+		[
+			"APCS4 Selection, Iteration, and Runtime Reasoning",
+			"Project: For Loop Practice",
+			"for-loop-practice",
+			"APCS4-For-Loop-Practice"
+		],
+		[
+			"APCS4 Selection, Iteration, and Runtime Reasoning",
+			"Project: While Loop and Nested Loop Practice",
+			"while-nested-practice",
+			"APCS4-While-Loop-and-Nested-Loop-Practice"
+		],
+		[
+			"APCS4 Selection, Iteration, and Runtime Reasoning",
+			"Reference: While Loops and Nested Loops",
+			"nested-loop-reference",
+			"APCS4-While-Loops-and-Nested-Loops-Reference"
 		]
 	] as const)("opens both Java roles for the %s supplemental item %s", (moduleTitle, title, key, pack) => {
 		const task = requireModule(moduleTitle).supplementalProjects.find(
 			item => item.title === title
 		);
-		const resources = apFoundationsSupplementalResources[key];
+		const resources = { ...apFoundationsSupplementalResources, ...apVariablesAndLoopsResources }[key];
 		expect(task).toMatchObject({
 			learningPath: "choice",
 			ideImport: true,
@@ -379,20 +422,19 @@ describe("AP Computer Science A learner flow", () => {
 	});
 
 
-	it("links the General strings reading to the APCS1 workspace", async () => {
+	it.each([
+		["General: Course Introduction and Setup", "Strings and Printing Reference", "APCS1 Variables and Input/Output", "Strings and Printing Reference"],
+		["Check-In #1", "Variables Reference", "General: Course Introduction and Setup", "Reference Pack"],
+		["Check-In #1", "Loops Reference", "APCS4 Selection, Iteration, and Runtime Reasoning", "Loop Reference Pack"]
+	])("links %s / %s to the shared Java workspace", async (from, title, to, target) => {
 		setActivePinia(createPinia());
 		const course = (await useCoursesStore().loadCourseById("ap-computer-science-a"))!;
-		const general = course.modules.find(
-			module => module.title === "General: Course Introduction and Setup"
-		)!;
-		const apcs1 = course.modules.find(
-			module => module.title === "APCS1 Variables and Input/Output"
-		)!;
-		const title = "Strings and Printing Reference";
-		const entry = general.supplementalProjects.find(item => item.title === title)!;
-		const canonical = apcs1.supplementalProjects.find(item => item.title === title)!;
+		const fromModule = course.modules.find(module => module.title === from)!;
+		const toModule = course.modules.find(module => module.title === to)!;
+		const entry = fromModule.supplementalProjects.find(item => item.title === title)!;
+		const canonical = toModule.supplementalProjects.find(item => item.title === target)!;
 		expect(entry.contentKind).toBe("reading");
-		expect(entry.content).toContain(`/courses#${apcs1.id}-${canonical.id}`);
+		expect(entry.content).toContain(`/courses#${toModule.id}-${canonical.id}`);
 		expect(entry.projectLink).toBeUndefined();
 		expect(entry.solutionLink).toBeUndefined();
 		expect(canonical.ideImport).toBe(true);

@@ -9,7 +9,8 @@ import {
 	apRecursionPracticeResources,
 	apRecursionReferenceResources,
 	apRemainingCoreResources,
-	apStudentClassResources
+	apStudentClassResources,
+	apVariablesAndLoopsResources
 } from "@/modules/apComputerScienceAResources";
 import { gitCourseGuideLink } from "./classroomReferenceGuides";
 import {
@@ -189,10 +190,18 @@ const apComputerScienceASourceCourse: RawCourse = {
 				},
 				{
 					title: "Reference Pack",
-					content:
-						"The reference projects for variables, strings, and casting establish a clean notes-and-sandbox workflow from day one. They separate Java syntax issues from actual concept gaps before the first graded-style projects. Use these references as fast comparison examples: first predict what the program prints, then run it, then explain any mismatch using Java vocabulary. A completed pass identifies variable type, expression result type, printed spacing, and any cast or truncation that changes the value. Keep the comparison small enough that one rule is visible at a time.",
-					projectLink: repo("APCS1-Variables-Reference/starter"),
-					solutionLink: repo("APCS1-Variables-Reference/solution")
+					content: `Read each declaration in Main.java. The \`int\` points start at 40, the \`double\` multiplier is 0.5, the \`boolean\` open status is false, and the \`final int\` ticket cost is 10. Run the starter and match its output to those four declarations.
+
+Assign 50 to \`points\` after the first output and print the updated value. Assignment replaces the stored value while keeping the variable's declared type. The ticket cost receives its value in the declaration and keeps it because it is \`final\`. Check that the only changed value is the points. The worked reference shows the reassignment alongside the original four lines.`,
+					projectLink:
+						apVariablesAndLoopsResources["variables-reference"]
+							.starter,
+					solutionLink:
+						apVariablesAndLoopsResources["variables-reference"]
+							.reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true
 				}
 			],
 			supplementalProjects: [
@@ -206,10 +215,30 @@ const apComputerScienceASourceCourse: RawCourse = {
 				},
 				{
 					title: "Casting Reference",
-					content:
-						"This reference build gives a tighter review of integer division, explicit casts, and loss-of-precision reasoning. It explains when Java truncates automatically, when an explicit cast is required, and what information is lost. Use it before rounding, quotient/remainder, or expression-tracing work. A strong check traces the expression twice: once with the original operand types and once after the cast, so the final answer is tied to Java's evaluation rules instead of calculator intuition. Include at least one negative or non-even division case when reviewing.",
-					projectLink: repo("APCS1-Casting-Reference/starter"),
-					solutionLink: repo("APCS1-Casting-Reference/solution")
+					content: apProject({
+						goal: "Compare integer division with division involving a `double`.",
+						steps: [
+							"Trace `3 / 2` and `(double) 3 / 2` before running `Main.java`.",
+							"Store and print `(double) (3 / 2)`. Identify which operation Java evaluates first.",
+							"Cast `-2.75` to `int` and compare the result with rounding down."
+						],
+						apReasoning:
+							"Integer division and a cast to `int` discard a fractional part toward zero. Casting an operand to `double` before dividing preserves the fractional quotient.",
+						checks: [
+							"The two starter results are 1 and 1.5.",
+							"Casting after division gives 1.0 on a JDK. The browser preview can display it as 1.",
+							"Casting -2.75 to `int` gives -2."
+						]
+					}),
+					projectLink:
+						apVariablesAndLoopsResources["casting-reference"]
+							.starter,
+					solutionLink:
+						apVariablesAndLoopsResources["casting-reference"]
+							.reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true
 				},
 				{
 					title: "2020 Practice Exam",
@@ -244,29 +273,43 @@ const apComputerScienceASourceCourse: RawCourse = {
 			supplementalProjects: [
 				{
 					title: "Additional Practice: FizzBuzz",
-					content:
-						"The additional practice project after the check-in gives one more pass through divisibility checks, ordered conditionals, and loop tracing.",
-					projectLink: repo(
-						"APCS-Check-in-1-Additional-Practice-Project/starter"
-					),
-					solutionLink: repo(
-						"APCS-Check-in-1-Additional-Practice-Project/solution"
-					),
+					content: apProject({
+						goal: "Use a countdown and divisibility checks to print one result per number.",
+						steps: [
+							"Run the supplied countdown from 100 through 0.",
+							"Check whether the number is divisible by both 3 and 5. Print FizzBuzz in that case.",
+							"For the remaining numbers, print Fizz for multiples of 3, Buzz for multiples of 5, and the number itself otherwise."
+						],
+						apReasoning:
+							"A remainder of 0 identifies a multiple. Place the combined condition first so each number receives one label.",
+						checks: [
+							"The 101 lines begin Buzz, Fizz, 98, 97, Fizz.",
+							"The line for 15 is FizzBuzz. The final line for 0 is also FizzBuzz."
+						]
+					}),
+					projectLink: apVariablesAndLoopsResources.fizzbuzz.starter,
+					solutionLink:
+						apVariablesAndLoopsResources.fizzbuzz.reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true,
 					mediaLink: media("ps4_fizzbuzz.gif")
 				},
 				{
 					title: "Variables Reference",
 					content:
-						"Return to the variables reference when types, assignment, or `Math.random()` range construction are still hesitant. The useful evidence is a short program that declares values, updates them, and explains the resulting type of each expression. Use it to separate syntax mistakes from concept mistakes: a missing semicolon is different from choosing `int` when a decimal result is required. A finished review includes one value update, one printed expression, and one explanation of why the type is valid. Add one AP-style prediction before running the code: state the exact value, type, and printed output expected after the assignment or cast.",
-					projectLink: repo("APCS1-Variables-Reference/starter"),
-					solutionLink: repo("APCS1-Variables-Reference/solution")
+						"Open the [Variables Reference in General](/courses#ap-computer-science-a-general-course-introduction-and-setup-ap-computer-science-a-general-course-introduction-and-setup-supplemental-reference-pack) to check declarations, reassignment, and constants with the same Java workspace used at the start of the course.",
+					contentKind: "reading",
+					preserveInstructions: true,
+					preserveAssignment: true
 				},
 				{
 					title: "Loops Reference",
 					content:
-						"The loop reference pack gives a fast review of counted iteration before APCS4. The focus is predicting the first iteration, last iteration, number of iterations, and the variable state after the loop ends. Use it when a check-in answer has the right idea but prints one too many or one too few values. Useful evidence includes a small trace table with the loop variable, condition result, printed output, and update after each pass. The AP-style check is explaining why the final failed condition stops the loop rather than treating the visible output as the only result.",
-					projectLink: repo("APCS4-Loops-Reference/starter"),
-					solutionLink: repo("APCS4-Loops-Reference/solution")
+						"Open the [Loop Reference Pack in APCS4](/courses#ap-computer-science-a-apcs4-selection-iteration-and-runtime-reasoning-ap-computer-science-a-apcs4-selection-iteration-and-runtime-reasoning-supplemental-loop-reference-pack) to compare the two loop forms. Trace the first successful test, the last printed value, and the condition that ends each loop.",
+					contentKind: "reading",
+					preserveInstructions: true,
+					preserveAssignment: true
 				}
 			]
 		},
@@ -688,45 +731,114 @@ const apComputerScienceASourceCourse: RawCourse = {
 				},
 				{
 					title: "Loop Reference Pack",
-					content:
-						"The loop references support targeted review on tracing, nested iteration, and pattern generation. They practice predicting output before execution and identifying which variable controls each repeated action. This pack is useful before pattern-printing or array traversal if loop boundaries are still uncertain. A useful trace states the initialization, first condition check, body effect, update step, last successful iteration, and the variable value that finally stops the loop. For nested loops, also record the total number of inner-loop executions and the exact moment a newline or row transition occurs.",
-					projectLink: repo("APCS4-Loops-Reference/starter"),
-					solutionLink: repo("APCS4-Loops-Reference/solution")
+					content: apProject({
+						goal: "Produce the same sequence with a counted `for` loop and a `while` loop.",
+						steps: [
+							"Trace the supplied `for` loop in `Main.java`. Record the initial value, condition, printed value, and update.",
+							"Finish the `while` loop using the supplied counter. Test the condition before printing and update the counter inside the loop.",
+							"Compare the output and the final failed test for the two loop forms."
+						],
+						apReasoning:
+							"A counted `for` loop groups its three control steps in the header. A `while` loop carries the same state explicitly.",
+						checks: [
+							"Each form prints 0 through 9 exactly once.",
+							"The counter is 10 when the condition first becomes false."
+						]
+					}),
+					projectLink:
+						apVariablesAndLoopsResources["loop-reference"].starter,
+					solutionLink:
+						apVariablesAndLoopsResources["loop-reference"]
+							.reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "Project: For Loop Practice",
-					content:
-						"This project reinforces counted iteration, accumulators, and output-driven tracing. Each loop has a clear start value, stop condition, update step, and predicted output before the code is treated as finished.",
-					projectLink: repo("APCS4-For-Loop-Practice/starter"),
-					solutionLink: repo("APCS4-For-Loop-Practice/solution"),
+					content: apProject({
+						goal: "Use counted loops for repeated output and accumulators for the product and maximum of supplied data.",
+						steps: [
+							"In the IDE Input panel, enter a fictional name on line 1 and a count from 0 through 10 on line 2. Run `Main.java` to see the name repeated.",
+							"Add a loop that prints the count for each character in the name. Add a second loop that counts down through zero.",
+							"Multiply the values in the supplied array. For the maximum of a nonempty array, start with its first value and compare the rest."
+						],
+						apReasoning:
+							"Each loop has a distinct stopping rule. The product starts at 1. Starting the maximum at the first value also works for arrays containing only negative numbers.",
+						checks: [
+							"With Fern and 3, the output includes three name lines, four 3s, and the countdown 3, 2, 1, 0.",
+							"The product is 362880. The maxima are 9 and -4.",
+							"A count of 0 prints no names and still includes 0 in the countdown."
+						]
+					}),
+					projectLink:
+						apVariablesAndLoopsResources["for-loop-practice"]
+							.starter,
+					solutionLink:
+						apVariablesAndLoopsResources["for-loop-practice"]
+							.reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true,
 					mediaLink: media("apcs4-project-1-for-loops-practice.mp4")
 				},
 				{
 					title: "Project: While Loop and Nested Loop Practice",
-					content:
-						"This mixed practice set drills while-loop termination and nested iteration on structured output problems. The key check is explaining which condition eventually becomes false and how many times the inner loop runs.",
-					projectLink: repo(
-						"APCS4-While-Loop-and-Nested-Loop-Practice/starter"
-					),
-					solutionLink: repo(
-						"APCS4-While-Loop-and-Nested-Loop-Practice/solution"
-					),
+					content: apProject({
+						goal: "Trace a stopping condition, then build matching staircases and multiplication tables with both loop forms.",
+						steps: [
+							"Run `Main.java` and trace successive integer divisions of 129 by 2. In the supplied draws, print values until the first 7 or the end of the array.",
+							"Write nested `for` loops that print ten rows of stars. Use the row number for the number of stars. Repeat the pattern with nested `while` loops.",
+							"Build a 12-by-12 multiplication table with each loop form. Multiply the current row and column, reset the column at the start of each row, and print a newline at the end of the row."
+						],
+						apReasoning:
+							"The outer loop selects a row and the inner loop handles its columns. Check the array bound before reading a draw. The halving loop terminates because positive integers eventually reach 0.",
+						checks: [
+							"Halving prints 129, 64, 32, 16, 8, 4, 2, 1. The draw sequence prints 3 and 1.",
+							"Each staircase has ten rows and each multiplication table has 12 rows of 12 values, ending in 144.",
+							"The corresponding for and while outputs agree."
+						]
+					}),
+					projectLink:
+						apVariablesAndLoopsResources["while-nested-practice"]
+							.starter,
+					solutionLink:
+						apVariablesAndLoopsResources["while-nested-practice"]
+							.reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true,
 					mediaLink: media(
 						"apcs4-project-3-while-loop-and-nested-loop-practice.mp4"
 					)
 				},
 				{
 					title: "Reference: While Loops and Nested Loops",
-					content:
-						"The reference pack gives one more clean nested-iteration example before arrays arrive. The focus is loop initialization, update placement, and the relationship between row-style output and nested loop structure. Use it to explain which loop controls rows, which loop controls columns, and where the newline belongs. A completed trace counts total inner-loop executions and identifies what would change if the update statement moved inside or outside the inner loop. Include one incorrect placement example and explain the resulting infinite loop, skipped value, or malformed pattern in Java terms.",
-					projectLink: repo(
-						"APCS4-While-Loops-and-Nested-Loops-Reference/starter"
-					),
-					solutionLink: repo(
-						"APCS4-While-Loops-and-Nested-Loops-Reference/solution"
-					)
+					content: apProject({
+						goal: "Trace repeated output and locate the newline in a nested loop.",
+						steps: [
+							"Follow the counter in the `while` loop and predict how many times Practice appears.",
+							"Trace the starter grid, then change the bounds to three rows and four columns, both starting at 0.",
+							"Keep the column initializer inside the outer loop. End the line when a complete row has printed."
+						],
+						apReasoning:
+							"The inner loop restarts for every row. A grid with three rows and four columns visits 12 cells.",
+						checks: [
+							"The first section prints Practice ten times.",
+							"The grid begins with `(0,0) (0,1) (0,2) (0,3)` and ends with `(2,0) (2,1) (2,2) (2,3)`."
+						]
+					}),
+					projectLink:
+						apVariablesAndLoopsResources["nested-loop-reference"]
+							.starter,
+					solutionLink:
+						apVariablesAndLoopsResources["nested-loop-reference"]
+							.reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true
 				}
 			]
 		},

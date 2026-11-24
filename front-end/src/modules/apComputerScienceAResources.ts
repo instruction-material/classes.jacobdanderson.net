@@ -12,6 +12,9 @@ const introductoryPacks =
 const foundationsSupplementalPacks =
 	"https://github.com/instruction-material/APCS/tree/95a28a1dd6668063be598bf517cf248c27d1bdc9";
 
+const variablesAndLoopsPacks =
+	"https://github.com/instruction-material/APCS/tree/4c47eb1c12154f8ca8cb7f864d7f3a7b6a52685e";
+
 function projectRoles(pack: string) {
 	return {
 		starter: `${pack}/starter`,
@@ -88,6 +91,30 @@ export const apFoundationsSupplementalResources = {
 	)
 };
 
+export const apVariablesAndLoopsResources = {
+	"variables-reference": projectRoles(
+		`${variablesAndLoopsPacks}/APCS1-Variables-Reference`
+	),
+	"casting-reference": projectRoles(
+		`${variablesAndLoopsPacks}/APCS1-Casting-Reference`
+	),
+	fizzbuzz: projectRoles(
+		`${variablesAndLoopsPacks}/APCS-Check-in-1-Additional-Practice-Project`
+	),
+	"loop-reference": projectRoles(
+		`${variablesAndLoopsPacks}/APCS4-Loops-Reference`
+	),
+	"for-loop-practice": projectRoles(
+		`${variablesAndLoopsPacks}/APCS4-For-Loop-Practice`
+	),
+	"while-nested-practice": projectRoles(
+		`${variablesAndLoopsPacks}/APCS4-While-Loop-and-Nested-Loop-Practice`
+	),
+	"nested-loop-reference": projectRoles(
+		`${variablesAndLoopsPacks}/APCS4-While-Loops-and-Nested-Loops-Reference`
+	)
+};
+
 const restoredProjects = {
 	"binary-search-trace": apBinarySearchResources,
 	"recursion-practice": apRecursionPracticeResources,
@@ -98,7 +125,8 @@ const restoredProjects = {
 	"student-class": apStudentClassResources,
 	...apRemainingCoreResources,
 	...apIntroductoryResources,
-	...apFoundationsSupplementalResources
+	...apFoundationsSupplementalResources,
+	...apVariablesAndLoopsResources
 };
 
 export function apComputerScienceAProjectKey(
