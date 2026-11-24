@@ -94,6 +94,20 @@ describe("C++ source workspace", () => {
 			);
 	});
 
+	it("builds separate CMake targets after downloading a course workspace", () => {
+		const files = [
+			{ name: "main.cpp", content: "int main() {}" },
+			{ name: "checks.cpp", content: "int main() {}" },
+			{ name: "CMakeLists.txt", content: "enable_testing()" }
+		];
+		const steps = cppBuildInstructions(files, "design-patterns-in-cpp:setup:starter");
+		expect(steps).toContain("cmake --build cmake-build");
+		expect(steps).toContain("ctest --test-dir cmake-build --output-on-failure");
+		expect(steps.join("\n")).not.toContain("-o project");
+		const noTests = cppBuildInstructions([{ name: "CMakeLists.txt", content: "project(demo)" }]);
+		expect(noTests.join("\n")).not.toContain("ctest --");
+	});
+
 	it("imports every source and header without importing reference answers", async () => {
 		const contents: Record<string, string> = {
 			"main.cpp": '#include "BankAccount.h"\nint main() {}\n',
@@ -170,6 +184,7 @@ describe("C++ source workspace", () => {
 			"cpp-level-3:cpp-level-3-cppi0-bridge-course-setup-and-positioning-curriculum-cppi0-project-build-and-debug-checkpoint:starter",
 			"cpp-level-3:cppi0-build-and-debug-checkpoint:current-pack-v1",
 			"cpp-level-3-project",
+			"design-patterns-in-cpp:setup:solution",
 			"cpp-level-3",
 			"data-structures-and-algorithms-in-cpp:data-structures-and-algorithms-in-cpp-dscpp2-graphs-and-shortest-paths-curriculum-core-project-graphs-and-shortest-paths:starter",
 			"data-structures-and-algorithms-in-cpp:data-structures-and-algorithms-in-cpp-dscpp2-graphs-and-shortest-paths-curriculum-core-project-graphs-and-shortest-paths:solution",

@@ -2,6 +2,9 @@ import type { RawCourse, RawCourseModuleItem } from "./types";
 import { buildImplementationLabGuidance } from "./implementationLabGuidance";
 import { buildProjectGuidance } from "./projectGuidance";
 
+const setupSource =
+	"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/f63768d7f10a215697e2d5d8cbff49c3c2bcf3fb";
+
 const designPatternsInCppSourceCourse: RawCourse = {
 	name: "Design Patterns in C++",
 	modules: [
@@ -10,73 +13,77 @@ const designPatternsInCppSourceCourse: RawCourse = {
 			curriculum: [
 				{
 					title: "Modern C++ Toolchain Baseline",
+					preserveInstructions: true,
+					contentKind: "reading",
 					content:
-						"Standardize on `CLion` or `VS Code` with a working compiler, debugger, and `CMake` before introducing any pattern work. This course assumes multi-file builds, repeatable compile commands, debugger access, and the modern C++ habits developed in `C++ Level 3` or equivalent experience."
+						"The formatter project uses C++20 and CMake 3.20 or later. CLion, VS Code and a terminal can all open the same folder. Download the project and extract it before building. The folder containing CMakeLists.txt is the source directory. It contains main.cpp for the demo, checks.cpp for the tests, formatter.h for the declaration, and formatter.cpp for the definition. Both executables link to the same formatter library. The build directory holds compiler output and can be recreated from these source files."
 				},
 				{
 					title: "Compiler, CMake, and Debugger Verification",
+					preserveInstructions: true,
+					contentKind: "reading",
 					content:
-						"Verify `clang++ --version` or `g++ --version`, `cmake --version`, and `lldb --version` or `gdb --version` up front. Prove that they can configure, build, run, and inspect a multi-target project before the first architecture lab."
+						"Check the compiler with `clang++ --version` or `g++ --version`, then run `cmake --version`. At the source directory run `cmake -S . -B cmake-build -DCMAKE_BUILD_TYPE=Debug` and `cmake --build cmake-build`. On a single-configuration macOS or Linux build, `./cmake-build/title` initially prints “design patterns”. To inspect it with LLDB, run `lldb ./cmake-build/title`, then enter `breakpoint set --name format_title`, `run` and `frame variable input`. The displayed argument is the text from main.cpp. Use `continue` to finish. A multi-configuration generator puts the Debug executable in a Debug subdirectory."
 				},
 				{
 					title: "Sanitizers and Warnings as Design Feedback",
+					preserveInstructions: true,
+					contentKind: "reading",
 					content:
-						"Treat warnings, debug stepping, and sanitizers as architecture tools rather than as last-minute cleanup. Lifetime mistakes, ownership confusion, and invalid references are easiest to diagnose while the design is still small."
+						"Warnings flag suspicious code during compilation. Sanitizers report certain runtime problems on the paths the program actually executes. With Clang or GCC on a supported platform, configure a separate build with `cmake -S . -B checked -DCMAKE_BUILD_TYPE=Debug \"-DCMAKE_CXX_FLAGS=-Wall -Wextra -Wpedantic -Werror -fsanitize=address,undefined -fno-omit-frame-pointer\"`. Run `cmake --build checked` and `ctest --test-dir checked --output-on-failure`. An expected-versus-observed string mismatch is a behavior failure. A sanitizer diagnostic reports a runtime problem. Record which occurred when a test fails."
 				},
 				{
 					title: "Why CMake Matters Here",
+					preserveInstructions: true,
+					contentKind: "reading",
 					content:
-						"Use `CMake` to normalize repeatable builds across starter and review projects. This makes medium-sized C++ structure feel normal so patterns are learned in realistic code rather than isolated snippets."
+						"The demo and the test runner each define main. Compiling every .cpp file into one executable gives two definitions of main. CMakeLists.txt describes the intended targets. add_library builds the formatter once, add_executable defines each program, and target_link_libraries connects each program to the library. add_test registers a runnable check with CTest. After configuring, use `ctest --test-dir cmake-build -N` to list the three formatter checks. A successful compile and link establish that the executables can be built. Running CTest compares behavior with the supplied expectations."
 				},
 				{
 					title: "DPC0 Setup and Tooling: Core Project",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle: "DPC0 Setup and Tooling",
-						projectKind: "core",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"Build a title formatter from the starter in a separate Debug build directory. CMake builds a library, the title demo and a checks executable. Run `ctest --test-dir cmake-build --output-on-failure`. The empty case passes. The ordinary and spacing cases initially fail because format_title returns its input.\n\nEdit formatter.cpp so that the first character of each whitespace-delimited word is capitalized. Keep all original whitespace and other letters. In ASCII text, “design patterns” becomes “Design Patterns”. A tab between words must remain a tab. Inspect the first mismatched character in the debugger, then rerun the three checks.\n\n**Checkpoints:** Record the original failures, three passing checks after the change, and the output of the title demo. Predict and test one input containing repeated whitespace.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-05-dpc0-setup-and-tooling/starter",
+						`${setupSource}/DPC-05-dpc0-setup-and-tooling/starter`,
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-05-dpc0-setup-and-tooling/solution"
+						`${setupSource}/DPC-05-dpc0-setup-and-tooling/solution`
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "Modern C++ Comparison: Setup and Tooling",
+					preserveInstructions: true,
+					contentKind: "assignment",
 					content:
-						"For setup and tooling, compare a textbook heap-heavy version, a modern C++ version, and one short reason the modern version changes shape. Explicitly call out where debugger access and warnings would catch a design mistake earlier than visual inspection alone.",
+						"Reuse the completed title formatter. The current demo calls a free function. Sketch an alternative in which a Formatter interface has a virtual destructor and a const format operation, and a TitleFormatter delegates to the same function. Give the demo exclusive ownership of this object through std::unique_ptr<Formatter>. Compare the output of both versions on the empty and spacing cases.\n\n**Checkpoints:** Mark the owner, the destruction point and the operation selected at runtime. Explain which design you would use when the formatter is fixed, then describe a requirement that would make replacing the formatter at runtime worthwhile. The linked reference demonstrates the original free function.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-05-dpc0-setup-and-tooling/starter",
+						`${setupSource}/DPC-05-dpc0-setup-and-tooling/starter`,
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-05-dpc0-setup-and-tooling/solution"
+						`${setupSource}/DPC-05-dpc0-setup-and-tooling/solution`
 				},
 				{
 					title: "Build Tooling Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle: "DPC0 Setup and Tooling",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"Investigate why a temperature average loses half a degree. Configure the starter with `cmake -S . -B cmake-build -DCMAKE_BUILD_TYPE=Debug`, build it and run CTest. A pair of 10 and 14 gives 12. The starter gives 13 for 12 and 15 and rounds −2.5 toward zero for −4 and −1. Break at mean_temperature in temperature.cpp. Write down the sum, the type of the division and the value returned before the fix.\n\n**Checkpoints:** Change the arithmetic so the operands preserve fractions during division. Run all three checks and compare with a fourth pair of your choice. Explain why converting the result to double after the division would retain the error.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-01-dpc0-setup-and-tooling-supplemental-2/starter",
+						`${setupSource}/DPC-01-dpc0-setup-and-tooling-supplemental-2/starter`,
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-01-dpc0-setup-and-tooling-supplemental-2/solution"
+						`${setupSource}/DPC-01-dpc0-setup-and-tooling-supplemental-2/solution`
 				},
 				{
 					title: "CMake Workflow Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle: "DPC0 Setup and Tooling",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"The starter contains a length library, a demo and a separate checks.cpp. Configure and build it, then run `ctest --test-dir cmake-build -N`. The demo prints 30 for three centimetres, but CTest lists zero tests. Add an executable named length_checks from checks.cpp in CMakeLists.txt. Link it to length and register it as centimetre_conversion with add_test. Reconfigure, rebuild and run CTest again.\n\n**Checkpoints:** Confirm that one test is registered. Change the conversion multiplier from 10 to 100 and observe that the test fails. Restore 10, rebuild and show the passing result. Explain why successfully building the original demo did not verify the conversion.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-02-dpc0-setup-and-tooling-supplemental-3/starter",
+						`${setupSource}/DPC-02-dpc0-setup-and-tooling-supplemental-3/starter`,
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-02-dpc0-setup-and-tooling-supplemental-3/solution"
+						`${setupSource}/DPC-02-dpc0-setup-and-tooling-supplemental-3/solution`
 				}
 			]
 		},
@@ -1573,7 +1580,7 @@ function decorateDesignPatternsCppModule(
 			title: "Build, Test, Debug, and Sanitizer Course Contract",
 			content: [
 				"**Prerequisite:** Enter with C++ classes, inheritance, templates, standard containers, smart pointers, exceptions, separate compilation, and basic unit tests independently usable.",
-				"**Baseline:** Configure and build the unedited starter with `cmake -S . -B cmake-build` and `cmake --build cmake-build`. Register focused tests with CTest and run `ctest --test-dir cmake-build --output-on-failure`.",
+				"**Baseline:** Configure and build the unedited starter with `cmake -S . -B cmake-build` and `cmake --build cmake-build`. The formatter includes three registered tests. Expect one to pass and two to fail before implementing the formatter. Run `ctest --test-dir cmake-build --output-on-failure`.",
 				"**Safety gate:** Keep a warnings-as-errors teaching configuration plus separate AddressSanitizer and UndefinedBehaviorSanitizer configurations. Record any platform-specific unsupported check rather than silently skipping the gate.",
 				"**Delivery:** Commit the green build-and-test baseline separately from architecture changes so every later refactor remains reviewable and reversible."
 			].join("\n"),
