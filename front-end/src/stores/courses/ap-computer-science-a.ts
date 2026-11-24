@@ -597,7 +597,7 @@ const apComputerScienceASourceCourse: RawCourse = {
 						apReasoning:
 							"Math provides static methods in `java.lang`. Here `abs` returns `int`, `pow` and `sqrt` return `double`, and `round` with a `double` argument returns `long`.",
 						checks: [
-							"The absolute value is 9 and the power is 9.0.",
+							"The absolute value is 9 and the power is 9.0. The IDE preview can display both as 9. Read the declarations to identify the types.",
 							"The square root is between 3 and 4. Casting gives 3 and rounding gives 4."
 						]
 					}),
@@ -649,7 +649,7 @@ const apComputerScienceASourceCourse: RawCourse = {
 						apReasoning:
 							"The power and both roots are `double` results. The signed input and its absolute value remain `int`.",
 						checks: [
-							"`2 4 -7` gives power 16.0, square root 4.0, fourth root 2.0, and absolute value 7.",
+							"`2 4 -7` gives power 16.0, square root 4.0, fourth root 2.0, and absolute value 7. The IDE preview can omit trailing .0 or display powers in full instead of scientific notation.",
 							"With an exponent of zero, both roots and the power equal 1.0."
 						]
 					}),
