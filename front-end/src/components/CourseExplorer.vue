@@ -1721,13 +1721,14 @@ function resourceLinks(item: CourseModuleItem): ResourceLink[] {
 					canViewSolutions.value
 						? scratchBootcampReferenceHref(original.id)
 						: undefined;
-				if (reference)
+				if (reference) {
 					links.push({
 						kind: "solution",
-						label: original.name + " reference",
+						label: `${original.name} reference`,
 						url: reference,
 						host: "Browser workspace"
 					});
+				}
 			}
 		}
 	}
@@ -1959,6 +1960,25 @@ function courseAssetPreviewResources(
 	return resourceLinks(item).filter(resource =>
 		resource.url.startsWith("/course-assets/")
 	);
+}
+
+function confirmScratchClassroomImport(
+	event: MouseEvent,
+	resource: ResourceLink
+) {
+	if (
+		selectedCourse.value?.id !== "scratch-level-1-classroom" ||
+		!resource.url.startsWith("/ide?")
+	) {
+		return;
+	}
+	const params = new URLSearchParams(resource.url.slice(5));
+	if (params.get("mode") !== "scratch" || !params.has("starter")) return;
+	const file =
+		resource.kind === "solution" ? "instructor reference" : "starter";
+	// eslint-disable-next-line no-alert -- Confirm the course import before opening its editor tab.
+	if (!window.confirm(`Open this ${file} in the Scratch editor?`))
+		event.preventDefault();
 }
 
 function resourceOpenUrl(resource: ResourceLink, item: CourseModuleItem) {
@@ -2563,6 +2583,12 @@ function writeStoredValue(key: string, value: string) {
 												"
 												rel="noopener noreferrer"
 												target="_blank"
+												@click="
+													confirmScratchClassroomImport(
+														$event,
+														resource
+													)
+												"
 											>
 												<span
 													class="resource-link-label"

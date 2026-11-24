@@ -61,6 +61,31 @@ describe("Scratch classroom", () => {
 			);
 		}
 	});
+	it("opens each optional classroom remix from its own tested project", async () => {
+		setActivePinia(createPinia());
+		const course = await useCoursesStore().loadCourseById("scratch-level-1-classroom");
+		const remixes = [
+			["click-reactions", "clear graphic effects", "Press Space"],
+			["dress-up", "glide it back", "(170, 50)"],
+			["conversation", "rehearsal reply", "question disappears"],
+			["dance-loop", "turn clockwise 90 degrees", "three repeats"],
+			["maze-reset", "(-100, -120)", "middle one should be the checkpoint"],
+			["click-score", "change Score by -1", "-1, 0 and 1"]
+		];
+		expect(course?.modules).toHaveLength(remixes.length);
+		for (const [index, [starter, action, observation]] of remixes.entries()) {
+			const module = course!.modules[index];
+			const item = module.supplementalProjects.find(
+				row => row.id === `scratch-classroom-${index + 1}-practice`
+			);
+			expect(item?.learningPath).toBe("choice");
+			expect(item?.projectLink).toBe(`/ide?mode=scratch&starter=${starter}`);
+			expect(item?.projectLink).toBe(module.curriculum.find(row => row.id === starter)?.projectLink);
+			expect(item?.content).toContain(action);
+			expect(item?.content).toContain(observation);
+			expect(item?.content).toContain("Open .sb3");
+		}
+	});
 	it("launches independent work without starter scripts or a solution", () => {
 		const independent = scratchLevel1ClassroomCourse.modules
 			.flatMap(module => module.curriculum)
@@ -76,7 +101,7 @@ describe("Scratch classroom", () => {
 			Array.from({ length: 6 }, (_, index) => `scratch-classroom-${index + 1}`)
 		);
 		const finalUnit = scratchLevel1ClassroomCourse.modules[5];
-		const continuations = finalUnit.supplementalProjects?.filter(item => item.projectLink);
+		const continuations = finalUnit.supplementalProjects?.filter(item => item.id !== "scratch-classroom-6-practice");
 		expect(continuations?.map(item => item.id)).toEqual(["falling-catch", "projectile-state", "catch-levels", "educational-quiz"]);
 		for (const item of continuations ?? []) {
 			expect(item.learningPath).toBe("choice");

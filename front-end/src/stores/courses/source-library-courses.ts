@@ -1,10 +1,10 @@
-import { scratchBootcampReferenceHref } from "../../modules/scratch/bootcamp";
 import type {
 	CourseItemLearningPath,
 	RawCourse,
 	RawCourseModule,
 	RawCourseModuleItem
 } from "./types";
+import { scratchBootcampReferenceHref } from "../../modules/scratch/bootcamp";
 import { correctedJuniScratchInstructions } from "./juniScratchInstructionCorrections";
 import {
 	scratchBootcampPractice,

@@ -8,14 +8,12 @@ export function bootcampReferenceSourceId(id: string) {
 export function scratchBootcampReferenceHref(starterId: string) {
 	const references: Record<string, string> = bootcampReferences;
 	const id = references[starterId];
-	if (id)
-		return (
-			"/ide?" +
-			new URLSearchParams({
-				mode: "scratch",
-				originalProject: id,
-				course: "scratch-level-1-bootcamp",
-				role: "reference"
-			})
-		);
+	if (id) {
+		return `/ide?${new URLSearchParams({
+			mode: "scratch",
+			originalProject: id,
+			course: "scratch-level-1-bootcamp",
+			role: "reference"
+		})}`;
+	}
 }

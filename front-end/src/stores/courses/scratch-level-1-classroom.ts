@@ -19,6 +19,42 @@ const introductions: Record<string, string> = {
 		"A variable remembers a value between events. Choose a meaningful name, reset it on the flag, and change it at exactly the event that earns a point. Combine earlier skills into a game whose rules you can explain to a partner."
 };
 
+const remixPractice: Record<
+	string,
+	{ starter: string; task: string; check: string }
+> = {
+	"Events and movement": {
+		starter: "click-reactions",
+		task: "Give the orange robot a click script that changes its color effect by 25. On that same sprite, add a space-key event with clear graphic effects. Keep the blue robot’s click script.",
+		check: "Click blue once and orange twice. Press Space. Orange should return to its original colors while blue keeps its changed color. If both clear, inspect which sprite owns each key event."
+	},
+	"Position and reset": {
+		starter: "dress-up",
+		task: "Make a try-on and return control for Badge. Its click script should bring it to the front and glide to (0, 0). On the R key, glide it back to its rack at (170, 50) in one second. Compare that return with Hat’s immediate green-flag reset.",
+		check: "Put Hat on, try Badge on, then press R. Read Badge’s final x and y and check that Hat stayed in place. Click Badge again to verify it can be worn twice."
+	},
+	"Dialogue and scenes": {
+		starter: "conversation",
+		task: "Keep the flag greeting and reply. Add a separate rehearsal on the R key. Have the orange robot say a question for two seconds, then broadcast a new message named rehearsal reply. On the blue robot, receive that message and say an answer for two seconds.",
+		check: "After the flag conversation ends, press R once. Orange should ask first and blue should answer once, after the question disappears. Press the flag again and check that the rehearsal question stays out of the original scene."
+	},
+	"Loops and animation": {
+		starter: "dance-loop",
+		task: "Add a square dance to the orange robot on the S key. Start at (0, 0) facing 90 degrees. Repeat move 40 steps, wait 0.2 seconds and turn clockwise 90 degrees. Choose the repeat count that returns the robot to its starting position and direction.",
+		check: "Run once with three repeats and record the finishing x, y and direction. Predict what one more repeat will change. Run again with four and look for (0, 0) facing 90 degrees."
+	},
+	"Conditions and decisions": {
+		starter: "maze-reset",
+		task: "Add a practice checkpoint at (-100, -120). In Player’s wall-touching branch, change the retry destination to that checkpoint. Keep the green-flag start at (-180, -120). Use the arrow controls to test each event separately.",
+		check: "Press the flag, touch the purple wall, then press the flag again. Read Player’s coordinates after each event. The first and last positions should match, and the middle one should be the checkpoint. Moving through open space should cause no reset."
+	},
+	"Variables and games": {
+		starter: "click-score",
+		task: "Make two versions of the score rule. Keep blue worth one point. In the remix, replace orange’s scoring action with change Score by -1. Keep the single flag reset on the stage. Write a score prediction before each click.",
+		check: "Start at zero. Click orange, blue, then blue again. Compare the displayed scores with -1, 0 and 1. Press the flag to check the reset, then try two orange clicks in a row and explain the result."
+	}
+};
+
 const mazeEndingGuide = [
 	"**Turning remix:** This starter's arrows change x and y without turning Player. To experiment with turning, select **Player**, then use Motion's set rotation style block: all around displays turns, left-right only flips horizontally, and don't rotate keeps the costume's original orientation. Direction still affects move steps. Try turn 15 degrees on Player and verify that Wall stays still; undo the experiment to return to the supplied movement. Check the selected thumbnail before moving a script between sprites.",
 	"",
@@ -84,8 +120,14 @@ export const scratchLevel1ClassroomCourse: RawCourse = {
 			{
 				id: `scratch-classroom-${index + 1}-practice`,
 				title: `${unit}: Remix Practice`,
-				content:
-					"Reopen your saved project and make a second version with your own art, names, or scene. Keep the original Normal behavior working. Ask a partner to test the check without coaching, then fix one confusing behavior and explain the repair."
+				preserveInstructions: true,
+				learningPath: "choice" as const,
+				projectLink: `/ide?mode=scratch&starter=${remixPractice[unit].starter}`,
+				content: `Begin with a copy of the completed Normal project. Use **Open .sb3** for saved work, or **Start in IDE** for the original starter and finish Normal first. Save the remix under a separate name.
+
+**Remix:** ${remixPractice[unit].task}
+
+**Partner check:** ${remixPractice[unit].check}`
 			},
 			...projects
 				.filter(project => project.unit === unit && project.optional)

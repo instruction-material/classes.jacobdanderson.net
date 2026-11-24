@@ -1,6 +1,6 @@
-import { bootcampReferenceSourceId } from "./bootcamp";
 import catalog from "../../../scripts/scratch/originals/catalog.json";
 import corrections from "../../../scripts/scratch/originals/program-corrections.json";
+import { bootcampReferenceSourceId } from "./bootcamp";
 import { scratchProjectLimit } from "./frame";
 
 export interface ScratchOriginalProject {
