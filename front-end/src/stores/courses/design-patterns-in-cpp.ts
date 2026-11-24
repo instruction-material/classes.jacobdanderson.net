@@ -335,27 +335,27 @@ const designPatternsInCppSourceCourse: RawCourse = {
 				},
 				{
 					title: "DPC4 Strategy and Policy-Based Design: Core Project",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle: "DPC4 Strategy and Policy-Based Design",
-						projectKind: "core",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"Compile the simulator in main.cpp as C++20. Trace the same gold order through the student and member discounts. Add a strategy that stores a callable and a display name, then pass it to the existing printScenario function through the DiscountStrategy interface. Supply a flash-sale lambda that saves eight percent for orders placed at most one day early. Keep the two shipping policies as template arguments.\n\n**Checkpoints:** For a $120 order one day early, student, gold member and flash sale save $18, $6 and $9.60. At two days early the sale saves zero. Identify which call selects behavior through a virtual function and which type fixes the shipping calculation at compile time.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC2-Strategy-and-Policy-Simulator/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/e2c2200e69ae97d5f807fe210aeab3c183018101/DPC2-Strategy-and-Policy-Simulator/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC2-Strategy-and-Policy-Simulator/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/e2c2200e69ae97d5f807fe210aeab3c183018101/DPC2-Strategy-and-Policy-Simulator/solution"
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "Project: Strategy and Policy Simulator",
+					preserveInstructions: true,
+					contentKind: "assignment",
 					content:
-						"Compare runtime discount strategies with compile-time shipping policies in one small simulator. The point is to make the runtime-versus-template tradeoff visible instead of treating both as interchangeable abstractions.",
+						"Use the simulator to investigate two decisions that vary independently. Keep the cart total at $120 and record the discount and shipping price for each order. Change the membership tier from gold to silver while keeping the days constant. Then hold the tier constant and change from one day early to two days early. Calculate the expected amounts before running the program.\n\n**Checkpoints:** Silver membership saves $2.40 and gold saves $6. At two days early, ground shipping costs $4 and priority costs $10. Identify which input fields each strategy or policy actually reads, and explain why changing shipping speed leaves the membership savings unchanged.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC2-Strategy-and-Policy-Simulator/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/e2c2200e69ae97d5f807fe210aeab3c183018101/DPC2-Strategy-and-Policy-Simulator/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC2-Strategy-and-Policy-Simulator/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/e2c2200e69ae97d5f807fe210aeab3c183018101/DPC2-Strategy-and-Policy-Simulator/solution"
 				},
 				{
 					title: "Strategy Policy Transfer Practice",
@@ -636,27 +636,27 @@ const designPatternsInCppSourceCourse: RawCourse = {
 				},
 				{
 					title: "DPC8 Composite and Iterator: Core Project",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle: "DPC8 Composite and Iterator",
-						projectKind: "core",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"Build the scene tree from main.cpp with a C++20 compiler. Both Sprite and Group implement SceneNode. A group owns its children and visits them in insertion order. Add a flattenLabels function that accepts a const SceneNode reference, creates an empty vector, asks the node to collect its labels and returns the result by value. Callers can now obtain a snapshot without receiving mutable access to child storage.\n\n**Checkpoints:** Traverse a root with an empty group followed by a branch containing two equally named sprites. Expect root, empty, branch and both sprite names in order. Explain why equal labels still identify two visits and why a leaf adds exactly one entry.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC6-Composite-Scene-Tree/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/e2c2200e69ae97d5f807fe210aeab3c183018101/DPC6-Composite-Scene-Tree/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC6-Composite-Scene-Tree/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/e2c2200e69ae97d5f807fe210aeab3c183018101/DPC6-Composite-Scene-Tree/solution"
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "Project: Composite Scene Tree",
+					preserveInstructions: true,
+					contentKind: "assignment",
 					content:
-						"Represent a heterogeneous scene tree and add a traversal helper that hides the raw child-storage details from callers. The lab keeps the pattern grounded in structural clarity rather than diagram memorization.",
+						"Use the scene tree to compare rendering and flattening on the same input. Put a sprite beneath a group, place a second sprite directly beneath the root, and predict the sequence of labels. Move the first sprite construction to the root after the second sprite, rebuild, and compare both outputs. Keep ownership with exactly one group at each step.\n\n**Checkpoints:** Write the before and after sequences and mark which indentation changed. Save a flattened label vector, add another child, and verify that only a newly collected vector includes it. Explain which operation copied strings and which transferred ownership of a node.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC6-Composite-Scene-Tree/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/e2c2200e69ae97d5f807fe210aeab3c183018101/DPC6-Composite-Scene-Tree/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC6-Composite-Scene-Tree/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/e2c2200e69ae97d5f807fe210aeab3c183018101/DPC6-Composite-Scene-Tree/solution"
 				},
 				{
 					title: "Composite Traversal Transfer Practice",
@@ -865,27 +865,27 @@ const designPatternsInCppSourceCourse: RawCourse = {
 				},
 				{
 					title: "DPC11 Legacy Refactoring Lab: Core Project",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle: "DPC11 Legacy Refactoring Lab",
-						projectKind: "core",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"Run main.cpp with a C++20 compiler and record the channel and message delivered for each task. In the starter, the caller owns the raw pointer returned by makeNotifier and deletes it after sending. Replace that ownership convention with a factory that returns a unique_ptr to a delivery strategy. Put priority classification in a policy and let a dispatch facade coordinate creation, delivery and reporting.\n\n**Checkpoints:** Dispatch one ordinary chat task and one urgent email task. Each original message must reach its original channel exactly once. The reference also prints standard handling for the chat and immediate escalation for the email. Explain where cleanup happens if delivery exits early.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC8-Legacy-Refactor-Capstone/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/e2c2200e69ae97d5f807fe210aeab3c183018101/DPC8-Legacy-Refactor-Capstone/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC8-Legacy-Refactor-Capstone/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/e2c2200e69ae97d5f807fe210aeab3c183018101/DPC8-Legacy-Refactor-Capstone/solution"
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "Project: Legacy Refactor Capstone",
+					preserveInstructions: true,
+					contentKind: "assignment",
 					content:
-						"Start from a switch-heavy, raw-pointer dispatch flow and rebuild it with explicit ownership, a small factory, and a dispatch facade. The important skill is targeted cleanup, not pattern collecting for its own sake.",
+						"Use the legacy dispatcher and the refactored dispatcher to write a behavior comparison. Keep message text fixed while testing both priority values on both supported channels. Predict the delivery output separately from the priority report, then run the cases and record what actually changed. Trace ownership from allocation to destruction in each version and identify the smallest interface a caller needs.\n\n**Checkpoints:** A nonurgent email still goes to email and an urgent chat still goes to chat. The reference adds an explicit priority line for ordinary work. Distinguish that reporting change from the preserved routing behavior, and locate the single policy responsible for it.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC8-Legacy-Refactor-Capstone/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/e2c2200e69ae97d5f807fe210aeab3c183018101/DPC8-Legacy-Refactor-Capstone/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC8-Legacy-Refactor-Capstone/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/e2c2200e69ae97d5f807fe210aeab3c183018101/DPC8-Legacy-Refactor-Capstone/solution"
 				},
 				{
 					title: "Legacy Refactor Transfer Practice",
