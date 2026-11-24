@@ -201,7 +201,7 @@ describe("Python Level 2 and PyGames classroom editions", () => {
 
 				const projectUrl = new URL(
 					item.projectLink!,
-					"https://classes.jacobdanderson.net"
+					"https://example.com"
 				);
 				expect(projectUrl.searchParams.get("classroom"), label).toBe(
 					"1"
@@ -249,7 +249,7 @@ describe("Python Level 2 and PyGames classroom editions", () => {
 		expect(
 			new URL(
 				madLibs!.projectLink!,
-				"https://classes.jacobdanderson.net"
+				"https://example.com"
 			).searchParams.get("classroomSource")
 		).toBe(
 			"Python-Level-2/tree/b58d958347f0c3ca6f9d96963a674cc3d00813bf/PS1-Mad-Libs/solution"
@@ -257,7 +257,7 @@ describe("Python Level 2 and PyGames classroom editions", () => {
 		expect(
 			new URL(
 				bouncingAlien!.projectLink!,
-				"https://classes.jacobdanderson.net"
+				"https://example.com"
 			).searchParams.get("starterUrl")
 		).toBe(
 			"https://github.com/instruction-material/PyGames/blob/abc7a6c6cb9bc991b37ca6eb239f3d418185b09f/PyG1-Bouncing-Alien.py"

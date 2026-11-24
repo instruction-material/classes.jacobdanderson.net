@@ -9,7 +9,7 @@ useHead({
 			name: "description"
 		}
 	],
-	title: "Privacy | Classes with Jacob"
+	title: "Privacy | Classes"
 });
 </script>
 

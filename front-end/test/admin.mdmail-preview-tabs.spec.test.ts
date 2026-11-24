@@ -4,7 +4,6 @@ import { flushPromises, mount } from "@vue/test-utils";
 import { createPinia, setActivePinia } from "pinia";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { api } from "@/api";
-import SessionNoteGenerate from "@/components/SessionNoteGenerate.vue";
 import MdMail from "@/pages/admin/mdmail.vue";
 
 vi.mock("@/api", () => ({
@@ -32,7 +31,7 @@ describe("switchable session-note compose and preview", () => {
 			false
 		);
 		expect(wrapper.find("label[for='markdown-input']").text()).toBe(
-			"Markdown"
+			"Notes"
 		);
 		expect(wrapper.find('[role="tablist"]').exists()).toBe(false);
 		const controls = wrapper.get(
@@ -107,11 +106,11 @@ describe("switchable session-note compose and preview", () => {
 		expect(source).toContain("padding-inline-start: 1.65rem;");
 		expect(source).toContain("list-style-position: outside;");
 	});
-	it("returns to Compose with the draft and generation component preserved", async () => {
+	it("returns to Compose with the draft and composer preserved", async () => {
 		wrapper = mount(MdMail);
 		await flushPromises();
-		const generation = wrapper.getComponent(SessionNoteGenerate).element;
-		const settingsRequests = vi.mocked(api.get).mock.calls.length;
+		const composer = wrapper.get('[data-testid="md-input"]').element;
+		const initialRequests = vi.mocked(api.get).mock.calls.length;
 		await wrapper
 			.get('[data-testid="md-input"]')
 			.setValue("**Original draft**");
@@ -151,10 +150,8 @@ describe("switchable session-note compose and preview", () => {
 		expect(
 			wrapper.get('[data-testid="live-preview-body"]').html()
 		).toContain("<strong>Edited draft</strong>");
-		expect(wrapper.getComponent(SessionNoteGenerate).element).toBe(
-			generation
-		);
-		expect(api.get).toHaveBeenCalledTimes(settingsRequests);
+		expect(wrapper.get('[data-testid="md-input"]').element).toBe(composer);
+		expect(api.get).toHaveBeenCalledTimes(initialRequests);
 		expect(api.post).not.toHaveBeenCalled();
 	});
 });

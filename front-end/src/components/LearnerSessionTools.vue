@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import { computed, onMounted, ref } from "vue";
 import { api } from "@/api";
-import SessionNoteGenerate from "@/components/SessionNoteGenerate.vue";
 import WorkspaceDisclosure from "@/components/WorkspaceDisclosure.vue";
 
 type ScheduledSessionStatus =
@@ -49,7 +48,6 @@ const opened = ref(false);
 const loaded = ref(false);
 const loading = ref(false);
 const saving = ref(false);
-const draftGenerating = ref(false);
 const error = ref("");
 const success = ref("");
 const scheduledSessions = ref<ScheduledSessionRecord[]>([]);
@@ -76,10 +74,7 @@ const hasUnsavedChanges = computed(
 		!!noteForm.value.subject.trim() ||
 		!!noteForm.value.markdown.trim()
 );
-defineExpose({
-	hasUnsavedChanges,
-	saving: computed(() => saving.value || draftGenerating.value)
-});
+defineExpose({ hasUnsavedChanges, saving });
 onMounted(() => {
 	if (props.embedded) void loadSessionTools();
 });
@@ -253,7 +248,6 @@ async function updateSessionStatus(
 }
 
 async function createSessionNote() {
-	if (draftGenerating.value) return;
 	if (!noteSessionId.value && !noteUnlinked.value) {
 		error.value =
 			"Select the actual session or explicitly mark this note unlinked.";
@@ -439,7 +433,7 @@ async function createSessionNote() {
 						</label>
 						<button
 							class="btn-primary btn"
-							:disabled="saving || draftGenerating"
+							:disabled="saving"
 							type="submit"
 						>
 							Add schedule item
@@ -491,27 +485,13 @@ async function createSessionNote() {
 								type="text"
 							/>
 						</label>
-						<div class="is-wide">
-							<SessionNoteGenerate
-								:student-id="userId"
-								:student-name="userName"
-								:class-date="noteForm.sessionDate"
-								:markdown="noteForm.markdown"
-								:editor-id="`note-markdown-${userId}`"
-								:disabled="saving"
-								@generated="noteForm.markdown = $event"
-								@busy="draftGenerating = $event"
-							/>
-							<textarea
-								:id="`note-markdown-${userId}`"
-								v-model="noteForm.markdown"
-								rows="6"
-								:disabled="saving"
-							/>
-						</div>
+						<label class="is-wide">
+							Notes
+							<textarea v-model="noteForm.markdown" rows="6" />
+						</label>
 						<button
 							class="btn-primary btn"
-							:disabled="saving || draftGenerating"
+							:disabled="saving"
 							type="submit"
 						>
 							Save note only
