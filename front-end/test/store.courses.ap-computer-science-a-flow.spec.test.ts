@@ -10,6 +10,7 @@ import {
 	apComputerScienceAProjectKey,
 	apElevatorWarningResources,
 	apEnrichmentResources,
+	apInputAndCardResources,
 	apExpressionsAndClassResources,
 	apFoundationsSupplementalResources,
 	apIntroductoryResources,
@@ -735,6 +736,22 @@ describe("AP Computer Science A learner flow", () => {
 			"ap-computer-science-a-optional-inheritance-and-polymorphism-enrichment-supplemental-project-pet-special-methods",
 			"challenge",
 			"Dog.java Poodle.java MiniPoodle.java Pug.java"
+		],
+		[
+			"APCS9 Software Development Lifecycle",
+			"Core Project: Robust Input Practice",
+			"robust-input",
+			"ap-computer-science-a-apcs9-software-development-lifecycle-curriculum-core-project-robust-input-practice",
+			"core",
+			"RobustScanner.java"
+		],
+		[
+			"APCS12 Wrapper Classes",
+			"Core Project: Suits, Decks, and Hands",
+			"suit-deck-hand",
+			"ap-computer-science-a-apcs12-wrapper-classes-curriculum-core-project-suits-decks-and-hands",
+			"core",
+			"Card.java Deck.java Hand.java Suit.java"
 		]
 	] as const)("opens both Java roles for %s / %s", async (moduleTitle, title, kind, itemId, path, classFile) => {
 		setActivePinia(createPinia());
@@ -752,7 +769,8 @@ describe("AP Computer Science A learner flow", () => {
 			...apListsAndAlgorithmsResources,
 			...apCheckInAndFrqResources,
 			...apAdvancedPracticeResources,
-			...apEnrichmentResources
+			...apEnrichmentResources,
+			...apInputAndCardResources
 		}[kind];
 		expect(item.id).toBe(itemId);
 		expect(rawItem).toMatchObject({

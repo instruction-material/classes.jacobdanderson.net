@@ -241,7 +241,19 @@ export const apEnrichmentResources = {
 	"dog-methods": projectRoles(`${enrichmentPacks}/APCS7-Dogs`)
 };
 
+const inputAndCardPacks =
+	"https://github.com/instruction-material/APCS/tree/f057ba52017c053f1502b3e86556d97823cd7a4e";
+export const apInputAndCardResources = {
+	"robust-input": projectRoles(
+		`${inputAndCardPacks}/APCS9-Robust-Input-Practice`
+	),
+	"suit-deck-hand": projectRoles(
+		`${inputAndCardPacks}/APCS12-Suit-Deck-and-Hand`
+	)
+};
+
 const restoredProjects = {
+	...apInputAndCardResources,
 	"binary-search-trace": apBinarySearchResources,
 	"recursion-practice": apRecursionPracticeResources,
 	"recursion-reference": apRecursionReferenceResources,
@@ -277,6 +289,15 @@ export function apComputerScienceAProjectKey(
 }
 
 const nativeClassWorkspaces = {
+	"robust-input": {
+		item: "ap-computer-science-a-apcs9-software-development-lifecycle-curriculum-core-project-robust-input-practice",
+		files: ["RobustScanner.java"]
+	},
+	"suit-deck-hand": {
+		item: "ap-computer-science-a-apcs12-wrapper-classes-curriculum-core-project-suits-decks-and-hands",
+		files: ["Card.java", "Deck.java", "Hand.java", "Suit.java"]
+	},
+
 	"store-class": {
 		item: "ap-computer-science-a-apcs5-classes-part-i-supplemental-project-store-class",
 		files: ["Store.java"]

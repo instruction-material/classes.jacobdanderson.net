@@ -9,6 +9,7 @@ import {
 	apEnrichmentResources,
 	apExpressionsAndClassResources,
 	apFoundationsSupplementalResources,
+	apInputAndCardResources,
 	apIntroductoryResources,
 	apListsAndAlgorithmsResources,
 	apMergeSortResources,
@@ -1621,10 +1622,18 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 				},
 				{
 					title: "Core Project: Robust Input Practice",
-					content:
-						"Robust input practice is the main APCS9 implementation checkpoint. The implementation shows validation loops, clear error messages, and a final valid value before continuing.",
-					projectLink: repo("APCS9-Robust-Input-Practice/starter"),
-					solutionLink: repo("APCS9-Robust-Input-Practice/solution"),
+					content: [
+						"Read four groups of input tokens in order. Divide two integers, print the third character of a word, print the character at a zero-based index in `Juni Learning`, and count between two integers including both endpoints.",
+						"Complete the validation loops in `Main.java`. Ask again for a zero divisor, a short word, or an index outside the message. RobustScanner skips malformed numeric tokens. Exhausted input ends the session.",
+						"Download the ZIP and extract it. Run `javac Main.java RobustScanner.java`, then `java Main`. Enter `8 2 maple 0 3 1`. The completed program gives 4, p, J, then 3, 2, 1. Repeat with equal endpoints to check that the count prints once."
+					].join("\n\n"),
+					projectLink:
+						apInputAndCardResources["robust-input"].starter,
+					solutionLink:
+						apInputAndCardResources["robust-input"].reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true,
 					mediaLink: media(
 						"apcs9-project-1-robust-input-practice.mp4"
 					)
@@ -1647,10 +1656,10 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 				},
 				{
 					title: "Robust Input Reference Review",
+					contentKind: "reading",
+					preserveInstructions: true,
 					content:
-						"Compare the robust-input practice project with the reference implementation after the local version runs. Look for where invalid values are rejected, where the program repeats, and where valid data finally enters the main logic. Use the comparison to separate validation from processing: validation keeps asking until the data is usable, while processing runs only after the value is trustworthy. The evidence includes one invalid input, one boundary input, and one valid input trace. Add the exception or sentinel condition that prevents the program from accepting malformed data silently.",
-					projectLink: repo("APCS9-Robust-Input-Practice/starter"),
-					solutionLink: repo("APCS9-Robust-Input-Practice/solution")
+						"Continue in the [Robust Input Practice project](/courses#ap-computer-science-a-apcs9-software-development-lifecycle-ap-computer-science-a-apcs9-software-development-lifecycle-curriculum-core-project-robust-input-practice). Trace `oops 8 0 2 x maple -1 0 3 3`. Mark each rejected token and the field that requests its replacement. The reference produces 4, p, J, and a single 3. End input before the first number or after the short word and check for the end-of-input message."
 				}
 			]
 		},
@@ -2091,10 +2100,18 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 				},
 				{
 					title: "Core Project: Suits, Decks, and Hands",
-					content:
-						"Suits, Decks, and Hands is the main APCS12 build. The project connects wrapper-aware values, object collections, random selection, and clear class responsibilities in one card-modeling task.",
-					projectLink: repo("APCS12-Suit-Deck-and-Hand/starter"),
-					solutionLink: repo("APCS12-Suit-Deck-and-Hand/solution"),
+					content: [
+						"Trace a card transfer through three collections. A suit stores 13 cards in rank order, a deck holds 52 cards, and a hand preserves arrival order.",
+						"Complete `Suit.remove(index)`, `Deck.removeRandom()`, and `Hand.removeFirst()`. Remove the selected card from its collection. Return `null` for an invalid index or an empty draw.",
+						"Download the ZIP and extract it. Run `javac Main.java Card.java Deck.java Hand.java Suit.java`, then `java Main`. Index 5 selects the 6 of Clubs. The suit has 12 cards left, the deck has 51, and the first card removed from the two-card hand is the 6 of Clubs."
+					].join("\n\n"),
+					projectLink:
+						apInputAndCardResources["suit-deck-hand"].starter,
+					solutionLink:
+						apInputAndCardResources["suit-deck-hand"].reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true,
 					mediaLink: media(
 						"apcs12-project-1-suits-decks-and-hands.mp4"
 					)
