@@ -97,17 +97,22 @@ let interests = ["Drawing", "Robotics", "Music"]
 
 ### Task
 
-Explain every `let`, `var`, and inferred type. Render a fallback when `optionalTagline` is absent. Sort `interests`, filter by a supplied search string, and specify expected output for an empty array. Do not use force unwrap.
+1. Predict each value's type. Complete one lesson by incrementing `completedLessons`. Explain why the other bindings can remain constants, and why `nil` needs an explicit optional type here.
+2. Produce a profile heading containing the name and lesson count. Show the tagline when present and `No tagline yet` when absent. Try both `nil` and `"Builds robots"`.
+3. Write a function that accepts interests and a search string. Match substrings without regard to case and sort the matching names alphabetically. An empty search shows all interests. Give an empty input list the message `No interests yet` and a search with no matches the message `No matches`.
+4. Trace the output for the supplied interests with `"O"`, `""`, and `"art"`, then for an empty list with `"O"`. Compare filtering results with the original array after each call. With a Swift toolchain, run the cases as a script. The same traces can be completed on paper.
 
 ## Functions Structs and Enums Case
 
 ### Supplied model need
 
-An app item has a stable ID, title, optional detail, and status. Status can be planned, active with a progress value, or complete with a completion date.
+A lesson card has the fixed integer ID `7`, title `"Map a trail"`, and optional detail. Its status is planned, active with a fraction from 0 through 1, or complete with a date. Use midnight UTC on 2026-01-01 as the sample completion date. Finishing the work and recording its completion date are separate actions, so active at 100% is a meaningful state.
 
 ### Task
 
-Design an `Identifiable` struct, an enum that represents all three states, a pure display-label function, and an exhaustive switch. Include expected outputs for empty detail, progress 0, progress 1, and complete state. Explain why an enum is safer here than unrelated Boolean flags.
+Design an `Identifiable` struct and a status enum. Store the fraction only in the active case and the date only in the complete case. Write a pure label function with an exhaustive switch. Include the title, status, and detail when present. Both missing detail and the empty string should omit the detail separator.
+
+Predict the labels for planned, active at 0, 0.5 and 1, and complete on the supplied date. Add `"Use the north route"` as detail on the 50% card. Copy that card, change the copy to complete, and check the ID and status of both values. Explain which impossible combination the enum prevents.
 
 ## App Structure and Lifecycle Case
 
@@ -182,7 +187,7 @@ Choose `TabView`, `NavigationStack`, `NavigationLink`, and sheet roles. Trace da
 
 ### Task
 
-Specify create, read, update, toggle, and delete behavior. A draft with only spaces is invalid. A duplicate title is allowed only when the stable ID differs. Provide an empty-state action and a recoverable delete route. Show expected sorted output after adding `Archive notes`, toggling `A1`, and deleting `A2`.
+Specify create, read, update, toggle, and delete behavior. A draft with only spaces is invalid. A duplicate title is allowed only when the stable ID differs. Provide an empty-state action and a recoverable delete route. For this exercise, display the rows alphabetically by title. Add incomplete item `A4` titled `Archive notes`, toggle `A1`, then delete `A2`. Write the IDs, titles, and completion flags still visible in display order.
 
 ## SwiftData Persistence Case
 
@@ -208,12 +213,12 @@ State expected records at each step. Identify `@Model`, model container, model c
 	{
 		"id": 1,
 		"title": "SwiftUI views",
-		"summary": "Declarative interface building"
+		"body": "Declarative interface building"
 	},
 	{
 		"id": 2,
 		"title": "Model data",
-		"summary": "State ownership and updates"
+		"body": "State ownership and updates"
 	}
 ]
 ```
@@ -227,7 +232,7 @@ State expected records at each step. Identify `@Model`, model container, model c
 
 ### Task
 
-Define empty, loading, loaded, failed, and cancelled states. Decode the local fixture before planning a live request. Distinguish transport, HTTP, and decoding failures. Specify retry behavior and prove that cancellation does not display a false failure.
+Use the SAD6 app's `ReferenceEntry` to decode the two entries. Trace the store and screen for each supplied response. Try changing the first `body` key to `summary` and predict what happens on HTTP 200. Distinguish a transport failure, an HTTP error, and a decoding failure. Start from the loaded two-entry list, retry, then cancel that request. Which state should the screen return to?
 
 ## Debugging and Swift Testing Case
 

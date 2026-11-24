@@ -40,17 +40,83 @@ Core readiness is 9 of 12 with no zero in evidence or access/privacy. A project 
 
 ## Swift Basics in App Context Key
 
-- `displayName` and `interests` are immutable; `completedLessons` is mutable only if the app changes it.
-- `optionalTagline` is `String?`; absence receives explicit fallback handling.
-- Empty arrays produce a deliberate empty state.
-- Force unwrap, arbitrary type conversion, and mutation without a product reason lose evidence credit.
+Swift infers `String`, `Int`, and `[String]` from the name, count, and array literals. The declaration `String?` gives the missing tagline a type. The count uses `var` because completing a lesson changes its value. The other bindings use `let`.
+
+Append this code to the four declarations in the case. The nil-coalescing operator (`??`) supplies the fallback only when the optional has no value.
+
+```swift
+completedLessons += 1
+print("\(displayName): \(completedLessons) lessons")
+func taglineText(_ tagline: String?) -> String {
+    tagline ?? "No tagline yet"
+}
+print(taglineText(optionalTagline))
+print(taglineText("Builds robots"))
+
+func interestText(_ names: [String], matching query: String) -> String {
+    guard !names.isEmpty else { return "No interests yet" }
+    let matches = names.filter { query.isEmpty || $0.lowercased().contains(query.lowercased()) }
+    return matches.isEmpty ? "No matches" : matches.sorted().joined(separator: ", ")
+}
+for query in ["O", "", "art"] {
+    print(interestText(interests, matching: query))
+}
+print(interestText([], matching: "O"))
+```
+
+The first three lines print `Avery: 4 lessons`, `No tagline yet`, and `Builds robots`. The four searches print `Robotics`, `Drawing, Music, Robotics`, `No matches`, and `No interests yet`, in order. The empty query keeps every name. Filtering and sorting produce new arrays, so the original still has Robotics before Music.
 
 ## Functions Structs and Enums Key
 
-- The item model has stable identity and groups title, detail, and status coherently.
-- The status enum represents planned, active progress, and completed date without contradictory flags.
-- The switch is exhaustive and each case produces an intentional visible representation.
-- Model behavior can be tested without creating a SwiftUI view.
+A status carries the data its case needs. A planned card has no fraction or completion date. An active card at 100% still has no recorded date. Each case has its own switch branch, so adding a fourth case makes the compiler identify the unfinished switch.
+
+```swift
+import Foundation
+
+enum LessonStatus {
+    case planned
+    case active(Double)
+    case complete(Date)
+}
+
+struct LessonCard: Identifiable {
+    let id: Int
+    let title: String
+    var detail: String?
+    var status: LessonStatus
+}
+
+func label(for card: LessonCard) -> String {
+    let status: String
+    switch card.status {
+    case .planned:
+        status = "Planned"
+    case .active(let fraction):
+        status = "\(Int((fraction * 100).rounded()))%"
+    case .complete(let date):
+        status = "Complete \(date.ISO8601Format().prefix(10))"
+    }
+    let base = "\(card.title): \(status)"
+    guard let detail = card.detail, !detail.isEmpty else { return base }
+    return "\(base) | \(detail)"
+}
+
+var card = LessonCard(id: 7, title: "Map a trail", detail: nil, status: .planned)
+print(label(for: card))
+for fraction in [0.0, 0.5, 1.0] {
+    card.status = .active(fraction)
+    card.detail = fraction == 0.5 ? "Use the north route" : ""
+    print(label(for: card))
+}
+card.status = .active(0.5)
+card.detail = "Use the north route"
+var finished = card
+finished.status = .complete(Date(timeIntervalSince1970: 1_767_225_600))
+print(label(for: finished))
+print(card.id, finished.id, label(for: card))
+```
+
+The first four labels start with `Map a trail:` followed by `Planned`, `0%`, `50% | Use the north route`, and `100%`. The copy prints `Map a trail: Complete 2026-01-01 | Use the north route`. The last line prints both IDs as 7 and the original 50% label. Copying the struct preserved its identity field and gave the copy an independently editable status.
 
 ## App Structure and Lifecycle Key
 
@@ -85,6 +151,7 @@ Core readiness is 9 of 12 with no zero in evidence or access/privacy. A project 
 - Stable IDs, not array positions or titles, identify records.
 - Whitespace-only drafts fail validation.
 - Add, edit, toggle, and delete affect the intended item and preserve deterministic ordering.
+- The final display is `A4 | Archive notes | false`, `A1 | Sketch interface | true`, then `A3 | Test empty state | false`. Sorting the display moves rows. Deleting by ID still removes Build model even after its position changes.
 - Empty state offers a clear add action; destructive behavior is understandable and recoverable where practical.
 
 ## SwiftData Persistence Key
@@ -96,10 +163,15 @@ Core readiness is 9 of 12 with no zero in evidence or access/privacy. A project 
 
 ## Networking and Data Loading Key
 
-- Local fixture decoding is the deterministic baseline.
-- HTTP 503, malformed JSON, cancellation, and empty success produce distinct state outcomes.
-- Cancellation returns to a nonfailure state unless product requirements say otherwise.
-- No state remains loading forever, and no secret is required.
+The supplied JSON decodes into two entries in order, titled `SwiftUI views` and `Model data`. The model requires `id`, `title`, and `body`. Renaming the first `body` to `summary` leaves a required field missing, so decoding the entire array fails.
+
+| Observation | Expected behavior |
+| --- | --- |
+| Transport throws a connection error | Show the connection failure and a retry action. |
+| HTTP 503 with valid JSON | Reject the status before decoding and show the server error. |
+| HTTP 200 with malformed JSON or a missing required field | Report a decoding failure. |
+| HTTP 200 with `[]` | Store a successful empty list and show the empty-state screen. |
+| Refresh cancelled after the two entries loaded | Restore the previous two-entry list. An older request finishing after a newer one leaves the newer result in place. |
 
 ## Debugging and Swift Testing Key
 
@@ -118,7 +190,7 @@ Core readiness is 9 of 12 with no zero in evidence or access/privacy. A project 
 
 ## Simulator and Device Validation Key
 
-- Supported claims: both simulators launch, core task passes on the large profile except title adaptation, and the static permission fallback works.
+- Both simulators launch with clean consoles and show the static permission fallback. The small simulator passes the core task. The large simulator clips the title, so its core-task result stays open until the layout is corrected and checked again.
 - Unsupported claims: device performance, real-device permissions, hardware behavior, and device launch.
 - The clipping defect is a layout/Dynamic Type investigation, not evidence that all devices fail.
 - The smoke record names destination and configuration.
