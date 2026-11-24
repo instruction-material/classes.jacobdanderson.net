@@ -1871,6 +1871,100 @@ public class Algo implements Directions {
 		expect(result.stdout).toHaveLength(8);
 	});
 
+	it("binds Karel movement counts per helper call", () => {
+		const result = runJavaIdeProject({
+			activeFileName: "Algo.java",
+			mode: "karel",
+			files: [
+				{
+					name: "Algo.java",
+					content: `import kareltherobot.*;
+
+public class Algo implements Directions {
+    private static final int DISTANCE = 3;
+
+    public static void main(String[] args) {
+        UrRobot sam = new UrRobot(6, 7, West, 0);
+        walk(sam, DISTANCE);
+    }
+
+    static void walk(UrRobot sam, int steps) {
+        moveMany(sam, 0);
+        moveMany(sam, 1);
+        moveMany(sam, steps);
+    }
+
+    static void moveMany(UrRobot robot, int steps) {
+        for (int i = 0; i < steps; i++) {
+            robot.move();
+        }
+    }
+}`
+				},
+				{ name: "world.txt", content: karelStarterWorld }
+			]
+		});
+
+		expect(result.stderr).toEqual([]);
+		expect(result.karelWorldSteps?.map(step => step.robot?.avenue)).toEqual(
+			[7, 6, 5, 4, 3]
+		);
+	});
+
+	it.each(["static int", "static final int"])(
+		"reads a %s field in a helper while its caller shadows the name",
+		declaration => {
+			const result = runJavaIdeProject({
+				activeFileName: "Algo.java",
+				mode: "karel",
+				files: [
+					{
+						name: "Algo.java",
+						content: `import kareltherobot.*;
+
+public class Algo implements Directions {
+    private ${declaration} distance = 2;
+
+    public static void main(String[] args) {
+        UrRobot sam = new UrRobot(6, 7, West, 0);
+        walk(sam, 1);
+    }
+
+    static void walk(UrRobot robot, int distance) {
+        fromField(robot);
+        robot.turnLeft();
+        moveMany(robot, distance);
+    }
+
+    static void fromField(UrRobot robot) {
+        moveMany(robot, distance);
+    }
+
+    static void moveMany(UrRobot robot, int steps) {
+        for (int i = 0; i < steps; i++) { robot.move(); }
+    }
+}`
+					}
+				]
+			});
+
+			expect(result.stderr).toEqual([]);
+			expect(
+				result.karelWorldSteps?.map(({ robot }) => [
+					robot?.avenue,
+					robot?.street,
+					robot?.direction
+				])
+			).toEqual([
+				[7, 6, "West"],
+				[6, 6, "West"],
+				[5, 6, "West"],
+				[5, 6, "South"],
+				[5, 5, "South"]
+			]);
+		}
+	);
+
 	it("previews Karel for loops that use class constants", () => {
 		const result = runJavaIdeProject({
 			activeFileName: "MyProgram.java",

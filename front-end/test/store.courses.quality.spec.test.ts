@@ -6734,11 +6734,15 @@ describe("course text quality normalization", () => {
 		expect(
 			findItem(javaLevel1!, /Course Launch: Start Java Visually/)
 				.projectLink
-		).toBe("/ide?mode=karel");
+		).toBe("/ide?mode=karel&template=demo");
 		expect(
 			findItem(javaLevel1!, /J1A Project 1: Robot Walkthrough/)
 				.projectLink
-		).toBe("/ide?mode=karel");
+		).toContain("projectKey=java-level-1-robot-walkthrough");
+		expect(
+			findItem(javaLevel1!, /J1B Project 1: Parameterized Robot Moves/)
+				.projectLink
+		).toContain("projectKey=java-level-1-parameterized-robot-moves");
 		expect(javaLevel1Text).toContain("BlueJ in class");
 		expect(javaLevel1Text).toContain("visible robot world");
 		expect(javaLevel1Text).toContain(
@@ -6752,7 +6756,7 @@ describe("course text quality normalization", () => {
 		expect(javaLevel1Text).toContain("Five-Robot Warm-Up Set");
 		expect(javaLevel1Text).toContain("Visual Exit Ticket: Ready for Text");
 		expect(javaLevel1Text).toContain("int x = 7; x = 9");
-		expect(javaLevel1Text).toContain("moveMany(3)");
+		expect(javaLevel1Text).toContain("moveMany(sam, MOVE_COUNT)");
 		expect(javaLevel1Text).toContain(
 			"Text Bridge: Variables, Strings, and Input"
 		);
@@ -7885,6 +7889,27 @@ describe("course text quality normalization", () => {
 					}
 				}
 				expect(sourceTasks).toBe(21);
+			} else if (courseId === "scratch-level-1-bootcamp") {
+				const checks = [
+					["Move one block", "x: 20 y: 10"],
+					["three turns of 120 degrees", "which version can reach Done"],
+					["correct run ends at 2", "10, 3 and 30"],
+					["one near miss", "repeat the last input"]
+				];
+				expect(course.modules).toHaveLength(checks.length);
+				for (const [index, module] of course.modules.entries()) {
+					const practice = module.supplementalProjects.filter(item =>
+						/^(?:Practice Map|Extension Review):/.test(item.title)
+					);
+					expect(practice.map(item => item.learningPath)).toEqual([
+						"choice",
+						"challenge"
+					]);
+					for (const [i, task] of practice.entries()) {
+						expect(task.content).toContain(checks[index][i]);
+						expect(task.contentKind).toBe("assignment");
+					}
+				}
 			} else {
 				expect(text).toContain("**Setup:**");
 				expect(text).toContain("**Process:**");

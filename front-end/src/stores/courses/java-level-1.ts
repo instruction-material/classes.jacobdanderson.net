@@ -160,9 +160,10 @@ const javaLevel1SourceCourse: RawCourse = {
 			curriculum: [
 				{
 					title: "Course Launch: Start Java Visually",
+					contentKind: "reading",
 					content:
 						"The opening Java sequence starts in a visible robot world before switching to console-only programs. For the first week or roughly first three class meetings, Karel makes the object on a grid, one small command, and compiler feedback visible together. BlueJ in class fits the object-bench and Karel workflow, while CodeHS or the browser Code IDE outside class provides the fallback when device installs are unavailable.",
-					projectLink: "/ide?mode=karel"
+					projectLink: "/ide?mode=karel&template=demo"
 				},
 				{
 					title: "First-Week Karel Cadence",
@@ -172,23 +173,25 @@ const javaLevel1SourceCourse: RawCourse = {
 				{
 					title: "Compile, Run, Observe, Repair",
 					content:
-						"Missing semicolons, mismatched braces, wrong capitalization, and blocked robot moves become intentional first errors. The repair routine reads the Java file, line, and symbol before the program runs, then uses one-line changes, reruns, and short explanations to separate compile-time, runtime, and logic errors."
+						"In BlueJ, compile Algo.java and read the first diagnostic if a semicolon, brace, or capital letter is wrong. The browser previews robot commands. A wall stops a move during the run. A legal move in the wrong direction runs too: compare the first unexpected trace entry with the command that produced it."
 				},
 				{
 					title: "Robot State: Street, Avenue, Direction, Beepers",
 					content:
-						"The robot is the first inspectable Java object in the course. Track its street, avenue, direction, and beeper count after each call to `move()`, `turnLeft()`, `pickBeeper()`, or `putBeeper()`. This gives variables and object state a visible meaning before those ideas move into console variables."
+						"In Algo.java, Sam starts at street 6, avenue 7 facing east with an empty beeper bag. Streets increase northward and avenues eastward. Read `sam.turnLeft();` as a quarter turn in place. After one left turn, `sam.move();` takes Sam to street 7, avenue 7 facing north. On a square with a beeper, `sam.pickBeeper();` moves one into the bag. With a beeper in the bag, `sam.putBeeper();` leaves one on the current square."
 				},
 				{
 					title: "J1A Project 1: Robot Walkthrough",
+					preserveInstructions: true,
 					content:
-						"Create a short robot program that starts Karel at a known location, moves around one obstacle, and ends at a named target square. Include a written trace with the robot's street, avenue, and direction after each major step.",
-					projectLink: "/ide?mode=karel"
+						"Run Algo.java once. The sample ends at street 6, avenue 4 facing west. Your target is the beeper at street 6, avenue 9 in world.txt. Leave it on the ground.\n\n1. Keep the constructor in main. Replace the turns and loop after it with `sam.move();`. Run once and record the last state. Find `wall 6 7 east` in world.txt and explain why Sam stayed put.\n2. Keep that wall and the starting position. Use `sam.turnLeft();` and `sam.move();` to go around the wall to the beeper.\n3. Predict the street, avenue, direction, and bag count after each turn or move. Compare your predictions with the run. A successful route ends at (6, 9) with an empty bag and no blocked move.",
+					projectLink:
+						"/ide?mode=karel&template=demo&projectKey=java-level-1-robot-walkthrough&starterTitle=Robot+Walkthrough"
 				},
 				{
 					title: "Visual Exit Ticket: Ready for Text",
 					content:
-						"Before moving to console-only Java, the exit ticket explains one robot program from class name to `main()`, statement order, constructor arguments, state changes, and final grid evidence. A ready explanation can fast-forward into the text bridge while keeping the visual model available for debugging later."
+						"**Exit check:** Point to the line in `main` that constructs Sam. Explain how its four arguments set the starting state, then use one turn and one move from your trace to explain why only the move changed Sam’s square."
 				}
 			],
 			supplementalProjects: [
@@ -220,7 +223,7 @@ const javaLevel1SourceCourse: RawCourse = {
 				{
 					title: "Main Method and Program Skeleton",
 					content:
-						"`public static void main(String[] args)` is introduced as the place where a Java program starts, with the explanation attached to a running robot program. The checkpoint identifies the class name, braces, method header, statements, and semicolons before memorized terminology becomes the focus."
+						"In Algo.java, `public class Algo` encloses the program. When `public static void main(String[] args)` runs, its statements run in order. A call such as `sam.turnLeft();` ends with a semicolon. Define a static helper inside the class, outside the braces of main. For example, `static void advanceOne(UrRobot robot) { robot.move(); }` defines a helper. Calling `advanceOne(sam);` in main moves Sam one square, then execution resumes after the call."
 				},
 				{
 					title: "Primitives vs. Objects with Visual Inspection",
@@ -230,13 +233,15 @@ const javaLevel1SourceCourse: RawCourse = {
 				{
 					title: "Parameters and Arguments from Robot Construction",
 					content:
-						"Parameters begin with visible robot setup: street, avenue, direction, and beeper count. The checkpoint explains how changing one constructor argument changes the robot's starting state, then transfers that idea to ordinary method calls and to helpers such as `moveMany(3)` instead of three copied move statements."
+						"The constructor takes street, avenue, direction, and bag count in order. In a helper declaration such as `static void advance(UrRobot robot, int steps)`, the parameter names belong to that call. In `advance(sam, 2);`, robot refers to Sam and steps holds 2. The loop header `for (int i = 0; i < steps; i++)` runs the body for i equal to 0 and 1. **Readiness check:** Predict how many times the body runs when steps is 0."
 				},
 				{
 					title: "J1B Project 1: Parameterized Robot Moves",
+					preserveInstructions: true,
 					content:
-						"Refactor a repeated robot path into helper methods such as `turnRight()`, `moveTwice()`, or `moveToWall()`. Then add at least one method with a parameter, making repeated visual behavior reusable through code.",
-					projectLink: "/ide?mode=karel"
+						"Run the supplied Algo.java in this project. Record Sam’s final state after the two left turns and three westward moves. Refactor that route without changing world.txt or the starting state.\n\n1. Move the two turns into a static helper that accepts the robot. Call it from main with `sam`.\n2. Move the starter’s loop into a second static helper, `moveMany(UrRobot robot, int steps)`. Use the parameter as the loop bound and move the robot passed to the helper. In main, replace the original loop with `moveMany(sam, MOVE_COUNT);`.\n3. Compare the complete trace with the original run. Then change only the count argument to 1 and rerun, and repeat with 0. On street 6, the three runs should finish on avenues 4, 6, and 7 respectively, all facing west. Explain why a zero count still leaves Sam facing west.",
+					projectLink:
+						"/ide?mode=karel&template=demo&projectKey=java-level-1-parameterized-robot-moves&starterTitle=Parameterized+Robot+Moves"
 				}
 			],
 			supplementalProjects: [

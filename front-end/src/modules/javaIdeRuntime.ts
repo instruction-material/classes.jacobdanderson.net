@@ -96,7 +96,7 @@ interface JavaForLoopIterations {
 }
 
 interface JavaConsoleContext {
-	constants: Map<string, JavaConsoleValue>;
+	classFields: Map<string, JavaConsoleValue>;
 	input: JavaScannerInput;
 	methodCallDepth: number;
 	methods: Map<string, JavaMethodDefinition>;
@@ -416,7 +416,7 @@ function runConsoleJavaProject(
 function javaConsoleOutput(source: string, inputText: string) {
 	const methods = parseJavaMethods(source);
 	const context: JavaConsoleContext = {
-		constants: new Map(),
+		classFields: new Map(),
 		input: {
 			position: 0,
 			source: inputText.replace(/\r\n?/g, "\n")
@@ -432,7 +432,7 @@ function javaConsoleOutput(source: string, inputText: string) {
 		pendingLine: "",
 		stdout: []
 	};
-	seedJavaLiteralConstants(source, context, output);
+	seedJavaLiteralFields(source, context, output, "java");
 	const mainBody = methods.get("main")?.body ?? source;
 	executeJavaConsoleBody(mainBody, context, output);
 
@@ -450,12 +450,13 @@ function javaConsoleOutput(source: string, inputText: string) {
 	return { stderr: context.stderr, stdout: output.stdout };
 }
 
-function seedJavaLiteralConstants(
+function seedJavaLiteralFields(
 	source: string,
 	context: JavaConsoleContext,
-	output: JavaConsoleOutputState
+	output: JavaConsoleOutputState,
+	mode: JavaIdeRunOptions["mode"]
 ) {
-	const constantLeftSidePattern =
+	const fieldLeftSidePattern =
 		/^(?:(?:public|private|protected|static|final)\s+)*(String|int|long|double|float|boolean|char)\s+([A-Z_]\w*)$/i;
 	const typeDeclarationPattern =
 		/\b(?:class|enum|interface|record)\s+[A-Z_]\w*\b/i;
@@ -504,7 +505,6 @@ function seedJavaLiteralConstants(
 		if (!atFieldScope) continue;
 		const line = rawLine.trim();
 		if (
-			!line.includes("final") ||
 			!line.includes("=") ||
 			!line.endsWith(";") ||
 			line.includes("{") ||
@@ -521,20 +521,24 @@ function seedJavaLiteralConstants(
 
 		const leftSide = declaration.slice(0, separatorIndex).trim();
 		const rawValue = declaration.slice(separatorIndex + 1).trim();
-		if (!/\bfinal\b/i.test(leftSide) || !rawValue) {
-			continue;
-		}
+		if (!rawValue) continue;
 
-		const match = leftSide.match(constantLeftSidePattern);
+		const match = leftSide.match(fieldLeftSidePattern);
 		const declaredType = match?.[1];
 		const name = match?.[2];
 		if (!declaredType || !name) continue;
+		const isKarelStaticInt =
+			mode === "karel" &&
+			inTopLevelType &&
+			declaredType === "int" &&
+			/\bstatic\b/.test(leftSide);
+		if (!isKarelStaticInt && !/\bfinal\b/.test(leftSide)) continue;
 		const value = applyDeclaredJavaType(
 			evaluateJavaExpression(rawValue, context, output),
 			declaredType
 		);
 		context.variables.set(name, value);
-		context.constants.set(name, value);
+		context.classFields.set(name, value);
 	}
 }
 
@@ -2461,12 +2465,12 @@ function executeJavaConsoleMethodCall(
 	}
 
 	const localContext: JavaConsoleContext = {
-		constants: context.constants,
+		classFields: context.classFields,
 		input: context.input,
 		methodCallDepth: context.methodCallDepth + 1,
 		methods: context.methods,
 		stderr: context.stderr,
-		variables: new Map(context.constants)
+		variables: new Map(context.classFields)
 	};
 	const args = splitJavaArguments(rawArguments);
 	method.parameters.forEach((parameter, parameterIndex) => {
@@ -3024,7 +3028,7 @@ function runKarelProject(
 	const declaration = source.match(ROBOT_DECLARATION_RE);
 	const declarationArgs = splitJavaArguments(declaration?.[2] ?? "");
 	const constantsContext: JavaConsoleContext = {
-		constants: new Map(),
+		classFields: new Map(),
 		input: {
 			position: 0,
 			source: ""
@@ -3040,7 +3044,7 @@ function runKarelProject(
 		pendingLine: "",
 		stdout: []
 	};
-	seedJavaLiteralConstants(source, constantsContext, constantsOutput);
+	seedJavaLiteralFields(source, constantsContext, constantsOutput, "karel");
 	const { warnings: worldWarnings, world } = parseKarelWorld(files, source);
 	const stderr: string[] = [];
 	const trace: string[] = [];
@@ -3753,18 +3757,34 @@ function collectKarelHelperMethodCall(
 ) {
 	const args = splitJavaArguments(rawArgs);
 	const nextAliases = new Set(robotAliases);
+	const caller = execution.constantsContext;
+	const variables = new Map(caller.classFields);
 	method.parameters.forEach((parameter, parameterIndex) => {
 		const arg = args[parameterIndex]?.trim();
-		if (arg && robotAliases.has(arg)) nextAliases.add(parameter.name);
+		if (!arg) return;
+		if (robotAliases.has(arg)) nextAliases.add(parameter.name);
+		if (parameter.type === "int") {
+			const value = evaluateJavaExpression(
+				arg,
+				caller,
+				execution.constantsOutput
+			);
+			variables.set(parameter.name, applyDeclaredJavaType(value, "int"));
+		}
 	});
-	collectKarelCommandsFromBody(
-		method.body,
-		methods,
-		nextAliases,
-		plan,
-		execution,
-		depth + 1
-	);
+	execution.constantsContext = { ...caller, variables };
+	try {
+		collectKarelCommandsFromBody(
+			method.body,
+			methods,
+			nextAliases,
+			plan,
+			execution,
+			depth + 1
+		);
+	} finally {
+		execution.constantsContext = caller;
+	}
 }
 
 function karelPaintCommandForStatement(
