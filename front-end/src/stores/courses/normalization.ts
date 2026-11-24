@@ -124,9 +124,9 @@ function cloneCourse(course: RawCourse): RawCourse {
 
 function preserveScratchProjectInstructions(
 	courseId: string,
-	course: RawCourse
+	modules: RawCourseModule[]
 ) {
-	return course.modules.flatMap(module =>
+	return modules.flatMap(module =>
 		[...module.curriculum, ...module.supplementalProjects]
 			.filter(
 				item =>
@@ -9790,14 +9790,21 @@ export function normalizeRawCourse(id: string, rawCourse: RawCourse) {
 	}
 	const preservedScratchInstructions = preserveScratchProjectInstructions(
 		id,
-		course
+		course.modules
 	);
 	normalizers[id]?.(course);
 	normalizeDisplayTitles(course);
 	rewritePlaceholderCourseText(course, id);
 	normalizeModuleLessonShape(course, id);
+	const existingModules = new Set(course.modules);
 	applyResearchBackedExpansions(id, course);
 	applyCourseImplementationArtifacts(id, course);
+	preservedScratchInstructions.push(
+		...preserveScratchProjectInstructions(
+			id,
+			course.modules.filter(module => !existingModules.has(module))
+		)
+	);
 	normalizeUsacoProjectGuidance(course, id);
 	applyRestoredUsacoProjects(id, course);
 	normalizeImplementationLabLanguage(course);

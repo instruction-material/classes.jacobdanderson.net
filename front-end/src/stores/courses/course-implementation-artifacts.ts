@@ -2281,13 +2281,17 @@ function addApCsaAlignmentModule(courseId: string, course: RawCourse) {
 		supplementalProjects: [
 			{
 				title: "AP Alignment Project: FRQ Rubric Rewrite",
+				contentKind: "assignment",
+				preserveInstructions: true,
 				content:
-					"**Project goal:** Rewrite one existing AP CSA project as an FRQ-style prompt with scoring bullets. The rewrite preserves the original programming goal while making the expected method signatures, object state, loop behavior, and scoring evidence explicit.\n\n**Completion checks:**\n- The prompt states method/class constraints.\n- The rubric identifies core correctness and common point losses.\n- The answer can be traced with at least one edge case."
+					"Write an FRQ prompt for [Check-In #2 practice](/courses#ap-computer-science-a-check-in-2-ap-computer-science-a-check-in-2-curriculum-core-check-in-prompt-bank). Specify the signature `int countMultiples(int low, int high, int divisor)`, inclusive bounds between −1000 and 1000, and a positive divisor. Include an ordinary case and a one-value interval.\n\nDraft three independently scorable criteria: visit both bounds, recognize multiples by remainder, and return the accumulated count. Score a method that uses `value < high` but otherwise meets the specification. It earns the latter two criteria and misses the endpoint. Show the failure with (6, 6, 3): expected 1, observed 0. Exchange prompts or score a second response against the same criteria."
 			},
 			{
 				title: "AP Alignment Project: Error Log Review",
+				contentKind: "assignment",
+				preserveInstructions: true,
 				content:
-					"**Project goal:** Build an error log across one module of MCQ or FRQ practice. The log separates the mistake type from the correct concept, because AP improvement depends on recognizing patterns such as loop bounds, object state, reference behavior, and rubric wording.\n\n**Completion checks:**\n- Missed items are grouped by AP concept.\n- One targeted review task is assigned per recurring issue.\n- The next check-in revisits the weakest skill."
+					"Keep one row per missed prediction in a practice set: input, prediction, observed result, first incorrect step, correction, and a new input that checks the correction.\n\nExample: removing short labels from A, B, TREE with a minimum length of 2 leaves B, TREE when a forward loop increments after every deletion. Expected: TREE. Deleting A moved B into the same position. Recheck that position or traverse backward. Test the change on KEEP, X, Y and on an empty list in [Check-In #4 practice](/courses#ap-computer-science-a-check-in-4-ap-computer-science-a-check-in-4-curriculum-core-check-in-prompt-bank). Save the original trace and the new results. Group the rows by cause and retry one fresh example from the most frequent group."
 			}
 		]
 	});

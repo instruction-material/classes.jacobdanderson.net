@@ -893,6 +893,28 @@ describe("AP Computer Science A learner flow", () => {
 		}
 	});
 
+	it("keeps independent exam work and authored guide readings free of generated coding tasks", async () => {
+		setActivePinia(createPinia());
+		const course = (await useCoursesStore().loadCourseById("ap-computer-science-a"))!;
+		const items = course.modules.flatMap(module => [...module.curriculum, ...module.supplementalProjects]);
+		const exam = items.find(item => item.title === "Digital Exam Completion Contract")!;
+		expect(exam.content).toContain("After time expires");
+		expect(exam.content).not.toMatch(/compile and run/i);
+		const guides = course.modules.filter(module => ["Standards Map", "Course Roadmap", "Project Practice Guide"].includes(module.title))
+			.flatMap(module => [...module.curriculum, ...module.supplementalProjects])
+			.filter(item => item.title.startsWith("AP Computer Science A "));
+		expect(guides).toHaveLength(16);
+		const destinations = new Set(course.modules.flatMap(module =>
+			[...module.curriculum, ...module.supplementalProjects].map(item => module.id + "-" + item.id)
+		));
+		for (const guide of guides) {
+			expect(guide.content).not.toMatch(/Compile and run|\*\*Failure modes:|\*\*Extension:/i);
+			const links = [...guide.content.matchAll(/\]\(\/courses#([^)]+)\)/g)];
+			expect(links.length).toBeGreaterThan(0);
+			for (const [, anchor] of links) expect(destinations.has(anchor)).toBe(true);
+		}
+	});
+
 	it("keeps both written collection prompts and their runnable check-in visible", async () => {
 		setActivePinia(createPinia());
 		const course = (await useCoursesStore().loadCourseById("ap-computer-science-a"))!;

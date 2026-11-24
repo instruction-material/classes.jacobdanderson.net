@@ -840,43 +840,25 @@ describe("implemented course development artifacts", () => {
 
 	it("keeps AP CSA learner source links on starter folders with staff solution links", async () => {
 		const course = await requireCourse("ap-computer-science-a");
-		const serializedCourse = JSON.stringify(course);
-		const projectSolutionLinks = courseItems(course)
-			.filter(item =>
-				item.projectLink?.startsWith(
-					"https://github.com/instruction-material/APCS/tree/main/"
-				)
-			)
-			.filter(item => item.projectLink?.endsWith("/solution"))
-			.map(item => item.title);
-		const missingSolutionPairs = courseItems(course)
-			.filter(item =>
-				item.projectLink?.startsWith(
-					"https://github.com/instruction-material/APCS/tree/main/"
-				)
-			)
-			.filter(item => item.projectLink?.endsWith("/starter"))
-			.filter(
-				item =>
-					item.solutionLink !==
-					item.projectLink?.replace(/\/starter$/, "/solution")
-			)
-			.map(item => item.title);
-
-		expect(projectSolutionLinks).toHaveLength(0);
-		expect(missingSolutionPairs).toHaveLength(0);
-		expect(serializedCourse).toContain(
-			"APCS/tree/main/APCS1-Mad-Libs/starter"
-		);
-		expect(serializedCourse).toContain(
-			"APCS/tree/main/APCS1-Mad-Libs/solution"
-		);
-		expect(serializedCourse).toContain(
-			"APCS/tree/main/APCS17-Decode/starter"
-		);
-		expect(serializedCourse).toContain(
-			"APCS/tree/main/APCS17-Decode/solution"
-		);
+		const projects = courseItems(course).filter(item => item.ideImport);
+		expect(projects.map(item => item.title)).toEqual(expect.arrayContaining([
+			"Core Project: Mad Libs", "Master Project: Decode"
+		]));
+		for (const item of projects) {
+			expect(item.projectLink, item.title).toMatch(
+				/^https:\/\/github\.com\/instruction-material\/APCS\/tree\/[a-f0-9]{40}\/[^?#]+\/starter$/
+			);
+			expect(item.solutionLink, item.title).toBe(
+				item.projectLink!.replace(/\/starter$/, "/solution")
+			);
+		}
+		for (const [title, folder] of [
+			["Core Project: Mad Libs", "APCS1-Mad-Libs"],
+			["Master Project: Decode", "APCS17-Decode"]
+		]) {
+			const item = projects.find(project => project.title === title)!;
+			expect(item.projectLink!.endsWith("/" + folder + "/starter")).toBe(true);
+		}
 	});
 
 	it("keeps cross-course split-folder source references out of ambiguous roots", async () => {

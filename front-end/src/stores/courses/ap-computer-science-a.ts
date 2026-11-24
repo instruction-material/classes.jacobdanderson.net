@@ -87,8 +87,14 @@ code .\\APCS1-Variables-Reference
 \`\`\`
 
 Most APCS projects use the default Java package and a \`Main.java\` file, so opening the whole APCS repo can confuse VS Code's
-Java runner. For terminal runs, use \`javac Main.java && java Main\` in a single-file assignment, or \`javac *.java && java Main\`
-for folders with multiple Java files.
+Java runner. Open a new PowerShell terminal in the assignment folder. Compile the files and launch Main only if compilation succeeded:
+
+\`\`\`powershell
+javac *.java
+if ($LASTEXITCODE -eq 0) { java Main }
+\`\`\`
+
+For a single-file assignment, the compile command can also be \`javac Main.java\`.
 
 If VS Code still will not run Java, reopen only the assignment folder, re-check \`java -version\` and \`javac -version\`, then run
 \`Java: Clean Java Language Server Workspace\` from the VS Code Command Palette.
@@ -186,6 +192,8 @@ const apComputerScienceASourceCourse: RawCourse = {
 				},
 				{
 					title: "Windows VS Code Java Setup",
+					contentKind: "reading",
+					preserveInstructions: true,
 					content: WINDOWS_VSCODE_JAVA_SETUP,
 					projectLink: APCS_README
 				},
@@ -511,8 +519,10 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 				},
 				{
 					title: "Chapter 2 Multiple Choice Focus",
+					contentKind: "reading",
+					preserveInstructions: true,
 					content:
-						"Use the expressions from Verifying Expressions or the free course-description sample questions. Trace parentheses, arithmetic, comparison, and boolean logic before running the code. Explain one example where integer division differs from decimal division, and record the type and value of one expression. The matching textbook chapter is an optional source of similar questions."
+						"Which value does Java assign to `double share = 7 / 2 + 0.5;`? Choose 3.0, 3.5, or 4.0 before running a program. Both operands of the division are integers, so the quotient is 3. Adding the double 0.5 gives 3.5. The type of the destination variable takes effect after the expression has been evaluated.\n\nNow replace 2 with 2.0. The division gives 3.5 and the addition gives 4.0. Explain why casting the quotient after division cannot recover the discarded fraction. Try the two expressions in [Verifying Expressions](/courses#ap-computer-science-a-apcs2-operators-ap-computer-science-a-apcs2-operators-curriculum-core-project-verifying-expressions) and trace the type and value after each operation. The matching textbook chapter offers optional practice."
 				}
 			],
 			supplementalProjects: [
@@ -3528,27 +3538,27 @@ const AP_CSA_MODULE_FLOW: Record<
 const AP_CSA_CHECK_IN_COPY: Record<string, Record<string, string>> = {
 	"Check-In #1": {
 		"Review Goal":
-			"Check-In #1 is a placement checkpoint before Unit 1. It samples Java syntax, String method calls, numeric expressions, and short traces to guide the choice of pace.",
+			"Check-In #1 places a learner before Unit 1. Predict `7 / 2` and `7 / 2.0` on paper, then explain why the results differ. Integer operands give 3, while a double operand gives 3.5. Review expression types if the two predictions were identical.\n\n[Check-In #1 practice](/courses#ap-computer-science-a-check-in-1-ap-computer-science-a-check-in-1-curriculum-core-check-in-prompt-bank)",
 		"Learning Target Coverage":
-			"Use selected prompts for exact output, expression type and value, String methods, and one simple branch or loop. Use a missed prediction to choose which topic to review before Unit 1."
+			'For the string `"crate"`, predict `substring(1, 4)`. Index 1 is r and index 4 is excluded, giving rat. Group seven items in threes and trace a loop that visits each full group once. It visits two groups and leaves one item.\n\n[Check-In #1 practice](/courses#ap-computer-science-a-check-in-1-ap-computer-science-a-check-in-1-curriculum-core-check-in-prompt-bank)'
 	},
 	"Check-In #2": {
 		"Review Goal":
-			"Check-In #2 closes Units 1 and 2 with a Methods and Control Structures response. Use the written method and its trace to check parameter use, selection, and iteration.",
+			"Check-In #2 closes Units 1 and 2 with a Methods and Control Structures response. Write a method that counts multiples of a positive divisor between two inclusive bounds. For −2 through 2 with divisor 2, list the qualifying values before checking the count: −2, 0, and 2.\n\n[Check-In #2 practice](/courses#ap-computer-science-a-check-in-2-ap-computer-science-a-check-in-2-curriculum-core-check-in-prompt-bank)",
 		"Prompt Bank Coverage":
-			"Explain method parameters and return values, trace a range with a loop, and use a remainder condition to update a counter. Record the first incorrect state or omitted requirement before revising."
+			"For a range containing only 6, a divisor of 3 gives one match. The same range with a divisor of 4 gives zero. Compare the loop condition and the remainder test: changing an inclusive upper bound to an exclusive one skips the only candidate.\n\n[Check-In #2 practice](/courses#ap-computer-science-a-check-in-2-ap-computer-science-a-check-in-2-curriculum-core-check-in-prompt-bank)"
 	},
 	"Check-In #3": {
 		"Review Goal":
-			"Check-In #3 closes Unit 3 Class Creation. The checkpoint verifies a complete class header, private instance variables, constructor initialization, requested methods, controlled state changes, reference reasoning, and exact compliance with a supplied specification.",
+			"Check-In #3 closes Unit 3 Class Creation. Sketch the fields and constructor of a bin with capacity 5 and quantity 2. State which values belong to each instance. Adding 3 fills the bin. A second bin constructed with the same initial values still holds 2.\n\n[Check-In #3 practice](/courses#ap-computer-science-a-check-in-3-ap-computer-science-a-check-in-3-curriculum-core-check-in-prompt-bank)",
 		"Prompt Bank Coverage":
-			"Check the class definition, constructor, accessor, two mutators, and object state. Explain how an alias observes a change made to the same object."
+			"Set `second = first` for a bin holding 2 of 5. After a successful addition of 3 through second, first also reports 5. An attempt to add 1 now returns false and leaves 5 in place. Compare this alias with a separately constructed bin.\n\n[Check-In #3 practice](/courses#ap-computer-science-a-check-in-3-ap-computer-science-a-check-in-3-curriculum-core-check-in-prompt-bank)"
 	},
 	"Check-In #4": {
 		"Review Goal":
-			"Check-In #4 checks the first Data Collections sequence: 1D arrays, rectangular 2D arrays, `ArrayList`, index shifts, mutation, traversal order, and method contracts before wrapper, recursion, searching, and sorting work continues.",
+			"Check-In #4 pairs a Data Analysis with ArrayList response with a 2D Array response. Remove labels shorter than three characters from desk, ox, i, shelf. Both short entries vanish and desk, shelf stay in order. Explain why the item after a removal occupies the vacated index.\n\n[Check-In #4 practice](/courses#ap-computer-science-a-check-in-4-ap-computer-science-a-check-in-4-curriculum-core-check-in-prompt-bank)",
 		"Prompt Bank Coverage":
-			"Trace indexes after a removal and row-column order in a rectangular grid. Explain which method mutates its input and which returns a value."
+			"Trace a rectangular grid with rows [0, 3, −1] and [2, −3, 5] in row-major order. Its positive entries are at (0,1), (1,0), and (1,2). A counting method returns 3 and preserves all six cells. Contrast its effect on the caller with removing entries from a supplied list.\n\n[Check-In #4 practice](/courses#ap-computer-science-a-check-in-4-ap-computer-science-a-check-in-4-curriculum-core-check-in-prompt-bank)"
 	}
 };
 
@@ -3557,7 +3567,14 @@ function alignApCsaCheckInItem(
 	item: RawCourseModuleItem
 ): RawCourseModuleItem {
 	const content = AP_CSA_CHECK_IN_COPY[moduleTitle]?.[item.title];
-	return content ? { ...item, content } : item;
+	return content
+		? {
+				...item,
+				content,
+				contentKind: "reading",
+				preserveInstructions: true
+			}
+		: item;
 }
 
 function apCsaSupplementalPath(item: RawCourseModuleItem) {
@@ -3582,6 +3599,8 @@ function strengthenApCsaItem(item: RawCourseModuleItem): RawCourseModuleItem {
 	if (item.title === "Track Guide") {
 		return {
 			...item,
+			contentKind: "reading",
+			preserveInstructions: true,
 			content: [
 				"The APCS track guide separates Slow/Supported, Medium/Standard, Fast/Quick, Hard/Challenge, and Exam-focused pacing while preserving the four-unit Fall 2025 framework.",
 				"Placement uses recent code, Java-specific mistakes, hand tracing, object-state explanations, and AP-style written reasoning. Fast learners may compress early syntax practice, but Unit 1 object/method evidence, Unit 2 selection/iteration, Unit 3 full class creation, and Unit 4 arrays, ArrayLists, rectangular 2D arrays, text files, recursion, searching, and sorting remain represented.",
@@ -3609,14 +3628,18 @@ function strengthenApCsaItem(item: RawCourseModuleItem): RawCourseModuleItem {
 	if (item.title === "Robust Input and Failure Handling") {
 		return {
 			...item,
+			contentKind: "reading",
+			preserveInstructions: true,
 			content:
-				"Keyboard validation is useful programming enrichment, but accepting keyboard input is outside current AP exam scope. Use this project to separate optional interface robustness from required Unit 4 text-file reasoning with `File`, `Scanner`, documented preconditions, and explicit close behavior."
+				"In Java, accepting keyboard input is outside current AP exam scope. The [text-file exercise](/courses#ap-computer-science-a-apcs9-software-development-lifecycle-ap-computer-science-a-apcs9-software-development-lifecycle-curriculum-unit-4-text-file-input-contract) uses a File for the path and a Scanner for the tokens. An empty file opens successfully and has no tokens, so its open-gate count is zero. A file containing `open unknown open` opens successfully, but the second token invalidates the log. A missing file fails when the scanner opens it, before counting begins. Close an opened scanner after reading.\n\nFor optional keyboard validation, use [Robust Input Practice](/courses#ap-computer-science-a-apcs9-software-development-lifecycle-ap-computer-science-a-apcs9-software-development-lifecycle-curriculum-core-project-robust-input-practice). Explain when prompting for a new token is possible and when the file path itself must change."
 		};
 	}
 
 	if (item.title === "Practice Exam and FRQ Rhythm") {
 		return {
 			...item,
+			contentKind: "reading",
+			preserveInstructions: true,
 			content: apConcept({
 				focus: "The final stretch prepares for the fully digital exam: 42 multiple-choice questions and four FRQ families—Methods and Control Structures, Class Design, Data Analysis with ArrayList, and 2D Array.",
 				practice: [
@@ -3751,8 +3774,10 @@ function decorateApCsaModule(
 			},
 			{
 				title: "Responsible Computing and Independent AI Use",
+				contentKind: "reading",
+				preserveInstructions: true,
 				content: [
-					"Use computing responsibly by checking data provenance, privacy, bias, accessibility, and the social effect of a program design.",
+					"A school wants to estimate how students travel to class. A voluntary survey at the bicycle rack returns eight bicycle trips and two bus trips. The fraction 8/10 describes the respondents. Sampling at the bicycle rack makes cyclists easier to reach, so it gives weak evidence about the whole school. Identify the data provenance (where and how the responses were collected) and propose a sampling location that includes walkers and bus riders. For privacy, record only the travel category with consent and report aggregate counts.",
 					"",
 					"AI tools may support explanation, alternative exploration, or feedback during guided learning only when local course policy permits. Students verify every suggestion, document permitted assistance, and complete protected check-ins and exam simulations independently without AI. No real personal, credential, health, or financial data enters classroom fixtures."
 				].join("\n"),
@@ -3793,12 +3818,15 @@ function decorateApCsaModule(
 		});
 		curriculum.push({
 			title: "Digital Exam Completion Contract",
+			contentKind: "assignment",
+			preserveInstructions: true,
 			content: [
 				"**Readiness evidence:**",
 				"- Two timed 90-minute digital sections using 42 multiple-choice questions and four typed FRQs, with the current Quick Reference available.",
 				"- FRQ coverage includes Methods and Control Structures, Class Design, Data Analysis with ArrayList, and 2D Array.",
 				"- Error log records unit, computational thinking practice, rubric row or reasoning error, correction, and a later successful transfer check.",
-				"- At least one full simulation is completed independently without compiler, IDE execution, or AI assistance, followed by targeted review rather than immediate repetition."
+				"- At least one full simulation is completed independently without compiler, IDE execution, or AI assistance, followed by targeted review.",
+				"After time expires, save the original responses. For one missed rubric row, trace a fresh input that exposes the error, revise the response, and record how the new trace changes."
 			].join("\n"),
 			projectLink: AP_CSA_EXAM,
 			datasetLink: AP_CSA_QUICK_REFERENCE,
@@ -3851,8 +3879,10 @@ function buildOptionalApCsaOopExtension(
 		curriculum: [
 			{
 				title: "Inheritance and Polymorphism Scope Guide",
+				contentKind: "reading",
+				preserveInstructions: true,
 				content:
-					"**Course flow:** APCS7 Inheritance and APCS8 Polymorphism remain available as Java enrichment after Unit 3. The effective Fall 2025 CED explicitly excludes designing and implementing inheritance relationships from AP CSA course and exam scope, so these projects do not replace class-creation or data-collection practice.",
+					"After Unit 3, [class design practice](/courses#ap-computer-science-a-apcs6-classes-part-ii-ap-computer-science-a-apcs6-classes-part-ii-curriculum-frq-family-2-class-design-contract) checks how one class initializes and protects its state. APCS7 and APCS8 extend that idea: a subclass can inherit a method and override its behavior. In the optional [Book and PictureBook project](/courses#ap-computer-science-a-optional-inheritance-and-polymorphism-enrichment-ap-computer-science-a-optional-inheritance-and-polymorphism-enrichment-supplemental-core-project-book-and-picturebook-class), predict which description prints when a Book reference holds a PictureBook. Designing inheritance hierarchies is optional Java enrichment. The exam path continues with data collections.",
 				learningPath: "core"
 			}
 		],

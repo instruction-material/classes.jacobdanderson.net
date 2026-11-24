@@ -11,6 +11,7 @@ interface ResearchExpansionProfile {
 	moduleAdditions: string[];
 	projectTypes: string[];
 	projectBriefs?: Record<string, string>;
+	guideReadings?: Record<string, string>;
 	assessments: string[];
 	materials: string[];
 	safety?: string;
@@ -676,11 +677,27 @@ function buildExpansionModules(
 	profile: ResearchExpansionProfile,
 	courseLabel: string
 ) {
-	return [
+	const modules = [
 		buildStandardsModule(profile, courseLabel),
 		buildSequencingModule(profile, courseLabel),
 		buildProjectModule(profile, courseLabel)
 	];
+	if (profile.guideReadings) {
+		for (const module of modules) {
+			for (const item of [
+				...module.curriculum,
+				...module.supplementalProjects
+			]) {
+				const reading = profile.guideReadings[item.title];
+				if (reading) {
+					item.content = reading;
+					item.contentKind = "reading";
+					item.preserveInstructions = true;
+				}
+			}
+		}
+	}
+	return modules;
 }
 
 const scratchProfile: ResearchExpansionProfile = {
@@ -1319,6 +1336,73 @@ const apCsaProjectBriefs: Record<string, string> = {
 	].join("\n")
 };
 
+const apCsaGuideReadings: Record<string, string> = {
+	"AP Computer Science A Reference Guide": [
+		"The course description lays out the four units. The Java Quick Reference lists library methods available during the exam. When tracing a String method, check its parameters and return type in the reference, then apply the call to a specific string.",
+		"[Course description and Java Quick Reference](/courses#ap-computer-science-a-general-course-introduction-and-setup-ap-computer-science-a-general-course-introduction-and-setup-curriculum-current-four-unit-framework-and-digital-exam)"
+	].join("\n\n"),
+	"AP Computer Science A Core Skills": [
+		"Read an expression, predict the type and value, write a method to meet a contract, and trace the caller’s state after the call. Start with integer division: 5 / 2 yields 2. With 5 / 2.0 the result is 2.5. Explain the difference before editing the expression.",
+		"[Practice expression tracing](/courses#ap-computer-science-a-apcs2-operators-ap-computer-science-a-apcs2-operators-curriculum-core-project-verifying-expressions)"
+	].join("\n\n"),
+	"AP Computer Science A Next Topics": [
+		"After writing a loop over one array, trace a rectangular grid by row and column. Then use the same inner loop to sum one row. With rows [3, 1, 2] and [4, 5, 0], the sums are 6 and 9. Switching the dimensions confuses room count with observations per room.",
+		"[Practice rectangular grids](/courses#ap-computer-science-a-apcs10-arrays-ap-computer-science-a-apcs10-arrays-supplemental-project-practice-with-two-dimensional-arrays)"
+	].join("\n\n"),
+	"AP Computer Science A Boundaries": [
+		"Exam preparation includes writing classes and tracing recursive calls. Designing an inheritance hierarchy is optional. Choose the class contract to practise constructors and private state. Choose the enrichment guide to explore overriding after class design.",
+		"[Required class design](/courses#ap-computer-science-a-apcs6-classes-part-ii-ap-computer-science-a-apcs6-classes-part-ii-curriculum-frq-family-2-class-design-contract) · [Optional inheritance](/courses#ap-computer-science-a-optional-inheritance-and-polymorphism-enrichment-ap-computer-science-a-optional-inheritance-and-polymorphism-enrichment-curriculum-inheritance-and-polymorphism-scope-guide)"
+	].join("\n\n"),
+	"AP Computer Science A Prerequisite Check": [
+		'Predict the output of `"boat".substring(1, 3)` and `9 / 4`. Check for oa and 2. Explain the excluded endpoint and the discarded fraction. If either rule is unfamiliar, revisit the corresponding Unit 1 lesson before increasing the pace.',
+		"[Check-In #1 practice](/courses#ap-computer-science-a-check-in-1-ap-computer-science-a-check-in-1-curriculum-core-check-in-prompt-bank)"
+	].join("\n\n"),
+	"AP Computer Science A Pathway Map": [
+		"Begin with object and method calls, then use selection and iteration inside methods. Once those methods are familiar, give each object its own state in a class. Collections then hold many values or objects and loops process them. Select a pace using the placement examples.",
+		"[Compare pacing tracks](/courses#ap-computer-science-a-general-course-introduction-and-setup-ap-computer-science-a-general-course-introduction-and-setup-curriculum-track-guide)"
+	].join("\n\n"),
+	"AP Computer Science A Follow-Up Path": [
+		"After a first timed attempt, choose practice from the first failed step. If a loop skips the upper endpoint, try a one-element range. If two supposedly separate objects change together, trace assignment and construction. Repeat on an unfamiliar input before another timed set.",
+		"[Review the error log](/courses#ap-computer-science-a-ap-csa-exam-alignment-and-frq-practice-map-ap-computer-science-a-ap-csa-exam-alignment-and-frq-practice-map-supplemental-ap-alignment-project-error-log-review)"
+	].join("\n\n"),
+	"AP Computer Science A Resource Map": [
+		"For practice from the exam publisher, use the released questions and their scoring guide. Save the first response before opening the guide. Identify the first rubric requirement it misses, then test a revision against a boundary input.",
+		"[Released questions and scoring guide](/courses#ap-computer-science-a-apcs17-master-projects-and-test-prep-ap-computer-science-a-apcs17-master-projects-and-test-prep-curriculum-2026-released-frq-set)"
+	].join("\n\n"),
+	"AP Computer Science A Module Alignment Guide": [
+		"Match the expected result to the unit. A method that counts qualifying numbers in an interval uses selection and iteration. A bin whose quantity changes across calls uses class creation. A method that removes adjacent short labels applies collection traversal and mutation.",
+		"[Check-In #2 practice](/courses#ap-computer-science-a-check-in-2-ap-computer-science-a-check-in-2-curriculum-core-check-in-prompt-bank) · [Check-In #3 practice](/courses#ap-computer-science-a-check-in-3-ap-computer-science-a-check-in-3-curriculum-core-check-in-prompt-bank) · [Check-In #4 practice](/courses#ap-computer-science-a-check-in-4-ap-computer-science-a-check-in-4-curriculum-core-check-in-prompt-bank)"
+	].join("\n\n"),
+	"AP Computer Science A Reference Map": [
+		"Use a worked trace when the output differs from the prediction. For list removal, record the index and list contents before and after each removal. For recursion, record each argument on entry and each pending operation on return.",
+		"[List mutation](/courses#ap-computer-science-a-apcs11-arraylists-ap-computer-science-a-apcs11-arraylists-curriculum-mutation-traversal-and-removal-rules) · [Recursive calls](/courses#ap-computer-science-a-apcs15-recursion-ap-computer-science-a-apcs15-recursion-curriculum-core-project-tracing-recursion)"
+	].join("\n\n"),
+	"AP Computer Science A Prerequisite Map": [
+		"Binary search assumes sorted input and keeps an interval of candidate indexes. On [2, 4, 6, 8, 10], a search for 8 starts at 6 and discards the left half. A search that discards half of an unsorted input can discard the target itself.",
+		"[Trace the search interval](/courses#ap-computer-science-a-apcs16-binary-search-and-merge-sort-ap-computer-science-a-apcs16-binary-search-and-merge-sort-curriculum-binary-search-preconditions)"
+	].join("\n\n"),
+	"AP Computer Science A Resource Inventory": [
+		"For the gate-log exercise, Main.java opens the file, GateLog.java counts the observations, and gates.txt supplies the tokens. Keep the three in the same project folder. Compare a log containing only closed gates, an empty log, and a missing file.",
+		"[Gate-log starter, data and worked solution](/courses#ap-computer-science-a-apcs9-software-development-lifecycle-ap-computer-science-a-apcs9-software-development-lifecycle-curriculum-unit-4-text-file-input-contract)"
+	].join("\n\n"),
+	"AP Computer Science A Project Ladder": [
+		"Start with a method whose result depends only on its arguments. Next, design a class whose result depends on earlier calls. Finally, update a collection while preserving the order of its surviving elements. Save a trace at each stage so the change in state is visible.",
+		"[Check-In #2 practice](/courses#ap-computer-science-a-check-in-2-ap-computer-science-a-check-in-2-curriculum-core-check-in-prompt-bank) · [Check-In #3 practice](/courses#ap-computer-science-a-check-in-3-ap-computer-science-a-check-in-3-curriculum-core-check-in-prompt-bank) · [Check-In #4 practice](/courses#ap-computer-science-a-check-in-4-ap-computer-science-a-check-in-4-curriculum-core-check-in-prompt-bank)"
+	].join("\n\n"),
+	"AP Computer Science A Checkpoints": [
+		"Try one new boundary case per response. For counting multiples, make the lower and upper bounds equal. For a bin, attempt a deposit at capacity. For a rectangular grid, use a row with zero columns. Predict the result and identify which condition handles it.",
+		"[Sequence the four written response types](/courses#ap-computer-science-a-ap-csa-exam-alignment-and-frq-practice-map-ap-computer-science-a-ap-csa-exam-alignment-and-frq-practice-map-curriculum-frq-cadence)"
+	].join("\n\n"),
+	"AP Computer Science A Rubric": [
+		"For a bin already holding 5 of 5 items, add(1) must return false and leave the quantity at 5. A method that increments the quantity before returning false meets the return-value criterion but fails the state criterion. Score these independently and trace a successful deposit as well.",
+		"[SupplyBin specification](/courses#ap-computer-science-a-apcs6-classes-part-ii-ap-computer-science-a-apcs6-classes-part-ii-curriculum-frq-family-2-class-design-contract)"
+	].join("\n\n"),
+	"AP Computer Science A Capstone Gate": [
+		"Before combining classes and collections in a larger program, demonstrate one object that updates correctly, a collection that visits each object, and a test that catches an incorrect update. For example, add the same amount to two bins with different capacities and check their return values and final quantities independently.",
+		"[Test a state change](/courses#ap-computer-science-a-apcs6-classes-part-ii-ap-computer-science-a-apcs6-classes-part-ii-curriculum-frq-family-2-class-design-contract) · [Traverse a collection](/courses#ap-computer-science-a-apcs11-arraylists-ap-computer-science-a-apcs11-arraylists-curriculum-core-project-practice-with-arraylists)"
+	].join("\n\n")
+};
+
 const apCsaProfile: ResearchExpansionProfile = {
 	family: "AP Computer Science A",
 	priority: "soon",
@@ -1341,6 +1425,7 @@ const apCsaProfile: ResearchExpansionProfile = {
 	],
 	projectTypes: Object.keys(apCsaProjectBriefs),
 	projectBriefs: apCsaProjectBriefs,
+	guideReadings: apCsaGuideReadings,
 	assessments: [
 		"Timed MCQ checkpoints.",
 		"FRQ scoring with official-style rubrics.",
