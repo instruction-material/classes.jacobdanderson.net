@@ -73,7 +73,7 @@ interface MutableKarelWorld {
 interface JavaMethodDefinition {
 	body: string;
 	name: string;
-	parameters: string[];
+	parameters: { name: string; type: string }[];
 	returnType: string;
 }
 
@@ -177,6 +177,7 @@ type JavaConsoleValue =
 			value: null;
 	  }
 	| {
+			floating?: boolean;
 			type: "number";
 			value: number;
 	  }
@@ -192,6 +193,9 @@ type JavaConsoleValue =
 			type: "string";
 			value: string;
 	  };
+
+type JavaNumber = Extract<JavaConsoleValue, { type: "number" }>;
+type JavaNumericCast = "char" | "double" | "int";
 
 type JavaConsoleSignal =
 	| "break"
@@ -452,7 +456,7 @@ function seedJavaLiteralConstants(
 	output: JavaConsoleOutputState
 ) {
 	const constantLeftSidePattern =
-		/^(?:(?:public|private|protected|static|final)\s+)*(?:String|int|long|double|float|boolean|char)\s+([A-Z_]\w*)$/i;
+		/^(?:(?:public|private|protected|static|final)\s+)*(String|int|long|double|float|boolean|char)\s+([A-Z_]\w*)$/i;
 	const typeDeclarationPattern =
 		/\b(?:class|enum|interface|record)\s+[A-Z_]\w*\b/i;
 	let braceDepth = 0;
@@ -522,11 +526,13 @@ function seedJavaLiteralConstants(
 		}
 
 		const match = leftSide.match(constantLeftSidePattern);
-		const name = match?.[1];
-		if (!name) {
-			continue;
-		}
-		const value = evaluateJavaExpression(rawValue, context, output);
+		const declaredType = match?.[1];
+		const name = match?.[2];
+		if (!declaredType || !name) continue;
+		const value = applyDeclaredJavaType(
+			evaluateJavaExpression(rawValue, context, output),
+			declaredType
+		);
 		context.variables.set(name, value);
 		context.constants.set(name, value);
 	}
@@ -916,10 +922,10 @@ function storeJavaVariableFromStatement(
 		setJavaIndexedValue(
 			variableName,
 			rawIndex,
-			{
-				type: "number",
-				value: javaValueToNumber(currentValue) + direction
-			},
+			javaNumber(
+				javaValueToNumber(currentValue) + direction,
+				isFloatingJavaNumber(currentValue)
+			),
 			context,
 			output
 		);
@@ -977,10 +983,13 @@ function storeJavaVariableFromStatement(
 		const currentNumber =
 			currentValue?.type === "number" ? currentValue.value : 0;
 		const direction = trimmed.includes("--") ? -1 : 1;
-		context.variables.set(variableName, {
-			type: "number",
-			value: currentNumber + direction
-		});
+		context.variables.set(
+			variableName,
+			javaNumber(
+				currentNumber + direction,
+				isFloatingJavaNumber(currentValue)
+			)
+		);
 		return;
 	}
 
@@ -1020,13 +1029,19 @@ function storeJavaVariableFromStatement(
 
 	const assignment = trimmed.match(JAVA_VARIABLE_ASSIGNMENT_START_RE);
 	if (assignment?.[1]) {
+		const value = evaluateJavaExpression(
+			trimmed.slice(assignment[0].length),
+			context,
+			output
+		);
+		const floating = isFloatingJavaNumber(
+			context.variables.get(assignment[1])
+		);
 		context.variables.set(
 			assignment[1],
-			evaluateJavaExpression(
-				trimmed.slice(assignment[0].length),
-				context,
-				output
-			)
+			floating && value.type === "number"
+				? javaNumber(value.value, true)
+				: value
 		);
 	}
 }
@@ -1036,32 +1051,57 @@ function applyJavaCompoundAssignment(
 	operator: string,
 	nextValue: JavaConsoleValue
 ): JavaConsoleValue {
-	if (operator === "+=") {
-		if (currentValue.type === "string" || nextValue.type === "string") {
-			return {
-				type: "string",
-				value: joinJavaText(
-					javaValueToString(currentValue),
-					javaValueToString(nextValue)
-				)
-			};
-		}
-		return {
-			type: "number",
-			value:
-				javaValueToNumber(currentValue) + javaValueToNumber(nextValue)
-		};
+	if (operator === "+=" && currentValue.type === "string") {
+		return combineJavaAdditionValues(currentValue, nextValue);
 	}
+	const result = applyJavaArithmetic(
+		currentValue,
+		operator[0] ?? "",
+		nextValue
+	);
+	const floating = isFloatingJavaNumber(currentValue);
+	return javaNumber(
+		floating ? result.value : Math.trunc(result.value),
+		floating
+	);
+}
 
-	const currentNumber = javaValueToNumber(currentValue);
-	const nextNumber = javaValueToNumber(nextValue);
-	if (operator === "-=")
-		return { type: "number", value: currentNumber - nextNumber };
-	if (operator === "*=")
-		return { type: "number", value: currentNumber * nextNumber };
-	if (operator === "/=")
-		return { type: "number", value: currentNumber / nextNumber };
-	return { type: "number", value: currentNumber % nextNumber };
+function javaNumber(value: number, floating: boolean): JavaNumber {
+	return { type: "number", value, floating };
+}
+
+function isFloatingJavaNumber(value?: JavaConsoleValue) {
+	return (
+		value?.type === "number" &&
+		(value.floating ?? !Number.isInteger(value.value))
+	);
+}
+
+function applyJavaArithmetic(
+	left: JavaConsoleValue,
+	operator: string,
+	right: JavaConsoleValue
+): JavaNumber {
+	const leftNumber = javaValueToNumber(left);
+	const rightNumber = javaValueToNumber(right);
+	const floating = isFloatingJavaNumber(left) || isFloatingJavaNumber(right);
+	switch (operator) {
+		case "+":
+			return javaNumber(leftNumber + rightNumber, floating);
+		case "-":
+			return javaNumber(leftNumber - rightNumber, floating);
+		case "*":
+			return javaNumber(leftNumber * rightNumber, floating);
+		case "/": {
+			const quotient = leftNumber / rightNumber;
+			return javaNumber(
+				floating ? quotient : Math.trunc(quotient),
+				floating
+			);
+		}
+		default:
+			return javaNumber(leftNumber % rightNumber, floating);
+	}
 }
 
 function evaluateJavaExpression(
@@ -1158,7 +1198,7 @@ function evaluateBoundedJavaExpression(
 	if (mixedAdditionValue) return mixedAdditionValue;
 
 	const numericValue = evaluateNumericExpression(trimmed, context, output);
-	if (numericValue !== null) return { type: "number", value: numericValue };
+	if (numericValue !== null) return numericValue;
 
 	if (/^"(?:\\.|[^"\\])*"$/.test(trimmed)) {
 		return {
@@ -1219,9 +1259,9 @@ function evaluateJavaScannerRead(
 
 	if (method === "nextdouble") {
 		const value = parseJavaScannerDouble(raw);
-		if (Number.isFinite(value)) return { type: "number", value };
+		if (Number.isFinite(value)) return javaNumber(value, true);
 		context.stderr.push(`Scanner could not read double from "${raw}".`);
-		return { type: "number", value: 0 };
+		return javaNumber(0, true);
 	}
 
 	if (method === "nextboolean") {
@@ -1367,10 +1407,7 @@ function combineJavaAdditionValues(
 		};
 	}
 	if (isJavaNumericAdditionValue(left) && isJavaNumericAdditionValue(right)) {
-		return {
-			type: "number",
-			value: javaValueToNumber(left) + javaValueToNumber(right)
-		};
+		return applyJavaArithmetic(left, "+", right);
 	}
 	return {
 		type: "string",
@@ -1957,6 +1994,9 @@ function applyDeclaredJavaType(
 			value: String.fromCharCode(Math.trunc(javaValueToNumber(value)))
 		};
 	}
+	if (value.type === "number" && /^(?:double|float)$/i.test(declaredType)) {
+		return javaNumber(value.value, true);
+	}
 	if (value.type !== "array" || !/\[\s*\]/.test(declaredType)) return value;
 	const elementType = declaredType.match(/^([A-Z_]\w*)/i)?.[1];
 	return elementType ? { ...value, elementType } : value;
@@ -2087,9 +2127,12 @@ function getJavaIndexedValue(
 		if (current?.type !== "array" && current?.type !== "arrayList") {
 			return { type: "null", value: null };
 		}
-		current = current.value[
-			javaExpressionToIndex(rawIndex, context, output)
-		] ?? { type: "null", value: null };
+		const index = javaExpressionToIndex(rawIndex, context, output);
+		const item = current.value[index] ?? { type: "null", value: null };
+		current =
+			item.type === "number"
+				? applyDeclaredJavaType(item, current.elementType)
+				: item;
 	}
 	return current ?? { type: "null", value: null };
 }
@@ -2147,23 +2190,35 @@ function evaluateJavaCastExpression(
 	if (!expression.startsWith("(")) return null;
 	const castEnd = findMatchingDelimiter(expression, 0, "(", ")");
 	if (castEnd < 0) return null;
-	const castType = expression.slice(1, castEnd).trim().toLowerCase();
-	if (castType !== "int" && castType !== "double" && castType !== "char")
+	const castType = expression.slice(1, castEnd).trim();
+	const operand = expression.slice(castEnd + 1).trim();
+	if (
+		!isJavaNumericCast(castType) ||
+		findTopLevelJavaOperator(operand, ["+", "-", "*", "/", "%"])
+	) {
 		return null;
-	const value = javaValueToNumber(
-		evaluateJavaExpression(
-			expression.slice(castEnd + 1).trim(),
-			context,
-			output
-		)
-	);
-	if (castType === "char") {
-		return { type: "char", value: String.fromCharCode(Math.trunc(value)) };
 	}
-	return {
-		type: "number",
-		value: castType === "int" ? Math.trunc(value) : value
-	};
+	return castJavaNumber(
+		evaluateJavaExpression(operand, context, output),
+		castType
+	);
+}
+
+function isJavaNumericCast(type?: string): type is JavaNumericCast {
+	return type === "int" || type === "double" || type === "char";
+}
+
+function castJavaNumber(
+	value: JavaConsoleValue,
+	type: JavaNumericCast
+): JavaConsoleValue {
+	const number = javaValueToNumber(value);
+	if (type === "char") {
+		return { type: "char", value: String.fromCharCode(Math.trunc(number)) };
+	}
+	return type === "int"
+		? javaNumber(Math.trunc(number), false)
+		: javaNumber(number, true);
 }
 
 function evaluateJavaRandomMethodExpression(
@@ -2190,9 +2245,8 @@ function evaluateJavaRandomMethodExpression(
 	if (method === "nextboolean") {
 		return { type: "boolean", value: unit >= 0.5 };
 	}
-	if (method === "nextdouble" || method === "nextfloat") {
-		return { type: "number", value: unit };
-	}
+	if (method === "nextdouble" || method === "nextfloat")
+		return javaNumber(unit, true);
 	if (method === "nextlong") {
 		return {
 			type: "number",
@@ -2235,33 +2289,35 @@ function evaluateJavaMathMethodExpression(
 	output?: JavaConsoleOutputState
 ): JavaConsoleValue | null {
 	const constant = javaMathConstantValue(expression);
-	if (constant !== null) return { type: "number", value: constant };
+	if (constant !== null) return javaNumber(constant, true);
 
 	const match = expression.match(/^Math\.(\w+)\s*\(([\s\S]*)\)$/);
 	if (!match?.[1]) return null;
-	const args = splitJavaArguments(match[2] ?? "").map(arg =>
-		javaValueToNumber(evaluateJavaExpression(arg, context, output))
+	const values = splitJavaArguments(match[2] ?? "").map(arg =>
+		evaluateJavaExpression(arg, context, output)
 	);
+	const args = values.map(javaValueToNumber);
+	const floating = values.some(isFloatingJavaNumber);
 	const method = match[1];
 	switch (method) {
 		case "abs":
-			return { type: "number", value: Math.abs(args[0] ?? 0) };
+			return javaNumber(Math.abs(args[0] ?? 0), floating);
 		case "ceil":
-			return { type: "number", value: Math.ceil(args[0] ?? 0) };
+			return javaNumber(Math.ceil(args[0] ?? 0), true);
 		case "floor":
-			return { type: "number", value: Math.floor(args[0] ?? 0) };
+			return javaNumber(Math.floor(args[0] ?? 0), true);
 		case "max":
-			return { type: "number", value: Math.max(...args) };
+			return javaNumber(Math.max(...args), floating);
 		case "min":
-			return { type: "number", value: Math.min(...args) };
+			return javaNumber(Math.min(...args), floating);
 		case "pow":
-			return { type: "number", value: (args[0] ?? 0) ** (args[1] ?? 0) };
+			return javaNumber((args[0] ?? 0) ** (args[1] ?? 0), true);
 		case "random":
-			return { type: "number", value: Math.random() };
+			return javaNumber(Math.random(), true);
 		case "round":
 			return { type: "number", value: Math.round(args[0] ?? 0) };
 		case "sqrt":
-			return { type: "number", value: Math.sqrt(args[0] ?? 0) };
+			return javaNumber(Math.sqrt(args[0] ?? 0), true);
 		default:
 			return null;
 	}
@@ -2392,9 +2448,14 @@ function executeJavaConsoleMethodCall(
 	};
 	const args = splitJavaArguments(rawArguments);
 	method.parameters.forEach((parameter, parameterIndex) => {
+		const argument = evaluateJavaExpression(
+			args[parameterIndex] ?? "",
+			context,
+			output
+		);
 		localContext.variables.set(
-			parameter,
-			evaluateJavaExpression(args[parameterIndex] ?? "", context, output)
+			parameter.name,
+			applyDeclaredJavaType(argument, parameter.type)
 		);
 	});
 
@@ -2409,7 +2470,7 @@ function executeJavaConsoleMethodCall(
 		}
 	);
 	if (signal && typeof signal === "object" && signal.kind === "return")
-		return signal.value;
+		return applyDeclaredJavaType(signal.value, method.returnType);
 	return { type: "null", value: null };
 }
 
@@ -2758,70 +2819,72 @@ function evaluateNumericExpression(
 	let index = 0;
 
 	const parser = {
-		parseExpression(): number {
+		parseExpression(): JavaConsoleValue {
 			let value = parser.parseTerm();
 			while (tokens[index] === "+" || tokens[index] === "-") {
-				const operator = tokens[index];
-				index += 1;
-				const nextValue = parser.parseTerm();
-				value =
-					operator === "+" ? value + nextValue : value - nextValue;
+				const operator = tokens[index++] ?? "";
+				value = applyJavaArithmetic(
+					value,
+					operator,
+					parser.parseTerm()
+				);
 			}
 			return value;
 		},
-		parseFactor(): number {
-			const token = tokens[index];
+		parseFactor(): JavaConsoleValue {
+			const token = tokens[index++];
 			if (token === "+" || token === "-") {
-				index += 1;
-				const value = parser.parseFactor();
-				return token === "-" ? -value : value;
+				const operand = parser.parseFactor();
+				const value = javaValueToNumber(operand);
+				return javaNumber(
+					token === "-" ? -value : value,
+					isFloatingJavaNumber(operand)
+				);
 			}
 			if (token === "(") {
-				index += 1;
+				const castType = tokens[index];
+				if (isJavaNumericCast(castType) && tokens[index + 1] === ")") {
+					index += 2;
+					return castJavaNumber(parser.parseFactor(), castType);
+				}
 				const value = parser.parseExpression();
-				if (tokens[index] !== ")")
+				if (tokens[index++] !== ")")
 					throw new Error("Missing closing paren");
-				index += 1;
 				return value;
 			}
-			index += 1;
 			if (/^'(?:\\.|[^'\\])'$/.test(token ?? "")) {
-				return (
-					unescapeJavaString((token ?? "").slice(1, -1)).codePointAt(
-						0
-					) ?? 0
-				);
+				return {
+					type: "char",
+					value: unescapeJavaString((token ?? "").slice(1, -1))
+				};
 			}
 			if (
 				/^(?:[A-Z_]\w*\.)?[A-Z_]\w*\s*\(/i.test(token ?? "") ||
 				/^[A-Z_]\w*\s*\[/i.test(token ?? "")
 			) {
-				return javaValueToNumber(
-					evaluateJavaExpression(token ?? "", context, output)
-				);
+				return evaluateJavaExpression(token ?? "", context, output);
 			}
 			const constant = javaMathConstantValue(token ?? "");
-			if (constant !== null) return constant;
+			if (constant !== null) return javaNumber(constant, true);
 			const variable = context?.variables.get(token ?? "");
-			const value = variable
-				? javaValueToNumber(variable)
-				: Number(token);
+			if (variable) return variable;
+			const value = Number(token);
 			if (!Number.isFinite(value)) throw new Error("Invalid number");
-			return value;
+			return javaNumber(value, token?.includes(".") ?? false);
 		},
-		parseTerm(): number {
+		parseTerm(): JavaConsoleValue {
 			let value = parser.parseFactor();
 			while (
 				tokens[index] === "*" ||
 				tokens[index] === "/" ||
 				tokens[index] === "%"
 			) {
-				const operator = tokens[index];
-				index += 1;
-				const nextValue = parser.parseFactor();
-				if (operator === "*") value *= nextValue;
-				if (operator === "/") value /= nextValue;
-				if (operator === "%") value %= nextValue;
+				const operator = tokens[index++] ?? "";
+				value = applyJavaArithmetic(
+					value,
+					operator,
+					parser.parseFactor()
+				);
 			}
 			return value;
 		}
@@ -2829,7 +2892,12 @@ function evaluateNumericExpression(
 
 	try {
 		const value = parser.parseExpression();
-		if (index !== tokens.length || !Number.isFinite(value)) return null;
+		if (
+			index !== tokens.length ||
+			(value.type === "number" && !Number.isFinite(value.value))
+		) {
+			return null;
+		}
 		return value;
 	} catch {
 		return null;
@@ -3382,19 +3450,20 @@ function parseJavaMethods(source: string) {
 		methods.set(name, {
 			body: source.slice(openingBrace + 1, closingBrace),
 			name,
-			parameters: parseJavaParameterNames(match[3] ?? ""),
+			parameters: parseJavaParameters(match[3] ?? ""),
 			returnType
 		});
 	}
 	return methods;
 }
 
-function parseJavaParameterNames(parameters: string) {
-	return splitJavaArguments(parameters)
-		.map(
-			parameter => parameter.match(/\b([A-Z_]\w*)\s*(?:\[\s*\])*$/i)?.[1]
-		)
-		.filter((parameter): parameter is string => Boolean(parameter));
+function parseJavaParameters(parameters: string) {
+	return splitJavaArguments(parameters).flatMap(parameter => {
+		const match = parameter.match(/^(.*?)\b([A-Z_]\w*)\s*((?:\[\s*\])*)$/i);
+		if (!match?.[2]) return [];
+		const type = (match[1] ?? "").trim().replace(/^final\s+/, "");
+		return [{ name: match[2], type: type + (match[3] ?? "") }];
+	});
 }
 
 function collectKarelCommandsFromBody(
@@ -3651,7 +3720,7 @@ function collectKarelHelperMethodCall(
 	const nextAliases = new Set(robotAliases);
 	method.parameters.forEach((parameter, parameterIndex) => {
 		const arg = args[parameterIndex]?.trim();
-		if (arg && robotAliases.has(arg)) nextAliases.add(parameter);
+		if (arg && robotAliases.has(arg)) nextAliases.add(parameter.name);
 	});
 	collectKarelCommandsFromBody(
 		method.body,

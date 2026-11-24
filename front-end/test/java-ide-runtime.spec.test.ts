@@ -626,6 +626,58 @@ public class Main {
 		expect(result.stdout).toEqual(["123 total=6", " w0 w1"]);
 	});
 
+	it("uses Java division and compound assignment types", () => {
+		const result = runJavaIdeProject({
+			activeFileName: "Main.java",
+			files: [
+				{
+					name: "Main.java",
+					content: `public class Main {
+    static final double THREE = 3;
+
+    static double half(double value) {
+        return value / 2;
+    }
+
+    public static void main(String[] args) {
+        int numerator = 3;
+        int denominator = 2;
+        double floating = 3;
+        double[] values = {3};
+        System.out.println(numerator / denominator);
+        System.out.println(-3 / 2);
+        System.out.println((double) numerator / denominator);
+        System.out.println((double) (numerator / denominator));
+        System.out.println(floating / denominator);
+        System.out.println(THREE / denominator);
+        System.out.println(values[0] / denominator);
+        System.out.println(half(numerator));
+        System.out.println(Math.pow(2, 2) / 3);
+        int narrowed = 3;
+        narrowed /= 2.0;
+        System.out.println(narrowed);
+        floating = 3;
+        floating /= 2;
+        System.out.println(floating);
+        int rest = 9;
+        while (rest > 0) {
+            System.out.println(rest);
+            rest /= 2;
+        }
+    }
+}`
+				}
+			],
+			mode: "java"
+		});
+
+		expect(result.stderr).toEqual([]);
+		expect(result.stdout).toEqual([
+			"1", "-1", "1.5", "1", "1.5", "1.5", "1.5", "1.5",
+			"1.3333333333333333", "1", "1.5", "9", "4", "2", "1"
+		]);
+	});
+
 	it("previews beginner string, cast, and Math expressions", () => {
 		const result = runJavaIdeProject({
 			activeFileName: "Main.java",
