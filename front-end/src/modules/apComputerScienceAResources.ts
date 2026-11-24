@@ -256,7 +256,28 @@ export const apRuntimeAnalysisResources = projectRoles(
 	"https://github.com/instruction-material/APCS/tree/1579d8c80e31869e053b60d6fadc067fa61b7573/APCS13-Runtime-Analysis"
 );
 
+const farmAndShapePacks =
+	"https://github.com/instruction-material/APCS/tree/95c8a262e85778b7d99836e082f02ad785da69e0";
+export const apFarmAndShapeResources = {
+	"farm-class": projectRoles(`${farmAndShapePacks}/APCS6-Farm-Class`),
+	"many-shapes": projectRoles(`${farmAndShapePacks}/APCS8-Many-Shapes`)
+};
+
+const storyShuffleTracePacks =
+	"https://github.com/instruction-material/APCS/tree/1ec1614f5fe54cf37edd164a7a082c6e21c12f45";
+export const apStoryShuffleTraceResources = {
+	"mad-libs": projectRoles(`${storyShuffleTracePacks}/APCS1-Mad-Libs`),
+	"card-shuffler": projectRoles(
+		`${storyShuffleTracePacks}/APCS11-Card-Shuffler`
+	),
+	"tracing-recursion": projectRoles(
+		`${storyShuffleTracePacks}/APCS15-Tracing-Recursion`
+	)
+};
+
 const restoredProjects = {
+	...apStoryShuffleTraceResources,
+	...apFarmAndShapeResources,
 	"runtime-analysis": apRuntimeAnalysisResources,
 	...apInputAndCardResources,
 	"binary-search-trace": apBinarySearchResources,
@@ -294,6 +315,26 @@ export function apComputerScienceAProjectKey(
 }
 
 const nativeClassWorkspaces = {
+	"card-shuffler": {
+		item: "ap-computer-science-a-apcs11-arraylists-supplemental-project-card-shuffler",
+		files: ["Card.java"]
+	},
+
+	"farm-class": {
+		item: "ap-computer-science-a-apcs6-classes-part-ii-supplemental-project-farm-class",
+		files: ["Farm.java"]
+	},
+	"many-shapes": {
+		item: "ap-computer-science-a-optional-inheritance-and-polymorphism-enrichment-supplemental-core-project-many-shapes",
+		files: [
+			"Circle.java",
+			"Rectangle.java",
+			"RightTriangle.java",
+			"Shape.java",
+			"Square.java"
+		]
+	},
+
 	"robust-input": {
 		item: "ap-computer-science-a-apcs9-software-development-lifecycle-curriculum-core-project-robust-input-practice",
 		files: ["RobustScanner.java"]

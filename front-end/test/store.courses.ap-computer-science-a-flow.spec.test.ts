@@ -11,6 +11,8 @@ import {
 	apElevatorWarningResources,
 	apEnrichmentResources,
 	apInputAndCardResources,
+	apStoryShuffleTraceResources,
+	apFarmAndShapeResources,
 	apExpressionsAndClassResources,
 	apFoundationsSupplementalResources,
 	apIntroductoryResources,
@@ -752,6 +754,46 @@ describe("AP Computer Science A learner flow", () => {
 			"ap-computer-science-a-apcs12-wrapper-classes-curriculum-core-project-suits-decks-and-hands",
 			"core",
 			"Card.java Deck.java Hand.java Suit.java"
+		],
+		[
+			"APCS6 Classes Part II",
+			"Project: Farm Class",
+			"farm-class",
+			"ap-computer-science-a-apcs6-classes-part-ii-supplemental-project-farm-class",
+			"choice",
+			"Farm.java"
+		],
+		[
+			"Optional Inheritance and Polymorphism Enrichment",
+			"Core Project: Many Shapes",
+			"many-shapes",
+			"ap-computer-science-a-optional-inheritance-and-polymorphism-enrichment-supplemental-core-project-many-shapes",
+			"challenge",
+			"Circle.java Rectangle.java RightTriangle.java Shape.java Square.java"
+		],
+		[
+			"APCS1 Variables and Input/Output",
+			"Core Project: Mad Libs",
+			"mad-libs",
+			"ap-computer-science-a-apcs1-variables-and-input-output-curriculum-core-project-mad-libs",
+			"core",
+			""
+		],
+		[
+			"APCS11 ArrayLists",
+			"Project: Card Shuffler",
+			"card-shuffler",
+			"ap-computer-science-a-apcs11-arraylists-supplemental-project-card-shuffler",
+			"choice",
+			"Card.java"
+		],
+		[
+			"APCS15 Recursion",
+			"Core Project: Tracing Recursion",
+			"tracing-recursion",
+			"ap-computer-science-a-apcs15-recursion-curriculum-core-project-tracing-recursion",
+			"core",
+			""
 		]
 	] as const)("opens both Java roles for %s / %s", async (moduleTitle, title, kind, itemId, path, classFile) => {
 		setActivePinia(createPinia());
@@ -770,7 +812,9 @@ describe("AP Computer Science A learner flow", () => {
 			...apCheckInAndFrqResources,
 			...apAdvancedPracticeResources,
 			...apEnrichmentResources,
-			...apInputAndCardResources
+			...apInputAndCardResources,
+			...apFarmAndShapeResources,
+			...apStoryShuffleTraceResources
 		}[kind];
 		expect(item.id).toBe(itemId);
 		expect(rawItem).toMatchObject({

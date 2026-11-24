@@ -8,6 +8,7 @@ import {
 	apElevatorWarningResources,
 	apEnrichmentResources,
 	apExpressionsAndClassResources,
+	apFarmAndShapeResources,
 	apFoundationsSupplementalResources,
 	apInputAndCardResources,
 	apIntroductoryResources,
@@ -17,6 +18,7 @@ import {
 	apRecursionReferenceResources,
 	apRemainingCoreResources,
 	apRuntimeAnalysisResources,
+	apStoryShuffleTraceResources,
 	apStudentClassResources,
 	apVariablesAndLoopsResources
 } from "@/modules/apComputerScienceAResources";
@@ -26,7 +28,6 @@ import {
 	withPendingStaticMediaNotice
 } from "./staticMedia";
 
-const APCS_REPO_BASE = "https://github.com/instruction-material/APCS/tree/main";
 const STATIC_MEDIA_BASE = "https://static.classes.jacobdanderson.net";
 const BARRONS_TEXTBOOK =
 	"https://www.simonandschuster.com/books/AP-Computer-Science-A-Premium-13th-Edition-Prep-Book-with-6-Practice-Tests-%2B-Comprehensive-Review/Roselyn-Teukolsky/Barrons-AP-Prep/9798349700354";
@@ -92,7 +93,6 @@ If VS Code still will not run Java, reopen only the assignment folder, re-check 
 \`Java: Clean Java Language Server Workspace\` from the VS Code Command Palette.
 `.trim();
 
-const repo = (path: string) => `${APCS_REPO_BASE}/${path}`;
 const media = (file: string) => `${STATIC_MEDIA_BASE}/${file}`;
 
 function applyApcsPendingMediaNotices(course: RawCourse) {
@@ -352,10 +352,17 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 				},
 				{
 					title: "Core Project: Mad Libs",
-					content:
-						"This first APCS1 build combines variables, strings, scanner input, and formatted output without introducing structural overhead. A complete version uses clear prompts, stores each input in a named variable, and produces readable output without accidental missing spaces.",
-					projectLink: repo("APCS1-Mad-Libs/starter"),
-					solutionLink: repo("APCS1-Mad-Libs/solution"),
+					content: [
+						"Build a travel story from four lines of input: an adjective, a place, a plural noun, and a game. Read each whole line with Scanner.nextLine() so names can contain spaces. The starter reads the adjective and shows where the next three inputs belong. Replace each sample string with its own prompt and read.",
+						"Test with misty, Cedar Falls, paper boats, and table tennis on separate lines. The story should read: We reached misty Cedar Falls. We raced paper boats and played table tennis. Try another place with two words and check spacing and punctuation."
+					].join("\n\n"),
+					projectLink:
+						apStoryShuffleTraceResources["mad-libs"].starter,
+					solutionLink:
+						apStoryShuffleTraceResources["mad-libs"].reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true,
 					mediaLink: media("apcs1-project-1-mad-libs.mp4")
 				},
 				{
@@ -1263,10 +1270,17 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 				},
 				{
 					title: "Project: Farm Class",
-					content:
-						"The starter and review pair gives another class-based build with simpler domain language. The focus is fields, constructor setup, method-driven updates, and a short demonstration that object state changes only in intended ways.",
-					projectLink: repo("APCS6-Farm-Class/starter"),
-					solutionLink: repo("APCS6-Farm-Class/solution"),
+					content: [
+						"Model one day on a farm. Each Farm instance tracks its own cow and goat counts and three flags for chores. Animals start unfed and the cows start unmilked. Constructor counts must be nonnegative.",
+						"Use feedCows as the pattern for feedGoats. A feeding or milking succeeds once for a nonempty herd. A sale succeeds whenever at least one animal of that species remains. On failure return false and preserve every field. On success update only the relevant field and return true. In this model milk applies to cows.",
+						"Run `javac Main.java Farm.java` followed by `java Main`. With one goat, predict the results of two feedings and two sales. Each pair should give true then false. A second farm should still have its original goat and feeding flag. Add a check for milking a farm with zero cows."
+					].join("\n\n"),
+					projectLink: apFarmAndShapeResources["farm-class"].starter,
+					solutionLink:
+						apFarmAndShapeResources["farm-class"].reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true,
 					mediaLink: media("apcs6-project-1-farm-class.mp4")
 				},
 				{
@@ -1445,10 +1459,17 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 				},
 				{
 					title: "Core Project: Many Shapes",
-					content:
-						"Many Shapes is the main polymorphism build. It shows superclass references, overridden methods, shared method contracts, and the difference between compile-time visibility and runtime behavior.",
-					projectLink: repo("APCS8-Many-Shapes/starter"),
-					solutionLink: repo("APCS8-Many-Shapes/solution"),
+					content: [
+						"Predict the area and perimeter before running Main. This polymorphism example uses the same Shape reference type to call methods on a square, rectangle, right triangle, and circle. The object's class determines which override runs. Use positive dimensions.",
+						"Use Square as a worked example. Complete the area and perimeter overrides in Rectangle, RightTriangle, and Circle. A rectangle uses height times width and twice the sum of its dimensions. A right triangle uses half the product of its legs and the sum of the legs and hypotenuse. For a circle use πr² and 2πr.",
+						"Run `javac Main.java Circle.java Rectangle.java RightTriangle.java Shape.java Square.java` then `java Main`. For the 5 by 10 rectangle expect 50 and 30. For the 3 by 4 triangle expect 6 and 12. A circle of radius 2.5 has area 6.25π and perimeter 5π. Explain why calling getSideLength through a Shape reference fails to compile even when the object is a Square."
+					].join("\n\n"),
+					projectLink: apFarmAndShapeResources["many-shapes"].starter,
+					solutionLink:
+						apFarmAndShapeResources["many-shapes"].reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true,
 					mediaLink: media("apcs8-project-1-many-shapes.mp4")
 				}
 			],
@@ -1944,10 +1965,18 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 				},
 				{
 					title: "Project: Card Shuffler",
-					content:
-						"The starter and review pair for Card Shuffler connects objects, ArrayLists, and algorithmic updates in a higher-signal build.",
-					projectLink: repo("APCS11-Card-Shuffler/starter"),
-					solutionLink: repo("APCS11-Card-Shuffler/solution"),
+					content: [
+						"Start with the thirteen hearts in rank order. Build a new list by repeatedly choosing a random index from the remaining cards, removing that card, and appending it to the result. The original list passed to shuffle should keep its order. Copy it into a working list first.",
+						"Use Random.nextInt(remaining.size()) only while the working list has cards. After each draw, its size plus the result size should still equal the input size. Independent runs can give the same ordering. Look for all thirteen different hearts exactly once rather than expecting a particular first card. Also try an empty list and a single card.",
+						"Download and extract the ZIP. Run `javac Main.java Card.java` then `java Main`. The starter prints the original suit and an empty result until the draw loop is completed."
+					].join("\n\n"),
+					projectLink:
+						apStoryShuffleTraceResources["card-shuffler"].starter,
+					solutionLink:
+						apStoryShuffleTraceResources["card-shuffler"].reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true,
 					mediaLink: media("apcs11-project-3-card-shuffler.mp4")
 				},
 				{
@@ -2393,26 +2422,20 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 				},
 				{
 					title: "Core Project: Tracing Recursion",
-					content: apProject({
-						goal: "Trace recursive methods by drawing the call chain, base case, and return path before relying on runtime output.",
-						steps: [
-							"Read each method and identify the base case.",
-							"Trace the calls created by the input from `main`.",
-							"Predict printed output or returned values before running the code.",
-							"Summarize what the method does for any valid input."
-						],
-						apReasoning:
-							"AP CSA Java reasoning often asks for output order, return value, or termination. The trace needs separate call-down and return-up phases because recursive output can occur before or after the recursive call.",
-						checks: [
-							"Each frame has its own parameter values.",
-							"The base-case frame is identified explicitly.",
-							"The predicted output order matches the method body order."
-						],
-						extension:
-							"Modify one base case or recursive step and predict how the output or termination changes."
-					}),
-					projectLink: repo("APCS15-Tracing-Recursion/starter"),
-					solutionLink: repo("APCS15-Tracing-Recursion/solution")
+					content: [
+						"For each call in Main, write the current argument, the next call, and what happens after that call returns. Predict the output before running the starter. Use the comments in the solution to check the trace.",
+						'1. Trace f1(4) down to 1 and add the saved arguments while returning.\n2. Trace f2(3). Each call prints its argument. Even values halve, odd values triple and add one. Count transitions separately from the number of printed values. Use the supplied small examples 1, 2, and 3 for this exercise.\n3. Trace f3("fern"). Each frame prints one character after its recursive call returns. Try the empty string.\n4. Trace f4(15678). Each call reduces a nonnegative integer to its digit sum until one digit remains, then tests divisibility by three. Compare 10 and 0.',
+						"Check: the sum is 10. The second trace visits 3, 10, 5, 16, 8, 4, 2, 1 and returns 7. The third prints nref. The final call follows 15678 to 27 to 9 and returns true."
+					].join("\n\n"),
+					projectLink:
+						apStoryShuffleTraceResources["tracing-recursion"]
+							.starter,
+					solutionLink:
+						apStoryShuffleTraceResources["tracing-recursion"]
+							.reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true
 				},
 				{
 					title: "Recursion Reference Pack",
