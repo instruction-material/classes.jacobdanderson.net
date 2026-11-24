@@ -59,7 +59,7 @@ List two stated facts. Infer how Milo might feel, explain how two details suppor
 
 **Check the response**
 
-The offer and the moved bag support a conclusion about accepting help. Reading the card repeatedly could reflect nerves or careful preparation.`,
+The offer and the moved bag support a conclusion about accepting help. Reading the card repeatedly could reflect nerves or careful preparation. Which of those explanations becomes stronger if Milo smiles and puts the card away when his friend joins him?`,
 		`## The Undelivered Envelope
 
 In both versions Bea stops outside the office with an envelope in her hand.
@@ -82,7 +82,7 @@ Write three sentences. Keep the crack and the offer. Replace “disappointed” 
 
 **Check the response**
 
-A reader should still be able to identify what went wrong and who offered help. The new details should suggest a feeling without simply naming it.`,
+A reader should still be able to identify what went wrong and who offered help. The new details should suggest a feeling without simply naming it. For example, Oren might turn the cracked side toward the wall. What would change if he held it up for everyone to see?`,
 		`## Two Ways to Show Relief
 
 In both versions, a character finds a missing key inside a coat pocket just as the door is about to close. Write one short version in which the character shows relief through movement and a second that shows relief through speech. Keep the facts fixed.
@@ -183,14 +183,14 @@ State what happens in all three sentences. Then explain what each verb suggests.
 
 **Check the response**
 
-The action is entering. “Slipped” can suggest quiet movement, while “strode” can suggest a forceful or confident entrance.`,
+The action is entering. “Slipped” can suggest quiet movement, while “strode” can suggest a forceful or confident entrance. Read the three versions aloud with the same emphasis. Which difference still comes through in the verb alone?`,
 		`## The Closed Window
 
 Compare “A narrow beam of daylight crossed the dusty room” with “A thin strip of daylight crept into the dusty room.” Keep the setting and rewrite the sentence to make it welcoming. Explain how two precise word choices change the mood.
 
 **Check the response**
 
-Identify what both originals describe before comparing their associations. The revision can change the feeling while keeping the daylight, dust and room recognizable.`
+Identify what both originals describe before comparing their associations. The revision can change the feeling while keeping the daylight, dust and room recognizable. Try replacing “crept” with “spilled.” Which verb makes the light feel more abundant, and which leaves the room more enclosed?`
 	],
 	"MSA9 Analyzing Rhyme & Alliteration": [
 		`## Along the Shore
@@ -204,7 +204,7 @@ Mark the end rhyme. Circle a repeated opening consonant sound and read the two l
 
 **Check the response**
 
-“Bay” and “spray” rhyme. Name the repeated sound and its words. “Shone” and “shells” share their starting sound even though “small” starts with a different sound.`,
+“Bay” and “spray” rhyme. Name the repeated sound and its words. “Shone” and “shells” share their starting sound even though “small” starts with a different sound. Try substituting “gleamed” for “shone.” Read the line again and mark which repeated sound disappears.`,
 		`## One Sound Change
 
 Compare these two pairs of lines.
@@ -229,14 +229,14 @@ Identify the simile, metaphor and personification. Name the shared idea. Explain
 
 **Check the response**
 
-The simile uses “as.” The metaphor treats the hall as an image. The third description gives the hall a human action. Quote exact words when explaining an effect.`,
+The simile uses “as.” The metaphor treats the hall as an image. The third description gives the hall a human action. Quote exact words when explaining an effect. A held breath can suggest that something is about to happen. A photograph can suggest a moment frozen in place. Which reading gives the bell the most importance?`,
 		`## Wind at the Door
 
 The literal description is “The wind shook the door before dawn.” Write a simile that makes the sound feel playful and a personification that makes it feel threatening. Keep the wind, the door and the time of day.
 
 **Check the response**
 
-In each version, identify the words that create the impression. Explain what a reader can infer from that wording and what the scene still leaves uncertain.`
+In each version, identify the words that create the impression. Explain what a reader can infer from that wording and what the scene still leaves uncertain. For example, “the wind demanded entry” gives the wind a human intention. Identify a verb that would change that intention while keeping the same movement.`
 	],
 	"MSA Check-In #2": [
 		`## Across the Yard
