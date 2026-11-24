@@ -98,6 +98,22 @@ const CANONICAL_PROJECT_ROOTS: Record<string, string> = {
 	"Project: Publish-Ready Capstone App": swiftCapstoneRoot
 };
 
+const FOUNDATION_EXAMPLES: Record<string, string> = {
+	"SAD10 Functions, Structs, and Enums: Core Project": "## Check the result",
+	"SAD9 Swift Basics in App Context: Core Project": "## Check the result",
+	"Variables, Constants, and Types": "Avery 3 4",
+	"SW4 Swift Basics in App Context: Worked Cases — Modeling App Content with Basic Types":
+		"Favorites: No description",
+	"Practice Lab: Turning Raw Data into View Content": "No interests yet",
+	"Reflection Question: Which Swift Basics Show Up Most Often in Apps?":
+		"zero is a known count",
+	"Functions and Parameter Labels": "lessonLabel(for: 0)",
+	"Structs as App Data and Views": "LessonRow(lesson:",
+	"Enums for App State": "case ready(entries: Int)",
+	"Reflection Question: Why Are Structs So Important in SwiftUI?":
+		"7 Map a river"
+};
+
 function allItems() {
 	return introToSwiftAppDevelopmentCourse.modules.flatMap(module => [
 		...module.curriculum,
@@ -218,6 +234,9 @@ describe("intro to Swift App Development learner flow", () => {
 		expect(new Set(titles).size).toBe(titles.length);
 		expect(titles).not.toContain("Diagnostic Checkpoint");
 		expect(titles).toContain("SW7 State and Data Flow: Readiness Check");
+		expect(titles).toEqual(
+			expect.arrayContaining(Object.keys(FOUNDATION_EXAMPLES))
+		);
 
 		for (const item of items) {
 			if (
@@ -277,6 +296,10 @@ describe("intro to Swift App Development learner flow", () => {
 				expect(item.content).toContain("## Core project");
 				expect(item.content).toContain("iOS 17");
 				expect(item.ideImport).toBe(true);
+				expect(item.preserveInstructions).toBe(true);
+			}
+			else if (FOUNDATION_EXAMPLES[item.title]) {
+				expect(item.content).toContain(FOUNDATION_EXAMPLES[item.title]);
 				expect(item.preserveInstructions).toBe(true);
 			}
 			else {
@@ -550,8 +573,9 @@ describe("intro to Swift App Development learner flow", () => {
 			expect(module.aliases, module.title).toContain(
 				LEGACY_SEQUENCE[index]
 			);
-			expect(module.curriculum[0]?.content, module.title).toContain(
-				"**Course position:**"
+			const first = module.curriculum[0];
+			expect(first.content, module.title).toContain(
+				FOUNDATION_EXAMPLES[first.title] ?? "**Course position:**"
 			);
 		}
 

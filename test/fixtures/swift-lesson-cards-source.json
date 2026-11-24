@@ -1,0 +1,41 @@
+{
+	"revision": "e00d8b21eb5e757ef2103a5cda0e0f9a764b6ab6",
+	"pack": "SW5-Lesson-Cards",
+	"files": {
+		"SW5-Lesson-Cards/README.md": {
+			"content": "# Lesson Cards\n\n## Run the starter\n\nCreate an iOS App project in Xcode using SwiftUI and an iOS 17 or later target. Replace the generated app entry point and ContentView with all three Swift files from one role. A site IDE export puts the files under the selected role's folder. Run on an installed iPhone simulator.\n\nThe starter shows Map a trail as Planned. Begin lesson changes the stored text to 0%. The ID is 7 and the detail is Use the north route.\n\n## Core project\n\n1. Replace the free-form status string with an enum. Planned has no associated value. Active carries a fraction between 0 and 1. Complete carries a date. Keep the stable ID when status changes.\n2. Write a pure `label(for:)` function. Use an exhaustive switch to display Planned, the active percentage, or Complete followed by the UTC date. Append the detail only when it contains text. Use the same function for every state.\n3. Add actions for planned, active at 0%, 50%, and 100%, and dated completion. Use midnight UTC on 2026-01-01 for the sample date (`Date(timeIntervalSince1970: 1_767_225_600)`).\n\n## Check the result\n\nBegin, move halfway, then record full progress. The card title and ID stay fixed while the label progresses through 0%, 50%, and 100%. Recording completion changes the status text to Complete 2026-01-01. Plan again restores Planned. At halfway the full label is `Map a trail: 50% | Use the north route`. Try nil and an empty string as the detail. Neither should leave a trailing separator.\n\nExplain what information is available in a completed card that an active card at 100% still lacks. Compare the two source roles after checking the behavior.\n",
+			"sha256": "b3d1e9155a3f6866bf9ea04aa5c422bb5264d454bc1e59c081fed5de4046d9e3",
+			"size": 1646
+		},
+		"SW5-Lesson-Cards/solution/ContentView.swift": {
+			"content": "import SwiftUI\n\nstruct ContentView: View {\n    @State private var lesson = Lesson.sample\n\n    var body: some View {\n        List {\n            Section(\"Lesson\") {\n                Text(label(for: lesson))\n                Text(\"ID: \\(lesson.id)\")\n            }\n            Section(\"Update status\") {\n                Button(\"Plan again\") { lesson.status = .planned }\n                Button(\"Begin lesson\") { lesson.status = .active(0) }\n                Button(\"Halfway\") { lesson.status = .active(0.5) }\n                Button(\"Full progress\") { lesson.status = .active(1) }\n                Button(\"Record sample completion\") {\n                    lesson.status = .complete(Date(timeIntervalSince1970: 1_767_225_600))\n                }\n            }\n        }\n    }\n}\n",
+			"sha256": "0a5609d4250575692c0578fa6622fa1ba7a6db33347e693aa39e873174620fba",
+			"size": 765
+		},
+		"SW5-Lesson-Cards/solution/Lesson.swift": {
+			"content": "import Foundation\n\nenum LessonStatus {\n    case planned\n    case active(Double)\n    case complete(Date)\n}\n\nstruct Lesson: Identifiable {\n    let id: Int\n    let title: String\n    let detail: String?\n    var status: LessonStatus\n\n    static let sample = Lesson(id: 7, title: \"Map a trail\", detail: \"Use the north route\", status: .planned)\n}\n\nfunc label(for lesson: Lesson) -> String {\n    let status: String\n    switch lesson.status {\n    case .planned: status = \"Planned\"\n    case .active(let fraction): status = \"\\(Int((fraction * 100).rounded()))%\"\n    case .complete(let date): status = \"Complete \\(date.ISO8601Format().prefix(10))\"\n    }\n    let base = \"\\(lesson.title): \\(status)\"\n    guard let detail = lesson.detail, !detail.isEmpty else { return base }\n    return \"\\(base) | \\(detail)\"\n}\n",
+			"sha256": "5c3f2c9a850e3e2ddcbdcfb4b480c9da5b76d663d812f351f5d9019b7152ae46",
+			"size": 796
+		},
+		"SW5-Lesson-Cards/solution/LessonCardsApp.swift": {
+			"content": "import SwiftUI\n\n@main\nstruct LessonCardsApp: App {\n    var body: some Scene {\n        WindowGroup { ContentView() }\n    }\n}\n",
+			"sha256": "ad6ce04d0400bd68e949422dea591ce1293faa1a00b7b6eaeadec6f00d2477c4",
+			"size": 124
+		},
+		"SW5-Lesson-Cards/starter/ContentView.swift": {
+			"content": "import SwiftUI\n\nstruct ContentView: View {\n    @State private var lesson = Lesson.sample\n\n    var body: some View {\n        List {\n            Text(lesson.title)\n            Text(lesson.statusText)\n            Button(\"Begin lesson\") { lesson.statusText = \"0%\" }\n            // Add halfway, full progress, and dated completion actions.\n        }\n    }\n}\n",
+			"sha256": "5e05ef451e0da8261f4c1e72cd48565a10abd3fc2dc223394335aef6878631c9",
+			"size": 353
+		},
+		"SW5-Lesson-Cards/starter/Lesson.swift": {
+			"content": "struct Lesson: Identifiable {\n    let id: Int\n    let title: String\n    let detail: String?\n    var statusText: String\n\n    static let sample = Lesson(id: 7, title: \"Map a trail\", detail: \"Use the north route\", statusText: \"Planned\")\n}\n",
+			"sha256": "5b6b4eabfcf757a3060a818e506ce4dccacf47ee1bab6b46cc1f3443bd3724ac",
+			"size": 236
+		},
+		"SW5-Lesson-Cards/starter/LessonCardsApp.swift": {
+			"content": "import SwiftUI\n\n@main\nstruct LessonCardsApp: App {\n    var body: some Scene {\n        WindowGroup { ContentView() }\n    }\n}\n",
+			"sha256": "ad6ce04d0400bd68e949422dea591ce1293faa1a00b7b6eaeadec6f00d2477c4",
+			"size": 124
+		}
+	}
+}

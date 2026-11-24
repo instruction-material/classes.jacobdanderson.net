@@ -1,0 +1,41 @@
+{
+	"revision": "e00d8b21eb5e757ef2103a5cda0e0f9a764b6ab6",
+	"pack": "SW4-Profile-Interests",
+	"files": {
+		"SW4-Profile-Interests/README.md": {
+			"content": "# Profile Interests\n\n## Run the starter\n\nCreate an iOS App project in Xcode using SwiftUI and an iOS 17 or later target. Replace the generated app entry point and ContentView with all three Swift files from one role. A site IDE export puts the files under the selected role's folder. Run the app on an installed iPhone simulator.\n\nThe starter shows Avery's interests in their original order. Complete a lesson to move the session count from 3 to 4. Switch to Rae with **Show new member**. The count belongs to this session and stays at 4 when the displayed profile changes.\n\n## Core project\n\n1. Display the optional tagline. Show `No tagline yet` for Avery and `Builds robots` for Rae.\n2. Add a search field backed by view state. Write a function on Profile that returns names containing the query regardless of case. Sort the results alphabetically. An empty query returns every name. Keep the stored array in its original order.\n3. Give a member with no interests the message `No interests yet`. When an existing list has no matches, display `No matches`.\n\n## Check the result\n\nOn Avery's profile, an empty search shows Drawing, Music, Robotics. Searching for `O` shows Robotics. Searching for `art` shows No matches. Switch to Rae with that query still entered and check that No interests yet takes precedence. Clear the query and switch back to Avery to recover all three rows.\n\nExplain why a missing tagline, a member with no interests, and a search without matches need three different decisions. Compare the solution after checking the starter changes.\n",
+			"sha256": "270a694b9d97419386e6b2fd2b3cffb157a9e755e22c9daeffb9021bbaf395cf",
+			"size": 1560
+		},
+		"SW4-Profile-Interests/solution/ContentView.swift": {
+			"content": "import SwiftUI\n\nstruct ContentView: View {\n    @State private var newMember = false\n    @State private var completedLessons = 3\n    @State private var query = \"\"\n\n    private var profile: Profile { newMember ? .newMember : .sample }\n\n    var body: some View {\n        List {\n            Section(\"Profile\") {\n                Toggle(\"Show new member\", isOn: $newMember)\n                Text(profile.name)\n                Text(profile.tagline ?? \"No tagline yet\")\n            }\n            Section(\"Session\") {\n                Text(\"Completed lessons: \\(completedLessons)\")\n                Button(\"Complete a lesson\") { completedLessons += 1 }\n            }\n            Section(\"Interests\") {\n                TextField(\"Search interests\", text: $query)\n                let matches = profile.matchingInterests(query)\n                if profile.interests.isEmpty {\n                    Text(\"No interests yet\")\n                } else if matches.isEmpty {\n                    Text(\"No matches\")\n                } else {\n                    ForEach(matches, id: \\.self) { name in Text(name) }\n                }\n            }\n        }\n    }\n}\n",
+			"sha256": "61327f329fb9e424e6934be917451e371c971ccb936a5e307889db414383cc18",
+			"size": 1135
+		},
+		"SW4-Profile-Interests/solution/Profile.swift": {
+			"content": "struct Profile {\n    let name: String\n    let tagline: String?\n    let interests: [String]\n\n    static let sample = Profile(name: \"Avery\", tagline: nil, interests: [\"Drawing\", \"Robotics\", \"Music\"])\n    static let newMember = Profile(name: \"Rae\", tagline: \"Builds robots\", interests: [])\n\n    func matchingInterests(_ query: String) -> [String] {\n        interests.filter { query.isEmpty || $0.lowercased().contains(query.lowercased()) }.sorted()\n    }\n}\n",
+			"sha256": "56f5121ca22102f372aa31a3e7b281650b3b2bba0600e2388f02ae4ac82b8fb3",
+			"size": 454
+		},
+		"SW4-Profile-Interests/solution/ProfileInterestsApp.swift": {
+			"content": "import SwiftUI\n\n@main\nstruct ProfileInterestsApp: App {\n    var body: some Scene {\n        WindowGroup { ContentView() }\n    }\n}\n",
+			"sha256": "63e2e8d2bf955ca9cc33aa514bd753b23146335fc8ac2eaedb5b12784cb94709",
+			"size": 129
+		},
+		"SW4-Profile-Interests/starter/ContentView.swift": {
+			"content": "import SwiftUI\n\nstruct ContentView: View {\n    @State private var newMember = false\n    @State private var completedLessons = 3\n\n    private var profile: Profile { newMember ? .newMember : .sample }\n\n    var body: some View {\n        List {\n            Section(\"Profile\") {\n                Toggle(\"Show new member\", isOn: $newMember)\n                Text(profile.name)\n                // Show the tagline or a fallback here.\n            }\n            Section(\"Session\") {\n                Text(\"Completed lessons: \\(completedLessons)\")\n                Button(\"Complete a lesson\") { completedLessons += 1 }\n            }\n            Section(\"Interests\") {\n                // Add a search field, a sorted set of matches, and both empty states.\n                ForEach(profile.interests, id: \\.self) { name in Text(name) }\n            }\n        }\n    }\n}\n",
+			"sha256": "ee974292485156ea02ce1b4c6f7cf167217a475ba3afd60e388f29b1275c60fa",
+			"size": 851
+		},
+		"SW4-Profile-Interests/starter/Profile.swift": {
+			"content": "struct Profile {\n    let name: String\n    let tagline: String?\n    let interests: [String]\n\n    static let sample = Profile(name: \"Avery\", tagline: nil, interests: [\"Drawing\", \"Robotics\", \"Music\"])\n    static let newMember = Profile(name: \"Rae\", tagline: \"Builds robots\", interests: [])\n}\n",
+			"sha256": "980909e6c25dd94fdc6c975a4802697a6b09f9e70789352b91ed16247939b98d",
+			"size": 289
+		},
+		"SW4-Profile-Interests/starter/ProfileInterestsApp.swift": {
+			"content": "import SwiftUI\n\n@main\nstruct ProfileInterestsApp: App {\n    var body: some Scene {\n        WindowGroup { ContentView() }\n    }\n}\n",
+			"sha256": "63e2e8d2bf955ca9cc33aa514bd753b23146335fc8ac2eaedb5b12784cb94709",
+			"size": 129
+		}
+	}
+}

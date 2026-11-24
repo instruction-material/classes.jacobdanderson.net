@@ -793,7 +793,7 @@ function hasLessonBackbone(item: {
 	return (
 		(item.contentKind === "reading" &&
 			wordCount(item.content) >= 80 &&
-			/^```(?:html|css|javascript)\n[\s\S]+?\n```/m.test(item.content)) ||
+			/^```(?:html|css|javascript|swift)\n[\s\S]+?\n```/m.test(item.content)) ||
 		(item.contentKind === "reading" &&
 			wordCount(item.content) >= 120 &&
 			(item.content.match(/^## /gm)?.length ?? 0) >= 2 &&

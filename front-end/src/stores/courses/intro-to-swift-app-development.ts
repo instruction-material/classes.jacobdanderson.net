@@ -2,8 +2,10 @@ import type { RawCourse, RawCourseModuleItem } from "./types";
 import swiftCapstoneReading from "@/assets/course-guides/swift-capstone.md?raw";
 import swiftGalleryReading from "@/assets/course-guides/swift-gallery.md?raw";
 import swiftHobbyReading from "@/assets/course-guides/swift-hobby.md?raw";
+import swiftLessonCardsReading from "@/assets/course-guides/swift-lesson-cards.md?raw";
 import swiftMapReading from "@/assets/course-guides/swift-map.md?raw";
 import swiftNetworkingReading from "@/assets/course-guides/swift-networking.md?raw";
+import swiftProfileInterestsReading from "@/assets/course-guides/swift-profile-interests.md?raw";
 import swiftDataTrackerReading from "@/assets/course-guides/swift-swiftdata.md?raw";
 import swiftTrackerReading from "@/assets/course-guides/swift-tracker.md?raw";
 import swiftWelcomeReading from "@/assets/course-guides/swift-welcome-profile.md?raw";
@@ -13,8 +15,10 @@ import {
 	swiftDataTrackerRoot,
 	swiftGalleryRoot,
 	swiftHobbyRoot,
+	swiftLessonCardsRoot,
 	swiftMapRoot,
 	swiftNetworkingRoot,
+	swiftProfileInterestsRoot,
 	swiftTrackerRoot
 } from "@/modules/swiftProjectResources";
 import { buildProjectGuidance } from "./projectGuidance";
@@ -619,43 +623,87 @@ const introToSwiftAppDevelopmentSourceCourse: RawCourse = {
 			curriculum: [
 				{
 					title: "Variables, Constants, and Types",
-					content:
-						"Swift language basics work best in the context of app code rather than as abstract textbook material. Use `let`, `var`, common types, strings, arrays, dictionaries, optionals, conditionals, and loops in examples that feed directly into UI and app data."
+					preserveInstructions: true,
+					contentKind: "reading",
+					content: `A profile has a name and a count of completed lessons. Swift infers \`String\` from a quoted name and \`Int\` from a whole number. Use \`let\` for a binding that keeps its value and \`var\` for a count that changes when a lesson finishes.
+
+\`\`\`swift
+let name = "Avery"
+var completed = 3
+let previous = completed
+completed += 1
+print(name, previous, completed)
+\`\`\`
+
+Predict the two counts before running the example. It prints \`Avery 3 4\`. Assigning the integer to \`previous\` copied its value at that moment. Changing \`completed\` later leaves that copy at 3. A declaration such as \`let tagline: String? = nil\` needs an explicit type because absence alone gives Swift no element type to infer.`
 				},
 				{
 					title: "Worked Example Set: Modeling App Content with Basic Types",
-					content:
-						"Create arrays of menu items, dictionaries of quick settings, and optional values for missing profile data. Use these examples to show why app development repeatedly returns to the same small set of language tools."
+					preserveInstructions: true,
+					contentKind: "reading",
+					content: `An array keeps the menu in display order. A dictionary looks up a subtitle by name. The lookup returns a \`String?\` because a menu item can exist without a subtitle. The nil-coalescing operator \`??\` supplies text for that case.
+
+\`\`\`swift
+let menu = ["Profile", "Favorites", "Settings"]
+let subtitles = ["Profile": "About me", "Settings": "Preferences"]
+for item in menu {
+    let subtitle = subtitles[item] ?? "No description"
+    print("\\(item): \\(subtitle)")
+}
+\`\`\`
+
+The first row is \`Profile: About me\`, the second is \`Favorites: No description\`, and the third is \`Settings: Preferences\`. The missing key still produces a row because the loop iterates over the menu. Predict the second row after adding \`"Favorites": "Saved items"\` to the dictionary.`
 				},
 				{
 					title: "Practice Lab: Turning Raw Data into View Content",
-					content:
-						"Take a few small pieces of app content and transform them into values a SwiftUI view can render cleanly. The practice centers on conditional display, simple loops, and safe handling of missing data."
+					preserveInstructions: true,
+					content: `In a SwiftUI app, replace the generated ContentView with this view. An array's \`isEmpty\` property chooses the branch. ForEach creates one text row per name. The supplied names are unique, so each name can identify its own row.
+
+\`\`\`swift
+import SwiftUI
+
+struct ContentView: View {
+    let interests: [String] = ["Drawing", "Robotics"]
+    var body: some View {
+        VStack {
+            if interests.isEmpty {
+                Text("No interests yet")
+            } else {
+                ForEach(interests, id: \\.self) { name in
+                    Text(name)
+                }
+            }
+        }
+    }
+}
+\`\`\`
+
+Predict the screen, then run it in a preview or simulator. The two names appear in array order. Replace the array literal with \`[]\` and verify that the single empty-state message replaces both rows. Add a third name, sort the displayed values with \`interests.sorted()\`, and explain why the stored order stays the same.`
 				},
 				{
 					title: "Reflection Question: Which Swift Basics Show Up Most Often in Apps?",
-					content:
-						"Identify which language features feel most central to day-to-day app code so far and why. This keeps the language connected to real usage instead of isolated drills."
+					preserveInstructions: true,
+					content: `A profile screen shows a name, a count of saved items, and an optional biography. The count starts at zero and changes when a user taps Save. Explain which values can use \`let\`, which value needs a changing owner, and what the screen displays when the biography is missing.
+
+Check the reasoning against two traces. Before the first tap, zero is a known count. After one tap, it is one. A missing biography is still absent in both states. Describe how using zero or an empty string to mean every kind of absence could make a correct count or an intentionally empty biography ambiguous.`
 				},
 				{
 					title: "SAD9 Swift Basics in App Context: Core Project",
-					content: buildProjectGuidance({
-						courseFamily: "Swift app",
-						moduleTitle: "SAD9 Swift Basics in App Context",
-						projectKind: "core",
-						hasReference: false
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Swift/tree/main/Mod3Pro2"
+					content: swiftProfileInterestsReading,
+					preserveInstructions: true,
+					ideImport: true,
+					projectLink: `${swiftProfileInterestsRoot}/starter`,
+					solutionLink: `${swiftProfileInterestsRoot}/solution`
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "Diagnostic Checkpoint",
 					content:
-						"Readiness check: model a small piece of app data using the right combination of constants, arrays, optionals, and conditionals. Prompt: represent an optional profile subtitle that may or may not exist.",
-					projectLink:
-						"https://github.com/instruction-material/Swift/tree/main/Mod3Pro2"
+						"Switch between Avery and Rae. Explain how the view distinguishes a missing tagline, an empty interest list and a search with no matches. Show that clearing the query restores the original names.",
+					ideImport: true,
+					projectLink: `${swiftProfileInterestsRoot}/starter`,
+					solutionLink: `${swiftProfileInterestsRoot}/solution`
 				},
 				{
 					title: "Swift Basics in App Context Transfer Practice",
@@ -690,43 +738,107 @@ const introToSwiftAppDevelopmentSourceCourse: RawCourse = {
 			curriculum: [
 				{
 					title: "Functions and Parameter Labels",
-					content:
-						"Functions are named units of behavior, and Swift parameter labels improve call-site clarity. App-flavored examples include formatting labels, choosing icons, or deriving status messages."
+					preserveInstructions: true,
+					contentKind: "reading",
+					content: `A pure function can turn a count into the same label everywhere it appears. In the declaration below, \`for\` is the argument label used by the caller. Inside the function, \`count\` names the integer. The arrow introduces the return type.
+
+\`\`\`swift
+func lessonLabel(for count: Int) -> String {
+    if count == 1 { return "1 lesson" }
+    return "\\(count) lessons"
+}
+print(lessonLabel(for: 0))
+print(lessonLabel(for: 1))
+print(lessonLabel(for: 2))
+\`\`\`
+
+The calls print \`0 lessons\`, \`1 lesson\`, and \`2 lessons\`. Each call returns text without changing the count or touching a view. Predict what would happen to the singular label if the condition were \`count <= 1\`, then check the zero case.`
 				},
 				{
 					title: "Structs as App Data and Views",
-					content:
-						"Structs can represent both model data and SwiftUI views, and that dual role is common in SwiftUI architecture. Connect this directly to reusable components and structured data instead of repeating hard-coded view snippets."
+					preserveInstructions: true,
+					contentKind: "reading",
+					content: `A model struct holds the data for a lesson. A view struct describes how to display that data. Passing a model into a row gives the row a value to read. A stable ID lets a list recognize the same lesson after its title changes.
+
+\`\`\`swift
+import SwiftUI
+
+struct Lesson: Identifiable {
+    let id: Int
+    var title: String
+}
+
+struct LessonRow: View {
+    let lesson: Lesson
+    var body: some View { Text(lesson.title) }
+}
+\`\`\`
+
+In the body of an existing view, use \`LessonRow(lesson: Lesson(id: 7, title: "Map a trail"))\`. It displays \`Map a trail\`. For an edit form, copy the model into a variable named \`draft\` and change the draft's title. The original still has its old title. Saving requires passing the edited value back to the collection that owns the lesson.`
 				},
 				{
 					title: "Enums for App State",
-					content:
-						"Enums represent a closed set of app states or routes, such as loading, loaded, and failed or a set of tab destinations. They support stronger state modeling than scattered booleans alone."
+					preserveInstructions: true,
+					contentKind: "reading",
+					content: `A download can be waiting, loading, or ready with a number of entries. An enum lets only one case be active at a time. An associated value stores information that belongs to that particular case.
+
+\`\`\`swift
+enum DownloadState {
+    case waiting
+    case loading
+    case ready(entries: Int)
+}
+
+func message(for state: DownloadState) -> String {
+    switch state {
+    case .waiting: return "Choose a source"
+    case .loading: return "Loading"
+    case .ready(let count): return count == 0 ? "No entries" : "Entries: \\(count)"
+    }
+}
+for state: DownloadState in [.waiting, .loading, .ready(entries: 0), .ready(entries: 2)] {
+    print(message(for: state))
+}
+\`\`\`
+
+The messages are \`Choose a source\`, \`Loading\`, \`No entries\`, and \`Entries: 2\`. Loading and ready-with-zero need different messages because only one has received a result. Add a \`failed\` case and let the compiler identify the switch that needs a recovery message.`
 				},
 				{
 					title: "Reflection Question: Why Are Structs So Important in SwiftUI?",
-					content:
-						"Compare a struct as a piece of app data with a struct as a reusable view and explain what both uses share. The goal is architectural intuition, not memorized terminology."
+					preserveInstructions: true,
+					content: `An editor opens a copy of a lesson. It changes the title, then the user chooses Cancel. Predict both printed lines before running the example.
+
+\`\`\`swift
+struct Lesson {
+    let id: Int
+    var title: String
+}
+let saved = Lesson(id: 7, title: "Map a trail")
+var draft = saved
+draft.title = "Map a river"
+print(saved.id, saved.title)
+print(draft.id, draft.title)
+\`\`\`
+
+The output is \`7 Map a trail\` followed by \`7 Map a river\`. The ID still identifies the same lesson while the two values hold different titles. Explain how a view can discard its draft on Cancel, and what it would send back to the owner on Save. Which title would a row displaying the saved value show before Save?`
 				},
 				{
 					title: "SAD10 Functions, Structs, and Enums: Core Project",
-					content: buildProjectGuidance({
-						courseFamily: "Swift app",
-						moduleTitle: "SAD10 Functions, Structs, and Enums",
-						projectKind: "core",
-						hasReference: false
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Swift/tree/main/Mod4Pro1"
+					content: swiftLessonCardsReading,
+					preserveInstructions: true,
+					ideImport: true,
+					projectLink: `${swiftLessonCardsRoot}/starter`,
+					solutionLink: `${swiftLessonCardsRoot}/solution`
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "Diagnostic Checkpoint",
 					content:
-						"Readiness check: write a small helper function with clear labels, define a struct for app data, and name an enum that captures a real UI state cleanly. Prompt: 'What would an enum express better than three related booleans?'",
-					projectLink:
-						"https://github.com/instruction-material/Swift/tree/main/Mod4Pro1"
+						"Trace lesson 7 from Planned through 50% and 100% to dated completion. Identify the state carried by each enum case and explain how the ID survives each change.",
+					ideImport: true,
+					projectLink: `${swiftLessonCardsRoot}/starter`,
+					solutionLink: `${swiftLessonCardsRoot}/solution`
 				},
 				{
 					title: "Functions, Structs, and Enums Transfer Practice",
@@ -2322,6 +2434,9 @@ function contextualizeSwiftItem(
 		: null;
 	const practiceLink = swiftPracticePack(flow.materialSection);
 	const verificationLink = swiftVerificationGuide(flow.answerSection);
+	const authoredReading = item.preserveInstructions
+		? `${item.content.trim()}\n\n[Practice case](${practiceLink}) · [Check the result](${verificationLink})`
+		: projectReading;
 	const isExtension =
 		flow.stage === "Optional enrichment" ||
 		item.title.includes("Extension") ||
@@ -2390,15 +2505,15 @@ ${practiceToolchain}
 				? true
 				: item.ideImport,
 		preserveInstructions:
-			suppliedCasePractice || projectReading
+			suppliedCasePractice || authoredReading
 				? true
 				: item.preserveInstructions,
 		content: suppliedCasePractice
 			? suppliedCaseReading
 			: welcomeProject
 				? swiftWelcomeReading.trim()
-				: projectReading
-					? projectReading.trim()
+				: authoredReading
+					? authoredReading.trim()
 					: `${item.content.trim()}
 
 **Course position:** ${flow.stage}. ${legacyNote}

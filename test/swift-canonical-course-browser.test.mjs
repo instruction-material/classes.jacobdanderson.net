@@ -12,6 +12,22 @@ const welcome = JSON.parse(
 );
 const projects = [
 	{
+		name: "lesson-cards",
+		module: "sw5-functions-structs-and-enums",
+		coreSuffix: "curriculum-core-project-functions-structs-and-enums",
+		key: "lesson-cards",
+		readiness: true,
+		fileCount: 4
+	},
+	{
+		name: "profile-interests",
+		module: "sw4-swift-basics-in-app-context",
+		coreSuffix: "curriculum-core-project-swift-basics-in-app-context",
+		key: "profile-interests",
+		readiness: true,
+		fileCount: 4
+	},
+	{
 		name: "gallery",
 		module: "sw8-media-maps-and-permission-aware-features",
 		title: "media-gallery-app",
@@ -43,7 +59,7 @@ const projects = [
 
 for (const project of projects) {
 	const moduleID = `${courseID}-${project.module}`;
-	const coreID = `${moduleID}-curriculum-project-${project.title}`;
+	const coreID = `${moduleID}-${project.coreSuffix ?? `curriculum-project-${project.title}`}`;
 	it(
 		`Swift ${
 			project.name
@@ -58,7 +74,7 @@ for (const project of projects) {
 				mode: "swift",
 				sourceRepository: "Swift",
 				fixturePath: `./fixtures/swift-${project.name}-source.json`,
-				fileCount: 3,
+				fileCount: project.fileCount ?? 3,
 				initialFile: "ContentView.swift",
 				primaryFile: "ContentView.swift",
 				taskFile: "README.md",
@@ -101,7 +117,7 @@ for (const project of projects) {
 				],
 				instructionTokens: ["one @main", "iOS simulator", "README.md"],
 				readyToken: "Xcode",
-				outputEnv: `SWIFT_${project.name.toUpperCase()}_BROWSER_DIR`,
+				outputEnv: `SWIFT_${project.name.toUpperCase().replaceAll("-", "_")}_BROWSER_DIR`,
 				defaultOutput: `output/swift-${project.name}-browser`
 			});
 		}

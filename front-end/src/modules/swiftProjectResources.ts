@@ -36,7 +36,36 @@ export const swiftMapRoot = `https://github.com/instruction-material/Swift/tree/
 export const swiftCapstoneRevision = "f562fa060de745466cfda5cb55e84c1811496ec5";
 export const swiftCapstoneRoot = `https://github.com/instruction-material/Swift/tree/${swiftCapstoneRevision}/SAD7-Publish-Ready-Capstone`;
 
+export const swiftFoundationsRevision =
+	"e00d8b21eb5e757ef2103a5cda0e0f9a764b6ab6";
+
+export const swiftProfileInterestsRoot = `https://github.com/instruction-material/Swift/tree/${swiftFoundationsRevision}/SW4-Profile-Interests`;
+
+export const swiftLessonCardsRoot = `https://github.com/instruction-material/Swift/tree/${swiftFoundationsRevision}/SW5-Lesson-Cards`;
+
 const swiftPacks = [
+	{
+		pack: "SW5-Lesson-Cards",
+		revision: swiftFoundationsRevision,
+		projectKey: "lesson-cards",
+		roleFiles: [
+			"ContentView.swift",
+			"LessonCardsApp.swift",
+			"Lesson.swift"
+		],
+		sharedFiles: ["README.md"]
+	},
+	{
+		pack: "SW4-Profile-Interests",
+		revision: swiftFoundationsRevision,
+		projectKey: "profile-interests",
+		roleFiles: [
+			"ContentView.swift",
+			"ProfileInterestsApp.swift",
+			"Profile.swift"
+		],
+		sharedFiles: ["README.md"]
+	},
 	{
 		pack: "SAD2-Media-Gallery-App",
 		revision: swiftGalleryRevision,
