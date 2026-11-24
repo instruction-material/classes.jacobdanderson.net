@@ -1,3 +1,5 @@
+import type { RawCourseModuleItem } from "./types";
+
 export const scratchBootcampTasks = [
 	{
 		id: "592006491",
@@ -89,7 +91,7 @@ A Playing variable with values 0 and 1 can guard the existing click stack, as sh
 4. A catch needs both conditions: the mouse button is down and that fish is touching Shark 2.
 5. For a caught ordinary fish, add 1 to Score, play the fish's bubbles sound and move it away immediately. One contact must not score repeatedly.
 6. Give each pufferfish similar movement and collision code, but subtract 1 when it is caught.
-7. Optional: add a timed round, disable scoring at the end and report the final score.
+7. Create a Playing variable for all sprites and reset it to 1 on the green flag. Choose an ending. For a target-score round, set Playing to 0 when Score reaches 5 and show the score. For a timed round, set Playing to 0 when time expires. Guard movement and scoring with Playing, then try another bite after the result appears.
 Restart with score, positions and costumes reset. The fish scripts belong to the fish sprites; the supplied sound is Bite rather than a separate whoosh clip.`
 	},
 	{
@@ -116,3 +118,100 @@ export function scratchBootcampTask(id: string) {
 	if (!task) throw new Error(`Unknown Scratch Bootcamp task: ${id}`);
 	return task.content;
 }
+
+export const scratchBootcampPractice: Record<string, RawCourseModuleItem[]> = {
+	"GS1 Event Listeners and Movement": [
+		{
+			title: "Practice Map: Event Listeners and Movement",
+			learningPath: "choice",
+			contentKind: "assignment",
+			preserveInstructions: true,
+			preserveAssignment: true,
+			projectLink: "https://scratch.mit.edu/projects/592006491/",
+			content: `Find a misplaced block in a Dragonfly remix. On the dragonfly, attach go to random position to the green flag. Under when space key pressed, attach start sound pop and say Buzzzz for two seconds. Leave the sprite-click hat empty. Predict what pressing space and clicking the sprite will each do, then run both tests.
+
+Move one block so space triggers only the sound and a click triggers only speech. Repeat both tests and restart with the flag. Record the input and observed response before and after the move. Explain why adding a new click hat without attaching the speech block leaves the behavior unchanged.`
+		},
+		{
+			title: "Extension Review: Event Listeners and Movement",
+			learningPath: "challenge",
+			contentKind: "assignment",
+			preserveInstructions: true,
+			preserveAssignment: true,
+			projectLink: "https://scratch.mit.edu/projects/592008620/",
+			content: `Give the beetle two arrow-key controls that still work after it turns. On the green flag, lift the pen, go to x: 0 y: 0, and point right. On right arrow, change x by 10. On up arrow, change y by 10. Show the beetle’s x position and y position using the monitors in Motion.
+
+Start at the center and tap right twice and up once. Record the coordinates. Point the beetle left, start from the center again without resetting its direction, and repeat the same keys. Compare both runs with x: 20 y: 10. Explain what would differ if the right-arrow stack used move 10 steps instead.`
+		}
+	],
+	"GS2 Loops": [
+		{
+			title: "Practice Map: Loops",
+			learningPath: "choice",
+			contentKind: "assignment",
+			preserveInstructions: true,
+			preserveAssignment: true,
+			projectLink: "https://scratch.mit.edu/projects/601699148/",
+			content: `Draw two polygons with the mouse sprite. Add the Pen extension. Use the green flag to erase all, lift the pen, return to the center, and point right. On key 1, lower the pen and repeat four pairs of move 40 steps and turn clockwise 90 degrees. Lift the pen after the loop. Run the script and check whether the fourth edge ends where the first began.
+
+Duplicate the key stack for key 2. Make a triangle with three equal sides by changing both the repeat count and the turn. Test from the same starting position. Explain why three turns of 120 degrees close the triangle and why three turns of 90 degrees leave a gap.`
+		},
+		{
+			title: "Extension Review: Loops",
+			learningPath: "challenge",
+			contentKind: "assignment",
+			preserveInstructions: true,
+			preserveAssignment: true,
+			projectLink: "https://scratch.mit.edu/projects/592014695/",
+			content: `Make the elephant flash exactly three times when the 5 key is pressed. On the green flag, show the sprite and clear graphic effects. Under the key hat, repeat three times: hide, wait half a second, show, then wait half a second. Leave a say block after the loop so the elephant announces Done.
+
+Move the final wait outside the loop and predict how long the elephant will be visible between flashes. Run both versions. Restore the wait inside and compare repeat 3 with forever: identify which version can reach Done. Save the finite version and describe the observed difference in timing.`
+		}
+	],
+	"GS3 Conditionals and Variables": [
+		{
+			title: "Practice Map: Conditionals and Variables",
+			learningPath: "choice",
+			contentKind: "assignment",
+			preserveInstructions: true,
+			preserveAssignment: true,
+			projectLink: "https://scratch.mit.edu/projects/592019210/",
+			content: `Use the Button Click Timer starter to test when a click earns a point. Make Clicks and Playing variables for all sprites. Reset both to zero at the start of the existing green-flag stack. Keep its show block and Ready, Set, Go messages. After Go, set Playing to 1, wait three seconds, and set Playing to 0. Add a check to the existing click stack: change Clicks by 1 only if Playing equals 1.
+
+Click once during Ready, twice during the three-second round, and once after it. Record Clicks after each phase. A correct run ends at 2 and a restart resets it to 0. Use the Playing monitor to distinguish a late click from a broken guard.`
+		},
+		{
+			title: "Extension Review: Conditionals and Variables",
+			learningPath: "challenge",
+			contentKind: "assignment",
+			preserveInstructions: true,
+			preserveAssignment: true,
+			projectLink: "https://scratch.mit.edu/projects/327635693/",
+			content: `Give the zebra a Steps counter and a second counter named Distance. Reset both on the green flag and go to x: 0 y: 0. In the right-arrow stack change x by 10, and in the left-arrow stack change x by -10. Each successful key event adds 1 to Steps and 10 to Distance, regardless of direction.
+
+Tap right twice and left once. Compare x position, Steps and Distance with 10, 3 and 30. Then tap left again. Explain why Distance increases even while the zebra returns to the center. Save a second input sequence and its predicted and observed values.`
+		}
+	],
+	"GS4 Master Project": [
+		{
+			title: "Practice Map: Master Project",
+			learningPath: "choice",
+			contentKind: "assignment",
+			preserveInstructions: true,
+			preserveAssignment: true,
+			content: `Reopen the saved game from Bootcamp Game Selection. Test one successful action and one near miss from the same starting state. For Spider Smash or Hungry Shark, compare contact while pressing the mouse button with contact while the button is released. For Save the Princess, compare a dragon reaching the lower boundary with a dragon touching the princess.
+
+Record the starting Score or Lives, the input, and the ending value in each run. A miss leaves that value unchanged. A single scoring contact changes it once. If holding an input counts the same contact repeatedly, move the actor away on contact or wait until contact ends before allowing another change. Retest the same two cases.`
+		},
+		{
+			title: "Extension Review: Master Project",
+			learningPath: "challenge",
+			contentKind: "assignment",
+			preserveInstructions: true,
+			preserveAssignment: true,
+			content: `Open the saved playable game. Shorten one round for testing: start its countdown at three seconds, use one life, or choose a winning score of one. Identify the script that sets the finished state and which scripts still accept movement or scoring input.
+
+Play to the ending and repeat the last input. Check that the displayed result stays fixed. Start again and check the score or lives, costumes, visibility, positions, and controls that the previous round changed. Restore the intended round length or target, download the .sb3, and play it again from the saved file. Report one restart defect you corrected or one failed prediction the test ruled out.`
+		}
+	]
+};

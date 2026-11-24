@@ -5,7 +5,10 @@ import type {
 	RawCourseModuleItem
 } from "./types";
 import { correctedJuniScratchInstructions } from "./juniScratchInstructionCorrections";
-import { scratchBootcampTask } from "./scratchBootcampTasks";
+import {
+	scratchBootcampPractice,
+	scratchBootcampTask
+} from "./scratchBootcampTasks";
 import { pendingStaticMediaNotice, staticMediaUrl } from "./staticMedia";
 import { buildSupportSectionGuidance } from "./supportSectionGuidance";
 
@@ -15,6 +18,7 @@ interface SourceLibraryCourseSpec {
 	name: string;
 	modules: string[];
 	moduleMetadata?: Record<string, SourceLibraryModuleMetadata>;
+	supplementalPractice?: Record<string, RawCourseModuleItem[]>;
 	splitSourceActivityAnchors?: boolean;
 	sourceActivityAnchors?: Record<string, SourceActivityAnchor[]>;
 	staticAssets?: string[];
@@ -1180,16 +1184,20 @@ function createSourceLibraryModule(
 		],
 		supplementalProjects: [
 			...createSourceActivityPracticeItems(spec, moduleTitle),
-			{
-				title: `Practice Map: ${topic}`,
-				content: practiceContent(spec, moduleTitle),
-				...(splitAnchors ? { learningPath: "choice" as const } : {})
-			},
-			{
-				title: `Extension Review: ${topic}`,
-				content: extensionContent(spec, moduleTitle),
-				...(splitAnchors ? { learningPath: "challenge" as const } : {})
-			}
+			...(spec.supplementalPractice?.[moduleTitle] ?? [
+				{
+					title: `Practice Map: ${topic}`,
+					content: practiceContent(spec, moduleTitle),
+					...(splitAnchors ? { learningPath: "choice" as const } : {})
+				},
+				{
+					title: `Extension Review: ${topic}`,
+					content: extensionContent(spec, moduleTitle),
+					...(splitAnchors
+						? { learningPath: "challenge" as const }
+						: {})
+				}
+			])
 		]
 	};
 }
@@ -6672,6 +6680,7 @@ const elementaryMathCourses = {
 
 const sourceVariantCourses = {
 	scratchBootcamp: createSourceLibraryCourse({
+		supplementalPractice: scratchBootcampPractice,
 		name: "Scratch Level 1: Game Superstar Bootcamp",
 		area: "visual programming bootcamp",
 		focus: "Scratch setup, sounds, motion, costumes, backdrops, event listeners, loops, conditionals, variables, and a short master project sequence",
@@ -6891,7 +6900,7 @@ ${scratchBootcampTask("608770708")}`,
 				{
 					learningPath: "core",
 					title: "Playable Scratch Game Build",
-					prompt: "Build a short original Scratch game that combines motion, events, loops, conditionals, variables, costumes or backdrops, sound or visual feedback, and a clear end state.",
+					prompt: "Continue the game chosen in Bootcamp Game Selection. Open its project or upload the saved .sb3 if work has already started. Build the controls, the repeated movement and the collision rule from the plan. Give the round a visible ending: time runs out in Spider Smash, a target score or time limit ends Hungry Shark, and losing the last life or reaching the time limit ends Save the Princess. Play through the ending, try one more input, then restart and check the starting values.",
 					evidence: [
 						"The game can be started from a fresh green-flag run.",
 						"Player action changes the game state in a way that can be seen or measured.",

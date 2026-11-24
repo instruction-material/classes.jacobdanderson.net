@@ -146,6 +146,6 @@ it.each(["learner", "instructor"])(
 				])
 				.filter(item => item.content.startsWith("**Project goal:**"))
 		).toHaveLength(14);
-		expect(sourceLinks).toBe(11);
+		expect(sourceLinks).toBe(17);
 	}
 );
