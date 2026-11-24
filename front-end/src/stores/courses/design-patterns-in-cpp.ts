@@ -120,7 +120,7 @@ const designPatternsInCppSourceCourse: RawCourse = {
 					preserveInstructions: true,
 					contentKind: "assignment",
 					content:
-						"Compare a value-owned preset with a heap-owned variant that explicitly deep-copies its settings. Draw the ownership relationships before a copy and after editing the copied effect list. Use the same ordinary and nested-copy inputs for both designs.\n\n**Checkpoints:** A variant of a variant can gain glow without changing either ancestor. For each design, explain which operations the compiler can supply and which must be written to maintain independence.",
+						"Compare a value-owned preset with a heap-owned variant that explicitly deep-copies its settings. Draw the ownership relationships before a copy and after editing the copied effect list. Use the same ordinary and nested-copy inputs for both designs. Reset each example to a preset with one grain effect before making a copy. Record both effect lists after each edit.\n\n**Checkpoints:** A variant of a variant can gain glow without changing either ancestor. For each design, explain which operations the compiler can supply and which must be written to maintain independence.",
 					projectLink:
 						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/8977fda5639bc15e8439e523cb99774a7bad3d64/DPC-06-dpc1-why-patterns-look-different-in-modern-cpp/starter",
 					solutionLink:
@@ -197,7 +197,7 @@ const designPatternsInCppSourceCourse: RawCourse = {
 					preserveInstructions: true,
 					contentKind: "assignment",
 					content:
-						"Add a second quote function that takes a policy as a template parameter. Test it with a type that implements cents but does not inherit from Rate. Run the original runtime-selected policy through the virtual interface and compare the two call sites.\n\n**Checkpoints:** Use the same one-parcel and empty-shipment cases. Identify which version can select among several derived rate objects at runtime and which can accept an unrelated type with a compatible operation.",
+						"Add a second quote function that takes a policy as a template parameter. Test it with a type that implements cents but does not inherit from Rate. Run the original runtime-selected policy through the virtual interface and compare the two call sites. Trace where each call chooses the implementation of cents and which object owns the rate during that call.\n\n**Checkpoints:** Use the same one-parcel and empty-shipment cases. Identify which version can select among several derived rate objects at runtime and which can accept an unrelated type with a compatible operation.",
 					projectLink:
 						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/8977fda5639bc15e8439e523cb99774a7bad3d64/DPC-07-dpc2-design-foundations/starter",
 					solutionLink:
@@ -280,7 +280,7 @@ const designPatternsInCppSourceCourse: RawCourse = {
 					preserveInstructions: true,
 					contentKind: "assignment",
 					content:
-						"Extend the core dashboard with a plain-text product family. Use a separate Widget implementation whose render method returns text such as Active users=184. Supply the new factory to the same assembly function. Verify all four rows, their order, and that DashboardBuilder contains no family-specific branch.\n\n**Checkpoints:** The plain-text family renders Active users=184, Build queue=9, status Healthy and action Flush cache in order. The original light and dark dashboards still render correctly.",
+						"Extend the core dashboard with a plain-text product family. Use a separate Widget implementation whose render method returns text such as Active users=184. Have each creation method return an owning pointer to the plain-text widget. Pass the new factory to buildStandardDashboard and capture the returned rows. Verify all four rows, their order, and that DashboardBuilder contains no family-specific branch.\n\n**Checkpoints:** The plain-text family renders Active users=184, Build queue=9, status Healthy and action Flush cache in order. The original light and dark dashboards still render correctly.",
 					projectLink:
 						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/748ac87bb93688229cb03b8c3618829319578156/DPC1-Factories-and-Builders-Workshop/starter",
 					solutionLink:
@@ -940,27 +940,27 @@ const designPatternsInCppSourceCourse: RawCourse = {
 				},
 				{
 					title: "DPC12 Capstone Studio: Core Project",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle: "DPC12 Capstone Studio",
-						projectKind: "core",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"Open the asset inventory starter. Use its README to configure CMake, build both targets and run the four baseline checks. Follow a row from standard input into the pending inventory and identify the commit point for a complete batch. Capture a valid space-format report and the rejection of a malformed batch. Refactor the parser boundary while keeping those results, then add the comma format as a separate change.\n\n**Checkpoints:** Run all six CTest cases. Import a valid space batch followed by a comma batch, then a batch with a valid first row and invalid final row. The last batch must leave the previous quantities unchanged. Submit the input files, reports, test results, ownership diagram and separate rollback commits.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-09-dpc12-capstone-studio/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/29eaeb6da287955edd423e56da6143664043809c/DPC-09-dpc12-capstone-studio/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-09-dpc12-capstone-studio/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/29eaeb6da287955edd423e56da6143664043809c/DPC-09-dpc12-capstone-studio/solution"
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "Modern C++ Comparison: Capstone Studio",
+					preserveInstructions: true,
+					contentKind: "assignment",
 					content:
-						"For capstone studio, compare a textbook heap-heavy version, a modern C++ version, and one short reason the modern version changes shape. Summarize one textbook pattern choice, one modern C++ adaptation, and one place where the cleanest answer was to stay simpler than the textbook.",
+						"Use the same inventory capstone to compare two parser designs. Keep the existing space and comma inputs. Implement or sketch a parser interface with one derived class for each format. Compare it with a function selected at runtime and passed to a shared record reader. Trace the ownership of the input, the temporary record and the candidate inventory in both designs.\n\n**Checkpoints:** Run the same valid and rejected batches through both designs. Identify how many sites change when a third format arrives and whether any parser needs to allocate or outlive a single import. Keep the smaller design that meets the recorded change requirement.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-09-dpc12-capstone-studio/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/29eaeb6da287955edd423e56da6143664043809c/DPC-09-dpc12-capstone-studio/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-09-dpc12-capstone-studio/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/29eaeb6da287955edd423e56da6143664043809c/DPC-09-dpc12-capstone-studio/solution"
 				},
 				{
 					title: "Capstone Architecture Transfer Practice",
