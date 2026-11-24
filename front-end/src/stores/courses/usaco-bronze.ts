@@ -481,12 +481,9 @@ const usacoBronzeSourceCourse: RawCourse = {
 				},
 				{
 					title: "Unit 6: Optional Bronze Problem Bank: Core Project",
-					content: buildProjectGuidance({
-						courseFamily: "USACO",
-						moduleTitle: "Unit 6: Optional Bronze Problem Bank",
-						projectKind: "core",
-						hasReference: false
-					}),
+					preserveInstructions: true,
+					content:
+						"Choose one problem from the bank using a mistake in your last attempt. If you counted a fence section twice, open `UB28-Fence-Painting` for Python or its `-Java` folder for Java. Read the README in `starter`, then create your own solution file. In `paint.in`, put `1 5` and `3 7` on separate lines. Sketch the painted stretch before running your program: `paint.out` should contain `6`. Change the second row to `3 5` and predict `4`.\n\n**Checkpoints:** Record the folder you chose, the mistake you wanted to test and what happened on the changed input. If you chose another problem, bring its original and changed inputs to the review.",
 					projectLink:
 						"https://github.com/instruction-material/USACO-Bronze/tree/main"
 				}
@@ -917,12 +914,9 @@ const usacoBronzeSourceCourse: RawCourse = {
 				},
 				{
 					title: "The Lost Cow Java",
-					content: buildProjectGuidance({
-						courseFamily: "USACO",
-						moduleTitle: "UB 17 Block Game Java: Practice Studio",
-						projectKind: "core",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					content:
+						"Trace `5 8` from `lostcow.in`. Starting at 5, Farmer John turns at 6, then at 3. On the way to 9 he reaches 8, so the last leg adds only 5. The three legs cost 1 + 3 + 5, and `lostcow.out` should contain `9`.\n\n**Checkpoints:** In Java, keep the starting coordinate separate from the current position. Try `5 4`: the cow lies on the return leg from 6, so the distance is `3`. Which comparison stops a leftward leg at the cow?",
 					projectLink:
 						"https://github.com/instruction-material/USACO-Bronze/tree/main/UB25-The-Lost-Cow-Java/starter",
 					solutionLink:
@@ -975,13 +969,9 @@ const usacoBronzeSourceCourse: RawCourse = {
 				},
 				{
 					title: "Bovine Genomics",
-					content: buildProjectGuidance({
-						courseFamily: "USACO",
-						moduleTitle:
-							"UB 18 The Cow Signal Java: Practice Studio",
-						projectKind: "core",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					content:
+						"Write `2 3` in `cownomics.in`, then `AAC`, `CGT`, `GAC`, `TGT` on separate lines. The first two genomes belong to spotty cows. At the first position their letters are A and C, while the plain cows have G and T. Both remaining positions share a letter across groups. Count the positions that separate the groups: `cownomics.out` should contain `1`.\n\n**Checkpoints:** Replace `GAC` with `AAC` and predict which column changes the answer to `0`. Identify one shared letter in each column before running the program.",
 					projectLink:
 						"https://github.com/instruction-material/USACO-Bronze/tree/main/UB26-Bovine-Genomics/starter",
 					solutionLink:
@@ -989,13 +979,9 @@ const usacoBronzeSourceCourse: RawCourse = {
 				},
 				{
 					title: "Bovine Genomics Java",
-					content: buildProjectGuidance({
-						courseFamily: "USACO",
-						moduleTitle:
-							"UB 18 The Cow Signal Java: Practice Studio",
-						projectKind: "core",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					content:
+						"Start `cownomics.in` with `2 1`, followed by `A`, `C`, `C`, `A`, each on its own line. Comparing cows in matching row order finds two mismatches, yet each group contains both letters. The only column fails, so `cownomics.out` should contain `0`.\n\n**Checkpoints:** Build fresh letter sets for each column in Java. With `2 2` followed by `AA`, `CC`, `GG`, `TT`, both intersections are empty and the answer is `2`. Trace the comparisons that the row-by-row method missed.",
 					projectLink:
 						"https://github.com/instruction-material/USACO-Bronze/tree/main/UB26-Bovine-Genomics-Java/starter",
 					solutionLink:
@@ -1048,13 +1034,9 @@ const usacoBronzeSourceCourse: RawCourse = {
 				},
 				{
 					title: "Modern Art",
-					content: buildProjectGuidance({
-						courseFamily: "USACO",
-						moduleTitle:
-							"UB 19 Don't Be Last Java: Practice Studio",
-						projectKind: "core",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					content:
+						"Put `3` then `111`, `121`, `111` on separate lines in `art.in`. Draw the smallest rectangle enclosing every visible 1. It includes the central 2, so 2 was painted later. Only color 1 could have been first and `art.out` should contain `1`.\n\n**Checkpoints:** Replace the rows with `110`, `110`, `002`. The two visible colors occupy disjoint rectangles, so either can be first and the answer is `2`. Explain why the unpainted zeros add no candidate.",
 					projectLink:
 						"https://github.com/instruction-material/USACO-Bronze/tree/main/UB27-Modern-Art/starter",
 					solutionLink:
@@ -1062,13 +1044,9 @@ const usacoBronzeSourceCourse: RawCourse = {
 				},
 				{
 					title: "Modern Art Java",
-					content: buildProjectGuidance({
-						courseFamily: "USACO",
-						moduleTitle:
-							"UB 19 Don't Be Last Java: Practice Studio",
-						projectKind: "core",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					content:
+						"With `3` and rows `111`, `122`, `123` in `art.in`, mark the bounds of each visible digit. The box for 1 contains 2 and 3. The box for 2 also contains 3. Eliminate the covered colors once each: `art.out` should contain `1`.\n\n**Checkpoints:** Use a Java boolean flag per color so two pieces of evidence against 3 still eliminate only one candidate. Change the rows to `100`, `020`, `003`. Which flags change, and why does the answer become `3`?",
 					projectLink:
 						"https://github.com/instruction-material/USACO-Bronze/tree/main/UB27-Modern-Art-Java/starter",
 					solutionLink:
@@ -1121,13 +1099,9 @@ const usacoBronzeSourceCourse: RawCourse = {
 				},
 				{
 					title: "Fence Painting",
-					content: buildProjectGuidance({
-						courseFamily: "USACO",
-						moduleTitle:
-							"UB 20 Hoof Paper Scissors Java: Practice Studio",
-						projectKind: "core",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					content:
+						"Sketch the fence from 1 to 7. With `1 5` and `3 7` on separate lines in `paint.in`, each painter covers length 4. The shared stretch from 3 to 5 has length 2. Count it once: `paint.out` should contain `6`.\n\n**Checkpoints:** Move the second stretch to `7 10`. The gap from 5 to 7 stays bare and the output becomes `7`. Mark that gap on the sketch before explaining which inputs allow a single outer span to give the right length.",
 					projectLink:
 						"https://github.com/instruction-material/USACO-Bronze/tree/main/UB28-Fence-Painting/starter",
 					solutionLink:
@@ -1135,13 +1109,9 @@ const usacoBronzeSourceCourse: RawCourse = {
 				},
 				{
 					title: "Fence Painting Java",
-					content: buildProjectGuidance({
-						courseFamily: "USACO",
-						moduleTitle:
-							"UB 20 Hoof Paper Scissors Java: Practice Studio",
-						projectKind: "core",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					content:
+						"Use `2 8` and `4 6` as the two rows of `paint.in`. The second stretch lies inside the first. Their total painted length is `6`, the expected value in `paint.out`. If both rows say `2 8`, the answer is still `6`.\n\n**Checkpoints:** In Java, subtract the overlap from the sum of the two lengths. Test `1 5` followed by `5 8`: the endpoint is shared but has zero length, so the output is `7`. Trace the overlap in all three cases.",
 					projectLink:
 						"https://github.com/instruction-material/USACO-Bronze/tree/main/UB28-Fence-Painting-Java/starter",
 					solutionLink:
@@ -1194,12 +1164,9 @@ const usacoBronzeSourceCourse: RawCourse = {
 				},
 				{
 					title: "Speeding Ticket Java",
-					content: buildProjectGuidance({
-						courseFamily: "USACO",
-						moduleTitle: "UB 21 Cow Tipping Java: Practice Studio",
-						projectKind: "core",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					content:
+						"Use `2 2` in `speeding.in`, followed by `40 60`, `60 40`, `50 55`, `50 35`. The road limit drops after mile 40. Bessie stays at 55 for ten more miles, exceeding the new limit by 15. The largest excess goes in `speeding.out`: `15`.\n\n**Checkpoints:** Change just the driving rows to `40 55` and `60 35`. The output becomes `0`. Point to the miles skipped by a Java loop that compares the first road row only with the first driving row.",
 					projectLink:
 						"https://github.com/instruction-material/USACO-Bronze/tree/main/UB29-Speeding-Ticket-Java/starter",
 					solutionLink:

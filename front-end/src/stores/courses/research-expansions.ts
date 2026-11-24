@@ -1439,6 +1439,19 @@ const apCsaProfile: ResearchExpansionProfile = {
 	]
 };
 
+const bronzePracticeProjectBriefs: Record<string, string> = {
+	"Pattern notebook with solved examples.":
+		"Build two notebook entries from problems you have solved. For each entry, keep the cue that suggested the pattern, a hand trace, the rule your program preserves and one input that would expose a wrong rule. For Fence Painting, `1 5` and `3 7` cover 6 units: adding the two lengths counts 3 to 5 twice. Changing the second interval to `3 5` leaves 4 units. Write the second entry for a different pattern from your own work.\n\n**Checkpoints:** Hide the problem names. Use the cues to choose a method for each entry and retrace its changed input.",
+	"Problem-set playlist by concept.":
+		"Build a three-problem practice list. [Fence Painting](https://usaco.org/index.php?page=viewproblem2&cpid=567) asks which lengths overlap. [The Lost Cow](https://usaco.org/index.php?page=viewproblem2&cpid=735) asks when a simulation should stop. Choose a third Bronze statement addressing a specific gap from your last attempt. For each entry, save its statement link, the concept you intend to practice and one reason for its place in the order.\n\n**Checkpoints:** Mark which problems are still unseen. Pick your next attempt from the list and record what result would lead you to repeat that concept or move on.",
+	"Template implementation drill.":
+		"From an empty Python or Java file, rebuild the file-reading, solving and output steps for Fence Painting. Read two lines from `paint.in`, each with the endpoints of a painted interval. Return the total length covered and write just that integer and a newline to `paint.out`. For `1 5` followed by `3 7`, expect `6`. Replace the second pair with `3 5`. The expected output is `4`.\n\n**Checkpoints:** Run both inputs. Keep the two outputs and identify the line that would change if the input filename changed.",
+	"Rewrite brute force into optimized solution.":
+		"Keep two implementations of Bovine Genomics. For each column, the first version compares every spotty cow with every plain cow. The rewrite collects the bases in each group and checks for overlap. With N cows per group and M columns, explain the change from O(MN²) worst-case comparisons to O(MN) work using the four possible bases.\n\n**Checkpoints:** Run both versions on `cownomics.in` containing `2 3`, then `AAC`, `CGT`, `GAC`, `TGT` on separate lines. Both `cownomics.out` files should give `1`. Replace `GAC` with `AAC` and expect `0` from each. Explain why the two tests for a qualifying column agree.",
+	"Mock contest plus postmortem.":
+		"Select three unseen Bronze statements and set one continuous contest timer. Start each solution in an empty file. Work independently throughout the timed attempt, keeping hints, AI, discussion, templates and published solutions for after the timer. Log your problem order, initial complexity estimates, submission times and results, including any problem you leave unfinished.\n\n**Checkpoints:** After time expires, preserve the last attempt for every unfinished or partially solved problem. For each, identify the first error in your reading, model, complexity estimate, implementation or testing. Save the smallest input that exposes it, its expected output and the result of a fresh independent rewrite. If all three passed, use a boundary case to test your most fragile assumption. Keep the timed log alongside the later work."
+};
+
 const usacoProfile: ResearchExpansionProfile = {
 	family: "USACO",
 	priority: "soon",
@@ -2145,7 +2158,10 @@ export const researchBackedExpansionProfiles: Record<
 	"scratch-level-1": scratchProfile,
 	"scratch-level-2": scratchProfile,
 	"unity-game-development": unityProfile,
-	"usaco-bronze": usacoProfile,
+	"usaco-bronze": {
+		...usacoProfile,
+		projectBriefs: bronzePracticeProjectBriefs
+	},
 	"usaco-gold": usacoProfile,
 	"usaco-silver": usacoProfile,
 	"web-development-foundations": webProfile

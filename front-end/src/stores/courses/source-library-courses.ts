@@ -7068,6 +7068,36 @@ interface UsacoOnDemandStageSpec {
 }
 
 const bronzeIndependentReadings: Record<string, string> = {
+	"Concepts: The Lost Cow":
+		"Each turning point is an offset from Farmer John’s starting coordinate: +1, −2, +4, −8, and so on. From 5 the first three destinations are 6, 3 and 9. When the cow is at 8, the third leg ends early. The distance traveled is 1 + 3 + 5 = 9. A cow at 6 ends the search on the very first leg, after distance 1.",
+	"Practice Map: The Lost Cow":
+		"Put `5 8` in `lostcow.in`. Write down each leg’s start, planned destination and distance actually walked before you run the program. The last row should read 3, 9, 5 and `lostcow.out` should contain `9`. Change the input to `5 3`. This time the cow is exactly at the second turning point. The output is `4`. If you get a larger value, check whether your stopping test includes both endpoints.",
+	"Extension Review: The Lost Cow":
+		"Predict three runs before checking them. For `5 4`, the return from 6 reaches 4 after two more steps, for `3` in total. For `5 9`, reaching the full third turning point costs `10`. For `15 18`, the answer is `9`. Explain why shifting both coordinates ten places preserves the distance for `5 8`, while shifting only the cow from 8 to 9 adds one step.",
+	"Concepts: Bovine Genomics":
+		"A position distinguishes the groups only when no letter in that column occurs in both groups. For spotty genomes `AAC`, `CGT` and plain genomes `GAC`, `TGT`, column one separates {A,C} from {G,T}. Columns two and three share letters, so the count is 1. Pairwise comparison in input order can miss a match: for spotty `A`, `C` and plain `C`, `A`, both groups contain both letters and the count is 0.",
+	"Practice Map: Bovine Genomics":
+		"In `cownomics.in`, put `2 3` followed by four lines: `AAC`, `CGT`, `GAC`, `TGT`. The first two genomes are spotty. Make a row for each position and cross out any row whose two groups share a letter. Only position one survives, so `cownomics.out` should contain `1`. Replace `GAC` with `AAC` and predict `0`. If the answer stays at 1, check whether your code compared every spotty letter with the plain group.",
+	"Extension Review: Bovine Genomics":
+		"Does the number of qualifying positions depend on the order of the cows? With `2 3` followed by `CGT`, `AAC`, `TGT`, `GAC`, the answer remains `1`. Now use `2 2` with `AA`, `CC`, `GG`, `TT`. Both columns qualify. Replace `CC` with a second `AA` and predict the output again: it is still `2`. Explain what duplicate letters change in a list and what they change in a set.",
+	"Concepts: Modern Art":
+		"Each color was painted as a solid rectangle. Even when part of it is hidden, the smallest box around its visible squares must have been painted in that color. On the three rows `111`, `121`, `111`, the box for 1 includes the central 2. Color 2 had to come later, leaving one visible candidate for first. On `110`, `110`, `002`, the boxes are disjoint. Both visible colors could be first. Zero means unpainted canvas.",
+	"Practice Map: Modern Art":
+		"Write `3` followed by `111`, `122`, `123` on separate lines in `art.in`. List every different color inside each visible color’s box. Cross out 2 and 3 as possible first colors. Even though two boxes rule out 3, it is one color. Compare your candidate count with `art.out`, which should contain `1`. Change the grid to `100`, `020`, `003`: the three singleton boxes leave `3` candidates.",
+	"Extension Review: Modern Art":
+		"Swap the labels in the ring: use `3`, then `222`, `212`, `222` in `art.in`. Name the first color before running the program. It must be 2, while `art.out` is `1` because the question asks for a count. Now try `2` with `12`, `12`. Both vertical stripes can be painted first and the output is `2`. Describe a valid painting order for each candidate.",
+	"Concepts: Fence Painting":
+		"An interval from 1 to 5 paints four units of fence. For intervals 1 to 5 and 3 to 7, adding their lengths counts 3 to 5 twice. Subtract that overlap once to obtain 6. For intervals 1 to 5 and 7 to 10, the fence between 5 and 7 is bare. The covered length is 4 + 3 = 7. In either case the overlap length is the smaller right endpoint minus the larger left endpoint, clamped to zero.",
+	"Practice Map: Fence Painting":
+		"Put `1 5` and `3 7` on separate lines in `paint.in`. Mark each unit of fence covered by either painter before checking `paint.out` for `6`. Try `1 5` and `5 8`: touching at one point gives no shared length, so expect `7`. Now change the second row to `3 5`. The first interval already covers the second and the output is `4`. If you get 5, check whether your loop counted fence posts instead of gaps.",
+	"Extension Review: Fence Painting":
+		"Try `2 8` and `4 6` as the two rows in `paint.in`. Compare the covered length with the longer interval: both are `6`. Reverse the order of an overlapping pair with `3 7` followed by `1 5`: the union still has length `6`. Finally try `0 100` and `99 100`. Predict `100`, then explain why an implementation that marks individual fence posts can incorrectly report 101.",
+	"Concepts: Speeding Ticket":
+		"A road segment and a driving segment can end at different miles. Suppose the limit is 60 for 40 miles, then 40 for 60 miles. Driving 55 for 50 miles and 35 for the rest exceeds the limit only on miles 41 through 50. The maximum excess is 15. If the speed instead drops to 35 after mile 40, the maximum excess is zero. Compare speeds at the same mile and retain the largest positive difference.",
+	"Practice Map: Speeding Ticket":
+		"Write `2 2` in `speeding.in`, then one pair per line: `40 60`, `60 40`, `50 55`, `50 35`. The first two pairs describe the road and the last two describe the drive. Mark the changes after miles 40 and 50. `speeding.out` should contain `15`. Split the first road row into two `20 60` rows and change the header to `3 2`. The answer stays `15` because the limit at each mile stays the same.",
+	"Extension Review: Speeding Ticket":
+		"Try `1 2` followed by `100 50`, `99 50`, `1 70` in `speeding.in`. Only the last mile exceeds the limit, so the expected maximum is `20`. If your answer is zero, check whether your loop visits mile 100. For a full road at limit 50 with one 100-mile driving segment, predict `0` at speed 50 and `5` at speed 55. Distinguish the largest excess from the number of miles spent speeding.",
 	"Concepts: Don't Be Last":
 		"Keep a total for each of the seven cows: Bessie, Elsie, Daisy, Gertie, Annabelle, Maggie and Henrietta. Unrecorded cows have zero milk. Look for the smallest total strictly above the herd minimum. Print its cow’s name only if exactly one cow has that total. Otherwise print `Tie`. For a single entry `Maggie 3`, the levels are zero and three, giving `Maggie`. If all seven produce two units each, there is only one level and the answer is `Tie`.",
 	"Practice Map: Don't Be Last":
