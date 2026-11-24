@@ -44,6 +44,10 @@ const publishedAPModuleOrder = JSON.parse(
 	)
 ) as { moduleIds: string[] };
 
+const scratchCapstoneModule = "scratch-level-1-gs13-master-project";
+const scratchTypingId =
+	"scratch-level-1-gs13-master-project-curriculum-optional-extra-practice-typing-games";
+
 // Keep the published baseline immutable; account for a deliberate addition
 // separately so changes to any original assignment still fail the digest.
 const addedIdentities: Record<
@@ -66,6 +70,13 @@ const addedIdentities: Record<
 	"introduction-to-public-speaking": restoredSpeakingProjects,
 	...restoredWritingProjects,
 	...restoredPythonRecaps,
+	"scratch-level-1": [
+		{
+			moduleId: scratchCapstoneModule,
+			id: "scratch-level-1-gs13-master-project-curriculum-build-and-test-your-game",
+			section: "core"
+		}
+	],
 	"scratch-level-1-classroom": [
 		{
 			moduleId: "scratch-classroom-6",
@@ -134,6 +145,25 @@ it("preserves published assignment identities across the complete catalog", asyn
 		}
 		expect(actual.length, id).toBe(identities.items + additions.length);
 		const originalIdentities = actual.filter(item => !isAddition(item));
+
+		// Typing moved from the last core slot to the first optional slot.
+		// Verify its current placement and normalize that one historical field.
+		if (id === "scratch-level-1") {
+			const typing = originalIdentities.filter(
+				item =>
+					item.moduleId === scratchCapstoneModule &&
+					item.id === scratchTypingId
+			);
+			expect(typing).toHaveLength(1);
+			expect(typing[0].section).toBe("optional");
+			const firstOptional = originalIdentities.find(
+				item =>
+					item.moduleId === scratchCapstoneModule &&
+					item.section === "optional"
+			);
+			expect(firstOptional?.id).toBe(scratchTypingId);
+			typing[0].section = "core";
+		}
 
 		// AP's authored progression replaces the stale display order. Reconstruct
 		// only its published module order to verify every original identity and
