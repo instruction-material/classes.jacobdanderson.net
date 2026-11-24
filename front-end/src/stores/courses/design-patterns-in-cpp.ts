@@ -30,7 +30,7 @@ const designPatternsInCppSourceCourse: RawCourse = {
 					preserveInstructions: true,
 					contentKind: "reading",
 					content:
-						"Warnings flag suspicious code during compilation. Sanitizers report certain runtime problems on the paths the program actually executes. With Clang or GCC on a supported platform, configure a separate build with `cmake -S . -B checked -DCMAKE_BUILD_TYPE=Debug \"-DCMAKE_CXX_FLAGS=-Wall -Wextra -Wpedantic -Werror -fsanitize=address,undefined -fno-omit-frame-pointer\"`. Run `cmake --build checked` and `ctest --test-dir checked --output-on-failure`. An expected-versus-observed string mismatch is a behavior failure. A sanitizer diagnostic reports a runtime problem. Record which occurred when a test fails."
+						'Warnings flag suspicious code during compilation. Sanitizers report certain runtime problems on the paths the program actually executes. With Clang or GCC on a supported platform, configure a separate build with `cmake -S . -B checked -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_CXX_FLAGS=-Wall -Wextra -Wpedantic -Werror -fsanitize=address,undefined -fno-omit-frame-pointer"`. Run `cmake --build checked` and `ctest --test-dir checked --output-on-failure`. An expected-versus-observed string mismatch is a behavior failure. A sanitizer diagnostic reports a runtime problem. Record which occurred when a test fails.'
 				},
 				{
 					title: "Why CMake Matters Here",
@@ -45,10 +45,8 @@ const designPatternsInCppSourceCourse: RawCourse = {
 					contentKind: "assignment",
 					content:
 						"Build a title formatter from the starter in a separate Debug build directory. CMake builds a library, the title demo and a checks executable. Run `ctest --test-dir cmake-build --output-on-failure`. The empty case passes. The ordinary and spacing cases initially fail because format_title returns its input.\n\nEdit formatter.cpp so that the first character of each whitespace-delimited word is capitalized. Keep all original whitespace and other letters. In ASCII text, “design patterns” becomes “Design Patterns”. A tab between words must remain a tab. Inspect the first mismatched character in the debugger, then rerun the three checks.\n\n**Checkpoints:** Record the original failures, three passing checks after the change, and the output of the title demo. Predict and test one input containing repeated whitespace.",
-					projectLink:
-						`${setupSource}/DPC-05-dpc0-setup-and-tooling/starter`,
-					solutionLink:
-						`${setupSource}/DPC-05-dpc0-setup-and-tooling/solution`
+					projectLink: `${setupSource}/DPC-05-dpc0-setup-and-tooling/starter`,
+					solutionLink: `${setupSource}/DPC-05-dpc0-setup-and-tooling/solution`
 				}
 			],
 			supplementalProjects: [
@@ -58,10 +56,8 @@ const designPatternsInCppSourceCourse: RawCourse = {
 					contentKind: "assignment",
 					content:
 						"Reuse the completed title formatter. The current demo calls a free function. Sketch an alternative in which a Formatter interface has a virtual destructor and a const format operation, and a TitleFormatter delegates to the same function. Give the demo exclusive ownership of this object through std::unique_ptr<Formatter>. Compare the output of both versions on the empty and spacing cases.\n\n**Checkpoints:** Mark the owner, the destruction point and the operation selected at runtime. Explain which design you would use when the formatter is fixed, then describe a requirement that would make replacing the formatter at runtime worthwhile. The linked reference demonstrates the original free function.",
-					projectLink:
-						`${setupSource}/DPC-05-dpc0-setup-and-tooling/starter`,
-					solutionLink:
-						`${setupSource}/DPC-05-dpc0-setup-and-tooling/solution`
+					projectLink: `${setupSource}/DPC-05-dpc0-setup-and-tooling/starter`,
+					solutionLink: `${setupSource}/DPC-05-dpc0-setup-and-tooling/solution`
 				},
 				{
 					title: "Build Tooling Transfer Practice",
@@ -69,10 +65,8 @@ const designPatternsInCppSourceCourse: RawCourse = {
 					contentKind: "assignment",
 					content:
 						"Investigate why a temperature average loses half a degree. Configure the starter with `cmake -S . -B cmake-build -DCMAKE_BUILD_TYPE=Debug`, build it and run CTest. A pair of 10 and 14 gives 12. The starter gives 13 for 12 and 15 and rounds −2.5 toward zero for −4 and −1. Break at mean_temperature in temperature.cpp. Write down the sum, the type of the division and the value returned before the fix.\n\n**Checkpoints:** Change the arithmetic so the operands preserve fractions during division. Run all three checks and compare with a fourth pair of your choice. Explain why converting the result to double after the division would retain the error.",
-					projectLink:
-						`${setupSource}/DPC-01-dpc0-setup-and-tooling-supplemental-2/starter`,
-					solutionLink:
-						`${setupSource}/DPC-01-dpc0-setup-and-tooling-supplemental-2/solution`
+					projectLink: `${setupSource}/DPC-01-dpc0-setup-and-tooling-supplemental-2/starter`,
+					solutionLink: `${setupSource}/DPC-01-dpc0-setup-and-tooling-supplemental-2/solution`
 				},
 				{
 					title: "CMake Workflow Extension Practice",
@@ -80,10 +74,8 @@ const designPatternsInCppSourceCourse: RawCourse = {
 					contentKind: "assignment",
 					content:
 						"The starter contains a length library, a demo and a separate checks.cpp. Configure and build it, then run `ctest --test-dir cmake-build -N`. The demo prints 30 for three centimetres, but CTest lists zero tests. Add an executable named length_checks from checks.cpp in CMakeLists.txt. Link it to length and register it as centimetre_conversion with add_test. Reconfigure, rebuild and run CTest again.\n\n**Checkpoints:** Confirm that one test is registered. Change the conversion multiplier from 10 to 100 and observe that the test fails. Restore 10, rebuild and show the passing result. Explain why successfully building the original demo did not verify the conversion.",
-					projectLink:
-						`${setupSource}/DPC-02-dpc0-setup-and-tooling-supplemental-3/starter`,
-					solutionLink:
-						`${setupSource}/DPC-02-dpc0-setup-and-tooling-supplemental-3/solution`
+					projectLink: `${setupSource}/DPC-02-dpc0-setup-and-tooling-supplemental-3/starter`,
+					solutionLink: `${setupSource}/DPC-02-dpc0-setup-and-tooling-supplemental-3/solution`
 				}
 			]
 		},

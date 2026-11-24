@@ -1,18 +1,18 @@
+import type { RawCourse, RawCourseModuleItem } from "./types";
 import {
 	webContactRoot,
 	webDeploymentRoot,
 	webModulePortfolioRoot,
 	webNotesRoot
 } from "../../modules/webProjectResources";
-import type { RawCourse, RawCourseModuleItem } from "./types";
 
 const asset =
 	"/course-assets/web-development-foundations/web-development-foundations-";
-type Practice = {
+interface Practice {
 	root: string;
 	worksheet: string;
 	tasks: Record<string, string>;
-};
+}
 
 const feature: Practice = {
 	root: webNotesRoot,
@@ -166,11 +166,11 @@ ${setup}
 
 **Checkpoints:** ${evidence}${baseline}`;
 	item.preserveInstructions = true;
-	item.datasetLink = asset + "practice-pack.md#" + worksheet + "-case";
-	item.projectLink = root + "/starter";
+	item.datasetLink = `${asset}practice-pack.md#${worksheet}-case`;
+	item.projectLink = `${root}/starter`;
 	item.ideImport = true;
 	if (item.title.startsWith("Core Project:"))
-		item.solutionLink = root + "/solution";
+		item.solutionLink = `${root}/solution`;
 	else delete item.solutionLink;
 }
 
@@ -236,7 +236,7 @@ export function applyWebPracticeRoutes(course: RawCourse) {
 		);
 		const reading = module.curriculum[0];
 		if (
-			core?.datasetLink?.startsWith(asset + "practice-pack.md#") &&
+			core?.datasetLink?.startsWith(`${asset}practice-pack.md#`) &&
 			reading
 		) {
 			reading.contentKind = "reading";
@@ -245,8 +245,9 @@ export function applyWebPracticeRoutes(course: RawCourse) {
 				if (
 					activity.title.endsWith(": Guided Example") ||
 					activity.title.endsWith(": Review")
-				)
+				) {
 					activity.datasetLink = core.datasetLink;
+				}
 			}
 			reading.solutionLink = core.datasetLink
 				.replace("practice-pack.md#", "verification-guide.md#")

@@ -78,12 +78,12 @@ import {
 import { applySwiftReferenceReadings } from "./swiftReferenceReadings";
 import { applyRestoredUsacoProjects } from "./usacoRestoredProjectBriefs";
 import { applyWebContactWorkflow } from "./webContactWorkflow";
-import { applyWebPracticeRoutes } from "./webPracticeRoutes";
 import { applyWebDeploymentWorkflow } from "./webDeploymentWorkflow";
 import { applyWebFoundationsEntryWorkflows } from "./webFoundationsEntryWorkflows";
 import { applyWebNotesWorkflow } from "./webNotesWorkflow";
 import { applyWebNotificationWorkflow } from "./webNotificationWorkflow";
 import { applyWebPortfolioModuleWorkflow } from "./webPortfolioModuleWorkflow";
+import { applyWebPracticeRoutes } from "./webPracticeRoutes";
 
 const INSTRUCTION_MATERIAL_BASE = "https://github.com/instruction-material";
 const CLASSROOM_BASE_COURSE_IDS: Record<string, string> = {
