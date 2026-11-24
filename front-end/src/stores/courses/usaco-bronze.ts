@@ -135,7 +135,7 @@ const usacoBronzeSourceCourse: RawCourse = {
 					title: "Problem: Your Ride Is Here",
 					preserveInstructions: true,
 					content:
-						"Read two uppercase names of one to six letters from ride.in, one per line. Give A the value 1 through Z the value 26. Multiply each name’s letter values and compare the remainders modulo 47. Before running, ask your partner whether unequal products can match. For BX and A, the products 48 and 1 both leave remainder 1, so ride.out contains GO. Change BX to BY: 50 leaves remainder 3, so the answer becomes STAY. Start a blank Python file; the starter folder contains a README. Write just the decision and a newline.",
+						"Read two uppercase names of one to six letters from ride.in, one per line. Assign values in alphabet order, starting at 1 for A and ending at 26 for Z. Multiply each name’s letter values and compare the remainders modulo 47. Before running, ask your partner whether unequal products can match. For BX and A, the products 48 and 1 both leave remainder 1, so ride.out contains GO. Change BX to BY: 50 leaves remainder 3, so the answer becomes STAY. Start a blank Python file; the starter folder contains a README. Write just the decision and a newline.",
 					projectLink:
 						"https://github.com/instruction-material/USACO-Bronze/tree/main/UB2-Your-Ride-Is-Here/starter",
 					solutionLink:
@@ -1627,7 +1627,7 @@ function decorateBronzeModule(
 				"**Structured simulation:** Prefer a direct invariant when enumerating all states is unnecessary.",
 				"**Constructive output:** For the linked keyboard problem, M appends M. O flips every earlier letter, then appends O. To validate the witness, ask a partner to replay MO: M becomes OO. Compare OM: O becomes OM. The last displayed letter always identifies the last key. To undo O, remove it and flip the remaining prefix; to undo M, just remove it. Reversing the steps gives exactly one sequence per target. Print YES alone for k=0, or YES and the keystrokes on the next line for k=1.",
 				"**Multiple cases:** Reset all per-case state and use the stated total-input bound to justify aggregate runtime."
-			].join("\n"),
+			].join("\n\n"),
 			projectLink: USACO_2026_BRONZE_PROBLEM,
 			learningPath: "core"
 		});
@@ -1656,7 +1656,7 @@ function decorateBronzeModule(
 				"**During the timer:** Record first-read complexity, attempt order, submission time, and judge outcome without turning the log into outside assistance.",
 				"**Postmortem:** For every unsolved or partially solved problem, preserve the last attempt, identify statement/model/complexity/implementation/test failure, find the smallest counterexample, and produce a clean independent rewrite later.",
 				"**Silver gate:** Demonstrate two complete independent solves plus one successful postmortem rewrite on more than one mock before changing tiers."
-			].join("\n"),
+			].join("\n\n"),
 			projectLink: USACO_CONTEST_RULES,
 			learningPath: "core"
 		});
