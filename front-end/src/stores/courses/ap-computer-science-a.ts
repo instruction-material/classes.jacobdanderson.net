@@ -2,6 +2,7 @@ import type { RawCourse, RawCourseModuleItem } from "./types";
 import {
 	apBinarySearchResources,
 	apBlobEraseResources,
+	apClassesAndArraysResources,
 	apElevatorWarningResources,
 	apExpressionsAndClassResources,
 	apFoundationsSupplementalResources,
@@ -1149,10 +1150,28 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 			supplementalProjects: [
 				{
 					title: "Project: Bank Account Class",
-					content:
-						"The bank-account build covers clean state transitions, deposits, withdrawals, and invariant thinking. A strong implementation prevents invalid balances, keeps fields encapsulated, and demonstrates state before and after each transaction.",
-					projectLink: repo("APCS6-Bank-Account-Class/starter"),
-					solutionLink: repo("APCS6-Bank-Account-Class/solution"),
+					content: apProject({
+						goal: "Update an account balance and the total across all accounts together.",
+						steps: [
+							"Open `Main.java` and `BankAccount.java`. Trace the constructors for Fern and Moss. Use the supplied amount check and `credit` helper to complete `deposit`.",
+							"Complete `withdraw`. Validate the amount, compare it with the current balance, and subtract it from both totals only on success. Use the supplied decimal-comparison and arithmetic patterns.",
+							"Download and extract the project ZIP. Run `javac Main.java BankAccount.java`, then `java Main`."
+						],
+						apReasoning:
+							"Private instance fields belong to each account. Static fields are shared. `BigDecimal` stores the exact decimal changes, and its arithmetic methods return the new value.",
+						checks: [
+							"Fern’s initial withdrawal fails. A deposit of 25 and a withdrawal of 10 leave 15.",
+							"Moss still has 100. The bank total is 115 for two accounts.",
+							"A negative, non-finite, or excessive withdrawal leaves both totals unchanged."
+						]
+					}),
+					projectLink:
+						apClassesAndArraysResources["bank-account"].starter,
+					solutionLink:
+						apClassesAndArraysResources["bank-account"].reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true,
 					mediaLink: media("apcs6-project-2-bank-account-class.mp4")
 				},
 				{
@@ -1165,14 +1184,27 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 				},
 				{
 					title: "Reference: Getters and Setters",
-					content:
-						"This reference directly reviews controlled access patterns and field updates. The key idea is that public methods can protect object invariants while still allowing outside code to read or request valid changes. Use it to compare direct field access with method-mediated access. A finished pass identifies which method reads state, which method requests a change, what validation protects the field, and what test proves an invalid update does not corrupt the object. Add one AP-style explanation of why `private` data plus public methods improves reasoning about class behavior.",
-					projectLink: repo(
-						"APCS6-Getters-and-Setters-Reference/starter"
-					),
-					solutionLink: repo(
-						"APCS6-Getters-and-Setters-Reference/solution"
-					)
+					content: apProject({
+						goal: "Use getters to read clock fields and setters to accept valid changes.",
+						steps: [
+							"Use `setHours` in `Time.java` as a model for `setMins` and `setSecs`. Minutes and seconds range from 0 through 59.",
+							"Trace the three checks in `resetTime`. Decide whether a failed check lets any of the three fields change.",
+							"Download and extract the project ZIP. Run `javac Main.java Time.java`, then `java Main`. Trace what happens on the increment at the end of the day."
+						],
+						apReasoning:
+							"Validation occurs before assignment. Every getter can return a value from the same valid clock state after an invalid request.",
+						checks: [
+							"A valid update changes 10:15:20 to 11:25:30. The invocations with hour 24, minute -1, or second 60 leave that time in place.",
+							"An invalid reset leaves every field in place. Incrementing 23:59:59 produces 00:00:00."
+						]
+					}),
+					projectLink:
+						apClassesAndArraysResources["time-accessors"].starter,
+					solutionLink:
+						apClassesAndArraysResources["time-accessors"].reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true
 				}
 			]
 		},
@@ -1307,14 +1339,27 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 			supplementalProjects: [
 				{
 					title: "Additional Practice: Letter Shifter",
-					content:
-						"The letter-shifter project reinforces inheritance, overriding, and character-level string manipulation after the check-in. A strong solution reuses shared shifting logic and handles wraparound cases for uppercase and lowercase letters.",
-					projectLink: repo(
-						"APCS-Check-in-3-Additional-Practice-Project/starter"
-					),
-					solutionLink: repo(
-						"APCS-Check-in-3-Additional-Practice-Project/solution"
-					)
+					content: apProject({
+						goal: "Use inheritance to give two subclasses a shared letter transformation.",
+						steps: [
+							"In `Shifter.java`, convert an uppercase or lowercase ASCII letter to its position within the alphabet. Use `Math.floorMod` to put a shift within 0 through 25, then wrap the resulting index inside the same alphabet.",
+							"Copy spaces, numbers, punctuation, and other characters without shifting. Complete `DownShifter` so it invokes the shared helper with -1.",
+							"Download and extract the ZIP. Run `javac Main.java Shifter.java UpShifter.java DownShifter.java`, then `java Main`. Enter one line of input."
+						],
+						apReasoning:
+							"Each override chooses the direction. The shared method handles case and wraparound in one place.",
+						checks: [
+							"Input `Az za-09!` gives `Ba ab-09!` forward and `Zy yz-09!` backward.",
+							"Shifting forward and then backward restores the input, including spaces and punctuation."
+						]
+					}),
+					projectLink:
+						apClassesAndArraysResources["letter-shifter"].starter,
+					solutionLink:
+						apClassesAndArraysResources["letter-shifter"].reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true
 				},
 				{
 					title: "ArrayList Reference",
@@ -1423,41 +1468,111 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 				},
 				{
 					title: "Array Reference Pack",
-					content:
-						"The array reference build gives a quick review of indexing, `.length`, and default values when array syntax is blocking the more important reasoning about traversal, bounds, and mutation. Use it before moving into accumulation or matrix work. A finished reference pass identifies valid indexes, default element values, the difference between changing an element and reassigning a local parameter, and one out-of-bounds index that the loop must avoid. Add a trace of an accumulator or search variable so the array access is tied to algorithm behavior rather than syntax alone.",
-					projectLink: repo("APCS10-Array-Reference/starter"),
-					solutionLink: repo("APCS10-Array-Reference/solution")
+					content: apProject({
+						goal: "Trace array defaults, valid indexes, element updates, and local rebinding.",
+						steps: [
+							"Run `Main.java` and compare the first element’s default value with the length and last valid index.",
+							"Complete `square` so it updates each value in the original array. Compare its effect with `replaceLocally`, which points its parameter at a new array.",
+							"Trace the nested iteration through the 2-by-3 example and calculate its total."
+						],
+						apReasoning:
+							"An array parameter contains a copy of the caller’s reference. A method can use that reference to change an element, while assigning a new array to the parameter leaves the caller’s reference in place.",
+						checks: [
+							"Length 5 gives indexes 0 through 4. Squaring `0 1 2 3 4` yields `0 1 4 9 16`.",
+							"The local replacement starts at 42. The caller still has the squared values, and the separate grid sums to 21."
+						]
+					}),
+					projectLink:
+						apClassesAndArraysResources["array-reference"].starter,
+					solutionLink:
+						apClassesAndArraysResources["array-reference"]
+							.reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "Project: Random Mad Libs",
-					content:
-						"Random Mad Lib connects arrays, random indexing, and lightweight string generation. The check is that every random index stays in bounds, every word bank has a clear role, and the generated output still reads as a complete sentence.",
-					projectLink: repo("APCS10-Random-Mad-Lib/starter"),
-					solutionLink: repo("APCS10-Random-Mad-Lib/solution"),
+					content: apProject({
+						goal: "Use independent array choices to print five complete sentences.",
+						steps: [
+							"Read the adjective, noun, and verb banks. In `choose`, use `random.nextInt(words.length)` to produce an index for the supplied nonempty bank.",
+							"Run `Main.java`. Check the grammatical role of each word in the template. Trace a draw at index 0 and at the last valid index of each bank.",
+							"Change the seed and compare the selections while keeping the same rules for which bank supplies each word."
+						],
+						apReasoning:
+							"The upper bound to `nextInt` is exclusive. Passing the length keeps the draw in bounds for banks of different sizes.",
+						checks: [
+							"The program prints five sentences with the form `The adjective noun began to verb at midnight.`",
+							"Each chosen word belongs to the correct bank. The IDE preview can draw different words from a native Java run with the same seed."
+						]
+					}),
+					projectLink:
+						apClassesAndArraysResources["random-mad-libs"].starter,
+					solutionLink:
+						apClassesAndArraysResources["random-mad-libs"]
+							.reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true,
 					mediaLink: media("apcs10-project-2-random-mad-libs.mp4")
 				},
 				{
 					title: "Project: Practice With Two-Dimensional Arrays",
-					content:
-						"This project develops grid traversal, row-and-column reasoning, and nested loops. A complete solution explains which loop controls rows, which loop controls columns, and how the code changes when the target is a row, column, cell, or whole matrix.",
-					projectLink: repo(
-						"APCS10-Practice-With-Two-Dimensional-Arrays/starter"
-					),
-					solutionLink: repo(
-						"APCS10-Practice-With-Two-Dimensional-Arrays/solution"
-					),
+					content: apProject({
+						goal: "Search a grid, add its values, and compare the sums of its rows.",
+						steps: [
+							"Trace the supplied `containsValue` and `sumRow` methods. Identify the row and column represented by each loop.",
+							"Complete `sumOfArray` by adding the row totals. Complete `isRowMagic` by comparing each row sum with the first.",
+							"Handle empty grids explicitly. Their total is 0, and empty or single-row grids have no unequal row sums."
+						],
+						apReasoning:
+							"A two-dimensional array contains rows with their own lengths. Reset a row total at the start of each row and keep the grid total separate.",
+						checks: [
+							"The first grid contains 6, does not contain 11, and sums to 85. Its rows have different sums.",
+							"All rows in the second grid sum to 25, including the row with negative entries."
+						]
+					}),
+					projectLink:
+						apClassesAndArraysResources["two-dimensional-arrays"]
+							.starter,
+					solutionLink:
+						apClassesAndArraysResources["two-dimensional-arrays"]
+							.reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true,
 					mediaLink: media(
 						"apcs10-project-3-practice-with-two-dimensional-array.mp4"
 					)
 				},
 				{
 					title: "Project: Matrix Arithmetic",
-					content:
-						"Matrix arithmetic is a more structured 2D-array build. The project makes dimension compatibility explicit, then traces at least one cell of the result so array indexing and arithmetic reasoning are connected.",
-					projectLink: repo("APCS10-Matrix-Arithmetic/starter"),
-					solutionLink: repo("APCS10-Matrix-Arithmetic/solution"),
+					content: apProject({
+						goal: "Use compatible shapes to add, subtract, and multiply matrices.",
+						steps: [
+							"Read the supplied shape checks before filling the result. Addition and subtraction need the same row and column counts. Multiplication needs the left column count to equal the right row count.",
+							"In `combine`, use the sign parameter to add or subtract corresponding cells. In `matrixMul`, accumulate the products from one row and one column per result cell.",
+							"Use integer inputs with intermediate values that fit in `int`. Incompatible, empty, and jagged grids produce a rejected result."
+						],
+						apReasoning:
+							"The shared index walks across the left row and down the right column. The result has the left matrix’s row count and the right matrix’s column count.",
+						checks: [
+							"A times B gives rows `19 25` and `43 58`. C plus D is a 3-by-3 grid of 10s.",
+							"C minus D gives `-8 -6 -4`, `-2 0 2`, and `4 6 8`. A plus B prints `Incompatible dimensions`."
+						]
+					}),
+					projectLink:
+						apClassesAndArraysResources["matrix-arithmetic"]
+							.starter,
+					solutionLink:
+						apClassesAndArraysResources["matrix-arithmetic"]
+							.reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true,
 					mediaLink: media("apcs10-project-4-matrix-arithmetic.mp4")
 				},
 				{

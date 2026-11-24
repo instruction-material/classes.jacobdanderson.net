@@ -18,6 +18,9 @@ const variablesAndLoopsPacks =
 const expressionsAndClassPacks =
 	"https://github.com/instruction-material/APCS/tree/c1a6918718a986c8ef4a7a400dda0eb5a90b9bff";
 
+const classesAndArraysPacks =
+	"https://github.com/instruction-material/APCS/tree/9a0a543060abfe939bec01ebdc9d0cd876ba387c";
+
 function projectRoles(pack: string) {
 	return {
 		starter: `${pack}/starter`,
@@ -142,6 +145,30 @@ export const apExpressionsAndClassResources = {
 	)
 };
 
+export const apClassesAndArraysResources = {
+	"bank-account": projectRoles(
+		`${classesAndArraysPacks}/APCS6-Bank-Account-Class`
+	),
+	"time-accessors": projectRoles(
+		`${classesAndArraysPacks}/APCS6-Getters-and-Setters-Reference`
+	),
+	"letter-shifter": projectRoles(
+		`${classesAndArraysPacks}/APCS-Check-in-3-Additional-Practice-Project`
+	),
+	"random-mad-libs": projectRoles(
+		`${classesAndArraysPacks}/APCS10-Random-Mad-Lib`
+	),
+	"two-dimensional-arrays": projectRoles(
+		`${classesAndArraysPacks}/APCS10-Practice-With-Two-Dimensional-Arrays`
+	),
+	"matrix-arithmetic": projectRoles(
+		`${classesAndArraysPacks}/APCS10-Matrix-Arithmetic`
+	),
+	"array-reference": projectRoles(
+		`${classesAndArraysPacks}/APCS10-Array-Reference`
+	)
+};
+
 const restoredProjects = {
 	"binary-search-trace": apBinarySearchResources,
 	"recursion-practice": apRecursionPracticeResources,
@@ -154,7 +181,8 @@ const restoredProjects = {
 	...apIntroductoryResources,
 	...apFoundationsSupplementalResources,
 	...apVariablesAndLoopsResources,
-	...apExpressionsAndClassResources
+	...apExpressionsAndClassResources,
+	...apClassesAndArraysResources
 };
 
 export function apComputerScienceAProjectKey(
@@ -175,15 +203,27 @@ export function apComputerScienceAProjectKey(
 const nativeClassWorkspaces = {
 	"store-class": {
 		item: "ap-computer-science-a-apcs5-classes-part-i-supplemental-project-store-class",
-		file: "Store.java"
+		files: ["Store.java"]
 	},
 	"class-constructor": {
 		item: "ap-computer-science-a-check-in-2-supplemental-class-example",
-		file: "TestClass.java"
+		files: ["TestClass.java"]
 	},
 	"this-fields": {
 		item: "ap-computer-science-a-check-in-2-supplemental-this-reference",
-		file: "Counter.java"
+		files: ["Counter.java"]
+	},
+	"bank-account": {
+		item: "ap-computer-science-a-apcs6-classes-part-ii-supplemental-project-bank-account-class",
+		files: ["BankAccount.java"]
+	},
+	"time-accessors": {
+		item: "ap-computer-science-a-apcs6-classes-part-ii-supplemental-reference-getters-and-setters",
+		files: ["Time.java"]
+	},
+	"letter-shifter": {
+		item: "ap-computer-science-a-check-in-3-supplemental-additional-practice-letter-shifter",
+		files: ["Shifter.java", "UpShifter.java", "DownShifter.java"]
 	}
 };
 
@@ -206,7 +246,7 @@ export function apComputerScienceANativeInstructions(
 	if (!target) return null;
 	return [
 		"Save the project and download its ZIP. Extract the files and open the project folder in a terminal with JDK 17 or later.",
-		`javac Main.java ${target.file}`,
+		`javac Main.java ${target.files.join(" ")}`,
 		"java Main",
 		"Compare the terminal output with the checks in the project guide."
 	];

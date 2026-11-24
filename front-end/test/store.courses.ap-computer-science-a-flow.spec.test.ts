@@ -4,6 +4,7 @@ import { describe, expect, it } from "vitest";
 import {
 	apBinarySearchResources,
 	apBlobEraseResources,
+	apClassesAndArraysResources,
 	apComputerScienceAProjectKey,
 	apElevatorWarningResources,
 	apExpressionsAndClassResources,
@@ -498,6 +499,62 @@ describe("AP Computer Science A learner flow", () => {
 			"ap-computer-science-a-check-in-2-supplemental-this-reference",
 			"choice",
 			"Counter.java"
+		],
+		[
+			"APCS6 Classes Part II",
+			"Project: Bank Account Class",
+			"bank-account",
+			"ap-computer-science-a-apcs6-classes-part-ii-supplemental-project-bank-account-class",
+			"choice",
+			"BankAccount.java"
+		],
+		[
+			"APCS6 Classes Part II",
+			"Reference: Getters and Setters",
+			"time-accessors",
+			"ap-computer-science-a-apcs6-classes-part-ii-supplemental-reference-getters-and-setters",
+			"choice",
+			"Time.java"
+		],
+		[
+			"Check-In #3",
+			"Additional Practice: Letter Shifter",
+			"letter-shifter",
+			"ap-computer-science-a-check-in-3-supplemental-additional-practice-letter-shifter",
+			"challenge",
+			"Shifter.java UpShifter.java DownShifter.java"
+		],
+		[
+			"APCS10 Arrays",
+			"Project: Random Mad Libs",
+			"random-mad-libs",
+			"ap-computer-science-a-apcs10-arrays-supplemental-project-random-mad-libs",
+			"choice",
+			null
+		],
+		[
+			"APCS10 Arrays",
+			"Project: Practice With Two-Dimensional Arrays",
+			"two-dimensional-arrays",
+			"ap-computer-science-a-apcs10-arrays-supplemental-project-practice-with-two-dimensional-arrays",
+			"choice",
+			null
+		],
+		[
+			"APCS10 Arrays",
+			"Project: Matrix Arithmetic",
+			"matrix-arithmetic",
+			"ap-computer-science-a-apcs10-arrays-supplemental-project-matrix-arithmetic",
+			"choice",
+			null
+		],
+		[
+			"APCS10 Arrays",
+			"Array Reference Pack",
+			"array-reference",
+			"ap-computer-science-a-apcs10-arrays-supplemental-array-reference-pack",
+			"choice",
+			null
 		]
 	] as const)("opens both Java roles for %s / %s", async (moduleTitle, title, kind, itemId, path, classFile) => {
 		setActivePinia(createPinia());
@@ -509,7 +566,7 @@ describe("AP Computer Science A learner flow", () => {
 		const rawModule = requireModule(moduleTitle);
 		const rawItems = path === "core" ? rawModule.curriculum : rawModule.supplementalProjects;
 		const rawItem = rawItems.find(candidate => candidate.title === title)!;
-		const links = apExpressionsAndClassResources[kind];
+		const links = { ...apExpressionsAndClassResources, ...apClassesAndArraysResources }[kind];
 		expect(item.id).toBe(itemId);
 		expect(rawItem).toMatchObject({
 			learningPath: path,
