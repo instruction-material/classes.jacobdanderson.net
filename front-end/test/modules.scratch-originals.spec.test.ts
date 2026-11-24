@@ -2,6 +2,7 @@ import { createHash, webcrypto } from "node:crypto";
 import { afterEach, expect, it, vi } from "vitest";
 import {
 	fetchScratchOriginalArchive,
+	hasRevisedLevel1Reference,
 	scratchOriginalProject,
 	scratchOriginalResource
 } from "@/modules/scratch/originals";
@@ -45,7 +46,7 @@ it("matches every configured original project and instructor reference without e
 					expect(original!.url.replace(/\/$/, "")).toBe(
 						url.replace(/\/$/, "")
 					);
-					ids.add(original!.id);
+					ids.add(original!.url);
 					if (
 						courseId === "scratch-level-1-bootcamp" &&
 						role === "project" &&
@@ -214,3 +215,29 @@ it.each([
 	);
 	expect(scratchOriginalProject(archive, course, "project")).toBeUndefined();
 });
+
+it.each(["287922077", "299094220", "327610727"])(
+	"uses the verified remix for the individual instructor and retains publisher identity for %s",
+	id => {
+		const course = "scratch-level-1";
+		const url = `https://scratch.mit.edu/projects/${id}/`;
+		const reference = scratchOriginalResource(url, course, "reference");
+		expect(reference?.id).toBe(`${id}-reference`);
+		expect(reference?.url).toBe(url);
+		expect(hasRevisedLevel1Reference(url + "embed", course)).toBe(true);
+		expect(
+			hasRevisedLevel1Reference(url, "scratch-level-1-classroom")
+		).toBe(false);
+		expect(
+			scratchOriginalProject(reference!.id, course, "project")
+		).toBeUndefined();
+		expect(
+			scratchOriginalProject(
+				reference!.id,
+				"scratch-level-1-classroom",
+				"reference"
+			)
+		).toBeUndefined();
+		expect(scratchOriginalProject(id, course, "reference")?.id).toBe(id);
+	}
+);

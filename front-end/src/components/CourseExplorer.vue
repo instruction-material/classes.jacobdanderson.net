@@ -71,7 +71,10 @@ import {
 } from "@/modules/resourceUrls";
 import { rustCourseProjectKey } from "@/modules/rustProjectResources";
 import { scratchBootcampReferenceHref } from "@/modules/scratch/bootcamp";
-import { scratchOriginalResource } from "@/modules/scratch/originals";
+import {
+	hasRevisedLevel1Reference,
+	scratchOriginalResource
+} from "@/modules/scratch/originals";
 import {
 	swiftCourseProjectKey,
 	swiftCourseResource,
@@ -126,6 +129,7 @@ interface ResourceLink {
 }
 
 interface PlayableSolution {
+	publisherDemo: boolean;
 	embedUrl: string;
 	title: string;
 }
@@ -1481,6 +1485,8 @@ function solutionLabel(url: string) {
 		return "Rubric / answer key";
 	}
 
+	if (hasRevisedLevel1Reference(url, selectedCourse.value?.id))
+		return "Publisher original";
 	if (isScratchProjectUrl(url)) {
 		return "Scratch solution";
 	}
@@ -2000,6 +2006,10 @@ async function openPlayableSolution(item: CourseModuleItem, event: MouseEvent) {
 	playableSolutionTrigger =
 		event.currentTarget instanceof HTMLElement ? event.currentTarget : null;
 	activePlayableSolution.value = {
+		publisherDemo: hasRevisedLevel1Reference(
+			item.playableSolutionEmbedUrl,
+			selectedCourse.value?.id
+		),
 		embedUrl: item.playableSolutionEmbedUrl,
 		title: item.title
 	};
@@ -2653,7 +2663,14 @@ function writeStoredValue(key: string, value: string) {
 											"
 										>
 											<span class="resource-link-label">
-												Play solution
+												{{
+													hasRevisedLevel1Reference(
+														item.playableSolutionEmbedUrl,
+														selectedCourse?.id
+													)
+														? "Play publisher demo"
+														: "Play solution"
+												}}
 											</span>
 											<small class="resource-link-host">
 												Opens the Scratch player here
@@ -2841,7 +2858,11 @@ function writeStoredValue(key: string, value: string) {
 				<header class="scratch-solution-header">
 					<div>
 						<p class="scratch-solution-eyebrow">
-							Playable solution
+							{{
+								activePlayableSolution.publisherDemo
+									? "Publisher demo"
+									: "Playable solution"
+							}}
 						</p>
 						<h2 id="scratch-solution-title">
 							{{ activePlayableSolution.title }}
@@ -2861,21 +2882,28 @@ function writeStoredValue(key: string, value: string) {
 					class="scratch-solution-description"
 				>
 					This player connects to MIT Scratch only after you choose
-					Play solution. Scratch may load services it controls,
-					including third-party services. Close it when you are
-					finished.
+					{{
+						activePlayableSolution.publisherDemo
+							? "Play publisher demo"
+							: "Play solution"
+					}}. Scratch may load services it controls, including
+					third-party services. Close it when you are finished.
 				</p>
 				<div class="scratch-solution-frame">
 					<iframe
 						:src="activePlayableSolution.embedUrl"
-						:aria-label="`Scratch solution player for ${activePlayableSolution.title}`"
+						:aria-label="`Scratch ${activePlayableSolution.publisherDemo ? 'demo' : 'solution'} player for ${activePlayableSolution.title}`"
 						allow="fullscreen"
 						allowfullscreen
 						height="402"
 						loading="lazy"
 						referrerpolicy="no-referrer"
 						sandbox="allow-scripts allow-same-origin"
-						title="Scratch solution player"
+						:title="
+							activePlayableSolution.publisherDemo
+								? 'Scratch publisher demo'
+								: 'Scratch solution player'
+						"
 						width="485"
 					/>
 				</div>

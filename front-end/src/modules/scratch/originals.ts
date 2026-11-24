@@ -24,15 +24,32 @@ export function scratchOriginalCorrection(project: ScratchOriginalProject) {
 	)?.displaySummary;
 }
 
+// These three assignments require the same program behavior in Level 1 and Bootcamp.
+const sharedLevel1References = new Set([
+	"287922077-reference",
+	"299094220-reference",
+	"327610727-reference"
+]);
+
+export function hasRevisedLevel1Reference(url: string, courseId?: string) {
+	if (courseId !== "scratch-level-1") return false;
+	const match =
+		/^https:\/\/scratch\.mit\.edu\/projects\/([1-9]\d{0,11})(?:\/embed|\/?)$/.exec(
+			url
+		);
+	return !!match && sharedLevel1References.has(`${match[1]}-reference`);
+}
+
 export function scratchOriginalProject(
 	id: unknown,
 	courseId: unknown,
 	role: unknown = "project"
 ): ScratchOriginalProject | undefined {
 	if (
-		courseId === "scratch-level-1-bootcamp" &&
+		typeof id === "string" &&
 		role === "reference" &&
-		typeof id === "string"
+		(courseId === "scratch-level-1-bootcamp" ||
+			(courseId === "scratch-level-1" && sharedLevel1References.has(id)))
 	) {
 		const sourceId = bootcampReferenceSourceId(id);
 		const source = catalog.projects.find(
@@ -69,7 +86,17 @@ export function scratchOriginalResource(
 ) {
 	const match =
 		/^https:\/\/scratch\.mit\.edu\/projects\/([1-9]\d{0,11})\/?$/.exec(url);
-	return match ? scratchOriginalProject(match[1], courseId, role) : undefined;
+	if (!match) return undefined;
+	const id = match[1];
+	const remix = `${id}-reference`;
+	if (
+		courseId === "scratch-level-1" &&
+		role === "reference" &&
+		sharedLevel1References.has(remix)
+	) {
+		return scratchOriginalProject(remix, courseId, role);
+	}
+	return scratchOriginalProject(id, courseId, role);
 }
 
 export function scratchOriginalArchiveUrl(project: ScratchOriginalProject) {

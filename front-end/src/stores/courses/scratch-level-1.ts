@@ -30,8 +30,12 @@ export const scratchLevel1Course: RawCourse = {
 			curriculum: [
 				{
 					title: "Scratch basics",
+					contentKind: "reading",
+					projectLink: "/ide?mode=scratch",
 					preserveInstructions: true,
-					content: `Create a Scratch account and explore the code blocks. Learn how the stage and sprites work, and experiment with the green flag to start scripts.
+					content: `In the Scratch editor, select a sprite and connect a move block to a green-flag event. Click the flag and watch which sprite moves. Give the project a name and use Download project to save your .sb3. Use New / open, then Open .sb3 to continue from that file.
+
+The next project links to a working Hungry Hippo game. Try the arrow keys, eat a puff, and watch the score and countdown. In your own project, start with the four movement controls and save your file under a different name. Return to it as you learn variables, collisions and broadcasts.
 
 ${scratchCostumeEditingGuide}`
 				},
@@ -67,6 +71,7 @@ ${scratchCostumeEditingGuide}`
 			supplementalProjects: [
 				{
 					title: "Starting in Scratch: Extension Challenge",
+					preserveInstructions: true,
 					content: buildSupportSectionGuidance({
 						courseFamily: "Scratch",
 						moduleTitle: "Starting in Scratch",
@@ -177,6 +182,7 @@ Challenge: Add another sprite controlled by the W-A-S-D keys.
 			supplementalProjects: [
 				{
 					title: "Event Listeners: Extension Challenge",
+					preserveInstructions: true,
 					content: buildSupportSectionGuidance({
 						courseFamily: "Scratch",
 						moduleTitle: "Event Listeners",
@@ -258,6 +264,7 @@ Challenge: Trace shapes on other backdrops.
 			supplementalProjects: [
 				{
 					title: "Pen with Event Listeners: Extension Challenge",
+					preserveInstructions: true,
 					content: buildSupportSectionGuidance({
 						courseFamily: "Scratch",
 						moduleTitle: "Pen with Event Listeners",
@@ -294,8 +301,13 @@ Challenge: Trace shapes on other backdrops.
 			curriculum: [
 				{
 					title: "Introduction to loops",
-					content:
-						'Loops repeat code blocks without copying the same instructions many times. The `repeat` block runs a set number of times, while the `forever` block keeps running until the project stops. Repeated "move" and "turn" instructions can create animations, patterns, and continuous sprite movement.'
+					contentKind: "reading",
+					preserveInstructions: true,
+					content: `A repeat block runs the stack inside it a fixed number of times and then continues below it. Forever keeps cycling until the script or project stops.
+
+For Elephant Effects, attach repeat 10 to the 1 key and put change size by 10 inside. Predict the size after three changes from size 100. Reset before comparing a different count. To see each change, put a short wait inside the repeat. A wait below the repeat pauses just once.
+
+For Drawing Mouse, lower the pen, repeat four pairs of move 40 steps and turn 90 degrees, then lift the pen. The mouse draws a square because the four outside turns add up to 360 degrees. Change the count to three and the turn to 120 degrees for a triangle. Keep the reset and the final pen lift outside the shape loop.`
 				},
 				{
 					title: "Project 1 – Elephant Effects",
@@ -375,8 +387,9 @@ Challenge: Draw a different circle using different numbers.`,
 				{
 					title: "Introducing conditionals",
 					contentKind: "reading",
+					preserveInstructions: true,
 					content:
-						'Conditionals let a program make decisions. The "if … then" block checks a condition, and sensing blocks such as "touching mouse pointer", "key right arrow pressed", and "touching color ___" provide facts the condition can test. In games, conditionals often sit inside a `forever` loop so Scratch keeps checking for changes. A useful test describes both outcomes: what happens when the condition is true and what remains unchanged when it is false.'
+						'Conditionals let a program make decisions. The "if … then" block checks a condition, and sensing blocks such as "touching mouse pointer", "key right arrow pressed", and "touching color ___" provide facts the condition can test. In games, conditionals often sit inside a `forever` loop so Scratch keeps checking for changes. A useful test describes both outcomes: what happens when the condition is true and what remains unchanged when it is false.\n\nAn if block tests once when the script reaches it. To notice a later collision, put the test inside forever. Try the same input while touching a puff and while standing away. Only the contact branch should score. Move the puff away after awarding its point so the next pass does not score the same contact again.'
 				},
 				dinoColorsLesson,
 				{
@@ -667,6 +680,7 @@ For example, start at (30, -20). Changing x by 10 gives **(40, -20)**. Changing 
 				{
 					id: "scratch-talent-show-controller-guide",
 					title: "Talent Show Controller Trace",
+					preserveInstructions: true,
 					learningPath: "choice",
 					content: talentShowControllerGuide
 				},
@@ -706,8 +720,9 @@ For example, start at (30, -20). Changing x by 10 gives **(40, -20)**. Changing 
 				{
 					title: "Introducing variables",
 					contentKind: "reading",
+					preserveInstructions: true,
 					content:
-						'Variables store information such as scores, timers, answers, or other values that can change while a project runs. The "set [variable] to" block replaces the current value, while "change [variable] by" increases or decreases it. A counting loop can make a sprite count from 1 to 10, count backward, or count by larger steps.'
+						'Variables store information such as scores, timers, answers, or other values that can change while a project runs. The "set [variable] to" block replaces the current value, while "change [variable] by" increases or decreases it. A counting loop can make a sprite count from 1 to 10, count backward, or count by larger steps.\n\nFor Speed Click, set the click count to zero once on the flag. Change it by one for each accepted click. After two clicks the count is two. A third click brings the count to three. Reset the time to ten at the start, wait one second before subtracting one, and disable scoring at zero. Restart from the flag to test both initial values.'
 				},
 				{
 					title: "Project 1 – Speed Click",
@@ -892,11 +907,10 @@ Finally, share the project!`,
 				},
 				{
 					title: "Hedgehog Race: Planning and Architecture",
-					content: buildSupportSectionGuidance({
-						courseFamily: "Scratch",
-						moduleTitle: "Hedgehog Race",
-						section: "planning"
-					})
+					preserveInstructions: true,
+					content: `Click the start button to race. The top hedgehog takes a step on left, then right. The bottom hedgehog uses A, then D. Run the demo once with each player and watch the two win counters. In your own project, let the button broadcast the race start. Each hedgehog returns to its lane and waits for its two keys in order. Change costume after each step.
+
+At the finish, award the winning player one point, stop both runners and show the button again. Test two races without using the flag between them. Each new race resets the positions and keeps the wins. The green flag resets both win counters. If you want a fresh press for every step, wait for a key release as well as a press: a held key still answers true to key pressed.`
 				},
 				{
 					title: "Hedgehog Race: Verification and Reflection",
@@ -977,11 +991,10 @@ Finally, share the project!`,
 				},
 				{
 					title: "Asteroid Dodge: Planning and Architecture",
-					content: buildSupportSectionGuidance({
-						courseFamily: "Scratch",
-						moduleTitle: "Asteroid Dodge",
-						section: "planning"
-					})
+					preserveInstructions: true,
+					content: `Move the rocket left and right while three rocks fall and turn. A rock that passes the bottom returns to the top at a random x. A hit costs one life and sends that rock back to the top. Give the rocket three lives and start a one-minute countdown. Keep steering, falling and counting in separate green-flag stacks so movement continues during the one-second waits.
+
+Test both endings. Spend the last life to show the game-over backdrop. In a separate round, avoid the rocks until time expires and show the win backdrop. Stop the hazards when either ending begins. On the next flag, check that the rocket is visible, the space backdrop returns and both counters reset.`
 				},
 				{
 					title: "Asteroid Dodge: Verification and Reflection",
@@ -995,6 +1008,7 @@ Finally, share the project!`,
 			supplementalProjects: [
 				{
 					title: "Asteroid Dodge: Extension Challenge",
+					preserveInstructions: true,
 					content: buildSupportSectionGuidance({
 						courseFamily: "Scratch",
 						moduleTitle: "Asteroid Dodge",
@@ -1031,9 +1045,19 @@ Finally, share the project!`,
 			curriculum: [
 				{
 					title: "GS13 Project 1 – Master Project",
+					preserveAssignment: true,
 					content: `For your Master Project, you now have the skills and knowledge to design and build a game of your own! Spend some time brainstorming what kind of game to make, thinking about the past projects created and different elements to incorporate.
 
 Once there is an idea, discuss the plan for programming the game. Helpful questions include: what does each sprite do? How do we control it? How does each sprite react to certain events? What variables do we need to keep track of? How does the game end?`
+				},
+				{
+					title: "Build and Test Your Game",
+					projectLink: "/ide?mode=scratch",
+					preserveInstructions: true,
+					preserveAssignment: true,
+					content: `**Build:** Open the IDE to start a new game or use Open .sb3 for your own saved project. Give the player a control, an objective and a visible result. Build one playable round before adding extra sprites. For example, let the arrow keys steer a character toward a target. Use a touching test to award a point, then move the target before testing again. Choose what ends your own round.
+
+**Verification:** Play a successful action and a missed action, reach the ending and try one more input. Restart and check the starting score, positions and appearance. Download the project, reopen that file, and test the same round before presenting.`
 				},
 				{
 					title: "Master Project Presentation",
@@ -1072,6 +1096,7 @@ Typing practice is not required to complete the Scratch course, but it can make 
 			supplementalProjects: [
 				{
 					title: "GS13 Master Project: Extension Challenge",
+					preserveInstructions: true,
 					content: buildSupportSectionGuidance({
 						courseFamily: "Scratch",
 						moduleTitle: "GS13 Master Project",
@@ -1117,9 +1142,10 @@ Typing practice is not required to complete the Scratch course, but it can make 
 				},
 				{
 					title: "Polish Build Requirements",
+					projectLink: "/ide?mode=scratch",
 					aliases: ["Build Requirements"],
 					content:
-						"Build a title screen, clear controls, score feedback, timer or lives, win/loss messages, and a replay path. Test the whole game from the green flag so the finished behavior is visible as one connected experience rather than isolated scripts."
+						"Open a saved game from this course. Download a copy under a new name for this studio. Build a title screen, clear controls, score feedback, timer or lives, win/loss messages, and a replay path. Test the whole game from the green flag so the finished behavior is visible as one connected experience rather than isolated scripts."
 				},
 				{
 					title: "Debugging and Test Pass",
@@ -1167,9 +1193,10 @@ Typing practice is not required to complete the Scratch course, but it can make 
 				},
 				{
 					title: "Story Build Requirements",
+					projectLink: "/ide?mode=scratch",
 					aliases: ["Build Requirements"],
 					content:
-						"Build scene transitions, dialogue timing, character reactions, choice variables, and alternate endings. Test the story from the green flag through at least two different paths so the branching behavior is visible."
+						"Start a new story with an opening scene. Ask the player which path to take, store the answer, and broadcast a different message for each path. Give each ending its own receiver. Build scene transitions, dialogue timing, character reactions, choice variables, and alternate endings. Test the story from the green flag through at least two different paths so the branching behavior is visible."
 				},
 				{
 					title: "Debugging and Test Pass",
@@ -1217,9 +1244,10 @@ Typing practice is not required to complete the Scratch course, but it can make 
 				},
 				{
 					title: "Repair Build Requirements",
+					projectLink: "/ide?mode=scratch",
 					aliases: ["Build Requirements"],
 					content:
-						"Repair broken controls, missing score updates, sprites hidden at start, scripts running in the wrong order, and games that never end. Test each repair from the green flag and keep a short bug log that connects symptoms to script changes."
+						"Open a saved game with a score and download a separate debugging copy. In that copy, replace the green-flag score reset with change Score by 0. Earn two points and restart. Predict the score, then read the monitor. Restore set Score to 0 and repeat the same test. Use the same method to investigate broken controls, missing score updates, sprites hidden at start, scripts running in the wrong order, and games that never end. Test each repair from the green flag and keep a short bug log that connects symptoms to script changes."
 				},
 				{
 					title: "Debugging and Test Pass",
@@ -1512,6 +1540,7 @@ const SCRATCH_LEVEL_1_FLOW: ScratchModuleFlowConfig[] = [
 	{
 		oldTitle: "GS13 Master Project",
 		title: "GS16 Master Project",
+		choiceCurriculumTitles: ["Optional Extra Practice – Typing Games"],
 		estimatedTime: "4–6 sessions · 45–60 minutes each",
 		keyBlocks: [
 			"events",

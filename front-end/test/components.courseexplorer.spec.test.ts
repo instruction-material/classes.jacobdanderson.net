@@ -185,6 +185,19 @@ describe("CourseExplorer.vue", () => {
 							.exists()
 					)!;
 				expect(card).toBeDefined();
+				const bouncy = wrapper
+					.findAll(".lesson-item")
+					.find(item => item.text().includes("Bouncy Ball Room"))!;
+				expect(bouncy.get(".is-playable-solution").text()).toContain(
+					"Play publisher demo"
+				);
+				expect(
+					bouncy.find('a[href*="287922077-reference"]').exists()
+				).toBe(role === "instructor");
+				if (role === "instructor")
+					expect(bouncy.get("a.is-solution").text()).toContain(
+						"Publisher original"
+					);
 				const links = card.findAll("a.is-ide-starter");
 				expect(links).toHaveLength(role === "instructor" ? 2 : 1);
 				for (const [index, link] of links.entries()) {

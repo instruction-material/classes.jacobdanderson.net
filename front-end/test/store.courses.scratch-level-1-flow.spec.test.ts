@@ -132,6 +132,54 @@ describe("Scratch Level 1 learner flow", () => {
 		}
 	});
 
+	it("keeps the anchor revisits, controller trace and studio work available after course normalization", async () => {
+		const course =
+			(await useCoursesStore().loadCourseById("scratch-level-1"))!;
+		const modules = course.modules;
+		const typing = modules
+			.find(module => module.title === "GS16 Master Project")
+			?.supplementalProjects.find(item =>
+				item.title.includes("Typing Games")
+			);
+		expect(typing?.learningPath).toBe("choice");
+		expect(typing?.id).toBe(
+			"scratch-level-1-gs13-master-project-curriculum-optional-extra-practice-typing-games"
+		);
+		expect(
+			modules
+				.filter(module =>
+					module.curriculum[0]?.content.includes(
+						"**Hungry Hippo return:**"
+					)
+				)
+				.map(module => module.title.split(" ")[0])
+		).toEqual(["GS2", "GS3", "GS6", "GS7", "GS10"]);
+		expect(
+			modules
+				.flatMap(module => module.supplementalProjects)
+				.find(item => item.title === "Talent Show Controller Trace")
+				?.content
+		).toContain(
+			"Nesting song inside if answer = speak makes song unreachable"
+		);
+		for (const title of [
+			"Scratch basics",
+			"Polish Build Requirements",
+			"Story Build Requirements",
+			"Repair Build Requirements",
+			"Build and Test Your Game"
+		]) {
+			const item = modules
+				.flatMap(module => module.curriculum)
+				.find(item => item.title === title);
+			expect(item?.projectLink, title).toBe("/ide?mode=scratch");
+		}
+		const repair = modules
+			.flatMap(module => module.curriculum)
+			.find(item => item.title === "Repair Build Requirements");
+		expect(repair?.content).toContain("Restore set Score to 0");
+	});
+
 	it("preserves progress IDs while adding aliases for the new sequence", async () => {
 		const course =
 			await useCoursesStore().loadCourseById("scratch-level-1");
