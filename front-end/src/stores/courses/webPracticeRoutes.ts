@@ -203,7 +203,7 @@ const individual: Record<string, [string, string, string]> = {
 	"Practice Project: Authenticated Course Dashboard": [
 		webContactRoot,
 		"validated-api",
-		"Extend a separate copy of the Contact server. Add a local session-backed dashboard using two fictional accounts, tutor Rowan and learner Lee, with one course assigned to Lee. Check a signed-out request, Lee reading the assigned course, Lee requesting the tutor roster and Rowan opening the roster. Expect 401 when signed out, 200 for the assigned course, 403 for the learner’s roster request and 200 for the tutor. Enforce permissions on the server. Record status and visible state before login, after login and after logout. The Contact pack supplies the server and form baseline. Implement the session and dashboard yourself."
+		"Extend a separate copy of the Contact server. Add a local session-backed dashboard with two fictional accounts. Rowan manages the course roster. Lee can view one assigned course. Check a signed-out request, Lee reading the assigned course, Lee requesting the roster and Rowan opening the roster. Expect 401 when signed out, 200 for the assigned course, 403 when Lee requests the roster and 200 when Rowan requests it. Enforce permissions on the server. Record status and visible state before login, after login and after logout. The Contact pack supplies the server and form baseline. Implement the session and dashboard yourself."
 	],
 	"Practice Project: Deployed Full-Stack Capstone with README and Test Plan":
 		[

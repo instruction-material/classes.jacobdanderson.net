@@ -5013,9 +5013,8 @@ describe("course text quality normalization", () => {
 		expect(corpus).not.toMatch(/\bsupplemental [23]\b/i);
 		expect(corpus).not.toMatch(/\bImplementation Lab\b/i);
 		expect(corpus).not.toMatch(/\bshould\b/i);
-		expect(corpus).toContain(
-			"This makes medium-sized C++ structure feel normal"
-		);
+		expect(corpus).toContain("Both executables link to the same formatter library.");
+		expect(corpus).toContain("add_test registers a runnable check with CTest.");
 		expect(corpus).toContain("Lifetime is part of architecture in C++");
 		expect(corpus).toContain(
 			"The design question is when an interface clarifies a seam"

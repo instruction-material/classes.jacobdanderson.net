@@ -65,35 +65,35 @@ const transferChecks: Record<
 		title: "Predict a Two Arrows route",
 		starter: "two-arrows",
 		content:
-			"Use the original 10-step Two Arrows project. Set x to 0. Predict the final x after tapping right twice and left once. Try it, then repeat from 0 with two left taps and one right. Read x after each tap. Explain why reversing the keys changes the sign while y stays fixed.\n\n**Completion checks:** Compare the two final readings with +10 and -10. If both are positive, inspect the sign in the left-arrow stack. If y changes, check which motion block is attached to that event."
+			"Use the original 10-step Two Arrows project. Set x to 0. Predict the final x after tapping right twice and left once. Try it, then repeat from 0 with two left taps and one right. Read x after each tap. Explain why reversing the keys changes the sign while y stays fixed.\n\n**Checkpoints:** Compare the two final readings with +10 and -10. If both are positive, inspect the sign in the left-arrow stack. If y changes, check which motion block is attached to that event."
 	},
 	"Position and reset": {
 		id: "scratch-level-1-classroom-2-position-and-reset-supplemental-transfer-practice-2-position-and-reset",
 		title: "Trace Hat’s two positions",
 		starter: "dress-up",
 		content:
-			"In Robot Dress-Up, select Hat and press the flag. Record its rack coordinates. Click Hat, watch its glide, and record its worn coordinates. Drag it to a third position and press the flag again. Compare the two flag results. Point to the block that restores the rack position and the block that controls which sprite appears in front.\n\n**Completion checks:** Read Hat’s x and y during the glide, then immediately after the flag. Identify which motion takes time. Use the recorded coordinates to distinguish a layer change from a position change."
+			"In Robot Dress-Up, select Hat and press the flag. Record its rack coordinates. Click Hat, watch its glide, and record its worn coordinates. Drag it to a third position and press the flag again. Compare the two flag results. Point to the block that restores the rack position and the block that controls which sprite appears in front.\n\n**Checkpoints:** Read Hat’s x and y during the glide, then immediately after the flag. Identify which motion takes time. Use the recorded coordinates to distinguish a layer change from a position change."
 	},
 	"Dialogue and scenes": {
 		id: "scratch-level-1-classroom-3-dialogue-and-scenes-supplemental-transfer-practice-3-dialogue-and-scenes",
 		title: "Predict the next backdrop",
 		starter: "scene-switch",
 		content:
-			"Select the Stage in Day and Night. Start on Day and press Space twice, recording both backdrops. Select Night and repeat with the same two inputs. Predict what a green-flag switch backdrop to Day would do from each starting state. Test the prediction with the Normal reset and explain the difference between choosing a named backdrop and cycling to the next one.\n\n**Completion checks:** From Day the pair is Night, Day. From Night it is Day, Night. Press the flag from Night and from Day. Record which action gives the same result regardless of the starting scene."
+			"Select the Stage in Day and Night. Start on Day and press Space twice, recording both backdrops. Select Night and repeat with the same two inputs. Predict what a green-flag switch backdrop to Day would do from each starting state. Test the prediction with the Normal reset and explain the difference between choosing a named backdrop and cycling to the next one.\n\n**Checkpoints:** From Day the pair is Night, Day. From Night it is Day, Night. Press the flag from Night and from Day. Record which action gives the same result regardless of the starting scene."
 	},
 	"Loops and animation": {
 		id: "scratch-level-1-classroom-4-loops-and-animation-supplemental-4-loops-and-animation-interaction-variation",
 		title: "Compare two patrol speeds",
 		starter: "patrol",
 		content:
-			"Run Edge Patrol and watch the robot reach an edge and change direction. Stop. Put a wait of 0.1 seconds inside the forever loop after the bounce. Run again from the flag. Compare the time to reach the same edge and the direction after bouncing. Ask a partner to predict which observation changes if the wait is doubled, then test it.\n\n**Completion checks:** The robot still takes five steps per pass and turns at the edge. Record two observations from the same starting position. Explain why increasing the wait slows the patrol without changing the distance in the move block."
+			"Run Edge Patrol and watch the robot reach an edge and change direction. Stop. Put a wait of 0.1 seconds inside the forever loop after the bounce. Run again from the flag. Compare the time to reach the same edge and the direction after bouncing. Ask a partner to predict which observation changes if the wait is doubled, then test it.\n\n**Checkpoints:** The robot still takes five steps per pass and turns at the edge. Record two observations from the same starting position. Explain why increasing the wait slows the patrol without changing the distance in the move block."
 	},
 	"Conditions and decisions": {
 		id: "scratch-level-1-classroom-5-conditions-and-decisions-supplemental-transfer-practice-5-conditions-and-decisions",
 		title: "Distinguish the wall from the goal",
 		starter: "maze-reset",
 		content:
-			"Use Maze Checkpoint before adding a Hard ending. Touch the purple Wall and record where Player goes. Move to the gold Goal without touching the wall and record the result. Name the sprite selected in the touching block and explain why only one contact triggers the reset. Point to the separate condition you would need for a win message.\n\n**Completion checks:** The wall sends Player to (-180, -120). Reaching Goal alone leaves Player there. If both contacts reset the player, inspect the target in the sensing menu. Restart from the Goal and distinguish a flag reset you added in Normal from a collision response."
+			"Use Maze Checkpoint before adding a Hard ending. Touch the purple Wall and record where Player goes. Move to the gold Goal without touching the wall and record the result. Name the sprite selected in the touching block and explain why only one contact triggers the reset. Point to the separate condition you would need for a win message.\n\n**Checkpoints:** The wall sends Player to (-180, -120). Reaching Goal alone leaves Player there. If both contacts reset the player, inspect the target in the sensing menu. Restart from the Goal and distinguish a flag reset you added in Normal from a collision response."
 	}
 };
 
