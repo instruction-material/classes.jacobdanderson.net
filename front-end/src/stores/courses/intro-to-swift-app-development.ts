@@ -25,10 +25,10 @@ import {
 	swiftMapRoot,
 	swiftNetworkingRoot,
 	swiftProfileInterestsRoot,
+	swiftShapesStudioRoot,
 	swiftTrackerRoot
 } from "@/modules/swiftProjectResources";
 import { buildProjectGuidance } from "./projectGuidance";
-import { buildSupportSectionGuidance } from "./supportSectionGuidance";
 import swiftPriorTitles from "./swift-title-progress-history.json";
 
 const swiftCanonicalWorkspaces = [
@@ -697,13 +697,46 @@ Change the color set named ProfileAccent from gray to blue-green, then add Fligh
 			curriculum: [
 				{
 					title: "Declarative UI and View Trees",
-					content:
-						"SwiftUI is a declarative system where views describe UI state rather than imperatively drawing one widget at a time. `body`, view trees, modifiers, and layout containers show what SwiftUI is trying to optimize for."
+					preserveInstructions: true,
+					contentKind: "reading",
+					content: `A SwiftUI view describes what to show for its current inputs.
+
+## Worked example
+
+In a SwiftUI file, this view takes a name and a summary. The braces after each stack contain its children.
+
+\`\`\`swift
+struct ProfileSection: View {
+    let name: String
+    let summary: String
+    let symbol: String
+
+    var body: some View {
+        HStack {
+            Image(systemName: symbol)
+            VStack(alignment: .leading) {
+                Text(name).font(.headline)
+                Text(summary)
+            }
+        }
+    }
+}
+\`\`\`
+
+Place \`ProfileSection(name: "Avery", summary: "Builds small apps", symbol: "hammer")\` inside the welcome screen’s \`body\`. The symbol sits beside both lines. Changing the inner stack to an \`HStack\` moves the two labels beside each other too.`
 				},
 				{
 					title: "Worked Example Set: Text, Stacks, and Modifiers",
-					content:
-						"Build up a small screen from `Text`, `VStack`, `HStack`, overlays, spacing, and background shapes. Small changes in modifier order affect layout and styling, which is one of the earliest conceptual friction points in SwiftUI."
+					preserveInstructions: true,
+					contentKind: "reading",
+					content: `Put these two labels in a \`VStack(spacing: 12)\` inside a view’s \`body\`. Predict where the blue ends on each label before comparing them.
+
+\`\`\`swift
+Text("Avery").padding(12).background(.blue.opacity(0.2))
+Text("Avery").background(.blue.opacity(0.2)).padding(12)
+\`\`\`
+
+Both labels reserve padding. Only the first paints that space blue because its background receives the padded view. A \`ZStack\` layers siblings back to front. An overlay attaches a layer to a particular view: append \`.overlay { RoundedRectangle(cornerRadius: 8).stroke(.blue) }\` immediately after either background to outline the bounds it received.`
 				},
 				{
 					title: "Project: Welcome Profile App",
@@ -732,29 +765,21 @@ Change the color set named ProfileAccent from gray to blue-green, then add Fligh
 				},
 				{
 					title: "SwiftUI Mental Model Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Swift app",
-						moduleTitle: "SAD8 SwiftUI Mental Model",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Swift/tree/main/SAD-14-sad8-swiftui-mental-model-supplemental-2/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Swift/tree/main/SAD-14-sad8-swiftui-mental-model-supplemental-2/solution"
+					preserveInstructions: true,
+					contentKind: "assignment",
+					ideImport: false,
+					content: `Extract the two text lines from the supplied Avery card into a view with name, summary and symbol inputs. Draw the new parent and children. Identify which view receives the background.
+
+Use Avery, Builds small, useful apps, and the hammer symbol for the first card. Make a second instance for Jules with the summary Tests small apps and the wrench symbol. Keep the symbol beside the two stacked labels in both cards. Attach the worksheet’s padding, background and clipping to the whole row. Label the modifier target on your tree. Change only Jules’s summary and trace which label changes and whether the painted area still contains both the symbol and the text.`
 				},
 				{
 					title: "SwiftUI Mental Model Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Swift app",
-						moduleTitle: "SAD8 SwiftUI Mental Model",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Swift/tree/main/SAD-15-sad8-swiftui-mental-model-supplemental-3/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Swift/tree/main/SAD-15-sad8-swiftui-mental-model-supplemental-3/solution"
+					preserveInstructions: true,
+					contentKind: "assignment",
+					ideImport: false,
+					content: `Try a longer name in the same card. Compare its line breaks at a narrow width and larger text size. Swap padding and background and explain which bounds change.
+
+Start with Avery and the worksheet summary Builds small, useful apps. Replace only the name with Avery Anderson Rivera. Compare the same 200-point card at the default text size and at an accessibility text size. Record which words wrap or clip in each rendering, or sketch the predicted lines and label them as predictions. Hold the width and text size fixed while reversing the two modifiers. Outline the colored region in each version and mark whether the space around the text is painted.`
 				}
 			]
 		},
@@ -1106,13 +1131,49 @@ Now enter a draft and close the keyboard without saving. Explain why the saved s
 			curriculum: [
 				{
 					title: "Navigation Stacks, Tabs, and Sheets",
-					content:
-						"The major beginner app navigation patterns are stack navigation, tab navigation, and sheet presentation. Each pattern has a different fit, and each changes how data moves across screen boundaries."
+					preserveInstructions: true,
+					contentKind: "reading",
+					content: `In the Hobby starter, \`TabView\` keeps Home, Schedule and Favorites one tap apart. Each tab contains a \`NavigationStack\` for destinations reached from that tab.
+
+## Worked example
+
+Inside Home’s \`List(activities) { activity in … }\`, wrap the row in a link:
+
+\`\`\`swift
+NavigationLink {
+    Text(activity.day).navigationTitle(activity.title)
+} label: {
+    Label(activity.title, systemImage: activity.icon)
+}
+\`\`\`
+
+Tap Photo Walk. The destination receives Tuesday from that row. Back returns to Home. The same record also appears in Schedule. A sheet presents a temporary task over the current destination.`
 				},
 				{
 					title: "Worked Example Set: Passing Data Between Screens",
-					content:
-						"Build small examples where a list leads to a detail page, a tab owns a subsection of the app, and a sheet presents supporting content. Keep the focus on keeping navigation intentional rather than piling screens on top of each other."
+					preserveInstructions: true,
+					contentKind: "reading",
+					content: `For a schedule information sheet, pass the selected \`HobbyActivity\` to a detail view. Use this view as the Home row’s \`NavigationLink\` destination by calling \`ScheduleDetail(activity: activity)\`.
+
+\`\`\`swift
+struct ScheduleDetail: View {
+    let activity: HobbyActivity
+    @State private var showingSchedule = false
+
+    var body: some View {
+        Button("Show schedule") { showingSchedule = true }
+            .sheet(isPresented: $showingSchedule) {
+                VStack {
+                    Text(activity.day)
+                    Button("Done") { showingSchedule = false }
+                }
+            }
+            .navigationTitle(activity.title)
+    }
+}
+\`\`\`
+
+Done dismisses the sheet and leaves the same detail on the stack. For the editor in the written case, initialize a local draft when the sheet opens. Save sends the draft and the record ID to the owner. Cancel discards the draft. In the Hobby reference, Home detail and Favorites share membership in the parent’s set. The sheet is the part you add.`
 				},
 				{
 					title: "Project: Multi-Tab Hobby App",
@@ -1141,29 +1202,21 @@ Now enter a draft and close the keyboard without saving. Explain why the saved s
 				},
 				{
 					title: "Navigation and Multi Screen Apps Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Swift app",
-						moduleTitle: "SAD12 Navigation and Multi-Screen Apps",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Swift/tree/main/SAD-22-sad12-navigation-and-multi-screen-apps-supplemental-2/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Swift/tree/main/SAD-22-sad12-navigation-and-multi-screen-apps-supplemental-2/solution"
+					preserveInstructions: true,
+					contentKind: "assignment",
+					ideImport: false,
+					content: `Trace the selected hobby from the list into the editor. Predict the stored value after Save, Cancel, Back and a switch to Favorites. Mark the owner of the draft and the owner of the committed value.
+
+Use Photo Walk, scheduled for Tuesday, and mark it as a favorite before opening its detail. In the edit sheet change Tuesday to Friday and cancel. Reopen the editor, repeat the change and save. Record the day displayed in detail after each dismissal and the day you expect on returning to the same record. Trace Back to Home and open Favorites. Identify the record by its original ID and explain which shared value lets both tabs display the saved edit.`
 				},
 				{
 					title: "Navigation and Multi Screen Apps Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Swift app",
-						moduleTitle: "SAD12 Navigation and Multi-Screen Apps",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Swift/tree/main/SAD-23-sad12-navigation-and-multi-screen-apps-supplemental-3/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Swift/tree/main/SAD-23-sad12-navigation-and-multi-screen-apps-supplemental-3/solution"
+					preserveInstructions: true,
+					contentKind: "assignment",
+					ideImport: false,
+					content: `Sketch a route that opens a detail by hobby ID after a fresh launch. Trace a valid ID and a missing ID. Include the return path to the list.
+
+Use two saved route inputs, hobby-1 and hobby-9. Give Photo Walk the ID hobby-1 and leave hobby-9 absent from the launch dataset. Draw the starting list and the destination for each input. For the valid route, name the value passed to the detail and trace Back to the original list. For the missing route, choose a visible recovery and trace the return to the list. Record the final stack for both paths and which model lookup prevents a detail from displaying the wrong hobby.`
 				}
 			]
 		},
@@ -1172,13 +1225,29 @@ Now enter a draft and close the keyboard without saving. Explain why the saved s
 			curriculum: [
 				{
 					title: "Editable Lists and Forms",
-					content:
-						"Lists and forms are the backbone of many practical apps. Add, edit, delete, and completion-style workflows turn a static SwiftUI demo into a real data-driven product."
+					preserveInstructions: true,
+					contentKind: "reading",
+					content: `A form can keep an unfinished edit separate from the row it displays.
+
+## Worked example
+
+In the Simple Tracker starter, \`TextField("New tracker item", text: $draftTitle)\` writes each keystroke into a draft. \`store.add(title: draftTitle)\` trims it, rejects blanks and returns whether it added a row. Clear the field after success. Two equal titles can belong to different records.
+
+For an edit, copy the selected title into a sheet’s own \`@State\`. Save calls \`store.update(id: item.id, title: draft)\`. Cancel dismisses the sheet without changing the stored row. Try both on a completed item and check its title, checkmark and position.`
 				},
 				{
 					title: "Worked Example Set: Add, Toggle, and Delete",
-					content:
-						"Work small examples for creating new items from form inputs, toggling item state, and deleting rows cleanly. Explain why clean data mutation matters just as much as polished layout."
+					preserveInstructions: true,
+					contentKind: "reading",
+					content: `The starter’s row calls \`store.toggle(id: item.id)\`. The store finds the current index for that ID and flips one Boolean. For deletion, attach this handler to the \`ForEach(store.items)\` inside the list:
+
+\`\`\`swift
+.onDelete { offsets in
+    store.delete(at: offsets)
+}
+\`\`\`
+
+Here the display and store have the same order. In the alphabetical practice case they can differ. If A4 sorts into the first visible row, offset zero names A4 on screen even if A1 is first in storage. For a sorted list, capture the displayed IDs at the offsets first, then locate those IDs in storage before deleting. Trace the case by ID and check which completed row remains.`
 				},
 				{
 					title: "Project: Simple Tracker App",
@@ -1207,29 +1276,21 @@ Now enter a draft and close the keyboard without saving. Explain why the saved s
 				},
 				{
 					title: "Lists, Forms, and CRUD Patterns Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Swift app",
-						moduleTitle: "SAD13 Lists, Forms, and CRUD Patterns",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Swift/tree/main/SAD-24-sad13-lists-forms-and-crud-patterns-supplemental-2/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Swift/tree/main/SAD-24-sad13-lists-forms-and-crud-patterns-supplemental-2/solution"
+					preserveInstructions: true,
+					contentKind: "assignment",
+					ideImport: false,
+					content: `Use the supplied A1–A4 case. Add Archive notes, toggle A1 and delete A2. Write the remaining IDs, titles and completion flags in alphabetical display order.
+
+Start with the three rows in the Lists Forms and CRUD worksheet. A1 and A3 are incomplete and A2 is complete. Give the new row ID A4 and leave it incomplete. After each operation, record the affected ID and the row count. Account for Archive notes moving ahead of the older rows when sorted. Finally attempt to add three spaces as a title. Compare the resulting list with your last recorded list and explain which validation rule accounts for the count.`
 				},
 				{
 					title: "Lists, Forms, and CRUD Patterns Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Swift app",
-						moduleTitle: "SAD13 Lists, Forms, and CRUD Patterns",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Swift/tree/main/SAD-25-sad13-lists-forms-and-crud-patterns-supplemental-3/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Swift/tree/main/SAD-25-sad13-lists-forms-and-crud-patterns-supplemental-3/solution"
+					preserveInstructions: true,
+					contentKind: "assignment",
+					ideImport: false,
+					content: `Give two rows the same title but different IDs. Delete one from a filtered list, then undo it. Trace the saved ID, title and completion flag through both operations.
+
+Start with A1 Sketch interface incomplete, A2 Build model complete and A3 Build model incomplete. Filter to incomplete rows and record the ID at each visible position before deleting A3. Clear the filter and check both surviving IDs. Undo once and compare all three original records with the restored list. Include the displayed position you deleted, the ID it resolved to and the ID the same position would have identified in the unfiltered source order. Explain why undo needs the full removed record.`
 				}
 			]
 		},
@@ -1238,8 +1299,17 @@ Now enter a draft and close the keyboard without saving. Explain why the saved s
 			curriculum: [
 				{
 					title: "Images, Icons, Maps, and Permissions",
-					content:
-						"Richer app features can use media and maps while keeping permissions and device integration at a practical high level. Assets, SF Symbols, images, and hardware-linked features all add responsibility as well as capability."
+					preserveInstructions: true,
+					contentKind: "reading",
+					content: `A gallery card can draw its artwork locally. A map can place markers from stored coordinates.
+
+## Worked example
+
+The Gallery starter draws each card with a rounded rectangle, a gradient and \`Image(systemName: "photo")\`. The name selects an SF Symbol. \`Image("Poster")\` would look up an asset named Poster in the app’s catalog. A remote image would need a download and a visible fallback when the connection fails.
+
+The Places starter uses \`Map(position: $cameraPosition)\`. Each \`Marker(place.name, coordinate: place.coordinate)\` reads a stored coordinate. Tapping Neighborhood Cafe changes \`selectedPlace\` and reveals its details. To center the map as well, the row action must assign a new region to \`cameraPosition\`. Compare the selected title and the camera center as two separate observations.
+
+Showing these records needs no location prompt. A “Find me” action would need the person’s location. Ask at that action, explain its purpose, and keep the supplied list and markers available if access is denied or restricted. Missing map tiles are a network condition.`
 				},
 				{
 					title: "Project: Media Gallery App",
@@ -1268,38 +1338,31 @@ Now enter a draft and close the keyboard without saving. Explain why the saved s
 			supplementalProjects: [
 				{
 					title: "Diagnostic Checkpoint",
-					content:
-						"Readiness check: describe when an app uses bundled assets versus remote media, and how a list selection influences a map-centered view. Prompt: 'What has to happen in the app before a location permission request makes sense?'",
-					projectLink:
-						"https://github.com/instruction-material/Swift/tree/main/SAD2-Media-Gallery-App/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Swift/tree/main/SAD2-Media-Gallery-App/solution"
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content: `Select Neighborhood Cafe in the Map Places starter. Identify the state that changes, the detail that appears and the camera value that stays the same. Compare the completed row action after your prediction. Explain why showing these coordinates needs no location request, and which controls remain usable if map tiles fail to load.
+
+Use the Media Maps and Permissions case. Begin with no selection and the map centered at (39.2928, -76.5930). Locate the cafe at (39.2979, -76.5907). Make separate predictions for the selected title and the center after one tap. Check both against the starter and the completed row actions. Cite the assignment that moves the camera and record whether the same detail is available from the list when the map background is blank.`,
+					projectLink: `${swiftMapRoot}/starter`,
+					solutionLink: `${swiftMapRoot}/solution`
 				},
 				{
 					title: "Media, Maps, and Device Features Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Swift app",
-						moduleTitle: "SAD14 Media, Maps, and Device Features",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Swift/tree/main/SAD-26-sad14-media-maps-and-device-features-supplemental-2/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Swift/tree/main/SAD-26-sad14-media-maps-and-device-features-supplemental-2/solution"
+					preserveInstructions: true,
+					contentKind: "assignment",
+					ideImport: false,
+					content: `Select Neighborhood Cafe in the map case. Record the title and camera center before and after selection for the starter and completed action. Name the gallery symbol available offline.
+
+Start both traces at (39.2928, -76.5930) with no selected row. Use the Media Maps and Permissions table to locate the cafe. Mark which action leaves the center at its starting value and which centers it on the cafe coordinates. Next inspect Sunset Poster with the network unavailable. Write the title and description to announce once, and identify which part of the artwork is decorative. Distinguish the locally drawn gallery card from the map background that needs tiles.`
 				},
 				{
 					title: "Media, Maps, and Device Features Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Swift app",
-						moduleTitle: "SAD14 Media, Maps, and Device Features",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Swift/tree/main/SAD-27-sad14-media-maps-and-device-features-supplemental-3/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Swift/tree/main/SAD-27-sad14-media-maps-and-device-features-supplemental-3/solution"
+					preserveInstructions: true,
+					contentKind: "assignment",
+					ideImport: false,
+					content: `Trace a proposed Find Me action with access denied, restricted and unavailable. Then remove network tiles. Identify which rows, descriptions and selection feedback remain usable in each condition.
+
+Start each case at Patterson Park and select Harbor Overlook manually after trying Find Me. For each condition, record whether a location request is appropriate, what the app can report about the current position, and which title the manual tap selects. Repeat with tiles unavailable but the supplied place records intact. Record the selected coordinate from the worksheet and one piece of evidence you can still verify without seeing the map background. Keep permission status and tile availability in separate columns.`
 				}
 			]
 		},
@@ -1308,13 +1371,32 @@ Now enter a draft and close the keyboard without saving. Explain why the saved s
 			curriculum: [
 				{
 					title: "APIs, JSON, and Async Loading",
-					content:
-						"Networking is a structured workflow: request data, decode JSON, represent loading state, represent error state, and render success cleanly. Most app-networking bugs are state and architecture problems as much as syntax problems."
+					preserveInstructions: true,
+					contentKind: "reading",
+					content: `Open \`ReferenceClient.fetch()\` in either SAD6 role. The transport supplies bytes and a response. The live transport awaits \`URLSession.data(for:)\`. The sample transport supplies both locally.
+
+## Worked example
+
+In the client these lines decide whether the bytes can be read as entries:
+
+\`\`\`swift
+guard let http = response as? HTTPURLResponse else {
+    throw ReferenceAPIError.nonHTTPResponse
+}
+guard (200..<300).contains(http.statusCode) else {
+    throw ReferenceAPIError.httpStatus(http.statusCode)
+}
+\`\`\`
+
+After these guards, \`try JSONDecoder().decode([ReferenceEntry].self, from: data)\` expects an array. Each element needs an integer \`id\` and strings \`title\` and \`body\`. HTTP and decoding failures are distinct. HTTP 503 with \`[]\` stops at the status guard. HTTP 200 with \`[]\` decodes successfully. Replacing a required \`body\` with \`summary\` fails during decoding.`
 				},
 				{
 					title: "Worked Example Set: Loading, Loaded, and Failed UI States",
-					content:
-						"Compare empty, loading, loaded, and failed states for the same feature to avoid treating the success view as the whole feature. Explain why async/await improves clarity but does not remove the need for explicit state modeling."
+					preserveInstructions: true,
+					contentKind: "reading",
+					content: `Follow one refresh from \`let entries = try await client.fetch()\` to the screen. While the task is suspended, the store exposes \`.loading\`. A successful response becomes \`.loaded(entries)\`. An empty array is a successful empty result. A transport, HTTP or decoding error produces \`.failed(message)\` and a retry action.
+
+Decode the two-entry practice fixture, then predict the state of a cancelled refresh. The store retains the last settled result, so those same two entries return. If a newer request has already finished, the older task cannot overwrite its result. In the running app, Sample data starts with three entries. In the reference or your completed search field, search for HTTP, then for a word with no matches. Clearing the query restores those three without another fetch.`
 				},
 				{
 					title: "Project: API-Powered Reference App",
@@ -1343,29 +1425,21 @@ Now enter a draft and close the keyboard without saving. Explain why the saved s
 				},
 				{
 					title: "Networking and Data Loading Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Swift app",
-						moduleTitle: "SAD15 Networking and Data Loading",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Swift/tree/main/SAD-28-sad15-networking-and-data-loading-supplemental-2/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Swift/tree/main/SAD-28-sad15-networking-and-data-loading-supplemental-2/solution"
+					preserveInstructions: true,
+					contentKind: "assignment",
+					ideImport: false,
+					content: `Decode the two-entry fixture and trace the status guard and decoder for HTTP 503, HTTP 200 with a missing body, and HTTP 200 with an empty list. Name the screen for each result.
+
+Use the Networking and Data Loading worksheet’s JSON verbatim for the successful HTTP 200 baseline. Record the two IDs and titles in display order. For the missing-field trial, rename the first entry’s body key to summary while keeping its value. For the status trial, return 503 with the original valid array. For the empty trial, return 200 with []. Record whether decoding starts, whether it produces entries and which result offers Retry. Explain why valid bytes can yield an error before the decoder runs.`
 				},
 				{
 					title: "Networking and Data Loading Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Swift app",
-						moduleTitle: "SAD15 Networking and Data Loading",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Swift/tree/main/SAD-29-sad15-networking-and-data-loading-supplemental-3/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Swift/tree/main/SAD-29-sad15-networking-and-data-loading-supplemental-3/solution"
+					preserveInstructions: true,
+					contentKind: "assignment",
+					ideImport: false,
+					content: `Trace the existing cancellation guard with two requests: B finishes first, then A returns late. Predict the visible rows. Decide whether to display a cached response after a later connection failure and how it would be labeled.
+
+Start A with the worksheet’s two entries. Start B as a replacement refresh with only entry 2, Model data. Let B succeed before A delivers its two rows. Record the visible IDs after each completion and identify the check that prevents A from restoring the old list. Next make a fresh refresh fail before any HTTP response arrives. Sketch the resulting screen under your cache policy, including how the screen identifies cached rows and how to retry.`
 				}
 			]
 		},
@@ -1374,13 +1448,28 @@ Now enter a draft and close the keyboard without saving. Explain why the saved s
 			curriculum: [
 				{
 					title: "Local Data That Survives Relaunch",
-					content:
-						"`UserDefaults`, file storage, and local persistence come before larger systems like SwiftData or Core Data. Persistence changes product expectations: a tracker that forgets everything is not the same product as one that remembers."
+					preserveInstructions: true,
+					contentKind: "reading",
+					content: `In the SwiftData tracker, \`@Model\` marks \`TrackerRecord\` for storage. A \`ModelContainer\` opens the store. Its context tracks inserts, edits and deletes.
+
+## Worked example
+
+These properties in \`ContentView\` read the context and fetch the rows in creation order:
+
+\`\`\`swift
+@Environment(\\.modelContext) private var context
+@Query(sort: \\TrackerRecord.createdAt) private var items: [TrackerRecord]
+\`\`\`
+
+The Add action calls \`try repository.add(title: draftTitle)\`. The repository validates the title, inserts a record and saves the context. The query reflects the change. If saving fails, the repository rolls it back and the form keeps the draft.`
 				},
 				{
 					title: "Worked Example Set: Save, Load, and Default Data",
-					content:
-						"Compare the first-launch state, a saved returning state, and a fallback or reset path. Use these examples to show why persistence logic needs just as much structure as the visible list UI."
+					preserveInstructions: true,
+					contentKind: "reading",
+					content: `Start with an empty store. Add two items and mark the second complete. The starter launches \`TrackerRootView(inMemory: true)\`. It shows both rows until termination. The reference uses \`inMemory: false\` and reopens the same file, so both IDs and the completed flag return. Use the file-backed setting in your completed app. In a throwing test, create its isolated container with \`let container = try TrackerPersistence.makeContainer(inMemory: true)\`.
+
+Delete both items and relaunch the file-backed app. An empty list is now the correct saved result. If opening the store fails, show the storage error and retry the same location. Replacing it with a fresh empty store would hide the failure.`
 				},
 				{
 					title: "Project Pass: Persist the Simple Tracker App",
@@ -1409,29 +1498,21 @@ Now enter a draft and close the keyboard without saving. Explain why the saved s
 				},
 				{
 					title: "Persistence Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Swift app",
-						moduleTitle: "SAD16 Persistence",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Swift/tree/main/SAD-30-sad16-persistence-supplemental-2/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Swift/tree/main/SAD-30-sad16-persistence-supplemental-2/solution"
+					preserveInstructions: true,
+					contentKind: "assignment",
+					ideImport: false,
+					content: `Trace A1 and A2 through both relaunches in the supplied case for a file-backed store. Repeat the first relaunch with an in-memory container. Explain the first difference.
+
+Begin each trial empty. Insert A1 Sketch interface and A2 Build model as incomplete, mark A2 complete and save. For the file-backed trial, close the app, reopen the same store, delete A1, save and reopen again. Record both IDs and flags after the first relaunch and the surviving record after the second. Compare that first result with reopening a fresh in-memory container. Identify the container setting that explains the difference and the query that makes the reopened records visible.`
 				},
 				{
 					title: "Persistence Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Swift app",
-						moduleTitle: "SAD16 Persistence",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Swift/tree/main/SAD-31-sad16-persistence-supplemental-3/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Swift/tree/main/SAD-31-sad16-persistence-supplemental-3/solution"
+					preserveInstructions: true,
+					contentKind: "assignment",
+					ideImport: false,
+					content: `Use a fresh in-memory test container to isolate two runs. Plan a title-to-name migration on a copy of the sample store and identify the IDs and values that must survive.
+
+In the first container, insert A1 Sketch interface incomplete and A2 Build model complete. Open a second fresh container and record its initial count before inserting anything. For the migration trial, save the same two records in a file-backed sample and keep the original for comparison. On a copy, map the old title field to name, reopen it and compare each ID, text value and flag against the original. Record what a missing value would look like and how you would retry from the preserved sample.`
 				}
 			]
 		},
@@ -1708,13 +1789,23 @@ Distinguish the draft from a submission sent to App Review. Name the person or t
 			curriculum: [
 				{
 					title: "Scope a Capstone Like a Real App",
-					content:
-						"Frame the capstone as a coherent app that can realistically be tested and presented, not as a dumping ground for every feature learned in the course. The project definition includes scope, audience, primary user flow, and the minimum set of features that make the app worth testing."
+					preserveInstructions: true,
+					contentKind: "reading",
+					content: `For the offline Study Plan case, a learner wants to see which topics still need work.
+
+## Worked example
+
+Start with an empty plan, add Fractions, schedule a study block inside the app, mark it complete, then check the incomplete list. Fractions disappears from that list and remains in the full plan with its original ID. Calendar integration and account sync can wait.
+
+Use one owner for the topic records and derive the incomplete list from their progress flags. Decide whether a topic survives relaunch and write the expected result before implementing storage. SAD7 supplies a checklist and tab structure. The Study Plan flow is yours to build.`
 				},
 				{
 					title: "Build Phase: Implement, Test, and Polish",
-					content:
-						"Build the capstone in small passes: core navigation and data first, then persistence or networking if needed, then polish, accessibility, and release-readiness checks. Use the final project to revisit architecture, debugging, and quality tradeoffs in one place."
+					preserveInstructions: true,
+					contentKind: "reading",
+					content: `Give a tester a fresh fictional plan and a goal: “Plan a Fractions block, finish it, then find what is left.” Let the tester choose the controls. Record where they stopped and whether the incomplete list matched the expected result. Keep the notes anonymous.
+
+For example, if the tester marks Fractions complete but it stays in the incomplete list, check the record’s ID and flag before changing the label. If the flag changed, inspect the list’s filter. Repeat the same task after the repair. For solo practice, run that script on a clean launch and label the result a self-test. Keep an independent user observation pending until someone else tries it.`
 				},
 				{
 					title: "Project: Publish-Ready Capstone App",
@@ -1743,29 +1834,21 @@ Distinguish the draft from a submission sent to App Review. Name the person or t
 				},
 				{
 					title: "Capstone App Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Swift app",
-						moduleTitle: "SAD20 Capstone App",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Swift/tree/main/SAD-38-sad20-capstone-app-supplemental-2/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Swift/tree/main/SAD-38-sad20-capstone-app-supplemental-2/solution"
+					preserveInstructions: true,
+					contentKind: "assignment",
+					ideImport: false,
+					content: `Give the Study Plan tester three fictional tasks covering scheduling, completion and finding unfinished work. Record the starting state and success criterion for each before observing a run.
+
+Begin offline with an empty plan. Ask the tester to schedule Fractions for Tuesday inside the app, add Decimals as unfinished work, and mark Fractions complete before finding what remains. Split the script into scheduling, completion and review. Record the expected topic and progress flag at each checkpoint, including which topic still appears in the incomplete list. Have the tester use the controls unaided. Tally issues by task and category, and use the full plan to check whether a missing topic was filtered or deleted.`
 				},
 				{
 					title: "Capstone App Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Swift app",
-						moduleTitle: "SAD20 Capstone App",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Swift/tree/main/SAD-39-sad20-capstone-app-supplemental-3/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Swift/tree/main/SAD-39-sad20-capstone-app-supplemental-3/solution"
+					preserveInstructions: true,
+					contentKind: "assignment",
+					ideImport: false,
+					content: `Choose one obstacle observed during the Study Plan task. Change the affected interaction, repeat the original task and compare the anonymous issue counts. For solo work, identify the observation as a self-test.
+
+Use the worksheet’s offline flow with Fractions scheduled and Decimals unfinished. Ask the tester to finish Fractions and find the remaining work. Record the control or result that caused difficulty and tally the issue under a category such as finding the completion action. Revise that interaction, restore the same two starting records and repeat the task with the same success criterion. Compare counts and check the resulting incomplete list. Report any remaining difficulty, keeping tester identities out of the comparison.`
 				}
 			]
 		},
@@ -1776,88 +1859,104 @@ Distinguish the draft from a submission sent to App Review. Name the person or t
 				{
 					title: "Canonical Swift Repo Structure",
 					aliases: ["Core Concepts"],
-					content:
-						"Treat the `SAD1` through `SAD7` projects as the canonical active course path. The older `Mod1Pro*` through `Mod5Pro*` folders remain available as reference material rather than as a second competing sequence."
+					preserveInstructions: true,
+					contentKind: "reading",
+					content: `Follow SW1 through SW20 for the main course. SAD1 through SAD7 identify the seven project packs. Shapes Studio is an optional drawing project.
+
+## Worked example
+
+The Shapes Studio folder is \`SAD-Swift-UI-Shapes-Studio\`. For a simulator run, put one role’s \`ContentView.swift\` and \`ShapesStudioApp.swift\` in a SwiftUI iOS app target, replacing its generated view and app entry point. With the starter pair, the Arc and Pie Practice group displays a placeholder circle and three labeled weights. That screen identifies the optional drawing exercise.`
 				},
 				{
 					title: "Reference Material, Not Core Scope",
-					content:
-						"Keep the older reference folders available only for demo recovery or scaffold comparison. These materials stay outside the main public course flow. When using a reference folder, identify the specific concept being compared, such as view layout, button actions, navigation structure, or asset organization. Do not treat the older folder names as required module order; the active path remains the `SAD` sequence, and reference material is only evidence for troubleshooting, enrichment, or migration decisions. If a reference project is used, end by naming what transfers conceptually and what stays out of the active project."
+					preserveInstructions: true,
+					contentKind: "reading",
+					content: `In the [legacy pie drawing](https://github.com/instruction-material/Swift/blob/388c69232f89e5b136147f917997d93eab7ddd90/Mod4Pro2/ContentView.swift), each arc uses center (187, 187) and radius 150. On a 160-point-wide canvas the center is already outside its right edge. A move to the center and an arc still describe a wedge. Deriving the center and radius from the shape’s rectangle makes that construction work at another size.`
 				},
 				{
 					title: "Shapes Studio as Intentional Enrichment",
-					content:
-						"Expose `SADX-SwiftUI-Shapes-Studio` as optional enrichment because it still reinforces useful SwiftUI drawing and layout ideas, but it sits outside the main shipping-app spine."
+					preserveInstructions: true,
+					contentKind: "reading",
+					content: `The starter displays three weighted slices in its legend and a placeholder circle in its chart. A custom \`Shape\` describes its outline in the rectangle SwiftUI gives it. This wedge begins at twelve o’clock:
+
+\`\`\`swift
+struct Wedge: Shape {
+    let fraction: Double
+
+    func path(in rect: CGRect) -> Path {
+        let center = CGPoint(x: rect.midX, y: rect.midY)
+        var path = Path()
+        path.move(to: center)
+        path.addArc(center: center, radius: min(rect.width, rect.height) / 2,
+                    startAngle: .degrees(-90),
+                    endAngle: .degrees(-90 + 360 * fraction), clockwise: false)
+        path.closeSubpath()
+        return path
+    }
+}
+\`\`\`
+
+Try \`Wedge(fraction: 0.45).fill(.orange).frame(width: 360, height: 180)\`. The smaller dimension limits the radius to 90. For the next slice, start at the previous slice’s end angle. Keep the labels and percentages visible in the static chart.`
 				},
 				{
 					title: "SADX Enrichment and Reference Boundaries: Verification and Reflection",
 					aliases: [
 						"intro-to-swift-app-development-sadx-enrichment-and-legacy-archive-boundaries-curriculum-verification-review-sadx-enrichment-and-legacy-archive-boundaries"
 					],
-					content: buildSupportSectionGuidance({
-						courseFamily: "Swift",
-						moduleTitle: "SADX Enrichment and Reference Boundaries",
-						section: "verification"
-					})
+					preserveInstructions: true,
+					contentKind: "reading",
+					content: `Trace the 45% Build slice in a 360 × 180 frame. Give its center, radius and sweep angle. Repeat with a 160 × 320 frame. Which quantity depends on the data and which depend on the frame? Check that the static legend still communicates all three values.`
 				},
 				{
 					title: "SADX Enrichment and Reference Boundaries: Core Project",
 					aliases: [
 						"intro-to-swift-app-development-sadx-enrichment-and-legacy-archive-boundaries-curriculum-core-project-sadx-enrichment-and-legacy-archive-boundaries"
 					],
-					content: buildProjectGuidance({
-						courseFamily: "Swift app",
-						moduleTitle: "SADX Enrichment and Reference Boundaries",
-						projectKind: "core",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Swift/tree/main/SAD-Swift-UI-Shapes-Studio/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Swift/tree/main/SAD-Swift-UI-Shapes-Studio/solution"
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content: `In the starter’s Arc and Pie Practice group, replace the placeholder with one wedge for each of Build, Test and Share. Accumulate their weights so each arc starts where the previous one ends. Keep the legend. Check the chart in the three case frames and compare your last end angle with a full turn. The solution’s PieSliceView takes a start and an end in degrees.
+
+Use Build 45%, Test 30% and Share 25%. Measure each sweep from its own starting angle and offset the chart so Build begins at twelve o’clock. Record cumulative endpoints before applying that offset. For the 240 × 240, 360 × 180 and 160 × 320 frames, list the center and radius beside a sketch. Check that adjacent slices meet, that the last slice reaches the starting ray, and that the shortest side limits the diameter.`,
+					ideImport: true,
+					projectLink: `${swiftShapesStudioRoot}/starter`,
+					solutionLink: `${swiftShapesStudioRoot}/solution`
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "Extension: SwiftUI Shapes Studio",
-					content:
-						"Use the shapes-focused enrichment pack for extra practice with paths, custom drawing, and SwiftUI composition after the main course flow is stable.",
-					projectLink:
-						"https://github.com/instruction-material/Swift/tree/main/SAD-Swift-UI-Shapes-Studio/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Swift/tree/main/SAD-Swift-UI-Shapes-Studio/solution"
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content: `Change the proportions to 0.50, 0.30 and 0.20. Predict where each wedge ends before running the view. Use the legend to check the result without relying on color. To interpolate a single wedge, make its fraction a variable and expose it as the shape’s animatable value: \`var animatableData: Double { get { fraction } set { fraction = newValue } }\`. If you animate the change, read \`@Environment(\\.accessibilityReduceMotion)\` and show the final static chart when Reduce Motion is on.
+
+Start from Build 45%, Test 30% and Share 25%. Compare the old and new cumulative endpoints measured from the same twelve o’clock ray. Record the three labeled values after the change with Reduce Motion enabled and compare them with the final animated state when motion is available. If using a written trace, label the two expected paths and mark the final boundary shared by Test and Share.`,
+					ideImport: true,
+					projectLink: `${swiftShapesStudioRoot}/starter`,
+					solutionLink: `${swiftShapesStudioRoot}/solution`
 				},
 				{
 					title: "SADX Enrichment and Reference Boundaries Transfer Practice",
 					aliases: [
 						"intro-to-swift-app-development-sadx-enrichment-and-legacy-archive-boundaries-supplemental-transfer-practice-sadx-enrichment-and-legacy-archive-boundaries"
 					],
-					content: buildProjectGuidance({
-						courseFamily: "Swift app",
-						moduleTitle: "SADX Enrichment and Reference Boundaries",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Swift/tree/main/SAD-40-sadx-enrichment-and-legacy-archive-boundaries-supplemental-2/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Swift/tree/main/SAD-40-sadx-enrichment-and-legacy-archive-boundaries-supplemental-2/solution"
+					preserveInstructions: true,
+					contentKind: "assignment",
+					ideImport: false,
+					content: `Compare the legacy arc center (187, 187) with the midpoint of each supplied frame. Calculate where a radius of half the shorter side keeps the wedge inside its frame.
+
+Use the Shapes and Legacy Reference frames of 240 × 240, 360 × 180 and 160 × 320 points. For each, record the midpoint, radius and leftmost and rightmost points of the enclosing circle. Compare those bounds with a circle of radius 150 at the legacy center. Identify a boundary the legacy drawing crosses in the narrow frame. Draw the ray for the start of the 45% Build wedge and calculate its sweep. Explain why resizing changes the radius while preserving the angle.`
 				},
 				{
 					title: "SADX Enrichment and Reference Boundaries Extension Practice",
 					aliases: [
 						"intro-to-swift-app-development-sadx-enrichment-and-legacy-archive-boundaries-supplemental-extension-practice-sadx-enrichment-and-legacy-archive-boundaries"
 					],
-					content: buildProjectGuidance({
-						courseFamily: "Swift app",
-						moduleTitle: "SADX Enrichment and Reference Boundaries",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Swift/tree/main/SAD-41-sadx-enrichment-and-legacy-archive-boundaries-supplemental-3/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Swift/tree/main/SAD-41-sadx-enrichment-and-legacy-archive-boundaries-supplemental-3/solution"
+					preserveInstructions: true,
+					contentKind: "assignment",
+					ideImport: false,
+					content: `Vary the Build slice from 45% to 50%. Show the final angles immediately with Reduce Motion enabled. Compare the labeled values with the animated result at each frame size.
+
+Start with Build 45%, Test 30% and Share 25%. Transfer five percentage points from Share to Build and leave Test unchanged. For both distributions, record the cumulative end angles from twelve o’clock and check the last endpoint against a full turn. Trace the final chart at 240 × 240, 360 × 180 and 160 × 320. For each size, use the legend to identify the values without color and check whether the static boundaries agree with the animated endpoint.`
 				}
 			]
 		}
@@ -2151,16 +2250,16 @@ const SWIFT_COURSE_FLOW: SwiftCourseModuleFlow[] = [
 		answerSection: "media-maps-and-permissions-key",
 		focus: "Bundled media and supplied coordinates can create rich interfaces before a learner requests photos, contacts, microphone, camera, or live location.",
 		coreRoute:
-			"Build the canonical Media Gallery and Map Places apps with supplied assets, static coordinates, labels, alternate text, and a no-permission simulator route.",
+			"Build the canonical Media Gallery and Map Places apps with system symbols, static coordinates, labels, artwork descriptions, and a no-permission simulator route.",
 		stretchRoute:
 			"Add map selection, an explicit rationale screen, denied and unavailable states, and a privacy data-flow map without collecting real learner or bystander information.",
 		verification:
 			"Assets have stable names and accessibility descriptions, map markers come from supplied nonidentifying data, the app works with permission denied, and any proposed permission request follows an initiated feature need.",
 		boundary:
-			"Core work uses bundled images and static fictional places. No classroom task requires personal photos, contacts, precise location, microphone, camera, or a learner's Apple Account data.",
+			"Core work uses system symbols, gradients and fixed sample coordinates. No classroom task requires personal photos, contacts, precise location, microphone, camera, or a learner's Apple Account data.",
 		referenceLink: SWIFT_REFERENCES.mapKit,
 		projectCore:
-			"Complete the canonical SAD2 Media Gallery and SAD4 Map Places apps using supplied nonpersonal assets and coordinates.",
+			"Complete the canonical SAD2 Media Gallery and SAD4 Map Places apps using system symbols and fixed sample coordinates.",
 		projectStretch:
 			"Design and test a permission-aware enhancement with denied, restricted, unavailable, and no-network states while preserving the static fallback."
 	},
@@ -2252,7 +2351,7 @@ const SWIFT_COURSE_FLOW: SwiftCourseModuleFlow[] = [
 		projectCore:
 			"Persist the canonical SAD5 Simple Tracker locally and prove its core records survive a controlled relaunch.",
 		projectStretch:
-			"Add an in-memory test container, one schema-evolution note, and a safe reset or export route for sample data."
+			"Test isolation with the supplied in-memory container and plan a schema change on a copy of the sample store."
 	},
 	{
 		sourceTitle: "SAD15 Networking and Data Loading",
@@ -2282,7 +2381,7 @@ const SWIFT_COURSE_FLOW: SwiftCourseModuleFlow[] = [
 		projectCore:
 			"Complete the canonical SAD6 API Reference App with a local fixture, explicit state model, decode validation, and recoverable error view.",
 		projectStretch:
-			"Add a protocol-backed client, injected failure fixtures, cancellation, and a cache decision without storing sensitive data."
+			"Use the supplied transport and cancellation contracts to trace overlapping requests and justify a cache policy for the sample entries."
 	},
 	{
 		sourceTitle: "SAD17 Debugging and Testing",

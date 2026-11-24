@@ -84,7 +84,8 @@
 			"learningPath": "choice",
 			"caseUrl": "/course-assets/swift/intro-swift-practice-pack.md#swiftui-views-layout-and-modifiers-case",
 			"verificationUrl": "/course-assets/swift/intro-swift-verification-guide.md#swiftui-views-layout-and-modifiers-key",
-			"taskText": "Complete the canonical SAD1 Welcome Profile App with a coherent visual hierarchy and one reusable profile component."
+			"taskText": "Complete the canonical SAD1 Welcome Profile App with a coherent visual hierarchy and one reusable profile component.",
+			"currentTaskText": "Extract the two text lines from the supplied Avery card into a view with name, summary and symbol inputs."
 		},
 		{
 			"moduleId": "intro-to-swift-app-development-sw3-swiftui-views-layout-and-modifiers",
@@ -101,7 +102,8 @@
 			"learningPath": "challenge",
 			"caseUrl": "/course-assets/swift/intro-swift-practice-pack.md#swiftui-views-layout-and-modifiers-case",
 			"verificationUrl": "/course-assets/swift/intro-swift-verification-guide.md#swiftui-views-layout-and-modifiers-key",
-			"taskText": "Add an alternate profile state, adaptive layout, and a documented modifier-order experiment without introducing navigation or shared data early."
+			"taskText": "Add an alternate profile state, adaptive layout, and a documented modifier-order experiment without introducing navigation or shared data early.",
+			"currentTaskText": "Try a longer name in the same card."
 		},
 		{
 			"moduleId": "intro-to-swift-app-development-sw4-swift-basics-in-app-context",
@@ -254,7 +256,8 @@
 			"learningPath": "choice",
 			"caseUrl": "/course-assets/swift/intro-swift-practice-pack.md#media-maps-and-permissions-case",
 			"verificationUrl": "/course-assets/swift/intro-swift-verification-guide.md#media-maps-and-permissions-key",
-			"taskText": "Complete the canonical SAD2 Media Gallery and SAD4 Map Places apps using supplied nonpersonal assets and coordinates."
+			"taskText": "Complete the canonical SAD2 Media Gallery and SAD4 Map Places apps using supplied nonpersonal assets and coordinates.",
+			"currentTaskText": "Select Neighborhood Cafe in the map case."
 		},
 		{
 			"moduleId": "intro-to-swift-app-development-sw8-media-maps-and-permission-aware-features",
@@ -271,7 +274,8 @@
 			"learningPath": "challenge",
 			"caseUrl": "/course-assets/swift/intro-swift-practice-pack.md#media-maps-and-permissions-case",
 			"verificationUrl": "/course-assets/swift/intro-swift-verification-guide.md#media-maps-and-permissions-key",
-			"taskText": "Design and test a permission-aware enhancement with denied, restricted, unavailable, and no-network states while preserving the static fallback."
+			"taskText": "Design and test a permission-aware enhancement with denied, restricted, unavailable, and no-network states while preserving the static fallback.",
+			"currentTaskText": "Trace a proposed Find Me action with access denied, restricted and unavailable."
 		},
 		{
 			"moduleId": "intro-to-swift-app-development-sw9-navigation-and-multi-screen-apps",
@@ -288,7 +292,8 @@
 			"learningPath": "choice",
 			"caseUrl": "/course-assets/swift/intro-swift-practice-pack.md#navigation-and-multi-screen-case",
 			"verificationUrl": "/course-assets/swift/intro-swift-verification-guide.md#navigation-and-multi-screen-key",
-			"taskText": "Complete the canonical SAD3 Multi-Tab Hobby App with peer tabs, one drill-down detail, and one focused editor or information sheet."
+			"taskText": "Complete the canonical SAD3 Multi-Tab Hobby App with peer tabs, one drill-down detail, and one focused editor or information sheet.",
+			"currentTaskText": "Trace the selected hobby from the list into the editor."
 		},
 		{
 			"moduleId": "intro-to-swift-app-development-sw9-navigation-and-multi-screen-apps",
@@ -305,7 +310,8 @@
 			"learningPath": "challenge",
 			"caseUrl": "/course-assets/swift/intro-swift-practice-pack.md#navigation-and-multi-screen-case",
 			"verificationUrl": "/course-assets/swift/intro-swift-verification-guide.md#navigation-and-multi-screen-key",
-			"taskText": "Add route restoration or typed navigation data and verify each path from cold launch, tab switch, and cancellation."
+			"taskText": "Add route restoration or typed navigation data and verify each path from cold launch, tab switch, and cancellation.",
+			"currentTaskText": "Sketch a route that opens a detail by hobby ID after a fresh launch."
 		},
 		{
 			"moduleId": "intro-to-swift-app-development-sw10-lists-forms-and-crud",
@@ -322,7 +328,8 @@
 			"learningPath": "choice",
 			"caseUrl": "/course-assets/swift/intro-swift-practice-pack.md#lists-forms-and-crud-case",
 			"verificationUrl": "/course-assets/swift/intro-swift-verification-guide.md#lists-forms-and-crud-key",
-			"taskText": "Complete the in-memory canonical SAD5 Simple Tracker with add, edit, toggle, delete, validation, and empty-state behavior."
+			"taskText": "Complete the in-memory canonical SAD5 Simple Tracker with add, edit, toggle, delete, validation, and empty-state behavior.",
+			"currentTaskText": "Use the supplied A1–A4 case."
 		},
 		{
 			"moduleId": "intro-to-swift-app-development-sw10-lists-forms-and-crud",
@@ -339,7 +346,8 @@
 			"learningPath": "challenge",
 			"caseUrl": "/course-assets/swift/intro-swift-practice-pack.md#lists-forms-and-crud-case",
 			"verificationUrl": "/course-assets/swift/intro-swift-verification-guide.md#lists-forms-and-crud-key",
-			"taskText": "Add deterministic filtering, duplicate policy, and a reversible destructive-action path with focused model tests."
+			"taskText": "Add deterministic filtering, duplicate policy, and a reversible destructive-action path with focused model tests.",
+			"currentTaskText": "Give two rows the same title but different IDs."
 		},
 		{
 			"moduleId": "intro-to-swift-app-development-sw11-persistence-with-swiftdata",
@@ -356,7 +364,8 @@
 			"learningPath": "choice",
 			"caseUrl": "/course-assets/swift/intro-swift-practice-pack.md#swiftdata-persistence-case",
 			"verificationUrl": "/course-assets/swift/intro-swift-verification-guide.md#swiftdata-persistence-key",
-			"taskText": "Persist the canonical SAD5 Simple Tracker locally and prove its core records survive a controlled relaunch."
+			"taskText": "Persist the canonical SAD5 Simple Tracker locally and prove its core records survive a controlled relaunch.",
+			"currentTaskText": "Trace A1 and A2 through both relaunches in the supplied case for a file-backed store."
 		},
 		{
 			"moduleId": "intro-to-swift-app-development-sw11-persistence-with-swiftdata",
@@ -373,7 +382,8 @@
 			"learningPath": "challenge",
 			"caseUrl": "/course-assets/swift/intro-swift-practice-pack.md#swiftdata-persistence-case",
 			"verificationUrl": "/course-assets/swift/intro-swift-verification-guide.md#swiftdata-persistence-key",
-			"taskText": "Add an in-memory test container, one schema-evolution note, and a safe reset or export route for sample data."
+			"taskText": "Add an in-memory test container, one schema-evolution note, and a safe reset or export route for sample data.",
+			"currentTaskText": "Use a fresh in-memory test container to isolate two runs."
 		},
 		{
 			"moduleId": "intro-to-swift-app-development-sw12-networking-and-data-loading",
@@ -390,7 +400,8 @@
 			"learningPath": "choice",
 			"caseUrl": "/course-assets/swift/intro-swift-practice-pack.md#networking-and-data-loading-case",
 			"verificationUrl": "/course-assets/swift/intro-swift-verification-guide.md#networking-and-data-loading-key",
-			"taskText": "Complete the canonical SAD6 API Reference App with a local fixture, explicit state model, decode validation, and recoverable error view."
+			"taskText": "Complete the canonical SAD6 API Reference App with a local fixture, explicit state model, decode validation, and recoverable error view.",
+			"currentTaskText": "Decode the two-entry fixture and trace the status guard and decoder for HTTP 503, HTTP 200 with a missing body, and HTTP 200 with an empty list."
 		},
 		{
 			"moduleId": "intro-to-swift-app-development-sw12-networking-and-data-loading",
@@ -407,7 +418,8 @@
 			"learningPath": "challenge",
 			"caseUrl": "/course-assets/swift/intro-swift-practice-pack.md#networking-and-data-loading-case",
 			"verificationUrl": "/course-assets/swift/intro-swift-verification-guide.md#networking-and-data-loading-key",
-			"taskText": "Add a protocol-backed client, injected failure fixtures, cancellation, and a cache decision without storing sensitive data."
+			"taskText": "Add a protocol-backed client, injected failure fixtures, cancellation, and a cache decision without storing sensitive data.",
+			"currentTaskText": "Trace the existing cancellation guard with two requests: B finishes first, then A returns late."
 		},
 		{
 			"moduleId": "intro-to-swift-app-development-sw13-debugging-and-swift-testing",
@@ -612,7 +624,8 @@
 			"learningPath": "choice",
 			"caseUrl": "/course-assets/swift/intro-swift-practice-pack.md#capstone-build-and-user-testing-case",
 			"verificationUrl": "/course-assets/swift/intro-swift-verification-guide.md#capstone-build-and-user-testing-key",
-			"taskText": "Complete the canonical SAD7 Publish-Ready Capstone as a tested release candidate with a scoped primary flow and evidence packet."
+			"taskText": "Complete the canonical SAD7 Publish-Ready Capstone as a tested release candidate with a scoped primary flow and evidence packet.",
+			"currentTaskText": "Give the Study Plan tester three fictional tasks covering scheduling, completion and finding unfinished work."
 		},
 		{
 			"moduleId": "intro-to-swift-app-development-sw19-capstone-build-and-user-testing",
@@ -629,7 +642,8 @@
 			"learningPath": "challenge",
 			"caseUrl": "/course-assets/swift/intro-swift-practice-pack.md#capstone-build-and-user-testing-case",
 			"verificationUrl": "/course-assets/swift/intro-swift-verification-guide.md#capstone-build-and-user-testing-key",
-			"taskText": "Add one architecturally justified feature, automated boundary test, and evidence-backed revision without expanding beyond the stated release scope."
+			"taskText": "Add one architecturally justified feature, automated boundary test, and evidence-backed revision without expanding beyond the stated release scope.",
+			"currentTaskText": "Choose one obstacle observed during the Study Plan task."
 		},
 		{
 			"moduleId": "intro-to-swift-app-development-sw20-final-publishing-walkthrough",
@@ -683,7 +697,8 @@
 			"learningPath": "challenge",
 			"caseUrl": "/course-assets/swift/intro-swift-practice-pack.md#shapes-and-legacy-reference-case",
 			"verificationUrl": "/course-assets/swift/intro-swift-verification-guide.md#shapes-and-legacy-reference-key",
-			"taskText": "Complete one adaptive custom Shape and a short modern-versus-legacy transfer note."
+			"taskText": "Complete one adaptive custom Shape and a short modern-versus-legacy transfer note.",
+			"currentTaskText": "Compare the legacy arc center (187, 187) with the midpoint of each supplied frame."
 		},
 		{
 			"moduleId": "intro-to-swift-app-development-swx-shapes-and-legacy-reference-boundaries",
@@ -703,7 +718,8 @@
 			"learningPath": "challenge",
 			"caseUrl": "/course-assets/swift/intro-swift-practice-pack.md#shapes-and-legacy-reference-case",
 			"verificationUrl": "/course-assets/swift/intro-swift-verification-guide.md#shapes-and-legacy-reference-key",
-			"taskText": "Add animatable data and reduced-motion behavior, then verify geometry across three frame shapes."
+			"taskText": "Add animatable data and reduced-motion behavior, then verify geometry across three frame shapes.",
+			"currentTaskText": "Vary the Build slice from 45% to 50%."
 		}
 	]
 }

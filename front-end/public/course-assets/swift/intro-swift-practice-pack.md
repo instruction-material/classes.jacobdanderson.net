@@ -148,17 +148,15 @@ Assign one owner to each value. Mark whether a child receives a value, `Binding`
 
 ## Media Maps and Permissions Case
 
-### Supplied fictional places
+The Gallery starter uses a gradient and the system symbol `photo`. Sunset Poster is a Photo with the description “A warm poster-style sunset composition.” Choose a useful spoken description for the card when its title is already read aloud.
 
-| ID  | Name          | Latitude | Longitude | Asset          | Description              |
-| --- | ------------- | -------: | --------: | -------------- | ------------------------ |
-| 1   | North Gallery |   40.000 |   -75.000 | `GalleryBlue`  | Abstract blue blocks     |
-| 2   | River Studio  |   40.012 |   -75.018 | `GalleryGold`  | Gold circles on charcoal |
-| 3   | Hill Workshop |   39.988 |   -74.982 | `GalleryGreen` | Green layered triangles  |
+| Map Places row | Latitude | Longitude |
+| --- | ---: | ---: |
+| Patterson Park | 39.2995 | -76.5848 |
+| Neighborhood Cafe | 39.2979 | -76.5907 |
+| Harbor Overlook | 39.2850 | -76.6010 |
 
-### Task
-
-Build gallery and map plans that use only these bundled assets and coordinates. Provide meaningful image descriptions. Add a selected-place state and a denied-permission state that leaves all core content usable. Write the user action that would justify requesting a device permission, but do not request one in the core case.
+The starter opens at (39.2928, -76.5930) with no selection. Tap Neighborhood Cafe. Predict the selected detail and camera center in the starter, then in the completed map. Describe what can still be checked without network tiles. For an optional Find Me action, explain when to ask for location and how browsing works if access is denied.
 
 ## Navigation and Multi Screen Case
 
@@ -359,4 +357,4 @@ Make a submit-or-hold decision. Reconcile metadata, screenshots, privacy answers
 
 ### Task
 
-Define a triangle or custom badge with points derived from `rect` rather than fixed screen coordinates. Explain how it scales in each frame. Add a nonanimated or reduced-motion representation. Compare one legacy path implementation with the current SwiftUI `Shape`/`Path` approach and name what transfers conceptually.
+The Shapes Studio starter supplies Build 45%, Test 30% and Share 25%. Trace a static wedge for each value. For every frame above, calculate its center, radius and Build sweep. In the legacy Mod4Pro2 drawing the center is (187, 187) and radius is 150. Which parts of that construction transfer to a resizable shape? Keep the labeled percentages available when motion is reduced.

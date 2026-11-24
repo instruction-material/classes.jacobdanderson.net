@@ -36,6 +36,7 @@ Core readiness is 9 of 12 with no zero in evidence or access/privacy. A project 
 - The stack contains two text children; stack modifiers apply to the produced stack value.
 - Padding before background expands the background's painted region around padded content. Background before padding paints behind the unpadded value and the later padding remains outside it.
 - A reusable section accepts values rather than reading hidden global state.
+- In the HStack example the symbol and the inner VStack are siblings. Its two text labels are children of the inner stack. An overlay attached after the background outlines that background’s bounds.
 - Adaptation evidence includes a narrow frame and large text route rather than a single screenshot.
 
 ## Swift Basics in App Context Key
@@ -134,16 +135,18 @@ The first four labels start with `Map a trail:` followed by `Planned`, `0%`, `50
 
 ## Media Maps and Permissions Key
 
-- All images and coordinates come from the supplied fictional pack.
-- Image descriptions convey useful content rather than file names.
-- Static map and gallery behavior work with every permission denied.
-- A permission request follows an initiated feature and includes denied, restricted, and unavailable handling; requesting permission at launch without need does not pass.
+- The Gallery starter draws a gradient and a system symbol. Read the artwork title and useful description once. The decorative photo icon needs no separate announcement.
+- Tapping Neighborhood Cafe sets the starter’s selected place and shows its detail. The camera remains at (39.2928, -76.5930). In the solution, the same tap sets the selected ID and centers the region on (39.2979, -76.5907).
+- The fixed-coordinate map needs no device-location access. If tiles fail to load, the list, selected title and detail can still be checked. Record tile rendering separately.
+- For Find Me, ask when the person requests their location. Keep manual selection available when access is denied, restricted or unavailable.
 
 ## Navigation and Multi Screen Key
 
 - Hobbies and Favorites are peer tabs.
 - Hobby detail is stack drill-down; Edit hobby is a focused sheet with Save and Cancel.
 - Save commits intended changes; Cancel discards the draft; Back preserves the expected model; tab changes do not erase shared app state.
+- In SAD3 the reference demonstrates tabs, Home detail and shared favorites. Check a learner-added sheet by opening it on Photo Walk, dismissing it, then checking the same detail and favorites. An information sheet needs Done. An editor needs distinct Save and Cancel outcomes.
+- On restoration, a valid ID resolves to its record and Back reaches the list. If the record is absent, return to the list or show an unavailable detail with a route back.
 - Hidden global selected IDs and unrelated state duplication do not pass the ownership gate.
 
 ## Lists Forms and CRUD Key
@@ -152,12 +155,15 @@ The first four labels start with `Map a trail:` followed by `Planned`, `0%`, `50
 - Whitespace-only drafts fail validation.
 - Add, edit, toggle, and delete affect the intended item and preserve deterministic ordering.
 - The final display is `A4 | Archive notes | false`, `A1 | Sketch interface | true`, then `A3 | Test empty state | false`. Sorting the display moves rows. Deleting by ID still removes Build model even after its position changes.
+- For a filtered display, resolve offsets against the displayed records before mutation. Undo restores the removed record with its existing ID and completion flag. A duplicate title does not identify the record to restore.
 - Empty state offers a clear add action; destructive behavior is understandable and recoverable where practical.
 
 ## SwiftData Persistence Key
 
 - After the first relaunch, `A1` and completed `A2` remain. After deleting `A1` and relaunching, only completed `A2` remains.
 - `@Model` defines the stored model, the container configures storage, the context mutates/fetches, and `@Query` drives fetched presentation.
+- With the starter’s in-memory configuration, a fresh process starts empty. The two-relaunch answer above assumes the same file-backed store. A failed store open calls for an error and retry.
+- Two fresh in-memory containers have separate records. In a rename trial, reopen a copy of the original store and compare IDs, titles and completion flags before and after migration.
 - Tests use an in-memory configuration.
 - Renaming a stored property requires a migration/preservation decision; silently replacing the schema risks data loss.
 
@@ -231,6 +237,8 @@ Twenty-four-point capstone rubric:
 | Accessibility and privacy                      |      4 |
 | Explanation, limitations, and revision         |      4 |
 
+Score each area from 0 to 4. Give 0 for missing evidence, 1 for a stated plan, 2 for a partial demonstration, 3 for a repeatable demonstration with one documented gap, and 4 for evidence covering the area’s agreed checks. The SAD7 reference’s checked “Collect screenshots” row supplies no screenshot or test result. For revision credit, compare the anonymous observation with the result of repeating the same task after a change. Label a solo rehearsal as a self-test.
+
 Readiness is 18 of 24, no zero-point area, and a complete primary flow. Extra features cannot compensate for a broken core task or unsafe data practice.
 
 ## Final Publishing Walkthrough Key
@@ -241,7 +249,8 @@ Adding the version to a draft leaves it ready for the authorized submitter's dec
 
 ## Shapes and Legacy Reference Key
 
+- For Build at 45%, the sweep is 162° in every frame. Square 240 × 240 gives center (120, 120), radius 120. Wide 360 × 180 gives (180, 90), radius 90. Narrow 160 × 320 gives (80, 160), radius 80. The reference subtracts 90° from each angle to start the first slice at the top.
 - Shape points derive from the supplied `rect` dimensions and scale across square, wide, and narrow frames.
-- A reduced-motion or static representation preserves meaning.
+- At 50%, 30% and 20%, the cumulative endpoints before the top-of-chart offset are 180°, 288° and 360°. A static labeled display carries the same proportions with Reduce Motion enabled.
 - Transferable concepts can include coordinate reasoning, path segments, composition, and parameterization.
 - Fixed screen coordinates, obsolete APIs, and old project ordering remain legacy details rather than required practice.

@@ -255,7 +255,7 @@ test(
 									.includes(task),
 							{},
 							selector,
-							row.taskText
+							row.currentTaskText ?? row.taskText
 						);
 						const rendered = await page.$eval(
 							selector,

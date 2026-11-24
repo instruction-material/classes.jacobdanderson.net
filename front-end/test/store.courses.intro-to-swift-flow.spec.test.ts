@@ -12,6 +12,7 @@ import {
 	swiftHobbyRoot,
 	swiftMapRoot,
 	swiftNetworkingRoot,
+	swiftShapesStudioRoot,
 	swiftTrackerRoot
 } from "@/modules/swiftProjectResources";
 import { useCoursesStore } from "@/stores/courses";
@@ -332,6 +333,22 @@ describe("intro to Swift App Development learner flow", () => {
 				expect(item.ideImport).toBe(true);
 				expect(item.preserveInstructions).toBe(true);
 			}
+			else if (item.title === "SW8 Media, Maps, and Permission-Aware Features: Readiness Check") {
+				expect(item.projectLink).toBe(swiftMapRoot + "/starter");
+				expect(item.solutionLink).toBe(swiftMapRoot + "/solution");
+				expect(item.content).toContain("Neighborhood Cafe");
+			}
+			else if ([
+				"SADX Enrichment and Reference Boundaries: Core Project",
+				"Extension: SwiftUI Shapes Studio"
+			].includes(item.title)) {
+				expect(item.contentKind).toBe("assignment");
+				expect(item.content).toContain("[Practice case]");
+				expect(item.ideImport).toBe(true);
+				expect(item.learningPath).toBe("challenge");
+				expect(item.projectLink).toBe(`${swiftShapesStudioRoot}/starter`);
+				expect(item.solutionLink).toBe(`${swiftShapesStudioRoot}/solution`);
+			}
 			else if (
 				item.contentKind === "reading" &&
 				item.preserveInstructions &&
@@ -466,7 +483,7 @@ describe("intro to Swift App Development learner flow", () => {
 			"@StateObject and ObservableObject remain a compatibility route"
 		);
 		expect(text).toContain(
-			"Move the tracker model into SwiftData for an iOS 17-or-later route"
+			"SwiftUI and SwiftData with an iOS 17-or-later target"
 		);
 		expect(text).toContain(
 			"Swift Testing is used in a test target, not the shipping app target"

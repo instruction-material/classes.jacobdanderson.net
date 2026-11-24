@@ -54,12 +54,24 @@ export const swiftHobbyStructureRoot = `https://github.com/instruction-material/
 
 export const swiftFavoriteEditorRoot = `https://github.com/instruction-material/Swift/tree/${swiftInteractionRevision}/SW7-Favorite-Editor`;
 
-export const swiftAccessibleTasksRoot = `https://github.com/instruction-material/Swift/tree/${swiftInteractionRevision}/SW14-Accessible-Tasks`;
+const swiftAccessibleTasksRevision = "e3a37434a6548028229e0ca1d69442dc350a0d82";
+export const swiftAccessibleTasksRoot = `https://github.com/instruction-material/Swift/tree/${swiftAccessibleTasksRevision}/SW14-Accessible-Tasks`;
+
+const swiftShapesStudioRevision = "17454caa107214e1a70f0bd17703714447cba458";
+const swiftShapesStudioPack = "SAD-Swift-UI-Shapes-Studio";
+export const swiftShapesStudioRoot = `https://github.com/instruction-material/Swift/tree/${swiftShapesStudioRevision}/${swiftShapesStudioPack}`;
 
 const swiftPacks = [
 	{
+		pack: swiftShapesStudioPack,
+		revision: swiftShapesStudioRevision,
+		projectKey: "shapes-studio",
+		roleFiles: ["ContentView.swift", "ShapesStudioApp.swift"],
+		sharedFiles: ["README.md"]
+	},
+	{
 		pack: "SW14-Accessible-Tasks",
-		revision: swiftInteractionRevision,
+		revision: swiftAccessibleTasksRevision,
 		projectKey: "accessible-tasks",
 		roleFiles: [
 			"ContentView.swift",
@@ -252,6 +264,9 @@ export function swiftCourseResource(url: string) {
 			[
 				"main",
 				pack.revision,
+				...(pack.projectKey === "accessible-tasks"
+					? [swiftInteractionRevision]
+					: []),
 				...(pack.projectKey === "map-places"
 					? ["a373ffaf1d3b34fe3476137ea357c787f433f21a"]
 					: []),

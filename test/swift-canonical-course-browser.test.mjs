@@ -15,7 +15,15 @@ const anatomyTasks = [
 	`${anatomyModule}-curriculum-core-project-xcode-project-anatomy`,
 	`${anatomyModule}-supplemental-sw2-xcode-project-anatomy-readiness-check`
 ];
+const shapesModule = `${courseID}-swx-shapes-and-legacy-reference-boundaries`;
 const projects = [
+	{
+		name: "shapes-studio",
+		module: "swx-shapes-and-legacy-reference-boundaries",
+		coreSuffix: "curriculum-core-project-enrichment-and-reference-boundaries",
+		key: "shapes-studio",
+		linkedTasks: [`${shapesModule}-supplemental-extension-swiftui-shapes-studio`]
+	},
 	{
 		name: "accessible-tasks",
 		module: "sw14-app-design-and-accessibility",
