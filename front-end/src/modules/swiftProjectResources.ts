@@ -43,7 +43,22 @@ export const swiftProfileInterestsRoot = `https://github.com/instruction-materia
 
 export const swiftLessonCardsRoot = `https://github.com/instruction-material/Swift/tree/${swiftFoundationsRevision}/SW5-Lesson-Cards`;
 
+const swiftDebuggingRevision = "cd273ea9177ebd80a02bd54e51971901012572c2";
+export const swiftDebuggingRoot = `https://github.com/instruction-material/Swift/tree/${swiftDebuggingRevision}/SW13-Tracker-Debugging`;
+
 const swiftPacks = [
+	{
+		pack: "SW13-Tracker-Debugging",
+		revision: swiftDebuggingRevision,
+		projectKey: "tracker-debugging",
+		roleFiles: [
+			"ContentView.swift",
+			"TrackerDebugApp.swift",
+			"Tracker.swift",
+			"Tests/TrackerTests.swift"
+		],
+		sharedFiles: ["README.md", "Package.swift"]
+	},
 	{
 		pack: "SW5-Lesson-Cards",
 		revision: swiftFoundationsRevision,

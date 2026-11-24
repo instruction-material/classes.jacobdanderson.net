@@ -99,6 +99,7 @@ const CANONICAL_PROJECT_ROOTS: Record<string, string> = {
 };
 
 const FOUNDATION_EXAMPLES: Record<string, string> = {
+	"SAD17 Debugging and Testing: Core Project": "## Write the regression before the fix",
 	"SAD10 Functions, Structs, and Enums: Core Project": "## Check the result",
 	"SAD9 Swift Basics in App Context: Core Project": "## Check the result",
 	"Variables, Constants, and Types": "Avery 3 4",
@@ -261,6 +262,16 @@ describe("intro to Swift App Development learner flow", () => {
 				expect(item.content, item.title).toContain("## Toolchain");
 				expect(item.ideImport).toBe(false);
 				expect(item.datasetLink).toBeUndefined();
+			}
+			else if ([
+				"SAD4 Running on Simulator and Device: Core Project",
+				"SW15 Simulator and Device Validation: Readiness Check"
+			].includes(item.title)) {
+				expect(item.projectLink).toBe(`${swiftMapRoot}/starter`);
+				expect(item.solutionLink).toBe(`${swiftMapRoot}/solution`);
+				expect(item.ideImport).toBe(true);
+				expect(item.content).toContain("camera");
+				expect(item.content).toContain("simulator-and-device-validation-case");
 			}
 			else if (item.title === "Project: Welcome Profile App") {
 				for (const section of [

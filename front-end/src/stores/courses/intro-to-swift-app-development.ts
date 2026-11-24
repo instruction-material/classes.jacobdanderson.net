@@ -7,12 +7,14 @@ import swiftMapReading from "@/assets/course-guides/swift-map.md?raw";
 import swiftNetworkingReading from "@/assets/course-guides/swift-networking.md?raw";
 import swiftProfileInterestsReading from "@/assets/course-guides/swift-profile-interests.md?raw";
 import swiftDataTrackerReading from "@/assets/course-guides/swift-swiftdata.md?raw";
+import swiftDebuggingReading from "@/assets/course-guides/swift-tracker-debugging.md?raw";
 import swiftTrackerReading from "@/assets/course-guides/swift-tracker.md?raw";
 import swiftWelcomeReading from "@/assets/course-guides/swift-welcome-profile.md?raw";
 import {
 	swiftCapstoneRoot,
 	swiftCourseResource,
 	swiftDataTrackerRoot,
+	swiftDebuggingRoot,
 	swiftGalleryRoot,
 	swiftHobbyRoot,
 	swiftLessonCardsRoot,
@@ -99,7 +101,7 @@ Write one sentence explaining why changing the app's SwiftUI layout would leave 
 					ideImport: false,
 					content: `Make a distribution map for Trail Notes. Start with the simulator result “build 7 opened the note list.” Use the four stages in the case to show the next artifact, audience, and access requirement at each stage. Circle the last step you actually observed. Label subsequent steps as planned. A complete map explains how a classmate could receive a beta and how a public customer could later obtain the app.
 
-**Completion checks:** Two people can follow the map from the same archive to different audiences. Mark the build identifier at each handoff and point to the first place external beta review can affect the route.`
+Two people can follow the map from the same archive to different audiences. Mark the build identifier at each handoff and point to the first place external beta review can affect the route.`
 				}
 			],
 			supplementalProjects: [
@@ -110,7 +112,7 @@ Write one sentence explaining why changing the app's SwiftUI layout would leave 
 					ideImport: false,
 					content: `A teammate reports “version 1.0 is available” after seeing build 7 in App Store Connect. Write two questions that distinguish a processed upload, a beta assigned to a group, and a released store version. For each answer, name one record that would confirm the audience.
 
-**Completion checks:** A convincing answer asks which build was processed and who can install it. Use an assigned testing group to support a beta claim and store availability for the chosen region to support a public claim.`
+A convincing answer asks which build was processed and who can install it. Use an assigned testing group to support a beta claim and store availability for the chosen region to support a public claim.`
 				},
 				{
 					title: "Mod5Pro3",
@@ -119,7 +121,7 @@ Write one sentence explaining why changing the app's SwiftUI layout would leave 
 					ideImport: false,
 					content: `Trace build 7 backward. An external tester sees the beta in TestFlight. Identify the group and eligible build that made access possible, then trace the build to its upload and archive. Mark which of these records could establish a public store release. Explain what additional record the public-release claim would need.
 
-**Completion checks:** Start with the tester's observed installation and work back one handoff at a time. Identify the earliest claim the evidence supports. Mark public availability as unknown until the store record supplies that evidence.`
+Start with the tester's observed installation and work back one handoff at a time. Identify the earliest claim the evidence supports. Mark public availability as unknown until the store record supplies that evidence.`
 				},
 				{
 					title: "Apple Developer Ecosystem Overview Extension Practice",
@@ -254,7 +256,7 @@ Apply this sequence to case 4. A simulator launch succeeded, and the archive fai
 					ideImport: false,
 					content: `Prepare a signing diagnosis for case 1. Record the target, intended team, app identifier, selected profile identifier, and the exact disagreement. State one narrow correction and how a fresh archive of the same target would test it. Then read case 4. List the missing evidence that prevents you from assigning it the same cause.
 
-**Completion checks:** Your diagnosis names both conflicting identifiers and treats the first archive error as missing evidence in case 4. Work from the supplied records. Certificates, private keys, provisioning files, passwords, recovery codes, and team invitations are never submitted or shared.`
+Your diagnosis names both conflicting identifiers and treats the first archive error as missing evidence in case 4. Work from the supplied records. Certificates, private keys, provisioning files, passwords, recovery codes, and team invitations are never submitted or shared.`
 				}
 			],
 			supplementalProjects: [
@@ -265,7 +267,7 @@ Apply this sequence to case 4. A simulator launch succeeded, and the archive fai
 					ideImport: false,
 					content: `A simulator build launches. An archive for the same target reports that its profile lacks a requested capability. Identify the evidence supplied by each result. List the three capability records to compare and explain when the team would need a newly generated profile.
 
-**Completion checks:** Mark the simulator result and archive error as separate observations. State which change would restore alignment among the app's requested entitlements, the registered capabilities and the profile, and what one new archive can demonstrate.`
+Mark the simulator result and archive error as separate observations. State which change would restore alignment among the app's requested entitlements, the registered capabilities and the profile, and what one new archive can demonstrate. Identify the identifier and team in the new archive so a reviewer can compare it with the failed build.`
 				},
 				{
 					title: "Certificates, Signing, and Bundle IDs Transfer Practice",
@@ -302,43 +304,67 @@ Apply this sequence to case 4. A simulator launch succeeded, and the archive fai
 			curriculum: [
 				{
 					title: "Simulator vs Real Device",
-					content:
-						"Explain the strengths and limits of the iOS Simulator and why certain checks still need a real iPhone. This module compares rapid UI iteration, hardware features, permissions, and performance realism."
+					preserveInstructions: true,
+					contentKind: "reading",
+					content: `A simulator runs an iOS build on the Mac. It can show whether a view opens, accepts an action, and fits the selected screen. A hardware claim needs a corresponding observation on a physical device.
+
+## Worked example
+
+In Map Places, selecting a bundled place can update a detail panel even if map tiles do not load. Seeing the panel establishes that selection works on that destination. It says nothing about GPS accuracy: the place coordinates came from the app. To check whether the new camera behavior came from a code change, repeat the same selection on the same simulator with the original source. Record both observations before changing the destination.
+
+## Record the result
+
+Record the destination and OS beside each observation. If no phone is available, finish the simulator comparison and mark physical-device behavior untested.`
 				},
 				{
 					title: "Practical Walkthrough: Build and Run Destinations",
-					content:
-						"Choose simulator destinations, connect a real device, trust the developer path, and verify that the correct scheme is selected. Differentiate between an app that compiles, an app that launches, and an app that behaves correctly."
+					preserveInstructions: true,
+					contentKind: "reading",
+					content: `The scheme selects what Xcode builds and runs. The destination selects where it runs. Open an iOS App target containing one role of Map Places, choose its scheme and an installed iPhone simulator, then choose Run. When the Places screen appears, select Patterson Park. Record whether its detail appears and what happens to the map camera. The starter deliberately leaves the camera in place.
+
+Stop the app, switch to another installed screen size, and repeat with the same code and text-size setting. A successful compile, an open screen, and a working selection each answer a different question. Record all three.`
 				},
 				{
 					title: "Practical Walkthrough: Logs, Console Output, and Crash Clues",
-					content:
-						"Console logs, build output, and run-on-device messages provide the first useful failure signals. Capture the earliest useful signal before chasing symptoms so setup problems stay diagnosable."
+					preserveInstructions: true,
+					contentKind: "reading",
+					content: `A failed build leaves a compiler or linking diagnostic in Xcode's build report. A process that starts and then exits calls for its runtime evidence in the debug console or debugger. A title that clips while the app remains responsive can leave the console clean. Reproduce the visible failure before changing code.
+
+Suppose Places opens and Harbor Overlook can be selected, but its subtitle clips with large text. Record the destination, text size, selected row and clipped words. Repeat at the original size, then change only text size. That comparison tests a layout hypothesis even when both runs produce identical console output.`
 				},
 				{
 					title: "First Launch Troubleshooting Studio",
-					content:
-						"Take a blank or simple starter app, run it on simulator, then on device if available, and document what changed between the two paths. Record one issue they encountered or might realistically encounter and how they would investigate it."
+					preserveInstructions: true,
+					contentKind: "reading",
+					content: `Work backward from the first missing observation. If the scheme builds but no simulator launches, inspect the active run destination and its installed runtime. If the first screen opens but tapping a place appears to do nothing, look separately at the selected name, detail panel and map position. The starter changes the selection before any camera movement has been implemented.
+
+For the supplied matrix, the large simulator opens the app and clips the title. Write one retest that could establish whether a layout change fixed the defect. Keep the build, destination, text size and action in the retest record so another person can repeat it.`
 				},
 				{
 					title: "SAD4 Running on Simulator and Device: Core Project",
-					content: buildProjectGuidance({
-						courseFamily: "Swift app",
-						moduleTitle: "SAD4 Running on Simulator and Device",
-						projectKind: "core",
-						hasReference: false
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Swift/tree/main/Mod1Pro3"
+					preserveInstructions: true,
+					contentKind: "assignment",
+					ideImport: true,
+					projectLink: `${swiftMapRoot}/starter`,
+					solutionLink: `${swiftMapRoot}/solution`,
+					content: `Use Map Places to collect a two-destination smoke test. Open the starter in the site IDE. If it resumes an earlier Map Places project, keep those edits and record the current camera behavior as the baseline. Export the source and follow its README to run it in an iOS App target in Xcode. For each simulator record the scheme, OS, screen size and build configuration. Start from a fresh launch, select Patterson Park, then Harbor Overlook. Record the selected detail, camera response and any unreadable text. Repeat the second selection at a larger text size.
+
+The original starter changes the detail and leaves the camera still. Implement the camera update described in its README, or verify the existing update in a resumed project, and repeat the same steps on both destinations. Compare expected and observed results before consulting the reference. Record missing map tiles separately from the text selection. A physical device is optional.
+
+Preserve the before-and-after evidence for both simulators. Label any unexecuted check. If Xcode is unavailable, use the supplied matrix for the written analysis and identify which runs still require a Mac.`
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "Diagnostic Checkpoint",
-					content:
-						"Readiness check: switch destinations intentionally, recognize the difference between simulator-only confidence and real-device confidence, and find the basic logging surfaces in Xcode. Prompt: identify what to inspect first if a build compiles but never launches on a phone.",
-					projectLink:
-						"https://github.com/instruction-material/Swift/tree/main/Mod1Pro3"
+					preserveInstructions: true,
+					contentKind: "assignment",
+					ideImport: true,
+					projectLink: `${swiftMapRoot}/starter`,
+					solutionLink: `${swiftMapRoot}/solution`,
+					content: `Predict what the Map Places starter will show after selecting Neighborhood Cafe, then compare the detail text and map camera with the observed result. Explain which part of the interaction a successful launch alone can verify. Repeat after the camera fix, using the same build and destination for each comparison of two selections.
+
+Identify the source role, destination, place and observed response. Use the supplied matrix to explain why a clean console and a successful launch can coexist with a failed layout check. Record a device-only question that these results leave open.`
 				},
 				{
 					title: "Running on Simulator and Device Transfer Practice",
@@ -415,7 +441,7 @@ Suppose build 8 renames Add topic to New topic. Revise one test step and one scr
 					ideImport: false,
 					content: `Build a timeline for version 1.0 (7) using the supplied release record. Place upload, processing, any required compliance response, internal assignment, external test information, external review, and invitation in their required relationships. Separate tasks that can be prepared early from gates that must finish before testers receive the build. Identify which group could test first and what evidence would show that Classroom Review actually received access.
 
-**Completion checks:** The timeline identifies a build, group and gate for each testing path. Someone reading it can tell a processed build from an assigned build and an invitation from a confirmed installation.`
+The timeline identifies a build, group and gate for each testing path. Someone reading it can tell a processed build from an assigned build and an invitation from a confirmed installation.`
 				}
 			],
 			supplementalProjects: [
@@ -426,7 +452,7 @@ Suppose build 8 renames Add topic to New topic. Revise one test step and one scr
 					ideImport: false,
 					content: `The internal QA Team has reported a defect on build 7. The external group's invitation is still pending. Write the build identifier to put on the defect and the group status to check before sending instructions. For a corrected build 8, identify which earlier result needs a fresh test and why.
 
-**Completion checks:** Include version 1.0 and the build number on each observation. A tester's successful recovery on build 8 can close that reproduction on build 8. An outstanding external invitation remains a separate question.`
+Include version 1.0 and the build number on each observation. A tester's successful recovery on build 8 can close that reproduction on build 8. An outstanding external invitation remains a separate question.`
 				},
 				{
 					title: "App Store Connect and TestFlight Workflow Transfer Practice",
@@ -1326,43 +1352,59 @@ The output is \`7 Map a trail\` followed by \`7 Map a river\`. The ID still iden
 			curriculum: [
 				{
 					title: "Debugging as Observation",
-					content:
-						"Debugging is a disciplined observation process rather than trial-and-error clicking. Review console logs, breakpoints, previews, and the role of small reproducible cases in SwiftUI app work."
+					preserveInstructions: true,
+					contentKind: "reading",
+					content: `A defect report pairs a repeatable action with an expected and an observed result. Begin with one clean tracker, one ordinary title and a draft containing three spaces. Save each draft once. Compare the count, the visible text and the value stored by the model. These observations distinguish a blank row from a row that was never added.
+
+## Worked example
+
+After saving Plan app, the count reads one. Saving three spaces changes it to two and the second row looks empty. At the breakpoint immediately before the append, the string has length three. The model accepted the draft because its raw value was nonempty. A view that displays those characters faithfully still draws no visible title.
+
+## Retest
+
+Write an expectation about the saved titles before changing the model. Run that same check after the fix. A second case with spaces around a real title checks whether trimming preserves the words in the middle.`
 				},
 				{
 					title: "Worked Example Set: UI Bug vs Data Bug vs Build Bug",
-					content:
-						"Compare a broken layout, a bad state update, and a configuration/build issue so problem classification comes before attempted fixes. This helps keep debugging efficient and calm."
+					preserveInstructions: true,
+					contentKind: "reading",
+					content: `A build failure prevents the app from running. Look first at the compiler diagnostic and the file and line it names. A data defect can appear in a model test without any screen: adding three spaces changes the task count. A layout defect can appear even when the stored title and count are correct.
+
+Suppose the model returns a complete title but only its first word fits on screen at large text. Compare the same row at two text sizes and inspect the layout. Trimming the stored title cannot supply the space that the row needs.`
 				},
 				{
 					title: "Practical Walkthrough: Previews and Basic Test Concepts",
-					content:
-						"Use previews for fast UI checks and introduce simple unit and UI test ideas conceptually. Testing is about confidence and regression prevention, even when the project is not ready for a large suite yet."
+					preserveInstructions: true,
+					contentKind: "reading",
+					content: `A preview renders a view under selected conditions. A model test calls the production function directly and checks its result. A simulator run joins the field, button, model and list. Each observation covers a different part of the path from input to a saved row.
+
+In Swift Testing, a function marked @Test becomes a discoverable test. Inside it, #expect records whether a condition holds. Start each test with its own tracker. Add one item and check the stored titles as well as the return value. A true return with the wrong saved title still violates the contract.`
 				},
 				{
 					title: "Reflection Question: Which Signal Do You Trust First?",
-					content:
-						"Name which debugging signals they trust most in different situations: preview behavior, runtime logs, breakpoint inspection, or user reproduction steps. This builds troubleshooting judgment instead of rote habits."
+					preserveInstructions: true,
+					contentKind: "reading",
+					content: `A report says Save task created a blank row. Choose an observation that can distinguish two causes: the model saved whitespace, or the view failed to display a legitimate title. Inspect the stored string and the count immediately after saving. Describe what either result would predict about a model-only test.
+
+Compare that with a report that the keyboard hides Save task at large text. Name the simulator settings and interaction needed to reproduce it. Explain which behavior would remain untested after the model suite passes.`
 				},
 				{
 					title: "SAD17 Debugging and Testing: Core Project",
-					content: buildProjectGuidance({
-						courseFamily: "Swift app",
-						moduleTitle: "SAD17 Debugging and Testing",
-						projectKind: "core",
-						hasReference: false
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Swift/tree/main/Mod4Pro3"
+					content: swiftDebuggingReading,
+					preserveInstructions: true,
+					ideImport: true,
+					projectLink: `${swiftDebuggingRoot}/starter`,
+					solutionLink: `${swiftDebuggingRoot}/solution`
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "Diagnostic Checkpoint",
 					content:
-						"Readiness check: choose a debugging tool that matches the kind of failure and explain the difference between a preview issue and a runtime issue. Prompt: 'If the layout looks wrong but the data is correct, where do you inspect first?'",
-					projectLink:
-						"https://github.com/instruction-material/Swift/tree/main/Mod4Pro3"
+						"Predict the return value and saved titles for an empty draft, three spaces, and a padded name. Compare each prediction with the starter model, then run the regression after the fix. Identify one simulator observation that the model tests cannot supply.",
+					ideImport: true,
+					projectLink: `${swiftDebuggingRoot}/starter`,
+					solutionLink: `${swiftDebuggingRoot}/solution`
 				},
 				{
 					title: "Debugging and Testing Transfer Practice",
@@ -1510,7 +1552,7 @@ For build 8, write down the last beta result and the store issues still open. In
 					ideImport: false,
 					content: `Audit the supplied build 8 packet. Make one row for each mismatch and record the affected artifact, evidence, correction, owner, and condition for closure. Decide whether to submit now. Then assume only the screenshot was corrected. Reassess the decision and name what still blocks it. Use the answer guide after recording both decisions.
 
-**Completion checks:** Keep the two decisions side by side. Someone reading the second one can see which row closed, why other rows remain open, and whether each correction changes listing text or the build itself.`
+Keep the two decisions side by side. Someone reading the second one can see which row closed, why other rows remain open, and whether each correction changes listing text or the build itself.`
 				}
 			],
 			supplementalProjects: [
@@ -1521,7 +1563,7 @@ For build 8, write down the last beta result and the store issues still open. In
 					ideImport: false,
 					content: `An operator has added version 1.0 (8) to a draft review submission. The description is accurate, but the SDK diagnostic disclosure remains unresolved. State the current submission status, the evidence needed to resolve the disclosure, and who can make the final submission decision. Explain why fixing the screenshot alone cannot close this issue.
 
-**Completion checks:** Distinguish the draft from a submission sent to App Review. Name the person or team responsible for checking the SDK and the authorized account role responsible for submitting the reconciled version.`
+Distinguish the draft from a submission sent to App Review. Name the person or team responsible for checking the SDK and the authorized account role responsible for submitting the reconciled version.`
 				},
 				{
 					title: "Final Publishing Walkthrough Transfer Practice",

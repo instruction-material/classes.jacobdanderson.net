@@ -12,6 +12,23 @@ const welcome = JSON.parse(
 );
 const projects = [
 	{
+		name: "tracker-debugging",
+		module: "sw13-debugging-and-swift-testing",
+		coreSuffix: "curriculum-core-project-debugging-and-testing",
+		key: "tracker-debugging",
+		readiness: true,
+		sharedFiles: ["README.md", "Package.swift"],
+		fileCount: 6
+	},
+	{
+		name: "simulator-validation",
+		sourceFixture: "map",
+		module: "sw15-simulator-and-device-validation",
+		coreSuffix: "curriculum-core-project-running-on-simulator-and-device",
+		key: "map-places",
+		readiness: true
+	},
+	{
 		name: "lesson-cards",
 		module: "sw5-functions-structs-and-enums",
 		coreSuffix: "curriculum-core-project-functions-structs-and-enums",
@@ -73,8 +90,9 @@ for (const project of projects) {
 				coreID,
 				mode: "swift",
 				sourceRepository: "Swift",
-				fixturePath: `./fixtures/swift-${project.name}-source.json`,
+				fixturePath: `./fixtures/swift-${project.sourceFixture ?? project.name}-source.json`,
 				fileCount: project.fileCount ?? 3,
+				sharedFiles: project.sharedFiles,
 				initialFile: "ContentView.swift",
 				primaryFile: "ContentView.swift",
 				taskFile: "README.md",
