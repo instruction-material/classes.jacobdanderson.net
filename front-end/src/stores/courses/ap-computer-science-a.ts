@@ -6,6 +6,7 @@ import {
 	apCheckInAndFrqResources,
 	apClassesAndArraysResources,
 	apElevatorWarningResources,
+	apEnrichmentResources,
 	apExpressionsAndClassResources,
 	apFoundationsSupplementalResources,
 	apIntroductoryResources,
@@ -941,14 +942,27 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 			supplementalProjects: [
 				{
 					title: "Additional Practice: Animal Kingdom",
-					content:
-						"The taxonomy inheritance project after the check-in gives inheritance one more structured build. The important design target is avoiding repeated data by letting each subclass add only the classification level it owns.",
-					projectLink: repo(
-						"APCS-Check-in-2-Additional-Practice-Project/starter"
-					),
-					solutionLink: repo(
-						"APCS-Check-in-2-Additional-Practice-Project/solution"
-					)
+					content: apProject({
+						goal: "Trace how an optional Java inheritance exercise builds a classification from selected ranks.",
+						steps: [
+							"Open the starter. Identify where `Animal` stores the name and formats the description.",
+							"Extend the classification returned by `super.classification()`. Add ` > Mammalia` in `Mammal` and ` > Primates` in `Primate`.",
+							"Download and extract the ZIP. Run `javac Main.java Animal.java Mammal.java Primate.java`, then `java Main`."
+						],
+						apReasoning:
+							"The inherited `describe()` calls the override for the actual object. Each subclass adds one rank and shares the base name field.",
+						checks: [
+							"`Robin: Animalia` and `Seal: Animalia > Mammalia` show the two shorter paths.",
+							"`Orangutan: Animalia > Mammalia > Primates` shows all three selected ranks. A second primate keeps the path and displays its own name."
+						]
+					}),
+					projectLink:
+						apEnrichmentResources["animal-kingdom"].starter,
+					solutionLink:
+						apEnrichmentResources["animal-kingdom"].reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true
 				},
 				{
 					title: "Class Example",
@@ -1294,12 +1308,26 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 				},
 				{
 					title: "Core Project: Book and PictureBook Class",
-					content:
-						"Book and PictureBook Class is the main APCS7 build for readable inheritance practice. The class hierarchy makes the shared superclass behavior and subclass-specific behavior easy to trace.",
-					projectLink: repo("APCS7-Books-and-Picture-Books/starter"),
-					solutionLink: repo(
-						"APCS7-Books-and-Picture-Books/solution"
-					),
+					content: apProject({
+						goal: "Use inheritance to add an illustrator to a book's shared title, author, and page.",
+						steps: [
+							"Trace the three arguments passed from the `PictureBook` constructor to `Book`.",
+							"Reuse `super.toString()` and append `, illustrated by ` and the name. In `hasSameIllustrator`, compare the name text with `equals`.",
+							"Download and extract the ZIP. Run `javac Main.java Book.java PictureBook.java`, then `java Main`."
+						],
+						apReasoning:
+							"Constructor chaining initializes shared fields in one place. An override can extend the inherited description.",
+						checks: [
+							"`Bright Boats by Asha Lee (page 5), illustrated by Sam Ortiz` includes both classes' information.",
+							"The sample author comparison is true. The two illustrator comparisons are true and false in order."
+						]
+					}),
+					projectLink: apEnrichmentResources["picture-books"].starter,
+					solutionLink:
+						apEnrichmentResources["picture-books"].reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true,
 					mediaLink: media(
 						"apcs7-project-4-book-and-picturebook-class.mp4"
 					)
@@ -1308,26 +1336,64 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 			supplementalProjects: [
 				{
 					title: "Project: Pet Class",
-					content:
-						"The pet-class build is the first inheritance pass before the class family expands further. The goal is to identify what belongs in the superclass and what remains for subclasses to specialize.",
-					projectLink: repo("APCS7-Pets/starter"),
-					solutionLink: repo("APCS7-Pets/solution"),
+					content: apProject({
+						goal: "Use inheritance to share pet names and ages while specializing behavior in subclasses.",
+						steps: [
+							"Trace how `Dog` passes Maple and age 4 to `Pet` using `super(...)`.",
+							"Implement `kind()`, `food()`, and `play()` for `Dog`. Use the inherited `name()` in the play sentence. The same project contains the Cat and Fish work for More Pets.",
+							"Download and extract the ZIP. Run `javac Main.java Pet.java Dog.java Cat.java Fish.java`, then `java Main`."
+						],
+						apReasoning:
+							"The inherited `describe()` formats the name and age and calls the subclass override of `kind()`.",
+						checks: [
+							"The first line reads `Maple (4) is a dog. Food: kibble. Maple plays fetch.`",
+							"Change the dog's age in `Main.java`. Only its displayed age changes."
+						]
+					}),
+					projectLink: apEnrichmentResources.pets.starter,
+					solutionLink: apEnrichmentResources.pets.reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true,
 					mediaLink: media("apcs7-project-1-pet-class.mp4")
 				},
 				{
 					title: "Project: More Pets",
-					content:
-						"The extended pets build gives a second inheritance pass with more subclasses and behavior to compare. The useful evidence is a small set of objects whose shared and specialized behavior can be explained side by side.",
-					projectLink: repo("APCS7-Pets/starter"),
-					solutionLink: repo("APCS7-Pets/solution"),
+					contentKind: "reading",
+					preserveInstructions: true,
+					content: [
+						"Continue the inheritance exercise in the [Pet Class project](/courses#ap-computer-science-a-optional-inheritance-and-polymorphism-enrichment-ap-computer-science-a-optional-inheritance-and-polymorphism-enrichment-supplemental-project-pet-class). Complete `kind()`, `food()`, and `play()` for Cat and Fish. Trace the three objects through the loop in `Main.java` and mark where their behavior differs.",
+						"",
+						"**Check the last two lines:**",
+						"- `Moss (2) is a cat. Food: cat food. Moss chases a toy.`",
+						"- `Bubbles (1) is a fish. Food: flakes. Bubbles swims past a hoop.`",
+						"",
+						"Name the class that owns `describe()` and the class whose `kind()` runs for each line."
+					].join("\n"),
 					mediaLink: media("apcs7-project-2-more-pets.mp4")
 				},
 				{
 					title: "Project: Pet Special Methods",
-					content:
-						"The later pet build focuses on overridden object methods and more specialized subclass behavior. Explain which method implementation runs for each object and why overriding is better than duplicating unrelated code.",
-					projectLink: repo("APCS7-Dogs/starter"),
-					solutionLink: repo("APCS7-Dogs/solution"),
+					content: apProject({
+						goal: "Trace inheritance and method overrides in a dog hierarchy.",
+						steps: [
+							"Trace the constructor chain from `MiniPoodle` through `Poodle` to `Dog`. Record the size each object passes.",
+							"In `Dog.bark()`, return the sound in lower case below size 15 and upper case otherwise. Extend `Poodle.checkIn()` through `super.checkIn()`. In `Pug.play()`, start with the pug's name and `plays tug.`, then append three inherited barks separated by spaces.",
+							"Download and extract the ZIP. Run `javac Main.java Dog.java Poodle.java MiniPoodle.java Pug.java`, then `java Main`."
+						],
+						apReasoning:
+							"Both poodles share the override from `Poodle`. The inherited `bark()` gives different output because each dog keeps its own size.",
+						checks: [
+							"The size 15 dog barks `WOOF`. The poodles bark `BOOF` and `boof` and both append ` Stays with the group.` at check-in.",
+							"The pug's last line is `Pip plays tug. snorfle snorfle snorfle`. A different pug name changes the start of the line."
+						]
+					}),
+					projectLink: apEnrichmentResources["dog-methods"].starter,
+					solutionLink:
+						apEnrichmentResources["dog-methods"].reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true,
 					mediaLink: media("apcs7-project-3-pet-special-methods.mp4")
 				},
 				{

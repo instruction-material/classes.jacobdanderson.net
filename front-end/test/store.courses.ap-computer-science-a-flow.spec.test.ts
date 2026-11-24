@@ -9,6 +9,7 @@ import {
 	apClassesAndArraysResources,
 	apComputerScienceAProjectKey,
 	apElevatorWarningResources,
+	apEnrichmentResources,
 	apExpressionsAndClassResources,
 	apFoundationsSupplementalResources,
 	apIntroductoryResources,
@@ -702,6 +703,38 @@ describe("AP Computer Science A learner flow", () => {
 			"ap-computer-science-a-apcs17-master-projects-and-test-prep-supplemental-master-project-elevens",
 			"challenge",
 			"Card.java Deck.java Elevens.java Suit.java"
+		],
+		[
+			"Check-In #2",
+			"Additional Practice: Animal Kingdom",
+			"animal-kingdom",
+			"ap-computer-science-a-check-in-2-supplemental-additional-practice-animal-kingdom",
+			"challenge",
+			"Animal.java Mammal.java Primate.java"
+		],
+		[
+			"Optional Inheritance and Polymorphism Enrichment",
+			"Core Project: Book and PictureBook Class",
+			"picture-books",
+			"ap-computer-science-a-optional-inheritance-and-polymorphism-enrichment-supplemental-core-project-book-and-picturebook-class",
+			"challenge",
+			"Book.java PictureBook.java"
+		],
+		[
+			"Optional Inheritance and Polymorphism Enrichment",
+			"Project: Pet Class",
+			"pets",
+			"ap-computer-science-a-optional-inheritance-and-polymorphism-enrichment-supplemental-project-pet-class",
+			"challenge",
+			"Pet.java Dog.java Cat.java Fish.java"
+		],
+		[
+			"Optional Inheritance and Polymorphism Enrichment",
+			"Project: Pet Special Methods",
+			"dog-methods",
+			"ap-computer-science-a-optional-inheritance-and-polymorphism-enrichment-supplemental-project-pet-special-methods",
+			"challenge",
+			"Dog.java Poodle.java MiniPoodle.java Pug.java"
 		]
 	] as const)("opens both Java roles for %s / %s", async (moduleTitle, title, kind, itemId, path, classFile) => {
 		setActivePinia(createPinia());
@@ -718,7 +751,8 @@ describe("AP Computer Science A learner flow", () => {
 			...apClassesAndArraysResources,
 			...apListsAndAlgorithmsResources,
 			...apCheckInAndFrqResources,
-			...apAdvancedPracticeResources
+			...apAdvancedPracticeResources,
+			...apEnrichmentResources
 		}[kind];
 		expect(item.id).toBe(itemId);
 		expect(rawItem).toMatchObject({
@@ -745,7 +779,13 @@ describe("AP Computer Science A learner flow", () => {
 
 	it.each([
 		["Check-In #3", "ArrayList Reference", "APCS11 ArrayLists", "ArrayList Reference Pack"],
-		["Check-In #4", "Project: Minimum and Maximum", "APCS12 Wrapper Classes", "Project: Minimum and Maximum Search"]
+		["Check-In #4", "Project: Minimum and Maximum", "APCS12 Wrapper Classes", "Project: Minimum and Maximum Search"],
+		[
+			"Optional Inheritance and Polymorphism Enrichment",
+			"Project: More Pets",
+			"Optional Inheritance and Polymorphism Enrichment",
+			"Project: Pet Class"
+		]
 	])("keeps %s / %s as a recap leading to the single runnable project", async (checkIn, recapTitle, targetModule, targetTitle) => {
 		setActivePinia(createPinia());
 		const course = (await useCoursesStore().loadCourseById("ap-computer-science-a"))!;

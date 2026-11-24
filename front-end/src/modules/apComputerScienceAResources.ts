@@ -30,6 +30,9 @@ const checkInAndFrqPacks =
 const advancedPracticePacks =
 	"https://github.com/instruction-material/APCS/tree/6475cc8387dde39aaa92509143f957ef0fb4cc93";
 
+const enrichmentPacks =
+	"https://github.com/instruction-material/APCS/tree/221282169a62a3a770e1d52914061f7c93051353";
+
 function projectRoles(pack: string) {
 	return {
 		starter: `${pack}/starter`,
@@ -227,6 +230,17 @@ export const apAdvancedPracticeResources = {
 	elevens: projectRoles(`${advancedPracticePacks}/APCS17-Elevens`)
 };
 
+export const apEnrichmentResources = {
+	"animal-kingdom": projectRoles(
+		`${enrichmentPacks}/APCS-Check-in-2-Additional-Practice-Project`
+	),
+	"picture-books": projectRoles(
+		`${enrichmentPacks}/APCS7-Books-and-Picture-Books`
+	),
+	pets: projectRoles(`${enrichmentPacks}/APCS7-Pets`),
+	"dog-methods": projectRoles(`${enrichmentPacks}/APCS7-Dogs`)
+};
+
 const restoredProjects = {
 	"binary-search-trace": apBinarySearchResources,
 	"recursion-practice": apRecursionPracticeResources,
@@ -243,7 +257,8 @@ const restoredProjects = {
 	...apClassesAndArraysResources,
 	...apListsAndAlgorithmsResources,
 	...apCheckInAndFrqResources,
-	...apAdvancedPracticeResources
+	...apAdvancedPracticeResources,
+	...apEnrichmentResources
 };
 
 export function apComputerScienceAProjectKey(
@@ -321,6 +336,22 @@ const nativeClassWorkspaces = {
 	elevens: {
 		item: "ap-computer-science-a-apcs17-master-projects-and-test-prep-supplemental-master-project-elevens",
 		files: ["Card.java", "Deck.java", "Elevens.java", "Suit.java"]
+	},
+	"animal-kingdom": {
+		item: "ap-computer-science-a-check-in-2-supplemental-additional-practice-animal-kingdom",
+		files: ["Animal.java", "Mammal.java", "Primate.java"]
+	},
+	"picture-books": {
+		item: "ap-computer-science-a-optional-inheritance-and-polymorphism-enrichment-supplemental-core-project-book-and-picturebook-class",
+		files: ["Book.java", "PictureBook.java"]
+	},
+	pets: {
+		item: "ap-computer-science-a-optional-inheritance-and-polymorphism-enrichment-supplemental-project-pet-class",
+		files: ["Pet.java", "Dog.java", "Cat.java", "Fish.java"]
+	},
+	"dog-methods": {
+		item: "ap-computer-science-a-optional-inheritance-and-polymorphism-enrichment-supplemental-project-pet-special-methods",
+		files: ["Dog.java", "Poodle.java", "MiniPoodle.java", "Pug.java"]
 	}
 };
 
