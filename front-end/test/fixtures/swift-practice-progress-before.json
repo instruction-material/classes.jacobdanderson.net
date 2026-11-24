@@ -255,6 +255,7 @@
 			],
 			"learningPath": "choice",
 			"caseUrl": "/course-assets/swift/intro-swift-practice-pack.md#media-maps-and-permissions-case",
+			"casePreviewText": "The starter opens at (39.2928, -76.5930) with no selection.",
 			"verificationUrl": "/course-assets/swift/intro-swift-verification-guide.md#media-maps-and-permissions-key",
 			"taskText": "Complete the canonical SAD2 Media Gallery and SAD4 Map Places apps using supplied nonpersonal assets and coordinates.",
 			"currentTaskText": "Select Neighborhood Cafe in the map case."
@@ -273,6 +274,7 @@
 			],
 			"learningPath": "challenge",
 			"caseUrl": "/course-assets/swift/intro-swift-practice-pack.md#media-maps-and-permissions-case",
+			"casePreviewText": "The starter opens at (39.2928, -76.5930) with no selection.",
 			"verificationUrl": "/course-assets/swift/intro-swift-verification-guide.md#media-maps-and-permissions-key",
 			"taskText": "Design and test a permission-aware enhancement with denied, restricted, unavailable, and no-network states while preserving the static fallback.",
 			"currentTaskText": "Trace a proposed Find Me action with access denied, restricted and unavailable."

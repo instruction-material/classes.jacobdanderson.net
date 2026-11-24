@@ -317,7 +317,7 @@ test(
 							.locator(`${selector} .course-asset-preview-toggle`)
 							.click();
 						await page.waitForFunction(
-							selector =>
+							(selector, sample) =>
 								document
 									.querySelector(
 										`${
@@ -325,9 +325,10 @@ test(
 										} .course-asset-preview-content .item-content-markdown`
 									)
 									?.textContent
-									.includes("Task"),
+									.includes(sample),
 							{},
-							selector
+							selector,
+							row.casePreviewText ?? "Task"
 						);
 						assert.equal(
 							await page.$(
