@@ -1,12 +1,15 @@
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
-import { readFile } from "node:fs/promises";
+import { mkdtemp, readdir, readFile, rm } from "node:fs/promises";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 // eslint-disable-next-line test/no-import-node-test -- Native archive tests.
 import { test as nodeTest } from "node:test";
 import { strFromU8, unzipSync } from "fflate";
 import {
 	createProject,
+	generateProjects,
 	lessons
 } from "../front-end/scripts/scratch/generate-projects.mjs";
 
@@ -108,4 +111,44 @@ nodeTest("published quiz reference is the completed portable archive", async () 
 		createProject("educational-quiz", true).archive
 	);
 	assert.notDeepEqual(createProject("educational-quiz").archive, createProject("educational-quiz", true).archive);
+});
+
+nodeTest("six reproducible optional remixes belong exclusively to the private teacher output", async (t) => {
+	const temp = await mkdtemp(join(tmpdir(), "classroom-remix-pack-"));
+	t.after(() => rm(temp, { recursive: true, force: true }));
+	const ids = ["click-reactions", "dress-up", "conversation", "dance-loop", "maze-reset", "click-score"];
+	const publicNames = ["blank.sb3", "catalog.json", ...lessons.map(l => `${l.id}.sb3`), ...lessons.filter(l => l.publishReference).map(l => `${l.id}-solution.sb3`)].sort();
+	const teacherNames = [...lessons.map(l => `${l.id}-solution.sb3`), ...ids.map(id => `${id}-remix-solution.sb3`)].sort();
+
+	await generateProjects(join(temp, "public-only"));
+	assert.deepEqual((await readdir(join(temp, "public-only"))).sort(), publicNames);
+	for (const run of ["first", "second"]) {
+		const output = join(temp, run, "public");
+		const teachers = join(temp, run, "teachers");
+		await generateProjects(output, teachers);
+		assert.deepEqual((await readdir(output)).sort(), publicNames);
+		assert.deepEqual((await readdir(teachers)).sort(), teacherNames);
+		for (const name of publicNames) {
+			assert.deepEqual(await readFile(join(output, name)), await readFile(join(temp, "public-only", name)));
+		}
+	}
+	const privateProject = async (id) => {
+		const bytes = await readFile(join(temp, "first", "teachers", `${id}-remix-solution.sb3`));
+		return JSON.parse(strFromU8(unzipSync(bytes)["project.json"]));
+	};
+	const score = await privateProject("click-score");
+	const resets = score.targets.flatMap(t => Object.values(t.blocks)
+		.filter(b => b.opcode === "data_setvariableto")
+		.map(b => [t.name, t.blocks[b.parent]?.opcode, b.fields.VARIABLE[0]]));
+	assert.deepEqual(resets, [["Stage", "event_whenflagclicked", "Score"]]);
+	const dance = await privateProject("dance-loop");
+	const orange = dance.targets.find(t => t.name === "Orange");
+	const square = Object.values(orange.blocks).find(b => b.opcode === "control_repeat" && b.inputs.TIMES[1][1] === "4");
+	const move = orange.blocks[square.inputs.SUBSTACK[1]];
+	const pause = orange.blocks[move.next];
+	assert.equal(pause.opcode, "control_wait");
+	assert.deepEqual(pause.inputs.DURATION, [1, [4, "0.2"]]);
+	for (const name of teacherNames) {
+		assert.deepEqual(await readFile(join(temp, "second", "teachers", name)), await readFile(join(temp, "first", "teachers", name)));
+	}
 });

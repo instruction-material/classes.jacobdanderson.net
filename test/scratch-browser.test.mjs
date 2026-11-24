@@ -12,9 +12,11 @@ import puppeteer from "puppeteer";
 import { createServer } from "vite";
 import {
 	createProject,
+	generateProjects,
 	lessons
 } from "../front-end/scripts/scratch/generate-projects.mjs";
 import { checkScratchCheckpointTasks } from "./scratch-checkpoint-task-check.mjs";
+import { checkClassroomRemixes } from "./scratch-classroom-remix-vm-checks.mjs";
 import { checkScratchConceptReadings } from "./scratch-concept-reading-check.mjs";
 import { checkScratchConditionalCourse, scratchCourseAccount } from "./scratch-conditional-course-checks.mjs";
 import { checkScratchEducationalQuiz } from "./scratch-educational-quiz-checks.mjs";
@@ -346,6 +348,9 @@ nodeTest(
 				}
 			}
 			await setProjectMenuOpen(false);
+			const teachers = path.join(files, "teacher-solutions");
+			await generateProjects(path.join(files, "starters"), teachers);
+			await checkClassroomRemixes(frame, teachers);
 			await checkScratchGameProgression(page, frame, files, async (filename) => {
 				await setProjectMenuOpen(true);
 				await (await page.$(".file-control input")).uploadFile(filename);

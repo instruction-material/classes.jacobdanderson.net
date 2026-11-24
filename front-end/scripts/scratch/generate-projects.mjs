@@ -60,10 +60,10 @@ function color() {
 		{ EFFECT: ["COLOR", null] }
 	);
 }
-function score() {
+function score(amount = 1) {
 	return block(
 		"data_changevariableby",
-		{ VALUE: number(1) },
+		{ VALUE: number(amount) },
 		{ VARIABLE: ["Score", "score"] }
 	);
 }
@@ -105,7 +105,27 @@ function ifBlock(condition, blocks) {
 	);
 }
 
+const remixChecks = {
+	"click-reactions":
+		"Click blue once and orange twice. Space clears only orange.",
+	"dress-up":
+		"Put on Hat and Badge. R returns Badge to its rack. Click it to wear it again.",
+	conversation: "Play the flag conversation, then press R for the rehearsal.",
+	"dance-loop":
+		"Press S. Compare the finishing position and direction with three and four repeats.",
+	"maze-reset":
+		"Move into the wall for the checkpoint. The flag returns Player to the start.",
+	"click-score":
+		"Click orange, blue and blue. Reset with the flag, then click orange twice."
+};
+
 export function createProject(id, solution = false) {
+	return buildProject(id, solution ? "normal" : "starter");
+}
+
+function buildProject(id, role) {
+	const solution = role !== "starter";
+	const remix = role === "remix";
 	const lesson =
 		id === "blank"
 			? {
@@ -259,6 +279,7 @@ export function createProject(id, solution = false) {
 		stack(player, [click(), color()]);
 		const s = second();
 		if (solution) stack(s, [click(), color()]);
+		if (remix) stack(s, [key("space"), block("looks_cleargraphiceffects")]);
 	}
 	if (id === "dress-up") {
 		player.size = 140;
@@ -302,6 +323,8 @@ export function createProject(id, solution = false) {
 					),
 					glide(c, d)
 				]);
+				if (remix && name === "Badge")
+					stack(s, [key("r"), glide(a, b)]);
 			} else {
 				note(
 					s,
@@ -442,11 +465,43 @@ export function createProject(id, solution = false) {
 				say("Me too! What shall we make?")
 			]);
 		}
+		if (remix) {
+			stage.broadcasts.rehearsal = "rehearsal reply";
+			stack(s, [
+				key("r"),
+				say("Shall we rehearse our scene?"),
+				block("event_broadcast", {
+					BROADCAST_INPUT: [1, [11, "rehearsal reply", "rehearsal"]]
+				})
+			]);
+			stack(player, [
+				block(
+					"event_whenbroadcastreceived",
+					{},
+					{
+						BROADCAST_OPTION: ["rehearsal reply", "rehearsal"]
+					}
+				),
+				say("Yes, let’s begin!")
+			]);
+		}
 	}
 	if (id === "dance-loop") {
 		const s = second();
 		stack(player, [flag(), repeat(12, [turn(30), wait(0.15)])]);
 		if (solution) stack(s, [flag(), repeat(12, [turn(-30), wait(0.15)])]);
+		if (remix) {
+			stack(s, [
+				key("s"),
+				go(0, 0),
+				block("motion_pointindirection", { DIRECTION: number(90) }),
+				repeat(4, [
+					block("motion_movesteps", { STEPS: number(40) }),
+					wait(0.2),
+					turn(90)
+				])
+			]);
+		}
 	}
 	if (id === "patrol") {
 		stack(player, [
@@ -484,7 +539,10 @@ export function createProject(id, solution = false) {
 		);
 		stack(player, [
 			flag(),
-			forever([ifBlock(touching("Wall"), [go(-180, -120)]), wait(0.03)])
+			forever([
+				ifBlock(touching("Wall"), [go(remix ? -100 : -180, -120)]),
+				wait(0.03)
+			])
 		]);
 		if (solution) stack(player, [flag(), go(-180, -120)]);
 	}
@@ -493,7 +551,7 @@ export function createProject(id, solution = false) {
 		const s = second();
 		stack(stage, [flag(), resetScore()]);
 		stack(player, [click(), score()]);
-		if (solution) stack(s, [click(), score()]);
+		if (solution) stack(s, [click(), score(remix ? -1 : 1)]);
 	}
 	if (id === "collect-game") {
 		stage.variables.score = ["Score", 0];
@@ -1038,7 +1096,9 @@ export function createProject(id, solution = false) {
 
 	note(
 		targets[1],
-		`${lesson.name}\n${solution ? "TEACHER REFERENCE: one possible Normal completion." : `NORMAL: ${lesson.normal}`}\nHARD: ${lesson.hard}\nCHECK: ${lesson.check}`
+		remix
+			? `${lesson.name}\nTEACHER REFERENCE: optional remix.\n${remixChecks[id]}`
+			: `${lesson.name}\n${solution ? "TEACHER REFERENCE: one possible Normal completion." : `NORMAL: ${lesson.normal}`}\nHARD: ${lesson.hard}\nCHECK: ${lesson.check}`
 	);
 	targets.forEach((item, index) => {
 		item.layerOrder = index;
@@ -1126,6 +1186,12 @@ export async function generateProjects(output, teachers) {
 				path.join(teachers, `${lesson.id}-solution.sb3`),
 				createProject(lesson.id, true).archive
 			);
+			if (Object.hasOwn(remixChecks, lesson.id)) {
+				await writeFile(
+					path.join(teachers, `${lesson.id}-remix-solution.sb3`),
+					buildProject(lesson.id, "remix").archive
+				);
+			}
 		}
 	}
 	await writeFile(
