@@ -91,16 +91,53 @@ such activation or authenticated-provenance claim.
 
 ## Feature Slice Capstone Key
 
-The slice completes one user outcome end to end before adding breadth. Browser, API, and data contracts are named. The happy path, invalid input, unavailable dependency, keyboard path, reset, and one corrected defect are observable. Non-goals prevent authentication, public deployment, and unrelated features from being implied.
+One outcome is “Save the supply list and find it again in this session.” Accounts, shared editing and permanent storage can wait. Keyboard submission serializes the three labeled fields as JSON. The server validates them before the memory adapter assigns a UUID and timestamps. A successful POST returns 201. The client clears the form, fetches the list and displays **Note saved.** Reloading the page reads the same process and shows one Workshop kit with its original ID.
+
+The incomplete tags string fails in the browser with `Request failed: invalid_tags_json`. The draft remains and no POST appears in the Network panel. Closing the array and submitting creates exactly one Poster box. Whitespace-only title in the direct JSON request instead reaches the server and returns 400 `{"error":"invalid_note"}`. On the unavailable instance a valid POST returns 503 `storage_unavailable`; the form retains the draft and unlocks. Confirm the first instance still holds its two records. Delete those by ID (204 each), refresh and find only **Fictional observation**. A fresh unseeded memory process also starts with that seed. Record the observed focus and control reachability on the actual keyboard run.
 
 ## API Integration Capstone Key
 
-The request and response schemas agree with implementation and browser handling. Validation runs before business logic; status and errors are stable; body, collection, timeout, and retry behavior are bounded; logs reveal no secret or raw personal content. Every negative case reaches a deliberate UI and server outcome without an uncaught error.
+The form accepts a trimmed name (2–80 UTF-16 code units), a trimmed reply address matching the pack’s address rule (up to 254), topic `project` or `lesson`, and a trimmed message (10–2000). The server rejects extra keys. A response to valid input is 202 `{"ok":true,"delivery":"simulated"}`. The page says **Recorded locally. No email was sent.** One corresponding log is `{"event":"contact_request","status":202,"outcome":"simulated"}`. Neither contact text nor address belongs in the log.
+
+| Input or condition | Worked outcome |
+| --- | --- |
+| Empty object / unknown topic | Both return 400 `invalid_contact`. The empty object identifies all four missing fields. The unknown topic yields `{"ok":false,"error":{"code":"invalid_contact","fields":["topic"]}}`. |
+| Incomplete JSON / wrong content type | 400 `invalid_json` / 415 `unsupported_media_type`. The transport receives neither request. |
+| 9,000-letter message / GET | The serialized body exceeds 8,192 bytes: 413 `body_too_large` before field validation. GET returns 405 `method_not_allowed` with `Allow: POST`. |
+| Two activations / two independent POSTs | While pending, the form disables Submit. Two independent valid POSTs inside the budget can both return 202. The service stores no contact collection or idempotency key. |
+| Seven rapid POSTs in a fresh window | Six can return 202. The seventh returns 429 `rate_limited` with `Retry-After` in seconds. A manual submission in the next window succeeds. |
+| Failure / simulated delay | 503 `delivery_unavailable` / 504 `delivery_timeout`. The server’s delivery deadline is 750 ms. The form retains the values and offers a manual retry. `GET /health` can still return 200 in either scenario. |
+| Stopped service / recovery | The open page reports that it could not reach the server. There is no HTTP status for that failed connection. The browser separately bounds its wait at two seconds. Reset clears the form and status. A normal restart and one valid submission restore 202. |
+
+The tested budget is six POST attempts per process per ten seconds, including invalid POSTs. Distinguish expected failed requests in the Network panel from uncaught exceptions. Record only the console and UI outcomes actually observed.
 
 ## Data Persistence Capstone Key
 
-The data model has stable IDs, constraints, deterministic seed data, a query-driven index, and a migration or reset story. CRUD, malformed, duplicate, missing, unavailable, and restart cases are repeatable. Backup and restore use separate targets and an integrity comparison. The report distinguishes demonstrated behavior from remaining consistency limitations.
+A fresh unseeded store contains **Fictional observation** (UUID ending in `000001`). Creating Blue and Red gives 201 twice and three records including the seed. Capture the two assigned UUIDs. Blue’s full replacement returns 200, retains its ID and creation time, has a nondecreasing update time, and returns `body: "One ruler."` and `tags: []`. The exact-title query returns that row; lowercase `blue bin` returns an empty array. The memory adapter scans its in-memory records. The optional MongoDB adapter has a unique title index for that query.
+
+| Test | Result to compare |
+| --- | --- |
+| Duplicate Blue / Red with string tags / absent well-formed ID | 409 `note_conflict` / 400 `invalid_note` / 404 `note_not_found`. The failed writes leave three records. |
+| Saved snapshot | `schemaVersion: 1` and three notes ordered by ID. Record the length and SHA-256 of the exact file you saved. Generated IDs and timestamps make the digest specific to this run. |
+| Separate restore | Match every ID, title, body, tag and both timestamps to the saved snapshot. Red deletion returns 204 on port 3003. Red then reads 404 there and 200 on port 3001. |
+| Fresh unseeded restart | Only the original seed returns. The snapshot file remains available for explicit restore. |
+| Version 2 copy / unavailable adapter | The incompatible snapshot is rejected before a new listener is ready. Keep v1 and document migration before accepting a new schema. With the unavailable adapter, health is 200, readiness is 503 with `ready: false`, and a list read returns 503 `storage_unavailable`. |
+
+The memory route demonstrates independent restore and reset. For durability across an API restart, test the optional isolated MongoDB adapter with the same database. The pack bounds the collection at 50 and serializes writes inside one service process; this exercise establishes no ordering across independent writers.
 
 ## Deployment Readiness Capstone Key
 
-The packet can reproduce a clean local start and shows browser, API, data, accessibility, health, log, and smoke evidence. One injected fault is diagnosed from evidence, corrected, restarted, and regression-tested. Restore and rollback have triggers, ordered steps, and post-action checks. Versions, configuration, CORS, proxy, TLS, resource limits, privacy, attribution, and limitations are explicit, and the five-minute demonstration fits the evidence.
+**Hold B and keep A serving.** The two releases in this rehearsal use the same application bytes. Their runtime settings differ. Deployment evidence should identify both. A’s static form and API share `http://127.0.0.1:3001`. The browser submits JSON to the same origin, the adapter owns the records and the operator retains the snapshot. A digest of the lockfile or source alone cannot recover Pickup list.
+
+| Check | A on 3001 | B on 3003 | After rollback on 3003 |
+| --- | --- | --- | --- |
+| Static form and process health | Page loads; health is 200 | Page still loads; health is 200 | Page loads; health is 200 |
+| `/api/ready` and list | 200 ready; seed plus Pickup list | 503 with `ready: false`; list returns 503 `storage_unavailable` | 200 ready; both saved records return |
+| Browser and write | Create returns 201; reload shows the saved note | A valid write returns 503. The form retains its draft and shows the failure | Restored Pickup list has the original ID, text, tags and timestamps. Edit then Cancel leaves them unchanged. |
+| Isolation | A remains available throughout | Keep traffic on A | Delete on 3003 returns 204. The next read of that ID is 404 there and still 200 on 3001. |
+
+B’s startup record establishes that the listener opened. A subsequent log such as `{"event":"request","status":503}`, the readiness body and the browser failure identify the storage boundary. The rollback restores the known-good settings and retained snapshot before writes resume. Compare the backup’s digest with the recorded digest; compare the restored *records* with its parsed contents. An unseeded memory restart loses the workshop note. Writes accepted after the snapshot would need reconciliation.
+
+The JSON request limit is 16 KiB, the collection limit is 50 notes and the seed file limit is 1 MiB. Record the actual keyboard and zoom results. No cross-origin request or TLS termination occurs on this loopback path. A split-host plan would name the static origin permitted by the API and the proxy terminating TLS. The [Separate Deployment Lab](https://github.com/instruction-material/Web-Development-Foundations/tree/962d1be3da0d954ad774390b78cb044395a12262/WDF5-Separate-Deployment-Lab) restores static files and their manifest separately from any data backup.
+
+A five-minute demonstration can spend one minute on A and its manifest, one on the saved note and backup, one comparing B’s healthy process with its failed readiness, one restoring and comparing the records, and one on the traffic decision, data-loss window and limits of local verification.

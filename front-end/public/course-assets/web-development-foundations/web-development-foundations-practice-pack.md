@@ -129,23 +129,42 @@ hosting is optional and is not established by these local checks.
 
 ## Feature Slice Capstone Case
 
-Choose one fictional task and write a one-sentence user outcome plus three non-goals. Complete the thinnest useful route from semantic browser control through state, validated API, local data adapter, response, rendered status, and reset. Record the happy path, invalid input, dependency failure, keyboard path, correction, and one limitation before adding another feature.
+A workshop organizer needs to save one fictional supply note and find it after a page reload. Write the user outcome and three features you will defer. Use the [Notes pack at the course revision](https://github.com/instruction-material/Web-Development-Foundations/tree/8d48a2672e987b5ab1c1b7b93ea395f6da5c37a2/WDF2-Notes-App-with-MongoDB). Complete the two starter functions in its README. From the complete Node 24 repository with its locked dependencies, run `npm run start --workspace=WDF2-Notes-App-with-MongoDB/starter`. Open the loopback URL on port 3001. Use the default memory adapter.
+
+1. Using the keyboard, enter title `Workshop kit`, body `Pack three rulers.` and tags `["supplies"]`. Activate **Create note**. Follow the form values through the request, response and list refresh. Record the returned ID, displayed text and number of matching rows after reload.
+2. In the cleared form enter title `Poster box`, body `Pack paper.` and the incomplete tags text `["paper"`. Observe the status, retained fields and Network panel. Correct only the tags and resubmit. Compare that failure with sending `{"title":"  ","body":"Pack paper.","tags":[]}` directly to `POST /api/notes` as JSON.
+3. In a separate terminal start the same workspace with `PORT=3003 NOTES_SCENARIO=unavailable` in its environment. Try the valid supply note there. Compare the form and HTTP response with the working instance. Stop the second instance and return to the first. Delete only the two exercise notes and verify the original seed remains. Explain what would survive a browser reload and a fresh unseeded process.
 
 ## API Integration Capstone Case
 
-Add a documented request schema, response schema, status table, timeout, body and collection limits, one redacted log event, and browser states to the feature slice. Verify valid, invalid, empty, malformed, oversized, wrong method, wrong content type, timeout, unavailable service, duplicate action, recovery, and clean browser and server consoles.
+Continue your slice with its own API contract, or use this independent contact-request task. Run the [Booking Contact pack](https://github.com/instruction-material/Web-Development-Foundations/tree/aed8ef2fcd7488c25c0b977b2099640e7431c55a/WDF3-Booking-Contact-App) from the complete Node 24 repository. Finish the starter’s `parseContact` as described in the pack, then run `npm run start --workspace=WDF3-Booking-Contact-App/starter` and open `http://127.0.0.1:3002`. Use the local JSON transport.
+
+Submit this request through the form and send the same JSON to `POST /api/contact` with `Content-Type: application/json`.
+
+```json
+{"name":"Workshop Host","replyTo":"host@example.invalid","topic":"project","message":"Please reserve three tables."}
+```
+
+Make a table with input, HTTP status and body, UI evidence where the form can produce the case, and the safe log fields. Predict each row before sending it.
+
+- Test an empty JSON object `{}`, a copy with `topic` set to `tables`, the incomplete raw body `{`, the valid body as `text/plain`, and `GET /api/contact`. For an oversized JSON request, replace the message with 9,000 ASCII letters. Use a request client for inputs the form prevents.
+- Activate Submit twice while the first submission is pending. Separately send two valid POSTs directly in a fresh ten-second window. Compare the number accepted. In another fresh window send seven rapid valid POSTs and use the response header to time a manual retry. Space the other cases out so this limit does not mask them.
+- Restart the owned service with `CONTACT_SCENARIO=fail`, then with `CONTACT_SCENARIO=timeout`. Submit once in each case. Finally stop it while the page is open and submit again. Record which failures have an HTTP response, where the draft remains and what Reset does. Restart normally and try once more. Identify the server delivery deadline, browser deadline, body cap and any stored collection. Check the console for uncaught errors separately from expected failed requests.
 
 ## Data Persistence Capstone Case
 
-Add a persistence model with deterministic seed data, stable IDs, one constraint, one query-driven index, and a version or migration note. Verify CRUD, malformed and duplicate records, unavailable storage, restart, backup manifest, restore into a separate target, integrity comparison, reset, and remaining consistency limits. A supplied adapter remains valid when MongoDB is unavailable.
+A workshop needs a restorable inventory of supply notes. Use the [Notes pack](https://github.com/instruction-material/Web-Development-Foundations/tree/8d48a2672e987b5ab1c1b7b93ea395f6da5c37a2/WDF2-Notes-App-with-MongoDB) with the completed starter. From its complete Node 24 repository run `npm run start --workspace=WDF2-Notes-App-with-MongoDB/starter` on default loopback port 3001. Start with the default memory seed and record its ID. Use JSON for writes.
+
+1. Create `{"title":"Blue bin","body":"Two rulers.","tags":["stock"]}` and `{"title":"Red bin","body":"Three clips.","tags":[]}` at `POST /api/notes`. Keep both server-issued IDs. Replace Blue at `PUT /api/notes/<blue-id>` with the same title and body `One ruler.`, omitting tags. Read it by ID and query `GET /api/notes?title=Blue%20bin`. Test the lowercase title separately. Which index would serve this query in the MongoDB adapter?
+2. Predict the result of posting Blue again, posting Red with `tags: "stock"` instead of an array, and reading `/api/notes/00000000-0000-4000-8000-000000000099` after confirming that ID is absent. Record status, error and whether existing records changed.
+3. Export `GET /api/notes/snapshot` into a new file. Record its schema version, note count, IDs, byte length and SHA-256. Start a separate memory instance with `PORT=3003` and `NOTES_SEED_FILE` set to the absolute snapshot path. Compare all fields in the restored snapshot, then delete Red on the restore target only. Check Red on each port. Stop the original and restart without a seed file. Predict what remains.
+4. Change only the schema version to 2 in a copy of the backup and attempt a fresh restore. Retain the known-good file. In a separate run set `NOTES_SCENARIO=unavailable` and compare `/health`, `/api/ready` and `/api/notes`. Describe the migration or reset decision and one limit on concurrent writers.
 
 ## Deployment Readiness Capstone Case
 
-Create a release-and-recovery packet for one local full-stack project:
+Decide whether a workshop can use a candidate release of the [Notes app](https://github.com/instruction-material/Web-Development-Foundations/tree/8d48a2672e987b5ab1c1b7b93ea395f6da5c37a2/WDF2-Notes-App-with-MongoDB). Rehearse on loopback with a completed starter and its memory adapter. Use the full Node 24 repository. Record the source revision, your completed files and their digests, runtime and npm versions, root lockfile digest and startup command. Keep snapshots and private settings outside the public directory.
 
-1. runtime and dependency manifest;
-2. architecture, request, data, environment, proxy, CORS, and TLS maps;
-3. browser, API, persistence, accessibility, and smoke matrix;
-4. redacted logs, health and readiness, resource caps, backup, and restore;
-5. injected fault, evidence, correction, restart, and regression check;
-6. rollback trigger, rollback steps, post-rollback verification, privacy, attribution, limitations, and a five-minute demonstration plan.
+1. **Retain A.** Run `npm run start --workspace=WDF2-Notes-App-with-MongoDB/starter` on port 3001. In the browser create title `Pickup list`, body `Bring two blue bins.`, tags `["workshop"]`. Freeze writes for the rehearsal. Capture the assigned ID, the page after reload, `GET /health`, `GET /api/ready` and the exact-title query `GET /api/notes?title=Pickup%20list`. Save `GET /api/notes/snapshot` as a new local file and record its length and SHA-256.
+2. **Evaluate B.** In a separate terminal run the same completed source with `PORT=3003`, `NOTES_SEED_FILE` set to the absolute snapshot path and `NOTES_SCENARIO=unavailable`. Leave A serving. Compare the static form, health, readiness, list and browser status. Try one valid new note. Record a redacted log event and decide whether traffic should move to B.
+3. **Rehearse rollback.** Stop only B. Keep its failure evidence. Restart the retained A source on port 3003 with the same seed file and the known-good memory settings, clearing the unavailable scenario. Before accepting writes, compare the restored snapshot record by record and read Pickup list by its original ID. Verify visible status, keyboard access to Edit and Cancel, and reflow at 200% zoom. Delete the sample from port 3003 only and check the same ID on both ports.
+4. Record the rollback trigger, release decision and one risk if writes had continued after backup. Diagram browser, same-origin API, adapter and backup ownership. Give actual request, collection and snapshot limits. For a future split-host setup, identify where TLS would terminate and which browser origin the API would allow; the Separate Deployment Lab demonstrates that distinct configuration. Credit the source pack and identify your changes. Plan a five-minute demonstration using the retained evidence.
