@@ -199,6 +199,72 @@ describe("Intro to Biology complete supplied teaching and cases", () => {
 			"A is simple diffusion; B facilitated diffusion; C ATP-coupled active transport; E osmosis"
 		);
 	});
+	it("provides a text placement key for all ten system-map labels", () => {
+		const regions = Object.fromEntries(
+			table("### System and organ reference").map(
+				([system, , region]) => [system, region]
+			)
+		);
+		expect(regions).toEqual({
+			skeletal: expect.stringContaining("thigh"),
+			nervous: expect.stringContaining("skull"),
+			integumentary: expect.stringContaining("body surface"),
+			respiratory: expect.stringContaining("chest"),
+			circulatory: expect.stringContaining("between the lungs"),
+			digestive: expect.stringContaining("abdomen"),
+			"excretory/urinary": expect.stringContaining(
+				"either side of the spine"
+			),
+			endocrine: expect.stringContaining("behind the stomach"),
+			immune: expect.stringContaining("armpits"),
+			muscular: expect.stringContaining("upper arm")
+		});
+		const task = introToBiologyCourse.modules[0].curriculum.find(
+			item => item.title === "Body Systems Reference A"
+		);
+		expect(task?.content).toContain("body outline or text map");
+		expect(answers).toContain(
+			"body region and function for each of the ten systems"
+		);
+	});
+
+	it("connects the respiration stages to cell locations and distinguishes label units from model units", () => {
+		expect(
+			table("### Respiration route cards").map(row => row.slice(0, 2))
+		).toEqual([
+			["Glycolysis", "cytosol"],
+			["Pyruvate oxidation", "mitochondrial matrix"],
+			["Citric acid cycle (Krebs cycle)", "mitochondrial matrix"],
+			[
+				"Electron transport and ATP synthesis",
+				"inner mitochondrial membrane"
+			]
+		]);
+		const lesson = introToBiologyCourse.modules[4].curriculum[0].content;
+		expect(lesson).toContain("1,000 small calories (cal)");
+		expect(lesson).toContain(
+			"Muscle glycogen supplies the muscle’s own work"
+		);
+		expect(pack).toContain("**5 Cal**");
+		expect(answers).toContain("5 kcal or 5,000 small calories");
+		expect(answers).toContain(
+			"no conversion between its abstract units and Calories"
+		);
+	});
+
+	it("requires two digestive-system interactions including regulation in the core capstone", () => {
+		const task = introToBiologyCourse.modules[7].curriculum.find(item =>
+			item.content.startsWith("Complete one required capstone")
+		);
+		for (const text of [
+			task?.content,
+			pack.split("## Digestive Odyssey Capstone Packet")[1],
+			answers.split("### BIO8 core checks")[1]
+		]) {
+			expect(text).toMatch(/at least two (?:explained )?interactions/i);
+			expect(text).toMatch(/regulat(?:es|e) digestion or energy storage/);
+		}
+	});
 	it("supplies a balanced fictional energy allocation rather than a personal estimate", () => {
 		const allocations = table("### Fictional three-hour allocation").map(
 			row => Number(row[1])

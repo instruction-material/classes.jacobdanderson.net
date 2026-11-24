@@ -27,7 +27,7 @@ Strong maps distinguish:
 
 ### BIO1 core checks
 
-1. Accept the ten supplied system/organ/function pairs. Respiratory → circulatory → muscular connections can trace oxygen; nervous/endocrine connections carry information; heat has a separate transfer label. A map omits detailed anatomy and timing.
+1. Check one structure, body region and function for each of the ten systems against the worksheet. Accept an equivalent placement in words or on an outline. For example, lungs flank the heart in the chest; kidneys lie toward the back of the abdomen. A point marking one lymph node need not cover every immune structure. Respiratory → circulatory → muscular connections can trace oxygen; nervous/endocrine connections carry information; heat has a separate transfer label. A map omits detailed anatomy and timing.
 2. Oxygen is material, a neural/hormonal instruction is information, and evaporation can transfer heat. The source/destination and arrow legend determine the claim.
 3. Warm-walking observations support a multi-system model but do not show every signal or successful temperature regulation. The allergy response can be harmful. Calcium evidence supports an absorption/transport route, not an intake prescription.
 4. The saved fictional oats/beans/oil note records a provisional route, scale legend and uncertainty. Its core evidence can support the final project; the optional narrative journal is another format.
@@ -110,9 +110,9 @@ ATP is continuously produced and used as an energy-coupling molecule. It is not 
 
 ### BIO5 core checks
 
-1. 45 + 20 + 15 + 10 + 10 = 100 abstract units. Increasing movement 15 → 25 can be balanced by reducing retained allocation 10 → 0; other justified compensations also work. No extra 100-unit heat category is added to this accounting view.
-2. Matter can contribute to respiration, biosynthesis or storage. ATP is continually regenerated and used for coupled processes, rather than serving as a long-term tank. A storage model concerns chemical material and available energy, not an intact stockpile of meal ATP.
-3. The equation has 6 carbon, 12 hydrogen and 18 oxygen atoms on each side. It compresses many reactions; glycolysis begins in cytosol and later aerobic stages involve mitochondria. ATP/energy transfer is distinct from the matter outputs.
+1. 45 + 20 + 15 + 10 + 10 = 100 abstract units. Increasing movement 15 → 25 can be balanced by reducing retained allocation 10 → 0; other justified compensations also work. No extra 100-unit heat category is added to this accounting view. The separate 5 Cal label equals 5 kcal or 5,000 small calories. The ledger gives no conversion between its abstract units and Calories.
+2. Matter can contribute to respiration, biosynthesis or storage. ATP is continually regenerated and used for coupled processes, rather than serving as a long-term tank. Liver and skeletal muscle both store glucose as glycogen. The liver can release glucose into the blood; a muscle uses its glycogen locally for work.
+3. The equation has 6 carbon, 12 hydrogen and 18 oxygen atoms on each side. Glycolysis produces pyruvate in the cytosol. Pyruvate oxidation and the citric acid cycle release carbon dioxide in the mitochondrial matrix. Electrons pass along the inner-membrane transport chain to oxygen, forming water. The resulting proton gradient drives ATP synthesis. ATP/energy transfer is distinct from the matter outputs.
 4. Organic molecules can originate through photosynthetic processes and later participate in respiration or biosynthesis. Plants also respire. The introductory chemical account does not convert disappearing carbon into an unlabelled energy output.
 
 ### Optional checks
@@ -183,7 +183,7 @@ A complete capstone is traceable, accessible, and bounded. It does not use perso
 
 1. A representation is chosen for its question: tube order, epithelial crossing or complete text route. It identifies preserved and omitted features and has a text equivalent.
 2. The portfolio links molecule, cell/tissue, organ and system claims without claiming a complete genetics/evolution/ecology survey. Missing exact mechanisms remain labelled.
-3. One required capstone may use the saved core notes or the supplied worked record. Its evidence log, route, mechanism, energy/storage model, feedback loop, waste distinction, changed-condition prediction and limitation are explicit. Preserve a first and revised biological model.
+3. One required capstone may use the saved core notes or the supplied worked record. Its evidence log, route, mechanism, energy/storage model, feedback loop, waste distinction, changed-condition prediction and limitation are explicit. Check for at least two explained interactions between the digestive system and another body system. At least one must regulate digestion or energy storage. Intestinal glucose entering blood and insulin promoting storage after absorption count as two; naming the intestine and pancreas alone does not. Preserve a first and revised biological model.
 4. The defense cites two relevant source details and explains the mechanism, alternative and result that would change the claim. Correcting whole-meal → liver into a tube plus absorbed-product blood route is a substantive revision.
 
 ### Optional checks

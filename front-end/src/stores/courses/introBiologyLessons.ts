@@ -10,7 +10,7 @@ export const introBiologyLessons: Record<string, IntroBiologyLesson> = {
 
 A **cell** is a basic unit of living structure and activity. A **tissue** contains cells working together; an **organ**, such as the stomach, combines tissues; an **organ system** coordinates organs. Digestion is a process, not another organ. A system boundary identifies the part of the body being considered and what crosses into or out of it.
 
-The supplied ten-system table names representative organs and functions. Organs can participate in more than one system: the pancreas releases digestive substances into a duct and hormones into blood. A map groups functions; it does not divide the body into isolated boxes.
+On a body outline, place the lungs in the chest on either side of the heart. On a text map, record the same relationship in words. A point can mark one part of a distributed system: the femur in the thigh represents the skeletal system, which extends throughout the body. Organs can participate in more than one system: the pancreas releases digestive substances into a duct and hormones into blood. A map groups functions; it does not divide the body into isolated boxes.
 
 ## Worked interaction: walking in warmth
 
@@ -26,7 +26,7 @@ For Scenario A, a claim is that several systems participate in the response. Evi
 
 Required case notes can use writing, dictation, a labelled diagram or a table. Optional travel-journal projects reuse those notes in narrative form; the final core project can use the notes or the supplied worked record. No beakers, kits, dissections, food handling, or required household experiments are needed. Fictional records provide the evidence without personal medical information.`,
 		tasks: [
-			"Use the ten-system table to make a map with one named organ and function for every system. Choose the respiratory, circulatory and muscular systems for three labelled connections. Identify what each arrow carries and one feature the map omits. The text table supplies the evidence even when a legacy body image cannot be viewed.",
+			"Use the ten-system table to place one representative structure from each system on a body outline or text map. Give its body region and function. Choose the respiratory, circulatory and muscular systems for three labelled connections. Identify what each arrow carries and one feature the map omits. Check each placement against the worksheet.",
 			"Compare the oxygen-to-muscle route with a nerve or hormone signal. Draw one material-flow arrow, one information-flow arrow and one heat-transfer arrow for Scenario A. Name the source and destination of each. Explain why a single unlabelled arrow would leave the interaction ambiguous.",
 			"Choose Scenario A, B or C. Record the supplied observations separately from an inferred mechanism, then write a claim/evidence/reasoning response with one limit. For the allergy case, retain the possibility of a harmful response; for the calcium case, keep the claim about a pathway rather than an intake recommendation.",
 			"Start a saved case-note page for the supplied oats, beans and oil meal. Record the ingredients, one predicted nutrient route, a molecule/organ/system legend and one uncertainty. Mark the route as an initial model so later work can revise it. This page can support the capstone without completing an optional narrative journal.",
@@ -142,11 +142,17 @@ Digestion, absorption and cellular use are different stages. A sugar molecule de
 
 An **organelle** is a specialized structure within a cell; mitochondria are membrane-bounded organelles. The **cytosol** is the fluid portion outside those organelles.
 
-An overall aerobic-respiration model is glucose + oxygen → carbon dioxide + water, with energy transfers. In chemical notation, C6H12O6 + 6 O2 → 6 CO2 + 6 H2O accounts for the same carbon, hydrogen and oxygen atoms on each side. It compresses many reactions; it is not one event in one cellular location. Glycolysis begins in the cytosol, and later aerobic stages involve mitochondria in the human-cell model.
+An overall aerobic-respiration model is glucose + oxygen → carbon dioxide + water, with energy transfers. In chemical notation, C6H12O6 + 6 O2 → 6 CO2 + 6 H2O accounts for the same carbon, hydrogen and oxygen atoms on each side. Follow glucose through a human cell:
+
+1. **Glycolysis** splits one six-carbon glucose into two three-carbon pyruvate molecules in the cytosol. Some energy is transferred to ATP and to electron carriers.
+2. **Pyruvate oxidation** in the mitochondrial matrix releases carbon dioxide and forms acetyl-CoA. Its two-carbon acetyl group enters the **citric acid cycle (Krebs cycle)**. The cycle releases carbon dioxide and transfers electrons to carriers.
+3. **Electron transport** takes place in the inner mitochondrial membrane. Electrons pass along a chain to oxygen, forming water. Energy released along the chain drives proton pumping. Protons flowing back through ATP synthase power most ATP production in aerobic respiration.
 
 ## Worked energy account
 
-Some transferred chemical energy supports ATP production, and some disperses as heat. **ATP** is a molecule that couples energy-releasing processes to cellular work, such as transport and synthesis. It is continually regenerated and used; it is neither energy itself nor a long-term store that simply fills up. Storing material as glycogen or lipid involves making molecules, not storing intact ATP indefinitely.
+Some transferred chemical energy supports ATP production, and some disperses as heat. **ATP** is a molecule that couples energy-releasing processes to cellular work, such as transport and synthesis. It is continually regenerated and used; it is neither energy itself nor a long-term store that simply fills up. Liver and skeletal muscle cells can join glucose units into **glycogen**. Liver glycogen can supply glucose to the blood between meals. Muscle glycogen supplies the muscle’s own work. Adipose tissue stores much of the body’s longer-term fuel as fat.
+
+A food **Calorie (Cal)** measures energy. One food Calorie equals one kilocalorie (kcal), or 1,000 small calories (cal). A fictional label of 2 Cal therefore represents 2 kcal or 2,000 cal.
 
 The fictional three-hour allocation gives 100 abstract energy units: baseline organ work 45, temperature-related processes 20, movement 15, construction/repair 10 and retained chemical energy 10. The total is 100. These categories include their associated heat; adding another whole heat category would double-count this particular account. Its arbitrary units are not calories or measured human requirements.
 
@@ -156,9 +162,9 @@ If the model gives movement 10 additional units while total input stays 100, som
 
 Carbon from glucose can reach carbon dioxide or biological material. Oxygen has a distinct role in the aerobic pathway. A factory analogy helps label inputs and outputs, but it hides intermediate reactions and feedback. A useful diagram keeps matter arrows separate from energy transfers and states which allocation is supplied, estimated or proposed.`,
 		tasks: [
-			"Build the supplied three-hour allocation table and check its total. Increase movement by 10 abstract units while preserving total input, then propose one compensating change and explain another possible allocation. Distinguish the arithmetic constraint from any claim about a real person's expenditure, and avoid double-counting the already included heat.",
-			"Trace one absorbed component into immediate cellular use and another into biosynthesis or storage. Label the carbon-containing input and output and distinguish stored chemical material from ATP turnover. Explain why a statement that unused food turns into a tank of ATP misrepresents the model.",
-			"Use the overall respiration equation to count carbon, hydrogen and oxygen atoms on both sides. Mark the cytosol/mitochondrial pathway boundary and explain what the one-line equation omits. Keep ATP and energy-transfer labels distinct from the carbon dioxide and water matter outputs.",
+			"Build the supplied three-hour allocation table and check its total. Increase movement by 10 abstract units while preserving total input, then propose one compensating change and explain another possible allocation. Keep the included heat in the total. Convert the separate fictional food label in the worksheet to kcal and small calories. Explain why its conversion factor cannot be applied to this allocation.",
+			"Trace one absorbed component into immediate cellular use and another into biosynthesis or storage. Label the carbon-containing input and output and distinguish storage from ATP turnover. Name the stored form of glucose in liver and skeletal muscle and explain how each tissue uses its store. Explain why a statement that unused food turns into a tank of ATP misrepresents the model.",
+			"Use the overall respiration equation to count carbon, hydrogen and oxygen atoms on both sides. Place glycolysis, pyruvate oxidation, the citric acid cycle and electron transport in order and label their locations. Mark where carbon dioxide is released and where oxygen accepts electrons. Keep ATP and energy-transfer labels distinct from the carbon dioxide and water matter outputs.",
 			"Compare the meal's photosynthetic origin with its later cellular use: plant processes can build organic molecules using light energy, while cellular respiration transfers available chemical energy through reactions. Use the supplied ledger to distinguish matter storage, biosynthesis and energy transfer without claiming that plants only photosynthesize or that matter becomes energy in this course model."
 		],
 		optional: [
@@ -238,7 +244,7 @@ For the supplied starch component, a model route is starch processing in the dig
 
 An initial drawing sends the whole meal through a liver box before the small intestine. The revised model keeps the meal in the tube and sends absorbed products through the blood route toward the liver. This is a biological revision because it changes a mechanism and boundary, rather than only making the drawing neater. The supplied worked record preserves both versions.
 
-The core capstone uses a saved case-note portfolio or that worked record. It needs one question, evidence/source log, cross-scale route, digestion or transport explanation, cellular-use or storage model, regulation loop, waste distinction, changed-condition prediction and a justified revision. A source log records what a source actually supplies: fictional table values, an authoritative mechanism explanation or an explicitly invented proposal.
+The core capstone uses a saved case-note portfolio or that worked record. It needs one question, evidence/source log, cross-scale route, digestion or transport explanation, cellular-use or storage model, regulation loop, waste distinction, changed-condition prediction and a justified revision. Use the route and loop to explain at least two interactions between the digestive system and another body system. At least one must show regulation of digestion or energy storage. A source log records what a source actually supplies: fictional table values, an authoritative mechanism explanation or an explicitly invented proposal.
 
 ## Defend the limits
 
@@ -248,7 +254,7 @@ A text description makes a visual route understandable without color. An oral or
 		tasks: [
 			"Choose a representation for one saved meal-component route. Compare a tube-order map, an intestinal-boundary diagram and a labelled text sequence for the same question. State the information each preserves or omits and select a format with a complete text route rather than relying only on color or drawing scale.",
 			"Connect the saved case notes across digestion, absorption, cellular use, regulation and waste handling. Identify one molecule, cell/tissue boundary, organ and system claim. Use the supplied starch route as a check and preserve one unresolved mechanism rather than implying that this human-body case covers every field of biology.",
-			"Complete one required capstone from the saved core notes or supplied worked record. Include the narrow question, source log, cross-scale pathway, mechanism, energy/storage account, feedback loop, waste distinction, changed-condition prediction and limitation. Cite actual supplied evidence, preserve the initial model and show a justified biological revision.",
+			"Complete one required capstone from the saved core notes or supplied worked record. Include the narrow question, source log, cross-scale pathway, mechanism, energy/storage account, feedback loop, waste distinction, changed-condition prediction and limitation. Explain at least two interactions involving the digestive system and another body system, including one that regulates digestion or energy storage. Cite supplied evidence, preserve the initial model and justify the revision.",
 			"Defend the saved capstone with one supported claim, two relevant source details, reasoning, an alternative explanation and a result that would change the claim. Compare the initial and revised routes, explaining the corrected boundary or mechanism. State the remaining model limit and choose a relevant next question for another biology field."
 		],
 		optional: [

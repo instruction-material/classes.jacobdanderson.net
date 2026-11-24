@@ -20,18 +20,18 @@ Personal diet, symptoms, diagnoses, weight, body measurements, and medical histo
 
 ### System and organ reference
 
-| System | Representative structure | Function in this model |
-| --- | --- | --- |
-| skeletal | bones | support and protection; movement with muscles |
-| nervous | brain and nerves | signals coordinating responses |
-| integumentary | skin and sweat glands | boundary protection and heat exchange |
-| respiratory | lungs | oxygen/carbon-dioxide exchange with air |
-| circulatory | heart and blood vessels | transport gases, nutrients, signals and other substances |
-| digestive | stomach and intestines | food processing and absorption |
-| excretory/urinary | kidneys | filtering, reabsorption, secretion and urine formation |
-| endocrine | hormone-releasing pancreatic cells | chemical signals carried through blood |
-| immune | lymph nodes and immune cells | recognize and respond to biological threats |
-| muscular | skeletal muscles | contraction and movement |
+| System | Representative structure | Example body region | Function in this model |
+| --- | --- | --- | --- |
+| skeletal | bones | femur in the thigh | support and protection; movement with muscles |
+| nervous | brain and nerves | brain inside the skull; nerves extend into the limbs | signals coordinating responses |
+| integumentary | skin and sweat glands | skin covers the body surface; sweat glands lie within it | boundary protection and heat exchange |
+| respiratory | lungs | lungs in the chest, on either side of the heart | oxygen/carbon-dioxide exchange with air |
+| circulatory | heart and blood vessels | heart between the lungs; vessels extend throughout the body | transport gases, nutrients, signals and other substances |
+| digestive | stomach and intestines | stomach in the upper left abdomen; intestines occupy much of the abdomen | food processing and absorption |
+| excretory/urinary | kidneys | kidneys toward the back of the upper abdomen, one on either side of the spine | filtering, reabsorption, secretion and urine formation |
+| endocrine | hormone-releasing pancreatic cells | pancreatic islets in the upper abdomen, in the pancreas behind the stomach | chemical signals carried through blood |
+| immune | lymph nodes and immune cells | groups of lymph nodes in the neck, armpits and groin | recognize and respond to biological threats |
+| muscular | skeletal muscles | biceps at the front of the upper arm | contraction and movement |
 
 The pancreas has digestive and endocrine roles. The bladder stores urine; the liver processes materials and produces bile; lungs release carbon dioxide. A function map is not an anatomical atlas.
 
@@ -202,7 +202,18 @@ ATP is a short-term energy-transfer molecule, not energy itself and not a long-t
 
 Input totals 100 abstract units. Categories include associated heat in this view; do not add another whole heat category. Units are neither calories nor measured human requirements. A changed scenario adds 10 movement units with total input fixed; compare proposed compensating changes.
 
-The overall aerobic-respiration account is C6H12O6 + 6 O2 → 6 CO2 + 6 H2O, with energy transfers. It compresses many reactions; glycolysis begins in the cytosol and later aerobic stages involve mitochondria in this human-cell model.
+A separate fictional food label lists **5 Cal** per model portion. Express that energy in kcal and in small calories. The allocation above has no assigned energy per abstract unit.
+
+### Respiration route cards
+
+| Process | Location in a human cell | What to trace |
+| --- | --- | --- |
+| Glycolysis | cytosol | glucose splits into two pyruvate molecules |
+| Pyruvate oxidation | mitochondrial matrix | pyruvate yields acetyl-CoA, carbon dioxide and electrons carried by NADH |
+| Citric acid cycle (Krebs cycle) | mitochondrial matrix | acetyl groups enter the cycle; carbon dioxide leaves and carriers receive electrons |
+| Electron transport and ATP synthesis | inner mitochondrial membrane | electrons reach oxygen, forming water; the proton gradient powers ATP synthase |
+
+The overall aerobic-respiration account is C6H12O6 + 6 O2 → 6 CO2 + 6 H2O, with energy transfers. Trace carbon and electrons separately through the cards.
 
 ## Feedback and Regulation Cases
 
@@ -279,7 +290,7 @@ Submit:
 3. a molecule-to-cell-to-system pathway;
 4. one digestive or transport mechanism;
 5. one cellular-use or storage model;
-6. one regulation loop;
+6. at least two interactions between the digestive system and another body system, including a feedback loop that regulates digestion or energy storage;
 7. an elimination or excretion distinction;
 8. a changed-condition prediction;
 9. one model revision with before-and-after evidence;
@@ -293,7 +304,8 @@ The final representation includes text equivalents for visual evidence and prese
 - First model: whole meal → liver → small intestine → cells.
 - Revised model: food stays in the tube; processing yields smaller sugars; epithelial crossing leads to blood transport toward liver and other tissues.
 - Cellular-use branch: glucose/oxygen reactions transfer energy, with carbon dioxide and water in the overall matter account. Carbon dioxide can travel toward lungs; storage is another carbon route.
-- Regulation: the supplied insulin-feedback mechanism connects glucose rise with uptake/storage; the time curve alone does not measure that hormone.
+- Digestive–circulatory interaction: glucose crosses the small-intestinal lining into capillaries. Blood carries it to the liver.
+- Digestive–endocrine interaction: as absorbed glucose raises blood glucose, pancreatic beta cells release insulin. Insulin promotes glycogen storage in liver and muscle, helping reduce the rise. The time curve alone does not measure insulin.
 - Waste: undigested material stays on the elimination route; metabolic carbon dioxide crosses another boundary.
 - Revision evidence: tube/accessory-organ cards and blood-route description explain the corrected liver arrow.
 - Changed condition: a blocked matching carrier is a proposed test, not an observed result.
