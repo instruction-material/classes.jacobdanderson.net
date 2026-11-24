@@ -2866,11 +2866,13 @@ describe("course text quality normalization", () => {
 					},
 					{
 						title: "UB 23 Why Did the Cow Cross the Road II Java",
-						subject: "UB 23 Why Did the Cow Cross the Road II Java"
+						subject: "UB 23 Why Did the Cow Cross the Road II Java",
+						expectedText: "circlecross.out is 1"
 					},
 					{
 						title: "UB 24 Why Did the Cow Cross the Road III Java",
-						subject: "UB 24 Why Did the Cow Cross the Road III Java"
+						subject: "UB 24 Why Did the Cow Cross the Road III Java",
+						expectedText: "cowqueue.out contains 7"
 					}
 				]
 			},
@@ -2926,20 +2928,21 @@ describe("course text quality normalization", () => {
 				...module.curriculum,
 				...module.supplementalProjects
 			];
-			const contents = setupModule.items.map(({ title, subject }) => {
+			const contents = setupModule.items.map(({ title, subject, expectedText }) => {
 				const item = moduleItems.find(item => item.title === title);
 				expect(item, `${setupModule.courseId}: ${title}`).toBeTruthy();
 				expect(
 					item?.content,
 					`${setupModule.courseId}: ${title}`
 				).toContain(
-					setupModule.courseId === "usaco-gold" ||
+					expectedText ??
+					(setupModule.courseId === "usaco-gold" ||
 						(["usaco-bronze", "usaco-silver"].includes(
 							setupModule.courseId
 						) &&
 							title.startsWith("Core Project:"))
 						? `## ${subject}`
-						: `**${subject}**`
+						: `**${subject}**`)
 				);
 
 				return item?.content ?? "";
@@ -3005,7 +3008,9 @@ describe("course text quality normalization", () => {
 		expect(corpus).not.toMatch(/Target skill:/i);
 		expect(corpus).not.toMatch(/Practice focus:/i);
 		expect(corpus).not.toMatch(/The goal is to/i);
-		expect(corpus).toContain("UB 12 Barn Repair Java: Practice Studio");
+		const barn = findItem(courses[0]!, /^UB 12 Barn Repair Java: Guided Example$/);
+		expect(barn.content).toContain("The six empty stalls between the groups");
+		expect(barn.content).toContain("from 10 to 4");
 		expect(corpus).toContain("US Berry Picking: Practice Studio");
 		expect(corpus).toContain(
 			"Dynamic Programming Practice: Practice Studio"

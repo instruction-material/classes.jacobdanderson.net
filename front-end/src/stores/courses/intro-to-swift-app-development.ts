@@ -873,7 +873,7 @@ Check the reasoning against two traces. Before the first tap, zero is a known co
 					contentKind: "assignment",
 					ideImport: false,
 					content:
-						"Use Avery’s four values from the practice case to sketch the heading before and after completing a lesson. Change the displayed member to Rae with a tagline of “Builds robots” and no interests. Keep the session count. Label the value that changes on completion, the values that belong to the member and the line that handles a missing tagline. Compare the two headings side by side.\n\n**Completion checks:** The heading changes when the member changes, and completing one lesson changes only the session count. Show how an absent tagline differs from an empty interests list."
+						"Use Avery’s four values from the practice case to sketch the heading before and after completing a lesson. Change the displayed member to Rae with a tagline of “Builds robots” and no interests. Keep the session count. Label the value that changes on completion, the values that belong to the member and the line that handles a missing tagline. Compare the two headings side by side.\n\n**Checkpoints:** The heading changes when the member changes, and completing one lesson changes only the session count. Compare the heading with a missing tagline to the interests display for an empty list."
 				},
 				{
 					title: "Swift Basics in App Context Extension Practice",
@@ -881,7 +881,7 @@ Check the reasoning against two traces. Before the first tap, zero is a known co
 					contentKind: "assignment",
 					ideImport: false,
 					content:
-						"Start with the interest array from the case. Append “Color theory” and search for “O”. Predict the two matching names in display order and write the stored array beside them. Remove all four interests and repeat the same query. Explain why the message changes from a filtered result to “No interests yet”.\n\n**Completion checks:** Record the query, the stored names and the visible names after each operation. Then search for a name absent from a nonempty array. Which message distinguishes a search with no matches from a member with no interests?"
+						"Start with the interest array from the case. Append “Color theory” and search for “O”. Predict the two matching names in display order and write the stored array beside them. Remove all four interests and repeat the same query. Explain why the message changes from a filtered result to “No interests yet”.\n\n**Checkpoints:** Record the query, the stored names and the visible names after each operation. Then search for a name absent from a nonempty array. Which message distinguishes a search with no matches from a member with no interests?"
 				}
 			]
 		},
@@ -998,7 +998,7 @@ The output is \`7 Map a trail\` followed by \`7 Map a river\`. The ID still iden
 					contentKind: "assignment",
 					ideImport: false,
 					content:
-						"Use lesson 7, “Map a trail”, from the case. Copy the active card at 50% and mark only the copy complete on 2026-01-01. Write the ID, status payload and label for each copy. What would go wrong if a view used its changing status label as its identity?\n\n**Completion checks:** Make a two-row trace showing the original and the edited copy. Underline the value that stays constant when the status changes. Explain how a list would match each version of that card to the same lesson after an edit."
+						"Use lesson 7, “Map a trail”, from the case. Copy the active card at 50% and mark only the copy complete on 2026-01-01. Write the ID, status payload and label for each copy. What would go wrong if a view used its changing status label as its identity?\n\n**Checkpoints:** Make a two-row trace showing the original and the edited copy. Underline the value that stays constant when the status changes. Explain how a list would match each version of that card to the same lesson after an edit."
 				},
 				{
 					title: "Functions, Structs, and Enums Extension Practice",
@@ -1006,7 +1006,7 @@ The output is \`7 Map a trail\` followed by \`7 Map a river\`. The ID still iden
 					contentKind: "assignment",
 					ideImport: false,
 					content:
-						"Design a model operation that accepts an active fraction only from 0 through 1. Try −0.1, 0, 0.5, 1 and 1.1 on separate copies of lesson 7 with status `planned`. Write one expectation for each result. A rejected value must leave the card planned. At 1 the card stays active until a completion date is supplied. Which checks can run without a view?\n\n**Completion checks:** Separate accepted fractions from rejected ones. For each rejected edit, check the stored ID and complete status value against the starting card. Record the separate event that changes a valid active card into a completed one."
+						"Design a model operation that accepts an active fraction only from 0 through 1. Try −0.1, 0, 0.5, 1 and 1.1 on separate copies of lesson 7 with status `planned`. Write one expectation for each result. A rejected value must leave the card planned. At 1 the card stays active until a completion date is supplied. Which checks can run without a view?\n\n**Checkpoints:** Separate accepted fractions from rejected ones. For each rejected edit, check the stored ID and complete status value against the starting card. Record the separate event that changes a valid active card into a completed one."
 				}
 			]
 		},

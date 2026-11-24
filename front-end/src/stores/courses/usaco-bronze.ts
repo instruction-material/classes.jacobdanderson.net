@@ -218,7 +218,7 @@ const usacoBronzeSourceCourse: RawCourse = {
 					title: "Problem: Barn Repair",
 					preserveInstructions: true,
 					content:
-						"Mark occupied stalls 1, 2, 9 and 10 on a line of 12. With one board the covered span is 10. Ask where to split it if two boards are available: skipping stalls 3 through 8 saves six, giving 4. In barn1.in enter 2 12 4 followed by the four occupied numbers on separate lines. Start a blank Python file and compare barn1.out with your drawing. Try the same positions in reverse input order; the answer should still be 4.\n\n**Completion checks:** Mark the two board endpoints in each drawing. Compare their total length with the program output.",
+						"Mark occupied stalls 1, 2, 9 and 10 on a line of 12. With one board the covered span is 10. Ask where to split it if two boards are available: skipping stalls 3 through 8 saves six, giving 4. In barn1.in enter 2 12 4 followed by the four occupied numbers on separate lines. Start a blank Python file and compare barn1.out with your drawing. Try the same positions in reverse input order; the answer should still be 4.\n\n**Checkpoints:** Mark the two board endpoints in each drawing. Compare their total length with the program output.",
 					projectLink:
 						"https://github.com/instruction-material/USACO-Bronze/tree/main/UB12-Barn-Repair/starter",
 					solutionLink:
@@ -585,7 +585,7 @@ const usacoBronzeSourceCourse: RawCourse = {
 					title: "UB 12 Barn Repair Java: Extension Challenge",
 					preserveInstructions: true,
 					content:
-						"Predict how allowing more boards changes the answer for cows at 1, 4 and 7. Run separate cases with limits of one, two and four boards. Expect 7, 5 and 3. Explain why the last answer cannot fall below the number of occupied stalls.\n\n**Completion checks:** Draw both optimal two-board placements. Label the unused gap and the total length in each drawing.",
+						"Predict how allowing more boards changes the answer for cows at 1, 4 and 7. Run separate cases with limits of one, two and four boards. Expect 7, 5 and 3. Explain why the last answer cannot fall below the number of occupied stalls.\n\n**Checkpoints:** Draw both optimal two-board placements. Label the unused gap and the total length in each drawing.",
 					projectLink:
 						"https://github.com/instruction-material/USACO-Bronze/tree/main/UB-12-Barn-Repair-Java/starter",
 					solutionLink:
@@ -863,7 +863,7 @@ const usacoBronzeSourceCourse: RawCourse = {
 					title: "Your Ride Is Here Java",
 					preserveInstructions: true,
 					content:
-						"Use this mirror to transfer the two-name test to Java. Start Main.java from a blank file. Read two lines from ride.in. For each uppercase letter, multiply the running product by letter - 'A' + 1 and reduce modulo 47. Compare the two final remainders and write GO or STAY plus a newline to ride.out. Predict BX with A, then BY with A. Compile with javac Main.java and run java Main from the input directory. Compare the output files to GO and STAY respectively before opening the reference.\n\n**Completion checks:** Record the two residues for each test so a mismatch can be traced to multiplication or comparison.",
+						"Use this mirror to transfer the two-name test to Java. Start Main.java from a blank file. Read two lines from ride.in. For each uppercase letter, multiply the running product by letter - 'A' + 1 and reduce modulo 47. Compare the two final remainders and write GO or STAY plus a newline to ride.out. Predict BX with A, then BY with A. Compile with javac Main.java and run java Main from the input directory. Compare the output files to GO and STAY respectively before opening the reference.\n\n**Checkpoints:** Record the two residues for each test so a mismatch can be traced to multiplication or comparison.",
 					projectLink:
 						"https://github.com/instruction-material/USACO-Bronze/tree/main/UB2-Your-Ride-Is-Here-Java/starter",
 					solutionLink:
@@ -1600,7 +1600,7 @@ function decorateBronzeModule(
 				"",
 				"**Course practice:** Hints, reviews, and solution comparison happen only outside active contests and after an honest attempt. Protected mocks use the stricter active-contest boundary so independent readiness is measured accurately.",
 				"",
-				"**Evidence:** Begin from an empty solution file, retain the submitted source and result, and write the postmortem only after the timer or practice window ends.\n\n**Completion checks:** Date the attempt and record which resources were used before and after the timer."
+				"**Evidence:** Begin from an empty solution file, retain the submitted source and result, and write the postmortem only after the timer or practice window ends.\n\n**Checkpoints:** Date the attempt and record which resources were used before and after the timer."
 			].join("\n"),
 			projectLink: USACO_CONTEST_RULES,
 			learningPath: "core"
