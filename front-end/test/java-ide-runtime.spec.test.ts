@@ -5,6 +5,7 @@ import type { KarelWorldState } from "../src/modules/javaIdeRuntime";
 import {
 	blueJMainStarterCode,
 	blueJStudentStarterCode,
+	createPythonIdeProject,
 	javaOutlineStarterCode,
 	javaStarterCode,
 	karelOutlineStarterCode,
@@ -1870,6 +1871,39 @@ public class Algo implements Directions {
 		});
 		expect(result.stdout).toHaveLength(8);
 	});
+
+	it.each([
+		["karel-robot-walkthrough-reference", 9, "South"],
+		["karel-parameterized-robot-moves-reference", 4, "West"]
+	] as const)(
+		"runs %s in the original Karel world",
+		(template, avenue, direction) => {
+			const { files, activeFileName } = createPythonIdeProject("karel", {
+				template
+			});
+			expect(activeFileName).toBe("Algo.java");
+			expect(files.find(file => file.name === "world.txt")?.content).toBe(
+				karelStarterWorld
+			);
+			const result = runJavaIdeProject({
+				activeFileName,
+				files,
+				mode: "karel"
+			});
+			expect(result.stderr).toEqual([]);
+			expect(result.karelWorld?.robot).toMatchObject({
+				street: 6,
+				avenue,
+				direction,
+				beepers: 0
+			});
+			expect(result.karelWorld?.beepers).toContainEqual({
+				street: 6,
+				avenue: 9,
+				count: 1
+			});
+		}
+	);
 
 	it("binds Karel movement counts per helper call", () => {
 		const result = runJavaIdeProject({

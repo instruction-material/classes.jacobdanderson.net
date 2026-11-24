@@ -1,5 +1,7 @@
 import type { CodeIdeAccountScope } from "@/modules/codeIdeAccountScope";
 import { api } from "@/api";
+import karelMovesReference from "@/assets/course-references/karel-parameterized-robot-moves/Algo.java?raw";
+import karelWalkthroughReference from "@/assets/course-references/karel-robot-walkthrough/Algo.java?raw";
 import {
 	assemblyStarterCode,
 	assemblyStarterFiles
@@ -213,6 +215,8 @@ export type PythonIdeProjectTemplate =
 	| "demo"
 	| "event-reference"
 	| "melody-reference"
+	| "karel-robot-walkthrough-reference"
+	| "karel-parameterized-robot-moves-reference"
 	| "record-reference"
 	| "firework-festival"
 	| "flower-garden"
@@ -2752,6 +2756,20 @@ function getStarterFilesForTemplate(
 	if (mode === "swift") return swiftStarterFiles();
 	if (mode === "rust") return rustStarterFiles();
 	if (mode === "linux") return linuxStarterFiles();
+	if (
+		mode === "karel" &&
+		(template === "karel-robot-walkthrough-reference" ||
+			template === "karel-parameterized-robot-moves-reference")
+	) {
+		const content =
+			template === "karel-robot-walkthrough-reference"
+				? karelWalkthroughReference
+				: karelMovesReference;
+		return [
+			{ name: "Algo.java", content },
+			{ name: "world.txt", content: karelStarterWorld }
+		];
+	}
 	if (
 		(template === "event-reference" && mode === "pgzero") ||
 		(template === "melody-reference" && mode === "python") ||

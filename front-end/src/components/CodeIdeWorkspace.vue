@@ -1455,6 +1455,12 @@ const requestedTemplate = computed<PythonIdeProjectTemplate>(() => {
 	if (rawTemplate === "demo") return "demo";
 	if (rawTemplate === "event-reference") return "event-reference";
 	if (rawTemplate === "melody-reference") return "melody-reference";
+	if (
+		rawTemplate === "karel-robot-walkthrough-reference" ||
+		rawTemplate === "karel-parameterized-robot-moves-reference"
+	) {
+		return rawTemplate;
+	}
 	if (rawTemplate === "record-reference") return "record-reference";
 	if (rawTemplate === "firework-festival") return "firework-festival";
 	if (rawTemplate === "flower-garden") return "flower-garden";

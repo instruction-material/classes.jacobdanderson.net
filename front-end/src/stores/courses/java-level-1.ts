@@ -151,6 +151,11 @@ function buildJavaFoundationGuidance(
 	});
 }
 
+const karelWorldsModuleId =
+	"java-level-1-j1a-visual-java-launch-karel-robot-worlds";
+const karelSyntaxModuleId =
+	"java-level-1-j1b-visual-java-syntax-types-objects-and-methods";
+
 const javaLevel1SourceCourse: RawCourse = {
 	name: "Java Level 1",
 	modules: [
@@ -186,7 +191,10 @@ const javaLevel1SourceCourse: RawCourse = {
 					content:
 						"Run Algo.java once. The sample ends at street 6, avenue 4 facing west. Your target is the beeper at street 6, avenue 9 in world.txt. Leave it on the ground.\n\n1. Keep the constructor in main. Replace the turns and loop after it with `sam.move();`. Run once and record the last state. Find `wall 6 7 east` in world.txt and explain why Sam stayed put.\n2. Keep that wall and the starting position. Use `sam.turnLeft();` and `sam.move();` to go around the wall to the beeper.\n3. Predict the street, avenue, direction, and bag count after each turn or move. Compare your predictions with the run. A successful route ends at (6, 9) with an empty bag and no blocked move.",
 					projectLink:
-						"/ide?mode=karel&template=demo&projectKey=java-level-1-robot-walkthrough&starterTitle=Robot+Walkthrough"
+						"/ide?mode=karel&template=demo&projectKey=java-level-1-robot-walkthrough&starterTitle=Robot+Walkthrough",
+					solutionLink:
+						"/ide?mode=karel&template=karel-robot-walkthrough-reference&projectKey=java-level-1-robot-walkthrough-solution&starterTitle=Robot+Walkthrough+Solution" +
+						`&lesson=${karelWorldsModuleId}-${karelWorldsModuleId}-curriculum-j1a-project-1-robot-walkthrough`
 				},
 				{
 					title: "Visual Exit Ticket: Ready for Text",
@@ -241,7 +249,10 @@ const javaLevel1SourceCourse: RawCourse = {
 					content:
 						"Run the supplied Algo.java in this project. Record Sam’s final state after the two left turns and three westward moves. Refactor that route without changing world.txt or the starting state.\n\n1. Move the two turns into a static helper that accepts the robot. Call it from main with `sam`.\n2. Move the starter’s loop into a second static helper, `moveMany(UrRobot robot, int steps)`. Use the parameter as the loop bound and move the robot passed to the helper. In main, replace the original loop with `moveMany(sam, MOVE_COUNT);`.\n3. Compare the complete trace with the original run. Then change only the count argument to 1 and rerun, and repeat with 0. On street 6, the three runs should finish on avenues 4, 6, and 7 respectively, all facing west. Explain why a zero count still leaves Sam facing west.",
 					projectLink:
-						"/ide?mode=karel&template=demo&projectKey=java-level-1-parameterized-robot-moves&starterTitle=Parameterized+Robot+Moves"
+						"/ide?mode=karel&template=demo&projectKey=java-level-1-parameterized-robot-moves&starterTitle=Parameterized+Robot+Moves",
+					solutionLink:
+						"/ide?mode=karel&template=karel-parameterized-robot-moves-reference&projectKey=java-level-1-parameterized-robot-moves-solution&starterTitle=Parameterized+Robot+Moves+Solution" +
+						`&lesson=${karelSyntaxModuleId}-${karelSyntaxModuleId}-curriculum-j1b-project-1-parameterized-robot-moves`
 				}
 			],
 			supplementalProjects: [
