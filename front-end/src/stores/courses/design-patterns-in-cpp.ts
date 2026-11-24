@@ -692,75 +692,60 @@ const designPatternsInCppSourceCourse: RawCourse = {
 				{
 					title: "Why Singleton Is Attractive",
 					content:
-						"Singleton is a tempting shortcut for configuration, logging, and shared services. The first pass names why it feels convenient before the course critiques the tradeoffs."
+						"A function-local static object is constructed the first time control reaches its declaration. Later calls return the same object. In a ticket service, two desks can obtain consecutive numbers without either desk receiving a counter in its constructor. Trace the first two calls to globalSequence() in the starter."
 				},
 				{
 					title: "The Real Risks",
 					content:
-						"Hidden dependencies, static initialization problems, weak test seams, and lifetime ambiguity are the real costs of global state. In C++, static lifetime also brings concrete order-of-initialization concerns that cannot be hand-waved away."
+						"A third desk in a different clinic also draws from that counter. Opening north, north, south, north gives 1, 2, 3, 4. The clinics require 1, 2, 1, 3. Reordering tests can therefore change the observed numbers. Thread-safe initialization of a local static alone does not make later increments thread-safe."
 				},
 				{
 					title: "Scoped Services and Injected Dependencies",
 					content:
-						"Dependency injection and well-scoped service objects often solve the same coordination problem more safely. The design improvement is not just ideological; it makes construction order and ownership explicit."
+						"The composition root is the place where the application creates and connects its objects. In main, construct a Sequence for each clinic before creating any TicketDesk. Pass the north sequence to both north desks and the south sequence to the south desk. A Sequence& member borrows an existing counter. Copying the counter would give each desk its own sequence. Local objects are destroyed in reverse construction order, so the counters outlive their desks."
 				},
 				{
 					title: "When a Global Really Is Global",
 					content:
-						"Rare cases can justify a process-wide singleton, but the reasoning starts by explaining why narrower ownership failed first. The unit ends with skepticism, not prohibition for its own sake."
+						"A process-wide sequence would fit a different requirement: every ticket issued by that process must have a different number even across clinics. Write down the scope before choosing a lifetime. If threads can issue tickets concurrently, specify how allocation is synchronized. A restart or a second process changes what a process-local counter can guarantee."
 				},
 				{
 					title: "DPC9 Singleton, Global State, and Dependency Injection: Core Project",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle:
-							"DPC9 Singleton, Global State, and Dependency Injection",
-						projectKind: "core",
-						hasReference: true
-					}),
+					content:
+						"Open the ticket-desk starter. Export the project and run `c++ -std=c++20 -Wall -Wextra -Wpedantic main.cpp -o lab && ./lab` in its folder. Compare the four observed ticket numbers with the clinic requirements. Change TicketDesk to borrow its constructor argument and remove the global lookup. Run again. The north desks must share one sequence while the south desk starts at 1.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-08-dpc9-singleton-global-state-and-dependency-injection/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/7a868e5fdc31744cb5e37bc9918288eb1480ace2/DPC-08-dpc9-singleton-global-state-and-dependency-injection/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-08-dpc9-singleton-global-state-and-dependency-injection/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/7a868e5fdc31744cb5e37bc9918288eb1480ace2/DPC-08-dpc9-singleton-global-state-and-dependency-injection/solution"
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "Modern C++ Comparison: Singleton, Global State, and Dependency Injection",
 					content:
-						"For singleton, global state, and dependency injection, compare a textbook heap-heavy version, a modern C++ version, and one short reason the modern version changes shape. Compare one static global service with one injected service and state which design makes lifetime and testing clearer.",
+						"Use the ticket-desk project to compare the old global lookup with the scoped design. Create a temporary north desk inside a nested scope and issue its first ticket after the first two north tickets. Predict what the original north desk will issue after that scope ends. Run the check, then explain which object owns the sequence and why destroying the temporary desk leaves it usable.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-08-dpc9-singleton-global-state-and-dependency-injection/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/7a868e5fdc31744cb5e37bc9918288eb1480ace2/DPC-08-dpc9-singleton-global-state-and-dependency-injection/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-08-dpc9-singleton-global-state-and-dependency-injection/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/7a868e5fdc31744cb5e37bc9918288eb1480ace2/DPC-08-dpc9-singleton-global-state-and-dependency-injection/solution"
 				},
 				{
 					title: "Dependency Injection Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle:
-							"DPC9 Singleton, Global State, and Dependency Injection",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					content:
+						"Open the reservation starter. A reservation expires the instant its clock reaches the deadline. Run main.cpp with C++20, observe the before, at, and after deadline checks, then replace the fixed legacyMinute() call with a borrowed Clock. Each call to expired() must read the current minute. Add a second reservation on the same clock with a different deadline and check both outcomes without sleeping.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-19-dpc9-singleton-global-state-and-dependency-injection-supplemental-2/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/7a868e5fdc31744cb5e37bc9918288eb1480ace2/DPC-19-dpc9-singleton-global-state-and-dependency-injection-supplemental-2/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-19-dpc9-singleton-global-state-and-dependency-injection-supplemental-2/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/7a868e5fdc31744cb5e37bc9918288eb1480ace2/DPC-19-dpc9-singleton-global-state-and-dependency-injection-supplemental-2/solution"
 				},
 				{
 					title: "Global State Refactor Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle:
-							"DPC9 Singleton, Global State, and Dependency Injection",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					content:
+						"Open the export-receipt starter. Each save must write one line to the stream supplied to that Exporter. Replace the global output lookup while preserving the receipt text, newlines, and order. Build and run main.cpp with C++20. Check that the reports and images stay separate and that destroying one exporter leaves the other destination usable. Add a third destination and inspect its stream after its exporter has gone out of scope.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-20-dpc9-singleton-global-state-and-dependency-injection-supplemental-3/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/7a868e5fdc31744cb5e37bc9918288eb1480ace2/DPC-20-dpc9-singleton-global-state-and-dependency-injection-supplemental-3/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-20-dpc9-singleton-global-state-and-dependency-injection-supplemental-3/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/7a868e5fdc31744cb5e37bc9918288eb1480ace2/DPC-20-dpc9-singleton-global-state-and-dependency-injection-supplemental-3/solution"
 				}
 			]
 		},
