@@ -140,6 +140,32 @@ function frontEndSource(path: string) {
 	return readFileSync(resolve(__dirname, "..", path), "utf8");
 }
 
+function webWorksheetExtensions(course: Awaited<ReturnType<typeof requireCourse>>) {
+	const base = "/course-assets/web-development-foundations/web-development-foundations-";
+	const headings = (suffix: string) => new Set(
+		frontEndSource(`public${base}${suffix}.md`).split("\n")
+			.filter(line => line.startsWith("## "))
+			.map(line => line.slice(3).trim().toLowerCase().replaceAll(" ", "-"))
+	);
+	const cases = headings("practice-pack");
+	const keys = headings("verification-guide");
+	const pairedStarters = new Set(
+		course.modules.flatMap(module => module.curriculum)
+			.filter(item => item.projectLink?.endsWith("/starter")
+				&& item.solutionLink === item.projectLink.replace(/\/starter$/, "/solution"))
+			.map(item => item.projectLink)
+	);
+	return new Set(course.modules.flatMap(module => module.supplementalProjects)
+		.filter(item => {
+			const worksheet = item.datasetLink?.split("#");
+			if (worksheet?.[0] !== `${base}practice-pack.md`) return false;
+			const anchor = worksheet[1] ?? "";
+			return pairedStarters.has(item.projectLink) && cases.has(anchor)
+				&& anchor.endsWith("-case") && keys.has(anchor.replace(/-case$/, "-key"))
+				&& item.ideImport === true && !item.solutionLink;
+		}));
+}
+
 function expectAuthoredSourcePair(
 	course: Awaited<ReturnType<typeof requireAuthoredCourse>>,
 	title: string,
@@ -1223,6 +1249,10 @@ describe("implemented course development artifacts", () => {
 				courseImplementationSourceRepos
 			)) {
 				const course = await requireCourse(courseId);
+				// Independent worksheet extensions reuse a published base project.
+				// Their grading reference is the matching case key.
+				const worksheetExtensions = courseId === "web-development-foundations"
+					? webWorksheetExtensions(course) : undefined;
 				const missingStarterSolutions = course.modules.flatMap(module =>
 					[
 						...module.curriculum,
@@ -1234,6 +1264,7 @@ describe("implemented course development artifacts", () => {
 							) &&
 							item.projectLink.includes("/starter") &&
 							!item.solutionLink?.includes("/solution") &&
+							!worksheetExtensions?.has(item) &&
 							!(
 								(item.learningPath === "choice" ||
 									item.learningPath === "challenge") &&
