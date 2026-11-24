@@ -283,12 +283,12 @@ const javaLevel1SourceCourse: RawCourse = {
 				{
 					title: "Introductions and Java Setup",
 					content:
-						"A console program starts in `main`. Save the following as `Main.java`. From that folder, run `javac Main.java`, then `java Main`. The compiler produces Main.class. The second command runs it.\n\n```java\nclass Main {\n    public static void main(String[] args) {\n        int blocks = 3;\n        System.out.println(\"Blocks: \" + blocks);\n    }\n}\n```\n\nThe output is `Blocks: 3`. Change 3 to 4 and compile again. The printed value plays the same role as a robot’s final grid position: it gives an observation to compare with a prediction."
+						'A console program starts in `main`. Save the following as `Main.java`. From that folder, run `javac Main.java`, then `java Main`. The compiler produces Main.class. The second command runs it.\n\n```java\nclass Main {\n    public static void main(String[] args) {\n        int blocks = 3;\n        System.out.println("Blocks: " + blocks);\n    }\n}\n```\n\nThe output is `Blocks: 3`. Change 3 to 4 and compile again. The printed value plays the same role as a robot’s final grid position: it gives an observation to compare with a prediction.'
 				},
 				{
 					title: "Optional Python-to-Java Bridge",
 					content:
-						"For students coming from Python, compare these two lines inside their usual program entry points. Python: `parts = 5 // 2`. Java: `int parts = 5 / 2;`. Both produce 2 here because the operands are positive integers. In Java, `5 / 2.0` produces 2.5 and needs a double for a result with a fractional part.\n\nPython’s input() and Java’s Scanner.nextLine() both read a line as text. Assigning \"12\" to an int in Java requires a conversion, such as `Integer.parseInt(\"12\")`. The optional Python to Java and C++ Bridge course develops these translations further."
+						'For students coming from Python, compare these two lines inside their usual program entry points. Python: `parts = 5 // 2`. Java: `int parts = 5 / 2;`. Both produce 2 here because the operands are positive integers. In Java, `5 / 2.0` produces 2.5 and needs a double for a result with a fractional part.\n\nPython’s input() and Java’s Scanner.nextLine() both read a line as text. Assigning "12" to an int in Java requires a conversion, such as `Integer.parseInt("12")`. The optional Python to Java and C++ Bridge course develops these translations further.'
 				},
 				{
 					title: "Primitive Types",
@@ -300,30 +300,26 @@ const javaLevel1SourceCourse: RawCourse = {
 				{
 					title: "Strings",
 					content:
-						"A `String` contains text in double quotes. For `String ship = \"Comet\";`, `ship.length()` is 5 and indices run from 0 through 4. `ship.charAt(2)` gives the character 'm'. `ship.substring(1, 4)` gives \"ome\": the first index is included and the second is excluded. Neither call changes ship.\n\nFor four letters, integer division chooses the index to the right of center: in \"mars\", length / 2 is 2 and the character is 'r'. The empty string has length 0 and has no valid character index. Check the length before calling charAt."
+						'A `String` contains text in double quotes. For `String ship = "Comet";`, `ship.length()` is 5 and indices run from 0 through 4. `ship.charAt(2)` gives the character \'m\'. `ship.substring(1, 4)` gives "ome": the first index is included and the second is excluded. Neither call changes ship.\n\nFor four letters, integer division chooses the index to the right of center: in "mars", length / 2 is 2 and the character is \'r\'. The empty string has length 0 and has no valid character index. Check the length before calling charAt.'
 				},
 				{
 					title: "Input and Output",
 					content:
-						"Import `java.util.Scanner` above the class and put these lines inside `main`.\n\n```java\nScanner input = new Scanner(System.in);\nSystem.out.println(\"Destination?\");\nif (input.hasNextLine()) {\n    String destination = input.nextLine();\n    System.out.println(\"Next stop: \" + destination);\n}\n```\n\nEntering `Coral Moon` prints `Next stop: Coral Moon`. nextLine reads the entire line, including the internal space. Pressing Enter on an empty line supplies an empty string. End of input means there is no line to read. To require a nonblank answer, trim the line, check its length, and ask again when that length is zero."
+						'Import `java.util.Scanner` above the class and put these lines inside `main`.\n\n```java\nScanner input = new Scanner(System.in);\nSystem.out.println("Destination?");\nif (input.hasNextLine()) {\n    String destination = input.nextLine();\n    System.out.println("Next stop: " + destination);\n}\n```\n\nEntering `Coral Moon` prints `Next stop: Coral Moon`. nextLine reads the entire line, including the internal space. Pressing Enter on an empty line supplies an empty string. End of input means there is no line to read. To require a nonblank answer, trim the line, check its length, and ask again when that length is zero.'
 				},
 				{
 					title: "JS1 Project 1: Chat Bot",
 					content:
 						"Create a chatbot that asks at least five questions, stores the user's answers, and prints customized responses using string concatenation and input handling.",
-					projectLink:
-						`${consoleProjectSource}/JS1-Chat-Bot/starter`,
-					solutionLink:
-						`${consoleProjectSource}/JS1-Chat-Bot/solution`
+					projectLink: `${consoleProjectSource}/JS1-Chat-Bot/starter`,
+					solutionLink: `${consoleProjectSource}/JS1-Chat-Bot/solution`
 				},
 				{
 					title: "JS1 Project 2: First Middle Last",
 					content:
 						"Read one word made of English letters. Remove surrounding spaces. For a blank line, print `A word is needed.` and finish before indexing. Otherwise print the characters at 0, length / 2, and length - 1, separated by hyphens.\n\nCheck `orbit` → `o-b-t`, `mars` → `m-r-s`, and `x` → `x-x-x`. Explain why the middle index for mars is 2. Optionally use substring to print the word with this middle character removed.",
-					projectLink:
-						`${consoleProjectSource}/JS1-First-Middle-Last/starter`,
-					solutionLink:
-						`${consoleProjectSource}/JS1-First-Middle-Last/solution`
+					projectLink: `${consoleProjectSource}/JS1-First-Middle-Last/starter`,
+					solutionLink: `${consoleProjectSource}/JS1-First-Middle-Last/solution`
 				}
 			],
 			supplementalProjects: [
@@ -1891,7 +1887,7 @@ function decorateJavaLevel1Module(
 					"- Read full lines with `Scanner.nextLine()` and parse numbers explicitly with `Integer.parseInt()` or `Double.parseDouble()` inside a bounded retry path.",
 					"- Verify a normal value, a response containing spaces, blank input, invalid numeric input, and a corrected retry without a stale newline.",
 					"",
-					"Place this example in main after creating a Scanner named input. With the input lines “three” and “3”, the first attempt prints a correction and the second prints `Tickets: 3`. Two invalid lines use up both attempts. An empty input stream ends immediately.\n\n```java\nfor (int attempt = 0; attempt < 2 && input.hasNextLine(); attempt++) {\n    String line = input.nextLine();\n    try {\n        int tickets = Integer.parseInt(line.trim());\n        System.out.println(\"Tickets: \" + tickets);\n        break;\n    } catch (NumberFormatException error) {\n        System.out.println(\"Enter a whole number.\");\n    }\n}\n```"
+					'Place this example in main after creating a Scanner named input. With the input lines “three” and “3”, the first attempt prints a correction and the second prints `Tickets: 3`. Two invalid lines use up both attempts. An empty input stream ends immediately.\n\n```java\nfor (int attempt = 0; attempt < 2 && input.hasNextLine(); attempt++) {\n    String line = input.nextLine();\n    try {\n        int tickets = Integer.parseInt(line.trim());\n        System.out.println("Tickets: " + tickets);\n        break;\n    } catch (NumberFormatException error) {\n        System.out.println("Enter a whole number.");\n    }\n}\n```'
 				].join("\n"),
 				learningPath: "core"
 			}
