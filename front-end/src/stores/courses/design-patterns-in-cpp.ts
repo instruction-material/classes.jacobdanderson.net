@@ -104,28 +104,27 @@ const designPatternsInCppSourceCourse: RawCourse = {
 				},
 				{
 					title: "DPC1 Why Patterns Look Different in Modern C++: Core Project",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle:
-							"DPC1 Why Patterns Look Different in Modern C++",
-						projectKind: "core",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"Open the scene preset starter. A preset contains an exposure and an ordered list of effects. The night variant is copied from the base, but editing night also edits the base. Build main.cpp with C++20. Trace where the two objects refer to the same settings, then choose storage that gives each preset its own settings and effect list. Keep the public interface and default copy operations.\n\n**Checkpoints:** After editing night, the original still has exposure 1 and only grain. The variant has exposure 3 with grain and blue. Check that a copy made by assignment keeps its old effect list when the source changes again.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-06-dpc1-why-patterns-look-different-in-modern-cpp/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/8977fda5639bc15e8439e523cb99774a7bad3d64/DPC-06-dpc1-why-patterns-look-different-in-modern-cpp/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-06-dpc1-why-patterns-look-different-in-modern-cpp/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/8977fda5639bc15e8439e523cb99774a7bad3d64/DPC-06-dpc1-why-patterns-look-different-in-modern-cpp/solution"
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "Modern C++ Comparison: Why Patterns Look Different in Modern C++",
+					preserveInstructions: true,
+					contentKind: "assignment",
 					content:
-						"For why patterns look different in modern c++, compare a textbook heap-heavy version, a modern C++ version, and one short reason the modern version changes shape. Name one case where a Java-style heap allocation would be replaced by a stack object, smart pointer, or value type.",
+						"Compare a value-owned preset with a heap-owned variant that explicitly deep-copies its settings. Draw the ownership relationships before a copy and after editing the copied effect list. Use the same ordinary and nested-copy inputs for both designs.\n\n**Checkpoints:** A variant of a variant can gain glow without changing either ancestor. For each design, explain which operations the compiler can supply and which must be written to maintain independence.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-06-dpc1-why-patterns-look-different-in-modern-cpp/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/8977fda5639bc15e8439e523cb99774a7bad3d64/DPC-06-dpc1-why-patterns-look-different-in-modern-cpp/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-06-dpc1-why-patterns-look-different-in-modern-cpp/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/8977fda5639bc15e8439e523cb99774a7bad3d64/DPC-06-dpc1-why-patterns-look-different-in-modern-cpp/solution"
 				},
 				{
 					title: "Modern Ownership Transfer Practice",
@@ -182,27 +181,27 @@ const designPatternsInCppSourceCourse: RawCourse = {
 				},
 				{
 					title: "DPC2 Design Foundations: Core Project",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle: "DPC2 Design Foundations",
-						projectKind: "core",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"Run the shipping quote starter with a C++20 compiler. The express rate for two parcels is 475 cents, but the starter quotes 200. Trace the Rate parameter as it enters quote. Passing a derived object by value to a base parameter copies only the base part. Change the parameter to use the caller-owned object and preserve virtual dispatch. Keep the policy lifetime long enough for the call.\n\n**Checkpoints:** Two standard parcels cost 200 cents. One and two express parcels cost 275 and 475 cents. An empty express shipment costs zero. Run the express calls through the same base reference and check the complete output.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-07-dpc2-design-foundations/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/8977fda5639bc15e8439e523cb99774a7bad3d64/DPC-07-dpc2-design-foundations/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-07-dpc2-design-foundations/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/8977fda5639bc15e8439e523cb99774a7bad3d64/DPC-07-dpc2-design-foundations/solution"
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "Modern C++ Comparison: Design Foundations",
+					preserveInstructions: true,
+					contentKind: "assignment",
 					content:
-						"For design foundations, compare a textbook heap-heavy version, a modern C++ version, and one short reason the modern version changes shape. Compare an abstract-base-class seam with a simple value object or template and explain which one better fits the boundary.",
+						"Add a second quote function that takes a policy as a template parameter. Test it with a type that implements cents but does not inherit from Rate. Run the original runtime-selected policy through the virtual interface and compare the two call sites.\n\n**Checkpoints:** Use the same one-parcel and empty-shipment cases. Identify which version can select among several derived rate objects at runtime and which can accept an unrelated type with a compatible operation.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-07-dpc2-design-foundations/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/8977fda5639bc15e8439e523cb99774a7bad3d64/DPC-07-dpc2-design-foundations/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-07-dpc2-design-foundations/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/8977fda5639bc15e8439e523cb99774a7bad3d64/DPC-07-dpc2-design-foundations/solution"
 				},
 				{
 					title: "Interface Contract Transfer Practice",
