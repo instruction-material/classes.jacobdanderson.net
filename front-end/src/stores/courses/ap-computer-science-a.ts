@@ -1,4 +1,5 @@
 import type { RawCourse, RawCourseModuleItem } from "./types";
+import { apBinarySearchResources } from "@/modules/apComputerScienceAResources";
 import { gitCourseGuideLink } from "./classroomReferenceGuides";
 import {
 	staticMediaFilename,
@@ -168,10 +169,12 @@ const apComputerScienceASourceCourse: RawCourse = {
 					projectLink: APCS_README
 				},
 				{
-					title: "Required Textbook",
-					content:
-						"Use Barron's AP Computer Science A Premium, 13th Edition for chapter-based multiple choice and free-response practice aligned to the 2026 exam outline. Keep the textbook aligned with the course sequence instead of treating it as a separate study track. The useful pattern is to read or review the relevant chapter section after the Java concept appears in code, then answer a small set of questions with written justification. Mark any missed question by concept: syntax, tracing, object state, array/list traversal, recursion, runtime, or AP wording. Revisit those marks before each check-in so textbook practice feeds back into code work.",
-					projectLink: BARRONS_TEXTBOOK
+					id: "ap-computer-science-a-general-course-introduction-and-setup-supplemental-required-textbook",
+					title: "Practice Resources",
+					content: `Use the course lessons and project checks, the sample questions in the [College Board course description](${AP_CSA_CED}), and the [released 2026 free-response set](${AP_2026_FRQ}) for free practice. Pick questions that match the current lesson, explain each answer with a code trace or rubric item, and review missed concepts at the next check-in. Barron's AP Computer Science A Premium, 13th Edition is an optional source of additional questions aligned to the 2026 exam outline.`,
+					projectLink: BARRONS_TEXTBOOK,
+					contentKind: "reading",
+					preserveInstructions: true
 				},
 				{
 					title: "Reference Pack",
@@ -283,7 +286,7 @@ const apComputerScienceASourceCourse: RawCourse = {
 				{
 					title: "Barron's Chapter 2 Habit",
 					content:
-						"Start multiple-choice tracing early. The APCS1 chapter work is mainly about casting, output, and expression evaluation, so justify answer choices line by line."
+						"Use the supplied expression or the free course-description sample questions to practice casting, output, and evaluation. Predict the exact result and justify each line. The matching textbook questions offer additional practice."
 				}
 			],
 			supplementalProjects: [
@@ -339,7 +342,7 @@ const apComputerScienceASourceCourse: RawCourse = {
 				{
 					title: "Chapter 2 Multiple Choice Focus",
 					content:
-						"Barron's Chapter 2 work belongs here because integer division, casting, precedence, and boolean logic are justified without running code. For each missed question, write the expression evaluation in order: parentheses, multiplication or division, remainder, addition or subtraction, relational comparison, and boolean combination. The useful evidence is not only the selected letter but the trace that proves why the other choices are impossible. Keep at least one example where Java's integer division differs from calculator intuition. Add one explanation that names whether Java evaluates an expression as `int`, `double`, `boolean`, or `String` before choosing the answer."
+						"Use the expressions from Verifying Expressions or the free course-description sample questions. Trace parentheses, arithmetic, comparison, and boolean logic before running the code. Explain one example where integer division differs from decimal division, and record the type and value of one expression. The matching textbook chapter is an optional source of similar questions."
 				}
 			],
 			supplementalProjects: [
@@ -1372,7 +1375,7 @@ const apComputerScienceASourceCourse: RawCourse = {
 							"Test the smallest valid input, a typical input, and an input near a boundary."
 						],
 						apReasoning:
-							"The AP emphasis is method behavior and traceability. A recursive method that works for one sample but lacks a defensible base case remains fragile.",
+							"Optional Java enrichment. AP CSA assesses tracing recursive methods. This project extends that skill by designing a method and checking how its base case works.",
 						checks: [
 							"The recursive call uses a smaller or simpler input.",
 							"Return values combine correctly after the recursive call returns.",
@@ -1396,7 +1399,7 @@ const apComputerScienceASourceCourse: RawCourse = {
 							"Recurse up, down, left, and right to cover the connected blob."
 						],
 						apReasoning:
-							"This is AP CSA Java reasoning for 2D arrays plus recursion. The correctness depends on the base-case order, row/column bounds, and marking the current cell before recursive expansion.",
+							"Optional Java enrichment. Use the required tracing skills to explain base-case order, row and column bounds, and the effect of marking a cell before exploring its neighbors.",
 						checks: [
 							"Starting on an empty cell changes nothing.",
 							"Starting outside the grid is handled safely.",
@@ -1470,25 +1473,28 @@ const apComputerScienceASourceCourse: RawCourse = {
 				{
 					title: "Core Project: Binary Search",
 					content: apProject({
-						goal: "Implement iterative and recursive binary search while making the sorted-data precondition and bound updates explicit.",
+						goal: "Trace binary search in the runnable Java starter and explain how the sorted-data precondition makes each range reduction valid.",
 						steps: [
 							"State the sorted-data precondition before using the algorithm.",
 							"Trace at least one search by recording the low, high, and middle indices at each step.",
-							"Move the lower or upper bound past the middle after each failed comparison.",
-							"Return the correct result when the target is found or when the range becomes empty."
+							"Trace the missing target 7, recording the midpoint value, discarded range, and first empty interval.",
+							"Run Main.java to compare the predicted results for first, middle, last, missing, and empty cases."
 						],
 						apReasoning:
-							"AP CSA Java reasoning connects the code to halving behavior. The iterative version exposes loop invariants, while the recursive version exposes base cases and smaller search ranges.",
+							"The AP skill is determining each step and result. In the starter data `[-6, -1, 2, 2, 5, 9, 14]`, a search for 9 begins at indices 0–6. Index 3 holds 2, so only indices 4–6 remain. Index 5 holds 9, so the method returns true. Each call narrows the inclusive interval or returns a result.",
 						checks: [
-							"The target at the first, middle, and last positions is found.",
-							"The absent-target case terminates when bounds cross.",
-							"The recursive version changes the range on every recursive call."
+							"The predicted first, middle, and last targets are found.",
+							"The trace of an absent target ends when the bounds cross.",
+							"The empty case finishes before reading an array element."
 						],
 						extension:
-							"Return the found index instead of a boolean and decide what to return when duplicates exist."
+							"For optional Java practice, complete binaryIterative and compare it with the supplied recursive method on the same inputs."
 					}),
-					projectLink: repo("APCS16-Binary-Search/starter"),
-					solutionLink: repo("APCS16-Binary-Search/solution"),
+					projectLink: apBinarySearchResources.starter,
+					solutionLink: apBinarySearchResources.reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true,
 					mediaLink: media("apcs16-project-1-binary-search.mp4")
 				},
 				{
@@ -1526,7 +1532,7 @@ const apComputerScienceASourceCourse: RawCourse = {
 							"Merge the two sorted halves into one sorted result."
 						],
 						apReasoning:
-							"AP CSA Java reasoning for merge sort depends on recognizing the recursive structure and the linear work at each merge level. The algorithm has no best-case shortcut like insertion sort.",
+							"Optional Java enrichment. Required AP practice traces how an existing merge sort splits and combines its ranges. This project implements the algorithm and measures the work.",
 						checks: [
 							"Empty, single-element, duplicate-heavy, and already sorted arrays are handled.",
 							"The merge helper assumes sorted inputs and preserves every element.",
@@ -1677,7 +1683,7 @@ const AP_CSA_ENRICHMENT_MODULES = new Set([
 ]);
 
 const AP_CSA_REFERENCE_ITEMS = new Set([
-	"Required Textbook",
+	"Practice Resources",
 	"Reference Pack",
 	"Loop Reference Pack",
 	"Array Reference Pack",
@@ -1908,7 +1914,7 @@ const AP_CSA_MODULE_FLOW: Record<
 			"termination"
 		],
 		flowNote:
-			"Identify base cases, recursive calls, parameter progress, and returned values for Strings and collections. Trace zero or empty, one-step, ordinary, and rejected inputs; newer Java features and tail-recursion optimization are outside the assessed path."
+			"Trace parameters, base cases and returns for recursive methods using Strings and collections. Compare zero or empty, one-step, ordinary, and rejected inputs. Writing recursive methods is optional Java enrichment."
 	},
 	"APCS16 Binary Search and Merge Sort": {
 		estimatedTime: "4 sessions · 45–60 minutes each",
@@ -1980,7 +1986,7 @@ function alignApCsaCheckInItem(
 }
 
 function apCsaSupplementalPath(item: RawCourseModuleItem) {
-	return /extension|challenge|inheritance|polymorphism|legacy|2020|2022|next course/i.test(
+	return /extension|challenge|inheritance|polymorphism|optional Java enrichment|legacy|2020|2022|next course/i.test(
 		`${item.title}\n${item.content}`
 	)
 		? ("challenge" as const)

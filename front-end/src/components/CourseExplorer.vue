@@ -23,6 +23,7 @@ import {
 } from "vue";
 import { routeLocationKey, routerKey } from "vue-router";
 import { api } from "@/api";
+import { apComputerScienceAProjectKey } from "@/modules/apComputerScienceAResources";
 import { assemblyCourseProjectKey } from "@/modules/assemblyProjectResources";
 import { c17CourseProjectKey } from "@/modules/c17ProjectResources";
 import {
@@ -1859,7 +1860,12 @@ function ideStarterHref(item: CourseModuleItem, resource: ResourceLink) {
 																			.id ===
 																	  "usaco-silver"
 																	? silverJavaProjectKey
-																	: goldHistoricalProjectKey)(
+																	: selectedCourse
+																				.value
+																				.id ===
+																		  "ap-computer-science-a"
+																		? apComputerScienceAProjectKey
+																		: goldHistoricalProjectKey)(
 			selectedCourse.value.id,
 			item.id,
 			resource.kind === "solution" ? "reference" : "starter",

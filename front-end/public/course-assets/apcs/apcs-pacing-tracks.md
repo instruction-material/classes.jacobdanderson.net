@@ -149,7 +149,7 @@ Before choosing a track, check these five signals.
 | APCS12 Wrappers                 | Separate primitives, wrappers, and references carefully.          | One deck/card model.                         | Required if wrapper behavior is weak.                         | Extend card/deck design with comparison helpers.                        | Review wrapper and collection questions.              |
 | APCS13 Runtime/Search           | Trace first, then implement.                                      | Required core.                               | Required core.                                                | Add runtime comparisons and written complexity notes.                   | Multiple choice on runtime and search.                |
 | APCS14 Sorting                  | Trace selection and insertion sort before coding.                 | Required core.                               | Required core.                                                | Add instrumentation and compare passes.                                 | Trace sorting states by pass.                         |
-| APCS15 Recursion                | Stack-frame diagrams before code.                                 | Required core.                               | Required core.                                                | Add grid or tree recursion variants.                                    | FRQ-style recursion tracing.                          |
+| APCS15 Recursion                | Draw stack frames for supplied methods.                            | Trace inputs, calls and returns.             | Trace inputs, calls and returns.                              | Write grid or tree methods as optional Java enrichment.                 | Trace a supplied recursive method.                    |
 | APCS16 Binary Search/Merge Sort | Trace halving and merge steps before coding.                      | Required core.                               | Required core.                                                | Add precondition checks and complexity notes.                           | Timed algorithm traces.                               |
 | APCS17 Capstone/Test Prep       | One smaller capstone plus guided FRQs.                            | Capstone plus exam practice.                 | One capstone or official FRQ cycle.                           | Capstone with written design notes and edge cases.                      | Official FRQs, scoring guidelines, and timed review.  |
 
@@ -207,7 +207,7 @@ Best fit: the normal course sequence is appropriate but duplicate work should be
 1. Complete one representative project per module.
 2. Replace duplicate projects with one FRQ-style trace or multiple-choice set.
 3. Keep check-ins as quick skill audits rather than long formal assessments.
-4. Barron's questions follow the matching topic.
+4. Use the course checks or College Board's free course-description sample questions after the matching topic. A textbook can supply extra questions.
 5. End each module with a short explanation of the concept, one edge case, and one likely AP scoring detail.
 
 ### Quick Track

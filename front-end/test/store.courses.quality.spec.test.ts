@@ -1055,7 +1055,7 @@ describe("course text quality normalization", () => {
 			{
 				courseId: "ap-computer-science-a",
 				moduleTitle: "General: Course Introduction and Setup",
-				itemTitle: "Required Textbook"
+				itemTitle: "Practice Resources"
 			},
 			{
 				courseId: "ap-computer-science-a",
@@ -1110,11 +1110,13 @@ describe("course text quality normalization", () => {
 		const course = await loadRawCourse("ap-computer-science-a");
 		expect(course).not.toBeNull();
 
-		const item = findItem(course!, /^Required Textbook$/);
+		const item = findItem(course!, /^Practice Resources$/);
 		expect(item.content).toContain(
 			"Barron's AP Computer Science A Premium, 13th Edition"
 		);
 		expect(item.content).toContain("2026 exam outline");
+		expect(item.content).toContain("an optional source");
+		expect(item.content).toContain("apcentral.collegeboard.org");
 		expect(item.projectLink).toContain("simonandschuster.com");
 		expect(item.projectLink).toContain("9798349700354");
 		expect(item.projectLink).not.toContain("1506287913");
