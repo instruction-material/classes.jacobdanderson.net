@@ -156,6 +156,9 @@ const karelWorldsModuleId =
 const karelSyntaxModuleId =
 	"java-level-1-j1b-visual-java-syntax-types-objects-and-methods";
 
+const consoleProjectSource =
+	"https://github.com/instruction-material/Java-Level-1/tree/0d9ddad588fd37a68c68c5f035d40702450eb283";
+
 const javaLevel1SourceCourse: RawCourse = {
 	name: "Java Level 1",
 	modules: [
@@ -280,47 +283,47 @@ const javaLevel1SourceCourse: RawCourse = {
 				{
 					title: "Introductions and Java Setup",
 					content:
-						"Move from visual robot programs into console Java only after the robot trace is comfortable. Keep the same compile-run-observe habit, now using `main()`, `System.out.print`, variables, and typed input to make program state visible through output instead of a grid."
+						"A console program starts in `main`. Save the following as `Main.java`. From that folder, run `javac Main.java`, then `java Main`. The compiler produces Main.class. The second command runs it.\n\n```java\nclass Main {\n    public static void main(String[] args) {\n        int blocks = 3;\n        System.out.println(\"Blocks: \" + blocks);\n    }\n}\n```\n\nThe output is `Blocks: 3`. Change 3 to 4 and compile again. The printed value plays the same role as a robot’s final grid position: it gives an observation to compare with a prediction."
 				},
 				{
 					title: "Optional Python-to-Java Bridge",
 					content:
-						"The `Python to Java and C++ Bridge` course or its equivalent addendum fits before or alongside the first Java module when the Python sequence is already familiar. The point is to translate typed variables, method signatures, `Scanner`, and compiler feedback into familiar concepts rather than treating Java as a fresh start."
+						"For students coming from Python, compare these two lines inside their usual program entry points. Python: `parts = 5 // 2`. Java: `int parts = 5 / 2;`. Both produce 2 here because the operands are positive integers. In Java, `5 / 2.0` produces 2.5 and needs a double for a result with a fractional part.\n\nPython’s input() and Java’s Scanner.nextLine() both read a line as text. Assigning \"12\" to an int in Java requires a conversion, such as `Integer.parseInt(\"12\")`. The optional Python to Java and C++ Bridge course develops these translations further."
 				},
 				{
 					title: "Primitive Types",
 					content:
-						"This module covers the built-in Java types `int`, `double`, `char`, and `boolean`, along with declaring variables, assigning values, printing them, and noticing Java syntax such as semicolons and single quotes for characters.",
+						"A primitive variable stores a value of its declared type. Inside `main`, declare `int stops = 3;`, `double minutes = 2.5;`, `char platform = 'B';`, and `boolean open = true;`. An int counts whole stops, a double can include a fractional part, a char holds one UTF-16 code unit, and a boolean holds true or false.\n\nAfter `stops = stops + 1;`, `System.out.println(stops * minutes);` prints `10.0`. The assignment changed stops to 4. Multiplication with a double produces a double. Predict the result if minutes is changed to 1.5 before running again.",
 					solutionLink:
 						"https://github.com/instruction-material/Java-Level-1/tree/main/JS1-Primitives"
 				},
 				{
 					title: "Strings",
 					content:
-						"Use `String` values, compare them with primitive types, and practice built-in string methods such as `length()`, `charAt()`, and `substring()`. Then combine strings with other values using concatenation."
+						"A `String` contains text in double quotes. For `String ship = \"Comet\";`, `ship.length()` is 5 and indices run from 0 through 4. `ship.charAt(2)` gives the character 'm'. `ship.substring(1, 4)` gives \"ome\": the first index is included and the second is excluded. Neither call changes ship.\n\nFor four letters, integer division chooses the index to the right of center: in \"mars\", length / 2 is 2 and the character is 'r'. The empty string has length 0 and has no valid character index. Check the length before calling charAt."
 				},
 				{
 					title: "Input and Output",
 					content:
-						"Import `Scanner`, create a scanner object, prompt the user with `System.out.print`, and store responses with methods such as `nextLine()`."
+						"Import `java.util.Scanner` above the class and put these lines inside `main`.\n\n```java\nScanner input = new Scanner(System.in);\nSystem.out.println(\"Destination?\");\nif (input.hasNextLine()) {\n    String destination = input.nextLine();\n    System.out.println(\"Next stop: \" + destination);\n}\n```\n\nEntering `Coral Moon` prints `Next stop: Coral Moon`. nextLine reads the entire line, including the internal space. Pressing Enter on an empty line supplies an empty string. End of input means there is no line to read. To require a nonblank answer, trim the line, check its length, and ask again when that length is zero."
 				},
 				{
 					title: "JS1 Project 1: Chat Bot",
 					content:
 						"Create a chatbot that asks at least five questions, stores the user's answers, and prints customized responses using string concatenation and input handling.",
 					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS1-Chat-Bot",
+						`${consoleProjectSource}/JS1-Chat-Bot/starter`,
 					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS1-Chat-Bot"
+						`${consoleProjectSource}/JS1-Chat-Bot/solution`
 				},
 				{
 					title: "JS1 Project 2: First Middle Last",
 					content:
-						"Ask the user for a word and print its first, middle, and last characters. As an optional extension, remove one of those characters using substring logic.",
+						"Read one word made of English letters. Remove surrounding spaces. For a blank line, print `A word is needed.` and finish before indexing. Otherwise print the characters at 0, length / 2, and length - 1, separated by hyphens.\n\nCheck `orbit` → `o-b-t`, `mars` → `m-r-s`, and `x` → `x-x-x`. Explain why the middle index for mars is 2. Optionally use substring to print the word with this middle character removed.",
 					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS1-First-Middle-Last",
+						`${consoleProjectSource}/JS1-First-Middle-Last/starter`,
 					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS1-First-Middle-Last"
+						`${consoleProjectSource}/JS1-First-Middle-Last/solution`
 				}
 			],
 			supplementalProjects: [
@@ -1805,7 +1808,7 @@ function strengthenJavaLevel1Item(
 		return {
 			...item,
 			content:
-				"Create a chatbot that asks at least five fictional, non-sensitive questions, stores the answers, and prints customized responses using string concatenation and robust full-line input handling. Do not request real names, contact details, passwords, health information, or other private data; test blank input and one response containing spaces."
+				"Build a fictional flight log. The starter reads a ship name and prints a greeting. Add questions about a planet, robot pilot, cargo and arrival signal. Store all five answers and print a final message that uses each one. Use the supplied readAnswer helper for full-line input, a blank-input retry and a clean exit at end of input. Use fictional, non-sensitive details for all five prompts.\n\nTest with Solar Kite, Coral Moon, Bolt, wind chimes and two taps. The log should identify who pilots which ship, its destination, what it carries, and its signal. Try a blank line before the pilot and a response containing spaces."
 		};
 	}
 
@@ -1886,7 +1889,9 @@ function decorateJavaLevel1Module(
 					"- The course uses the pinned Java 21 language level; record `java --version` and `javac --version` for the local or classroom environment.",
 					"- Compile a small program with `javac -Xlint:all`, run it from a clean output location, and explain any warning instead of suppressing it without cause.",
 					"- Read full lines with `Scanner.nextLine()` and parse numbers explicitly with `Integer.parseInt()` or `Double.parseDouble()` inside a bounded retry path.",
-					"- Verify a normal value, a response containing spaces, blank input, invalid numeric input, and a corrected retry without a stale newline."
+					"- Verify a normal value, a response containing spaces, blank input, invalid numeric input, and a corrected retry without a stale newline.",
+					"",
+					"Place this example in main after creating a Scanner named input. With the input lines “three” and “3”, the first attempt prints a correction and the second prints `Tickets: 3`. Two invalid lines use up both attempts. An empty input stream ends immediately.\n\n```java\nfor (int attempt = 0; attempt < 2 && input.hasNextLine(); attempt++) {\n    String line = input.nextLine();\n    try {\n        int tickets = Integer.parseInt(line.trim());\n        System.out.println(\"Tickets: \" + tickets);\n        break;\n    } catch (NumberFormatException error) {\n        System.out.println(\"Enter a whole number.\");\n    }\n}\n```"
 				].join("\n"),
 				learningPath: "core"
 			}

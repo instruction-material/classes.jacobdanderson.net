@@ -1744,6 +1744,12 @@ pgzrun.go()
 			)
 		).toBe("cpp");
 		expect(pythonIdeModeForCourseId("java-level-1")).toBe("karel");
+		expect(
+			pythonIdeModeForCourseResource(
+				"java-level-1",
+				"https://github.com/instruction-material/Java-Level-1/tree/0d9ddad588fd37a68c68c5f035d40702450eb283/JS1-Chat-Bot/starter"
+			)
+		).toBe("java");
 		expect(pythonIdeModeForCourseId("java-level-2")).toBe("java");
 		expect(pythonIdeModeForCourseId("ap-computer-science-a")).toBe("java");
 		expect(pythonIdeModeForCourseId("scratch-level-1")).toBeNull();

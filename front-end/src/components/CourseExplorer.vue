@@ -1884,6 +1884,10 @@ function ideStarterHref(item: CourseModuleItem, resource: ResourceLink) {
 		starterLabel: resource.label,
 		lesson: itemAnchorId(activeModuleId.value, item.id)
 	});
+	if (selectedCourse.value.id === "java-level-1" && mode === "java") {
+		// Keep saved Karel imports accessible when opening the corrected Java workspace.
+		params.set("projectKey", `${params.get("projectKey")}:java`);
+	}
 	if (selectedCourse.value.id === "data-science-in-python") {
 		params.set(
 			"projectKey",
