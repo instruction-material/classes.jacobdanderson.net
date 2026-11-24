@@ -76,6 +76,7 @@ import speakingAdditions from "../../test/fixtures/public-speaking-restored-iden
 import smartMoneyAdditions from "../../test/fixtures/smart-money-restored-identities.json";
 
 const writingAssignmentCounts = new Map([
+	["middle-school-a-literature", 40],
 	["middle-school-b-writing", 48],
 	["middle-school-b-writing-retake", 54],
 	["novel-writing", 44]

@@ -3,6 +3,8 @@ import {
 	formatAuthoredAssignment,
 	formatAuthoredReading
 } from "./authoredReading";
+import { middleSchoolLiteraturePractice } from "./middleSchoolLiteraturePractice";
+import { applyWritingPractice } from "./writingPractice";
 
 const gardenPoem = `
 ## Original practice poem: After the Storm
@@ -394,5 +396,6 @@ export function applyMiddleSchoolLiteratureReadings(
 				preserveAssignment: true
 			}))
 		];
+		applyWritingPractice(module, middleSchoolLiteraturePractice);
 	}
 }
