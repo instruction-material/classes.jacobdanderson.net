@@ -3,6 +3,7 @@ import {
 	apBinarySearchResources,
 	apBlobEraseResources,
 	apElevatorWarningResources,
+	apIntroductoryResources,
 	apMergeSortResources,
 	apRecursionPracticeResources,
 	apRecursionReferenceResources,
@@ -301,18 +302,50 @@ const apComputerScienceASourceCourse: RawCourse = {
 			supplementalProjects: [
 				{
 					title: "Project: Rounding It Off",
-					content:
-						"This project drills casting-based rounding without relying on `Math` helpers. The useful checkpoint is explaining why adding `0.5` before an integer cast works for positive values and where that shortcut would need more care.",
-					projectLink: repo("APCS1-Rounding-It-Off/starter"),
-					solutionLink: repo("APCS1-Rounding-It-Off/solution"),
+					content: apProject({
+						goal: "Use casts and arithmetic to round practice amounts between 0 and 999999.",
+						steps: [
+							"Run Main.java and enter 27.5. The supplied integer cast gives 27.",
+							"For rounding up, start at the cast value. Add one only if the original amount is greater than that value.",
+							"To round to a nearest multiple, divide by the step, add 0.5, cast, and multiply by the step. Use steps of 1, 10, and 100."
+						],
+						apReasoning:
+							"Before casting, adding 0.5 moves a value at or above the halfway point into the next interval.",
+						checks: [
+							"For 27.5, down and up are 27 and 28. The nearest 1, 10, and 100 give 28, 30, and 0.",
+							"At 30.0, both down and up stay 30. Check ties at 5.0 for tens and 50.0 for hundreds."
+						]
+					}),
+					projectLink: apIntroductoryResources.rounding.starter,
+					solutionLink: apIntroductoryResources.rounding.reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true,
 					mediaLink: media("apcs1-project-2-rounding-it-off.mp4")
 				},
 				{
 					title: "Project: Hospital Survey",
-					content:
-						"This project gives another structured pass through typed input, variable naming, and console formatting. The check is that numeric and text inputs are read with the correct scanner method and then reported with useful labels.",
-					projectLink: repo("APCS1-Hospital-Survey/starter"),
-					solutionLink: repo("APCS1-Hospital-Survey/solution"),
+					content: apProject({
+						goal: "Read and label a fictional practice record with text, a whole number, and a Boolean.",
+						steps: [
+							"Run Main.java and enter PRACTICE-17, 12, Sample queue comment, and true on four separate lines.",
+							"The starter reads the code and wait. After nextInt, call nextLine once to consume the rest of that line.",
+							"Read the following comment with nextLine and the final field with nextBoolean. Print each value with a label."
+						],
+						apReasoning:
+							"Trace which reads consume a token and which consume a line. Preserve the spaces within the comment.",
+						checks: [
+							"The output reports 12 minutes, the complete comment, and true.",
+							"Try another fictional record with an empty comment and false on the last line."
+						]
+					}),
+					projectLink:
+						apIntroductoryResources["hospital-survey"].starter,
+					solutionLink:
+						apIntroductoryResources["hospital-survey"].reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true,
 					mediaLink: media("apcs1-project-3-hospital-survey.mp4")
 				},
 				{
@@ -357,10 +390,29 @@ const apComputerScienceASourceCourse: RawCourse = {
 			supplementalProjects: [
 				{
 					title: "Project: Quotient and Remainder",
-					content:
-						"This build reinforces integer division and remainder reasoning before `%` becomes automatic. The explanation connects quotient, remainder, truncation, and unit meaning rather than only reporting two numbers.",
-					projectLink: repo("APCS2-Quotient-and-Remainder/starter"),
-					solutionLink: repo("APCS2-Quotient-and-Remainder/solution"),
+					content: apProject({
+						goal: "Compute a quotient and remainder and use them to reconstruct the dividend.",
+						steps: [
+							"Run Main.java and enter the dividend first and the divisor second. Use integers from -10000 to 10000.",
+							"Use / for the integer quotient and % for the remainder. Print them with separate labels.",
+							"Use the supplied zero guard to explain when division has no result."
+						],
+						apReasoning:
+							"Multiply the divisor by the quotient and add the remainder to recover the original dividend.",
+						checks: [
+							"For 17 divided by 5, the quotient is 3 and the remainder is 2. For 12 divided by 4, the remainder is 0.",
+							"For -17 divided by 5, check quotient -3 and remainder -2. For 7 divided by 0, expect the guard message."
+						]
+					}),
+					projectLink:
+						apIntroductoryResources["quotient-and-remainder"]
+							.starter,
+					solutionLink:
+						apIntroductoryResources["quotient-and-remainder"]
+							.reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true,
 					mediaLink: media(
 						"apcs2-project-1-quotient-and-remainder.mp4"
 					)
@@ -381,10 +433,25 @@ const apComputerScienceASourceCourse: RawCourse = {
 				},
 				{
 					title: "Project: Two in One",
-					content:
-						"This one-line boolean exercise develops concise reasoning about relationships between values. The goal is to write one readable compound expression, then justify the expression with at least one matching case and one non-matching case.",
-					projectLink: repo("APCS2-Two-In-One/starter"),
-					solutionLink: repo("APCS2-Two-In-One/solution"),
+					content: apProject({
+						goal: "Determine whether two of three input values sum to the remaining value.",
+						steps: [
+							"Run Main.java and enter three integers from -10000 to 10000. The starter reads the three positions and prints a placeholder result.",
+							"Write three comparisons, one for each possible remaining position. Join them with ||."
+						],
+						apReasoning:
+							"Show which comparison is true for a matching input. For a nonmatching input, show why all three comparisons are false.",
+						checks: [
+							"2 3 5, 5 2 3, and 2 5 3 all give true.",
+							"2 2 4 and -2 3 1 give true. 2 3 6 gives false."
+						]
+					}),
+					projectLink: apIntroductoryResources["two-in-one"].starter,
+					solutionLink:
+						apIntroductoryResources["two-in-one"].reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true,
 					mediaLink: media("apcs2-project-4-two-in-one.mp4")
 				}
 			]

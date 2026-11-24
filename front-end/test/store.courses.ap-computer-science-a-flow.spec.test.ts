@@ -5,6 +5,7 @@ import {
 	apBlobEraseResources,
 	apComputerScienceAProjectKey,
 	apElevatorWarningResources,
+	apIntroductoryResources,
 	apMergeSortResources,
 	apRecursionPracticeResources,
 	apRecursionReferenceResources,
@@ -231,6 +232,26 @@ describe("AP Computer Science A learner flow", () => {
 				requireModule("APCS5 Classes Part I").curriculum,
 				"Core Project: Student Class", "core",
 				apStudentClassResources, "student-class"
+			],
+			[
+				requireModule("APCS1 Variables and Input/Output").supplementalProjects,
+				"Project: Rounding It Off", "choice",
+				apIntroductoryResources.rounding, "rounding"
+			],
+			[
+				requireModule("APCS1 Variables and Input/Output").supplementalProjects,
+				"Project: Hospital Survey", "choice",
+				apIntroductoryResources["hospital-survey"], "hospital-survey"
+			],
+			[
+				requireModule("APCS2 Operators").supplementalProjects,
+				"Project: Quotient and Remainder", "choice",
+				apIntroductoryResources["quotient-and-remainder"], "quotient-and-remainder"
+			],
+			[
+				requireModule("APCS2 Operators").supplementalProjects,
+				"Project: Two in One", "choice",
+				apIntroductoryResources["two-in-one"], "two-in-one"
 			]
 		] as const;
 		for (const [items, title, learningPath, links, projectKind] of tasks) {

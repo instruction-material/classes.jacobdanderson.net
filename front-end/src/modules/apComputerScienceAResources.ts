@@ -6,6 +6,8 @@ const earlyCorePacks =
 	"https://github.com/instruction-material/APCS/tree/932287d8e26661b0635478f9215ec7e7e12c74ad";
 const remainingCorePacks =
 	"https://github.com/instruction-material/APCS/tree/cd756a50230e8ae0736ced745f75231f4cd3fb40";
+const introductoryPacks =
+	"https://github.com/instruction-material/APCS/tree/55c644daf81e78318e3539f82ae027e69437bc76";
 
 function projectRoles(pack: string) {
 	return {
@@ -50,6 +52,17 @@ export const apRemainingCoreResources = {
 	spaceships: projectRoles(`${remainingCorePacks}/APCS17-Spaceships`)
 };
 
+export const apIntroductoryResources = {
+	rounding: projectRoles(`${introductoryPacks}/APCS1-Rounding-It-Off`),
+	"hospital-survey": projectRoles(
+		`${introductoryPacks}/APCS1-Hospital-Survey`
+	),
+	"quotient-and-remainder": projectRoles(
+		`${introductoryPacks}/APCS2-Quotient-and-Remainder`
+	),
+	"two-in-one": projectRoles(`${introductoryPacks}/APCS2-Two-In-One`)
+};
+
 const restoredProjects = {
 	"binary-search-trace": apBinarySearchResources,
 	"recursion-practice": apRecursionPracticeResources,
@@ -58,7 +71,8 @@ const restoredProjects = {
 	"merge-sort": apMergeSortResources,
 	"elevator-warning": apElevatorWarningResources,
 	"student-class": apStudentClassResources,
-	...apRemainingCoreResources
+	...apRemainingCoreResources,
+	...apIntroductoryResources
 };
 
 export function apComputerScienceAProjectKey(
