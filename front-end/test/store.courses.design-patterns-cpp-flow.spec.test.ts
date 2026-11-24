@@ -1,3 +1,5 @@
+import { createPinia, setActivePinia } from "pinia";
+import { useCoursesStore } from "@/stores/courses";
 import { describe, expect, it } from "vitest";
 import { designPatternsInCppCourse } from "@/stores/courses/design-patterns-in-cpp";
 
@@ -196,4 +198,29 @@ describe("Design Patterns in C++ learner flow", () => {
 			"clang.llvm.org/docs/UndefinedBehaviorSanitizer"
 		);
 	});
+});
+
+it("keeps the factory and service assignments distinct in the student reader", async () => {
+	setActivePinia(createPinia());
+	const course = await useCoursesStore().loadCourseById("design-patterns-in-cpp");
+	expect(course).toBeTruthy();
+	const modules = course!.modules.filter(module =>
+		/^(DPC3 Factory|DPC9 Singleton)/.test(module.title)
+	);
+	expect(modules).toHaveLength(2);
+	for (const module of modules) {
+		const core = module.curriculum.filter(item => item.projectLink?.endsWith("/starter"));
+		const options = module.supplementalProjects;
+		expect(core).toHaveLength(1);
+		expect(options).toHaveLength(3);
+		const projects = [...core, ...options];
+		expect(new Set(projects.map(item => item.projectLink)).size).toBe(3);
+		expect(new Set(projects.map(item => item.content)).size).toBe(4);
+		for (const project of projects) {
+			expect(project.projectLink).toMatch(/\/tree\/[0-9a-f]{40}\/[^/]+\/starter$/);
+			expect(project.solutionLink).toBeFalsy();
+			expect(project.content).toContain("**Checkpoints:**");
+			expect(project.content).not.toMatch(/diagnostic run|tooling check/);
+		}
+	}
 });

@@ -289,31 +289,25 @@ const designPatternsInCppSourceCourse: RawCourse = {
 				},
 				{
 					title: "Creation Pattern Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle:
-							"DPC3 Factory Method, Abstract Factory, and Builder",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"A print job surrounds a label with square brackets. The starter hard-codes Domestic inside PrintJob::print, even though each subclass provides makeFormatter(). Compile main.cpp with C++20 and compare the domestic and international outputs for Lima. Refactor the shared print operation to request and use the product created by the virtual factory method. Keep the framing code in the base class.\n\n**Checkpoints:** Both labels retain their brackets. A domestic job prints [DOM Lima] and an international job prints [INTL Lima]. Add a pickup formatter and job, then use them through a PrintJob reference without adding a branch to print().",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-07-dpc3-factory-method-abstract-factory-and-builder-supplemental-2/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/81684adf1a90d3864f3f2d670ef25a7579b2b9b2/DPC-07-dpc3-factory-method-abstract-factory-and-builder-supplemental-2/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-07-dpc3-factory-method-abstract-factory-and-builder-supplemental-2/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/81684adf1a90d3864f3f2d670ef25a7579b2b9b2/DPC-07-dpc3-factory-method-abstract-factory-and-builder-supplemental-2/solution"
 				},
 				{
 					title: "Builder Family Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle:
-							"DPC3 Factory Method, Abstract Factory, and Builder",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"Build an event listing with a required title, an optional room and a positive capacity. The starter accepts invalid listings and ignores configured fields. Compile main.cpp with C++20. Change ListingBuilder::build to return an empty optional for a missing title or a nonpositive capacity. A valid listing owns its values so that later builder changes leave existing listings intact.\n\n**Checkpoints:** Maps begins with online and one seat. A second build for Lab A has twelve seats. The original listing keeps its first room and capacity. Add tests for a capacity of minus one and the smallest valid capacity.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-08-dpc3-factory-method-abstract-factory-and-builder-supplemental-3/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/81684adf1a90d3864f3f2d670ef25a7579b2b9b2/DPC-08-dpc3-factory-method-abstract-factory-and-builder-supplemental-3/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-08-dpc3-factory-method-abstract-factory-and-builder-supplemental-3/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/81684adf1a90d3864f3f2d670ef25a7579b2b9b2/DPC-08-dpc3-factory-method-abstract-factory-and-builder-supplemental-3/solution"
 				}
 			]
 		},
