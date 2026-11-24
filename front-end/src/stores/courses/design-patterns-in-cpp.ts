@@ -359,29 +359,25 @@ const designPatternsInCppSourceCourse: RawCourse = {
 				},
 				{
 					title: "Strategy Policy Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle: "DPC4 Strategy and Policy-Based Design",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"Build a print scheduler that can select its scheduling strategy when the program starts. Run the starter with no argument for arrival order, then with shortest for shortest-job-first. Both modes currently select the first pending job. Complete ShortestJob so it compares durations each time the scheduler needs a job. Preserve arrival order among jobs with equal durations. Leave the queue and output loop independent of the strategy selected by the caller.\n\n**Checkpoints:** The demo queue contains poster (8), card (2), label (2) and map (5). Arrival order is poster, card, label, map. Shortest order is card, label, map, poster. Try a single job and an empty queue, then explain which part owns the pending jobs and which part only inspects them.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-09-dpc4-strategy-and-policy-based-design-supplemental-2/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/b8f61170b9be30a7e74931a88cf38308a22255ad/DPC-09-dpc4-strategy-and-policy-based-design-supplemental-2/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-09-dpc4-strategy-and-policy-based-design-supplemental-2/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/b8f61170b9be30a7e74931a88cf38308a22255ad/DPC-09-dpc4-strategy-and-policy-based-design-supplemental-2/solution"
 				},
 				{
 					title: "Policy Design Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle: "DPC4 Strategy and Policy-Based Design",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"Build a temperature alarm whose threshold and comparison rule are fixed by its type. The starter passes each integer reading to the policy selected by a template argument. `AtLeast<30>` already includes its boundary. Implement `OutsideBand<Low, High>` so it flags values strictly outside the inclusive range. Require the lower limit to be no greater than the upper limit at compile time. The same filtering function should work with either policy without a switch.\n\n**Checkpoints:** For readings 9, 10, 20, 30 and 31, `AtLeast<30>` reports 30 and 31. `OutsideBand<10, 30>` reports 9 and 31. Try a zero-width band and an empty sample. Show where the compiler fixes the rule and where the running program supplies the data.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-10-dpc4-strategy-and-policy-based-design-supplemental-3/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/b8f61170b9be30a7e74931a88cf38308a22255ad/DPC-10-dpc4-strategy-and-policy-based-design-supplemental-3/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-10-dpc4-strategy-and-policy-based-design-supplemental-3/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/b8f61170b9be30a7e74931a88cf38308a22255ad/DPC-10-dpc4-strategy-and-policy-based-design-supplemental-3/solution"
 				}
 			]
 		},
@@ -434,29 +430,25 @@ const designPatternsInCppSourceCourse: RawCourse = {
 				},
 				{
 					title: "Observer Event Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle: "DPC5 Observer and Event Flow",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"Route match events to interested listeners. A goal listener should receive goal events only, while a general match log can subscribe to all topics with an empty filter. The caller retains ownership of each listener. Implement publish using the subscription snapshot, the topic on each slot and its weak listener pointer. Deliver matching events in registration order. Releasing the caller’s last shared owner should end delivery to that listener.\n\n**Checkpoints:** Publish a goal and a foul with the scoreboard, referee and general log subscribed. The scoreboard records only the goal, the referee records only the foul and the log records both. Release the referee and publish another foul. The general log still receives it. Predict what happens for an unrecognized topic.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-11-dpc5-observer-and-event-flow-supplemental-2/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/b8f61170b9be30a7e74931a88cf38308a22255ad/DPC-11-dpc5-observer-and-event-flow-supplemental-2/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-11-dpc5-observer-and-event-flow-supplemental-2/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/b8f61170b9be30a7e74931a88cf38308a22255ad/DPC-11-dpc5-observer-and-event-flow-supplemental-2/solution"
 				},
 				{
 					title: "Listener Lifetime Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle: "DPC5 Observer and Event Flow",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"Use a move-only connection to control how long a clock callback receives ticks. The connection owns a shared callback, while the clock keeps a weak reference to it. Moving a connection transfers that ownership. Destroying a connection already releases it. Implement explicit disconnect, then remove expired weak entries at the start of each tick. Preserve the snapshot so a callback attached during a tick starts with the following tick.\n\n**Checkpoints:** Move the first connection into a new variable. The moved-from connection must have no effect when disconnected. After explicitly disconnecting the new owner, only the second callback runs. When its scope ends, the next tick removes the final expired entry. Test a second disconnect and confirm the counts stay unchanged.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-12-dpc5-observer-and-event-flow-supplemental-3/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/b8f61170b9be30a7e74931a88cf38308a22255ad/DPC-12-dpc5-observer-and-event-flow-supplemental-3/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-12-dpc5-observer-and-event-flow-supplemental-3/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/b8f61170b9be30a7e74931a88cf38308a22255ad/DPC-12-dpc5-observer-and-event-flow-supplemental-3/solution"
 				}
 			]
 		},
