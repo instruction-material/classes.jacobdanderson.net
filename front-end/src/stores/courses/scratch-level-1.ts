@@ -303,9 +303,9 @@ Challenge: Trace shapes on other backdrops.
 					title: "Introduction to loops",
 					contentKind: "reading",
 					preserveInstructions: true,
-					content: `A repeat block runs the stack inside it a fixed number of times and then continues below it. Forever keeps cycling until the script or project stops.
+					content: `**Explanation:** A repeat block runs the stack inside it a fixed number of times and then continues below it. Forever keeps cycling until the script or project stops.
 
-For Elephant Effects, attach repeat 10 to the 1 key and put change size by 10 inside. Predict the size after three changes from size 100. Reset before comparing a different count. To see each change, put a short wait inside the repeat. A wait below the repeat pauses just once.
+**Worked example:** For Elephant Effects, attach repeat 10 to the 1 key and put change size by 10 inside. Predict the size after three changes from size 100. Reset before comparing a different count. To see each change, put a short wait inside the repeat. A wait below the repeat pauses just once.
 
 For Drawing Mouse, lower the pen, repeat four pairs of move 40 steps and turn 90 degrees, then lift the pen. The mouse draws a square because the four outside turns add up to 360 degrees. Change the count to three and the turn to 120 degrees for a triangle. Keep the reset and the final pen lift outside the shape loop.`
 				},
