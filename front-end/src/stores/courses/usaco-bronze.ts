@@ -723,13 +723,9 @@ const usacoBronzeSourceCourse: RawCourse = {
 				},
 				{
 					title: "Don't Be Last",
-					content: buildProjectGuidance({
-						courseFamily: "USACO",
-						moduleTitle:
-							"UB 14 Prime Cryptarithm Java: Practice Studio",
-						projectKind: "core",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					content:
+						"Write a Python solution for notlast.in. One partner can tally the named entries while the other keeps the seven-cow roster. For `3` followed by `Bessie 2`, `Elsie 4`, `Bessie 3`, compare the two tables before choosing an answer. The unmentioned cows set the minimum at zero. Elsie’s four is the next distinct total, so write `Elsie` to notlast.out.\n\n**Checkpoints:** Add `Elsie 1` and update the entry count. Both named cows now have five. Check that the output changes to `Tie` and identify which earlier additions contributed to that tie.",
 					projectLink:
 						"https://github.com/instruction-material/USACO-Bronze/tree/main/UB19-Dont-Be-Last/starter",
 					solutionLink:
@@ -792,13 +788,9 @@ const usacoBronzeSourceCourse: RawCourse = {
 				},
 				{
 					title: "Cow Tipping",
-					content: buildProjectGuidance({
-						courseFamily: "USACO",
-						moduleTitle:
-							"UB 15 Ski Course Design Java: Practice Studio",
-						projectKind: "core",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					content:
+						"Use a two-by-two grid for this Python practice. Place the rows `00` and `01` below `2` in cowtip.in. Compare two predictions: how many cells are tipped, and how many allowed rectangles must be toggled? Trace the whole grid, left column, top row and top-left cell in that order. All cows are upright after the fourth move, so cowtip.out contains 4.\n\n**Checkpoints:** Change both rows to `11` and predict 1. Try `11` above `00` for another 1. Identify which rectangle clears each board in one move.",
 					projectLink:
 						"https://github.com/instruction-material/USACO-Bronze/tree/main/UB21-Cow-Tipping/starter",
 					solutionLink:
@@ -851,12 +843,9 @@ const usacoBronzeSourceCourse: RawCourse = {
 				},
 				{
 					title: "Why Did the Cow Cross the Road",
-					content: buildProjectGuidance({
-						courseFamily: "USACO",
-						moduleTitle: "UB 16 Wormholes Java: Practice Studio",
-						projectKind: "core",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					content:
+						"Draw a separate column for each cow in a Python trace. Put `5` followed by `1 0`, `2 1`, `1 0`, `2 0`, `1 1` in crossroad.in. Each row gives the cow ID and the side seen. Cow 1 has sightings 0, 0, 1; cow 2 has 1, 0. Each changes side once. Write their combined count of 2 to crossroad.out.\n\n**Checkpoints:** Change only the last row to `1 0`. The new output is 1. Which cow’s history was affected, and why does its first sighting contribute nothing?",
 					projectLink:
 						"https://github.com/instruction-material/USACO-Bronze/tree/main/UB22-Why-Did-the-Cow-Cross-the-Road/starter",
 					solutionLink:
@@ -864,12 +853,9 @@ const usacoBronzeSourceCourse: RawCourse = {
 				},
 				{
 					title: "Why Did the Cow Cross the Road II",
-					content: buildProjectGuidance({
-						courseFamily: "USACO",
-						moduleTitle: "UB 16 Wormholes Java: Practice Studio",
-						projectKind: "core",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					content:
+						"On paper, arrange `ABCABC` around a circle, then add adjacent pairs `DD`, `EE` and so on through `ZZ`. Use the resulting 52-letter line as circlecross.in. Draw a chord for each cow. A pair must cross when its endpoints alternate around the circle. A, B and C each cross both of the others, giving three unordered pairs in circlecross.out.\n\n**Checkpoints:** Start with `ABAB` and add adjacent pairs from C through Z for a count of 1. Keep the suffix and change the prefix to `ABBA` for 0. Compare the positions between A’s endpoints.",
 					projectLink:
 						"https://github.com/instruction-material/USACO-Bronze/tree/main/UB23-Why-Did-the-Cow-Cross-the-Road-II/starter",
 					solutionLink:
@@ -922,12 +908,9 @@ const usacoBronzeSourceCourse: RawCourse = {
 				},
 				{
 					title: "Why Did the Cow Cross the Road III",
-					content: buildProjectGuidance({
-						courseFamily: "USACO",
-						moduleTitle: "UB 17 Block Game Java: Practice Studio",
-						projectKind: "core",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					content:
+						"Draw a timeline for a single gate. Put `3` and the arrival-duration pairs `8 3`, `2 1`, `5 7` on separate lines in cowqueue.in. In arrival order the gate serves a cow from 2 to 3, waits until 5, then stays busy until 12. The cow that arrived at 8 finishes at 15. Compare that timeline with the finish time your Python program writes to cowqueue.out.\n\n**Checkpoints:** Shorten the seven-unit interview to two units. The last cow now finishes at 11. For simultaneous arrivals `4 2` and `4 3`, both durations count and the finish is 9.",
 					projectLink:
 						"https://github.com/instruction-material/USACO-Bronze/tree/main/UB24-Why-Did-the-Cow-Cross-the-Road-III/starter",
 					solutionLink:
@@ -1026,31 +1009,21 @@ const usacoBronzeSourceCourse: RawCourse = {
 			curriculum: [
 				{
 					title: "UB 19 Don't Be Last Java: Core Concepts",
-					content: buildImplementationLabGuidance({
-						courseFamily: "USACO",
-						moduleTitle:
-							"UB 19 Don't Be Last Java: Practice Studio",
-						section: "concepts"
-					})
+					preserveInstructions: true,
+					content:
+						"Make seven spaces in a table for Bessie, Elsie, Daisy, Gertie, Annabelle, Maggie and Henrietta. Each starts at zero. A log entry adds milk to one cow’s total. With only `Maggie 3` recorded, six cows share the minimum, zero. Maggie is the only cow at the next distinct total, so the answer is Maggie. What happens to that next level if all seven cows produce exactly two units each?"
 				},
 				{
 					title: "UB 19 Don't Be Last Java: Guided Example",
-					content: buildImplementationLabGuidance({
-						courseFamily: "USACO",
-						moduleTitle:
-							"UB 19 Don't Be Last Java: Practice Studio",
-						section: "example"
-					})
+					preserveInstructions: true,
+					content:
+						"Trace `Bessie 2`, `Elsie 4`, `Bessie 3` together. The five unlisted cows finish at zero, Elsie at four and Bessie at five. Cross out every cow at the minimum. The smallest remaining total belongs to Elsie. Add `Elsie 1` and repeat the trace. Now Bessie and Elsie both have five, so notlast.out changes from `Elsie` to `Tie`. Which tie matters in each version?"
 				},
 				{
 					title: "UB 19 Don't Be Last Java: Core Project",
-					content: buildImplementationLabGuidance({
-						courseFamily: "USACO",
-						moduleTitle:
-							"UB 19 Don't Be Last Java: Practice Studio",
-						section: "coreProject",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					content:
+						"Read the entry count from notlast.in and accumulate each name and quantity in Java. Include all seven cows when finding the least total. Among the totals strictly above it, find the smallest and count how many cows have it. Write the unique name or `Tie` to notlast.out.\n\n**Checkpoints:** With `3` followed by `Bessie 2`, `Elsie 4`, `Bessie 3` on separate lines, expect `Elsie`. Append `Elsie 1` and change the count to `4` for `Tie`. Check the one-entry file containing `Maggie 3` separately: it must give `Maggie`.",
 					projectLink:
 						"https://github.com/instruction-material/USACO-Bronze/tree/main/UB-19-Dont-Be-Last-Java/starter",
 					solutionLink:
@@ -1058,24 +1031,17 @@ const usacoBronzeSourceCourse: RawCourse = {
 				},
 				{
 					title: "UB 19 Don't Be Last Java: Review and Reflection",
-					content: buildImplementationLabGuidance({
-						courseFamily: "USACO",
-						moduleTitle:
-							"UB 19 Don't Be Last Java: Practice Studio",
-						section: "review"
-					})
+					preserveInstructions: true,
+					content:
+						"A program returns Bessie for a log containing `Bessie 2`, `Elsie 4`, `Bessie 3`. Compare its table with one that includes five zero totals. If it kept only the two recorded names, four became its minimum and five its next level. The correct answer is Elsie. Reverse the input rows and check again. Reordering additions must leave the answer unchanged. What would a different answer reveal about the update for a repeated name?"
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "UB 19 Don't Be Last Java: Extension Challenge",
-					content: buildImplementationLabGuidance({
-						courseFamily: "USACO",
-						moduleTitle:
-							"UB 19 Don't Be Last Java: Practice Studio",
-						section: "extension",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					content:
+						"Give all seven cows one entry of 2 units each. With seven equal totals there is no higher level, so notlast.out reads `Tie`. Predict the result of adding one unit to Daisy before running it.\n\n**Checkpoints:** Change the first line from `7` to `8` and append `Daisy 1`. Six cows remain at two and Daisy alone reaches three. Compare this `Daisy` result with the original `Tie` and explain why six cows at the minimum still permit a unique answer.",
 					projectLink:
 						"https://github.com/instruction-material/USACO-Bronze/tree/main/UB-19-Dont-Be-Last-Java/starter",
 					solutionLink:
@@ -1116,31 +1082,21 @@ const usacoBronzeSourceCourse: RawCourse = {
 			curriculum: [
 				{
 					title: "UB 20 Hoof Paper Scissors Java: Core Concepts",
-					content: buildImplementationLabGuidance({
-						courseFamily: "USACO",
-						moduleTitle:
-							"UB 20 Hoof Paper Scissors Java: Practice Studio",
-						section: "concepts"
-					})
+					preserveInstructions: true,
+					content:
+						"The same three numbers stand for hoof, paper and scissors throughout the log. Paper beats hoof, hoof beats scissors and scissors beats paper. Draw one possible assignment next to the rows `1 2` and `2 1`. Reversing the order reverses the winner, so the first cow can win at most one of those games. Equal gestures always tie. How many first-cow wins are possible for `2 2` and `3 3`?"
 				},
 				{
 					title: "UB 20 Hoof Paper Scissors Java: Guided Example",
-					content: buildImplementationLabGuidance({
-						courseFamily: "USACO",
-						moduleTitle:
-							"UB 20 Hoof Paper Scissors Java: Practice Studio",
-						section: "example"
-					})
+					preserveInstructions: true,
+					content:
+						"Use the rounds `1 2`, `2 3`, `3 1`, `2 1`, `1 1`. Draw arrows from winner to loser for the cycle 1→2→3→1. The first cow wins the first three rounds. Reversing the arrows gives one win, and the last round ties either way. The largest score is 3. Replace the first row with `2 1`. Tally both directions again: each now gives two wins."
 				},
 				{
 					title: "UB 20 Hoof Paper Scissors Java: Core Project",
-					content: buildImplementationLabGuidance({
-						courseFamily: "USACO",
-						moduleTitle:
-							"UB 20 Hoof Paper Scissors Java: Practice Studio",
-						section: "coreProject",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					content:
+						"Read the round count and the two gesture labels per round from hps.in. In Java, score the first cow for each fixed assignment of labels to gestures. Reset the win count between assignments and keep the highest complete-game score. Print it to hps.out.\n\n**Checkpoints:** For five rounds `1 2`, `2 3`, `3 1`, `2 1`, `1 1`, the maximum is 3. Try just the two rounds `1 2` and `2 1`. The maximum is 1. Which round changes from a win to a loss when you reverse the cycle?",
 					projectLink:
 						"https://github.com/instruction-material/USACO-Bronze/tree/main/UB-20-Hoof-Paper-Scissors-Java/starter",
 					solutionLink:
@@ -1148,24 +1104,17 @@ const usacoBronzeSourceCourse: RawCourse = {
 				},
 				{
 					title: "UB 20 Hoof Paper Scissors Java: Review and Reflection",
-					content: buildImplementationLabGuidance({
-						courseFamily: "USACO",
-						moduleTitle:
-							"UB 20 Hoof Paper Scissors Java: Practice Studio",
-						section: "review"
-					})
+					preserveInstructions: true,
+					content:
+						"Compare two explanations for an output of 2 on the two rounds `1 2` and `2 1`. Assigning the labels anew for each round can make both look like wins on paper, but the input describes one fixed code. Keep your assignment visible and mark the winner of each round again. The maximum is 1. For `2 2` and `3 3`, check that neither scoring direction claims a win; the output is 0."
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "UB 20 Hoof Paper Scissors Java: Extension Challenge",
-					content: buildImplementationLabGuidance({
-						courseFamily: "USACO",
-						moduleTitle:
-							"UB 20 Hoof Paper Scissors Java: Practice Studio",
-						section: "extension",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					content:
+						"Rename the symbols everywhere by sending 1 to 2, 2 to 3 and 3 to 1. The five rounds `1 2`, `2 3`, `3 1`, `2 1`, `1 1` become `2 3`, `3 1`, `1 2`, `3 2`, `2 2`. Predict whether the possible scores change when only the labels change.\n\n**Checkpoints:** Both files give 3. Reverse the order of the five original rounds and verify 3 again. Explain what each change preserves in the tally.",
 					projectLink:
 						"https://github.com/instruction-material/USACO-Bronze/tree/main/UB-20-Hoof-Paper-Scissors-Java/starter",
 					solutionLink:
@@ -1206,28 +1155,21 @@ const usacoBronzeSourceCourse: RawCourse = {
 			curriculum: [
 				{
 					title: "UB 21 Cow Tipping Java: Core Concepts",
-					content: buildImplementationLabGuidance({
-						courseFamily: "USACO",
-						moduleTitle: "UB 21 Cow Tipping Java: Practice Studio",
-						section: "concepts"
-					})
+					preserveInstructions: true,
+					content:
+						"A 1 marks a tipped cow; a 0 marks an upright cow. Each move toggles every cell in a rectangle stretching from the top-left corner to a chosen cell. Draw `00 / 01` as a two-row grid. Only the whole grid reaches the bottom-right 1. Why must that move appear in any solution? Contrast this board with `11 / 11`, which takes just one flip, and `00 / 00`, which takes none."
 				},
 				{
 					title: "UB 21 Cow Tipping Java: Guided Example",
-					content: buildImplementationLabGuidance({
-						courseFamily: "USACO",
-						moduleTitle: "UB 21 Cow Tipping Java: Practice Studio",
-						section: "example"
-					})
+					preserveInstructions: true,
+					content:
+						"Put `00` above `01`. Working from the bottom right, flip the whole grid to get `11 / 10`. Next flip the left column to get `01 / 00`. Flip the top row to reach `10 / 00`, then the top-left cell to clear it. Mark the cell fixed by each move. Once the bottom row is settled, which remaining rectangles leave it untouched? The four forced moves explain why a single tipped cow here takes four flips."
 				},
 				{
 					title: "UB 21 Cow Tipping Java: Core Project",
-					content: buildImplementationLabGuidance({
-						courseFamily: "USACO",
-						moduleTitle: "UB 21 Cow Tipping Java: Practice Studio",
-						section: "coreProject",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					content:
+						"Read N from cowtip.in, followed by N rows of N binary digits with no spaces. Scan the Java grid from the last row upward, moving right to left within a row. Whenever the current bit is 1, toggle the upper-left rectangle ending at that cell and increase the move count. Use the updated cells for the rest of the scan. Write the count to cowtip.out.\n\n**Checkpoints:** With N = 2, `00 / 01` takes 4 moves. Try `11 / 11` for 1 and `00 / 00` for 0.",
 					projectLink:
 						"https://github.com/instruction-material/USACO-Bronze/tree/main/UB-21-Cow-Tipping-Java/starter",
 					solutionLink:
@@ -1235,22 +1177,17 @@ const usacoBronzeSourceCourse: RawCourse = {
 				},
 				{
 					title: "UB 21 Cow Tipping Java: Review and Reflection",
-					content: buildImplementationLabGuidance({
-						courseFamily: "USACO",
-						moduleTitle: "UB 21 Cow Tipping Java: Practice Studio",
-						section: "review"
-					})
+					preserveInstructions: true,
+					content:
+						"A prediction based on the number of ones gets the easiest-looking board wrong: `00 / 01` takes four flips, while `11 / 11` takes one. Draw the allowed rectangles on a two-by-two grid. After the forced whole-grid flip, circle the bottom-right cell and rule out any later action that would disturb it. Why does that force the choice at the next cell? Check your argument on `11 / 00`, which clears with one top-row flip."
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "UB 21 Cow Tipping Java: Extension Challenge",
-					content: buildImplementationLabGuidance({
-						courseFamily: "USACO",
-						moduleTitle: "UB 21 Cow Tipping Java: Practice Studio",
-						section: "extension",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					content:
+						"Try the two diagonal ones in `01 / 10`. Flip the left column, then the top row: both rows are now zero. For `01 / 11`, the whole-grid flip followed by the top-left flip also takes two moves. Count how many cells each move changes in the two traces.\n\n**Checkpoints:** Run a single-cell grid first with `1` and then with `0`. The outputs must be 1 and 0. Use these to check the loop endpoints when the rectangle is only one cell wide and high.",
 					projectLink:
 						"https://github.com/instruction-material/USACO-Bronze/tree/main/UB-21-Cow-Tipping-Java/starter",
 					solutionLink:
