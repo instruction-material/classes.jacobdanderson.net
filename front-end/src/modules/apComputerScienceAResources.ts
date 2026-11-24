@@ -4,6 +4,8 @@ const algorithmPacks =
 	"https://github.com/instruction-material/APCS/tree/34f8f99a5ab4b895521c8827fa70c892bc4150fa";
 const earlyCorePacks =
 	"https://github.com/instruction-material/APCS/tree/932287d8e26661b0635478f9215ec7e7e12c74ad";
+const remainingCorePacks =
+	"https://github.com/instruction-material/APCS/tree/cd756a50230e8ae0736ced745f75231f4cd3fb40";
 
 function projectRoles(pack: string) {
 	return {
@@ -29,13 +31,30 @@ export const apStudentClassResources = projectRoles(
 	`${earlyCorePacks}/APCS5-Student-Class`
 );
 
+export const apRemainingCoreResources = {
+	"vending-machine": projectRoles(
+		`${remainingCorePacks}/APCS6-Vending-Machine-Class`
+	),
+	"array-practice": projectRoles(
+		`${remainingCorePacks}/APCS10-Practice-With-Arrays`
+	),
+	"array-list-practice": projectRoles(
+		`${remainingCorePacks}/APCS11-Practice-With-Array-Lists`
+	),
+	"selection-sort": projectRoles(
+		`${remainingCorePacks}/APCS14-Selection-Sort`
+	),
+	spaceships: projectRoles(`${remainingCorePacks}/APCS17-Spaceships`)
+};
+
 const restoredProjects = {
 	"binary-search-trace": apBinarySearchResources,
 	"recursion-practice": apRecursionPracticeResources,
 	"blob-erase": apBlobEraseResources,
 	"merge-sort": apMergeSortResources,
 	"elevator-warning": apElevatorWarningResources,
-	"student-class": apStudentClassResources
+	"student-class": apStudentClassResources,
+	...apRemainingCoreResources
 };
 
 export function apComputerScienceAProjectKey(

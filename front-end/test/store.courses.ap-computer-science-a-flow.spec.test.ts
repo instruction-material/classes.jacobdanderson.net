@@ -7,6 +7,7 @@ import {
 	apElevatorWarningResources,
 	apMergeSortResources,
 	apRecursionPracticeResources,
+	apRemainingCoreResources,
 	apStudentClassResources
 } from "@/modules/apComputerScienceAResources";
 import { pythonIdeModeForCourseResource } from "@/modules/pythonIde";
@@ -243,6 +244,35 @@ describe("AP Computer Science A learner flow", () => {
 					`${course}:${title}:${role}:${projectKind}`
 				);
 			}
+		}
+	});
+
+	it.each([
+		["APCS6 Classes Part II", "Vending Machine Class", "vending-machine", "Vending an empty item"],
+		["APCS10 Arrays", "Practice With Arrays", "array-practice", "For an empty array"],
+		["APCS11 ArrayLists", "Practice With ArrayLists", "array-list-practice", "Remove it by index"],
+		["APCS14 Selection and Insertion Sort", "Selection Sort", "selection-sort", "4 + 3 + 2 + 1"],
+		["APCS17 Master Projects and Test Prep", "Spaceships", "spaceships", "two distinct passengers named Ada"]
+	] as const)("opens the complete project in %s", (moduleTitle, title, key, checkpoint) => {
+		const task = requireModule(moduleTitle).curriculum.find(
+			item => item.title === `Core Project: ${title}`
+		);
+		const resources = apRemainingCoreResources[key];
+		expect(task).toMatchObject({
+			learningPath: "core",
+			ideImport: true,
+			preserveInstructions: true,
+			preserveAssignment: true,
+			projectLink: resources.starter,
+			solutionLink: resources.reference
+		});
+		expect(task?.content).toContain(checkpoint);
+		for (const role of ["starter", "reference"] as const) {
+			const course = "ap-computer-science-a";
+			expect(pythonIdeModeForCourseResource(course, resources[role])).toBe("java");
+			expect(apComputerScienceAProjectKey(course, title, role, resources[role])).toBe(
+				`${course}:${title}:${role}:${key}`
+			);
 		}
 	});
 

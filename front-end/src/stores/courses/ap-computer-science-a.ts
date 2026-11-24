@@ -5,6 +5,7 @@ import {
 	apElevatorWarningResources,
 	apMergeSortResources,
 	apRecursionPracticeResources,
+	apRemainingCoreResources,
 	apStudentClassResources
 } from "@/modules/apComputerScienceAResources";
 import { gitCourseGuideLink } from "./classroomReferenceGuides";
@@ -672,10 +673,28 @@ const apComputerScienceASourceCourse: RawCourse = {
 				},
 				{
 					title: "Core Project: Vending Machine Class",
-					content:
-						"The vending-machine project is the main APCS6 build because it exercises constructors, fields, controlled mutation, and method design in one compact model.",
-					projectLink: repo("APCS6-Vending-Machine-Class/starter"),
-					solutionLink: repo("APCS6-Vending-Machine-Class/solution"),
+					content: apProject({
+						goal: "Implement a vending machine that keeps three independent stock counts between 0 and 100, inclusive.",
+						steps: [
+							"Run Main.java and trace the completed peanut setter and vend method.",
+							"Complete the pretzel and candy setters. Reject an invalid quantity by keeping the stored count.",
+							"Complete the pretzel and candy vend methods. Reuse the corresponding setter so the stock cannot fall below zero."
+						],
+						apReasoning:
+							"For one valid call and one rejected call, record the field before the call, the argument, and the field afterward.",
+						checks: [
+							"Loading 3 peanuts, 8 pretzels, and 20 candy succeeds. Requests for −1 or 101 candy leave 20 in stock.",
+							"Vending each item five times leaves 0 peanuts, 3 pretzels, and 15 candy.",
+							"Check that the setters accept 0 and 100. Vending an empty item leaves its count at 0."
+						]
+					}),
+					projectLink:
+						apRemainingCoreResources["vending-machine"].starter,
+					solutionLink:
+						apRemainingCoreResources["vending-machine"].reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true,
 					mediaLink: media(
 						"apcs6-project-1-vending-machine-class.mp4"
 					)
@@ -935,10 +954,30 @@ const apComputerScienceASourceCourse: RawCourse = {
 				},
 				{
 					title: "Core Project: Practice With Arrays",
-					content:
-						"The practice-with-arrays project is the main APCS10 implementation checkpoint for traversal, accumulation, and simple array-return methods. The evidence includes a trace of how each loop visits elements and updates an answer.",
-					projectLink: repo("APCS10-Practice-With-Arrays/starter"),
-					solutionLink: repo("APCS10-Practice-With-Arrays/solution"),
+					content: apProject({
+						goal: "Traverse arrays to compare endpoints, accumulate results, search for zero, and fill a new array.",
+						steps: [
+							"Run Main.java and trace how the supplied squares method fills indices 0 through 9.",
+							"Complete the endpoint check, sum, character total, and zero search. Add a call for each method as it is completed.",
+							"Complete the random array method. Use a fixed seed and check the count and range of its result."
+						],
+						apReasoning:
+							"For a sum or search, record each index or element visited and the value of the accumulated answer.",
+						checks: [
+							"For [2, 0, −3, 2], the endpoints match, the sum is 1, and the zero search succeeds.",
+							"For an empty array, endpoint comparison and the zero search both return false. Its sum is 0.",
+							'["sun", "", "sky"] has 6 characters. Three generated doubles all lie in [0, 10).'
+						],
+						extension:
+							"Reverse into a new array without changing the input. Swap the first minimum and maximum in the original array, handling an empty array before reading index 0."
+					}),
+					projectLink:
+						apRemainingCoreResources["array-practice"].starter,
+					solutionLink:
+						apRemainingCoreResources["array-practice"].reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true,
 					mediaLink: media(
 						"apcs10-project-1-practice-with-arrays.mp4"
 					)
@@ -1026,14 +1065,30 @@ const apComputerScienceASourceCourse: RawCourse = {
 				},
 				{
 					title: "Core Project: Practice With ArrayLists",
-					content:
-						"The ArrayList practice project is the main APCS11 implementation checkpoint for counting, filtering, mutation, and removal logic.",
-					projectLink: repo(
-						"APCS11-Practice-With-Array-Lists/starter"
-					),
-					solutionLink: repo(
-						"APCS11-Practice-With-Array-Lists/solution"
-					),
+					content: apProject({
+						goal: "Trace operations that read a list, create a new list, or update a list in place.",
+						steps: [
+							"Run Main.java and trace the completed even-count method.",
+							"Implement sum and copy words beginning with lowercase a into a new list. Skip empty strings.",
+							"Replace negative values with −1.0 and positive values with 1.0 in place. Keep zero unchanged.",
+							"Search backward for the last even number. Remove it by index and stop."
+						],
+						apReasoning:
+							"Record list size and indices before and after each change. Replacement preserves size. Removal shifts every later index.",
+						checks: [
+							"[3, 2, 5, 2, 7] has two evens and sums to 19. Removing the last even gives [3, 2, 5, 7].",
+							'Filtering ["", "apple", "class", "ant"] gives ["apple", "ant"] and leaves the input intact.',
+							"[−2.5, 0.0, 6.5] becomes [−1.0, 0.0, 1.0]. A list without an even number stays unchanged."
+						]
+					}),
+					projectLink:
+						apRemainingCoreResources["array-list-practice"].starter,
+					solutionLink:
+						apRemainingCoreResources["array-list-practice"]
+							.reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true,
 					mediaLink: media(
 						"apcs11-project-1-practice-with-arraylists.mp4"
 					)
@@ -1293,23 +1348,28 @@ const apComputerScienceASourceCourse: RawCourse = {
 					content: apProject({
 						goal: "Implement selection sort with a visible sorted-region invariant and traceable comparison behavior.",
 						steps: [
-							"Choose ascending or descending order and keep that direction consistent.",
-							"Loop over each position that will receive the next selected value.",
-							"Search the remaining unsorted region for the next extreme value.",
-							"Swap after the scan and record how the sorted region changed."
+							"Run Main.java and predict each pass on [5, −1, 2, −1, 0] before completing the sort.",
+							"Loop over each position that will receive the next value in ascending order.",
+							"Initialize the selected index to that position and compare it with the rest of the unsorted suffix.",
+							"Swap after the scan and record how the sorted prefix changed."
 						],
 						apReasoning:
 							"AP CSA Java reasoning focuses on the invariant and the nested-loop count. The outer loop fixes one position per pass, and the inner loop searches the remaining region.",
 						checks: [
-							"Already sorted, reverse sorted, duplicate-heavy, and single-element arrays all behave correctly.",
-							"The trace identifies the selected index before the swap.",
-							"The runtime explanation connects the nested loops to quadratic growth."
+							"The first pass chooses index 1. The final list is [−1, −1, 0, 2, 5].",
+							"Check an empty list, a single item, duplicates, and sorted and reverse-sorted lists.",
+							"Count 4 + 3 + 2 + 1 comparisons for five values. Explain how that sum grows with the list size."
 						],
 						extension:
 							"Sort objects by one field, such as card rank or student score, and explain what comparison changed."
 					}),
-					projectLink: repo("APCS14-Selection-Sort/starter"),
-					solutionLink: repo("APCS14-Selection-Sort/solution"),
+					projectLink:
+						apRemainingCoreResources["selection-sort"].starter,
+					solutionLink:
+						apRemainingCoreResources["selection-sort"].reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true,
 					mediaLink: media("apcs14-project-1-selection-sort.mp4")
 				}
 			],
@@ -1639,23 +1699,26 @@ const apComputerScienceASourceCourse: RawCourse = {
 					content: apProject({
 						goal: "Build a nested object model for a spaceship fleet using classes, collections, add/remove behavior, and readable `toString()` output.",
 						steps: [
-							"Define `Passenger`, `Room`, `Ship`, and `Fleet` responsibilities before coding.",
-							"Store collections at the level that owns them: passengers in rooms, rooms in ships, ships in fleets.",
-							"Implement add and remove methods that preserve valid state.",
-							"Generate a random fleet and print it in a readable hierarchy."
+							"Run Main.java. Trace how Passenger, Room, Spaceship, and Fleet form the two-ship example.",
+							"Complete the add and remove methods in each class that owns a collection. Ignore null additions and report whether a removal succeeded.",
+							"Compare the printed counts with the constructed objects before and after removing one passenger.",
+							"Generate a small fleet with a repeatable seed and check its printed hierarchy."
 						],
 						apReasoning:
 							"This capstone tests AP CSA Java reasoning with object ownership, collection traversal, method contracts, and string representation. The design matters as much as the final printed output.",
 						checks: [
-							"Each class owns only the state that belongs to its abstraction.",
-							"Add/remove methods work for empty, typical, and already-missing cases.",
-							"The printed fleet can be checked against the constructed object counts."
+							"The fixed example starts with two ships and three passengers, including two distinct passengers named Ada.",
+							"Removing the supplied Ada object succeeds once and keeps the other Ada in the room. A second removal returns false.",
+							"An empty collection handles removal safely. The printed sizes match each object’s collection."
 						],
 						extension:
 							"Add capacity limits per room or ship and explain where the validation belongs."
 					}),
-					projectLink: repo("APCS17-Spaceships/starter"),
-					solutionLink: repo("APCS17-Spaceships/solution"),
+					projectLink: apRemainingCoreResources.spaceships.starter,
+					solutionLink: apRemainingCoreResources.spaceships.reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true,
 					mediaLink: media("apcs17-master-project-1-spaceships.mp4")
 				},
 				{
