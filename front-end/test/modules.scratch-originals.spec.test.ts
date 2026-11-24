@@ -15,6 +15,7 @@ it("matches every configured original project and instructor reference without e
 	let projects = 0;
 	let references = 0;
 	const ids = new Set<string>();
+	const bootcampPracticeIds: string[] = [];
 	for (const [courseId, source] of [
 		["scratch-level-1", scratchLevel1Course],
 		["scratch-level-2", scratchLevel2Course],
@@ -45,13 +46,28 @@ it("matches every configured original project and instructor reference without e
 						url.replace(/\/$/, "")
 					);
 					ids.add(original!.id);
+					if (
+						courseId === "scratch-level-1-bootcamp" &&
+						role === "project" &&
+						/^(?:Practice Map|Extension Review):/.test(item.title)
+					) {
+						bootcampPracticeIds.push(original!.id);
+					}
 					if (role === "project") projects += 1;
 					else references += 1;
 				}
 			}
 		}
 	}
-	expect(projects).toBe(101);
+	expect(bootcampPracticeIds).toEqual([
+		"592006491",
+		"592008620",
+		"601699148",
+		"592014695",
+		"592019210",
+		"327635693"
+	]);
+	expect(projects).toBe(107);
 	expect(references).toBe(97);
 	expect(ids.size).toBe(162);
 	for (const id of ["299272518", "608768681", "608770708"])
