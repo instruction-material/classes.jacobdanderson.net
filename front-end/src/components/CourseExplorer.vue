@@ -73,6 +73,7 @@ import { rustCourseProjectKey } from "@/modules/rustProjectResources";
 import { scratchOriginalResource } from "@/modules/scratch/originals";
 import {
 	swiftCourseProjectKey,
+	swiftCourseResource,
 	swiftCourseResourceUrl
 } from "@/modules/swiftProjectResources";
 import { bronzeRequiredProjectKey } from "@/modules/usacoBronzeRequiredPacks";
@@ -1429,6 +1430,13 @@ function projectLabel(item: CourseModuleItem, url: string) {
 
 	if (normalizedUrl.startsWith("/course-assets/")) {
 		return datasetLabel(url);
+	}
+
+	if (
+		selectedCourse.value?.id === "intro-to-swift-app-development" &&
+		swiftCourseResource(url)?.role === "starter"
+	) {
+		return "Starter project";
 	}
 
 	if (REFERENCE_TITLE_RE.test(normalizedTitle)) {

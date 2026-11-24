@@ -1,3 +1,4 @@
+import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 // eslint-disable-next-line test/no-import-node-test -- Native browser CI entrypoint.
 import { it } from "node:test";
@@ -100,8 +101,7 @@ const projects = [
 		name: "gallery",
 		module: "sw8-media-maps-and-permission-aware-features",
 		title: "media-gallery-app",
-		key: "media-gallery",
-		readiness: true
+		key: "media-gallery"
 	},
 	{
 		name: "hobby",
@@ -115,7 +115,9 @@ const projects = [
 		module: "sw8-media-maps-and-permission-aware-features",
 		title: "map-places-app",
 		key: "map-places",
-		readiness: false
+		linkedTasks: [
+			`${courseID}-sw8-media-maps-and-permission-aware-features-supplemental-readiness-check`
+		]
 	},
 	{
 		name: "capstone",
@@ -175,15 +177,34 @@ for (const project of projects) {
 					createdAt: "2026-10-01T12:00:00.000Z",
 					updatedAt: "2026-10-01T12:00:00.000Z"
 				}),
+				async beforeImport(page, { role }) {
+					const card = `#${moduleID}-${coreID}`;
+					const sourceLabels = await page.$$eval(
+						`${card} a.is-project, ${card} a.is-solution`,
+						links => links.map(link => ({
+							role: new URL(link.href).pathname.split("/").at(-1),
+							label: link.querySelector(".resource-link-label").firstChild.textContent.trim()
+						}))
+					);
+					const expected = [{ role: "starter", label: "Starter project" }];
+					if (role === "solution")
+						expected.push({ role: "solution", label: "Solution repo" });
+					assert.deepEqual(sourceLabels, expected);
+
+					const importLabels = await page.$$eval(
+						`${card} a.is-ide-starter`,
+						links => links.map(link => new URL(link.href).searchParams.get("starterLabel"))
+					);
+					assert.deepEqual(importLabels, expected.map(source => source.label));
+					return { sourceLabels, importLabels };
+				},
 				itemModules: project.itemModules,
 				continuationIDs: [
 					coreID,
 					...(project.linkedTasks ?? []),
 					...(project.readiness
 						? [
-								`${moduleID}-supplemental-${
-									project.name === "gallery" ? "" : `${project.module}-`
-								}readiness-check`
+								`${moduleID}-supplemental-${project.module}-readiness-check`
 							]
 						: [])
 				],
