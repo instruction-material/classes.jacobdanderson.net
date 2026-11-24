@@ -3,6 +3,9 @@ import { beforeEach, describe, expect, it } from "vitest";
 import { useCoursesStore } from "@/stores/courses";
 import { loadRawCourse } from "@/stores/courses/index";
 import { pythonLevel3Course } from "@/stores/courses/python-level-3";
+import sourceFixture from "../../test/fixtures/python-level-3-course-workflow-sources.json";
+
+const sourceRoot = `https://github.com/instruction-material/Python-Level-3/tree/${sourceFixture.revision}`;
 
 const EXPECTED_TEACHING_MODULES = [
 	"AM1 Review: Variables, Strings, Input, Loops, & Conditionals",
@@ -147,7 +150,7 @@ describe("Python Level 3 learner flow", () => {
 		expect(substrings?.content).toContain("excludes ac");
 		expect(substrings?.learningPath).toBe("challenge");
 		expect(byTitle.get("AM6 Project 2: Big-O Notation")?.content).toContain(
-			"mathematical worksheet"
+			"worksheet states the input domain and growth model"
 		);
 		expect(byTitle.get("AM6 Project 2: Big-O Notation")?.content).toContain(
 			"justified classification for each of the ten prompts"
@@ -511,7 +514,7 @@ describe("Python Level 3 learner flow", () => {
 			[2, "AM-Check-In-2"],
 			[3, "AM-Check-In-3"]
 		] as const) {
-			const starterUrl = `https://github.com/instruction-material/Python-Level-3/tree/main/${folder}/starter`;
+			const starterUrl = `${sourceRoot}/${folder}/starter`;
 			const item = items.find(
 				candidate => candidate.projectLink === starterUrl
 			)!;
@@ -524,7 +527,7 @@ describe("Python Level 3 learner flow", () => {
 			]);
 			expect(item.learningPath).toBe("core");
 			expect(item.projectLink).toBe(
-				`https://github.com/instruction-material/Python-Level-3/tree/main/${folder}/starter`
+				`${sourceRoot}/${folder}/starter`
 			);
 			expect(item.solutionLink).toBeUndefined();
 			expect(
@@ -532,7 +535,7 @@ describe("Python Level 3 learner flow", () => {
 					candidate => candidate.projectLink === starterUrl
 				)?.solutionLink
 			).toBe(
-				`https://github.com/instruction-material/Python-Level-3/tree/main/${folder}/solution`
+				`${sourceRoot}/${folder}/solution`
 			);
 			expect(item.content).toContain("Confirm importing");
 		}
@@ -673,7 +676,7 @@ describe("Python Level 3 learner flow", () => {
 				"python-level-3-am12-file-input-output-curriculum-am12-project-3-word-translator-with-file-i-o"
 			]
 		]) {
-			const root = `https://github.com/instruction-material/Python-Level-3/tree/main/${folder}`;
+			const root = `${sourceRoot}/${folder}`;
 			const project = items.find(
 				item => item.projectLink === `${root}/starter`
 			)!;
@@ -841,7 +844,7 @@ describe("Python Level 3 learner flow", () => {
 				"choice"
 			]
 		]) {
-			const root = `https://github.com/instruction-material/Python-Level-3/tree/main/${folder}`;
+			const root = `${sourceRoot}/${folder}`;
 			const item = items.find(
 				candidate => candidate.projectLink === `${root}/starter`
 			)!;
@@ -928,7 +931,7 @@ describe("Python Level 3 learner flow", () => {
 					"AM12 Project 1: Crazy Name Tags Printer"
 			)!;
 		const root =
-			"https://github.com/instruction-material/Python-Level-3/tree/main/AM12-Crazy-Name-Tags-Printer";
+			`${sourceRoot}/AM12-Crazy-Name-Tags-Printer`;
 		expect(item.id).toBe(
 			"python-level-3-am12-file-input-output-curriculum-am12-project-1-crazy-name-tags-printer"
 		);
@@ -1071,18 +1074,14 @@ describe("Python Level 3 learner flow", () => {
 			expect(item.learningPath).toBe("core");
 			expect(item.solutionLink).toBeUndefined();
 			expect(item.projectLink).toBe(
-				"https://github.com/instruction-material/Python-Level-3/tree/main/" +
-					folder +
-					"/starter"
+				`${sourceRoot}/${folder}/starter`
 			);
 			expect(
 				requireSourceModule(module.title).curriculum.find(
 					candidate => candidate.title === title
 				)!.solutionLink
 			).toBe(
-				"https://github.com/instruction-material/Python-Level-3/tree/main/" +
-					folder +
-					"/solution"
+				`${sourceRoot}/${folder}/solution`
 			);
 		}
 	});

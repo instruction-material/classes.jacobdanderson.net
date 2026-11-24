@@ -3033,6 +3033,7 @@ jobs:
           npm exec -w front-end -- vitest run
           test/store.courses.catalog-identities.spec.test.ts
           test/store.courses.progress-identity.spec.test.ts
+          test/store.courses.python-level-3-flow.spec.test.ts
           test/java-pattern-references.spec.test.ts
           test/java-ownership-move-workspace.spec.test.ts
           test/java-value-data-workspace.spec.test.ts
