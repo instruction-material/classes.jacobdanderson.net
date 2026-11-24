@@ -18,6 +18,9 @@ export const apBinarySearchResources = projectRoles(binarySearchPack);
 export const apRecursionPracticeResources = projectRoles(
 	`${algorithmPacks}/APCS15-Recursion-Practice`
 );
+export const apRecursionReferenceResources = projectRoles(
+	"https://github.com/instruction-material/APCS/tree/390ee9cfd7895d80d98cf1e44b7d8733fb82423d/APCS15-Recursion-Reference"
+);
 export const apBlobEraseResources = projectRoles(
 	`${algorithmPacks}/APCS15-Blob-Erase`
 );
@@ -50,6 +53,7 @@ export const apRemainingCoreResources = {
 const restoredProjects = {
 	"binary-search-trace": apBinarySearchResources,
 	"recursion-practice": apRecursionPracticeResources,
+	"recursion-reference": apRecursionReferenceResources,
 	"blob-erase": apBlobEraseResources,
 	"merge-sort": apMergeSortResources,
 	"elevator-warning": apElevatorWarningResources,

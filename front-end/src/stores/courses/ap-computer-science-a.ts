@@ -5,6 +5,7 @@ import {
 	apElevatorWarningResources,
 	apMergeSortResources,
 	apRecursionPracticeResources,
+	apRecursionReferenceResources,
 	apRemainingCoreResources,
 	apStudentClassResources
 } from "@/modules/apComputerScienceAResources";
@@ -1458,10 +1459,26 @@ const apComputerScienceASourceCourse: RawCourse = {
 				},
 				{
 					title: "Recursion Reference Pack",
-					content:
-						"Keep the recursion reference available for short examples before assigning the longer practice set. It is most useful when a small trace is needed to separate the base case, recursive step, printed output order, and returned value. Use it to draw two views of the same method: the call-down path with parameter values and the return-up path with completed results. A good explanation identifies where recursion stops and whether work happens before or after the recursive call. Add one invalid input or missing-base-case note to explain how stack overflow or nontermination would appear.",
-					projectLink: repo("APCS15-Recursion-Reference/starter"),
-					solutionLink: repo("APCS15-Recursion-Reference/solution")
+					content: apProject({
+						goal: "Trace how the position of a print statement changes recursive output.",
+						steps: [
+							"Open Main.java. Record the index and current word for each call on red, fern, a period, and skip.",
+							"Stop tracing new calls at the period. Unwind the stack and mark which earlier call prints next.",
+							"Run the starter and compare its output with the trace. For a second prediction, move the print above the recursive call and compare with the reference."
+						],
+						apReasoning:
+							"Each call keeps its original index. The method checks the end of the array before reading the current word.",
+						checks: [
+							"The starter prints fern, then red. The period and skip never print.",
+							"A period as the first word and an empty array both print nothing.",
+							"With no period, the end of the array stops the recursion."
+						]
+					}),
+					projectLink: apRecursionReferenceResources.starter,
+					solutionLink: apRecursionReferenceResources.reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true
 				}
 			],
 			supplementalProjects: [

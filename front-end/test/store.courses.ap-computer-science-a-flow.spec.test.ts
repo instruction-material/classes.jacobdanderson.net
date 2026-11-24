@@ -7,6 +7,7 @@ import {
 	apElevatorWarningResources,
 	apMergeSortResources,
 	apRecursionPracticeResources,
+	apRecursionReferenceResources,
 	apRemainingCoreResources,
 	apStudentClassResources
 } from "@/modules/apComputerScienceAResources";
@@ -208,6 +209,10 @@ describe("AP Computer Science A learner flow", () => {
 			[
 				recursion.supplementalProjects, "Project: Recursion Practice", "challenge",
 				apRecursionPracticeResources, "recursion-practice"
+			],
+			[
+				recursion.supplementalProjects, "Recursion Reference Pack", "choice",
+				apRecursionReferenceResources, "recursion-reference"
 			],
 			[
 				recursion.supplementalProjects, "Project: Blob Erase", "challenge",
