@@ -238,47 +238,42 @@ const designPatternsInCppSourceCourse: RawCourse = {
 				{
 					title: "Ownership-Aware Creation",
 					content:
-						"Factory patterns begin with ownership and compatibility questions. Explicitly decide when a factory returns a value, `unique_ptr`, or another handle type rather than copying a Java constructor wrapper blindly."
+						"The starter builder calls make_unique<MetricCard> directly. That call fixes which widget gets created. Move construction into a virtual creation method and return unique_ptr<Widget>. The concrete factory chooses a product, then transfers ownership to the builder."
 				},
 				{
 					title: "Abstract Factory for Coordinated Families",
 					content:
-						"Use Abstract Factory when product families must vary together, such as themed UI pieces or environment-specific toolchains. The emphasis is on keeping families internally compatible, not on maximizing the number of classes."
+						"A theme factory creates a family of metrics, badges and buttons. The light family uses sky, emerald and paper. The dark family uses lime, amber and slate. The builder asks for a widget by purpose and can assemble either family using the same sequence of calls."
 				},
 				{
 					title: "Builder for Configuration-Heavy Setup",
 					content:
-						"Use Builder when setup becomes order-sensitive, verbose, or full of optional pieces. In modern C++, compare Builder against value-type configuration structs and direct construction before escalating."
+						"In one assembly function, add the active-user metric, queue metric, health badge and action button in display order. Keeping the steps together lets a second theme reuse the layout. The builder owns the products in a vector of unique_ptr values. It borrows the factory for the duration of construction."
 				},
 				{
 					title: "Creation Tradeoffs in Practice",
 					content:
-						"Justify whether the real pressure is family selection, staged assembly, or both. The right creation pattern emerges from readability and ownership clarity, not from catalog completion."
+						"If only a color changes, passing a palette as a value is sufficient. Try a third family that renders plain text instead of styled widgets. Check whether the new implementation can be introduced by changing only the selected factory."
 				},
 				{
 					title: "DPC3 Factory Method, Abstract Factory, and Builder: Core Project",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle:
-							"DPC3 Factory Method, Abstract Factory, and Builder",
-						projectKind: "core",
-						hasReference: true
-					}),
+					content:
+						"Open the dashboard starter and compile main.cpp with C++20. Trace which class actually constructs MetricCard. Implement factory methods for metrics, badges and buttons, then have DashboardBuilder use the supplied factory at every step. Assemble the same four rows with both families. Verify the order and the light and dark styles against README.md.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC1-Factories-and-Builders-Workshop/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/748ac87bb93688229cb03b8c3618829319578156/DPC1-Factories-and-Builders-Workshop/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC1-Factories-and-Builders-Workshop/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/748ac87bb93688229cb03b8c3618829319578156/DPC1-Factories-and-Builders-Workshop/solution"
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "Project: Factories and Builders Workshop",
 					content:
-						"Build a theme-aware dashboard where an abstract factory coordinates widget families and a builder assembles the final layout. The lab is mainly about ownership-safe creation, not decorative object factories.",
+						"Extend the core dashboard with a plain-text product family. Use a separate Widget implementation whose render method returns text such as Active users=184. Supply the new factory to the same assembly function. Verify all four rows, their order, and that DashboardBuilder contains no family-specific branch.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC1-Factories-and-Builders-Workshop/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/748ac87bb93688229cb03b8c3618829319578156/DPC1-Factories-and-Builders-Workshop/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC1-Factories-and-Builders-Workshop/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/748ac87bb93688229cb03b8c3618829319578156/DPC1-Factories-and-Builders-Workshop/solution"
 				},
 				{
 					title: "Creation Pattern Transfer Practice",
