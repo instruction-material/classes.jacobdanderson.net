@@ -520,7 +520,7 @@ export function pythonIdeModeForCourseResource(courseId: string, url: string) {
 		resource.owner.toLowerCase() === "instruction-material" &&
 		resource.repo.toLowerCase() === "java-level-1"
 	) {
-		return "java";
+		return resource.path.startsWith("Karel-Worlds/") ? "karel" : "java";
 	}
 	if (courseId === "network-systems")
 		return networkCourseResource(url) ? "linux" : null;

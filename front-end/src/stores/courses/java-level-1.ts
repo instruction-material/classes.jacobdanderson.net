@@ -156,6 +156,9 @@ const karelWorldsModuleId =
 const karelSyntaxModuleId =
 	"java-level-1-j1b-visual-java-syntax-types-objects-and-methods";
 
+const karelPracticeSource =
+	"https://github.com/instruction-material/Java-Level-1/tree/0cd0f67993cd73f49889d095a7808aaca9ebd677/Karel-Worlds";
+
 const consoleProjectSource =
 	"https://github.com/instruction-material/Java-Level-1/tree/0d9ddad588fd37a68c68c5f035d40702450eb283";
 
@@ -208,8 +211,11 @@ const javaLevel1SourceCourse: RawCourse = {
 			supplementalProjects: [
 				{
 					title: "J1A Supplemental Project 1: Beeper Delivery",
+					preserveInstructions: true,
 					content:
-						"Place one beeper at a start square, move it to a target square, and explain how the robot's visible state proves the program worked. Add one blocked-path case if the world supports walls."
+						"The site editor opens Algo.java and world.txt. Sam starts at street 2, avenue 2 facing east with an empty bag and one beeper on his square. Deliver it to (2, 4). Keep the world and constructor unchanged.\n\nBefore editing, make a trace with columns for street, avenue, bag count and beepers on the current square. Use pickBeeper(), move() and putBeeper() to complete the delivery. After pickup, the starting square should be empty and the bag should hold one. At the end, verify that the bag is empty and exactly one beeper is at (2, 4). Predict what happens if the program tries to put a beeper down before picking it up.",
+					projectLink: `${karelPracticeSource}/Beeper-Delivery/starter`,
+					solutionLink: `${karelPracticeSource}/Beeper-Delivery/solution`
 				},
 				{
 					title: "J1A Supplemental Project 2: Error Journal",
@@ -218,8 +224,11 @@ const javaLevel1SourceCourse: RawCourse = {
 				},
 				{
 					title: "J1A Supplemental Project 3: Blocked Move Debugging",
+					preserveInstructions: true,
 					content:
-						"Create one world where a robot move fails because of a wall or boundary. Predict the failure, run the program, record the message or visual symptom, then repair the path with the smallest code change that still reaches the target."
+						"Run the starter once. Sam faces east at (2, 2) and the destination is the adjacent square (2, 3). The line `wall 2 2 east` in world.txt blocks that edge. Record the message, position and direction after the attempted move.\n\nKeep the wall in place. Use turns and moves to cross street 3 and approach the destination from its north side. A right turn can be written as three left turns. Trace the first legal step and the final state. The repaired run should end at (2, 3) facing south with no blocked move.",
+					projectLink: `${karelPracticeSource}/Blocked-Move-Debugging/starter`,
+					solutionLink: `${karelPracticeSource}/Blocked-Move-Debugging/solution`
 				},
 				{
 					title: "J1A Supplemental Project 4: Five-Robot Warm-Up Set",
@@ -266,8 +275,11 @@ const javaLevel1SourceCourse: RawCourse = {
 				},
 				{
 					title: "J1B Supplemental Project 2: Constructor Swap",
+					preserveInstructions: true,
 					content:
-						"Run the same robot program with different starting constructor arguments. Record which changes affected the starting position, facing direction, beeper count, and final behavior."
+						"Run each starting state separately. Keep the same two left turns and one move. Change only the four arguments in `new UrRobot(street, avenue, direction, beepers)`. For each run, record the starting square, facing direction, bag count and predicted final square before checking the trace.\n\n| Run | Street | Avenue | Direction | Beepers |\n| --- | ---: | ---: | --- | ---: |\n| A | 3 | 3 | East | 0 |\n| B | 3 | 3 | North | 2 |\n| C | 4 | 4 | West | 1 |\n\nFor A, the two turns leave Sam facing west, so the move ends at (3, 2). Explain which argument changes the direction of travel in B and why the bag count is unchanged during every run.",
+					projectLink: `${karelPracticeSource}/Constructor-Swap/starter`,
+					solutionLink: `${karelPracticeSource}/Constructor-Swap/solution`
 				},
 				{
 					title: "J1B Supplemental Project 3: Primitive Replacement Trace",
@@ -288,7 +300,7 @@ const javaLevel1SourceCourse: RawCourse = {
 				{
 					title: "Optional Python-to-Java Bridge",
 					content:
-						'For students coming from Python, compare these two lines inside their usual program entry points. Python: `parts = 5 // 2`. Java: `int parts = 5 / 2;`. Both produce 2 here because the operands are positive integers. In Java, `5 / 2.0` produces 2.5 and needs a double for a result with a fractional part.\n\nPython’s input() and Java’s Scanner.nextLine() both read a line as text. Assigning "12" to an int in Java requires a conversion, such as `Integer.parseInt("12")`. The optional Python to Java and C++ Bridge course develops these translations further.'
+						'Compare integer division with positive operands in Python and Java. Python: `parts = 5 // 2`. Java: `int parts = 5 / 2;`. Both produce 2 here because the operands are positive integers. In Java, `5 / 2.0` produces 2.5 and needs a double for a result with a fractional part.\n\nPython’s input() and Java’s Scanner.nextLine() both read a line as text. Assigning "12" to an int in Java requires a conversion, such as `Integer.parseInt("12")`. The optional Python to Java and C++ Bridge course develops these translations further.'
 				},
 				{
 					title: "Primitive Types",

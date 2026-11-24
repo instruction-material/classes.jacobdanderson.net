@@ -1750,6 +1750,12 @@ pgzrun.go()
 				"https://github.com/instruction-material/Java-Level-1/tree/0d9ddad588fd37a68c68c5f035d40702450eb283/JS1-Chat-Bot/starter"
 			)
 		).toBe("java");
+		expect(
+			pythonIdeModeForCourseResource(
+				"java-level-1",
+				"https://github.com/instruction-material/Java-Level-1/tree/0cd0f67993cd73f49889d095a7808aaca9ebd677/Karel-Worlds/Beeper-Delivery/starter"
+			)
+		).toBe("karel");
 		expect(pythonIdeModeForCourseId("java-level-2")).toBe("java");
 		expect(pythonIdeModeForCourseId("ap-computer-science-a")).toBe("java");
 		expect(pythonIdeModeForCourseId("scratch-level-1")).toBeNull();
