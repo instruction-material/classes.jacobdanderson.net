@@ -692,6 +692,12 @@ public class Main {
         char upper = 'A';
         System.out.println(word.length());
         System.out.println(word.charAt(2));
+        System.out.println(word.indexOf(word.charAt(2)));
+        String vowels = "aeiou";
+        System.out.println(vowels.indexOf(word.charAt(2)));
+        char letterAtTwo = word.charAt(2);
+        System.out.println(letterAtTwo + 1);
+        System.out.println("Character: " + word.charAt(2));
         System.out.println(word.substring(1, 4));
         System.out.println(word.equals("Python"));
         System.out.println(word.equalsIgnoreCase("PYTHON"));
@@ -725,6 +731,10 @@ public class Main {
 		expect(result.stdout).toEqual([
 			"6",
 			"t",
+			"2",
+			"-1",
+			"117",
+			"Character: t",
 			"yth",
 			"true",
 			"true",

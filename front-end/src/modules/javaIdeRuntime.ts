@@ -2335,24 +2335,46 @@ function evaluateJavaStringMethodExpression(
 	context?: JavaConsoleContext,
 	output?: JavaConsoleOutputState
 ): JavaConsoleValue | null {
-	const match = expression.match(
-		/^([\s\S]+)\.(length|charAt|substring|equals|equalsIgnoreCase|compareTo|indexOf|toLowerCase|toUpperCase|trim)\s*\(([\s\S]*)\)$/i
-	);
-	if (!match?.[1] || !match[2]) return null;
+	const dot = topLevelJavaDelimiterIndexes(expression, ".").at(-1);
+	if (dot === undefined) return null;
+	const member = expression
+		.slice(dot + 1)
+		.match(
+			/^(length|charAt|substring|equals|equalsIgnoreCase|compareTo|indexOf|toLowerCase|toUpperCase|trim)\s*\(([\s\S]*)\)$/i
+		);
+	const receiverExpression = expression.slice(0, dot);
+	if (
+		!member?.[1] ||
+		findTopLevelJavaOperator(receiverExpression, [
+			"+",
+			"-",
+			"*",
+			"/",
+			"%",
+			"==",
+			"!=",
+			">",
+			"<",
+			"&&",
+			"||"
+		])
+	) {
+		return null;
+	}
 	const receiver = javaValueToString(
-		evaluateJavaExpression(match[1], context, output)
+		evaluateJavaExpression(receiverExpression, context, output)
 	);
-	const argValues = splitJavaArguments(match[3] ?? "").map(arg =>
+	const argValues = splitJavaArguments(member[2] ?? "").map(arg =>
 		evaluateJavaExpression(arg, context, output)
 	);
 	const numericArgs = argValues.map(value =>
 		Math.trunc(javaValueToNumber(value))
 	);
-	const method = match[2].toLowerCase();
+	const method = member[1].toLowerCase();
 	if (method === "length") return { type: "number", value: receiver.length };
 	if (method === "charat") {
 		return {
-			type: "string",
+			type: "char",
 			value: receiver[numericArgs[0] ?? 0] ?? ""
 		};
 	}
