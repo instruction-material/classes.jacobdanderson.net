@@ -410,27 +410,27 @@ const designPatternsInCppSourceCourse: RawCourse = {
 				},
 				{
 					title: "DPC5 Observer and Event Flow: Core Project",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle: "DPC5 Observer and Event Flow",
-						projectKind: "core",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"Build the event hub in main.cpp with a C++20 compiler. The publisher holds weak pointers and the calling code owns the listeners. Add a summary listener that remembers the latest three event topics in arrival order. Give it a separate method to print the summary on request. Clean expired entries from the hub when publishing. Keep the subscription snapshot so a listener registered during delivery begins with the next publication.\n\n**Checkpoints:** Send build.complete, cache.miss and api.latency, print the summary, release the console listener and send deploy.finish. The final summary starts with cache.miss and ends with deploy.finish. Only a severity of four or higher triggers escalation.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC3-Observer-Event-Hub/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/fa7e1c5b1f188e740685b031e196259d15f1c8bb/DPC3-Observer-Event-Hub/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC3-Observer-Event-Hub/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/fa7e1c5b1f188e740685b031e196259d15f1c8bb/DPC3-Observer-Event-Hub/solution"
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "Project: Observer Event Hub",
+					preserveInstructions: true,
+					contentKind: "assignment",
 					content:
-						"Build an event hub that stores listeners safely, publishes notifications, and keeps a summary view alive without dangling references. Ownership is part of the pattern design rather than an afterthought.",
+						"Investigate how listener ownership affects event delivery. Subscribe a counter and a listener that registers another counter the first time it receives an event. Keep the new counter alive in the calling code. Predict the counts before publishing twice, then compare your prediction with the output. Next, release the owner of the first counter and publish again. Trace the subscription snapshot and the weak-pointer lock at each delivery.\n\n**Checkpoints:** The later counter receives zero calls on the first publication and one on the second. Releasing the first counter lets it expire. Explain why copying the weak subscription list preserves the current order without extending listener lifetimes.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC3-Observer-Event-Hub/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/fa7e1c5b1f188e740685b031e196259d15f1c8bb/DPC3-Observer-Event-Hub/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC3-Observer-Event-Hub/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/fa7e1c5b1f188e740685b031e196259d15f1c8bb/DPC3-Observer-Event-Hub/solution"
 				},
 				{
 					title: "Observer Event Transfer Practice",
@@ -485,27 +485,27 @@ const designPatternsInCppSourceCourse: RawCourse = {
 				},
 				{
 					title: "DPC6 Decorator, Adapter, and Facade: Core Project",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle: "DPC6 Decorator, Adapter, and Facade",
-						projectKind: "core",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"Open the import tool and build the starter using the CMake commands in its README. The legacy loader accepts one unquoted label, category and nonnegative integer quantity per CSV line. Give the facade a common source interface, then add an adapter for one JSON object per line. JSON fields may appear in any order. Use json-c to decode escaped text and distinguish an integer from a numeric string. Both adapters return ImportRecord values before the facade prints them.\n\n**Checkpoints:** Import lamp,prop,3 and a JSON record with quantity 3, category prop and label lamp. Their results agree. Reject a batch with a missing category, trailing CSV field or quoted JSON quantity. The role README includes the package and linking instructions.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC4-Facade-Adapter-Import-Tool/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/fa7e1c5b1f188e740685b031e196259d15f1c8bb/DPC4-Facade-Adapter-Import-Tool/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC4-Facade-Adapter-Import-Tool/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/fa7e1c5b1f188e740685b031e196259d15f1c8bb/DPC4-Facade-Adapter-Import-Tool/solution"
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "Project: Facade Adapter Import Tool",
+					preserveInstructions: true,
+					contentKind: "assignment",
 					content:
-						"Wrap mismatched import formats behind adapters and expose them through a single import facade. The lab is about keeping legacy integration pressure out of the main domain model.",
+						"Test whether the facade isolates the reporting code from the input format. Create a pair of equivalent data sets for two inventory items, one in CSV and one in JSON Lines. Reverse the JSON field order and add spaces around the separators. Keep the record order unchanged. Use one reporting function for both lists and compare the record count, labels, categories and quantities.\n\n**Checkpoints:** A zero quantity remains zero. An escaped quote inside a JSON label represents one quote in the imported text. Add an invalid second record and verify the adapter reports an error before a partial batch reaches the report.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC4-Facade-Adapter-Import-Tool/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/fa7e1c5b1f188e740685b031e196259d15f1c8bb/DPC4-Facade-Adapter-Import-Tool/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC4-Facade-Adapter-Import-Tool/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/fa7e1c5b1f188e740685b031e196259d15f1c8bb/DPC4-Facade-Adapter-Import-Tool/solution"
 				},
 				{
 					title: "Structural Wrapper Transfer Practice",
