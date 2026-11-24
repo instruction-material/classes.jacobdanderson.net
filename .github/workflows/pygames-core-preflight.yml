@@ -2188,7 +2188,9 @@ jobs:
         env:
           PYGAMES_BROWSER_EXPORT_PROOF_DIR: output/pygames-exports
           CLASSES_FAMILY_HEAVY_TIMEOUT_MS: 2100000
-        run: node scripts/classes-family-heavy-task.mjs -- node --test test/pygames-course-workflows-browser.test.mjs
+        run: |
+            npm exec -- puppeteer browsers install chrome
+            node scripts/classes-family-heavy-task.mjs -- node --test test/pygames-course-workflows-browser.test.mjs
       - name: Retain original PyGames course and runtime evidence
         if: always() && inputs.full_source_runtime
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a

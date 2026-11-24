@@ -2098,7 +2098,9 @@ jobs:
             - name: Verify PyGames course workflows and pinned original game runtime
               env:
                   PYGAMES_BROWSER_EXPORT_PROOF_DIR: output/pygames-exports
-              run: node --test test/pygames-course-workflows-browser.test.mjs
+              run: |
+                  npm exec -- puppeteer browsers install chrome
+                  node --test test/pygames-course-workflows-browser.test.mjs
 
             - name: Retain PyGames source, media and browser evidence
               if: always()

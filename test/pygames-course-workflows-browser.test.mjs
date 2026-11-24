@@ -575,7 +575,7 @@ nodeTest(
 			}
 			const executablePath = [
 				process.env.PUPPETEER_EXECUTABLE_PATH,
-				puppeteer.executablePath(),
+				await puppeteer.executablePath(),
 				"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
 				"/usr/bin/google-chrome",
 				"/usr/bin/chromium"
@@ -1019,7 +1019,7 @@ nodeTest(
 								page.once("error", reject);
 							});
 							const paintHandle = await Promise.race([
-								frame.waitForFunction(readPygamesFirstPaint, { timeout: 90000 }),
+								frame.waitForFunction(readPygamesFirstPaint, { polling: 200, timeout: 90000 }),
 								rendererCrashed
 							]);
 							const firstPaint = await paintHandle.jsonValue();
