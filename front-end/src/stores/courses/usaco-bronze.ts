@@ -442,12 +442,9 @@ const usacoBronzeSourceCourse: RawCourse = {
 				},
 				{
 					title: "Mixing Milk Java",
-					content: buildProjectGuidance({
-						courseFamily: "USACO",
-						moduleTitle: "Unit 5: Contest Sets and Tier Transition",
-						projectKind: "core",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					content:
+						"How much does it cost to buy exactly eight units? Put `8 3` in milk.in, followed by three lines: `5 6`, `2 3`, `2 2`. Each offer lists the price per unit first and the available quantity second. With a partner, mark which units to buy before sorting the offers in Java. The two cheaper farms supply five units for 10. Three more at 5 each bring milk.out to 25.\n\n**Checkpoints:** Change the demand to five. The answer falls to 10. Which purchase disappeared? To replay the supplied reference, compile `javac Main.java` and run `java milk` beside milk.in.",
 					projectLink:
 						"https://github.com/instruction-material/USACO-Bronze/tree/main/UB11-Mixing-Milk-Java/starter",
 					solutionLink:
@@ -596,12 +593,9 @@ const usacoBronzeSourceCourse: RawCourse = {
 				},
 				{
 					title: "Prime Cryptarithm",
-					content: buildProjectGuidance({
-						courseFamily: "USACO",
-						moduleTitle: "UB 12 Barn Repair Java: Practice Studio",
-						projectKind: "core",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					content:
+						"Use a blank Python file for this practice. Put `5` on the first line of crypt1.in and `2 3 4 6 8` on the second. Form a three-digit number and a two-digit multiplier using only those digits, with repetition allowed. Each unshifted partial product must have three allowed digits, and the total must have four. Compare `222 × 22` with `242 × 34` on paper before counting.\n\n**Checkpoints:** The first gives 444, 444 and 4884. The second ends in 8228, but its partial products 968 and 726 contain forbidden digits. Only the first multiplication qualifies for this input, so crypt1.out contains 1.",
 					projectLink:
 						"https://github.com/instruction-material/USACO-Bronze/tree/main/UB14-Prime-Cryptarithm/starter",
 					solutionLink:
@@ -687,31 +681,21 @@ const usacoBronzeSourceCourse: RawCourse = {
 			curriculum: [
 				{
 					title: "UB 14 Prime Cryptarithm Java: Core Concepts",
-					content: buildImplementationLabGuidance({
-						courseFamily: "USACO",
-						moduleTitle:
-							"UB 14 Prime Cryptarithm Java: Practice Studio",
-						section: "concepts"
-					})
+					preserveInstructions: true,
+					content:
+						"Write a three-digit number over a two-digit multiplier as in long multiplication. Each position draws from the same list of digits 1 through 9, and a digit may appear several times. Multiply the top number by each bottom digit separately. Both partial products must have exactly three digits from the list. Add the units partial to ten times the tens partial. The resulting four digits must also belong to the list. Where does the factor of ten enter a handwritten calculation?"
 				},
 				{
 					title: "UB 14 Prime Cryptarithm Java: Guided Example",
-					content: buildImplementationLabGuidance({
-						courseFamily: "USACO",
-						moduleTitle:
-							"UB 14 Prime Cryptarithm Java: Practice Studio",
-						section: "example"
-					})
+					preserveInstructions: true,
+					content:
+						"Work through `222 × 22` using the digits 2, 3, 4, 6 and 8. Both partial products are 444. The tens row contributes 4440 after shifting, giving a final product of 4884. The zero used to align that row is a place-value marker. The digit test applies to the unshifted 444. Now try `242 × 34`. Its final product, 8228, passes the digit test. Which digit rules out its units partial, 968?"
 				},
 				{
 					title: "UB 14 Prime Cryptarithm Java: Core Project",
-					content: buildImplementationLabGuidance({
-						courseFamily: "USACO",
-						moduleTitle:
-							"UB 14 Prime Cryptarithm Java: Practice Studio",
-						section: "coreProject",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					content:
+						"In Main.java, read the number of allowed digits and the space-separated digit list from crypt1.in. Enumerate the three positions in the top number and the two in the multiplier. Test the two unshifted partial products and the final product, then count each qualifying pair once. Write that count to crypt1.out.\n\n**Checkpoints:** With `2` followed by `1 2`, the only pair is `111 × 11`, giving 1221. The output is 1. With `3` followed by `1 2 3`, the output is 7. Trace one new pair, `111 × 12`, through both partial-product checks.",
 					projectLink:
 						"https://github.com/instruction-material/USACO-Bronze/tree/main/UB-14-Prime-Cryptarithm-Java/starter",
 					solutionLink:
@@ -719,24 +703,17 @@ const usacoBronzeSourceCourse: RawCourse = {
 				},
 				{
 					title: "UB 14 Prime Cryptarithm Java: Review and Reflection",
-					content: buildImplementationLabGuidance({
-						courseFamily: "USACO",
-						moduleTitle:
-							"UB 14 Prime Cryptarithm Java: Practice Studio",
-						section: "review"
-					})
+					preserveInstructions: true,
+					content:
+						"A program checks the factors and final product and accepts `121 × 34` for allowed digits 1, 2, 3 and 4. Test that decision with a partner. The result is 4114, but the units partial is 484 and the tens partial is 363. Identify the forbidden digit in each row. Run crypt1.in with `4` followed by `1 2 3 4`. The correct count is 21. Which checks would prevent this particular false positive?"
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "UB 14 Prime Cryptarithm Java: Extension Challenge",
-					content: buildImplementationLabGuidance({
-						courseFamily: "USACO",
-						moduleTitle:
-							"UB 14 Prime Cryptarithm Java: Practice Studio",
-						section: "extension",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					content:
+						"A digit can be allowed and still appear in a row of the wrong width. With digits 1 through 6, trace `221 × 16`. The final product 3536 and both partial products use allowed digits. The units partial, 1326, needs four places, so this pair must be rejected.\n\n**Checkpoints:** Put `6` followed by `1 2 3 4 5 6` in crypt1.in. Predict the decision for this pair before checking the total of 137. Repeat with only `1 2 3 4` and a first line of `4`. Explain why the count falls to 21.",
 					projectLink:
 						"https://github.com/instruction-material/USACO-Bronze/tree/main/UB-14-Prime-Cryptarithm-Java/starter",
 					solutionLink:
