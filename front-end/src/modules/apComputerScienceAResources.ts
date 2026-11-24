@@ -21,6 +21,9 @@ const expressionsAndClassPacks =
 const classesAndArraysPacks =
 	"https://github.com/instruction-material/APCS/tree/9a0a543060abfe939bec01ebdc9d0cd876ba387c";
 
+const listsAndAlgorithmsPacks =
+	"https://github.com/instruction-material/APCS/tree/c5519770180b64b744a269c5c83a2d0d022fab9b";
+
 function projectRoles(pack: string) {
 	return {
 		starter: `${pack}/starter`,
@@ -169,6 +172,28 @@ export const apClassesAndArraysResources = {
 	)
 };
 
+export const apListsAndAlgorithmsResources = {
+	"array-list-reference": projectRoles(
+		`${listsAndAlgorithmsPacks}/APCS11-Array-List-Reference`
+	),
+	"fortune-teller": projectRoles(
+		`${listsAndAlgorithmsPacks}/APCS11-Fortune-Teller-Class`
+	),
+	"card-and-deck": projectRoles(
+		`${listsAndAlgorithmsPacks}/APCS11-Card-and-Deck-Classes`
+	),
+	"minimum-and-maximum": projectRoles(
+		`${listsAndAlgorithmsPacks}/APCS12-Minimum-and-Maximum`
+	),
+	"deck-class": projectRoles(`${listsAndAlgorithmsPacks}/APCS12-Deck-Class`),
+	"linear-search": projectRoles(
+		`${listsAndAlgorithmsPacks}/APCS13-Linear-Search-Implementation`
+	),
+	"insertion-sort": projectRoles(
+		`${listsAndAlgorithmsPacks}/APCS14-Insertion-Sort`
+	)
+};
+
 const restoredProjects = {
 	"binary-search-trace": apBinarySearchResources,
 	"recursion-practice": apRecursionPracticeResources,
@@ -182,7 +207,8 @@ const restoredProjects = {
 	...apFoundationsSupplementalResources,
 	...apVariablesAndLoopsResources,
 	...apExpressionsAndClassResources,
-	...apClassesAndArraysResources
+	...apClassesAndArraysResources,
+	...apListsAndAlgorithmsResources
 };
 
 export function apComputerScienceAProjectKey(
@@ -224,6 +250,18 @@ const nativeClassWorkspaces = {
 	"letter-shifter": {
 		item: "ap-computer-science-a-check-in-3-supplemental-additional-practice-letter-shifter",
 		files: ["Shifter.java", "UpShifter.java", "DownShifter.java"]
+	},
+	"fortune-teller": {
+		item: "ap-computer-science-a-apcs11-arraylists-supplemental-project-fortune-teller",
+		files: ["FortuneTeller.java"]
+	},
+	"card-and-deck": {
+		item: "ap-computer-science-a-apcs11-arraylists-supplemental-card-and-deck-classes",
+		files: ["Card.java", "Deck.java", "LuckGame.java"]
+	},
+	"deck-class": {
+		item: "ap-computer-science-a-apcs12-wrapper-classes-supplemental-project-deck-class",
+		files: ["Card.java", "Deck.java", "Luck.java", "Suit.java"]
 	}
 };
 

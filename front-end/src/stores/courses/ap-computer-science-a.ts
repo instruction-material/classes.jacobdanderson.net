@@ -7,6 +7,7 @@ import {
 	apExpressionsAndClassResources,
 	apFoundationsSupplementalResources,
 	apIntroductoryResources,
+	apListsAndAlgorithmsResources,
 	apMergeSortResources,
 	apRecursionPracticeResources,
 	apRecursionReferenceResources,
@@ -1363,10 +1364,10 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 				},
 				{
 					title: "ArrayList Reference",
+					contentKind: "reading",
+					preserveInstructions: true,
 					content:
-						"The ArrayList reference pack supports mutation or traversal gaps. The focus is method names, shifting behavior after removal, wrapper-class requirements, and when index-based loops are safer than enhanced loops. Use it before any list-removal problem. A completed pass traces `size()`, `get`, `set`, `add`, and `remove`, then explains how indexes shift after removal and why an enhanced `for` loop is not safe for structural mutation. Include a trace where two adjacent items meet the removal condition so the skipped-index risk is visible.",
-					projectLink: repo("APCS11-Array-List-Reference/starter"),
-					solutionLink: repo("APCS11-Array-List-Reference/solution")
+						"Trace removing adjacent negatives from `[8, -2, -4, 0]`. If a forward loop removes index 1 and increments, it skips the `-4` that shifted to index 1. Trace the same operation backward and explain why both negatives are removed. Continue with the [ArrayList Reference Pack in APCS11](/courses#ap-computer-science-a-apcs11-arraylists-ap-computer-science-a-apcs11-arraylists-supplemental-arraylist-reference-pack)."
 				},
 				{
 					title: "APCS11 ArrayList Multiple Choice Reference",
@@ -1649,19 +1650,56 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 				},
 				{
 					title: "ArrayList Reference Pack",
-					content:
-						"Keep the ArrayList reference build close for method review and quick syntax reinforcement. It supports fast checks of `add`, `get`, `set`, `remove`, `size`, traversal style, and mutation safety. Use it to compare array and ArrayList thinking directly: arrays expose `.length`, while ArrayLists use `size()` and method calls for access and mutation. A completed pass includes one append, one insertion, one replacement, one removal, and a trace of the final indexes. Add one comparison of forward removal versus backward removal so skipped elements and shifted indexes are explicit.",
-					projectLink: repo("APCS11-Array-List-Reference/starter"),
-					solutionLink: repo("APCS11-Array-List-Reference/solution")
+					content: apProject({
+						goal: "Trace append, insertion, replacement, and removal on a list of boxed integers.",
+						steps: [
+							"Run the starter. Trace how appending adds at the end and how inserting -5 at index 1 shifts every later value.",
+							"Replace the last element with 7. An array uses `.length` and brackets. An ArrayList uses `size()` with `get` and `set`.",
+							"Complete `removeNegatives` with a backward index loop. Use `remove(i)` to remove by index."
+						],
+						apReasoning:
+							"An index identifies a position, which may change after a removal. Starting at the end keeps earlier positions valid.",
+						checks: [
+							"Replacement keeps the size at five. The final list is `[42, 0, 7]` after both adjacent negatives are removed.",
+							"Check a list of all negative numbers, a list without negatives, and an empty list."
+						]
+					}),
+					projectLink:
+						apListsAndAlgorithmsResources["array-list-reference"]
+							.starter,
+					solutionLink:
+						apListsAndAlgorithmsResources["array-list-reference"]
+							.reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "Project: Fortune Teller",
-					content:
-						"FortuneTeller combines ArrayLists, random selection, and controlled mutation of collection state. The interesting check is whether random choices remain valid as items are added, removed, or reused.",
-					projectLink: repo("APCS11-Fortune-Teller-Class/starter"),
-					solutionLink: repo("APCS11-Fortune-Teller-Class/solution"),
+					content: apProject({
+						goal: "Draw from a shrinking list of fortunes without repeating a draw.",
+						steps: [
+							"Open `FortuneTeller.java`. Keep the empty-list check before selecting an index.",
+							"Use `nextInt(fortunes.size())` to choose an index. Remove that entry and return the string from `remove`.",
+							"Download and extract the project. Run `javac Main.java FortuneTeller.java`, then `java Main`."
+						],
+						apReasoning:
+							"The list size changes after each draw. The current size sets the exclusive upper bound for the next index.",
+						checks: [
+							"The first five results are distinct. The sixth says `No fortunes left.` and the count stays at zero.",
+							"Two FortuneTeller objects start with separate lists. Drawing from one leaves the other at five."
+						]
+					}),
+					projectLink:
+						apListsAndAlgorithmsResources["fortune-teller"].starter,
+					solutionLink:
+						apListsAndAlgorithmsResources["fortune-teller"]
+							.reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true,
 					mediaLink: media("apcs11-project-2-fortune-teller.mp4")
 				},
 				{
@@ -1681,10 +1719,29 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 				},
 				{
 					title: "Card and Deck Classes",
-					content:
-						"The card-and-deck classes provide a bridge build when object-list modeling needs more practice before APCS12 and APCS17.",
-					projectLink: repo("APCS11-Card-and-Deck-Classes/starter"),
-					solutionLink: repo("APCS11-Card-and-Deck-Classes/solution")
+					content: apProject({
+						goal: "Model a 52-card deck that deals cards without replacement and resolves a round between two decks.",
+						steps: [
+							"Read the nested loops that create 13 cards for each of four suits.",
+							"In `Deck.java`, choose a random index within the current size, then remove and return the card. An empty deck returns `null`.",
+							"In `Card.java`, compare ranks first. If ranks are equal, compare suit names alphabetically. Equal rank and suit ties the round.",
+							"Download the ZIP. Compile with `javac Main.java Card.java Deck.java LuckGame.java` and run `java Main`."
+						],
+						apReasoning:
+							"Card owns the comparison, Deck owns the list, and LuckGame owns the scores. A round starts only when both decks have a card.",
+						checks: [
+							"Each deck starts with 52 distinct cards. The supplied decks use the same seed, so all 52 draws tie and both decks are empty.",
+							"Change one seed to exercise both win counters. Wins plus ties still equal 52. An extra attempted round leaves both decks and scores intact."
+						]
+					}),
+					projectLink:
+						apListsAndAlgorithmsResources["card-and-deck"].starter,
+					solutionLink:
+						apListsAndAlgorithmsResources["card-and-deck"]
+							.reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true
 				}
 			]
 		},
@@ -1724,10 +1781,10 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 				},
 				{
 					title: "Project: Minimum and Maximum",
+					contentKind: "reading",
+					preserveInstructions: true,
 					content:
-						"This project is a targeted follow-up when wrapper constants and search initialization still feel abstract. Trace the first element, current best value, comparison result, and update rule so the initialization choice is defensible.",
-					projectLink: repo("APCS12-Minimum-and-Maximum/starter"),
-					solutionLink: repo("APCS12-Minimum-and-Maximum/solution")
+						"Trace the minimum and maximum candidates for `[-6, -9, -3]` after each element. Explain what goes wrong if the maximum starts at zero. Continue with [Minimum and Maximum Search in APCS12](/courses#ap-computer-science-a-apcs12-wrapper-classes-ap-computer-science-a-apcs12-wrapper-classes-supplemental-project-minimum-and-maximum-search)."
 				},
 				{
 					title: "Runtime Analysis Starter",
@@ -1765,18 +1822,55 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 			supplementalProjects: [
 				{
 					title: "Project: Minimum and Maximum Search",
-					content:
-						"This build reinforces wrapper constants and collection scanning with boxed integers. The explanation justifies the initial minimum and maximum values, then traces how each comparison can update the answer.",
-					projectLink: repo("APCS12-Minimum-and-Maximum/starter"),
-					solutionLink: repo("APCS12-Minimum-and-Maximum/solution"),
+					content: apProject({
+						goal: "Find the smallest and largest boxed integers in one traversal.",
+						steps: [
+							"Keep the early return for an empty list. An empty result lets the caller print `No values`.",
+							"Start the minimum at `Integer.MAX_VALUE` and the maximum at `Integer.MIN_VALUE`.",
+							"Use an enhanced loop to unbox each value. Update the two candidates independently and return them in minimum, maximum order."
+						],
+						apReasoning:
+							"A value can update both candidates on the first pass. Track the running minimum and maximum after each step.",
+						checks: [
+							"`[-8, -2, -15]` gives `-15, -2`. `[9, 3, 9]` gives `3, 9`, and `[5]` gives `5, 5`.",
+							"An empty list has no extremes. Test the two Integer limits as list entries."
+						]
+					}),
+					projectLink:
+						apListsAndAlgorithmsResources["minimum-and-maximum"]
+							.starter,
+					solutionLink:
+						apListsAndAlgorithmsResources["minimum-and-maximum"]
+							.reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true,
 					mediaLink: media("apcs12-project-2-minimum-search.mp4")
 				},
 				{
 					title: "Project: Deck Class",
-					content:
-						"Deck Class gives another wrapper-style object around a collection before APCS17. The useful check is whether cards are represented consistently and deck operations preserve valid collection state.",
-					projectLink: repo("APCS12-Deck-Class/starter"),
-					solutionLink: repo("APCS12-Deck-Class/solution")
+					content: apProject({
+						goal: "Give a deck ownership of its list and define a typed ordering for suits.",
+						steps: [
+							"Copy the supplied list in the Deck constructor. The Deck and its caller can then remove cards from their own lists independently.",
+							"Complete `Suit.compareTo` using the numeric positions of Clubs, Spades, Hearts, and Diamonds from lowest to highest.",
+							"Trace how Card uses the Suit only when ranks match. Rank 1 is an ace and rank 13 is a king.",
+							"Download the ZIP. Run `javac Main.java Card.java Deck.java Luck.java Suit.java`, then `java Main`."
+						],
+						apReasoning:
+							"Sharing a mutable list causes changes on either side to affect the other. Copying the list keeps deck membership independent.",
+						checks: [
+							"Clearing the supplied list leaves the deck at two cards. An invalid index returns `null` without removing a card.",
+							"The first valid draw returns `12 of Clubs`, and Diamonds ranks above Clubs."
+						]
+					}),
+					projectLink:
+						apListsAndAlgorithmsResources["deck-class"].starter,
+					solutionLink:
+						apListsAndAlgorithmsResources["deck-class"].reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true
 				}
 			]
 		},
@@ -1844,24 +1938,26 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 							"Search an unsorted array with a simple left-to-right loop.",
 							"Return or report the target as soon as it is found.",
 							"Add a sorted-data variant only when the early-exit condition is justified.",
-							"Trace found-at-front, found-at-end, and not-found inputs."
+							"Run `Main.java`. Trace the front and end matches in `[7, 2, 7, 1]`, then count the values checked when 9 is absent."
 						],
 						apReasoning:
 							"The AP question is not only whether the code finds the target. It is also which comparisons occur, when the loop stops, and how sortedness changes the worst-case or early-exit behavior.",
 						checks: [
 							"The not-found case terminates without reading past the end.",
 							"The found-at-front case performs one comparison.",
-							"The sorted variant explains why values beyond the target point no longer need checking."
+							"In `[-3, 0, 4, 4, 9]`, a search for 2 stops at the first 4. A search for 4 succeeds. An empty array returns false."
 						],
 						extension:
 							"Return the first matching index instead of a boolean result, then test duplicates and explain why the first occurrence is returned."
 					}),
-					projectLink: repo(
-						"APCS13-Linear-Search-Implementation/starter"
-					),
-					solutionLink: repo(
-						"APCS13-Linear-Search-Implementation/solution"
-					),
+					projectLink:
+						apListsAndAlgorithmsResources["linear-search"].starter,
+					solutionLink:
+						apListsAndAlgorithmsResources["linear-search"]
+							.reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true,
 					mediaLink: media("apcs13-project-2-linear-search.mp4")
 				}
 			]
@@ -1935,21 +2031,27 @@ Assign 50 to \`points\` after the first output and print the updated value. Assi
 						steps: [
 							"Treat index `0` as the initial sorted prefix.",
 							"Take the next value and move left through the prefix until the insertion point is found.",
-							"Shift values without overwriting the stored current value.",
-							"Trace a nearly sorted input and a reverse-sorted input."
+							"Move each strictly larger value one place right, move the gap left, and add one to the shift count.",
+							"Place the saved value in the gap. Trace a nearly sorted input and a reverse-sorted input."
 						],
 						apReasoning:
 							"Insertion sort questions often test loop conditions, index bounds, and the order of assignment during shifting. A clean trace shows why `j >= 0` style bounds checks matter.",
 						checks: [
 							"The current value is preserved while other values shift.",
-							"The algorithm handles duplicates without losing values.",
-							"The best-case and worst-case examples are named and justified."
+							"`[3, -1, 3, 0]` becomes `[-1, 0, 3, 3]` in three shifts. Equal values keep their original order.",
+							"`[1, 3, 2, 4]` takes one shift, `[4, 3, 2, 1]` takes six, and an empty or already sorted array takes zero."
 						],
 						extension:
-							"Add a counter for comparisons and shifts, then compare selection sort and insertion sort on the same inputs."
+							"Count comparisons as well as shifts. Compare selection sort and insertion sort on the same inputs."
 					}),
-					projectLink: repo("APCS14-Insertion-Sort/starter"),
-					solutionLink: repo("APCS14-Insertion-Sort/solution"),
+					projectLink:
+						apListsAndAlgorithmsResources["insertion-sort"].starter,
+					solutionLink:
+						apListsAndAlgorithmsResources["insertion-sort"]
+							.reference,
+					ideImport: true,
+					preserveInstructions: true,
+					preserveAssignment: true,
 					mediaLink: media("apcs14-project-2-insertion-sort.mp4")
 				}
 			]

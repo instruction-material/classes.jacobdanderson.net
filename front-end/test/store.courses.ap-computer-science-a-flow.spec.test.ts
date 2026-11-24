@@ -10,6 +10,7 @@ import {
 	apExpressionsAndClassResources,
 	apFoundationsSupplementalResources,
 	apIntroductoryResources,
+	apListsAndAlgorithmsResources,
 	apMergeSortResources,
 	apRecursionPracticeResources,
 	apRecursionReferenceResources,
@@ -555,6 +556,62 @@ describe("AP Computer Science A learner flow", () => {
 			"ap-computer-science-a-apcs10-arrays-supplemental-array-reference-pack",
 			"choice",
 			null
+		],
+		[
+			"APCS11 ArrayLists",
+			"ArrayList Reference Pack",
+			"array-list-reference",
+			"ap-computer-science-a-apcs11-arraylists-supplemental-arraylist-reference-pack",
+			"choice",
+			null
+		],
+		[
+			"APCS11 ArrayLists",
+			"Project: Fortune Teller",
+			"fortune-teller",
+			"ap-computer-science-a-apcs11-arraylists-supplemental-project-fortune-teller",
+			"choice",
+			"FortuneTeller.java"
+		],
+		[
+			"APCS11 ArrayLists",
+			"Card and Deck Classes",
+			"card-and-deck",
+			"ap-computer-science-a-apcs11-arraylists-supplemental-card-and-deck-classes",
+			"choice",
+			"Card.java Deck.java LuckGame.java"
+		],
+		[
+			"APCS12 Wrapper Classes",
+			"Project: Minimum and Maximum Search",
+			"minimum-and-maximum",
+			"ap-computer-science-a-apcs12-wrapper-classes-supplemental-project-minimum-and-maximum-search",
+			"choice",
+			null
+		],
+		[
+			"APCS12 Wrapper Classes",
+			"Project: Deck Class",
+			"deck-class",
+			"ap-computer-science-a-apcs12-wrapper-classes-supplemental-project-deck-class",
+			"choice",
+			"Card.java Deck.java Luck.java Suit.java"
+		],
+		[
+			"APCS13 Algorithmic Runtime and Linear Search",
+			"Project: Linear Search Implementation",
+			"linear-search",
+			"ap-computer-science-a-apcs13-algorithmic-runtime-and-linear-search-supplemental-project-linear-search-implementation",
+			"challenge",
+			null
+		],
+		[
+			"APCS14 Selection and Insertion Sort",
+			"Project: Insertion Sort",
+			"insertion-sort",
+			"ap-computer-science-a-apcs14-selection-and-insertion-sort-supplemental-project-insertion-sort",
+			"challenge",
+			null
 		]
 	] as const)("opens both Java roles for %s / %s", async (moduleTitle, title, kind, itemId, path, classFile) => {
 		setActivePinia(createPinia());
@@ -566,7 +623,11 @@ describe("AP Computer Science A learner flow", () => {
 		const rawModule = requireModule(moduleTitle);
 		const rawItems = path === "core" ? rawModule.curriculum : rawModule.supplementalProjects;
 		const rawItem = rawItems.find(candidate => candidate.title === title)!;
-		const links = { ...apExpressionsAndClassResources, ...apClassesAndArraysResources }[kind];
+		const links = {
+			...apExpressionsAndClassResources,
+			...apClassesAndArraysResources,
+			...apListsAndAlgorithmsResources
+		}[kind];
 		expect(item.id).toBe(itemId);
 		expect(rawItem).toMatchObject({
 			learningPath: path,
@@ -588,6 +649,21 @@ describe("AP Computer Science A learner flow", () => {
 				expect(javaNativeBuildInstructions(key)).toBeNull();
 			}
 		}
+	});
+
+	it.each([
+		["Check-In #3", "ArrayList Reference", "APCS11 ArrayLists", "ArrayList Reference Pack"],
+		["Check-In #4", "Project: Minimum and Maximum", "APCS12 Wrapper Classes", "Project: Minimum and Maximum Search"]
+	])("keeps %s / %s as a recap leading to the single runnable project", async (checkIn, recapTitle, targetModule, targetTitle) => {
+		setActivePinia(createPinia());
+		const course = (await useCoursesStore().loadCourseById("ap-computer-science-a"))!;
+		const raw = requireModule(checkIn).supplementalProjects.find(item => item.title === recapTitle)!;
+		const module = course.modules.find(candidate => candidate.title === targetModule)!;
+		const target = module.supplementalProjects.find(item => item.title === targetTitle)!;
+		expect(raw.contentKind).toBe("reading");
+		expect(raw.projectLink).toBeUndefined();
+		expect(raw.solutionLink).toBeUndefined();
+		expect(raw.content).toContain(`/courses#${module.id}-${target.id}`);
 	});
 
 	it("preserves inherited source projects while moving references out of the required path", () => {
