@@ -1,6 +1,7 @@
 import type { CourseDefinition } from "@/stores/courses";
 import { createPinia, setActivePinia } from "pinia";
 import { beforeEach, describe, expect, it } from "vitest";
+import { apStoryShuffleTraceResources } from "@/modules/apComputerScienceAResources";
 import { useAppStore } from "@/stores/app";
 import { useCoursesStore } from "@/stores/courses";
 import { courseCatalog } from "@/stores/courses/index";
@@ -126,7 +127,7 @@ describe("course solution visibility", () => {
 		expect(course).not.toBeNull();
 		expect(courseSolutionLinks(course!)).toEqual([]);
 		expect(courseLinks(course!).filter(Boolean)).not.toContain(
-			"https://github.com/instruction-material/APCS/tree/main/APCS1-Mad-Libs/solution"
+			apStoryShuffleTraceResources["mad-libs"].reference
 		);
 	});
 
@@ -256,10 +257,10 @@ describe("course solution visibility", () => {
 
 		expect(course).not.toBeNull();
 		expect(links).toContain(
-			"https://github.com/instruction-material/APCS/tree/main/APCS1-Mad-Libs/starter"
+			apStoryShuffleTraceResources["mad-libs"].starter
 		);
 		expect(links).toContain(
-			"https://github.com/instruction-material/APCS/tree/main/APCS1-Mad-Libs/solution"
+			apStoryShuffleTraceResources["mad-libs"].reference
 		);
 	});
 
@@ -292,7 +293,7 @@ describe("course solution visibility", () => {
 			"ap-computer-science-a"
 		);
 		expect(courseSolutionLinks(permittedCourse!)).toContain(
-			"https://github.com/instruction-material/APCS/tree/main/APCS1-Mad-Libs/solution"
+			apStoryShuffleTraceResources["mad-libs"].reference
 		);
 
 		appStore.setCurrentTutor(tutor);
@@ -323,7 +324,7 @@ describe("course solution visibility", () => {
 			"ap-computer-science-a"
 		);
 		expect(courseSolutionLinks(staffCourse!)).toContain(
-			"https://github.com/instruction-material/APCS/tree/main/APCS1-Mad-Libs/solution"
+			apStoryShuffleTraceResources["mad-libs"].reference
 		);
 
 		appStore.setCurrentTutor(null);
