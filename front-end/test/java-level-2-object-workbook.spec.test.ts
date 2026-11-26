@@ -9,7 +9,7 @@ import {
 import { useAppStore } from "@/stores/app";
 import { useCoursesStore } from "@/stores/courses";
 
-it("keeps the JM1 through JM3 assignments in their original sections with separate role imports", async () => {
+it("keeps introductory object workbooks and Check-In 1 practice in their original sections with separate role imports", async () => {
 	setActivePinia(createPinia());
 	const courseID = "java-level-2";
 	const read = () => useCoursesStore().loadCourseById(courseID);
@@ -34,7 +34,10 @@ it("keeps the JM1 through JM3 assignments in their original sections with separa
 		"JM3-Supplemental-Project-1-Basketball-Statistics":
 			"Riley | total 18 | fouls 6 | disqualified",
 		"J2-01-jm3-static-variables-and-methods-supplemental-3":
-			"Calling the scoring method"
+			"Calling the scoring method",
+		"J2-02-check-in-1-supplemental-2": "Issued: 2, redeemed: 1",
+		"J2-03-check-in-1-supplemental-3":
+			"Points view: [West, East, North, South]"
 	};
 	expect(javaObjectWorkbooks.map(pack => pack.pack)).toEqual(
 		Object.keys(samples)

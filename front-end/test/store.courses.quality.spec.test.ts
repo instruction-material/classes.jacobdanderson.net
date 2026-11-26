@@ -2166,8 +2166,14 @@ describe("course text quality normalization", () => {
 			expect(corpus).toMatch(
 				/Build a minimal runnable version of [^.\n]+, then add the Java feature that matters for this module/
 			);
-			expect(corpus).toMatch(
+			expect(corpus).not.toMatch(
 				/Compile [^.\n]+ after each constructor, method signature, branch, or collection change/
+			);
+			expect(corpus).toContain(
+				"Repeating the call returns false and leaves all fields as they were"
+			);
+			expect(corpus).toContain(
+				"Sorting a copy preserves the original order"
 			);
 			expect(corpus).toMatch(
 				/Keep a small driver example for [^.\n]+ available while compiling after each state, branch, loop, or dispatch change/

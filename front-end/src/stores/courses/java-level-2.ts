@@ -494,31 +494,62 @@ const javaLevel2SourceCourse: RawCourse = {
 				},
 				{
 					title: "Check-In #1 Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 2",
-						moduleTitle: "Check-In #1",
-						itemTitle: "Check-In #1 Transfer Practice",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/J2-02-check-in-1-supplemental-2/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/J2-02-check-in-1-supplemental-2/solution"
+					contentKind: "assignment",
+					preserveInstructions: true,
+					ideImport: true,
+					content: [
+						"Model tickets that can each be redeemed once. Each ticket has a unique number and a state. The class counts all tickets issued and all tickets redeemed.",
+						"",
+						"1. Inspect the constructor and identify which fields change when a ticket is issued.",
+						"2. Implement `redeem()`. On the first call for a ticket, set its state to redeemed, increase the shared redeemed count, and return true. Repeating the call returns false and leaves all fields as they were.",
+						"3. Run the driver with two tickets. Predict the first and repeated calls on ticket 1 and check the state of ticket 2 before its first use.",
+						"",
+						"```text",
+						"First redemption: true",
+						"Repeated redemption: false",
+						"Second ticket redeemed: false",
+						"Issued: 2, redeemed: 1",
+						"```",
+						"",
+						"Save and extract the ZIP. With Java 21, run `javac --release 21 -Xlint:all -Werror *.java`, then `java Main` and `java ContractTests`."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"J2-02-check-in-1-supplemental-2",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"J2-02-check-in-1-supplemental-2",
+						"solution"
+					)
 				},
 				{
 					title: "Check-In #1 Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 2",
-						moduleTitle: "Check-In #1",
-						itemTitle: "Check-In #1 Extension Practice",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/J2-03-check-in-1-supplemental-3/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/J2-03-check-in-1-supplemental-3/solution"
+					contentKind: "assignment",
+					preserveInstructions: true,
+					ideImport: true,
+					content: [
+						"Present two rankings of the same contest attempts. The points view uses highest points first and shortest time for ties. The time view uses shortest time first and highest points for ties.",
+						"",
+						"1. A `Comparator<Attempt>` supplies a sorting rule. Use `comparingInt` with a getter for the first key. Apply `reversed()` to a key when its largest value should come first. Use `thenComparingInt` or `thenComparing` to add the second key.",
+						"2. Pass each rule to the provided `sortedCopy` method. Sorting a copy preserves the original order. When both keys tie, a stable sort retains the tied entries’ original order.",
+						"3. Predict both rankings for the driver. Save and extract the ZIP. With Java 21, run `javac --release 21 -Xlint:all -Werror *.java`, then `java Main` and `java ContractTests`. Compare all three printed sequences.",
+						"",
+						"```text",
+						"Points view: [West, East, North, South]",
+						"Time view: [North, South, West, East]",
+						"Original: [North, East, West, South]",
+						"```",
+						"",
+						"Add an attempt that ties on time only. Explain why the two rankings may place it differently."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"J2-03-check-in-1-supplemental-3",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"J2-03-check-in-1-supplemental-3",
+						"solution"
+					)
 				}
 			]
 		},

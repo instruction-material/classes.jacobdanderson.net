@@ -4,6 +4,7 @@ import { javaRecursionProjectKey } from "@/modules/javaRecursionResources";
 const jm1Revision = "6dc5e5c6d2659d350b11b5d112f513adfd568bdf";
 const jm2Revision = "9807e7a519e0d9121df1836467e33ccc2c29bd61";
 const jm3Revision = "a6cfdddf6101acbf20677257601c2d46903d2ef6";
+const checkIn1Revision = "5f2fe2649604a8abd97a2bff819fa6699317ac76";
 const jm1Module =
 	"java-level-2-jm1-instance-variables-constructors-and-methods";
 const jm2Module = "java-level-2-jm2-overloaded-constructors-comparison-methods";
@@ -54,6 +55,16 @@ const javaObjectSources = {
 		revision: jm3Revision,
 		id: `${jm3Module}-supplemental-static-variables-methods-extension-practice`,
 		files: ["Main.java", "ContractTests.java", "README.md"]
+	},
+	"J2-02-check-in-1-supplemental-2": {
+		revision: checkIn1Revision,
+		id: "java-level-2-check-in-1-supplemental-java-level-2-check-in-1-transfer-practice",
+		files: ["Main.java", "Ticket.java", "ContractTests.java", "README.md"]
+	},
+	"J2-03-check-in-1-supplemental-3": {
+		revision: checkIn1Revision,
+		id: "java-level-2-check-in-1-supplemental-java-level-2-check-in-1-extension-practice",
+		files: ["Main.java", "Attempt.java", "ContractTests.java", "README.md"]
 	}
 } as const;
 
