@@ -532,6 +532,75 @@ export function javaCheckIn4URL(
 	return `https://github.com/instruction-material/Java-Level-3/tree/${javaCheckIn4Revision}/${pack}/${role}`;
 }
 
+export const javaReviewRevision = "ea7d4376c0f059ee568437cb388ffd13a1622b14";
+const javaReviewPrefix = "java-level-3-java-foundations-reference-archive";
+
+export const javaReviewProjects = [
+	{
+		pack: "AJ1-Mad-Lib-Packs",
+		id: `${javaReviewPrefix}-curriculum-aj1-project-1-mad-libs`
+	},
+	{
+		pack: "AJ1-Chat-Bot-Packs",
+		id: `${javaReviewPrefix}-curriculum-aj1-project-2-chat-bot`
+	},
+	{
+		pack: "AJ2-Array-Practice-Packs",
+		id: `${javaReviewPrefix}-curriculum-aj2-project-1-array-practice`
+	},
+	{
+		pack: "AJ2-Grid-Practice-Packs",
+		id: `${javaReviewPrefix}-curriculum-aj2-project-2-two-dimensional-array-practice`
+	},
+	{
+		pack: "AJ2-ArrayList-Practice-Packs",
+		id: `${javaReviewPrefix}-curriculum-aj2-project-3-arraylist-practice`
+	},
+	{
+		pack: "AJ2-Test-Scores-Packs",
+		id: `${javaReviewPrefix}-supplemental-aj2-supplemental-project-1-test-scores`
+	},
+	{
+		pack: "AJ2-Matrix-Addition-Packs",
+		id: `${javaReviewPrefix}-supplemental-aj2-supplemental-project-2-matrix-addition`
+	},
+	{
+		pack: "AJ2-Sandwich-Orders-Packs",
+		id: `${javaReviewPrefix}-supplemental-aj2-supplemental-project-3-sandwich-orders`
+	},
+	{
+		pack: "AJ3-Student-Class-Packs",
+		id: `${javaReviewPrefix}-curriculum-aj3-project-1-student-class`
+	},
+	{
+		pack: "AJ3-Baked-Good-Packs",
+		id: `${javaReviewPrefix}-curriculum-aj3-project-2-bakedgood-class`
+	},
+	{
+		pack: "J3-01-aj1-review-variables-strings-and-input-supplemental-2",
+		id: `${javaReviewPrefix}-supplemental-java-syntax-transfer-practice`
+	},
+	{
+		pack: "J3-02-aj1-review-variables-strings-and-input-supplemental-3",
+		id: `${javaReviewPrefix}-supplemental-console-input-extension-practice`
+	},
+	{
+		pack: "J3-03-aj3-review-objects-and-classes-supplemental-2",
+		id: `${javaReviewPrefix}-supplemental-object-model-transfer-practice`
+	},
+	{
+		pack: "J3-04-aj3-review-objects-and-classes-supplemental-3",
+		id: `${javaReviewPrefix}-supplemental-inheritance-extension-practice`
+	}
+] as const;
+
+export function javaReviewURL(
+	pack: (typeof javaReviewProjects)[number]["pack"],
+	role: "starter" | "solution"
+) {
+	return `https://github.com/instruction-material/Java-Level-3/tree/${javaReviewRevision}/${pack}/${role}`;
+}
+
 const searchGroups = [
 	{ revision: javaSearchRevision, projects: javaSearchProjects },
 	{ revision: javaBinarySearchRevision, projects: javaBinarySearchProjects },
@@ -553,7 +622,8 @@ const searchGroups = [
 	{
 		revision: javaStreetSearcherRevision,
 		projects: javaStreetSearcherProjects
-	}
+	},
+	{ revision: javaReviewRevision, projects: javaReviewProjects }
 ] as const;
 
 export const javaLevel3SearchProjects = [
@@ -571,7 +641,8 @@ export const javaLevel3SearchProjects = [
 	...javaHashTableProjects,
 	...javaGraphProjects,
 	...javaCheckIn4Projects,
-	...javaStreetSearcherProjects
+	...javaStreetSearcherProjects,
+	...javaReviewProjects
 ];
 
 export function javaCheckIn1URL(

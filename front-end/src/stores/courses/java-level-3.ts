@@ -12,6 +12,7 @@ import {
 import { buildJavaCheckIn1Module } from "./javaCheckIn1Teaching";
 import { buildJavaCheckIn3Module } from "./javaCheckIn3Teaching";
 import { buildJavaCheckIn4Module } from "./javaCheckIn4Teaching";
+import { completeJavaFoundationReview } from "./javaFoundationReviewTeaching";
 import { buildJavaGraphModule } from "./javaGraphTeaching";
 import { buildJavaHashTableModule } from "./javaHashTableTeaching";
 import { buildJavaLinkedListModule } from "./javaLinkedListTeaching";
@@ -1472,9 +1473,9 @@ const javaLevel3PrimaryModules = javaLevel3SourceCourse.modules
 			module.title !== "Pending Demo Media"
 	)
 	.map(decorateJavaLevel3Module);
-const javaLevel3PlacementArchiveModules = javaLevel3SourceCourse.modules.filter(
-	module => JAVA_LEVEL_3_OPTIONAL_MODULES.has(module.title)
-);
+const javaLevel3PlacementArchiveModules = javaLevel3SourceCourse.modules
+	.filter(module => JAVA_LEVEL_3_OPTIONAL_MODULES.has(module.title))
+	.map(completeJavaFoundationReview);
 const javaLevel3AdvancedModules = javaLevel3SourceCourse.modules.filter(
 	module => JAVA_LEVEL_3_ADVANCED_MODULES.has(module.title)
 );

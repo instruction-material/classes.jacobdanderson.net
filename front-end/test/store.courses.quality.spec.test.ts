@@ -1998,8 +1998,8 @@ describe("course text quality normalization", () => {
 			expect(corpus).not.toMatch(
 				/Use the reference after the program has fresh compile\/run evidence, then record one difference in class responsibility or API shape/
 			);
-			expect(corpus).toMatch(
-				/Use [^.\n]+ reference after fresh compile\/run evidence exists, then record one difference in class responsibility or API shape/
+			expect(corpus).toContain(
+				"compare the reference's placement of constructor validation"
 			);
 			expect(corpus).not.toMatch(
 				/Build the solution around one hand-checkable case, then expand to the sample and one adversarial or boundary input/

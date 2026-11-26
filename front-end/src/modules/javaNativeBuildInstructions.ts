@@ -57,6 +57,7 @@ import {
 	javaLinkedListProjects,
 	javaMergeSortingProjects,
 	javaPriorityMapProjects,
+	javaReviewProjects,
 	javaSearchProjects,
 	javaStreetSearcherProjects,
 	javaSustainableProjects
@@ -211,6 +212,12 @@ const javaSearchExtensionInstructions: Partial<Record<string, string>> = {
 		"For the cutoff extension, run java Main cutoff and java ContractTests cutoff.",
 	[javaCheckIn3Projects[0].id]:
 		"For the grouped-count extension, run java Main groups and java ContractTests groups.",
+	[javaReviewProjects[0].id]:
+		"Enter the four lines from README.md. For the optional headline, run java ContractTests headline and java Main headline.",
+	[javaReviewProjects[1].id]:
+		"Enter a name on the first line and a favorite activity on the second line.",
+	[javaReviewProjects[8].id]:
+		"For the optional attendance challenge, run java ContractTests attendance and java Main attendance.",
 	[javaCheckIn4Projects[0].id]:
 		"For the shortest-hops extension, run java Main hops and java ContractTests hops.",
 	[javaBinaryTreeProjects[0].id]:
