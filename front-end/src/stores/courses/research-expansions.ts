@@ -2153,17 +2153,17 @@ export const researchBackedExpansionProfiles: Record<
 		],
 		projectBriefs: {
 			"CLI library or inventory manager.":
-				"Start with two copies of Atlas and one of Maps. Implement checkout and return by title. Check out Atlas three times: the first two succeed and the third leaves its stock at zero. Return one copy and list both titles with their quantities.",
+				"Start with two copies of Atlas and one of Maps. Implement checkout and return by title. Check out Atlas three times: the first two succeed and the third leaves its stock at zero. Return one copy and list both titles with their quantities.\n\n**Checkpoints:** Display Atlas as 1 and Maps as 1 at the end. Check out an unknown title and verify both quantities stay the same. Use a separate inventory method so the console driver does not directly edit the stock.",
 			"Record-backed CSV or JSON data loader.":
-				"Use CSV rows Atlas,2 and Maps,3. Parse each into a record with a title and a nonnegative whole quantity. Report five total copies. Add Pens,nope and check that the two valid rows still total five and the rejected row is identified.",
+				"Use CSV rows Atlas,2 and Maps,3. Parse each into a record with a title and a nonnegative whole quantity. Report five total copies. Add Pens,nope and check that the two valid rows still total five and the rejected row is identified.\n\n**Checkpoints:** Treat this fixture as unquoted two-column CSV. Try a negative quantity and a row with a missing title. Report both as rejected records and still total the two valid rows. Put parsing and reporting in different methods.",
 			"Interface-driven simulator.":
-				"Give two counters the same step() operation. Start both at zero. One adds one per step, the other adds two. Call each twice through the interface and compare the final readings 2 and 4.",
+				"Give two counters the same step() operation. Start both at zero. One adds one per step, the other adds two. Call each twice through the interface and compare the final readings 2 and 4.\n\n**Checkpoints:** Store both counters in one list typed to the interface. Step the list again and expect 3 and 6. Identify where a caller can step either counter without needing its concrete type.",
 			"Abstract class hierarchy with tests.":
-				"Give a base Shape an area method. Implement a rectangle and a square. Check that sides 3 by 4 give 12 and side 3 gives 9. Choose how to reject negative lengths and test that choice.",
+				"Give a base Shape an area method. Implement a rectangle and a square. Check that sides 3 by 4 give 12 and side 3 gives 9. Choose how to reject negative lengths and test that choice.\n\n**Checkpoints:** Place both shapes in an array typed to Shape and compute area through that type. Verify both expected areas. Call the constructor with a negative length and record the rejection message or exception type.",
 			"Graphics app or non-graphics model-layer alternative.":
-				"Represent three dots at (2,3), (5,1) and (0,4). Shift every dot two columns right. Draw the result or print its coordinates. Check (4,3), (7,1), (2,4) and explain why the rows stay fixed.",
+				"Represent three dots at (2,3), (5,1) and (0,4). Shift every dot two columns right. Draw the result or print its coordinates. Check (4,3), (7,1), (2,4) and explain why the rows stay fixed.\n\n**Checkpoints:** Verify the original coordinates before and after the move. Run the same fixture through a plain-text representation to check the model independently of the drawing. Compare all three column and row pairs.",
 			"Multi-class capstone with persistence and tests.":
-				"As optional practice after Simple Battleship, separate board state from the save file. On a fresh board record a miss at (0,0) and a hit at (2,3). Save, start a new instance and reload. Both shots appear with the same marks and count as duplicates on replay."
+				"As optional practice after Simple Battleship, separate board state from the save file. On a fresh board record a miss at (0,0) and a hit at (2,3). Save, start a new instance and reload. Both shots appear with the same marks and count as duplicates on replay.\n\n**Checkpoints:** Compare a board before and after saving. On loading it, try a fresh shot in addition to the two duplicate shots and verify that only the fresh shot changes the board. Keep valid board data when a malformed save is rejected."
 		}
 	},
 	"java-level-2": javaProfile,

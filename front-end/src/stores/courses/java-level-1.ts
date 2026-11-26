@@ -487,7 +487,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "Supplemental Graphics Project: Which Shape? (Optional)",
 					preserveInstructions: true,
 					content:
-						"Use the shape string to select a circle, square or Pac-Man. Test all three and give unknown values a visible fallback. Export Main.java and run it with JDK 21 (javac Main.java, then java Main). Open drawing.png after each change.",
+						"Use the shape string to select a circle, square or Pac-Man. Test all three and give unknown values a visible fallback. Export Main.java and run it with JDK 21 (javac Main.java, then java Main). Open drawing.png after each change.\n\n**Checkpoints:** Locate the shape choice in the starter’s draw method. Use the same color and bounding box for each shape so the condition is the one variable under test. For an unrecognized choice, draw a short text message in the same area. Compare four exported PNGs. Each valid choice draws only its selected shape and the unknown choice draws readable text.",
 					projectLink: `${javaPracticeSource}/JS3_Which_Shape/starter`,
 					solutionLink: `${javaPracticeSource}/JS3_Which_Shape/solution`
 				},
@@ -495,7 +495,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "JS3 Supplemental Project 1: Elevator Limits",
 					preserveInstructions: true,
 					content:
-						"Use the 1,500-pound limit. With 1,475 pounds report 25 under; with 1,525 report 25 over. Check exactly 1,500.\n\n**Checkpoints:** Compute the difference between the total and the limit just once. Use the sign of that difference to choose an overload, exact-capacity or space-remaining message. At exactly 1,500 the difference is zero, so avoid printing a warning. Try 1,499 and 1,501 to check the nearest cases on both sides.",
+						"Use the 1,500-pound limit. With 1,475 pounds report 25 under; with 1,525 report 25 over. Check exactly 1,500.\n\n**Checkpoints:** Compute the difference between the total and the limit just once. Use the sign of that difference to choose an overload, exact-capacity or space-remaining message. At exactly 1,500 the difference is zero, so avoid printing a warning. Try 1,499 and 1,501 to check the nearest cases on both sides. Include the units in each message.",
 					projectLink: `${javaPracticeSource}/JS3-Elevator-Limits/starter`,
 					solutionLink: `${legacyJavaSource}/JS3-Elevator-Limits`
 				},
@@ -503,7 +503,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "JS3 Supplemental Project 2: Weather Activities",
 					preserveInstructions: true,
 					content:
-						"Choose activities for several weather conditions. Test a known condition and one outside your choices, which should receive a fallback message.\n\n**Checkpoints:** Make a two-column table of supported weather words and activities. Use a known word such as snowy to choose an activity and an unsupported word such as windy to exercise the fallback. Clear the input between runs and check that exactly one message is printed. Add a new valid word and verify the other rows still work.",
+						"Choose activities for several weather conditions. Test a known condition and one outside your choices, which should receive a fallback message.\n\n**Checkpoints:** Make a two-column table of supported weather words and activities. Use a known word such as snowy to choose an activity and an unsupported word such as windy to exercise the fallback. Clear the input between runs and check that exactly one message is printed. Add a new valid word and verify the other rows still work with the new choice present.",
 					projectLink: `${javaPracticeSource}/JS3-Weather-Activities/starter`,
 					solutionLink: `${legacyJavaSource}/JS3-Weather-Activities`
 				},
@@ -519,7 +519,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "JS3 Supplemental Project 4: Spreadsheet Width",
 					preserveInstructions: true,
 					content:
-						"Read a width then a word. Width 5 with conditionals should print |condi|. With hi it should print |hi   |, including three spaces.\n\n**Checkpoints:** Choose actions by comparing the string length to the requested width. When the word is longer, take the first width characters. When it is shorter, append exactly their difference in spaces. Use the boundary markers to see the spaces. With width 4 and java verify |java|, then compare widths 3 and 6.",
+						"Read a width then a word. Width 5 with conditionals should print |condi|. With hi it should print |hi   |, including three spaces.\n\n**Checkpoints:** Choose actions by comparing the string length to the requested width. When the word is longer, take the first width characters. When it is shorter, append exactly their difference in spaces. Use the boundary markers to see the spaces. With width 4 and java verify |java|, then compare widths 3 and 6. Their outputs are |jav| and |java  |.",
 					projectLink: `${javaPracticeSource}/JS3-Spreadsheet-Width/starter`,
 					solutionLink: `${legacyJavaSource}/JS3-Spreadsheet-Width`
 				}
@@ -580,7 +580,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "JS4 Supplemental Project 2: Checkout Calculator",
 					preserveInstructions: true,
 					content:
-						"Read prices until the first zero. For 1.25, 2.50, 0 the total is 3.75. Starting with zero gives zero.\n\n**Checkpoints:** Keep a running total that starts at zero. Each read either ends the loop or adds one more price. Record the total after each input. Try 0.10, 0.20, 0 and format the final total with two decimal places. Then enter 1, 0, 9 and check that the 9 never enters the total.",
+						"Read prices until the first zero. For 1.25, 2.50, 0 the total is 3.75. Starting with zero gives zero.\n\n**Checkpoints:** Keep a running total that starts at zero. Each read either ends the loop or adds one more price. Record the total after each input. Try 0.10, 0.20, 0 and format the final total with two decimal places. Then enter 1, 0, 9 and check that the 9 never enters the total. The sentinel itself adds nothing.",
 					projectLink: `${javaPracticeSource}/JS4-Checkout-Calculator/starter`,
 					solutionLink: `${legacyJavaSource}/JS4-Checkout-Calculator`
 				},
@@ -663,7 +663,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "Check-In #1 Overview",
 					preserveInstructions: true,
 					content:
-						"Try the check-in independently, then review the first unexpected output with your tutor. Read an animal and a color. Print the first animal letter and color length. Distinguish a black cat, one matching answer, and neither. Use loops to print 0 through 9 and 20 down to 10.",
+						"Complete the check-in independently, then trace the first unexpected output. Use a nonempty animal name. Read an animal and a color. Print the first animal letter and color length. Distinguish a black cat, one matching answer, and neither. Use loops to print 0 through 9 and 20 down to 10.\n\n**Checkpoints:** Use these inputs in separate runs: cat and black for a complete match, dog and black for a color-only match, and dog and brown for neither. In the first run, the initial letter is c and the color length is 5. Check the first and last values of both printed ranges.",
 					projectLink: `${javaPracticeSource}/Check-In-1/starter`,
 					solutionLink: `${javaPracticeSource}/Check-In-1/solution`
 				},
@@ -686,7 +686,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "Check-In #1: Additional Practice Project",
 					preserveInstructions: true,
 					content:
-						"Read a row and column from 1 through 10. Print ten rows of ten characters: X at the intersection, O in the selected row or column, and - elsewhere. Input 7 and 2 should make row 7 OXOOOOOOOO.",
+						"Read a row and column from 1 through 10. Print ten rows of ten characters: X at the intersection, O in the selected row or column, and - elsewhere. Input 7 and 2 should make row 7 OXOOOOOOOO.\n\n**Checkpoints:** Use one counter for row and a separate counter for column. Check the intersection first, then either selected line, then the background. For input 7 and 2, row 1 contains -O--------. Row 7 is OXOOOOOOOO. Count ten characters on each row and ten rows in total. Compute how many X and O marks are on the board.",
 					projectLink: `${javaPracticeSource}/Check-In-1-Grid/starter`,
 					solutionLink: `${javaPracticeSource}/Check-In-1-Grid/solution`
 				}
@@ -696,7 +696,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "Check In #1: Extension Challenge",
 					preserveInstructions: true,
 					content:
-						"Trace the three animal-and-color branches for black cat, white cat and brown dog. Then change the correct animal and repeat all three tests.",
+						"Trace the three animal-and-color branches for black cat, white cat and brown dog. Then change the correct animal and repeat all three tests.\n\n**Checkpoints:** Make a table giving the first letter, color length and branch for each input. Black cat means complete match, white cat means only the animal matches and brown dog means neither. Add black dog to cover only the color matching. Swap the expected animal to dog and mark exactly which classifications change. Keep the input and the two loops unchanged over all trials.",
 					projectLink: `${javaPracticeSource}/Check-In-1/starter`,
 					solutionLink: `${javaPracticeSource}/Check-In-1/solution`
 				},
@@ -704,7 +704,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "Check In #1 Transfer Practice",
 					preserveInstructions: true,
 					content:
-						"Use (1,10) for the grid intersection. Check that the upper right is X and the remaining nine entries of row 1 are O.",
+						"Use (1,10) for the grid intersection. Check that the upper right is X and the remaining nine entries of row 1 are O.\n\n**Checkpoints:** On the top row, count the rightmost X and the nine Os. In each later row, only the last column is O. Repeat with (10,1), put X at the lower left and verify the two outputs mirror each other. If an X becomes O, check order of the intersection and single-line conditions. Check every row length.",
 					projectLink: `${javaPracticeSource}/Check-In-1-Grid/starter`,
 					solutionLink: `${javaPracticeSource}/Check-In-1-Grid/solution`
 				},
@@ -712,7 +712,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "Check In #1 Extension Practice",
 					preserveInstructions: true,
 					content:
-						"Format the same word at widths one shorter, equal to and one longer than its length. Mark the bars so the final padding space is visible.",
+						"Format the same word at widths one shorter, equal to and one longer than its length. Mark the bars so the final padding space is visible.\n\n**Checkpoints:** Use the word grid. At widths 3, 4 and 5 expect |gri|, |grid| and |grid |. Write the input length, target width, and number of appended spaces for each case. Run the same three tests with a longer word, changing only the width. Verify that an exact-size word is printed once with neither trimming nor padding.",
 					projectLink: `${javaPracticeSource}/JS3-Spreadsheet-Width/starter`,
 					solutionLink: `${legacyJavaSource}/JS3-Spreadsheet-Width`
 				}
@@ -732,7 +732,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "JS6 Project 1: Methods Practice",
 					preserveInstructions: true,
 					content:
-						"Write methods for the precise average of two integers, evenness, the minimum of three doubles, factorial and integer exponentiation with nonnegative exponents. Check average(3,6) = 4.5, factorial(0) = 1 and exponent(5,3) = 125.",
+						"Write methods for the precise average of two integers, evenness, the minimum of three doubles, factorial and integer exponentiation with nonnegative exponents. Check average(3,6) = 4.5, factorial(0) = 1 and exponent(5,3) = 125.\n\n**Checkpoints:** Give each helper a return type and call it from a small test driver. Average(-3,2) is -0.5. Test evenness with 0 and an odd negative integer. For the minimum, try a tie such as (4.5,2.5,2.5). Run factorial with 4 to get 24 and exponent with any nonzero base and exponent 0 to get 1. Keep console prompts outside the calculation helpers.",
 					projectLink: `${javaPracticeSource}/JS6-Methods-Practice/starter`,
 					solutionLink: `${javaPracticeSource}/JS6-Methods-Practice/solution`
 				},
@@ -758,7 +758,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "JS6 Supplemental Graphics Project: Picasso (Optional)",
 					preserveInstructions: true,
 					content:
-						"Write three shape helpers with color, position and size parameters. Call each helper 500 times using random inputs. Export Main.java and run it with JDK 21 (javac Main.java, then java Main). Open drawing.png after each change.",
+						"Write three shape helpers with color, position and size parameters. Call each helper 500 times using random inputs. Export Main.java and run it with JDK 21 (javac Main.java, then java Main). Open drawing.png after each change.\n\n**Checkpoints:** Before adding randomness, call each helper once with a known color and position. Verify the bounding box on the exported canvas. Then use one Random instance shared by the driver. With a fixed seed the same ordered sequence of draws can be replayed. Change only the position of one fixed call to test which coordinate the helper uses.",
 					projectLink: `${javaPracticeSource}/JS6_Picasso/starter`,
 					solutionLink: `${javaPracticeSource}/JS6_Picasso/solution`
 				},
@@ -766,7 +766,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "JS6 Supplemental Project 1: Min and Max",
 					preserveInstructions: true,
 					content:
-						"Return the smallest and largest of three integers using comparisons. Try (4,-2,4) and three equal values. Work without Math.min or Math.max.",
+						"Return the smallest and largest of three integers using comparisons. Try (4,-2,4) and three equal values. Work without Math.min or Math.max.\n\n**Checkpoints:** Start each candidate with the first argument and compare the other two in turn. For (4,-2,4), expect minimum -2 and maximum 4. For (7,7,7) both results are 7. Then move the smallest or largest to the final position and rerun. The answer stays the same under reordering. Use tests in main to compare the returned integers directly.",
 					projectLink: `${javaPracticeSource}/JS6-Min-and-Max/starter`,
 					solutionLink: `${legacyJavaSource}/JS6-Min-and-Max`
 				},
@@ -774,7 +774,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "JS6 Supplemental Project 2: Caught Speeding",
 					preserveInstructions: true,
 					content:
-						"Return “No ticket!” at 65 mph or below, “Small ticket!” from 66 through 79, and “Big ticket!” at 80 or above. A birthday lowers the ticket by one level. Test 65, 66, 79 and 80 with both birthday values.",
+						"Return “No ticket!” at 65 mph or below, “Small ticket!” from 66 through 79, and “Big ticket!” at 80 or above. A birthday lowers the ticket by one level. Test 65, 66, 79 and 80 with both birthday values.\n\n**Checkpoints:** Write a two-column table with the ordinary result and the birthday result. At 65 both say No ticket. At 66 and 79 the ordinary result is Small and the birthday result is No ticket. At 80 the ordinary result is Big and the birthday result is Small. Run all eight combinations. Print each returned string so the thresholds and final punctuation can be checked.",
 					projectLink: `${javaPracticeSource}/JS6-Caught-Speeding/starter`,
 					solutionLink: `${javaPracticeSource}/JS6-Caught-Speeding/solution`
 				},
@@ -782,7 +782,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "JS6 Supplemental Project 3: String Expander",
 					preserveInstructions: true,
 					content:
-						"Expand each character in order. For “cat” and 2 return “ccaatt”. For a repeat count of 0 return the empty string.",
+						"Expand each character in order. For “cat” and 2 return “ccaatt”. For a repeat count of 0 return the empty string.\n\n**Checkpoints:** Use an outer loop for the characters, and a new repetition counter for each one. For ab and 3 the answer is aaabbb. For cat and 1 the answer is cat. For an empty input word or a zero repetition count the result is empty. Check the output length against input length times the count, then verify the characters appear in the expected order.",
 					projectLink: `${javaPracticeSource}/JS6-String-Expander/starter`,
 					solutionLink: `${legacyJavaSource}/JS6-String-Expander`
 				},
@@ -790,7 +790,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "JS6 Supplemental Project 4: Palindrome Checker",
 					preserveInstructions: true,
 					content:
-						"Compare mirrored characters. racecar and a single character are palindromes; java is not. Check the empty string too.",
+						"Compare mirrored characters. racecar and a single character are palindromes; java is not. Check the empty string too.\n\n**Checkpoints:** Pair index i with length - 1 - i and stop when the two positions meet or cross. Use exact character comparisons. Check an even pair such as noon, odd examples such as radar and raDar, and near misses such as note and radaR. If a mismatch occurs, return false immediately. If no pair differs, return true, including when the loop has zero pairs to examine.",
 					projectLink: `${javaPracticeSource}/JS6-Palindrome-Checker/starter`,
 					solutionLink: `${legacyJavaSource}/JS6-Palindrome-Checker`
 				}
@@ -809,7 +809,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "JS7 Project 1: Practice with Arrays",
 					preserveInstructions: true,
 					content:
-						"Generate ten perfect squares. Write methods for matching first/last, sum, total string lengths, presence of zero and N random doubles from 0 up to 10. Optionally return a reversed array and swap min/max. Trace [2,0,2] and an empty array.",
+						"Generate ten perfect squares. Write methods for matching first/last, sum, total string lengths, presence of zero and N random doubles from 0 up to 10. Optionally return a reversed array and swap min/max. Trace [2,0,2] and an empty array.\n\n**Checkpoints:** For [2,0,2], matching first and last is true, the sum is 4 and zero is present. Handle an empty array before indexing its first or last slot. Check the sum of lengths for [ant, bee, fish] is 10. Test the random method with N equal to zero, then with N equal to three and verify the length and range separately.",
 					projectLink: `${javaPracticeSource}/JS7-Practice-with-Arrays/starter`,
 					solutionLink: `${javaPracticeSource}/JS7-Practice-with-Arrays/solution`
 				},
@@ -817,7 +817,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "JS7 Project 2: Fortune Teller",
 					preserveInstructions: true,
 					content:
-						"Store five fortunes in an array. Select an index from 0 through length - 1 and print its fortune. Change the array length and check every possible index remains valid.",
+						"Store five fortunes in an array. Select an index from 0 through length - 1 and print its fortune. Change the array length and check every possible index remains valid.\n\n**Checkpoints:** Assign one fortune to each position and use random.nextInt(fortunes.length). In a test driver, inspect positions zero and length minus one directly so the boundary test does not depend on chance. Reduce the array to one fortune and rerun the picker. The only valid result is index zero. Add two new fortunes and verify the index calculation still uses the current length.",
 					projectLink: `${javaPracticeSource}/JS7-Fortune-Teller/starter`,
 					solutionLink: `${javaPracticeSource}/JS7-Fortune-Teller/solution`
 				},
@@ -830,7 +830,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "JS7 Project 3: Practice with ArrayLists",
 					preserveInstructions: true,
 					content:
-						"Generate N integers from -50 through 50. Return a separate list of evens. Remove a smallest value, append the sum, and divide multiples of 3 by 3. Read N words and insert MIDDLE at index size()/2. Check [6,1,3] and an empty list.",
+						"Generate N integers from -50 through 50. Return a separate list of evens. Remove a smallest value, append the sum, and divide multiples of 3 by 3. Read N words and insert MIDDLE at index size()/2. Check [6,1,3] and an empty list.\n\n**Checkpoints:** Run the list helpers independently on copies of [6,1,3]. Expect the even copy [6], removal of the minimum to leave [6,3], sum 10 before removal, and division to produce [2,1,1]. Track which helpers edit a list and which return another list. For [red,blue], insertion at index 1 gives [red,MIDDLE,blue]. Verify that trying to remove a minimum from an empty list leaves it empty.",
 					projectLink: `${javaPracticeSource}/JS7-Array-List-Practice/starter`,
 					solutionLink: `${javaPracticeSource}/JS7-Array-List-Practice/solution`
 				},
@@ -838,7 +838,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "JS7 Project 4: High Score List",
 					preserveInstructions: true,
 					content:
-						"Start with scores 500, 450, 375. Insert 400 then 550 in descending order. Add another 450 and a new lowest score. Print the list after each input.",
+						"Start with scores 500, 450, 375. Insert 400 then 550 in descending order. Add another 450 and a new lowest score. Print the list after each input.\n\n**Checkpoints:** Locate the first score smaller than the new value and insert there. With the example, the ordered list after 550 is [550,500,450,400,375]. After a second 450, keep both values and verify descending order by comparing adjacent positions. Try placing a new smallest score at the end and placing the first score into an initially empty list. Check that the length grows by one each time.",
 					projectLink: `${javaPracticeSource}/JS7-High-Score-List/starter`,
 					solutionLink: `${javaPracticeSource}/JS7-High-Score-List/solution`
 				}
@@ -848,7 +848,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "JS7 Supplemental Project 1: Lucky Array",
 					preserveInstructions: true,
 					content:
-						"Generate ten numbers and check whether a chosen lucky number occurs. Use [4,8,4] to test 4 (present) and 7 (absent).",
+						"Generate ten numbers and check whether a chosen lucky number occurs. Use [4,8,4] to test 4 (present) and 7 (absent).\n\n**Checkpoints:** Write a search helper that accepts an array and a target. Keep random trial generation in the driver, away from the membership check. Trace the indexes it visits for 7 and for 4 in [4,8,4]. Multiple occurrences still mean present. Then try an empty array and a one-element array with a matching and a nonmatching target. Explain when a loop can stop early.",
 					projectLink: `${javaPracticeSource}/JS7-Lucky-Array/starter`,
 					solutionLink: `${legacyJavaSource}/JS7-Lucky-Array`
 				},
@@ -856,7 +856,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "JS7 Supplemental Project 2: Arithmetic Sequence",
 					preserveInstructions: true,
 					content:
-						"Implement generateArithSeq(first, count, difference). For (5,4,2) return [5,7,9,11]. Test a negative difference and zero terms.",
+						"Implement generateArithSeq(first, count, difference). For (5,4,2) return [5,7,9,11]. Test a negative difference and zero terms.\n\n**Checkpoints:** Allocate the result with exactly count elements. At index i compute first + i times difference. Trace (8,3,-2) to get [8,6,4] and (7,3,0) to get [7,7,7]. A count of zero returns an empty array and a count of one contains only the first value. Check the difference between consecutive elements whenever the result has two or more terms.",
 					projectLink: `${javaPracticeSource}/JS7-Arithmetic-Sequence/starter`,
 					solutionLink: `${javaPracticeSource}/JS7-Arithmetic-Sequence/solution`
 				},
@@ -864,7 +864,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "JS7 Supplemental Project 3: String to Array",
 					preserveInstructions: true,
 					content:
-						"Return each character of Java, then write a second method that keeps indices 0,2,4 and so on. For array the second result is [a,r,y].",
+						"Return each character of Java, then write a second method that keeps indices 0,2,4 and so on. For array the second result is [a,r,y].\n\n**Checkpoints:** For Java expect [J,a,v,a] when copying all positions, and [J,v] when selecting even positions. Allocate the second array to hold the number of selected indexes. For an odd-length word, check whether the last index is selected. Test one-character and empty strings in both helpers. Trace the source index and destination index separately to verify that the output has no skipped slots.",
 					projectLink: `${javaPracticeSource}/JS7-String-to-Array/starter`,
 					solutionLink: `${legacyJavaSource}/JS7-String-to-Array`
 				},
@@ -872,7 +872,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "JS7 Supplemental Project 4: Too Much Reversing",
 					preserveInstructions: true,
 					content:
-						"Reverse each word and the order of the words. For [sun,moon] return [noom,nus]. Check the empty array. Read the output array without changing the input.",
+						"Reverse each word and the order of the words. For [sun,moon] return [noom,nus]. Check the empty array. Read the output array without changing the input.\n\n**Checkpoints:** The first output entry comes from the last input word. Reverse its characters before writing it, then continue toward the first input word. Try [a,bc,def] and expect [fed,cb,a]. Compare the original array before and after the call. For a one-word array the position stays the same and only its letters may change. An empty input returns an empty result.",
 					projectLink: `${javaPracticeSource}/JS7-Too-Much-Reversing/starter`,
 					solutionLink: `${legacyJavaSource}/JS7-Too-Much-Reversing`
 				},
@@ -880,7 +880,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "JS7 Supplemental Project 5: Airline Management",
 					preserveInstructions: true,
 					content:
-						"Store five reservations as booleans. Seats are numbered 1 through 5. Use reserveSeat and isFull. Reserve seat 1 twice, then fill seats 2 through 5; the duplicate must leave the count unchanged.",
+						"Store five reservations as booleans. Seats are numbered 1 through 5. Use reserveSeat and isFull. Reserve seat 1 twice, then fill seats 2 through 5; the duplicate must leave the count unchanged.\n\n**Checkpoints:** Translate seat 1 to array index zero only after validating that the number lies in the allowed range. A valid reservation changes one false entry to true. A duplicate leaves every entry unchanged. Try 0 and 6 to check both bounds. After filling all five seats, isFull reports true. Compare the displayed seats with the list of successful reservation requests.",
 					projectLink: `${javaPracticeSource}/JS7-Airline-Management/starter`,
 					solutionLink: `${javaPracticeSource}/JS7-Airline-Management/solution`
 				},
@@ -908,7 +908,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "JS8 Project 1: Practice with 2D Arrays",
 					preserveInstructions: true,
 					content:
-						"Write sum, minimum, an N by N multiplication table, and double row averages. For [[1,2,3],[4,5,6]] expect 21, 1 and [2.0,5.0]. Check a one-cell table.",
+						"Write sum, minimum, an N by N multiplication table, and double row averages. For [[1,2,3],[4,5,6]] expect 21, 1 and [2.0,5.0]. Check a one-cell table.\n\n**Checkpoints:** Use grid.length for row count and grid[row].length for column count. Give the minimum helper a nonempty grid with a nonempty first row. The sum helper can also handle an empty grid, for which the sum is zero. For [[7]], expect sum 7, minimum 7 and averages [7.0]. In the multiplication table, the cell at zero-based row 1 and column 2 contains (1+1) times (2+1), which is 6. Check the array shape as well as the values.",
 					projectLink: `${javaPracticeSource}/JS8-Practice-with-2D-Arrays/starter`,
 					solutionLink: `${javaPracticeSource}/JS8-Practice-with-2D-Arrays/solution`
 				},
@@ -916,7 +916,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "JS8 Project 2: Grid Drawer",
 					preserveInstructions: true,
 					content:
-						"Start with a 10 by 10 blank grid, mark a valid row and column, and display it after each edit. Mark (0,9) and (9,0). Typing -1 at either prompt stops immediately.",
+						"Start with a 10 by 10 blank grid, mark a valid row and column, and display it after each edit. Mark (0,9) and (9,0). Typing -1 at either prompt stops immediately.\n\n**Checkpoints:** Read the row first. If it is -1, finish before asking for a column. If the row is valid but the column is -1, also finish without modifying the grid. Try out-of-range input such as row 10 and verify that no cell changes. After two valid corner marks, count the marked cells and confirm that new marks do not clear older ones.",
 					projectLink: `${javaPracticeSource}/JS8-Grid-Drawer/starter`,
 					solutionLink: `${javaPracticeSource}/JS8-Grid-Drawer/solution`
 				},
@@ -934,7 +934,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "JS8 Supplemental Project 1: Square of Squares",
 					preserveInstructions: true,
 					content:
-						"Fill a square grid row by row with successive positive perfect squares. Size 2 should show 1 4 on the first row and 9 16 on the second.",
+						"Fill a square grid row by row with successive positive perfect squares. Size 2 should show 1 4 on the first row and 9 16 on the second.\n\n**Checkpoints:** Begin with the number 1. Fill the current cell with its square, then advance the number once. Keep the counter outside both loops so every row continues where the previous one ended. For size 3, the middle row is 16 25 36 and the lower-right value is 81. Size 1 contains just 1. Trace the number as the first row ends.",
 					projectLink: `${javaPracticeSource}/JS8-Square-of-Squares/starter`,
 					solutionLink: `${legacyJavaSource}/JS8-Square-of-Squares`
 				},
@@ -942,7 +942,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "JS8 Supplemental Project 2: 2D Array to String",
 					preserveInstructions: true,
 					content:
-						"Use nested loops to produce [[0, 1], [2, 3], [4, 5]], including the commas and spaces. Try an empty grid and a single row.",
+						"Use nested loops to produce [[0, 1], [2, 3], [4, 5]], including the commas and spaces. Try an empty grid and a single row.\n\n**Checkpoints:** Use an opening and closing bracket for the grid and each row. Add separators between rows and between cells, then stop before the end bracket. Try [[],[4]] and expect [[], [4]]. A single row [3,5] becomes [[3, 5]]. Compare the console output character by character, especially the final comma and the space after every interior comma.",
 					projectLink: `${javaPracticeSource}/JS8-2D-Array-to-String/starter`,
 					solutionLink: `${javaPracticeSource}/JS8-2D-Array-to-String/solution`
 				},
@@ -950,7 +950,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "JS8 Supplemental Project 3: Magic Square",
 					preserveInstructions: true,
 					content:
-						"Compare every row, column and both diagonals with the first row sum. [[2,7,6],[9,5,1],[4,3,8]] passes. Swap two unequal entries and check again. An empty or non-square grid fails.",
+						"Compare every row, column and both diagonals with the first row sum. [[2,7,6],[9,5,1],[4,3,8]] passes. Swap two unequal entries and check again. An empty or non-square grid fails.\n\n**Checkpoints:** Compute the target from the first row. Then compute separate sums for all rows and columns and check both directions across the diagonals. For the given square every sum is 15. Swap the first two entries and note that the top row sum stays 15 while a column sum changes. Reject rectangular input before indexing a diagonal. Explain which check catches the swap.",
 					projectLink: `${javaPracticeSource}/JS8-Magic-Square/starter`,
 					solutionLink: `${javaPracticeSource}/JS8-Magic-Square/solution`
 				}
@@ -989,7 +989,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "Check-In #2: Additional Practice Project",
 					preserveInstructions: true,
 					content:
-						"Fill ten integers with random values from 0 through 10 inclusive. Return the count strictly above 5. Before trying random data, test [0,5,6,10] (2) and [] (0).",
+						"Fill ten integers with random values from 0 through 10 inclusive. Return the count strictly above 5. Before trying random data, test [0,5,6,10] (2) and [] (0).\n\n**Checkpoints:** Write the counting method first. Compare each cell strictly with 5 and add one only on a qualifying comparison. For [5,5,5] the count is zero. For [6,10,8] it is three. Write the count after each position and compare against the final result. Then generate the ten values, print them, and recalculate the count by hand for one seeded run.",
 					projectLink: `${javaPracticeSource}/Check-In-2-Count/starter`,
 					solutionLink: `${javaPracticeSource}/Check-In-2-Count/solution`
 				}
@@ -999,7 +999,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "Check In #2: Extension Challenge",
 					preserveInstructions: true,
 					content:
-						"Predict a random integer range and character conversion. Write a sum method, simulate coin flips, traverse an array and print a two-dimensional grid. Explain each bound before running the example.",
+						"Predict a random integer range and character conversion. Write a sum method, simulate coin flips, traverse an array and print a two-dimensional grid. Explain each bound before running the example.\n\n**Checkpoints:** Use separate test calls so each result can be checked in isolation. Add two integers with a helper and check sum(5,10) equals 15. Use a fixed random seed to compare two sequences of coin flips. Then print the rows and columns of a 5 by 10 array and write a 5 into the third row and fifth column. Both coordinates start from zero.",
 					projectLink: `${javaPracticeSource}/Check-In-2/starter`,
 					solutionLink: `${javaPracticeSource}/Check-In-2/solution`
 				},
@@ -1007,7 +1007,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "Check In #2 Transfer Practice",
 					preserveInstructions: true,
 					content:
-						"Create three fixed arrays with no values above 5, one above 5 and every value above 5. Record the expected counts before running your method.",
+						"Create three fixed arrays with no values above 5, one above 5 and every value above 5. Record the expected counts before running your method.\n\n**Checkpoints:** Use [0,5,2], [5,6,0], and [6,7,10]. The three expected counts are 0, 1 and 3. Print the inputs unchanged next to the returned counts. Validate the strict comparisons at 5 and 6 with a one-element test each. Retain both boundary cases in the test driver when replacing a fixed array with generated values.",
 					projectLink: `${javaPracticeSource}/Check-In-2-Count/starter`,
 					solutionLink: `${javaPracticeSource}/Check-In-2-Count/solution`
 				},
@@ -1015,7 +1015,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "Check In #2 Extension Practice",
 					preserveInstructions: true,
 					content:
-						"For rows [2,3] and [4,8], predict the sum (17), minimum (2), and row averages (2.5 and 6.0). Change one cell and predict which averages change.",
+						"For rows [2,3] and [4,8], predict the sum (17), minimum (2), and row averages (2.5 and 6.0). Change one cell and predict which averages change.\n\n**Checkpoints:** Replace the last cell with 6. The new sum is 15 and the minimum remains 2. Only the second row average changes, from 6.0 to 5.0. Use separate sum and count variables for each row. Then replace a value in the first row and confirm that this time only its average changes. Record the predicted and actual results for both mutations.",
 					projectLink: `${javaPracticeSource}/JS8-Practice-with-2D-Arrays/starter`,
 					solutionLink: `${javaPracticeSource}/JS8-Practice-with-2D-Arrays/solution`
 				}
@@ -1029,7 +1029,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "JS9 Master Project: Simple Battleship",
 					preserveInstructions: true,
 					content:
-						"Plan the board, hidden ships and shot history in pseudocode. Build a 10 by 10 single-player game with one two-cell and one three-cell ship. Read row and column from 0 to 9. Record hits and misses, reject repeat shots, and end when all five different ship cells are hit. Test a corner, a duplicate miss, bad input and a fresh board. Use one coordinate per line. Explain one decision in your finished game and share your run with your tutor.",
+						"Plan the board, hidden ships and shot history in pseudocode. Build a 10 by 10 single-player game with one two-cell and one three-cell ship. Read row and column from 0 to 9. Record hits and misses, reject repeat shots, and end when all five different ship cells are hit. Test a corner, a duplicate miss, bad input and a fresh board. Use one coordinate per line. Explain one decision in your finished game and include a run that demonstrates it.",
 					projectLink: `${javaPracticeSource}/JS9-Simple-Battleship/starter`,
 					solutionLink: `${javaPracticeSource}/JS9-Simple-Battleship/solution`
 				},
@@ -1038,7 +1038,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					learningPath: "challenge",
 					preserveInstructions: true,
 					content:
-						"Optional after Simple Battleship. Choose the board size and counts of 2-, 3- and 4-cell ships. Each player places a fleet and then takes turns firing at the other board. Test overlapping or out-of-bounds placement, repeated shots, a miss and the winning hit.",
+						"Optional after Simple Battleship. Choose the board size and counts of 2-, 3- and 4-cell ships. Each player places a fleet and then takes turns firing at the other board. Test overlapping or out-of-bounds placement, repeated shots, a miss and the winning hit.\n\n**Checkpoints:** Record placement attempts before switching to the shot phase. Reject an overlap without partially placing the new ship. Each accepted shot belongs to the active player and updates only the other board’s shot history. Use a small fixture to check the transition from placement to play, then fire at a known empty cell, a ship cell and a duplicate. Compare the winner and the remaining cells after the final hit.",
 					projectLink: `${javaPracticeSource}/JS9-Advanced-Battleship/starter`,
 					solutionLink: `${javaPracticeSource}/JS9-Advanced-Battleship/solution`
 				},
@@ -1061,7 +1061,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "Master Project: Battleship: Extension Challenge",
 					preserveInstructions: true,
 					content:
-						"After completing your game, replay three malformed coordinates. Keep the board unchanged and end after the third consecutive invalid shot. Try a valid shot between two errors and explain when the retry count resets.",
+						"After completing your game, replay three malformed coordinates. Keep the board unchanged and end after the third consecutive invalid shot. Try a valid shot between two errors and explain when the retry count resets.\n\n**Checkpoints:** Use the core reference to trace the three-error retry limit. Mark each invalid coordinate and each shot at a valid coordinate. A shot at a valid coordinate resets the counter, even if it repeats a cell. Check bad, good, bad, bad still continues the game and a third bad shot ends it. For each rejected shot compare the board and hit counter against the previous snapshot.",
 					projectLink: `${javaPracticeSource}/JS9-Simple-Battleship/starter`,
 					solutionLink: `${javaPracticeSource}/JS9-Simple-Battleship/solution`
 				},
@@ -1069,7 +1069,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "Master Project: Battleship Transfer Practice",
 					preserveInstructions: true,
 					content:
-						"Write a transcript for a duplicate miss followed by a duplicate hit. In each pair only the first shot changes the displayed board.",
+						"Write a transcript for a duplicate miss followed by a duplicate hit. In each pair only the first shot changes the displayed board.\n\n**Checkpoints:** Mark one known water cell and one known ship cell in a test fixture. Fire each shot twice while logging the turn number, accepted status and distinct hits. Only the first shot at a cell can change the board. Verify that accepting the first ship hit advances the win counter by one and the duplicate cannot advance it again. Compare the complete transcript to reason about state transitions.",
 					projectLink: `${javaPracticeSource}/JS9-Simple-Battleship/starter`,
 					solutionLink: `${javaPracticeSource}/JS9-Simple-Battleship/solution`
 				},
@@ -1077,7 +1077,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "Master Project: Battleship Extension Practice",
 					preserveInstructions: true,
 					content:
-						"Run a complete fixed fleet twice. Before the second run predict the initial board and verify that no previous shot is marked.",
+						"Run a complete fixed fleet twice. Before the second run predict the initial board and verify that no previous shot is marked.\n\n**Checkpoints:** Run the same coordinate fixture from an empty board until all five ship cells are hit. Save the terminal state and output. Start a second game and fire the first coordinate again. The earlier shot is accepted anew. Compare the two initial boards before playing and confirm that the second game starts with zero recorded hits and no tagged cells.",
 					projectLink: `${javaPracticeSource}/JS9-Simple-Battleship/starter`,
 					solutionLink: `${javaPracticeSource}/JS9-Simple-Battleship/solution`
 				}
@@ -1120,7 +1120,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "J1X02 Java Foundations Build 13 Transfer Practice",
 					preserveInstructions: true,
 					content:
-						"Use [0,-2,5,8]. Sum only the evens: the total is 6. Check an empty input.",
+						"Use [0,-2,5,8]. Sum only the evens: the total is 6. Check an empty input.\n\n**Checkpoints:** Trace the running sum after each value. It is 0, -2, -2 and 6. An empty input keeps the initial total at zero.",
 					projectLink: `${legacyJavaSource}/J1-02-java-foundations-build-13/starter`,
 					solutionLink: `${legacyJavaSource}/J1-02-java-foundations-build-13/solution`
 				},
@@ -1128,7 +1128,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "J1X02 Java Foundations Build 13 Extension Practice",
 					preserveInstructions: true,
 					content:
-						"Add an odd number to [2,8] and then an even number. Explain why only the second addition changes the score.",
+						"Add an odd number to [2,8] and then an even number. Explain why only the second addition changes the score.\n\n**Checkpoints:** Compare [2,8], [2,8,5] and [2,8,5,4]. The three scores are 10, 10 and 14. State which numbers the filtering condition accepts.",
 					projectLink: `${legacyJavaSource}/J1-02-java-foundations-build-13/starter`,
 					solutionLink: `${legacyJavaSource}/J1-02-java-foundations-build-13/solution`
 				}
@@ -1171,7 +1171,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "J1X03 Java Foundations Build 14 Transfer Practice",
 					preserveInstructions: true,
 					content:
-						"Compare [9,10,11] with [9,9,11]. Doubling only values at least 10 produces 51 and 40.",
+						"Compare [9,10,11] with [9,9,11]. Doubling only values at least 10 produces 51 and 40.\n\n**Checkpoints:** Write the individual contributions 9, 20 and 22 for the first array. Changing the middle value to 9 changes its contribution to 9 and leaves the other two in place.",
 					projectLink: `${legacyJavaSource}/J1-03-java-foundations-build-14/starter`,
 					solutionLink: `${legacyJavaSource}/J1-03-java-foundations-build-14/solution`
 				},
@@ -1179,7 +1179,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "J1X03 Java Foundations Build 14 Extension Practice",
 					preserveInstructions: true,
 					content:
-						"Compare [10,10] with [9,11]. Both sum to 20 before weighting. Verify the weighted scores 40 and 31.",
+						"Compare [10,10] with [9,11]. Both sum to 20 before weighting. Verify the weighted scores 40 and 31.\n\n**Checkpoints:** Trace which numbers take the weighted branch. In the second input, 9 contributes 9 and 11 contributes 22. Reorder those values to check that the total is independent of the array order.",
 					projectLink: `${legacyJavaSource}/J1-03-java-foundations-build-14/starter`,
 					solutionLink: `${legacyJavaSource}/J1-03-java-foundations-build-14/solution`
 				}
@@ -1222,7 +1222,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "J1X04 Java Foundations Build 15 Transfer Practice",
 					preserveInstructions: true,
 					content:
-						"Count entries in the inclusive range 5 through 10 in [4,5,10,11]. Both endpoints count, giving 2.",
+						"Count entries in the inclusive range 5 through 10 in [4,5,10,11]. Both endpoints count, giving 2.\n\n**Checkpoints:** Mark each position as below, within or above the interval. With endpoints 5 and 10, only the second and third items are within. Change the low endpoint to 6 and expect count 1.",
 					projectLink: `${legacyJavaSource}/J1-04-java-foundations-build-15/starter`,
 					solutionLink: `${legacyJavaSource}/J1-04-java-foundations-build-15/solution`
 				},
@@ -1230,7 +1230,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "J1X04 Java Foundations Build 15 Extension Practice",
 					preserveInstructions: true,
 					content:
-						"Set both range endpoints to 5. For [4,5,5,6] the count is 2; for [4,6] it is 0.",
+						"Set both range endpoints to 5. For [4,5,5,6] the count is 2; for [4,6] it is 0.\n\n**Checkpoints:** Test the endpoints with identical limits. Check that both occurrences of 5 still count. Run an empty input afterward and expect zero.",
 					projectLink: `${legacyJavaSource}/J1-04-java-foundations-build-15/starter`,
 					solutionLink: `${legacyJavaSource}/J1-04-java-foundations-build-15/solution`
 				}
@@ -1273,7 +1273,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "J1X05 Java Foundations Build 16 Transfer Practice",
 					preserveInstructions: true,
 					content:
-						"Trace [9,3,8,7]. Its largest positive adjacent increase is 5. A one-element list returns 0.",
+						"Trace [9,3,8,7]. Its largest positive adjacent increase is 5. A one-element list returns 0.\n\n**Checkpoints:** The adjacent differences are -6, 5 and -1. Compare only adjacent pairs, then keep the largest positive value. The first and last values do not form a pair.",
 					projectLink: `${legacyJavaSource}/J1-05-java-foundations-build-16/starter`,
 					solutionLink: `${legacyJavaSource}/J1-05-java-foundations-build-16/solution`
 				},
@@ -1281,7 +1281,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "J1X05 Java Foundations Build 16 Extension Practice",
 					preserveInstructions: true,
 					content:
-						"Compare [5,1,4] with [1,4,5]. For each list write the two adjacent differences; both largest increases are 3.",
+						"Compare [5,1,4] with [1,4,5]. For each list write the two adjacent differences; both largest increases are 3.\n\n**Checkpoints:** Trace -4 and 3 for the first list, then 3 and 1 for the second. Verify the maximum as you scan left to right. Compare with a strictly falling list, whose result is zero.",
 					projectLink: `${legacyJavaSource}/J1-05-java-foundations-build-16/starter`,
 					solutionLink: `${legacyJavaSource}/J1-05-java-foundations-build-16/solution`
 				}
@@ -1324,7 +1324,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "J1X06 Java Foundations Build 17 Transfer Practice",
 					preserveInstructions: true,
 					content:
-						"For [2,3,3] the mean is 8/3 and two values exceed it. Check that equal values produce count 0.",
+						"For [2,3,3] the mean is 8/3 and two values exceed it. Check that equal values produce count 0.\n\n**Checkpoints:** Compare each cell with the same mean. For [2,3,3], both threes count. With [5,5] every cell equals the mean and none count.",
 					projectLink: `${legacyJavaSource}/J1-06-java-foundations-build-17/starter`,
 					solutionLink: `${legacyJavaSource}/J1-06-java-foundations-build-17/solution`
 				},
@@ -1332,7 +1332,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "J1X06 Java Foundations Build 17 Extension Practice",
 					preserveInstructions: true,
 					content:
-						"Compare [-3,0,3] and [-3,0,6]. The means are 0 and 1. Check that only one value exceeds the mean in each case.",
+						"Compare [-3,0,3] and [-3,0,6]. The means are 0 and 1. Check that only one value exceeds the mean in each case.\n\n**Checkpoints:** Compare the negative, zero and positive entries against each mean separately. Then try [0,0,0] and confirm that a strict comparison excludes all three ties.",
 					projectLink: `${legacyJavaSource}/J1-06-java-foundations-build-17/starter`,
 					solutionLink: `${legacyJavaSource}/J1-06-java-foundations-build-17/solution`
 				}
@@ -1361,7 +1361,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "Temperature Converter: Core Project",
 					preserveInstructions: true,
 					content:
-						"Read Fahrenheit and then Celsius. Use (F - 32) * 5.0 / 9 and C * 9.0 / 5 + 32. Print each result as a decimal and rounded to the nearest degree. Try 31 F and -40 C: the rounded results are -1 C and -40 F.",
+						"Read Fahrenheit and then Celsius. Use (F - 32) * 5.0 / 9 and C * 9.0 / 5 + 32. Print each result as a decimal and rounded to the nearest degree. Try 31 F and -40 C: the rounded results are -1 C and -40 F.\n\n**Checkpoints:** Run both conversion directions at the freezing point. With 32 F and 0 C expect 0 C and 32 F. Retain the unrounded decimal before separately rounding.",
 					projectLink: `${javaPracticeSource}/JS2-Temperature-Converter/starter`,
 					solutionLink: `${javaPracticeSource}/JS2-Temperature-Converter/solution`
 				},
@@ -1379,7 +1379,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "Temperature Converter: Extension Challenge",
 					preserveInstructions: true,
 					content:
-						"Compare -40, 0 and 100 Celsius with the reverse conversion. Predict -40, 32 and 212 Fahrenheit. Explain where a cast before dividing preserves a fraction.",
+						"Compare -40, 0 and 100 Celsius with the reverse conversion. Predict -40, 32 and 212 Fahrenheit. Explain where a cast before dividing preserves a fraction.\n\n**Checkpoints:** Use equivalent temperatures to round-trip each scale. Compute the reverse with the decimal value before rounding. A fractional intermediate such as 33 F to about 0.56 C exposes where rounding first would change the return trip.",
 					projectLink: `${javaPracticeSource}/JS2-Temperature-Converter/starter`,
 					solutionLink: `${javaPracticeSource}/JS2-Temperature-Converter/solution`
 				},
@@ -1387,7 +1387,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "Temperature Converter Transfer Practice",
 					preserveInstructions: true,
 					content:
-						"Compare the two scales at -40 degrees. Both conversions should give -40. Then test 0 C and 32 F.",
+						"Compare the two scales at -40 degrees. Both conversions should give -40. Then test 0 C and 32 F.\n\n**Checkpoints:** Write the inputs and units next to both results. At -40 the numbers match but the labels differ. At freezing, zero belongs to Celsius and 32 belongs to Fahrenheit.",
 					projectLink: `${javaPracticeSource}/JS2-Temperature-Converter/starter`,
 					solutionLink: `${javaPracticeSource}/JS2-Temperature-Converter/solution`
 				},
@@ -1395,7 +1395,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "Temperature Converter Extension Practice",
 					preserveInstructions: true,
 					content:
-						"Use 30 F and 34 F to check rounding on either side of freezing. Their nearest whole Celsius temperatures are -1 and 1.",
+						"Use 30 F and 34 F to check rounding on either side of freezing. Their nearest whole Celsius temperatures are -1 and 1.\n\n**Checkpoints:** Print the unrounded Celsius result with two decimal places. From 30 F expect approximately -1.11 C and from 34 F approximately 1.11 C. Explain which operation produces the rounded integer.",
 					projectLink: `${javaPracticeSource}/JS2-Temperature-Converter/starter`,
 					solutionLink: `${javaPracticeSource}/JS2-Temperature-Converter/solution`
 				}
@@ -1644,6 +1644,7 @@ function strengthenJavaLevel1Item(
 		return {
 			...item,
 			preserveInstructions: true,
+			contentKind: "reading",
 			content:
 				'Compare arrays with `ArrayList`, then use `add()`, `get()`, `set()`, `remove()`, and `size()` with explicit empty-list and index-boundary handling. State whether a helper mutates the supplied list or returns a new list, especially when removing items during traversal.\n\nStarting with an empty `ArrayList<String>`, add "red" and "blue". set(1,"green") replaces blue without growing the list. remove(0) leaves [green], now at index 0. Check size() before reading index 1.'
 		};
