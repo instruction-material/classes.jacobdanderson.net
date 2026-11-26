@@ -259,6 +259,40 @@ export function javaLinkedListURL(
 	return `https://github.com/instruction-material/Java-Level-3/tree/${javaLinkedListRevision}/${pack}/${role}`;
 }
 
+export const javaStackQueueRevision =
+	"1ab3db0dd93cdc52d6fa62200cd60c2f3eeb6ea7";
+export const javaStackQueueModuleID = "java-level-3-aj12-stacks-and-queues";
+
+export const javaStackQueueProjects = [
+	{
+		pack: "AJ12-Stack-Packs",
+		id: `${javaStackQueueModuleID}-curriculum-aj12-project-1-implementing-a-stack`
+	},
+	{
+		pack: "AJ12-Queue-Packs",
+		id: `${javaStackQueueModuleID}-curriculum-aj12-project-2-implementing-a-queue`
+	},
+	{
+		pack: "AJ12-Valid-Parentheses-Packs",
+		id: `${javaStackQueueModuleID}-supplemental-aj12-supplemental-project-1-valid-parentheses`
+	},
+	{
+		pack: "AJ12-Calculator-with-Stacks-Packs",
+		id: `${javaStackQueueModuleID}-supplemental-aj12-supplemental-project-2-calculator-with-stacks`
+	},
+	{
+		pack: "AJ12-Deque-Packs",
+		id: `${javaStackQueueModuleID}-supplemental-aj12-supplemental-project-3-implementing-a-deque`
+	}
+] as const;
+
+export function javaStackQueueURL(
+	pack: (typeof javaStackQueueProjects)[number]["pack"],
+	role: "starter" | "solution"
+) {
+	return `https://github.com/instruction-material/Java-Level-3/tree/${javaStackQueueRevision}/${pack}/${role}`;
+}
+
 const additionalAlgorithmFiles: Partial<Record<string, readonly string[]>> = {
 	[javaBubbleSortProjects[1].id]: ["words.txt"],
 	[javaCheckIn2Projects[1].id]: [
@@ -288,7 +322,8 @@ const searchGroups = [
 		projects: bubbleAndCheckInProjects
 	},
 	{ revision: javaSustainableRevision, projects: javaSustainableProjects },
-	{ revision: javaLinkedListRevision, projects: javaLinkedListProjects }
+	{ revision: javaLinkedListRevision, projects: javaLinkedListProjects },
+	{ revision: javaStackQueueRevision, projects: javaStackQueueProjects }
 ] as const;
 
 export const javaLevel3SearchProjects = [
@@ -298,7 +333,8 @@ export const javaLevel3SearchProjects = [
 	...javaSortingProjects,
 	...bubbleAndCheckInProjects,
 	...javaSustainableProjects,
-	...javaLinkedListProjects
+	...javaLinkedListProjects,
+	...javaStackQueueProjects
 ];
 
 export function javaCheckIn1URL(

@@ -16,6 +16,7 @@ import {
 	buildJavaElementarySortingModule,
 	buildJavaMergeSortingModule
 } from "./javaSortingTeaching";
+import { buildJavaStackQueueModule } from "./javaStackQueueTeaching";
 import { buildJavaSustainableProgrammingModule } from "./javaSustainableTeaching";
 import { isCoreProjectTitle } from "./projectGrouping";
 import { buildProjectGuidance } from "./projectGuidance";
@@ -677,68 +678,7 @@ const javaLevel3SourceCourse: RawCourse = {
 		buildJavaCheckIn2Module(),
 		buildJavaSustainableProgrammingModule(),
 		buildJavaLinkedListModule(),
-		{
-			title: "AJ12 Stacks and Queues",
-			curriculum: [
-				{
-					title: "Stacks",
-					content:
-						"Learn how stacks use Last In First Out behavior and support operations such as `push`, `pop`, `top`, and `empty`."
-				},
-				{
-					title: "AJ12 Project 1: Implementing a Stack",
-					content:
-						"Implement a stack with array storage, a top pointer, and checks for overflow and underflow. The implementation makes each mutation of the top index explicit and includes tests for pushing to capacity, popping to empty, and reading the top without removing it.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ12-Stack-Starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ12-Stack"
-				},
-				{
-					title: "Queues",
-					content:
-						"Learn how queues use First In First Out behavior and support `enqueue`, `dequeue`, `front`, and `empty`. Compare the queue contract with stack behavior, then trace how front and back indices move when several items are added and removed."
-				},
-				{
-					title: "AJ12 Project 2: Implementing a Queue",
-					content:
-						"Implement a queue using an array with wrapping indices so that the structure behaves like a circular buffer.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ12-Queue-Starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ12-Queue"
-				}
-			],
-			supplementalProjects: [
-				{
-					title: "AJ12 Supplemental Project 1: Valid Parentheses",
-					content:
-						"Use a stack to determine whether parentheses, brackets, and braces are balanced and properly nested. Push opening symbols, match closing symbols against the most recent opener, and test mismatched types, early closing symbols, and unfinished openings.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ12-Valid-Parentheses",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ12-Valid-Parentheses"
-				},
-				{
-					title: "AJ12 Supplemental Project 2: Calculator with Stacks",
-					content:
-						"Build a stack-based calculator that treats operators as commands acting on the most recently entered numbers. The solution documents the command format, detects missing operands, and traces at least one multi-step expression so the stack state is visible after every operation.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ12-Calculator-with-Stacks",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ12-Calculator-with-Stacks"
-				},
-				{
-					title: "AJ12 Supplemental Project 3: Implementing a Deque",
-					content:
-						"Extend queue ideas into a double-ended queue implemented with a circular array. Support adding and removing at both ends, define how wraparound works in each direction, and test transitions between empty, one-item, full, and partially wrapped states.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ12-Deque-Starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ12-Deque"
-				}
-			]
-		},
+		buildJavaStackQueueModule(),
 		{
 			title: "AJ13 Priority Queues and Maps",
 			curriculum: [
@@ -1893,22 +1833,6 @@ function strengthenJavaLevel3Item(
 			content: `${item.content}
 
 **Implementation contract:** Use \`low + (high - low) / 2\` for the midpoint, move the selected bound past \`mid\`, and return the documented missing result only after the interval is empty.`
-		};
-	}
-
-	if (item.title === "Stacks") {
-		return {
-			...item,
-			content:
-				"Model last-in, first-out behavior and use `ArrayDeque` for ordinary Java stack clients through `push`, `pop`, and `peek`. Define the empty-stack policy, reject `null`, and test interleaved operations; treat the legacy `Stack` class as a compatibility reference rather than the default design."
-		};
-	}
-
-	if (item.title === "Queues") {
-		return {
-			...item,
-			content:
-				"Model first-in, first-out behavior with `ArrayDeque` through `addLast`, `removeFirst`, and `peekFirst` or the corresponding queue API. Define the empty-queue policy, reject `null`, and verify interleaved enqueue/dequeue sequences."
 		};
 	}
 
