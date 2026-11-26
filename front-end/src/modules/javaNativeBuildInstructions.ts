@@ -352,6 +352,11 @@ export function javaNativeBuildInstructions(
 						"Enter W, D, and D on separate lines for the practice board, or Q to quit."
 					]
 				: []),
+			...(objectWorkbook.pack === "JM10-Tic-Tac-Toe-Console"
+				? [
+						"Enter one row and column from 1 to 3 per line. For the guided run, enter 1 1, 2 1, 1 2, 2 2, and 1 3 on separate lines."
+					]
+				: []),
 			...(objectWorkbook.pack === "JM-Check-in-1"
 				? [
 						"For the optional batch challenge, run java ContractTests extension."

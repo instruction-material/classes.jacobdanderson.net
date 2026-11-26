@@ -81,7 +81,15 @@ it("keeps introductory, check-in, inheritance, map, and concurrency workbooks in
 		"Maze-Runner-Part-2": "Congratulations! You've reached the exit!",
 		"Maze-Runner-Part-3": "Time's up! You failed to reach the exit.",
 		"J2-15-jm9-maze-runner-supplemental-2": "Accepted: 2, rejected: 1, escaped: true",
-		"J2-16-jm9-maze-runner-supplemental-3": "practice: Ready at (1, 1)"
+		"J2-16-jm9-maze-runner-supplemental-3": "practice: Ready at (1, 1)",
+		"JM10-Tic-Tac-Toe-Console": "Winner: X",
+		"JM10-Save-Round-Results": "Reopened: [X_WINS, TIE, O_WINS]",
+		"J2-17-jm10-master-project-supplemental-2": "Open checks: [restart, tie]",
+		"J2-18-jm10-master-project-supplemental-3": "Double: 14",
+		"J2-19-applied-studio-14-jm-master-project-example-quiz-game-supplemental-2": "Science: 2/3",
+		"J2-20-applied-studio-14-jm-master-project-example-quiz-game-supplemental-3": "Practice: [What orbits Earth?, What is a solid?]",
+		"J2-21-applied-studio-15-jm-maze-runner-project-supplemental-2": "From middle: [A, D]",
+		"J2-22-applied-studio-15-jm-maze-runner-project-supplemental-3": "Shortest route: [D, D]"
 	};
 	expect(javaObjectWorkbooks.map(pack => pack.pack)).toEqual(
 		Object.keys(samples)

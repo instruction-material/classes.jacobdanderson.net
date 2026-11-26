@@ -12,6 +12,7 @@ const jm6Revision = "8971dbd9abd89c73393b58502f907e4177e4ecc3";
 const checkIn2Revision = "24fba59c70a26235ac04138f37f1687ff1bd4208";
 const accountFileRevision = "f9ba887f6da0697318b305aa7ed6cb08e3948692";
 const jm9Revision = "762099a8fe8e6f80ba4c6424ab62000f2400f049";
+const jm10StudiosRevision = "39e8838011f4d781c129aaeee7ba59b33d3147ee";
 const jm1Module =
 	"java-level-2-jm1-instance-variables-constructors-and-methods";
 const jm2Module = "java-level-2-jm2-overloaded-constructors-comparison-methods";
@@ -26,6 +27,10 @@ const jm7Module = "java-level-2-jm7-bank-account";
 const jm8Module = "java-level-2-jm8-file-i-o";
 
 const jm9Module = "java-level-2-jm9-maze-runner";
+
+const jm10Module = "java-level-2-jm10-master-project";
+const java2ArchiveModule =
+	"java-level-2-optional-java-level-2-practice-and-reference-archive";
 
 export const javaCheckIn1CarExtensionID =
 	"java-level-2-check-in-1-supplemental-java-level-2-check-in-1-extension-challenge";
@@ -505,6 +510,91 @@ const javaObjectSources = {
 			"README.md",
 			"practice.txt",
 			"no-exit.txt"
+		]
+	},
+	"JM10-Tic-Tac-Toe-Console": {
+		revision: jm10StudiosRevision,
+		id: `${jm10Module}-curriculum-core-project-java-level-2`,
+		files: [
+			"Main.java",
+			"Board.java",
+			"MoveSource.java",
+			"GameSession.java",
+			"ContractTests.java",
+			"README.md"
+		]
+	},
+	"JM10-Save-Round-Results": {
+		revision: jm10StudiosRevision,
+		id: `${jm10Module}-supplemental-extension-challenge-java-level-2`,
+		files: [
+			"Main.java",
+			"Board.java",
+			"RoundArchive.java",
+			"ContractTests.java",
+			"README.md"
+		]
+	},
+	"J2-17-jm10-master-project-supplemental-2": {
+		revision: jm10StudiosRevision,
+		id: `${jm10Module}-supplemental-java-level-2-master-project-transfer-practice`,
+		files: [
+			"Main.java",
+			"CheckReview.java",
+			"ContractTests.java",
+			"README.md"
+		]
+	},
+	"J2-18-jm10-master-project-supplemental-3": {
+		revision: jm10StudiosRevision,
+		id: `${jm10Module}-supplemental-java-level-2-master-project-extension-practice`,
+		files: ["Main.java", "Commands.java", "ContractTests.java", "README.md"]
+	},
+	"J2-19-applied-studio-14-jm-master-project-example-quiz-game-supplemental-2":
+		{
+			revision: jm10StudiosRevision,
+			id: `${java2ArchiveModule}-supplemental-jm-master-project-example-quiz-game-transfer-practice`,
+			files: [
+				"Main.java",
+				"QuizReview.java",
+				"ContractTests.java",
+				"README.md"
+			]
+		},
+	"J2-20-applied-studio-14-jm-master-project-example-quiz-game-supplemental-3":
+		{
+			revision: jm10StudiosRevision,
+			id: `${java2ArchiveModule}-supplemental-jm-master-project-example-quiz-game-extension-practice`,
+			files: [
+				"Main.java",
+				"PracticeSet.java",
+				"ContractTests.java",
+				"README.md"
+			]
+		},
+	"J2-21-applied-studio-15-jm-maze-runner-project-supplemental-2": {
+		revision: jm10StudiosRevision,
+		id: `${java2ArchiveModule}-supplemental-jm-maze-runner-project-transfer-practice`,
+		files: [
+			"Main.java",
+			"Maze.java",
+			"MoveHints.java",
+			"ContractTests.java",
+			"README.md",
+			"practice.txt"
+		]
+	},
+	"J2-22-applied-studio-15-jm-maze-runner-project-supplemental-3": {
+		revision: jm10StudiosRevision,
+		id: `${java2ArchiveModule}-supplemental-jm-maze-runner-project-extension-practice`,
+		files: [
+			"Main.java",
+			"Maze.java",
+			"ShortestRoute.java",
+			"ContractTests.java",
+			"README.md",
+			"practice.txt",
+			"blocked.txt"
 		]
 	}
 } as const;

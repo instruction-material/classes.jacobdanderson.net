@@ -1996,13 +1996,19 @@ const javaLevel2SourceCourse: RawCourse = {
 				},
 				{
 					title: "Master Project Planning",
-					content:
-						"Brainstorm games, simulations, or real-world tools, then write out the main steps and data structures before coding. Example directions include tic-tac-toe, quiz games, or other projects inspired by earlier modules."
+					content: [
+						"Choose the guided tic-tac-toe project or propose a console application with a comparable scope. Identify the user, one main task, a rejected input, and what a fresh run should do.",
+						"",
+						"For the guided project, trace five moves on a 3-by-3 grid. The board owns the rules and occupied cells. The session asks a move source for whole lines and applies the rules. Use a scripted source to repeat the trace."
+					].join("\n")
 				},
 				{
 					title: "Portfolio Project",
-					content:
-						"Move a finished Java project into a GitHub repository with a clear README, source folders, build/run instructions, and a short portfolio note explaining what the project demonstrates."
+					content: [
+						"Put the application, repeatable checks, and README in one folder. Write the Java version, exact build and run commands, a complete example interaction, and one limitation.",
+						"",
+						"Try the steps from a fresh copy. In a walkthrough, point to the line that rejects malformed input and explain how one test finds a regression. Share the folder or a repository when ready."
+					].join("\n")
 				},
 				{
 					title: "Course Recap",
@@ -2011,55 +2017,130 @@ const javaLevel2SourceCourse: RawCourse = {
 				},
 				{
 					title: "JM10 Master Project: Core Project",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 2",
-						moduleTitle: "JM10 Master Project",
-						itemTitle: "JM10 Master Project: Core Project",
-						projectKind: "core",
-						hasReference: false
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM7-Calculator"
+					contentKind: "assignment",
+					preserveInstructions: true,
+					ideImport: true,
+					content: [
+						"Build the original 3-by-3 tic-tac-toe project as a console application. X and O take turns. Three marks in a row, column, or diagonal win. A full board without a winner is a tie.",
+						"",
+						"1. Draw the 3-by-3 board and choose its representation. In this workbook a map stores at most nine marks, indexed by row times three plus column. A missing index marks an empty cell. The board owns legal moves and outcomes. GameSession owns input and output.",
+						"2. Implement the winning-line checks and trace all three line shapes. Check the win before a tie. The same GameSession reads live lines through MoveSource or uses a scripted sequence for a repeatable test.",
+						"3. Enter 1 1, 2 1, 1 2, 2 2, and 1 3 on separate lines. The run ends with `Winner: X`. Try an occupied cell and a nonnumeric move. Both leave the current turn in place. Q or closed input ends an unfinished round.",
+						"4. For an original capstone, adapt this scaffold or choose another bounded project. Identify its classes and input interface, document one collection invariant and one rejected input, and record a repeatable successful run. Explain which file owns each decision in a short walkthrough or recording.",
+						"",
+						"Save the IDE workspace, download and extract its ZIP, and run the workbook with Java 21 from that folder.",
+						"",
+						"```sh",
+						"javac --release 21 -Xlint:all -Werror *.java",
+						"java Main",
+						"java ContractTests",
+						"```",
+						"",
+						"The starter runs with unfinished behavior. The checks identify which contract still needs to be implemented."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"JM10-Tic-Tac-Toe-Console",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"JM10-Tic-Tac-Toe-Console",
+						"solution"
+					)
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "JM10 Master Project: Extension Challenge",
-					content: buildSupportSectionGuidance({
-						courseFamily: "Java Level 2",
-						moduleTitle: "JM10 Master Project",
-						section: "extension"
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM7-Calculator"
+					contentKind: "assignment",
+					preserveInstructions: true,
+					ideImport: true,
+					content: [
+						"Extend the tic-tac-toe capstone with a versioned UTF-8 results file. Save completed rounds only. Each line after ROUNDS-1 records X_WINS, O_WINS, or TIE.",
+						"",
+						"1. Validate all rounds before replacing a file. Write to a temporary file beside the destination, then move it into place. A rejected write leaves the earlier results available.",
+						"2. Load and validate every record into a new list. A missing file starts with no rounds. A malformed file reports the line that failed.",
+						"3. Reopen the three sample rounds. The report is `Reopened: [X_WINS, TIE, O_WINS]`. Check an invalid record and explain why the original board behavior can remain unchanged.",
+						"",
+						"Save the IDE workspace, download and extract its ZIP, and run the workbook with Java 21 from that folder.",
+						"",
+						"```sh",
+						"javac --release 21 -Xlint:all -Werror *.java",
+						"java Main",
+						"java ContractTests",
+						"```",
+						"",
+						"The starter runs with unfinished behavior. The checks identify which contract still needs to be implemented."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"JM10-Save-Round-Results",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"JM10-Save-Round-Results",
+						"solution"
+					)
 				},
 				{
 					title: "Master Project Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 2",
-						moduleTitle: "JM10 Master Project",
-						itemTitle: "Master Project Transfer Practice",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/J2-17-jm10-master-project-supplemental-2/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/J2-17-jm10-master-project-supplemental-2/solution"
+					contentKind: "assignment",
+					preserveInstructions: true,
+					ideImport: true,
+					content: [
+						"Turn a project’s stated behaviors into an ordered list of checks. A check has a short label and either passes or stays open.",
+						"",
+						"1. Record at most one current result per label. Reject a blank label and trim surrounding spaces.",
+						"2. Sort the open labels without changing the stored results. Updating a check from open to passed removes it from the report.",
+						"3. In the sample, the win and retry checks pass. The report is `Open checks: [restart, tie]`. Replace those labels with checks from an original capstone and explain what evidence would close each one.",
+						"",
+						"Save the IDE workspace, download and extract its ZIP, and run the workbook with Java 21 from that folder.",
+						"",
+						"```sh",
+						"javac --release 21 -Xlint:all -Werror *.java",
+						"java Main",
+						"java ContractTests",
+						"```",
+						"",
+						"The starter runs with unfinished behavior. The checks identify which contract still needs to be implemented."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"J2-17-jm10-master-project-supplemental-2",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"J2-17-jm10-master-project-supplemental-2",
+						"solution"
+					)
 				},
 				{
 					title: "Master Project Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 2",
-						moduleTitle: "JM10 Master Project",
-						itemTitle: "Master Project Extension Practice",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/J2-18-jm10-master-project-supplemental-3/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/J2-18-jm10-master-project-supplemental-3/solution"
+					contentKind: "assignment",
+					preserveInstructions: true,
+					ideImport: true,
+					content: [
+						"Separate command names from handlers. A map can hold functions under the names that users type. This sample uses simple numeric handlers so the lookup behavior stays visible.",
+						"",
+						"1. Trim surrounding spaces and lowercase each command name. Reject blank or repeated names. A repeated name leaves the first handler installed.",
+						"2. Look up the chosen handler and pass it the argument. A missing handler gives a specific error.",
+						"3. The sample prints `Double: 14` and `Next: 8`. Add a command and explain how the dispatcher can run it without adding another branch.",
+						"",
+						"Save the IDE workspace, download and extract its ZIP, and run the workbook with Java 21 from that folder.",
+						"",
+						"```sh",
+						"javac --release 21 -Xlint:all -Werror *.java",
+						"java Main",
+						"java ContractTests",
+						"```",
+						"",
+						"The starter runs with unfinished behavior. The checks identify which contract still needs to be implemented."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"J2-18-jm10-master-project-supplemental-3",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"J2-18-jm10-master-project-supplemental-3",
+						"solution"
+					)
 				}
 			]
 		},
@@ -2221,35 +2302,65 @@ const javaLevel2SourceCourse: RawCourse = {
 				},
 				{
 					title: "JM Master Project Example Quiz Game Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 2",
-						moduleTitle:
-							"JM Master Project Example Quiz Game: Practice Studio",
-						itemTitle:
-							"JM Master Project Example Quiz Game Transfer Practice",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/J2-19-applied-studio-14-jm-master-project-example-quiz-game-supplemental-2/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/J2-19-applied-studio-14-jm-master-project-example-quiz-game-supplemental-2/solution"
+					contentKind: "assignment",
+					preserveInstructions: true,
+					ideImport: true,
+					content: [
+						"Use fictional answer attempts to compare topics. Each attempt supplies a topic and a correct or incorrect result. Report correct answers and the total together.",
+						"",
+						"1. Update one tally for the attempt’s topic. Count both correct and incorrect answers in the total. Do not reuse a tally from a different topic.",
+						"2. Report topics in alphabetical order. The sample includes `History: 0/1` and `Science: 2/3`. An empty attempt list gives an empty report.",
+						"3. Add another attempt and predict which numerator and denominator should change.",
+						"",
+						"Save the IDE workspace, download and extract its ZIP, and run the workbook with Java 21 from that folder.",
+						"",
+						"```sh",
+						"javac --release 21 -Xlint:all -Werror *.java",
+						"java Main",
+						"java ContractTests",
+						"```",
+						"",
+						"The starter runs with unfinished behavior. The checks identify which contract still needs to be implemented."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"J2-19-applied-studio-14-jm-master-project-example-quiz-game-supplemental-2",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"J2-19-applied-studio-14-jm-master-project-example-quiz-game-supplemental-2",
+						"solution"
+					)
 				},
 				{
 					title: "JM Master Project Example Quiz Game Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 2",
-						moduleTitle:
-							"JM Master Project Example Quiz Game: Practice Studio",
-						itemTitle:
-							"JM Master Project Example Quiz Game Extension Practice",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/J2-20-applied-studio-14-jm-master-project-example-quiz-game-supplemental-3/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/J2-20-applied-studio-14-jm-master-project-example-quiz-game-supplemental-3/solution"
+					contentKind: "assignment",
+					preserveInstructions: true,
+					ideImport: true,
+					content: [
+						"Choose questions from a named topic for a repeatable practice set. Keep the original order and count a repeated prompt once.",
+						"",
+						"1. Walk the supplied question list. Keep only cards matching the chosen topic and preserve the first occurrence of each prompt.",
+						"2. Stop when the set reaches the positive limit. A topic with fewer questions returns all available prompts. A missing topic returns an empty list.",
+						"3. The sample asks for two Science prompts and prints `Practice: [What orbits Earth?, What is a solid?]`. Try a limit of one and compare with the same question list.",
+						"",
+						"Save the IDE workspace, download and extract its ZIP, and run the workbook with Java 21 from that folder.",
+						"",
+						"```sh",
+						"javac --release 21 -Xlint:all -Werror *.java",
+						"java Main",
+						"java ContractTests",
+						"```",
+						"",
+						"The starter runs with unfinished behavior. The checks identify which contract still needs to be implemented."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"J2-20-applied-studio-14-jm-master-project-example-quiz-game-supplemental-3",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"J2-20-applied-studio-14-jm-master-project-example-quiz-game-supplemental-3",
+						"solution"
+					)
 				}
 			]
 		},
@@ -2308,31 +2419,65 @@ const javaLevel2SourceCourse: RawCourse = {
 				},
 				{
 					title: "JM Maze Runner Project Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 2",
-						moduleTitle: "JM Maze Runner Project: Practice Studio",
-						itemTitle: "JM Maze Runner Project Transfer Practice",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/J2-21-applied-studio-15-jm-maze-runner-project-supplemental-2/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/J2-21-applied-studio-15-jm-maze-runner-project-supplemental-2/solution"
+					contentKind: "assignment",
+					preserveInstructions: true,
+					ideImport: true,
+					content: [
+						"Give a player the legal moves from a single coordinate. A hint reads the board and leaves the starting position in place.",
+						"",
+						"1. Check candidate cells in W, A, S, D order. Compare each cell to the board bounds and walls.",
+						"2. Return the matching directions. A wall or out-of-bounds starting point gives an empty list.",
+						"3. The practice board prints `From start: [D]` and `From middle: [A, D]`. Explain why the same lookup can be used before a move or as a hint after a rejected move.",
+						"",
+						"Save the IDE workspace, download and extract its ZIP, and run the workbook with Java 21 from that folder.",
+						"",
+						"```sh",
+						"javac --release 21 -Xlint:all -Werror *.java",
+						"java Main",
+						"java ContractTests",
+						"```",
+						"",
+						"The starter runs with unfinished behavior. The checks identify which contract still needs to be implemented."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"J2-21-applied-studio-15-jm-maze-runner-project-supplemental-2",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"J2-21-applied-studio-15-jm-maze-runner-project-supplemental-2",
+						"solution"
+					)
 				},
 				{
 					title: "JM Maze Runner Project Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 2",
-						moduleTitle: "JM Maze Runner Project: Practice Studio",
-						itemTitle: "JM Maze Runner Project Extension Practice",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/J2-22-applied-studio-15-jm-maze-runner-project-supplemental-3/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/J2-22-applied-studio-15-jm-maze-runner-project-supplemental-3/solution"
+					contentKind: "assignment",
+					preserveInstructions: true,
+					ideImport: true,
+					content: [
+						"Find a route from P to E using the same legal moves as the maze runner. Each move has equal cost. This optional activity introduces a queue that explores nearby cells before farther ones.",
+						"",
+						"1. Add the start to the queue. For each next cell, add each legal, previously unseen neighbor. Record its previous cell and move. That record also marks it as seen.",
+						"2. When reaching E, trace previous cells back to the start and reverse the directions. If the queue empties first, return an empty list. The board has one distinct start and exit.",
+						"3. The sample prints `Shortest route: [D, D]` on the practice board and `Blocked route: []` on the enclosed-board fixture. Trace the queue at each stage and explain why no longer alternative is returned.",
+						"",
+						"Save the IDE workspace, download and extract its ZIP, and run the workbook with Java 21 from that folder.",
+						"",
+						"```sh",
+						"javac --release 21 -Xlint:all -Werror *.java",
+						"java Main",
+						"java ContractTests",
+						"```",
+						"",
+						"The starter runs with unfinished behavior. The checks identify which contract still needs to be implemented."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"J2-22-applied-studio-15-jm-maze-runner-project-supplemental-3",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"J2-22-applied-studio-15-jm-maze-runner-project-supplemental-3",
+						"solution"
+					)
 				}
 			]
 		},

@@ -2163,8 +2163,11 @@ describe("course text quality normalization", () => {
 			expect(corpus).not.toContain(
 				"Verify the intended behavior plus one boundary case using terminal, debugger, sanitizer, trace, or log evidence."
 			);
-			expect(corpus).toMatch(
-				/Build a minimal runnable version of [^.\n]+, then add the Java feature that matters for this module/
+			expect(corpus).toContain(
+				"The board owns legal moves and outcomes. GameSession owns input and output."
+			);
+			expect(corpus).toContain(
+				"A rejected write leaves the earlier results available."
 			);
 			expect(corpus).not.toMatch(
 				/Compile [^.\n]+ after each constructor, method signature, branch, or collection change/
@@ -2187,8 +2190,9 @@ describe("course text quality normalization", () => {
 			expect(corpus).toMatch(
 				/Finish [^.\n]+ with a repeatable run plus one trace, warning, sanitizer result, debugger observation, or timing clue/
 			);
-			expect(corpus).toMatch(
-				/Add [^.\n]+ implementation details in slices that keep errors tied to one field, constructor, method, branch, or list operation/
+			expect(corpus).toContain("Check the win before a tie.");
+			expect(corpus).toContain(
+				"Try an occupied cell and a nonnumeric move. Both leave the current turn in place."
 			);
 			expect(corpus).toMatch(
 				/Keep the null check before either comparison/
