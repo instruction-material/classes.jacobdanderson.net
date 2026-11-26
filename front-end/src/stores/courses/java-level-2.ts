@@ -446,10 +446,33 @@ const javaLevel2SourceCourse: RawCourse = {
 			curriculum: [
 				{
 					title: "Check-In #1 Overview",
-					content:
-						"This module is a low-pressure review of object-oriented programming basics in Java, including classes, constructors, instance methods, static members, and comparable objects.",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM-Check-in-1"
+					contentKind: "assignment",
+					preserveInstructions: true,
+					ideImport: true,
+					content: [
+						"Review the class and object model by building a Car with its own type, color, and mileage. Keep the construction count on the class.",
+						"",
+						"1. Trace both constructors. The shorter form supplies mileage zero. Increment the count once after the full constructor accepts the starting mileage.",
+						"2. The provided `drive` method accepts zero and uses `Math.addExact` to detect integer overflow. Complete `sameMileage` so a missing car returns false. The order uses `Integer.compare` on mileage. Two cars at the same mileage tie in that order.",
+						"3. Predict the result of calling `drive(20000)` on the red sedan. Sort the three cars and check the construction count.",
+						"",
+						"```text",
+						"A yellow coupe that has driven 1500 miles.",
+						"A red sedan that has driven 20000 miles.",
+						"A blue sports car that has driven 60000 miles.",
+						"Cars created: 3",
+						"```",
+						"",
+						"Save and extract the ZIP. Use Java 21 to run `javac --release 21 -Xlint:all -Werror *.java`, `java Main`, and `java ContractTests`."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"JM-Check-in-1",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"JM-Check-in-1",
+						"solution"
+					)
 				},
 				{
 					title: "Check-In #1: Classes and Objects",
@@ -464,33 +487,64 @@ const javaLevel2SourceCourse: RawCourse = {
 				{
 					title: "Check-In #1: Static Variables and Methods",
 					content:
-						"Use a static variable to track how many `Car` objects exist and a static getter method to return that class-wide count."
+						"Use a static variable to track how many `Car` objects have been created in the current program. The count includes earlier successful constructions even if the program no longer holds their references."
 				},
 				{
 					title: "Check-In #1: Comparable Objects",
 					content:
-						"Implement `Comparable` for the `Car` class, define `compareTo()`, sort an array of cars, and explain when `compareTo()` returns `-1`, `0`, or `1`."
+						"Implement `Comparable<Car>` and sort by mileage. A comparison returns a negative value when the first car comes earlier, zero when their mileage ties, and a positive value when the first car comes later."
 				},
 				{
 					title: "Check-In #1: Additional Practice Project",
-					content:
-						"Create a comparable `Card` class with rank and suit, implement constructors and getters, write `toString()`, define `compareTo()`, and sort an array of randomly generated cards.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM-Check-in-1-Additional-Project",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM-Check-in-1-Additional-Project"
+					contentKind: "assignment",
+					preserveInstructions: true,
+					ideImport: true,
+					content: [
+						"Order cards by suit and then by rank. The constructor accepts ranks 1 through 13 and suits 1 through 4, corresponding to clubs, diamonds, hearts, and spades.",
+						"",
+						"1. Implement `compareTo(Card)` with `Integer.compare`. Compare the suits first. If they tie, compare the ranks. Two cards with the same rank and suit tie.",
+						"2. Trace the fixed hand. The ace of hearts comes before the two of hearts, and the king of clubs comes before any heart.",
+						"",
+						"```text",
+						"Sorted: [13 of clubs, 1 of hearts, 2 of hearts, 1 of spades]",
+						"```",
+						"",
+						"3. Save and extract the ZIP. Use Java 21 to compile with `javac --release 21 -Xlint:all -Werror *.java`. Run `java Main` and `java ContractTests`.",
+						"4. Try `java Main 7` for a repeatable five-card hand dealt without duplicates. Compare the new hand’s ordering with the fixed case."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"JM-Check-in-1-Additional-Project",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"JM-Check-in-1-Additional-Project",
+						"solution"
+					)
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "Check-In #1: Extension Challenge",
-					content: buildSupportSectionGuidance({
-						courseFamily: "Java Level 2",
-						moduleTitle: "Check-In #1",
-						section: "extension"
-					}),
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM-Check-in-1"
+					contentKind: "assignment",
+					preserveInstructions: true,
+					ideImport: true,
+					content: [
+						"Continue the saved Car workbook. Add a batch operation that applies a list of distances only when every distance is valid.",
+						"",
+						"1. Implement `driveAll(int... distances)`. The parameter is an array inside the method. Start with a local candidate mileage and use `Math.addExact` for each nonnegative distance.",
+						"2. Assign the final value after the whole batch succeeds. If a negative distance or overflow is detected, the original mileage stays in place.",
+						"3. Trace a car starting at 10 miles. Adding 3, 0, and 7 changes it to 20 miles. An empty batch and a batch containing a negative distance both leave it at 20.",
+						"",
+						"Save and extract the ZIP again. Compile with `javac --release 21 -Xlint:all -Werror *.java` and run `java ContractTests extension`."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"JM-Check-in-1",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"JM-Check-in-1",
+						"solution"
+					)
 				},
 				{
 					title: "Check-In #1 Transfer Practice",
@@ -1544,7 +1598,7 @@ const JAVA_LEVEL_2_MODULE_FLOW: Record<
 			"ordering evidence"
 		],
 		flowNote:
-			"Treat this as an evidence checkpoint: construct and mutate one class, explain instance versus static state, and prove equality or ordering with boundary cases. Assign only the practice item tied to an observed gap before continuing."
+			"Trace the Car constructors and shared count, then make a separate prediction about how the Card hand sorts. Use the optional practice to revisit state changes or try a second way to order the same data."
 	},
 	"JM4 Subclasses & Inheritance": {
 		estimatedTime: "3 sessions · 45–60 minutes each",

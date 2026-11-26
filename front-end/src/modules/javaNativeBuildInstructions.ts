@@ -327,6 +327,11 @@ export function javaNativeBuildInstructions(
 						"In the terminal, enter a flavor, Y or N for iced, and a topping on separate lines. A blank topping line means none."
 					]
 				: []),
+			...(objectWorkbook.pack === "JM-Check-in-1"
+				? [
+						"For the optional batch challenge, run java ContractTests extension."
+					]
+				: []),
 			"Follow README.md for the expected output. The starter compiles and its method checks pass after the missing behavior is implemented."
 		];
 	}

@@ -2,6 +2,7 @@ import { createPinia, setActivePinia } from "pinia";
 import { expect, it } from "vitest";
 import { javaNativeBuildInstructions } from "@/modules/javaNativeBuildInstructions";
 import {
+	javaCheckIn1CarExtensionID,
 	javaCourseProjectKey,
 	javaObjectWorkbooks,
 	javaSearchImportFiles
@@ -37,7 +38,10 @@ it("keeps introductory object workbooks and Check-In 1 practice in their origina
 			"Calling the scoring method",
 		"J2-02-check-in-1-supplemental-2": "Issued: 2, redeemed: 1",
 		"J2-03-check-in-1-supplemental-3":
-			"Points view: [West, East, North, South]"
+			"Points view: [West, East, North, South]",
+		"JM-Check-in-1": "Cars created: 3",
+		"JM-Check-in-1-Additional-Project":
+			"Sorted: [13 of clubs, 1 of hearts, 2 of hearts, 1 of spades]"
 	};
 	expect(javaObjectWorkbooks.map(pack => pack.pack)).toEqual(
 		Object.keys(samples)
@@ -87,4 +91,31 @@ it("keeps introductory object workbooks and Check-In 1 practice in their origina
 			javaCourseProjectKey(courseID, pack.id, "reference", starter)
 		).toBe(`${courseID}:${pack.id}:reference`);
 	}
+
+	const car = javaObjectWorkbooks.find(
+		pack => pack.pack === "JM-Check-in-1"
+	)!;
+	const module = tutor?.modules.find(
+		candidate => candidate.id === "java-level-2-check-in-1"
+	);
+	const core = module?.curriculum.find(item => item.id === car.id);
+	const extension = module?.supplementalProjects.find(
+		item => item.id === javaCheckIn1CarExtensionID
+	);
+	expect(extension).toMatchObject({
+		projectLink: core?.projectLink,
+		solutionLink: core?.solutionLink,
+		ideImport: true
+	});
+	expect(extension?.content).toContain("java ContractTests extension");
+	expect(
+		javaCourseProjectKey(
+			courseID,
+			extension!.id,
+			"starter",
+			extension!.projectLink!
+		)
+	).toBe(
+		javaCourseProjectKey(courseID, car.id, "starter", core!.projectLink!)
+	);
 });
