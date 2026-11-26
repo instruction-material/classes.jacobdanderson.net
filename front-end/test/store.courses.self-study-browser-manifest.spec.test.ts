@@ -98,7 +98,7 @@ const cases = [
 	{
 		id: "python-level-3",
 		source: pythonLevel3Course,
-		readings: 18,
+		readings: 27,
 		additions: []
 	},
 	{
@@ -1011,7 +1011,7 @@ it.each(
 				...module.projects,
 				...module.optional
 			]);
-			expect(assignments).toHaveLength(116);
+			expect(assignments).toHaveLength(107);
 			expect(
 				assignments.every(item => item.assignmentTextScope === "complete")
 			).toBe(true);

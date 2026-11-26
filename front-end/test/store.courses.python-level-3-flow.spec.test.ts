@@ -51,6 +51,42 @@ describe("Python Level 3 learner flow", () => {
 		).toBe(false);
 	});
 
+	it("keeps full authored readings and the optional merge call trace", async () => {
+		const specimens = [
+			["Lists", "iterating by index"],
+			["Stacks", "Check whether the list is empty"],
+			["Runtime Analysis & Big-O Notation", "independent bounds"],
+			[
+				"Binary Search Big-O Analysis",
+				"their total worst-case copying work"
+			],
+			["Selection Sort Big-O Analysis", "sorting in place"],
+			["Insertion Sort Introduction", "growing sorted prefix"],
+			["Insertion Sort Big-O Analysis", "near-best case"],
+			["Bubble Sort Big-O Analysis", "constant auxiliary space"],
+			["Merge Sort Big-O Analysis", "linear peak auxiliary storage"],
+			["Quicksort Big-O Analysis", "linear peak list storage"]
+		];
+		const course =
+			(await useCoursesStore().loadCourseById("python-level-3"))!;
+		const required = course.modules.flatMap(module => module.curriculum);
+		for (const [title, detail] of specimens) {
+			const item = required.find(
+				entry =>
+					entry.title === title ||
+					entry.title === `Python Level 3 ${title}`
+			);
+			expect(item?.contentKind, title).toBe("reading");
+			expect(item?.content, title).toContain(detail);
+		}
+		const trace = course.modules
+			.flatMap(module => module.supplementalProjects)
+			.find(item => item.id === "merge-sort-frame-reference");
+		expect(trace?.learningPath).toBe("choice");
+		expect(trace?.contentKind).toBeUndefined();
+		expect(trace?.content).toContain("first children have lengths 3 and 4");
+	});
+
 	it("gives every module pacing, trace targets, and explicit paths", () => {
 		for (const module of pythonLevel3Course.modules) {
 			expect(module.estimatedTime, module.title).toMatch(/session/);
