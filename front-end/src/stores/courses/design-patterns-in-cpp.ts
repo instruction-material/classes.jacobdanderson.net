@@ -1,5 +1,4 @@
 import type { RawCourse, RawCourseModuleItem } from "./types";
-import { buildProjectGuidance } from "./projectGuidance";
 
 const setupSource =
 	"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/f63768d7f10a215697e2d5d8cbff49c3c2bcf3fb";
@@ -1040,31 +1039,25 @@ const designPatternsInCppSourceCourse: RawCourse = {
 				},
 				{
 					title: "Ownership Refactor Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle:
-							"Pattern Lab 14: Ownership-Aware Refactor Studio",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						'An equipment desk owns a checkout record for the duration of a loan. A display receives a weak pointer so it can show the current record without owning it. Complete Display::show. Lock the weak pointer to read a live label and return "(returned)" when no record is live. Keep the owning handle local to the call.\n\n**Checkpoints:** Display a live tripod checkout, then reset the desk’s owning pointer. The display changes to "(returned)". Verify the owner count is one after show returns. Construct an empty display and verify it also reports "(returned)".',
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-27-applied-studio-14-pattern-implementation-lab-14-supplemental-2/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/3da74837443c3aa2a9b3e3c27bd9a5b1e15cc671/DPC-27-applied-studio-14-pattern-implementation-lab-14-supplemental-2/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-27-applied-studio-14-pattern-implementation-lab-14-supplemental-2/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/3da74837443c3aa2a9b3e3c27bd9a5b1e15cc671/DPC-27-applied-studio-14-pattern-implementation-lab-14-supplemental-2/solution"
 				},
 				{
 					title: "Ownership Refactor Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle:
-							"Pattern Lab 14: Ownership-Aware Refactor Studio",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"A palette exposes a dynamically allocated array through Buffer, a unique pointer with a custom deleter. Implement open so a nonzero size produces a zero-initialized int array paired with CountRelease. A zero size yields an empty Buffer. The release counter must outlive every buffer.\n\n**Checkpoints:** Write a value to a three-slot buffer and move it into another handle. The moved-from handle becomes empty. Reset only the new owner and verify the counter increments once. Destroy an empty buffer and test a second independently allocated buffer.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-28-applied-studio-14-pattern-implementation-lab-14-supplemental-3/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/3da74837443c3aa2a9b3e3c27bd9a5b1e15cc671/DPC-28-applied-studio-14-pattern-implementation-lab-14-supplemental-3/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-28-applied-studio-14-pattern-implementation-lab-14-supplemental-3/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/3da74837443c3aa2a9b3e3c27bd9a5b1e15cc671/DPC-28-applied-studio-14-pattern-implementation-lab-14-supplemental-3/solution"
 				}
 			]
 		},
@@ -1121,29 +1114,25 @@ const designPatternsInCppSourceCourse: RawCourse = {
 				},
 				{
 					title: "Runtime Variation Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle: "Pattern Lab 15: Runtime Variation Studio",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"A print queue has a title and priority for each job. Complete ordered so it makes a copy of the jobs and applies the comparator supplied by its caller. Use a stable sort so jobs that compare equal keep their arrival order. Leave the original queue unchanged.\n\n**Checkpoints:** Order the jobs by title, then by descending priority. For Kim priority 2, Ada priority 1, and Bo priority 2, the title order is Ada, Bo, Kim and the priority order is Kim, Bo, Ada. Verify that the first queue still starts with Kim.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-29-applied-studio-15-pattern-implementation-lab-15-supplemental-2/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/3da74837443c3aa2a9b3e3c27bd9a5b1e15cc671/DPC-29-applied-studio-15-pattern-implementation-lab-15-supplemental-2/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-29-applied-studio-15-pattern-implementation-lab-15-supplemental-2/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/3da74837443c3aa2a9b3e3c27bd9a5b1e15cc671/DPC-29-applied-studio-15-pattern-implementation-lab-15-supplemental-2/solution"
 				},
 				{
 					title: "Runtime Variation Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle: "Pattern Lab 15: Runtime Variation Studio",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"A calibration session keeps caller-supplied rules as function objects. The session borrows no rule. Complete measure so it adds the active rule’s result to the stored total and returns the updated total. A replacement rule applies to future measurements. It leaves the accumulated total intact.\n\n**Checkpoints:** Start with the identity rule and measure 3. Replace the rule with one that adds 2 and measure 3 again. The totals are 3 and 8. Change the original offset variable after creating the replacement rule to verify it was captured by value. Swap back to identity and verify the total continues from 8.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-30-applied-studio-15-pattern-implementation-lab-15-supplemental-3/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/3da74837443c3aa2a9b3e3c27bd9a5b1e15cc671/DPC-30-applied-studio-15-pattern-implementation-lab-15-supplemental-3/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-30-applied-studio-15-pattern-implementation-lab-15-supplemental-3/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/3da74837443c3aa2a9b3e3c27bd9a5b1e15cc671/DPC-30-applied-studio-15-pattern-implementation-lab-15-supplemental-3/solution"
 				}
 			]
 		},
@@ -1200,31 +1189,25 @@ const designPatternsInCppSourceCourse: RawCourse = {
 				},
 				{
 					title: "Structural Boundary Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle:
-							"Pattern Lab 16: Structural Boundary Studio",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"A cutting list records pieces in centimetres. An older catalogue uses inches. Complete the InchCut adapter so it returns the same Cut structure as the metric path, preserves the label, and multiplies inches by 2.54. The report reads only normalized cuts.\n\n**Checkpoints:** The reference reports the metric Shelf (25.4 cm) and the ten-inch Door (25.4 cm) through one report function. Compare zero inches, half an inch and a larger value using a numeric tolerance. Keep unit conversion out of the report.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-31-applied-studio-16-pattern-implementation-lab-16-supplemental-2/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/3da74837443c3aa2a9b3e3c27bd9a5b1e15cc671/DPC-31-applied-studio-16-pattern-implementation-lab-16-supplemental-2/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-31-applied-studio-16-pattern-implementation-lab-16-supplemental-2/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/3da74837443c3aa2a9b3e3c27bd9a5b1e15cc671/DPC-31-applied-studio-16-pattern-implementation-lab-16-supplemental-2/solution"
 				},
 				{
 					title: "Structural Boundary Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle:
-							"Pattern Lab 16: Structural Boundary Studio",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"A catalogue returns either a title or an empty optional for a missing number. Complete Memo::find so repeated lookups for an ID reuse the first result. Cache successful and missing results. The supplied clear operation resets the memo so the next lookup goes back to the catalogue.\n\n**Checkpoints:** Read title 7 twice and missing ID 9 twice. Exactly two source calls are needed before clearing. Clear, then read 7 and verify a third source call. Compare a recorded empty title with a missing ID.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-32-applied-studio-16-pattern-implementation-lab-16-supplemental-3/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/3da74837443c3aa2a9b3e3c27bd9a5b1e15cc671/DPC-32-applied-studio-16-pattern-implementation-lab-16-supplemental-3/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-32-applied-studio-16-pattern-implementation-lab-16-supplemental-3/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/3da74837443c3aa2a9b3e3c27bd9a5b1e15cc671/DPC-32-applied-studio-16-pattern-implementation-lab-16-supplemental-3/solution"
 				}
 			]
 		},
@@ -1281,31 +1264,25 @@ const designPatternsInCppSourceCourse: RawCourse = {
 				},
 				{
 					title: "Refactoring Capstone Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle:
-							"Pattern Lab 17: Refactoring Capstone Studio",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"A schedule lists nondecreasing appointment minutes. Extract longGaps from the existing console loop. Return each consecutive gap that strictly exceeds the supplied threshold, in chronological order. An empty or one-appointment schedule produces no gaps. Keep the original console report unchanged.\n\n**Checkpoints:** For minutes 3, 6, 16 and 19 at threshold 5, the report is 10. At threshold 10 no gap qualifies. At threshold 2 the returned vector is 3, 10, 3. Try repeated minutes and verify the original schedule is unchanged.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-33-applied-studio-17-pattern-implementation-lab-17-supplemental-2/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/3da74837443c3aa2a9b3e3c27bd9a5b1e15cc671/DPC-33-applied-studio-17-pattern-implementation-lab-17-supplemental-2/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-33-applied-studio-17-pattern-implementation-lab-17-supplemental-2/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/3da74837443c3aa2a9b3e3c27bd9a5b1e15cc671/DPC-33-applied-studio-17-pattern-implementation-lab-17-supplemental-2/solution"
 				},
 				{
 					title: "Refactoring Capstone Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle:
-							"Pattern Lab 17: Refactoring Capstone Studio",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"A document revision owns a sorted set of topic labels. Implement combined so it returns a fresh revision containing the union of both inputs. A label appears once even if both revisions contain it. Leave both inputs unchanged and keep reporting separate from the merge.\n\n**Checkpoints:** Merge draft and map with map and review. The result prints draft, map, review in order. Reversing the inputs gives the same labels. Merge with an empty revision and confirm that the input’s labels are preserved.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-34-applied-studio-17-pattern-implementation-lab-17-supplemental-3/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/3da74837443c3aa2a9b3e3c27bd9a5b1e15cc671/DPC-34-applied-studio-17-pattern-implementation-lab-17-supplemental-3/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-34-applied-studio-17-pattern-implementation-lab-17-supplemental-3/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/3da74837443c3aa2a9b3e3c27bd9a5b1e15cc671/DPC-34-applied-studio-17-pattern-implementation-lab-17-supplemental-3/solution"
 				}
 			]
 		}
@@ -1797,8 +1774,11 @@ function buildDesignPatternsCppStudioAppendix(
 		curriculum: [
 			{
 				title: "Applied Studio Scope Guide",
+				contentKind: "reading",
+				preserveInstructions: true,
+				preserveAssignment: true,
 				content:
-					"**Course flow:** These four studios preserve the complete applied practice collection without presenting them as four additional required units. Choose Ownership-Aware Refactor after DPC2 or DPC10, Runtime Variation after DPC4, Structural Boundary after DPC6, or Refactoring Capstone after DPC11. Build the starter and record its baseline. Verify the studio project before its extension challenge. Finish with the ownership or decision record from the review.",
+					"Choose an optional studio after the matching lesson. Build the starter and record its baseline. Verify the studio project before its extension challenge, then complete the review.\n\n- **Pattern Lab 14: Ownership-Aware Refactor Studio.** Choose after DPC2 or DPC10.\n- **Pattern Lab 15: Runtime Variation Studio.** Choose after DPC4.\n- **Pattern Lab 16: Structural Boundary Studio.** Choose after DPC6.\n- **Pattern Lab 17: Refactoring Capstone Studio.** Choose after DPC11.",
 				learningPath: "core"
 			}
 		],
