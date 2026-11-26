@@ -106,6 +106,21 @@ describe("JavaScript Level 2 learner flow", () => {
 		expect(javascriptLevel2Course.modules.at(-1)?.kind).toBe("appendix");
 	});
 
+	it("keeps the complete Capstone handoff and links to the Foundations readiness lesson", async () => {
+		const course = await requireJavaScriptLevel2Course();
+		const handoff = course.modules.find(module => module.title === "JSM15 Master Project")
+			?.curriculum.find(item => item.title === "Handoff to Web Development Foundations");
+		const foundations = await loadRawCourse("web-development-foundations");
+		const setup = foundations?.modules.find(module => module.title === "WDF0 Setup and Tooling");
+		const projectFiles = setup?.curriculum.find(item => item.title === "Project Files and a Local Server");
+
+		expect(handoff?.contentKind).toBe("reading");
+		expect(projectFiles).toBeDefined();
+		expect(handoff?.content).toContain(`(/courses#${setup?.id}-${projectFiles?.id})`);
+		expect(handoff?.content).toContain("what happens when a request or input fails");
+		expect(handoff?.content).toContain("Git, npm and a development server");
+	});
+
 	it("keeps checkpoints required in sequence and usable as placement previews", () => {
 		for (const title of ["Check-In #1", "Check-In #2"]) {
 			const module = javascriptLevel2Course.modules.find(
