@@ -1,4 +1,5 @@
 import type { RawCourse, RawCourseModule } from "./types";
+import { cppCourseGuideReadings } from "./cppCourseGuideReadings";
 import { cppPracticeGuide } from "./cppPracticeGuide";
 
 type ExpansionPriority = "urgent" | "soon" | "later";
@@ -2199,10 +2200,19 @@ export const researchBackedExpansionProfiles: Record<
 	]),
 	"ap-computer-science-a": apCsaProfile,
 	assembly: assemblyProfile,
-	"c-level-1": cppProfile,
+	"c-level-1": {
+		...cppProfile,
+		guideReadings: cppCourseGuideReadings["c-level-1"]
+	},
 	"c-systems-engineering": cSystemsProfile,
-	"cpp-level-2": cppProfile,
-	"cpp-level-3": cppProfile,
+	"cpp-level-2": {
+		...cppProfile,
+		guideReadings: cppCourseGuideReadings["cpp-level-2"]
+	},
+	"cpp-level-3": {
+		...cppProfile,
+		guideReadings: cppCourseGuideReadings["cpp-level-3"]
+	},
 	"data-science-in-python": dataScienceProfile,
 	"data-structures-and-algorithms-in-cpp": dsaProfile,
 	"design-patterns-in-cpp": cppDesignPatternsProfile,

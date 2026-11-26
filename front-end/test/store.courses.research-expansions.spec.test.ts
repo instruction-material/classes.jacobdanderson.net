@@ -10,6 +10,51 @@ import {
 
 const COURSE_SWEEP_TIMEOUT = 180000;
 
+it("gives each C++ level a course map with its own readiness and project evidence", async () => {
+	setActivePinia(createPinia());
+	const store = useCoursesStore();
+	const links = new Set<string>();
+	const targets = new Set<string>();
+	const readings = new Set<string>();
+
+	for (const [courseId, evidence] of [
+		["c-level-1", "CPPF7, trace a rectangular grid"],
+		["cpp-level-2", "which variables an alias can change"],
+		["cpp-level-3", "ordered rows and sorted projections"]
+	]) {
+		const course = (await store.loadCourseById(courseId))!;
+		for (const module of course.modules) {
+			targets.add(module.id);
+			for (const item of [
+				...module.curriculum,
+				...module.supplementalProjects
+			]) {
+				targets.add(`${module.id}-${item.id}`);
+			}
+		}
+		for (const name of ["Standards Map", "Course Roadmap"]) {
+			const module = course.modules.find(candidate => candidate.title === name)!;
+			expect(module.kind).toBe("appendix");
+			const items = [...module.curriculum, ...module.supplementalProjects];
+			expect(items).toHaveLength(6);
+			for (const item of items) {
+				expect(item.contentKind).toBe("reading");
+				readings.add(item.content);
+				for (const match of item.content.matchAll(/\/courses#([^\s)]+)/g)) {
+					links.add(match[1]);
+				}
+			}
+			if (name === "Course Roadmap") {
+				expect(items.map(item => item.content).join("\n")).toContain(evidence);
+			}
+		}
+	}
+
+	expect(readings.size).toBe(36);
+	expect(links.size).toBe(6);
+	expect([...links].filter(anchor => !targets.has(anchor))).toEqual([]);
+});
+
 it("gives the three C++ levels distinct source-linked practice at their own level", async () => {
 	setActivePinia(createPinia());
 	const courses = useCoursesStore();
