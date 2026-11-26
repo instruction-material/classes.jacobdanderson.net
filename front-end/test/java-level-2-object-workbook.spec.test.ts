@@ -9,7 +9,7 @@ import {
 import { useAppStore } from "@/stores/app";
 import { useCoursesStore } from "@/stores/courses";
 
-it("keeps the JM1 and JM2 assignments in their original sections with separate role imports", async () => {
+it("keeps the JM1 through JM3 assignments in their original sections with separate role imports", async () => {
 	setActivePinia(createPinia());
 	const courseID = "java-level-2";
 	const read = () => useCoursesStore().loadCourseById(courseID);
@@ -28,7 +28,13 @@ it("keeps the JM1 and JM2 assignments in their original sections with separate r
 		"JM1-Supplemental-Project-1-Employee": "ID Number: 76544",
 		"JM2-Person-Class": "Name: Jack, Grade: 6, Age: 12",
 		"JM2-Book-Class": "Same title and author: true",
-		"JM2-Supplemental-Project-2-Boba": "Matches the most popular order."
+		"JM2-Supplemental-Project-2-Boba": "Matches the most popular order.",
+		"JM3-Quiz-Class": "Quizzes created: 2",
+		"JM3-House-Class": "Houses created: 3",
+		"JM3-Supplemental-Project-1-Basketball-Statistics":
+			"Riley | total 18 | fouls 6 | disqualified",
+		"J2-01-jm3-static-variables-and-methods-supplemental-3":
+			"Calling the scoring method"
 	};
 	expect(javaObjectWorkbooks.map(pack => pack.pack)).toEqual(
 		Object.keys(samples)
@@ -37,7 +43,7 @@ it("keeps the JM1 and JM2 assignments in their original sections with separate r
 		const locate = (course: typeof tutor) =>
 			course?.modules
 				.flatMap(module =>
-					!pack.pack.includes("Supplemental")
+					!pack.id.includes("-supplemental-")
 						? module.curriculum
 						: module.supplementalProjects
 				)

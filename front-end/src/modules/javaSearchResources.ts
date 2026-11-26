@@ -3,9 +3,11 @@ import { javaRecursionProjectKey } from "@/modules/javaRecursionResources";
 
 const jm1Revision = "6dc5e5c6d2659d350b11b5d112f513adfd568bdf";
 const jm2Revision = "9807e7a519e0d9121df1836467e33ccc2c29bd61";
+const jm3Revision = "a6cfdddf6101acbf20677257601c2d46903d2ef6";
 const jm1Module =
 	"java-level-2-jm1-instance-variables-constructors-and-methods";
 const jm2Module = "java-level-2-jm2-overloaded-constructors-comparison-methods";
+const jm3Module = "java-level-2-jm3-static-variables-methods";
 
 const javaObjectSources = {
 	"JM1-Dog-Class": {
@@ -32,6 +34,26 @@ const javaObjectSources = {
 		revision: jm2Revision,
 		id: `${jm2Module}-supplemental-jm2-supplemental-project-1-boba-shop`,
 		files: ["Main.java", "Boba.java", "ContractTests.java", "README.md"]
+	},
+	"JM3-Quiz-Class": {
+		revision: jm3Revision,
+		id: `${jm3Module}-curriculum-jm3-project-1-quiz-class`,
+		files: ["Main.java", "Quiz.java", "ContractTests.java", "README.md"]
+	},
+	"JM3-House-Class": {
+		revision: jm3Revision,
+		id: `${jm3Module}-curriculum-jm3-project-2-house-class`,
+		files: ["Main.java", "House.java", "ContractTests.java", "README.md"]
+	},
+	"JM3-Supplemental-Project-1-Basketball-Statistics": {
+		revision: jm3Revision,
+		id: `${jm3Module}-supplemental-jm3-supplemental-project-1-basketball-statistics`,
+		files: ["Main.java", "Player.java", "ContractTests.java", "README.md"]
+	},
+	"J2-01-jm3-static-variables-and-methods-supplemental-3": {
+		revision: jm3Revision,
+		id: `${jm3Module}-supplemental-static-variables-methods-extension-practice`,
+		files: ["Main.java", "ContractTests.java", "README.md"]
 	}
 } as const;
 

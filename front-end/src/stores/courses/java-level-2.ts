@@ -289,26 +289,77 @@ const javaLevel2SourceCourse: RawCourse = {
 			curriculum: [
 				{
 					title: "JM3 Project 1: Quiz Class",
-					content:
-						"Create a `Quiz` class with instance data, multiple constructors, getters, and a `toString()` method, then add a static variable and static getter to track how many quizzes have been created.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM3-Quiz-Class",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM3-Quiz-Class"
+					contentKind: "assignment",
+					preserveInstructions: true,
+					ideImport: true,
+					content: [
+						"Build a class that tracks the total number of quizzes created. A quiz’s name, score, and question list belong to that instance. The counter belongs to the class.",
+						"",
+						"1. Trace all three constructor signatures. Have the shorter constructors delegate to the full constructor and supply an empty question list when none is provided.",
+						"2. Update the shared `numQuizzes` once after validation. Read it with `Quiz.getNumQuizzes()`. A score outside 0 through 100 throws `IllegalArgumentException` and leaves the count alone.",
+						"3. Display the first question if present. Otherwise display `(none)`. Change the original question array after construction and observe that the quiz kept its copy.",
+						"4. Save and extract the ZIP. With Java 21, run `javac --release 21 -Xlint:all -Werror *.java`, then `java Main` and `java ContractTests`.",
+						"",
+						"```text",
+						"Review: 92 (A), first question: Which values belong to an instance?",
+						"Practice: 80 (B), first question: (none)",
+						"Quizzes created: 2",
+						"```",
+						"",
+						"Predict the count and grade after each constructor call. Then test a score at a letter-grade boundary and a score outside the valid range."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"JM3-Quiz-Class",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"JM3-Quiz-Class",
+						"solution"
+					)
 				},
 				{
 					title: "Static Variables and Methods",
-					content:
-						"Use static members for class-wide information and practice calling static methods through the class itself rather than through an object."
+					contentKind: "reading",
+					preserveInstructions: true,
+					content: [
+						"A static field has one value for the class. An instance field has one value for each object. A static method can use class fields and its parameters. To read a particular quiz’s score, it needs a quiz object.",
+						"",
+						"**Trace:** Start with `Quiz.getNumQuizzes()` returning 0 in a fresh program. Construct one quiz with score 80 and another with score 92. Calling the class method now returns 2. Calling each quiz’s `getScore()` returns its own score.",
+						"",
+						"A delegating constructor calls another constructor on the same object. Put the increment in the constructor where all paths meet. Reject invalid data before updating the count.",
+						"",
+						"`static final` identifies a class constant such as the foul limit. A local variable such as the scoring total starts over on every call, so one run does not affect the next."
+					].join("\n")
 				},
 				{
 					title: "JM3 Project 2: House Class",
-					content:
-						"Create a `House` class with a static total count, implement `Comparable<House>`, sort an array of houses by price with square footage as a tiebreaker, and print the sorted results.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM3-House-Class",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM3-House-Class"
+					contentKind: "assignment",
+					preserveInstructions: true,
+					ideImport: true,
+					content: [
+						"Model an address, price in whole dollars, and area in square feet. Count successful constructions in one class field and use two instance fields for sorting.",
+						"",
+						"1. Increment the shared count once the constructor accepts the price and area. Reject a negative price or a nonpositive area.",
+						"2. Implement `Comparable<House>`. Compare price using `Integer.compare`. If the prices tie, compare area. A tie on both keys returns zero and can still describe two different addresses.",
+						"3. Write down the expected order for the three listings. Run the Java 21 build and check commands from Quiz Class, then compare the prediction with `Arrays.sort`.",
+						"",
+						"```text",
+						"Elm Lane | $250000 | 2000 sq ft",
+						"Cedar Lane | $500000 | 1200 sq ft",
+						"Oak Lane | $500000 | 1800 sq ft",
+						"Houses created: 3",
+						"```",
+						"",
+						"Explain why sorting existing objects leaves `House.getNumHouses()` unchanged."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"JM3-House-Class",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"JM3-House-Class",
+						"solution"
+					)
 				},
 				{
 					title: "compareTo Method",
@@ -329,7 +380,7 @@ const javaLevel2SourceCourse: RawCourse = {
 						"",
 						"**Trace:** Comparing scores 5 and 9 returns a negative number; reversing them returns a positive number; comparing two scores of 5 returns zero. `Arrays.sort()` uses that ordering to place scores in ascending order. `Integer.compare` also handles `Integer.MIN_VALUE` and `Integer.MAX_VALUE` without the overflow that subtraction can cause.",
 						"",
-						"**House project:** Compare price first. Only when that comparison returns zero, compare square footage as the tiebreaker. Use a comparison operation that matches each field's numeric type, such as `Double.compare` for double prices and `Integer.compare` for integer areas. A zero ordering result does not automatically change the class's `equals()` method.",
+						"**House project:** Compare price first. Only when that comparison returns zero, compare square footage as the tiebreaker. This workbook stores both fields as integers, so use `Integer.compare` for each. A zero ordering result does not automatically change the class's `equals()` method.",
 						"",
 						"[Comparable contract](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Comparable.html)"
 					].join("\n")
@@ -338,27 +389,55 @@ const javaLevel2SourceCourse: RawCourse = {
 			supplementalProjects: [
 				{
 					title: "JM3 Supplemental Project 1: Basketball Statistics",
-					content:
-						"Create a `Player` class with stats, sorting behavior, and foul tracking, then sort a team of players and determine whether each player is disqualified.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM3-Supplemental-Project-1-Basketball-Statistics",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM3-Supplemental-Project-1-Basketball-Statistics"
+					contentKind: "assignment",
+					preserveInstructions: true,
+					ideImport: true,
+					content: [
+						"Apply the natural ordering pattern to a team. Each player has points, rebounds, and fouls. The shared foul limit is six.",
+						"",
+						"1. Return points plus rebounds from `combinedTotal()`. Cast points to `long` before adding. Use `Long.compare` to sort in ascending order.",
+						"2. Return true when fouls reach or exceed six. Disqualified players still appear in the output with their status.",
+						"3. Trace the small team by hand, then run the Java 21 check commands. Compare a player with five fouls and one with six, and test two scores tied on the sum.",
+						"",
+						"```text",
+						"Casey | total 16 | fouls 5 | eligible",
+						"Riley | total 18 | fouls 6 | disqualified",
+						"Jordan | total 20 | fouls 2 | eligible",
+						"```",
+						"",
+						"Check the sum when both inputs are `Integer.MAX_VALUE`. The expected total is `4294967294`."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"JM3-Supplemental-Project-1-Basketball-Statistics",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"JM3-Supplemental-Project-1-Basketball-Statistics",
+						"solution"
+					)
 				},
 				{
 					title: "Static Variables & Methods Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 2",
-						moduleTitle: "JM3 Static Variables & Methods",
-						itemTitle:
-							"Static Variables & Methods Extension Practice",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/J2-01-jm3-static-variables-and-methods-supplemental-3/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/J2-01-jm3-static-variables-and-methods-supplemental-3/solution"
+					contentKind: "assignment",
+					preserveInstructions: true,
+					ideImport: true,
+					content: [
+						"Use shared constants and a static method to score a list of integers. An even value contributes half its value. An odd value contributes twice its value. Include zero and negative values.",
+						"",
+						"1. Implement `scoreOf(int)` using the provided constants. Cast before doubling so the multiplication happens with type `long`.",
+						"2. Trace `[2, 5, 8, 13]` as `1 + 10 + 4 + 26`. Set the total to zero inside each call to `computeScore`.",
+						"3. Use Java 21 to run `javac --release 21 -Xlint:all -Werror *.java`, `java Main`, and `java ContractTests`.",
+						"",
+						"The sample prints `41`. Calling the scoring method with the sample, an empty list, and the sample again returns `41`, `0`, and `41`."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"J2-01-jm3-static-variables-and-methods-supplemental-3",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"J2-01-jm3-static-variables-and-methods-supplemental-3",
+						"solution"
+					)
 				}
 			]
 		},
