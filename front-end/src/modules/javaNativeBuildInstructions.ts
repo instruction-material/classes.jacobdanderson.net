@@ -51,6 +51,7 @@ import {
 	javaCheckIn1Projects,
 	javaCheckIn2Projects,
 	javaCheckIn3Projects,
+	javaCheckIn4Projects,
 	javaHashTableProjects,
 	javaLevel3SearchProjects,
 	javaLinkedListProjects,
@@ -209,6 +210,8 @@ const javaSearchExtensionInstructions: Partial<Record<string, string>> = {
 		"For the cutoff extension, run java Main cutoff and java ContractTests cutoff.",
 	[javaCheckIn3Projects[0].id]:
 		"For the grouped-count extension, run java Main groups and java ContractTests groups.",
+	[javaCheckIn4Projects[0].id]:
+		"For the shortest-hops extension, run java Main hops and java ContractTests hops.",
 	[javaBinaryTreeProjects[0].id]:
 		"For the ceiling-search extension, run java Main ceiling and java ContractTests ceiling.",
 	[javaHashTableProjects[0].id]:

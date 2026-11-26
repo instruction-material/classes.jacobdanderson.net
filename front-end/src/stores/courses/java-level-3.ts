@@ -11,6 +11,7 @@ import {
 } from "./javaBubbleCheckIn2Teaching";
 import { buildJavaCheckIn1Module } from "./javaCheckIn1Teaching";
 import { buildJavaCheckIn3Module } from "./javaCheckIn3Teaching";
+import { buildJavaCheckIn4Module } from "./javaCheckIn4Teaching";
 import { buildJavaGraphModule } from "./javaGraphTeaching";
 import { buildJavaHashTableModule } from "./javaHashTableTeaching";
 import { buildJavaLinkedListModule } from "./javaLinkedListTeaching";
@@ -689,84 +690,7 @@ const javaLevel3SourceCourse: RawCourse = {
 		buildJavaBinaryTreeModule(),
 		buildJavaHashTableModule(),
 		buildJavaGraphModule(),
-		{
-			title: "Check-In #4",
-			curriculum: [
-				{
-					title: "Check-In #4 Overview",
-					content:
-						"This final check-in reviews binary search trees, hash tables, and graphs, along with the main vocabulary and algorithm ideas from those topics.",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ-Check-In-4"
-				},
-				{
-					title: "Check-In #4: Binary Search Trees",
-					content:
-						"Review BST ordering rules, traversal orders, insertion and deletion practice, and why BSTs are useful for ordered lookup structures."
-				},
-				{
-					title: "Check-In #4: Hash Tables",
-					content:
-						"Explain how hash tables work, compute load factors, compare collision-handling strategies, and identify when rehashing is necessary. Include at least one collision trace so linear probing, tombstones, or chaining are described as concrete table states."
-				},
-				{
-					title: "Check-In #4: Graphs",
-					content:
-						"Define graphs and graph vocabulary, build adjacency lists and matrices, compare sparse versus dense representations, and describe Dijkstra's algorithm at a high level."
-				},
-				{
-					title: "Check-In #4: Additional Practice Project",
-					content:
-						"Extend a BST with a breadth-first search method that prints nodes level by level using a queue. The implementation enqueues children in a deliberate order, handles an empty tree, and explains why BFS differs from preorder traversal.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ-Check-In-4-Additional-Practice-Project",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ-Check-In-4-Additional-Practice-Project"
-				}
-			],
-			supplementalProjects: [
-				{
-					title: "Check In #4: Extension Challenge",
-					content: buildSupportSectionGuidance({
-						courseFamily: "Java Level 3",
-						moduleTitle: "Check In #4",
-						section: "extension"
-					}),
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ-Check-In-4"
-				},
-				{
-					title: "Advanced Structures Checkpoint Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 3",
-						moduleTitle: "Check-In #4",
-						itemTitle:
-							"Advanced Structures Checkpoint Transfer Practice",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/J3-35-check-in-4-supplemental-2/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/J3-35-check-in-4-supplemental-2/solution"
-				},
-				{
-					title: "Advanced Structures Checkpoint Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 3",
-						moduleTitle: "Check-In #4",
-						itemTitle:
-							"Advanced Structures Checkpoint Extension Practice",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/J3-36-check-in-4-supplemental-3/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/J3-36-check-in-4-supplemental-3/solution"
-				}
-			]
-		},
+		buildJavaCheckIn4Module(),
 		{
 			title: "AJ17 Master Project: Google Maps",
 			curriculum: [

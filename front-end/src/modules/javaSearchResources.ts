@@ -470,6 +470,35 @@ const additionalAlgorithmFiles: Partial<Record<string, readonly string[]>> = {
 	[javaHashTableProjects[1].id]: ["HashMap.java", "Map.java", "corpus.txt"]
 };
 
+export const javaCheckIn4Revision = "f84c390604c00ae6191122432bd28004b9721fd3";
+export const javaCheckIn4ModuleID = "java-level-3-check-in-4";
+
+export const javaCheckIn4Projects = [
+	{
+		pack: "AJ-Check-In-4-Workbook-Packs",
+		id: `${javaCheckIn4ModuleID}-curriculum-java-level-3-check-in-4-overview`
+	},
+	{
+		pack: "AJ-Check-In-4-Tree-BFS-Packs",
+		id: `${javaCheckIn4ModuleID}-curriculum-java-level-3-check-in-4-practice-project`
+	},
+	{
+		pack: "J3-35-check-in-4-supplemental-2",
+		id: `${javaCheckIn4ModuleID}-supplemental-advanced-structures-checkpoint-transfer-practice`
+	},
+	{
+		pack: "J3-36-check-in-4-supplemental-3",
+		id: `${javaCheckIn4ModuleID}-supplemental-advanced-structures-checkpoint-extension-practice`
+	}
+] as const;
+
+export function javaCheckIn4URL(
+	pack: (typeof javaCheckIn4Projects)[number]["pack"],
+	role: "starter" | "solution"
+) {
+	return `https://github.com/instruction-material/Java-Level-3/tree/${javaCheckIn4Revision}/${pack}/${role}`;
+}
+
 const searchGroups = [
 	{ revision: javaSearchRevision, projects: javaSearchProjects },
 	{ revision: javaBinarySearchRevision, projects: javaBinarySearchProjects },
@@ -486,7 +515,8 @@ const searchGroups = [
 	{ revision: javaCheckIn3Revision, projects: javaCheckIn3Projects },
 	{ revision: javaBinaryTreeRevision, projects: javaBinaryTreeProjects },
 	{ revision: javaHashTableRevision, projects: javaHashTableProjects },
-	{ revision: javaGraphRevision, projects: javaGraphProjects }
+	{ revision: javaGraphRevision, projects: javaGraphProjects },
+	{ revision: javaCheckIn4Revision, projects: javaCheckIn4Projects }
 ] as const;
 
 export const javaLevel3SearchProjects = [
@@ -502,7 +532,8 @@ export const javaLevel3SearchProjects = [
 	...javaCheckIn3Projects,
 	...javaBinaryTreeProjects,
 	...javaHashTableProjects,
-	...javaGraphProjects
+	...javaGraphProjects,
+	...javaCheckIn4Projects
 ];
 
 export function javaCheckIn1URL(
