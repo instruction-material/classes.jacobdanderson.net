@@ -109,7 +109,9 @@ const cppLevel3SourceCourse: RawCourse = {
 					content: cppMazeSearchBriefs.backtracking
 				},
 				{
-					title: "CPPI2 Project: Recursive Maze or Word Search",
+					id: "cpp-level-3-cppi2-recursion-and-the-call-stack-curriculum-cppi2-project-recursive-maze-or-word-search",
+					title: "CPPI2 Project: Recursive Maze Search",
+					aliases: ["CPPI2 Project: Recursive Maze or Word Search"],
 					content: cppMazeSearchBriefs.project,
 					ideImport: true,
 					projectLink:
@@ -215,7 +217,9 @@ const cppLevel3SourceCourse: RawCourse = {
 					content: cppValueTemplateLessons.templates
 				},
 				{
-					title: "CPPI5 Project: Score or Fraction Toolkit",
+					id: "cpp-level-3-cppi5-value-types-operator-overloading-and-templates-curriculum-cppi5-project-score-or-fraction-toolkit",
+					title: "CPPI5 Project: Fraction Toolkit",
+					aliases: ["CPPI5 Project: Score or Fraction Toolkit"],
 					content: cppValueTemplateLessons.project,
 					ideImport: true,
 					projectLink:
@@ -321,7 +325,7 @@ const CPP_LEVEL_3_MODULE_FLOW: Record<string, CppLevel3ModuleFlow> = {
 			"backtracking invariant"
 		],
 		flowNote:
-			"Draw representative stack frames before implementation, then keep search state small enough to verify by hand. The maze or word search must terminate on blocked, visited, boundary, solved, and unsolved cases and restore backtracked state deliberately."
+			"Draw representative stack frames before implementation, then trace the maze by hand. Check out-of-bounds, wall, and visited neighbors, a maze with a route, and a valid maze with no route. Remove failed branches from the current path as the calls return."
 	},
 	"CPPI3 STL Containers, Iterators, and Algorithms": {
 		estimatedTime: "4 sessions · 45–60 minutes each",
@@ -369,7 +373,7 @@ const CPP_LEVEL_3_MODULE_FLOW: Record<string, CppLevel3ModuleFlow> = {
 			"regression suite"
 		],
 		flowNote:
-			"Build the capstone as a sequence of working vertical slices with a narrow interface and composition as the default. Prove accepted and rejected commands, every state transition, recursive or algorithmic edge cases, save/reload equivalence, corrupted-file recovery, and clean polymorphic destruction before selecting the next C++ pathway."
+			"Build the rover in stages: command parsing, phase transitions, movement, recursive route search, then loading saved state. For each stage, predict the output and state before running a successful and a rejected or boundary case."
 	}
 };
 
@@ -405,12 +409,15 @@ function decorateCppLevel3Module(
 		curriculum.push({
 			title: "CPPI6 Capstone Completion Contract",
 			content: [
-				"**Completion evidence:**",
-				"- Clean C++20 build and deterministic regression command from a fresh checkout.",
-				"- Tests or transcripts for accepted command, unknown command, missing and extra arguments, every state transition, recursive base and failure cases, empty state, and quit behavior.",
-				"- Save/reload round-trip equivalence plus malformed or corrupted-file recovery that preserves the previous valid state.",
-				"- Interface and ownership diagram showing composition choices, virtual destruction, no object slicing, and one limitation or deferred feature."
+				"**Completion evidence**",
+				"- Build the exported source with `make CXX=c++ main`. Record the compiler version, command, standard output, standard error, and exit status for each transcript run.",
+				"- Run the worked transcript in the project brief. Record one accepted and one rejected movement. Check unknown commands and missing or extra arguments, the five legal phase transitions, rejected phase/event pairs, empty input, and `quit`.",
+				"- Compare three recursive route traces: the current zone as the target, a reachable target in a graph with a cycle, and a registered but unreachable target. Run `show` before and after the route queries to check that they leave the phase, position, move count, and graph unchanged.",
+				"- Check save/reload round-trip equivalence. Save a running rover at `lab` after one move, load it in a fresh process, and compare the complete `show` output. Load a malformed copy and verify that a rejection preserves those same fields.",
+				"- Draw the ownership diagram and explain the graph owned by `Rover`, the short-lived command object, virtual destruction, and one limitation of the file or command contract."
 			].join("\n"),
+			contentKind: "assignment",
+			preserveInstructions: true,
 			learningPath: "core"
 		});
 	}

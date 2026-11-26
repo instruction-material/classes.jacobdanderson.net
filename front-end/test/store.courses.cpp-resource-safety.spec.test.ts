@@ -130,7 +130,7 @@ describe("complete resource safety teaching and saved ownership reflection", () 
 				(count, module) => count + module.supplementalProjects.length,
 				0
 			)
-		).toBe(8);
+		).toBe(14);
 	});
 	it("keeps only the exact known worksheet out of program imports", () => {
 		for (const path of [

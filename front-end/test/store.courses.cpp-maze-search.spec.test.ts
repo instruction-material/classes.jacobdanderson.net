@@ -6,7 +6,7 @@ import { cppLevel3Course } from "@/stores/courses/cpp-level-3";
 import { cppMazeSearchBriefs } from "@/stores/courses/cppMazeSearchBriefs";
 
 const moduleTitle = "CPPI2 Recursion and the Call Stack";
-const title = "CPPI2 Project: Recursive Maze or Word Search";
+const title = "CPPI2 Project: Recursive Maze Search";
 const source = "https://github.com/instruction-material/CPP-Level-3/tree/main/CPPI2-Recursive-Maze-Search/";
 
 describe("required recursive maze search", () => {
@@ -21,7 +21,7 @@ describe("required recursive maze search", () => {
 		expect(project.projectLink).toBe(`${source}starter`);
 		expect(project.solutionLink).toBeUndefined();
 		expect(cppLevel3Course.modules.reduce((count, item) => count + item.curriculum.length, 0)).toBe(22);
-		expect(cppLevel3Course.modules.reduce((count, item) => count + item.supplementalProjects.length, 0)).toBe(8);
+		expect(cppLevel3Course.modules.reduce((count, item) => count + item.supplementalProjects.length, 0)).toBe(14);
 	});
 
 	it("retains complete stack/backtracking lessons and the actual bounded contract", async () => {

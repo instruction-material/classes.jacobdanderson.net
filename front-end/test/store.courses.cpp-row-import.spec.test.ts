@@ -20,7 +20,7 @@ describe("optional C++ selective import", () => {
 		expect(project.solutionLink).toBe(`${source}solution`);
 		expect(module.curriculum.at(-1)?.title).toBe("CPPI1 Project: Saveable Task Manager");
 		expect(cppLevel3Course.modules.reduce((count, item) => count + item.curriculum.length, 0)).toBe(22);
-		expect(cppLevel3Course.modules.reduce((count, item) => count + item.supplementalProjects.length, 0)).toBe(8);
+		expect(cppLevel3Course.modules.reduce((count, item) => count + item.supplementalProjects.length, 0)).toBe(14);
 		for (const contract of ["selective import policy", "two TODOs", "task_import.cpp", "11-file pack", "CLASSES_TASKS_V1", "UNFINISHED", "Import changes only current memory", "Fixed pass counters"])
 			expect(project.content).toContain(contract);
 	});

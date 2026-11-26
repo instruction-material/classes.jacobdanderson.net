@@ -127,12 +127,16 @@ describe("C++ Level 3 learner flow", () => {
 
 		expect(capstoneText).toContain("virtual destructors");
 		expect(capstoneText).toContain("object-slicing avoidance");
-		expect(contract?.content).toContain(
-			"Save/reload round-trip equivalence"
-		);
-		expect(contract?.content).toContain(
-			"malformed or corrupted-file recovery"
-		);
-		expect(contract?.content).toContain("no object slicing");
+		for (const check of [
+			"make CXX=c++ main",
+			"five legal phase transitions",
+			"empty input",
+			"registered but unreachable target",
+			"save/reload round-trip equivalence",
+			"malformed copy",
+			"graph owned by `Rover`"
+		]) {
+			expect(contract?.content).toContain(check);
+		}
 	});
 });

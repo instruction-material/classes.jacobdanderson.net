@@ -65,7 +65,7 @@ describe("optional container evidence worksheet", () => {
 				(count, item) => count + item.supplementalProjects.length,
 				0
 			)
-		).toBe(8);
+		).toBe(14);
 	});
 
 	it("reopens the normal saved inventory key and tells separate-pack users to select their attempt", () => {

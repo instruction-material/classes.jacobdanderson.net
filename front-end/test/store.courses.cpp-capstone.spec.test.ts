@@ -137,7 +137,7 @@ describe("complete rover teaching and separate optional state practice", () => {
 				(n, item) => n + item.supplementalProjects.length,
 				0
 			)
-		).toBe(8);
+		).toBe(14);
 	});
 	it("keeps both actual code packs importable while the worksheet remains reading", () => {
 		expect(
