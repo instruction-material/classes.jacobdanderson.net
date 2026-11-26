@@ -60,7 +60,12 @@ it("keeps introductory, check-in, inheritance, map, and concurrency workbooks in
 		"JM6-Bouncing-Zeros": "Animation complete.",
 		"JM6-Supplemental-Project-1-Barnyard-Orchestra": "cow: [moo, moo]",
 		"J2-07-jm6-threading-and-error-handling-supplemental-2": "Hill: min -3, max 5",
-		"J2-08-jm6-threading-and-error-handling-supplemental-3": "Second job: Cancelled"
+		"J2-08-jm6-threading-and-error-handling-supplemental-3": "Second job: Cancelled",
+		"JM-Check-in-2-Updated": "Roman Time: VIII",
+		"JM-Check-in-2-Additional-Project": "Time: 1:00",
+		"JM-Check-in-2-Clock-Playback": "Hours: [11, 12, 1, 2]",
+		"J2-09-check-in-2-supplemental-2": "After retry: -2",
+		"J2-10-check-in-2-supplemental-3": "At 1: {Harbor=5, Ridge=22}"
 	};
 	expect(javaObjectWorkbooks.map(pack => pack.pack)).toEqual(
 		Object.keys(samples)

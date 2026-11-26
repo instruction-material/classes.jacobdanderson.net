@@ -9,6 +9,7 @@ const checkIn1CoreRevision = "25ffdcd652077cbf95c61b306b4961222eac9910";
 const jm4Revision = "6d361004b256fca624703c26538777527c98b036";
 const jm5Revision = "9db6074ac0df5e628a32d5f60c753ffe8247c775";
 const jm6Revision = "8971dbd9abd89c73393b58502f907e4177e4ecc3";
+const checkIn2Revision = "24fba59c70a26235ac04138f37f1687ff1bd4208";
 const jm1Module =
 	"java-level-2-jm1-instance-variables-constructors-and-methods";
 const jm2Module = "java-level-2-jm2-overloaded-constructors-comparison-methods";
@@ -17,6 +18,7 @@ const jm4Module = "java-level-2-jm4-subclasses-inheritance";
 const jm5Module = "java-level-2-jm5-maps";
 const jm6Module = "java-level-2-jm6-exceptions-and-failure-handling";
 const concurrencyModule = "java-level-2-optional-java-concurrency-extension";
+const checkIn2Module = "java-level-2-check-in-2";
 
 export const javaCheckIn1CarExtensionID =
 	"java-level-2-check-in-1-supplemental-java-level-2-check-in-1-extension-challenge";
@@ -248,6 +250,59 @@ const javaObjectSources = {
 		files: [
 			"Main.java",
 			"GateWorker.java",
+			"ContractTests.java",
+			"README.md"
+		]
+	},
+	"JM-Check-in-2-Updated": {
+		revision: checkIn2Revision,
+		id: `${checkIn2Module}-curriculum-java-level-2-check-in-2-overview`,
+		files: [
+			"Main.java",
+			"HourClock.java",
+			"RomanClock.java",
+			"ContractTests.java",
+			"README.md"
+		]
+	},
+	"JM-Check-in-2-Additional-Project": {
+		revision: checkIn2Revision,
+		id: `${checkIn2Module}-curriculum-java-level-2-check-in-2-practice-project`,
+		files: [
+			"Main.java",
+			"HourClock.java",
+			"MinuteClock.java",
+			"ContractTests.java",
+			"README.md"
+		]
+	},
+	"JM-Check-in-2-Clock-Playback": {
+		revision: checkIn2Revision,
+		id: `${checkIn2Module}-supplemental-java-level-2-check-in-2-extension-challenge`,
+		files: [
+			"Main.java",
+			"HourClock.java",
+			"ClockPlayback.java",
+			"ContractTests.java",
+			"README.md"
+		]
+	},
+	"J2-09-check-in-2-supplemental-2": {
+		revision: checkIn2Revision,
+		id: `${checkIn2Module}-supplemental-java-level-2-check-in-2-transfer-practice`,
+		files: [
+			"Main.java",
+			"SensorReadings.java",
+			"ContractTests.java",
+			"README.md"
+		]
+	},
+	"J2-10-check-in-2-supplemental-3": {
+		revision: checkIn2Revision,
+		id: `${checkIn2Module}-supplemental-java-level-2-check-in-2-extension-practice`,
+		files: [
+			"Main.java",
+			"StationHours.java",
 			"ContractTests.java",
 			"README.md"
 		]

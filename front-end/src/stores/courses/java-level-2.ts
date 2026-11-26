@@ -1233,78 +1233,197 @@ const javaLevel2SourceCourse: RawCourse = {
 			curriculum: [
 				{
 					title: "Check-In #2 Overview",
-					content:
-						"This review revisits inheritance, method overriding, threading, try-catch handling, and maps. This module combines reading existing class code with extending it in new directions.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM-Check-in-2-Starter-Updated",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM-Check-in-2-Updated"
+					contentKind: "assignment",
+					preserveInstructions: true,
+					ideImport: true,
+					content: [
+						"Trace a 12-hour clock and a 24-hour clock, then use a subclass to display a clock hour with Roman numerals. The supplied array gives the symbols, including VIII for eight.",
+						"",
+						"1. Read the HourClock constructor and tick method. Predict what follows 12 on a 12-hour clock and 23 on a 24-hour clock. Explain why the RomanClock constructor calls `super(false, hour)`.",
+						"2. Implement `numeralForHour()` and the `displayTime()` override in RomanClock. A variable declared as HourClock can hold a RomanClock. Calling displayTime on it still uses the Roman display.",
+						"3. In `updateMap()`, pair each Roman symbol with its decimal value using the array index. Store L as 50 if it is absent. Return a read-only snapshot in insertion order, so a second call retains the same values and order.",
+						"4. Trace the rejected request to set hour 13 on the 12-hour clock. Main catches the specific IllegalArgumentException, proves that the previous hour remains, then retries with 9.",
+						"",
+						"The sample includes `Roman Time: VIII`, `VIII maps to: 8`, `Still at: 8`, and `Roman Time: IX`. The finite required run uses direct method calls.",
+						"",
+						"Save the IDE workspace, download and extract its ZIP, and use Java 21 in the extracted folder.",
+						"",
+						"```sh",
+						"javac --release 21 -Xlint:all -Werror *.java",
+						"java Main",
+						"java ContractTests",
+						"```",
+						"",
+						"The starter runs and reports the unfinished behavior. Use the method checks to confirm the result after implementing it."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"JM-Check-in-2-Updated",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"JM-Check-in-2-Updated",
+						"solution"
+					)
 				},
 				{
 					title: "Check-In #2: Inheritance",
-					content:
-						"Read and analyze an `HourClock` class, then create a `RomanClock` subclass that extends the original behavior and overrides `displayTime()`."
+					contentKind: "reading",
+					preserveInstructions: true,
+					content: [
+						"HourClock owns the valid hour and decides when it wraps. A RomanClock calls its parent constructor with false so its hours remain in the range 1 through 12. It inherits tick and setHour.",
+						"",
+						"The variable declaration `HourClock example = new RomanClock(8)` lets code use the common clock methods. The actual object determines which displayTime implementation runs. The call prints `Roman Time: VIII` after the override is complete.",
+						"",
+						"Trace two transitions before implementing the override. The 12-hour sequence 11, 12 wraps to 1. The 24-hour sequence 22, 23 wraps to 0. Explain why neither transition requires an override in RomanClock."
+					].join("\n")
 				},
 				{
 					title: "Check-In #2: Threading and Error Handling",
-					content:
-						"Add a thread to a clock so it updates itself over time, define `start()` and `run()`, use `sleep()` to delay updates, and explain how `try-catch` protects the program when thread-related exceptions occur."
+					content: [
+						"The optional clock playback uses composition. Its Runnable owns a normal HourClock and records the current hour before advancing. Main waits for the worker with join before reporting the records. Use a fixed count to bound the worker’s output.",
+						"",
+						"If the wait is interrupted, restore the interrupt flag and let the worker return. Check the expected four-hour trace and a cancellation after the first record in the Check-In 2 Extension Challenge."
+					].join("\n")
 				},
 				{
 					title: "Check-In #2: Maps",
-					content:
-						"Create a map inside the `RomanClock` class, populate it with Roman numeral keys and decimal values, iterate through the entries, and conditionally insert missing values."
+					contentKind: "reading",
+					preserveInstructions: true,
+					content: [
+						"The Roman symbol is the key and the corresponding decimal hour is the value. An array index starts at zero, so element zero, I, maps to 1. Element seven, VIII, maps to 8.",
+						"",
+						"Insert the twelve symbols in array order, using a LinkedHashMap to keep the report in that order. Use putIfAbsent to add L and 50 if that pair is missing. A second call preserves the stored values and order. Returning a read-only copy keeps callers from changing the original table.",
+						"",
+						"Predict which key appears after VII, which value a lookup of VIII returns, and how many entries remain after two calls. The answers are VIII, 8, and 13."
+					].join("\n")
 				},
 				{
 					title: "Check-In #2: Additional Practice Project",
-					content:
-						"Create a `MinuteClock` subclass that tracks minutes as well as hours, overrides `displayTime()`, and updates both fields correctly in `tick()`.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM-Check-in-2-Additional-Project",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM-Check-in-2-Additional-Project"
+					contentKind: "assignment",
+					preserveInstructions: true,
+					ideImport: true,
+					content: [
+						"Reuse HourClock and add a MinuteClock subclass. The subclass owns minutes, while HourClock owns the hour and selects the rollover rule.",
+						"",
+						"1. Keep each minute from 0 to 59. Reject a bad initial minute before reporting a time.",
+						"2. Override tick to add one minute. At 59, set the minute to zero and call `super.tick()` exactly once. At any other minute, leave the hour alone.",
+						"3. Override displayTime to print two digits for the minute. Predict the two changes in Main from 12:58 to 12:59, then to 1:00. A 24-hour clock moves from 23:59 to 0:00.",
+						"",
+						"The output includes `Time: 12:59`, `Time: 1:00`, and `Time: 0:00`. Compare the transition in both modes with the inherited hour-only behavior.",
+						"",
+						"Save the IDE workspace, download and extract its ZIP, and use Java 21 in the extracted folder.",
+						"",
+						"```sh",
+						"javac --release 21 -Xlint:all -Werror *.java",
+						"java Main",
+						"java ContractTests",
+						"```",
+						"",
+						"The starter runs and reports the unfinished behavior. Use the method checks to confirm the result after implementing it."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"JM-Check-in-2-Additional-Project",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"JM-Check-in-2-Additional-Project",
+						"solution"
+					)
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "Check-In #2: Extension Challenge",
-					content: buildSupportSectionGuidance({
-						courseFamily: "Java Level 2",
-						moduleTitle: "Check-In #2",
-						section: "extension"
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM-Check-in-2-Starter-Updated",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM-Check-in-2-Updated"
+					contentKind: "assignment",
+					preserveInstructions: true,
+					ideImport: true,
+					content: [
+						"Compose the existing 12-hour clock with a separate Runnable. The worker owns its clock. It reports a fixed number of hours, then exits. The required check-in uses direct method calls.",
+						"",
+						"1. In run, report the current hour before ticking. Wait between records only. Exit after the configured count.",
+						"2. If sleep throws InterruptedException, restore the interrupt flag and return. Use the separate cancellation check to verify that it records only the first hour when the caller cancels.",
+						"3. Start the worker in Main and join it before reading its records. Starting at 11 for four records prints `Hours: [11, 12, 1, 2]`. Change the start hour and predict the complete trace before running again.",
+						"",
+						"Save the IDE workspace, download and extract its ZIP, and use Java 21 in the extracted folder.",
+						"",
+						"```sh",
+						"javac --release 21 -Xlint:all -Werror *.java",
+						"java Main",
+						"java ContractTests",
+						"```",
+						"",
+						"The starter runs and reports the unfinished behavior. Use the method checks to confirm the result after implementing it."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"JM-Check-in-2-Clock-Playback",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"JM-Check-in-2-Clock-Playback",
+						"solution"
+					)
 				},
 				{
 					title: "Check-In #2 Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 2",
-						moduleTitle: "Check-In #2",
-						itemTitle: "Check-In #2 Transfer Practice",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/J2-09-check-in-2-supplemental-2/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/J2-09-check-in-2-supplemental-2/solution"
+					contentKind: "assignment",
+					preserveInstructions: true,
+					ideImport: true,
+					content: [
+						"Maintain one latest integer reading per named sensor. A command supplies a sensor name and one reading. Use the supplied valid, malformed and corrected commands to check how a failed parse affects the map.",
+						"",
+						"1. Split one command into a name and a number. Reject blank names, missing readings, and extra fields.",
+						"2. Parse the number before writing to the map. Catch NumberFormatException at that boundary. A rejected attempt leaves the last good reading in place.",
+						"3. Apply `east 7`, `east broken`, and `east -2`. The driver shows `After rejection: 7` and `After retry: -2`. Confirm that changing east does not change a separate west reading.",
+						"",
+						"Save the IDE workspace, download and extract its ZIP, and use Java 21 in the extracted folder.",
+						"",
+						"```sh",
+						"javac --release 21 -Xlint:all -Werror *.java",
+						"java Main",
+						"java ContractTests",
+						"```",
+						"",
+						"The starter runs and reports the unfinished behavior. Use the method checks to confirm the result after implementing it."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"J2-09-check-in-2-supplemental-2",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"J2-09-check-in-2-supplemental-2",
+						"solution"
+					)
 				},
 				{
 					title: "Check-In #2 Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 2",
-						moduleTitle: "Check-In #2",
-						itemTitle: "Check-In #2 Extension Practice",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/J2-10-check-in-2-supplemental-3/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/J2-10-check-in-2-supplemental-3/solution"
+					contentKind: "assignment",
+					preserveInstructions: true,
+					ideImport: true,
+					content: [
+						"Convert one shared hour to each station’s local hour using a table of fictional integer offsets. Work in a 24-hour range from 0 to 23. Use the same rule for positive and negative offsets.",
+						"",
+						"1. Validate that the shared hour is within range before creating a report. An out-of-range hour throws IllegalArgumentException.",
+						"2. Use `Math.floorMod((long) sharedHour + offset, 24)` to wrap an adjusted hour into the supported range. A TreeMap puts the station names in order. Preserve the supplied offsets so the next report starts from the same table.",
+						"3. For Harbor with offset +4 and Ridge with offset −3, hour 23 produces `At 23: {Harbor=3, Ridge=20}`. Hour 1 produces `At 1: {Harbor=5, Ridge=22}`. Explain both crossings of midnight.",
+						"",
+						"Save the IDE workspace, download and extract its ZIP, and use Java 21 in the extracted folder.",
+						"",
+						"```sh",
+						"javac --release 21 -Xlint:all -Werror *.java",
+						"java Main",
+						"java ContractTests",
+						"```",
+						"",
+						"The starter runs and reports the unfinished behavior. Use the method checks to confirm the result after implementing it."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"J2-10-check-in-2-supplemental-3",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"J2-10-check-in-2-supplemental-3",
+						"solution"
+					)
 				}
 			]
 		},
@@ -2110,14 +2229,6 @@ function javaLevel2SupplementalPath(title: string) {
 function strengthenJavaLevel2Item(
 	item: RawCourseModuleItem
 ): RawCourseModuleItem {
-	if (item.title === "Check-In #2 Overview") {
-		return {
-			...item,
-			content:
-				"This check-in revisits inheritance, overriding, exception recovery, and maps through short code-reading and transfer tasks. Threading is available in the optional concurrency extension and is not required for advancement."
-		};
-	}
-
 	if (item.title === "JM7 Project 1: Bank Account") {
 		return {
 			...item,
