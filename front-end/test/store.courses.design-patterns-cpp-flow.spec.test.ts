@@ -123,9 +123,16 @@ describe("Design Patterns in C++ learner flow", () => {
 				: optionTitles;
 			expect(collection, title).toContain(title);
 		}
-		expect(moduleText("Optional Applied C++ Pattern Studios")).toContain(
-			"complete applied practice collection"
-		);
+		const studioGuide = moduleText("Optional Applied C++ Pattern Studios");
+		for (const detail of [
+			"Build the starter and record its baseline",
+			"Ownership-Aware Refactor Studio.** Choose after DPC2 or DPC10",
+			"Runtime Variation Studio.** Choose after DPC4",
+			"Structural Boundary Studio.** Choose after DPC6",
+			"Refactoring Capstone Studio.** Choose after DPC11"
+		]) {
+			expect(studioGuide).toContain(detail);
+		}
 	});
 
 	it("makes C++ ownership, copy, move, and polymorphic lifetime contractual", () => {

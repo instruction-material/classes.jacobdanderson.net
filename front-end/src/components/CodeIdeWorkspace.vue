@@ -1072,7 +1072,10 @@ const selectedProject = computed(() => {
 const selectedNativeJavaInstructions = computed(() => {
 	const project = selectedProject.value;
 	return project?.mode === "java"
-		? javaNativeBuildInstructions(project.courseProjectKey)
+		? javaNativeBuildInstructions(
+				project.courseProjectKey,
+				project.starterUrl
+			)
 		: null;
 });
 
@@ -7197,7 +7200,10 @@ async function runCurrentProject() {
 	}
 	const nativeJava =
 		project.mode === "java"
-			? javaNativeBuildInstructions(project.courseProjectKey)
+			? javaNativeBuildInstructions(
+					project.courseProjectKey,
+					project.starterUrl
+				)
 			: null;
 	if (nativeJava) {
 		for (const line of nativeJava) appendOutput("system", line);

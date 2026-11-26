@@ -317,6 +317,23 @@ describe("research-backed course family expansions", () => {
 					])
 						expect(roadmapText, courseId).toContain(phrase);
 				}
+				else if (courseId === "design-patterns-in-cpp") {
+					const items = [
+						...roadmapModule!.curriculum,
+						...roadmapModule!.supplementalProjects
+					];
+					for (const [title, detail] of [
+						["Resource Map", "the title formatter for build setup"],
+						["Module Alignment Guide", "DPC5 checks delivery order and expired listeners"],
+						["Reference Map", "DPC6 input boundaries"],
+						["Prerequisite Map", "tooling and ownership sequence in DPC0–DPC2"],
+						["Resource Inventory", "The DPC12 inventory uses CMake and CTest"]
+					]) {
+						const item = items.find(row => row.title === `${courseLabel} ${title}`);
+						expect(item?.contentKind, title).toBe("reading");
+						expect(item?.content, title).toContain(detail);
+					}
+				}
 				else if (courseId === "design-patterns-in-java") {
 					const items = [
 						...roadmapModule!.curriculum,

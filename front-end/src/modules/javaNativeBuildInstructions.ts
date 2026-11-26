@@ -1,3 +1,7 @@
+import {
+	javaPracticeSource,
+	legacyJavaSource
+} from "@/stores/courses/javaLevel1PracticeSources";
 import { apComputerScienceANativeInstructions } from "./apComputerScienceAResources";
 import {
 	javaArchitectureCoreID,
@@ -40,6 +44,29 @@ import {
 import { javaRecursionProjects } from "./javaRecursionResources";
 import { javaRefactoringNativeInstructions } from "./javaRefactoringResources";
 import { javaRefactoringUnitNativeInstructions } from "./javaRefactoringUnits";
+import {
+	javaBinarySearchProjects,
+	javaBinaryTreeProjects,
+	javaBubbleSortProjects,
+	javaCheckIn1Projects,
+	javaCheckIn2Projects,
+	javaCheckIn3Projects,
+	javaCheckIn4Projects,
+	javaCollectionPipelinesProjects,
+	javaConcurrencySimulationProjects,
+	javaHashTableProjects,
+	javaLevel3SearchProjects,
+	javaLinkedListProjects,
+	javaMergeSortingProjects,
+	javaObjectWorkbooks,
+	javaPackageReviewProjects,
+	javaPriorityMapProjects,
+	javaReferenceLibraryProjects,
+	javaReviewProjects,
+	javaSearchProjects,
+	javaStreetSearcherProjects,
+	javaSustainableProjects
+} from "./javaSearchResources";
 import {
 	javaStructuralCoreID,
 	javaStructuralReadingID
@@ -163,9 +190,106 @@ const knapsackItem =
 const fruitFeastItem =
 	"usaco-gold-unit-1-dynamic-programming-knapsack-and-state-design-supplemental-problem-fruit-feast";
 
+const javaSearchExtensionInstructions: Partial<Record<string, string>> = {
+	[javaSearchProjects[0].id]:
+		"For the all-matches extension, run java Main all and java ContractTests all.",
+	[javaBinarySearchProjects[0].id]:
+		"For the midpoint-count extension, run java Main count and java ContractTests count.",
+	[javaCheckIn1Projects[0].id]:
+		"For the Pascal cache extension, run java Main memo and java ContractTests memo. Use java Main trace to check the workbook's recursive call order.",
+	[javaMergeSortingProjects[0].id]:
+		"For the stable merge extension, run java Main stable and java ContractTests stable.",
+	[javaBubbleSortProjects[0].id]:
+		"For the last-exchange extension, run java Main last and java ContractTests last.",
+	[javaBubbleSortProjects[1].id]:
+		"Keep the imported words.txt beside Main.java. The console reads it as UTF-8.",
+	[javaCheckIn2Projects[0].id]:
+		"For the equal-run extension, run java Main range and java ContractTests range. The optional archive trace uses java Main bubble and java ContractTests bubble.",
+	[javaCheckIn2Projects[1].id]:
+		"Compile all Java classes in the benchmark folder. Preserve the provided sibling source files.",
+	[javaSustainableProjects[0].id]:
+		"Keep Bakery.java in the same folder. Run java Main input for standard input or java ContractTests batches for the optional task.",
+	[javaSustainableProjects[2].id]:
+		"Keep sample.txt in the same folder. Try java Main 5 2 sample.txt to check the numeric and file arguments.",
+	[javaLinkedListProjects[0].id]:
+		"For the first-match extension, run java Main find and java ContractTests find.",
+	[javaPriorityMapProjects[0].id]:
+		"For the cutoff extension, run java Main cutoff and java ContractTests cutoff.",
+	[javaCheckIn3Projects[0].id]:
+		"For the grouped-count extension, run java Main groups and java ContractTests groups.",
+	[javaReviewProjects[0].id]:
+		"Enter the four lines from README.md. For the optional headline, run java ContractTests headline and java Main headline.",
+	[javaReviewProjects[1].id]:
+		"Enter a name on the first line and a favorite activity on the second line.",
+	[javaReviewProjects[8].id]:
+		"For the optional attendance challenge, run java ContractTests attendance and java Main attendance.",
+	[javaCollectionPipelinesProjects[3].id]:
+		"Keep events.txt next to Main.java. The tests verify both loop and stream counts using the bundled data.",
+	[javaCollectionPipelinesProjects[4].id]:
+		"Keep records.csv next to Main.java. The importer reports rejected rows and leaves its initial records intact.",
+	[javaCollectionPipelinesProjects[5].id]:
+		"Run java Main before editing the starter so its report can be compared with the refactored output.",
+	[javaCheckIn4Projects[0].id]:
+		"For the shortest-hops extension, run java Main hops and java ContractTests hops.",
+	[javaBinaryTreeProjects[0].id]:
+		"For the ceiling-search extension, run java Main ceiling and java ContractTests ceiling.",
+	[javaHashTableProjects[0].id]:
+		"For the tombstone compaction extension, run java Main compact and java ContractTests compact.",
+	[javaHashTableProjects[1].id]:
+		"Keep corpus.txt beside the Java files. Run java Main corpus.txt JAVA tools to choose the local corpus and search terms."
+};
+
+const javaAlgorithmsWithAdditionalClasses = new Set<string>([
+	javaCollectionPipelinesProjects[0].id,
+	javaReferenceLibraryProjects[2].id,
+	javaCheckIn2Projects[1].id,
+	javaSustainableProjects[0].id,
+	javaLinkedListProjects[0].id,
+	javaLinkedListProjects[1].id,
+	javaHashTableProjects[0].id,
+	javaHashTableProjects[1].id
+]);
+
 export function javaNativeBuildInstructions(
-	courseProjectKey?: string
+	courseProjectKey?: string,
+	starterUrl?: string
 ): string[] | null {
+	if (courseProjectKey?.startsWith("java-level-1:") && starterUrl) {
+		const pack = starterUrl.startsWith(`${javaPracticeSource}/`)
+			? starterUrl.slice(javaPracticeSource.length + 1).split("/")[0]
+			: starterUrl.startsWith(`${legacyJavaSource}/`)
+				? starterUrl.slice(legacyJavaSource.length + 1)
+				: undefined;
+		if (pack && /^JS[2346]_/.test(pack)) {
+			return [
+				"Export the project and extract its folder.",
+				"Run javac --release 21 Main.java and then java Main.",
+				"Open drawing.png in the extracted folder."
+			];
+		}
+		if (
+			pack &&
+			[
+				"JS9-Simple-Battleship",
+				"JS9-Advanced-Battleship",
+				"JS1-Mad-Libs",
+				"JS7-String-to-Array",
+				"JS5-Random-Number-Guesser",
+				"JS5-Letter-Guesser"
+			].includes(pack)
+		) {
+			const seeded =
+				pack === "JS5-Letter-Guesser" ||
+				pack === "JS5-Random-Number-Guesser";
+			return [
+				"Export the project and extract its folder.",
+				"Run javac --release 21 Main.java and then java Main.",
+				...(seeded
+					? ["For a repeatable target, run java Main 12345."]
+					: [])
+			];
+		}
+	}
 	const apInstructions =
 		apComputerScienceANativeInstructions(courseProjectKey);
 	if (apInstructions) return apInstructions;
@@ -182,6 +306,65 @@ export function javaNativeBuildInstructions(
 	if (studioInstructions) return studioInstructions;
 	const parts = (courseProjectKey ?? "").split(":");
 	const [course, item, role, extra] = parts;
+	const objectWorkbook =
+		course === "java-level-2"
+			? javaObjectWorkbooks.find(project => project.id === item)
+			: undefined;
+	if (
+		objectWorkbook &&
+		["starter", "reference"].includes(role ?? "") &&
+		parts.length === 4 &&
+		extra === "native-java-objects"
+	) {
+		if (
+			objectWorkbook.pack === "JM4-Project-3-Vehicle-Inheritance" ||
+			objectWorkbook.pack === "JM5-PROJECT-2-DealershipDatabase"
+		) {
+			return [
+				"Java 21 packaged vehicle workbook",
+				"Save and extract the ZIP with both src folders and sources.txt intact.",
+				"javac --release 21 -Xlint:all -Werror -d out @sources.txt",
+				"java -cp out vehicles.Main",
+				"java -cp out vehicles.ContractTests",
+				"Follow README.md for the expected output and project checks."
+			];
+		}
+		return [
+			"Java 21 object workbook",
+			"Save and download the ZIP. Extract it and open a terminal in the extracted folder.",
+			"javac --release 21 -Xlint:all -Werror *.java",
+			"java Main",
+			"java ContractTests",
+			...(objectWorkbook.pack === "JM2-Supplemental-Project-2-Boba"
+				? [
+						"In the terminal, enter a flavor, Y or N for iced, and a topping on separate lines. A blank topping line means none."
+					]
+				: []),
+			...(objectWorkbook.pack ===
+			"JM6-Supplemental-Project-1-Barnyard-Orchestra"
+				? [
+						"In the terminal, enter cow 0, pig 0, and frog 0 on separate lines."
+					]
+				: []),
+			...(objectWorkbook.pack === "Maze-Runner-Part-2" ||
+			objectWorkbook.pack === "Maze-Runner-Part-3"
+				? [
+						"Enter W, D, and D on separate lines for the practice board, or Q to quit."
+					]
+				: []),
+			...(objectWorkbook.pack === "JM10-Tic-Tac-Toe-Console"
+				? [
+						"Enter one row and column from 1 to 3 per line. For the guided run, enter 1 1, 2 1, 1 2, 2 2, and 1 3 on separate lines."
+					]
+				: []),
+			...(objectWorkbook.pack === "JM-Check-in-1"
+				? [
+						"For the optional batch challenge, run java ContractTests extension."
+					]
+				: []),
+			"Follow README.md for the expected output. The starter compiles and its method checks pass after the missing behavior is implemented."
+		];
+	}
 	if (
 		course === "design-patterns-in-java" &&
 		[javaCapstoneCoreID, javaCapstoneReadingID].includes(item ?? "") &&
@@ -587,6 +770,67 @@ export function javaNativeBuildInstructions(
 				? "The console accepts whitespace-separated integers until quit or end-of-input; an invalid or out-of-range token prints Invalid integer. and processing continues."
 				: "The console prints demonstrations of the five recursive methods. Full input domains, bounds and failure contracts are in README.md.",
 			"Run displays these native build instructions for this pack. Use the terminal's standard input for the console driver."
+		];
+	}
+	if (
+		course === "java-level-3" &&
+		(javaPackageReviewProjects.some(project => project.id === item) ||
+			javaConcurrencySimulationProjects.some(
+				project => project.id === item
+			)) &&
+		["starter", "reference"].includes(role ?? "") &&
+		parts.length === 4 &&
+		extra === "native-java-search"
+	) {
+		return [
+			"Java 21 packaged workbook",
+			"Save and extract the ZIP with its src directory intact. Run these commands from the folder containing sources.txt.",
+			"javac --release 21 -Xlint:all -Werror -d out @sources.txt",
+			"java -cp out checks.ContractTests",
+			"java -cp out runner.Main",
+			item === javaPackageReviewProjects[2].id && role === "starter"
+				? "Before changing the starter, record the old behavior with java -cp out checks.ContractTests characterize."
+				: item === javaConcurrencySimulationProjects[1].id
+					? "Keep requests.txt beside sources.txt. Run java -cp out checks.ContractTests extension for the snapshot exercise."
+					: "Read README.md for the exercise contract and expected output."
+		];
+	}
+	if (
+		course === "java-level-3" &&
+		item === javaStreetSearcherProjects[0].id &&
+		["starter", "reference"].includes(role ?? "") &&
+		parts.length === 4 &&
+		extra === "native-java-search"
+	) {
+		return [
+			"Java 21 Street Searcher workflow",
+			"Save the project and extract its ZIP. Keep roads.txt in the folder with the Java files.",
+			"javac --release 21 -Xlint:all -Werror *.java",
+			"java ContractTests graph",
+			"java ContractTests load",
+			"java ContractTests route",
+			"java Main roads.txt Harbor Station",
+			"Run java ContractTests for all three required stages. For optional closures, run java ContractTests avoid and java Main roads.txt Harbor Station Market."
+		];
+	}
+	if (
+		course === "java-level-3" &&
+		javaLevel3SearchProjects.some(project => project.id === item) &&
+		["starter", "reference"].includes(role ?? "") &&
+		parts.length === 4 &&
+		extra === "native-java-search"
+	) {
+		return [
+			"Java 21 search and growth workflow",
+			"Save and download the ZIP. Extract it and open a terminal in the folder containing Main.java and ContractTests.java.",
+			javaAlgorithmsWithAdditionalClasses.has(item ?? "")
+				? "javac --release 21 -Xlint:all -Werror *.java"
+				: "javac --release 21 -Xlint:all -Werror Main.java ContractTests.java",
+			"java Main",
+			"java ContractTests",
+			javaSearchExtensionInstructions[item ?? ""] ??
+				"Read README.md for the project contract and expected output.",
+			"Compile each pack in a separate folder. Run displays these native build instructions."
 		];
 	}
 	const bronze = bronzeRequiredAssignment(course ?? "", item ?? "");

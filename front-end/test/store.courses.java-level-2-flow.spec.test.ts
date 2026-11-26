@@ -105,7 +105,7 @@ describe("Java Level 2 learner flow", () => {
 		expect(optionTitles).toContain(
 			"JM Master Project Example Quiz Game: Core Project"
 		);
-		expect(optionTitles).toContain("JM Maze Runner Project: Core Project");
+		expect(optionTitles).toContain("Timed Maze Walkthrough");
 		expect(optionTitles).toContain("Reference: HashMaps Examples");
 	});
 

@@ -1,4 +1,5 @@
 import type { RawCourseModule } from "./types";
+import { javaPracticeSource } from "./javaLevel1PracticeSources";
 
 export const javaLevel1GraphicsExtensionModules: RawCourseModule[] = [
 	{
@@ -38,32 +39,29 @@ export const javaLevel1GraphicsExtensionModules: RawCourseModule[] = [
 			},
 			{
 				title: "Java Graphics Project 1: Rainbow",
+				preserveInstructions: true,
 				content:
-					"Use rectangles, arcs, or repeated colored shapes to build a six-color rainbow while keeping the coordinate math readable.\n\n**Completion check:** The color sequence, repeated spacing rule, and shape dimensions are easy to adjust from one place instead of copied across unrelated statements.",
-				projectLink:
-					"https://github.com/instruction-material/Java-Level-1/tree/main/JS2-Rainbow",
-				solutionLink:
-					"https://github.com/instruction-material/Java-Level-1/tree/main/JS2-Rainbow"
+					"Draw six nested arcs from outside to inside: red, orange, yellow, green, blue and magenta. Keep the arcs centered. Export Main.java and run it with JDK 21 (javac Main.java, then java Main). Open drawing.png after each change.\n\n**Checkpoints:** Check that all six bands appear in the requested order. Compare the x coordinate of an arc’s left edge with its width. The arc’s midpoint stays fixed as its width shrinks.",
+				projectLink: `${javaPracticeSource}/JS2_Rainbow/starter`,
+				solutionLink: `${javaPracticeSource}/JS2_Rainbow/solution`
 			},
 			{
 				title: "Java Graphics Project 2: Snowman Scene",
+				preserveInstructions: true,
 				content:
-					"Draw and customize a snowman with repeated shapes, color choices, and at least three extra scene details such as snowflakes, arms, scarf, or ground.\n\n**Completion check:** The scene uses helper methods or grouped code so body parts, accessories, and background details can be understood separately.",
-				projectLink:
-					"https://github.com/instruction-material/Java-Level-1/tree/main/JS2-Snowman",
-				solutionLink:
-					"https://github.com/instruction-material/Java-Level-1/tree/main/JS2-Snowman"
+					"Stack three white snowballs on a contrasting background. Add a hat, arms and a face. Export Main.java and run it with JDK 21 (javac Main.java, then java Main). Open drawing.png after each change.\n\n**Checkpoints:** Check that each snowball overlaps the one below and that the head is smallest. Drawing the hat after the snowballs keeps the brim visible.",
+				projectLink: `${javaPracticeSource}/JS2_Snowman/starter`,
+				solutionLink: `${javaPracticeSource}/JS2_Snowman/solution`
 			}
 		],
 		supplementalProjects: [
 			{
 				title: "Java Graphics Project 3: Which Shape?",
+				preserveInstructions: true,
 				content:
-					"Use conditionals to choose which shape to draw based on a string command, then add input validation for unknown shapes.\n\n**Completion check:** Test at least three known shape commands and one unknown command. The unknown case produces a clear fallback instead of failing silently.",
-				projectLink:
-					"https://github.com/instruction-material/Java-Level-1/blob/main/graphics/JS3_Which_Shape.java",
-				solutionLink:
-					"https://github.com/instruction-material/Java-Level-1/blob/main/graphics/JS3_Which_Shape.java"
+					"Use the shape string to select a circle, square or Pac-Man. Test all three and give unknown values a visible fallback. Export Main.java and run it with JDK 21 (javac Main.java, then java Main). Open drawing.png after each change.\n\n**Checkpoints:** Render a valid example of each shape and one unknown value. The unknown case shows readable fallback text. The valid examples display only their requested shape.",
+				projectLink: `${javaPracticeSource}/JS3_Which_Shape/starter`,
+				solutionLink: `${javaPracticeSource}/JS3_Which_Shape/solution`
 			},
 			{
 				title: "Java Graphics Extension: Coordinate Refactor",
@@ -82,21 +80,19 @@ export const javaLevel1GraphicsExtensionModules: RawCourseModule[] = [
 			},
 			{
 				title: "Java Graphics Project 1: Paintball Pattern",
+				preserveInstructions: true,
 				content:
-					"Use loops and coordinates to draw repeated circles or other marks in diagonal, grid, or randomized patterns.\n\n**Completion check:** The pattern has a named rule: diagonal step, grid spacing, random seed/range, or another repeatable constraint that can be explained from the loop variables.",
-				projectLink:
-					"https://github.com/instruction-material/Java-Level-1/blob/main/graphics/JS4_Paintball.java",
-				solutionLink:
-					"https://github.com/instruction-material/Java-Level-1/blob/main/graphics/JS4_Paintball.java"
+					"Draw an X from two diagonals of circles. Use one loop and two fillOval calls. Predict where the two paths meet. Export Main.java and run it with JDK 21 (javac Main.java, then java Main). Open drawing.png after each change.\n\n**Checkpoints:** Count the positions along both diagonals and inspect the center of the X. Moving one circle right by one step in the loop moves its partner left by the same amount.",
+				projectLink: `${javaPracticeSource}/JS4_Paintball/starter`,
+				solutionLink: `${javaPracticeSource}/JS4_Paintball/solution`
 			},
 			{
 				title: "Java Graphics Project 2: Picasso Method Art",
+				preserveInstructions: true,
 				content:
-					"Use methods plus random size, color, and position choices to generate abstract art from repeated shape families.\n\n**Completion check:** At least two helper methods draw different shape families, and the random choices stay within visible bounds so the result looks intentional rather than accidental.",
-				projectLink:
-					"https://github.com/instruction-material/Java-Level-1/blob/main/graphics/JS6_Picasso.java",
-				solutionLink:
-					"https://github.com/instruction-material/Java-Level-1/blob/main/graphics/JS6_Picasso.java"
+					"Write three shape helpers with color, position and size parameters. Call each helper 500 times using random inputs. Export Main.java and run it with JDK 21 (javac Main.java, then java Main). Open drawing.png after each change.\n\n**Checkpoints:** Run once with a fixed seed to debug repeatably. Check that a call with a different color or position changes the canvas independently of the other helpers.",
+				projectLink: `${javaPracticeSource}/JS6_Picasso/starter`,
+				solutionLink: `${javaPracticeSource}/JS6_Picasso/solution`
 			}
 		],
 		supplementalProjects: [

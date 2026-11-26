@@ -74,6 +74,10 @@ import {
 	loadJavaScriptCourseFiles
 } from "@/modules/javascriptCourseResources";
 import {
+	javaSearchImportFiles,
+	javaSearchResource
+} from "@/modules/javaSearchResources";
+import {
 	javaStructuralImportFiles,
 	javaStructuralResource
 } from "@/modules/javaStructuralResources";
@@ -3331,6 +3335,7 @@ export async function loadPythonIdeStarterFilesFromGitHub(
 		mode === "linux" ||
 		(mode === "java" &&
 			(javaRecursionResource(starterUrl) !== null ||
+				javaSearchResource(starterUrl) !== null ||
 				javaPatternsResource(starterUrl) !== null ||
 				javaFoundationsResource(starterUrl) !== null ||
 				javaCreationalResource(starterUrl) !== null ||
@@ -3349,6 +3354,7 @@ export async function loadPythonIdeStarterFilesFromGitHub(
 		const selected =
 			mode === "java"
 				? (javaRecursionImportFiles(starterUrl) ??
+					javaSearchImportFiles(starterUrl) ??
 					javaPatternsImportFiles(starterUrl) ??
 					javaFoundationsImportFiles(starterUrl) ??
 					javaCreationalImportFiles(starterUrl) ??

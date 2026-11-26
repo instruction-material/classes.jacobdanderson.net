@@ -2101,8 +2101,13 @@ Check correct, wrong, blank, repeated and final answers with keyboard and pointe
 				},
 				{
 					title: "Handoff to Web Development Foundations",
-					content:
-						"`Web Development Foundations` is the default follow-on course after JavaScript Level 2. Be reasonably comfortable with functions, conditionals, arrays, objects, events, APIs, and basic data modeling before starting it. The goal of that next course is not to reteach core syntax, but to move into file-based local projects, Git and GitHub, npm, dev servers, back-end basics, databases, and deployment. If the `JSM10` through `JSM13` range still feels shaky, review those units before making the jump. A good readiness check is to explain one prior project in terms of event flow, state, data shape, and what happens when a request or input fails."
+					contentKind: "reading",
+					preserveInstructions: true,
+					content: [
+						"Reopen the completed capstone from a fresh copy and repeat its main interaction. Trace the event, state change, data shape and what happens when a request or input fails.",
+						"",
+						"Open [Project Files and a Local Server](/courses#web-development-foundations-wdf0-setup-and-tooling-web-development-foundations-wdf0-setup-and-tooling-curriculum-web-development-foundations-core-concepts) for the first Web Development Foundations case. Use the four-file portfolio to move from an isolated browser project to local files, Git, npm and a development server. Later cases add server-side code and databases."
+					].join("\n")
 				},
 				{
 					title: "Course Recap",

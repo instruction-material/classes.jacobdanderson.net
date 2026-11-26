@@ -1,3 +1,4 @@
+import { javaSustainableURL } from "@/modules/javaSearchResources";
 import moneyMindedMaterials from "@/stores/courses/moneyMindedMaterials.json";
 import aiFoundationReadings from "@/stores/courses/aiFoundationReadingsData.json";
 import { beforeEach, describe, expect, it } from "vitest";
@@ -71,6 +72,8 @@ import {
 } from "@/stores/courses/smartMoneyReadings";
 import { formatAuthoredReading } from "@/stores/courses/authoredReading";
 import algebra1APracticeData from "@/stores/courses/algebra1APracticeData.json";
+
+import { javaPracticeSource } from "@/stores/courses/javaLevel1PracticeSources";
 
 const COURSE_SWEEP_TIMEOUT = 180000;
 const elementaryMaterials = {
@@ -1439,10 +1442,10 @@ describe("course text quality normalization", () => {
 				itemTitle: "Reference and Solution Boundaries",
 				minWords: 70,
 				required: [
-					/starter-style/i,
-					/solution-style/i,
-					/course pacing/i,
-					/current project/i
+					/starter/i,
+					/completed reference/i,
+					/truncated input/i,
+					/count mismatch/i
 				]
 			},
 			{
@@ -1458,7 +1461,7 @@ describe("course text quality normalization", () => {
 				required: [
 					/try/i,
 					/catch/i,
-					/checked exceptions/i,
+					/checked exception IOException/i,
 					/safely continue/i
 				]
 			},
@@ -1995,8 +1998,8 @@ describe("course text quality normalization", () => {
 			expect(corpus).not.toMatch(
 				/Use the reference after the program has fresh compile\/run evidence, then record one difference in class responsibility or API shape/
 			);
-			expect(corpus).toMatch(
-				/Use [^.\n]+ reference after fresh compile\/run evidence exists, then record one difference in class responsibility or API shape/
+			expect(corpus).toContain(
+				"compare the reference's placement of constructor validation"
 			);
 			expect(corpus).not.toMatch(
 				/Build the solution around one hand-checkable case, then expand to the sample and one adversarial or boundary input/
@@ -2110,10 +2113,10 @@ describe("course text quality normalization", () => {
 				/\*\*Path:\*\* (?:Build|Debug|Explanation|Planning|Model|Required build|Transfer|Extension) path for the (?:lab|studio):/i
 			);
 			expect(corpus).toContain(
-				"The program demonstrates the required Java behavior without relying on stale build output or hidden IDE state"
+				"Compile the exported AJ5 pack in a clean Java 21 build directory before checking the reported output."
 			);
 			expect(corpus).toContain(
-				"Map the program into Java responsibilities before coding: constructor data, method parameters, return values, stored state, and any collection shape"
+				"Pass the array and target as parameters and return an index without changing the input."
 			);
 			expect(corpus).not.toContain(
 				"Map Java/C++ bridge PTJ0 Positioning and Workflow Translation into Java responsibilities before coding"
@@ -2160,14 +2163,26 @@ describe("course text quality normalization", () => {
 			expect(corpus).not.toContain(
 				"Verify the intended behavior plus one boundary case using terminal, debugger, sanitizer, trace, or log evidence."
 			);
-			expect(corpus).toMatch(
-				/Build a minimal runnable version of [^.\n]+, then add the Java feature that matters for this module/
+			expect(corpus).toContain(
+				"The board owns legal moves and outcomes. GameSession owns input and output."
 			);
-			expect(corpus).toMatch(
+			expect(corpus).toContain(
+				"A rejected write leaves the earlier results available."
+			);
+			expect(corpus).not.toMatch(
 				/Compile [^.\n]+ after each constructor, method signature, branch, or collection change/
 			);
-			expect(corpus).toMatch(
+			expect(corpus).toContain(
+				"Repeating the call returns false and leaves all fields as they were"
+			);
+			expect(corpus).toContain(
+				"Sorting a copy preserves the original order"
+			);
+			expect(corpus).not.toMatch(
 				/Keep a small driver example for [^.\n]+ available while compiling after each state, branch, loop, or dispatch change/
+			);
+			expect(corpus).toContain(
+				"The receipt reads the address and dispatches the fee method to the actual object"
 			);
 			expect(corpus).toMatch(
 				/Change one [^.\n]+ API, allocation, loop, branch, build setting, or diagnostic hook at a time/
@@ -2175,8 +2190,9 @@ describe("course text quality normalization", () => {
 			expect(corpus).toMatch(
 				/Finish [^.\n]+ with a repeatable run plus one trace, warning, sanitizer result, debugger observation, or timing clue/
 			);
-			expect(corpus).toMatch(
-				/Add [^.\n]+ implementation details in slices that keep errors tied to one field, constructor, method, branch, or list operation/
+			expect(corpus).toContain("Check the win before a tie.");
+			expect(corpus).toContain(
+				"Try an occupied cell and a nonnumeric move. Both leave the current turn in place."
 			);
 			expect(corpus).toMatch(
 				/Keep the null check before either comparison/
@@ -2206,7 +2222,7 @@ describe("course text quality normalization", () => {
 				"Extend the Java work with one additional method and a test or console trace that proves its contract"
 			);
 			expect(corpus).toContain(
-				"Verify the Division Facts object-design exercise with one standard case and one boundary case that exposes the key concept"
+				"reconstructing the dividend from quotient, divisor and remainder"
 			);
 			expect(corpus).toContain(
 				"Predict a missing-return diagnostic and a wrong-argument-type diagnostic"
@@ -3384,10 +3400,10 @@ describe("course text quality normalization", () => {
 		);
 
 		expect(anythingArray.projectLink).toBe(
-			"https://github.com/instruction-material/Java-Level-3/tree/main/AJ10-Node-Class"
+			javaSustainableURL("AJ10-Anything-Array-Packs", "starter")
 		);
 		expect(anythingArray.solutionLink).toBe(
-			"https://github.com/instruction-material/Java-Level-3/tree/main/AJ10-Anything-Array"
+			javaSustainableURL("AJ10-Anything-Array-Packs", "solution")
 		);
 		expect(anythingArray.projectLink).not.toBe(anythingArray.solutionLink);
 	});
@@ -3437,25 +3453,26 @@ describe("course text quality normalization", () => {
 			"src/stores/courses/java-level-3.ts",
 			"utf8"
 		);
-		const advancedTrackSource = source.slice(
-			source.indexOf(
-				'title: "AJ19 Post-C++ Java Tooling, Testing, and Packages"'
-			)
+		const advanced = course?.modules.find(
+			module => module.title === "Optional Advanced Java Engineering Sequence"
 		);
+		expect(advanced).toBeDefined();
+		const advancedTrackText = [
+			...advanced!.curriculum,
+			...advanced!.supplementalProjects
+		].map(item => item.content).join("\n");
 
-		expect(advancedTrackSource).not.toMatch(/\bCover:/);
-		expect(advancedTrackSource).not.toMatch(
-			/Start with a small buggy service/i
-		);
+		expect(advancedTrackText).not.toMatch(/\bCover:/);
+		expect(advancedTrackText).not.toMatch(/Start with a small buggy service/i);
 		expect(source).not.toMatch(/\bshould\b/i);
 		expect(corpus).toContain(
-			"Package-organized Java projects separate source roots, package names, public APIs, helper classes, build commands, and test entry points"
+			"A class declared in package gradebook belongs under src/gradebook"
 		);
 		expect(corpus).toContain(
 			"Generics are API contracts for reusable, type-safe code"
 		);
 		expect(corpus).toContain(
-			"Java concurrency begins with bounded task execution rather than raw thread chaos"
+			"Keep at most one batch of jobs outstanding"
 		);
 		expect(corpus).toContain("Refactoring Transfer Practice");
 		expect(corpus).toContain("Priority Queue Transfer Practice");
@@ -5517,24 +5534,24 @@ describe("course text quality normalization", () => {
 					link
 				)
 			);
-			const expectedSourceLinks = [
-				"graphics/JS2_Basic_Shapes.java",
-				"graphics/JS2_Happy_Graphics.java",
-				"graphics/JS3_Which_Shape.java",
-				"graphics/JS4_Paintball.java",
-				"graphics/JS6_Picasso.java"
+			const expectedSourceFolders = [
+				"JS2_Basic_Shapes",
+				"JS2_Happy_Graphics",
+				"JS3_Which_Shape",
+				"JS4_Paintball",
+				"JS6_Picasso"
 			];
 
 			expect(legacyJavaGraphicsLinks).toEqual([]);
-			for (const sourcePath of expectedSourceLinks) {
-				expect(
-					links.some(
-						({ link }) =>
-							link ===
-							`https://github.com/instruction-material/Java-Level-1/blob/main/${sourcePath}`
-					),
-					sourcePath
-				).toBe(true);
+			for (const sourceFolder of expectedSourceFolders) {
+				for (const role of ["starter", "solution"]) {
+					expect(
+						links.some(({ link }) =>
+							link === `${javaPracticeSource}/${sourceFolder}/${role}`
+						),
+						`${sourceFolder}/${role}`
+					).toBe(true);
+				}
 			}
 		},
 		COURSE_SWEEP_TIMEOUT
@@ -6856,7 +6873,7 @@ describe("course text quality normalization", () => {
 		expect(corpus).not.toMatch(/\bImplementation Lab\b/);
 		expect(corpus).not.toMatch(/\bSupplemental [23]\b/);
 		expect(corpus).toContain(
-			"JM Master Project Example Quiz Game: Practice Studio"
+			"The extension keeps earlier arrivals first on a tie."
 		);
 		expect(corpus).toContain("JM Maze Runner Project Extension Practice");
 		expect(corpus).toContain(

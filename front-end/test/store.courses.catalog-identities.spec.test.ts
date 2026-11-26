@@ -8,6 +8,8 @@ import { useCoursesStore } from "@/stores/courses";
 import { courseCatalog } from "@/stores/courses/index";
 import elementaryAdditions from "../../test/fixtures/early-elementary-a-restored-identities.json";
 import elementaryBAdditions from "../../test/fixtures/early-elementary-b-restored-identities.json";
+import restoredCppReadings from "../../test/fixtures/design-patterns-in-cpp-restored-reading-identities.json";
+import restoredJava3Readings from "../../test/fixtures/java-level-3-restored-reading-identities.json";
 import restoredEntrepreneurshipProjects from "../../test/fixtures/entrepreneurship-restored-core-identities.json";
 import restoredGrammarProjects from "../../test/fixtures/grammar-mechanics-restored-identities.json";
 import joyOfReadingAdditions from "../../test/fixtures/joy-of-reading-restored-identities.json";
@@ -55,6 +57,8 @@ const addedIdentities: Record<
 	{ moduleId: string; id: string; section: string }[]
 > = {
 	"machine-learning": restoredMachineLearningPresentation,
+	"design-patterns-in-cpp": restoredCppReadings,
+	"java-level-3": restoredJava3Readings,
 	"early-elementary-a-math": elementaryAdditions,
 	"early-elementary-b-math": elementaryBAdditions,
 	"late-elementary-a-math": lateElementaryAAdditions,

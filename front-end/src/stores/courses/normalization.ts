@@ -9245,22 +9245,6 @@ function normalizeJavaLevel3(course: RawCourse) {
 
 		return url;
 	});
-	setItemLinks(course, "Check-In #3", "Check-In #3 Overview", {
-		projectLink: githubTree("Java-Level-3", "AJ-Check-In-3-Starter"),
-		solutionLink: githubTree("Java-Level-3", "AJ-Check-In-3")
-	});
-	setItemLinks(course, "Check-In #3", "Check In #3: Extension Challenge", {
-		projectLink: githubTree("Java-Level-3", "AJ-Check-In-3-Starter"),
-		solutionLink: githubTree("Java-Level-3", "AJ-Check-In-3")
-	});
-	setItemLinks(course, "Check-In #4", "Check-In #4 Overview", {
-		projectLink: githubTree("Java-Level-3", "AJ-Check-In-4-Starter"),
-		solutionLink: githubTree("Java-Level-3", "AJ-Check-In-4")
-	});
-	setItemLinks(course, "Check-In #4", "Check In #4: Extension Challenge", {
-		projectLink: githubTree("Java-Level-3", "AJ-Check-In-4-Starter"),
-		solutionLink: githubTree("Java-Level-3", "AJ-Check-In-4")
-	});
 }
 
 function normalizeAiLevel1(course: RawCourse) {

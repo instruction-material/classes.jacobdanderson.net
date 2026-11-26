@@ -1,0 +1,187 @@
+[
+  {
+    "moduleId": "java-level-3-check-in-1",
+    "id": "java-level-3-check-in-1-curriculum-check-in-1-recursion",
+    "section": "core"
+  },
+  {
+    "moduleId": "java-level-3-check-in-1",
+    "id": "java-level-3-check-in-1-curriculum-check-in-1-time-complexity",
+    "section": "core"
+  },
+  {
+    "moduleId": "java-level-3-check-in-1",
+    "id": "java-level-3-check-in-1-curriculum-check-in-1-linear-search",
+    "section": "core"
+  },
+  {
+    "moduleId": "java-level-3-check-in-1",
+    "id": "java-level-3-check-in-1-curriculum-check-in-1-binary-search",
+    "section": "core"
+  },
+  {
+    "moduleId": "java-level-3-aj7-selection-and-insertion-sort",
+    "id": "java-level-3-aj7-selection-and-insertion-sort-curriculum-selection-sort-big-o-analysis",
+    "section": "core"
+  },
+  {
+    "moduleId": "java-level-3-aj7-selection-and-insertion-sort",
+    "id": "java-level-3-aj7-selection-and-insertion-sort-curriculum-insertion-sort",
+    "section": "core"
+  },
+  {
+    "moduleId": "java-level-3-aj7-selection-and-insertion-sort",
+    "id": "java-level-3-aj7-selection-and-insertion-sort-curriculum-insertion-sort-big-o-analysis",
+    "section": "core"
+  },
+  {
+    "moduleId": "java-level-3-aj9-merge-sort",
+    "id": "java-level-3-aj9-merge-sort-curriculum-merge-sort-big-o-analysis",
+    "section": "core"
+  },
+  {
+    "moduleId": "java-level-3-aj9-merge-sort",
+    "id": "java-level-3-aj9-merge-sort-curriculum-sorting-oracle-and-measurement-contract",
+    "section": "core"
+  },
+  {
+    "moduleId": "java-level-3-check-in-2",
+    "id": "java-level-3-check-in-2-curriculum-check-in-2-insertion-sort",
+    "section": "core"
+  },
+  {
+    "moduleId": "java-level-3-check-in-2",
+    "id": "java-level-3-check-in-2-curriculum-check-in-2-merge-sort",
+    "section": "core"
+  },
+  {
+    "moduleId": "java-level-3-aj10-sustainable-programming",
+    "id": "java-level-3-aj10-sustainable-programming-curriculum-generics",
+    "section": "core"
+  },
+  {
+    "moduleId": "java-level-3-aj10-sustainable-programming",
+    "id": "java-level-3-aj10-sustainable-programming-curriculum-exception-handling",
+    "section": "core"
+  },
+  {
+    "moduleId": "java-level-3-aj10-sustainable-programming",
+    "id": "java-level-3-aj10-sustainable-programming-curriculum-maintainability-type-and-failure-contract",
+    "section": "core"
+  },
+  {
+    "moduleId": "java-level-3-aj11-linked-lists",
+    "id": "java-level-3-aj11-linked-lists-curriculum-singly-linked-lists",
+    "section": "core"
+  },
+  {
+    "moduleId": "java-level-3-aj11-linked-lists",
+    "id": "java-level-3-aj11-linked-lists-curriculum-doubly-linked-lists",
+    "section": "core"
+  },
+  {
+    "moduleId": "java-level-3-check-in-3",
+    "id": "java-level-3-check-in-3-curriculum-check-in-3-linked-lists",
+    "section": "core"
+  },
+  {
+    "moduleId": "java-level-3-check-in-3",
+    "id": "java-level-3-check-in-3-curriculum-check-in-3-stacks",
+    "section": "core"
+  },
+  {
+    "moduleId": "java-level-3-check-in-3",
+    "id": "java-level-3-check-in-3-curriculum-check-in-3-queues",
+    "section": "core"
+  },
+  {
+    "moduleId": "java-level-3-check-in-3",
+    "id": "java-level-3-check-in-3-curriculum-check-in-3-maps",
+    "section": "core"
+  },
+  {
+    "moduleId": "java-level-3-aj14-binary-search-trees",
+    "id": "java-level-3-aj14-binary-search-trees-curriculum-binary-search-trees",
+    "section": "core"
+  },
+  {
+    "moduleId": "java-level-3-aj14-binary-search-trees",
+    "id": "java-level-3-aj14-binary-search-trees-curriculum-depth-first-search",
+    "section": "core"
+  },
+  {
+    "moduleId": "java-level-3-aj14-binary-search-trees",
+    "id": "java-level-3-aj14-binary-search-trees-curriculum-bst-invariant-and-mutation-contract",
+    "section": "core"
+  },
+  {
+    "moduleId": "java-level-3-aj15-hash-tables",
+    "id": "java-level-3-aj15-hash-tables-curriculum-writing-a-hash-function",
+    "section": "core"
+  },
+  {
+    "moduleId": "java-level-3-aj15-hash-tables",
+    "id": "java-level-3-aj15-hash-tables-curriculum-dealing-with-collisions",
+    "section": "core"
+  },
+  {
+    "moduleId": "java-level-3-aj15-hash-tables",
+    "id": "java-level-3-aj15-hash-tables-curriculum-rehashing",
+    "section": "core"
+  },
+  {
+    "moduleId": "java-level-3-aj16-graphs",
+    "id": "java-level-3-aj16-graphs-curriculum-representing-a-graph",
+    "section": "core"
+  },
+  {
+    "moduleId": "java-level-3-aj16-graphs",
+    "id": "java-level-3-aj16-graphs-curriculum-dijkstra-s-shortest-path-algorithm",
+    "section": "core"
+  },
+  {
+    "moduleId": "java-level-3-aj16-graphs",
+    "id": "java-level-3-aj16-graphs-curriculum-graph-and-dijkstra-completion-contract",
+    "section": "core"
+  },
+  {
+    "moduleId": "java-level-3-check-in-4",
+    "id": "java-level-3-check-in-4-curriculum-check-in-4-hash-tables",
+    "section": "core"
+  },
+  {
+    "moduleId": "java-level-3-check-in-4",
+    "id": "java-level-3-check-in-4-curriculum-check-in-4-graphs",
+    "section": "core"
+  },
+  {
+    "moduleId": "java-level-3-check-in-4",
+    "id": "java-level-3-check-in-4-curriculum-check-in-4-application-check",
+    "section": "core"
+  },
+  {
+    "moduleId": "java-level-3-optional-java-foundations-bubble-sort-and-reference-archive",
+    "id": "java-level-3-java-foundations-reference-archive-curriculum-bubble-sort",
+    "section": "core"
+  },
+  {
+    "moduleId": "java-level-3-optional-java-foundations-bubble-sort-and-reference-archive",
+    "id": "java-level-3-java-foundations-reference-archive-curriculum-bubble-sort-big-o-analysis",
+    "section": "core"
+  },
+  {
+    "moduleId": "java-level-3-optional-java-foundations-bubble-sort-and-reference-archive",
+    "id": "java-level-3-java-foundations-reference-archive-curriculum-classify-the-extra-java-level-3-folders",
+    "section": "core"
+  },
+  {
+    "moduleId": "java-level-3-optional-java-foundations-bubble-sort-and-reference-archive",
+    "id": "java-level-3-java-foundations-reference-archive-curriculum-data-structures-reinforcement-without-clutter",
+    "section": "core"
+  },
+  {
+    "moduleId": "java-level-3-optional-java-foundations-bubble-sort-and-reference-archive",
+    "id": "java-level-3-java-foundations-reference-archive-curriculum-check-in-2-bubble-sort",
+    "section": "core"
+  }
+]

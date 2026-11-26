@@ -398,7 +398,7 @@ Finally, share the project!`,
 					preserveInstructions: true,
 					content: `**Check-in goal:** Review loops and nested loops with a small Scratch drawing project.
 
-**Setup:** Create a new blank Scratch project named "Check-in #1".
+**Setup:** Use **Start in IDE** to open a blank Scratch project. Name it "Check-in #1". Use this project for Nested Loops, Cloning, and Complex Conditionals. Download the .sb3 file before moving on so the next activity can reopen it.
 
 **Prompts:**
 
@@ -406,6 +406,7 @@ Finally, share the project!`,
 2. Add a sprite that plays a sound when the spacebar is pressed. Put a repeat 3 around the sound block, then put a repeat 2 around the whole script. Predict the total number of sounds before running it.
 3. When the green flag is clicked, draw a triangle, turn 60 degrees, and draw another triangle. Add a repeat block to form a hexagon of triangles.
 4. Draw another larger hexagon around the first one. A loop around the existing code can remove repetition.`,
+					projectLink: "/ide?mode=scratch&starter=blank",
 					solutionLink: "https://scratch.mit.edu/projects/341945558/"
 				},
 				{
@@ -792,8 +793,16 @@ View CS Training's Code`,
 					title: "Check-In #2: Strings",
 					contentKind: "assignment",
 					preserveInstructions: true,
-					content:
-						'Create a new blank project in Scratch, and name it "Check-in #2".\nStrings-1: What does the word “string” mean in Scratch?\nStrings-2: Add the Andie sprite to your project. When the 1 key is pressed, have him ask the user what their name is. Once the user responds, have him say “Hello [your name]” using one say block.\nStrings-3,4: Report to the user the first letter of their name and how many letters are in their name.',
+					content: `**Setup:** Use **Start in IDE** to open a blank Scratch project. Name it "Check-in #2" and add the Andie sprite from the sprite library. Use the same project for Strings, Mathematical Operators and Randomness, Lists, and Functions. Download the .sb3 file between activities.
+
+**Prompts:**
+
+1. Define a string and give an example of a string that includes a digit.
+2. When the 1 key is pressed, make Andie ask for a name. Use the Sensing **answer** reporter with the Operators **join** block to say "Hello " followed by the name. Include the space after Hello.
+3. Use the Operators **letter of** and **length of** blocks to report the first letter and number of characters in the name.
+
+**Checkpoints:** Try Mina, then Jo. The greeting changes to match each answer. The first letters are M and J, and the lengths are 4 and 2.`,
+					projectLink: "/ide?mode=scratch&starter=blank",
 					solutionLink: "https://scratch.mit.edu/projects/342645999/"
 				},
 				{

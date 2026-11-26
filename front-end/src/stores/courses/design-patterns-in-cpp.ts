@@ -1,6 +1,4 @@
 import type { RawCourse, RawCourseModuleItem } from "./types";
-import { buildImplementationLabGuidance } from "./implementationLabGuidance";
-import { buildProjectGuidance } from "./projectGuidance";
 
 const setupSource =
 	"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/f63768d7f10a215697e2d5d8cbff49c3c2bcf3fb";
@@ -128,31 +126,25 @@ const designPatternsInCppSourceCourse: RawCourse = {
 				},
 				{
 					title: "Modern Ownership Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle:
-							"DPC1 Why Patterns Look Different in Modern C++",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"The inbox owns a draft through a unique pointer. Its preview is a borrowed read-only pointer valid while that draft stays in the inbox. Build the starter with C++20. Implement take so it hands ownership of the exact draft to a caller and leaves the inbox empty. Use the returned owner for subsequent access. The member pointer already records whether the inbox contains a draft.\n\n**Checkpoints:** The sample previews Sketch, takes it, and reads the same title through the returned owner. Check that the inbox is empty after transfer and a second take returns an empty pointer. Rename the transferred draft and place it into a new inbox. Draw which variable owns the draft before take, after take, and after the final move.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-03-dpc1-why-patterns-look-different-in-modern-cpp-supplemental-2/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/287527c8e559014b5b655b897d54623d18ac161f/DPC-03-dpc1-why-patterns-look-different-in-modern-cpp-supplemental-2/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-03-dpc1-why-patterns-look-different-in-modern-cpp-supplemental-2/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/287527c8e559014b5b655b897d54623d18ac161f/DPC-03-dpc1-why-patterns-look-different-in-modern-cpp-supplemental-2/solution"
 				},
 				{
 					title: "Pattern Adaptation Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle:
-							"DPC1 Why Patterns Look Different in Modern C++",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"A local exhibit tour has two kinds of steps: show a card or pause for a number of seconds. The input vector can contain both in any order. Build main.cpp with C++20 and trace the two describe overloads. Implement render by visiting the active alternative in the variant and returning the string from the matching overload. An exhibit step is a value and can be copied independently of its original.\n\n**Checkpoints:** The demo displays Welcome, pauses for 3 seconds, and displays Map. Add a pause of zero seconds and an empty string card to verify dispatch remains based on the active type. Copy a step, edit the original card title, and confirm the copied step retains its title. Explain where a closed variant works well and what changes when a third step type is added.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-04-dpc1-why-patterns-look-different-in-modern-cpp-supplemental-3/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/287527c8e559014b5b655b897d54623d18ac161f/DPC-04-dpc1-why-patterns-look-different-in-modern-cpp-supplemental-3/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-04-dpc1-why-patterns-look-different-in-modern-cpp-supplemental-3/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/287527c8e559014b5b655b897d54623d18ac161f/DPC-04-dpc1-why-patterns-look-different-in-modern-cpp-supplemental-3/solution"
 				}
 			]
 		},
@@ -205,29 +197,25 @@ const designPatternsInCppSourceCourse: RawCourse = {
 				},
 				{
 					title: "Interface Contract Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle: "DPC2 Design Foundations",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"Compare a fixed reading and a missing reading behind one read-only probe interface. Build the starter with C++20. Implement inspect using the Probe reference passed in by the caller. Call read once. An absent reading produces Missing, a reading strictly below the limit produces Below, and all other readings produce Ready. Keep the concrete probe types out of the decision code.\n\n**Checkpoints:** At limit 10, the demo reports Ready for 10, Below for 9, and Missing when no reading exists. Test a real zero reading with both limit 1 and limit 0. An absent reading and a recorded zero have different meanings. Create a probe that counts its read calls and show that inspect requests exactly one sample.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-05-dpc2-design-foundations-supplemental-2/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/287527c8e559014b5b655b897d54623d18ac161f/DPC-05-dpc2-design-foundations-supplemental-2/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-05-dpc2-design-foundations-supplemental-2/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/287527c8e559014b5b655b897d54623d18ac161f/DPC-05-dpc2-design-foundations-supplemental-2/solution"
 				},
 				{
 					title: "Move Semantics Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle: "DPC2 Design Foundations",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"A move-only slot lease releases its slot in the destructor. The move constructor already transfers a slot and makes the source lease empty. Build the starter and trace that constructor. Complete move assignment so it releases the destination’s existing slot before transferring the source slot. When the source and destination are the same object, keep the slot. The registry must outlive every lease.\n\n**Checkpoints:** The demo starts with two live slots. Assigning the first lease to the second by move leaves one live slot, and the source becomes empty. After both leases leave scope the registry has zero live slots. Also test assigning an empty moved-from lease and moving through an alias of the same object. Both cases preserve the expected release counts.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-06-dpc2-design-foundations-supplemental-3/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/287527c8e559014b5b655b897d54623d18ac161f/DPC-06-dpc2-design-foundations-supplemental-3/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-06-dpc2-design-foundations-supplemental-3/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/287527c8e559014b5b655b897d54623d18ac161f/DPC-06-dpc2-design-foundations-supplemental-3/solution"
 				}
 			]
 		},
@@ -501,29 +489,25 @@ const designPatternsInCppSourceCourse: RawCourse = {
 				},
 				{
 					title: "Structural Wrapper Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle: "DPC6 Decorator, Adapter, and Facade",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"Wrap a notice sink with a decorator that records the result of each delivery. NoticeSink is the shared interface. A line can be accepted or rejected. Complete TracingSink::deliver so it forwards the original line once, then records one accepted or rejected entry and returns the wrapped sink’s result. This decorator borrows its sink and trace. Keep those objects alive during its use.\n\n**Checkpoints:** Deliver an ordinary note and an empty note. The plain sink accepts the first and rejects the second. The trace records both outcomes in order. Try two identical notes and verify that there are two calls and two entries. Compose two decorators around one sink and verify that the real sink still receives only one call per message.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-13-dpc6-decorator-adapter-and-facade-supplemental-2/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/596a491a2da9e2da7d9a31438f74ccbf423d221d/DPC-13-dpc6-decorator-adapter-and-facade-supplemental-2/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-13-dpc6-decorator-adapter-and-facade-supplemental-2/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/596a491a2da9e2da7d9a31438f74ccbf423d221d/DPC-13-dpc6-decorator-adapter-and-facade-supplemental-2/solution"
 				},
 				{
 					title: "Facade Boundary Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle: "DPC6 Decorator, Adapter, and Facade",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"The audio tour facade coordinates a track catalog and a player. The caller gives a stop name and a volume from 0 to 100 inclusive. Implement AudioGuide::start. Reject an invalid volume before searching the catalog. If the name has no track ID, return UnknownStop without calling the player. Otherwise pass the looked-up ID and the requested volume to the player exactly once and return Started.\n\n**Checkpoints:** Try the garden at volume 50, an unknown stop and the garden at volume 110. Only the garden at 50 reaches the player. Test the inclusive volume limits of 0 and 100 and check that the same track can start twice. Change the ID stored for the garden and start the same stop with the same volume. Verify that the player receives the new ID.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-14-dpc6-decorator-adapter-and-facade-supplemental-3/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/596a491a2da9e2da7d9a31438f74ccbf423d221d/DPC-14-dpc6-decorator-adapter-and-facade-supplemental-3/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-14-dpc6-decorator-adapter-and-facade-supplemental-3/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/596a491a2da9e2da7d9a31438f74ccbf423d221d/DPC-14-dpc6-decorator-adapter-and-facade-supplemental-3/solution"
 				}
 			]
 		},
@@ -652,29 +636,25 @@ const designPatternsInCppSourceCourse: RawCourse = {
 				},
 				{
 					title: "Composite Traversal Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle: "DPC8 Composite and Iterator",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"Build the starter with C++20. A playlist owns tracks and can also own nested playlists. Track.totalSeconds returns its own duration. Implement Playlist.totalSeconds by asking each entry for its total through the common interface. A nested playlist reports its descendants through the same operation. Keep duration separate from the display name so two tracks with the same name can still contribute their own time.\n\n**Checkpoints:** The demo has a 120-second intro and a nested playlist containing tracks of 90 and 45 seconds, for a total of 255. An empty playlist contributes zero. Add a second track with the same name and a duration of 30 seconds, then predict the new total. Test a second level of nesting before comparing with the reference.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-17-dpc8-composite-and-iterator-supplemental-2/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/0e50dcb7b9ddb16a0d845e14bd2649453972b74b/DPC-17-dpc8-composite-and-iterator-supplemental-2/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-17-dpc8-composite-and-iterator-supplemental-2/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/0e50dcb7b9ddb16a0d845e14bd2649453972b74b/DPC-17-dpc8-composite-and-iterator-supplemental-2/solution"
 				},
 				{
 					title: "Iterator Boundary Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle: "DPC8 Composite and Iterator",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"Use a read-only cursor to visit a static outline in breadth-first order. Build main.cpp with C++20. The starter can take the first node from a queue and report exhaustion, but only the root ever enters the queue. Before returning the current node, append its children at the back in their original order. Store borrowed pointers in the queue. Keep the source outline alive and fixed for the entire traversal.\n\n**Checkpoints:** The sample order is Course, Week 1, Week 2, Arrays, Loops, Grid. Test a one-node tree and call next twice after exhaustion. Both calls return null. Start two cursors on the same outline and advance one; the other remains at the root. Explain what would be invalidated if the caller rebuilt a child vector during traversal.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-18-dpc8-composite-and-iterator-supplemental-3/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/0e50dcb7b9ddb16a0d845e14bd2649453972b74b/DPC-18-dpc8-composite-and-iterator-supplemental-3/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-18-dpc8-composite-and-iterator-supplemental-3/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/0e50dcb7b9ddb16a0d845e14bd2649453972b74b/DPC-18-dpc8-composite-and-iterator-supplemental-3/solution"
 				}
 			]
 		},
@@ -806,29 +786,25 @@ const designPatternsInCppSourceCourse: RawCourse = {
 				},
 				{
 					title: "RAII Wrapper Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle: "DPC10 Patterns for Resource Management",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"An output channel allows one active drawing window. The lease holds a reference to the channel, and the channel must outlive the lease. The constructor already tries to open the channel and stores the result. Implement the destructor so only a lease that acquired the channel closes it. The lease stays in its current scope and cannot be copied or moved.\n\n**Checkpoints:** Open one lease and attempt another while the channel is busy. The denied lease owns nothing, and leaving its scope must leave the channel open. Leaving the first lease’s scope closes the channel once. Create a successful lease and throw a simple exception inside that scope. After the catch, check that the channel is available again.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-21-dpc10-patterns-for-resource-management-supplemental-2/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/596a491a2da9e2da7d9a31438f74ccbf423d221d/DPC-21-dpc10-patterns-for-resource-management-supplemental-2/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-21-dpc10-patterns-for-resource-management-supplemental-2/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/596a491a2da9e2da7d9a31438f74ccbf423d221d/DPC-21-dpc10-patterns-for-resource-management-supplemental-2/solution"
 				},
 				{
 					title: "Resource Boundary Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle: "DPC10 Patterns for Resource Management",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"A drawing board owns its current labels. A FrameBatch stores proposed changes in a separate vector. Complete commit so it rejects an empty batch or one with an empty label and leaves the board unchanged. When every label is valid, swap the whole batch into the board, then finish the batch. A finished batch rejects another commit and any later append. The board must outlive the batch.\n\n**Checkpoints:** Propose a two-label replacement with one empty label and check that the original board remains visible. Use a fresh batch to replace the board with Map and Key. Call commit again and verify the new labels stay in order. Verify that destroying an uncommitted batch also leaves the board unchanged.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-22-dpc10-patterns-for-resource-management-supplemental-3/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/596a491a2da9e2da7d9a31438f74ccbf423d221d/DPC-22-dpc10-patterns-for-resource-management-supplemental-3/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-22-dpc10-patterns-for-resource-management-supplemental-3/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/596a491a2da9e2da7d9a31438f74ccbf423d221d/DPC-22-dpc10-patterns-for-resource-management-supplemental-3/solution"
 				}
 			]
 		},
@@ -836,31 +812,49 @@ const designPatternsInCppSourceCourse: RawCourse = {
 			title: "DPC11 Legacy Refactoring Lab",
 			curriculum: [
 				{
+					id: "design-patterns-in-cpp-dpc11-legacy-refactoring-lab-curriculum-legacy-refactoring-lab-core-concepts",
 					title: "Diagnosing Inheritance and Raw-Pointer Debt",
+					aliases: [
+						"Legacy Refactoring Lab Core Concepts",
+						"Core Concepts",
+						"Core Concepts and Learning Sequence"
+					],
+					preserveInstructions: true,
+					preserveAssignment: true,
+					contentKind: "reading",
 					content:
-						"Start from a design that still runs but hides ownership, creation, and variation inside raw pointers or switch-heavy control flow. Identify the dominant smells before proposing any pattern."
+						"Trace one task through the legacy dispatcher. The caller hands its channel to makeNotifier, receives a heap-allocated notifier, sends the task and deletes the notifier. The caller also decides when to print an escalation. These are separate responsibilities. The channel chooses the destination; urgency controls the priority report.\n\nRun the two supplied tasks. The ordinary email prints [email] Nightly report is ready. The urgent chat prints [chat] Deploy rollback requested and an escalation line. Save the two delivery lines as the behavior to preserve. Mark the manual delete as the lifetime responsibility to move."
 				},
 				{
 					title: "Reducing Implicit Ownership",
+					preserveInstructions: true,
+					preserveAssignment: true,
+					contentKind: "reading",
 					content:
-						"Refactor the dangerous lifetime edges first by replacing implicit ownership with values, `unique_ptr`, or other explicit handles. This keeps later pattern work from standing on an unsafe memory model."
+						"A return type of LegacyNotifier* does not say who releases the notifier. The starter relies on its caller reaching delete. A std::unique_ptr<DeliveryStrategy> return type gives that responsibility to the returned value. In dispatch, keep the returned pointer in a local variable. Destruction at scope exit also covers an early return or an exception. A virtual destructor lets that pointer correctly destroy a derived strategy.\n\nCompare the notifier with the task. send accepts a const Task& because the task already belongs to its caller and send only reads it during the call. Draw one ownership edge from the local unique pointer to the notifier, and one temporary borrowed edge from send to the task."
 				},
 				{
 					title: "Separating Responsibilities",
+					preserveInstructions: true,
+					preserveAssignment: true,
+					contentKind: "reading",
 					content:
-						"Split construction, delivery behavior, priority rules, and subsystem coordination into their proper places. The right pattern choices emerge from this responsibility cleanup rather than from a predetermined checklist."
+						"Use the two properties independently. DeliveryFactory selects email or chat from the channel. DeliveryStrategy::send reports the message to that destination. PriorityPolicy describes whether the task needs escalation. DispatchFacade coordinates one send followed by one priority report.\n\nTrace a second task with the same message and channel and the opposite urgency. Only its priority report changes. Then keep urgency and message fixed and change the channel. Only the delivery label changes. The core project defines two supported channels, email and chat."
 				},
 				{
 					title: "Compile-Time and Runtime Clarity",
+					preserveInstructions: true,
+					preserveAssignment: true,
+					contentKind: "reading",
 					content:
-						"Explain not just why the new design is safer, but also why it is easier to build, reason about, and debug. Effective C++ refactoring improves both lifetime correctness and day-to-day clarity."
+						"Compile with C++20 and warnings enabled. The factory signature lets the compiler check who can copy or move the owning handle. Run a two-by-two test of ordinary and urgent work on email and chat to check the behavior the type system cannot prove. Count one delivery per task and compare each message, channel and priority report with the prediction.\n\nIn a debugger, stop once at the call to send and once at the priority policy. Record the selected concrete strategy and the task urgency at those two points. Keeping selection and reporting separate makes a channel regression easier to distinguish from a priority regression."
 				},
 				{
 					title: "DPC11 Legacy Refactoring Lab: Core Project",
 					preserveInstructions: true,
 					contentKind: "assignment",
 					content:
-						"Run main.cpp with a C++20 compiler and record the channel and message delivered for each task. In the starter, the caller owns the raw pointer returned by makeNotifier and deletes it after sending. Replace that ownership convention with a factory that returns a unique_ptr to a delivery strategy. Put priority classification in a policy and let a dispatch facade coordinate creation, delivery and reporting.\n\n**Checkpoints:** Dispatch one ordinary chat task and one urgent email task. Each original message must reach its original channel exactly once. The reference also prints standard handling for the chat and immediate escalation for the email. Explain where cleanup happens if delivery exits early.",
+						"Run main.cpp with a C++20 compiler and record the channel and message delivered for each task. In the starter, the caller owns the raw pointer returned by makeNotifier and deletes it after sending. Replace that ownership convention with a factory that returns a unique_ptr to a delivery strategy. Put priority classification in a policy and let a dispatch facade coordinate creation, delivery and reporting.\n\n**Checkpoints:** Use the supplied ordinary email and urgent chat. Each message reaches its original channel exactly once. The reference prints standard handling for the email and immediate escalation for the chat. Explain where cleanup happens if delivery exits early.",
 					projectLink:
 						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/e2c2200e69ae97d5f807fe210aeab3c183018101/DPC8-Legacy-Refactor-Capstone/starter",
 					solutionLink:
@@ -881,29 +875,25 @@ const designPatternsInCppSourceCourse: RawCourse = {
 				},
 				{
 					title: "Legacy Refactor Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle: "DPC11 Legacy Refactoring Lab",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"The workshop charges daily fees for late loans. The existing function has the default rates written in two branches. Build the starter and record the two default totals. Refactor feeFor so the Fees value supplied by the caller is the only source of rates and negative late days count as zero. Use an integer total in cents.\n\n**Checkpoints:** An ordinary loan at two late days costs 150 cents by default. An oversize loan at one late day costs 200 cents. Use 25 and 50 cents as alternate daily rates and verify that the same requests cost 50 and 50. On-time and early returns both cost zero. Explain which behavior the refactor preserves and which result changes only when the caller supplies new rates.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-23-dpc11-legacy-refactoring-lab-supplemental-2/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/cee78b27b76c7c4d596a3df3463491c7e4e981cb/DPC-23-dpc11-legacy-refactoring-lab-supplemental-2/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-23-dpc11-legacy-refactoring-lab-supplemental-2/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/cee78b27b76c7c4d596a3df3463491c7e4e981cb/DPC-23-dpc11-legacy-refactoring-lab-supplemental-2/solution"
 				},
 				{
 					title: "Raw Pointer Refactor Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle: "DPC11 Legacy Refactoring Lab",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"The preview function allocates a receipt and passes the owning pointer back to its caller. The caller adopts it immediately with a unique pointer. Replace that API with a value return and update the caller to print the value directly. A receipt is a snapshot of the booking title and seat count, valid independently of what happens to the booking.\n\n**Checkpoints:** Both versions print Morning drawing: 2. Keep one receipt, change the booking title and seat count, and make a second receipt. The original still shows the original title and 2 seats. Draw the lifetime of the booking and both receipt variables. Verify that the revised function returns Receipt by value.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-24-dpc11-legacy-refactoring-lab-supplemental-3/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/cee78b27b76c7c4d596a3df3463491c7e4e981cb/DPC-24-dpc11-legacy-refactoring-lab-supplemental-3/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-24-dpc11-legacy-refactoring-lab-supplemental-3/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/cee78b27b76c7c4d596a3df3463491c7e4e981cb/DPC-24-dpc11-legacy-refactoring-lab-supplemental-3/solution"
 				}
 			]
 		},
@@ -911,24 +901,42 @@ const designPatternsInCppSourceCourse: RawCourse = {
 			title: "DPC12 Capstone Studio",
 			curriculum: [
 				{
+					id: "design-patterns-in-cpp-dpc12-capstone-studio-curriculum-capstone-studio-core-concepts",
 					title: "Choosing the Right Medium-Sized Problem",
+					aliases: [
+						"Capstone Studio Core Concepts",
+						"Core Concepts",
+						"Core Concepts and Learning Sequence"
+					],
+					preserveInstructions: true,
+					preserveAssignment: true,
+					contentKind: "reading",
 					content:
-						"Use a medium-sized engine, editor tool, simulation framework, or importer pipeline as the capstone target. The project needs enough size for real boundary pressure while staying small enough that every added abstraction can be justified."
+						"Use the asset inventory importer to define a problem with a clear boundary. A batch contains names and quantities. The importer accepts every row and updates the inventory, or rejects the batch and retains the earlier inventory. The command prints accepted totals in name order. The important design pressures are adding a second input format and keeping a failed batch from affecting the totals.\n\nStart with the supplied space format and four baseline tests. Write one accepted and one rejected batch. Keep formatting, file storage, and additional editor features outside the first change so each regression has a small cause to inspect."
 				},
 				{
 					title: "Pattern Justification as a Required Deliverable",
+					preserveInstructions: true,
+					preserveAssignment: true,
+					contentKind: "reading",
 					content:
-						"Name each pattern or C++ ownership tool in the capstone and explain which flexibility, lifetime, or testability pressure it solves. A pattern with no stated pressure is treated as suspect."
+						"For each design choice, name a specific change or failure it controls. A shared record reader keeps validation the same for both formats. A temporary inventory keeps a malformed final row from committing the earlier rows. An ordinary Record value keeps each parsed name and quantity local to one iteration. Show these three choices in a short decision table with a test for each.\n\nTrace a valid row followed by an invalid row. Identify the parser boundary, the temporary record and the point where a complete batch replaces the saved totals. Describe what a class hierarchy would buy if input formats needed their own long-lived state."
 				},
 				{
 					title: "Runtime and Compile-Time Tradeoff Review",
+					preserveInstructions: true,
+					preserveAssignment: true,
+					contentKind: "reading",
 					content:
-						"Review where they chose runtime polymorphism, where they chose compile-time structure, and where they stayed with plain values or small helpers. This keeps the course anchored in judgment rather than catalogue recall."
+						"The reference selects parseSpace or parseComma once at runtime from the requested format. Both functions share a Parser signature and feed readRecord, so the quantity and name rules stay in one place. The selection does not require a heap allocation. A virtual parser interface could carry format-specific state across calls. A fixed parser chosen at compile time fits a tool that is built for exactly one format.\n\nSketch the places a third format would change in each design, then run the same accepted and rejected batches. Compare the smallest change that preserves the common validation and commit boundary."
 				},
 				{
 					title: "Debugging and Sanitizer Readiness",
+					preserveInstructions: true,
+					preserveAssignment: true,
+					contentKind: "reading",
 					content:
-						"Capstone work is verified through warnings, debugger runs, and targeted sanitizer checks where available. The course ends with the expectation that a design is not complete until it survives inspection."
+						"Run ctest --test-dir build -L baseline --output-on-failure after the behavior-preserving refactor. Add the second format in a separate change, then run ctest --test-dir build --output-on-failure for all six supplied cases. Inspect input parsing and the pending totals if an assertion fails.\n\nIn a separate Debug build, enable warnings plus AddressSanitizer and UndefinedBehaviorSanitizer when the compiler supports them. Capture the compiler command and distinguish a test assertion from a sanitizer diagnostic. For the final review, show one successful batch, one rejected final row that leaves earlier totals intact, and a clean rebuild of the refactor without the feature change."
 				},
 				{
 					title: "DPC12 Capstone Studio: Core Project",
@@ -956,29 +964,25 @@ const designPatternsInCppSourceCourse: RawCourse = {
 				},
 				{
 					title: "Capstone Architecture Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle: "DPC12 Capstone Studio",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"A studio planner takes an ordered list of proposed tasks and a minute budget. Complete buildPlan as a function that returns the selected titles and total minutes. Ignore tasks with nonpositive durations. Keep positive-duration tasks in input order and stop at the first one that cannot fit. A task that exactly fills the available time fits. Keep all display code in print.\n\n**Checkpoints:** For tasks of 15, 20 and 10 minutes and a 35-minute budget, the first two tasks fit. At 19 minutes, only the first fits. At 10 minutes, stop at the first task, even though a later task would fit. Try a zero budget, an empty list and a task with a negative estimate. Verify the result by calling buildPlan without capturing console output.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-25-dpc12-capstone-studio-supplemental-2/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/cee78b27b76c7c4d596a3df3463491c7e4e981cb/DPC-25-dpc12-capstone-studio-supplemental-2/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-25-dpc12-capstone-studio-supplemental-2/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/cee78b27b76c7c4d596a3df3463491c7e4e981cb/DPC-25-dpc12-capstone-studio-supplemental-2/solution"
 				},
 				{
 					title: "Capstone Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle: "DPC12 Capstone Studio",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"The supply desk records requests by ID in arrival order. Extend submit to put an urgent request ahead of every ordinary request while maintaining arrival order within each group. An ID already in the queue is rejected and keeps its original position and priority. Work on the queue operation while leaving the display code unchanged.\n\n**Checkpoints:** Submit ordinary A, urgent B, ordinary C and urgent D. The result is B, D, A, C. Submit urgent A again and verify it returns false and the order stays fixed. Try an all-ordinary queue and an all-urgent queue and check that each keeps its original arrival order. Explain where the new insertion rule lives and how the existing duplicate rule still applies.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-26-dpc12-capstone-studio-supplemental-3/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/cee78b27b76c7c4d596a3df3463491c7e4e981cb/DPC-26-dpc12-capstone-studio-supplemental-3/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-26-dpc12-capstone-studio-supplemental-3/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/cee78b27b76c7c4d596a3df3463491c7e4e981cb/DPC-26-dpc12-capstone-studio-supplemental-3/solution"
 				}
 			]
 		},
@@ -987,86 +991,73 @@ const designPatternsInCppSourceCourse: RawCourse = {
 			curriculum: [
 				{
 					title: "Ownership-Aware Refactor Concepts",
-					content: buildImplementationLabGuidance({
-						courseFamily: "C++ design patterns",
-						moduleTitle:
-							"Pattern Lab 14: Ownership-Aware Refactor Studio",
-						section: "concepts"
-					})
+					preserveInstructions: true,
+					preserveAssignment: true,
+					contentKind: "reading",
+					content:
+						"A repair bench owns an instrument after accept moves its unique pointer into the vector. The function takes the handle by value, so the caller has to move it. Find returns a read-only borrowed pointer. The pointer does not extend the instrument’s lifetime."
 				},
 				{
 					title: "Ownership Boundary Example",
-					content: buildImplementationLabGuidance({
-						courseFamily: "C++ design patterns",
-						moduleTitle:
-							"Pattern Lab 14: Ownership-Aware Refactor Studio",
-						section: "example"
-					})
+					preserveInstructions: true,
+					preserveAssignment: true,
+					contentKind: "reading",
+					content:
+						"Trace a lute from make_unique through accept and find. The pointer variable in the caller becomes empty. The instrument itself keeps its address as the vector grows because only its owning handles move. Once extract hands the instrument out, follow the returned handle to identify its new owner."
 				},
 				{
 					title: "Ownership-Aware Refactor Project",
-					content: buildImplementationLabGuidance({
-						courseFamily: "C++ design patterns",
-						moduleTitle:
-							"Pattern Lab 14: Ownership-Aware Refactor Studio",
-						section: "coreProject"
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"A repair bench owns instruments delivered to it. Complete Bench::accept to move a supplied unique pointer into the container. An empty handle is rejected. Find returns a borrowed read-only pointer. The caller may read it while the bench still owns that instrument.\n\n**Checkpoints:** Move a lute and a drum into the bench. Both incoming handles become empty and the original object addresses can be found by name. An absent name gives nullptr. Predict what happens when the vector grows and explain why moving the handles preserves the stored objects.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-01-pattern-implementation-lab-14/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/ea7e8bb748261f637433157fa35d9c8bc4fa93f7/DPC-01-pattern-implementation-lab-14/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-01-pattern-implementation-lab-14/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/ea7e8bb748261f637433157fa35d9c8bc4fa93f7/DPC-01-pattern-implementation-lab-14/solution"
 				},
 				{
 					title: "Ownership Refactor Review",
-					content: buildImplementationLabGuidance({
-						courseFamily: "C++ design patterns",
-						moduleTitle:
-							"Pattern Lab 14: Ownership-Aware Refactor Studio",
-						section: "review"
-					})
+					preserveInstructions: true,
+					preserveAssignment: true,
+					contentKind: "reading",
+					content:
+						"Label the owner and borrower before accept, during find and after extract. Write which operation gives up ownership, which only observes, and where the instrument is destroyed. Verify that an absent name gives no handle and a second matching name can still be found after extracting the first."
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "Ownership Refactor Extension Challenge",
-					content: buildImplementationLabGuidance({
-						courseFamily: "C++ design patterns",
-						moduleTitle:
-							"Pattern Lab 14: Ownership-Aware Refactor Studio",
-						section: "extension"
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"After accept is working, complete extract. Find the first matching instrument, move its handle to the return value, and erase the vacated entry. Return an empty handle when the name is missing. Keep unrelated entries in their original order.\n\n**Checkpoints:** Remove the lute, then look up the drum and try removing an absent name. The reference prints the recovered name, two successful absence checks and the remaining drum. Use the returned handle to read the lute after extraction.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-01-pattern-implementation-lab-14/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/ea7e8bb748261f637433157fa35d9c8bc4fa93f7/DPC-01-pattern-implementation-lab-14/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-01-pattern-implementation-lab-14/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/ea7e8bb748261f637433157fa35d9c8bc4fa93f7/DPC-01-pattern-implementation-lab-14/solution"
 				},
 				{
 					title: "Ownership Refactor Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle:
-							"Pattern Lab 14: Ownership-Aware Refactor Studio",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						'An equipment desk owns a checkout record for the duration of a loan. A display receives a weak pointer so it can show the current record without owning it. Complete Display::show. Lock the weak pointer to read a live label and return "(returned)" when no record is live. Keep the owning handle local to the call.\n\n**Checkpoints:** Display a live tripod checkout, then reset the desk’s owning pointer. The display changes to "(returned)". Verify the owner count is one after show returns. Construct an empty display and verify it also reports "(returned)".',
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-27-applied-studio-14-pattern-implementation-lab-14-supplemental-2/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/3da74837443c3aa2a9b3e3c27bd9a5b1e15cc671/DPC-27-applied-studio-14-pattern-implementation-lab-14-supplemental-2/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-27-applied-studio-14-pattern-implementation-lab-14-supplemental-2/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/3da74837443c3aa2a9b3e3c27bd9a5b1e15cc671/DPC-27-applied-studio-14-pattern-implementation-lab-14-supplemental-2/solution"
 				},
 				{
 					title: "Ownership Refactor Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle:
-							"Pattern Lab 14: Ownership-Aware Refactor Studio",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"A palette exposes a dynamically allocated array through Buffer, a unique pointer with a custom deleter. Implement open so a nonzero size produces a zero-initialized int array paired with CountRelease. A zero size yields an empty Buffer. The release counter must outlive every buffer.\n\n**Checkpoints:** Write a value to a three-slot buffer and move it into another handle. The moved-from handle becomes empty. Reset only the new owner and verify the counter increments once. Destroy an empty buffer and test a second independently allocated buffer.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-28-applied-studio-14-pattern-implementation-lab-14-supplemental-3/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/3da74837443c3aa2a9b3e3c27bd9a5b1e15cc671/DPC-28-applied-studio-14-pattern-implementation-lab-14-supplemental-3/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-28-applied-studio-14-pattern-implementation-lab-14-supplemental-3/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/3da74837443c3aa2a9b3e3c27bd9a5b1e15cc671/DPC-28-applied-studio-14-pattern-implementation-lab-14-supplemental-3/solution"
 				}
 			]
 		},
@@ -1075,79 +1066,73 @@ const designPatternsInCppSourceCourse: RawCourse = {
 			curriculum: [
 				{
 					title: "Runtime Variation Concepts",
-					content: buildImplementationLabGuidance({
-						courseFamily: "C++ design patterns",
-						moduleTitle: "Pattern Lab 15: Runtime Variation Studio",
-						section: "concepts"
-					})
+					preserveInstructions: true,
+					preserveAssignment: true,
+					contentKind: "reading",
+					content:
+						"A Style is a runtime formatting dependency. The caller can construct a brief or detailed formatter and pass either to SignPrinter through the same interface. The printer delegates formatting and remains independent of the rules for each style."
 				},
 				{
 					title: "Runtime Strategy Example",
-					content: buildImplementationLabGuidance({
-						courseFamily: "C++ design patterns",
-						moduleTitle: "Pattern Lab 15: Runtime Variation Studio",
-						section: "example"
-					})
+					preserveInstructions: true,
+					preserveAssignment: true,
+					contentKind: "reading",
+					content:
+						"For Maps in room 4, Brief returns Maps and Detailed returns Maps (room 4). Trace both calls to text using the same input object. The printer borrows the current Style. Neither the caller’s exhibit nor the formatter’s lifetime changes during text."
 				},
 				{
 					title: "Runtime Variation Project",
-					content: buildImplementationLabGuidance({
-						courseFamily: "C++ design patterns",
-						moduleTitle: "Pattern Lab 15: Runtime Variation Studio",
-						section: "coreProject"
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"A gallery sign can show only a title or add its room number. SignPrinter receives a Style from its caller and borrows it. Complete text so it calls that style’s format method and returns the result. Keep selection outside the printer and keep both supplied styles alive while the printer uses them.\n\n**Checkpoints:** Pass the same print job to a brief style and a detailed style. For Maps in room 4 the formats are Maps and Maps (room 4). Add another job to confirm the printer uses the argument rather than a fixed room or title.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-02-pattern-implementation-lab-15/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/ea7e8bb748261f637433157fa35d9c8bc4fa93f7/DPC-02-pattern-implementation-lab-15/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-02-pattern-implementation-lab-15/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/ea7e8bb748261f637433157fa35d9c8bc4fa93f7/DPC-02-pattern-implementation-lab-15/solution"
 				},
 				{
 					title: "Runtime Variation Review",
-					content: buildImplementationLabGuidance({
-						courseFamily: "C++ design patterns",
-						moduleTitle: "Pattern Lab 15: Runtime Variation Studio",
-						section: "review"
-					})
+					preserveInstructions: true,
+					preserveAssignment: true,
+					contentKind: "reading",
+					content:
+						"Use one job and two styles to check the formatting boundary. Then switch a printer’s style without changing the job. Add an independent style that counts calls, and compare that count with the number of print requests. Describe when passing a small function would give the caller the same flexibility."
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "Runtime Variation Extension Challenge",
-					content: buildImplementationLabGuidance({
-						courseFamily: "C++ design patterns",
-						moduleTitle: "Pattern Lab 15: Runtime Variation Studio",
-						section: "extension"
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"After printing with both existing styles works, implement use to switch an existing printer to a new style. Keep the displayed job and both strategies unchanged. Switching back restores the original formatting.\n\n**Checkpoints:** Trace the same Maps sign through brief, detailed and brief formatting. Test a different title and room after each switch. The printer borrows the current strategy, so the strategy must outlive each use.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-02-pattern-implementation-lab-15/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/ea7e8bb748261f637433157fa35d9c8bc4fa93f7/DPC-02-pattern-implementation-lab-15/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-02-pattern-implementation-lab-15/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/ea7e8bb748261f637433157fa35d9c8bc4fa93f7/DPC-02-pattern-implementation-lab-15/solution"
 				},
 				{
 					title: "Runtime Variation Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle: "Pattern Lab 15: Runtime Variation Studio",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"A print queue has a title and priority for each job. Complete ordered so it makes a copy of the jobs and applies the comparator supplied by its caller. Use a stable sort so jobs that compare equal keep their arrival order. Leave the original queue unchanged.\n\n**Checkpoints:** Order the jobs by title, then by descending priority. For Kim priority 2, Ada priority 1, and Bo priority 2, the title order is Ada, Bo, Kim and the priority order is Kim, Bo, Ada. Verify that the first queue still starts with Kim.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-29-applied-studio-15-pattern-implementation-lab-15-supplemental-2/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/3da74837443c3aa2a9b3e3c27bd9a5b1e15cc671/DPC-29-applied-studio-15-pattern-implementation-lab-15-supplemental-2/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-29-applied-studio-15-pattern-implementation-lab-15-supplemental-2/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/3da74837443c3aa2a9b3e3c27bd9a5b1e15cc671/DPC-29-applied-studio-15-pattern-implementation-lab-15-supplemental-2/solution"
 				},
 				{
 					title: "Runtime Variation Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle: "Pattern Lab 15: Runtime Variation Studio",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"A calibration session keeps caller-supplied rules as function objects. The session borrows no rule. Complete measure so it adds the active rule’s result to the stored total and returns the updated total. A replacement rule applies to future measurements. It leaves the accumulated total intact.\n\n**Checkpoints:** Start with the identity rule and measure 3. Replace the rule with one that adds 2 and measure 3 again. The totals are 3 and 8. Change the original offset variable after creating the replacement rule to verify it was captured by value. Swap back to identity and verify the total continues from 8.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-30-applied-studio-15-pattern-implementation-lab-15-supplemental-3/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/3da74837443c3aa2a9b3e3c27bd9a5b1e15cc671/DPC-30-applied-studio-15-pattern-implementation-lab-15-supplemental-3/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-30-applied-studio-15-pattern-implementation-lab-15-supplemental-3/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/3da74837443c3aa2a9b3e3c27bd9a5b1e15cc671/DPC-30-applied-studio-15-pattern-implementation-lab-15-supplemental-3/solution"
 				}
 			]
 		},
@@ -1156,86 +1141,73 @@ const designPatternsInCppSourceCourse: RawCourse = {
 			curriculum: [
 				{
 					title: "Structural Boundary Concepts",
-					content: buildImplementationLabGuidance({
-						courseFamily: "C++ design patterns",
-						moduleTitle:
-							"Pattern Lab 16: Structural Boundary Studio",
-						section: "concepts"
-					})
+					preserveInstructions: true,
+					preserveAssignment: true,
+					contentKind: "reading",
+					content:
+						"The desk and mail supply different representations of one seat request. A facade offers an entry point for each source. The mail adapter translates text to an integer. The shared reservation operation checks the guest name, seat range and occupancy exactly once per adapted request."
 				},
 				{
 					title: "Adapter and Facade Boundary Example",
-					content: buildImplementationLabGuidance({
-						courseFamily: "C++ design patterns",
-						moduleTitle:
-							"Pattern Lab 16: Structural Boundary Studio",
-						section: "example"
-					})
+					preserveInstructions: true,
+					preserveAssignment: true,
+					contentKind: "reading",
+					content:
+						"A desk request for seat 2 enters reserve immediately. Mail text 3 becomes one numeric seat before reserve. Mail text 3x is rejected by the adapter. A duplicate seat reaches reserve and is rejected there regardless of which source supplied it. Compare where the three cases stop."
 				},
 				{
 					title: "Structural Boundary Project",
-					content: buildImplementationLabGuidance({
-						courseFamily: "C++ design patterns",
-						moduleTitle:
-							"Pattern Lab 16: Structural Boundary Studio",
-						section: "coreProject"
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"A workshop receives seat requests at its desk and by mail. The desk passes a numeric seat, while mail supplies a seat as text. Both formats must reach reserve with one Guest value. Complete the mail adapter. Convert all characters to an integer and send the guest to the shared reservation operation.\n\n**Checkpoints:** A desk request for seat 2 and a mail request for seat 3 both work. Mail text 3x is invalid. A correctly formed request for an occupied seat fails regardless of source. The accepted guest list contains the same name and numeric seat for each format.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-03-pattern-implementation-lab-16/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/ea7e8bb748261f637433157fa35d9c8bc4fa93f7/DPC-03-pattern-implementation-lab-16/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-03-pattern-implementation-lab-16/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/ea7e8bb748261f637433157fa35d9c8bc4fa93f7/DPC-03-pattern-implementation-lab-16/solution"
 				},
 				{
 					title: "Structural Boundary Review",
-					content: buildImplementationLabGuidance({
-						courseFamily: "C++ design patterns",
-						moduleTitle:
-							"Pattern Lab 16: Structural Boundary Studio",
-						section: "review"
-					})
+					preserveInstructions: true,
+					preserveAssignment: true,
+					contentKind: "reading",
+					content:
+						"Record one accepted desk request, one accepted mail request and each kind of rejection. Keep a snapshot of the accepted list before a malformed or duplicate request and compare it afterward. Explain how a third request format can reuse the same validation, and support the explanation with one normal and one invalid sample."
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "Structural Boundary Extension Challenge",
-					content: buildImplementationLabGuidance({
-						courseFamily: "C++ design patterns",
-						moduleTitle:
-							"Pattern Lab 16: Structural Boundary Studio",
-						section: "extension"
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"After the two routes share validation, complete withdraw using only its seat argument. Return false for an absent reservation. After a successful withdrawal, either source can reserve that seat again.\n\n**Checkpoints:** Withdraw seat 2, try it again, and submit a new mail request for 2. The first withdrawal succeeds, the second fails, and the new guest takes the freed seat. Existing bookings are preserved.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-03-pattern-implementation-lab-16/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/ea7e8bb748261f637433157fa35d9c8bc4fa93f7/DPC-03-pattern-implementation-lab-16/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-03-pattern-implementation-lab-16/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/ea7e8bb748261f637433157fa35d9c8bc4fa93f7/DPC-03-pattern-implementation-lab-16/solution"
 				},
 				{
 					title: "Structural Boundary Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle:
-							"Pattern Lab 16: Structural Boundary Studio",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"A cutting list records pieces in centimetres. An older catalogue uses inches. Complete the InchCut adapter so it returns the same Cut structure as the metric path, preserves the label, and multiplies inches by 2.54. The report reads only normalized cuts.\n\n**Checkpoints:** The reference reports the metric Shelf (25.4 cm) and the ten-inch Door (25.4 cm) through one report function. Compare zero inches, half an inch and a larger value using a numeric tolerance. Keep unit conversion out of the report.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-31-applied-studio-16-pattern-implementation-lab-16-supplemental-2/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/3da74837443c3aa2a9b3e3c27bd9a5b1e15cc671/DPC-31-applied-studio-16-pattern-implementation-lab-16-supplemental-2/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-31-applied-studio-16-pattern-implementation-lab-16-supplemental-2/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/3da74837443c3aa2a9b3e3c27bd9a5b1e15cc671/DPC-31-applied-studio-16-pattern-implementation-lab-16-supplemental-2/solution"
 				},
 				{
 					title: "Structural Boundary Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle:
-							"Pattern Lab 16: Structural Boundary Studio",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"A catalogue returns either a title or an empty optional for a missing number. Complete Memo::find so repeated lookups for an ID reuse the first result. Cache successful and missing results. The supplied clear operation resets the memo so the next lookup goes back to the catalogue.\n\n**Checkpoints:** Read title 7 twice and missing ID 9 twice. Exactly two source calls are needed before clearing. Clear, then read 7 and verify a third source call. Compare a recorded empty title with a missing ID.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-32-applied-studio-16-pattern-implementation-lab-16-supplemental-3/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/3da74837443c3aa2a9b3e3c27bd9a5b1e15cc671/DPC-32-applied-studio-16-pattern-implementation-lab-16-supplemental-3/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-32-applied-studio-16-pattern-implementation-lab-16-supplemental-3/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/3da74837443c3aa2a9b3e3c27bd9a5b1e15cc671/DPC-32-applied-studio-16-pattern-implementation-lab-16-supplemental-3/solution"
 				}
 			]
 		},
@@ -1244,86 +1216,73 @@ const designPatternsInCppSourceCourse: RawCourse = {
 			curriculum: [
 				{
 					title: "Refactoring Capstone Concepts",
-					content: buildImplementationLabGuidance({
-						courseFamily: "C++ design patterns",
-						moduleTitle:
-							"Pattern Lab 17: Refactoring Capstone Studio",
-						section: "concepts"
-					})
+					preserveInstructions: true,
+					preserveAssignment: true,
+					contentKind: "reading",
+					content:
+						"The kit report mixes counting with presentation in its original main function. Write down the two original lines before editing. Separate the count into a function that returns data so a test can inspect the counts without parsing console output."
 				},
 				{
 					title: "Pattern Selection Example",
-					content: buildImplementationLabGuidance({
-						courseFamily: "C++ design patterns",
-						moduleTitle:
-							"Pattern Lab 17: Refactoring Capstone Studio",
-						section: "example"
-					})
+					preserveInstructions: true,
+					preserveAssignment: true,
+					contentKind: "reading",
+					content:
+						"The sample has two Ready rows of 2 and 3 and one Repair row of 1. The pure count returns 5 and 1, and print handles the output labels. Neither operation needs a class hierarchy. When the third state arrives, add its count to the summary and keep the old two-line report as the default."
 				},
 				{
 					title: "Refactoring Capstone Project",
-					content: buildImplementationLabGuidance({
-						courseFamily: "C++ design patterns",
-						moduleTitle:
-							"Pattern Lab 17: Refactoring Capstone Studio",
-						section: "coreProject"
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"A classroom kit report counts ready pieces and pieces awaiting repair. The starter counts directly inside main. Move the counting into summarize and have main pass its result to print. Each record contributes its positive quantity to the corresponding category. Keep the supplied ready and repair output identical.\n\n**Checkpoints:** The sample combines two Ready rows (2 and 3) and one Repair row (1). Confirm the report stays ready=5 and repair=1. Test an empty input and a zero-quantity row by calling summarize independently from the printer.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-04-pattern-implementation-lab-17/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/ea7e8bb748261f637433157fa35d9c8bc4fa93f7/DPC-04-pattern-implementation-lab-17/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-04-pattern-implementation-lab-17/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/ea7e8bb748261f637433157fa35d9c8bc4fa93f7/DPC-04-pattern-implementation-lab-17/solution"
 				},
 				{
 					title: "Refactoring Capstone Review",
-					content: buildImplementationLabGuidance({
-						courseFamily: "C++ design patterns",
-						moduleTitle:
-							"Pattern Lab 17: Refactoring Capstone Studio",
-						section: "review"
-					})
+					preserveInstructions: true,
+					preserveAssignment: true,
+					contentKind: "reading",
+					content:
+						"Record the original command and exact two-line output, the same output after extraction, and the independent checks for empty and zero-quantity input. Keep the third state in a separate change. Explain why one additional case in the count and one output flag are sufficient for this extension."
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "Refactoring Capstone Extension Challenge",
-					content: buildImplementationLabGuidance({
-						courseFamily: "C++ design patterns",
-						moduleTitle:
-							"Pattern Lab 17: Refactoring Capstone Studio",
-						section: "extension"
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"After the original two counts are correct, include Retired as a third category. Expose retired in the returned summary and use print’s optional flag to show the third count only when requested. Preserve the ordinary two-line output.\n\n**Checkpoints:** Add three retired pieces and request the extended output. The last line is retired=3 and the original counts remain unchanged. A negative quantity contributes nothing. Run the original output check once again.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-04-pattern-implementation-lab-17/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/ea7e8bb748261f637433157fa35d9c8bc4fa93f7/DPC-04-pattern-implementation-lab-17/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-04-pattern-implementation-lab-17/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/ea7e8bb748261f637433157fa35d9c8bc4fa93f7/DPC-04-pattern-implementation-lab-17/solution"
 				},
 				{
 					title: "Refactoring Capstone Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle:
-							"Pattern Lab 17: Refactoring Capstone Studio",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"A schedule lists nondecreasing appointment minutes. Extract longGaps from the existing console loop. Return each consecutive gap that strictly exceeds the supplied threshold, in chronological order. An empty or one-appointment schedule produces no gaps. Keep the original console report unchanged.\n\n**Checkpoints:** For minutes 3, 6, 16 and 19 at threshold 5, the report is 10. At threshold 10 no gap qualifies. At threshold 2 the returned vector is 3, 10, 3. Try repeated minutes and verify the original schedule is unchanged.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-33-applied-studio-17-pattern-implementation-lab-17-supplemental-2/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/3da74837443c3aa2a9b3e3c27bd9a5b1e15cc671/DPC-33-applied-studio-17-pattern-implementation-lab-17-supplemental-2/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-33-applied-studio-17-pattern-implementation-lab-17-supplemental-2/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/3da74837443c3aa2a9b3e3c27bd9a5b1e15cc671/DPC-33-applied-studio-17-pattern-implementation-lab-17-supplemental-2/solution"
 				},
 				{
 					title: "Refactoring Capstone Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle:
-							"Pattern Lab 17: Refactoring Capstone Studio",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"A document revision owns a sorted set of topic labels. Implement combined so it returns a fresh revision containing the union of both inputs. A label appears once even if both revisions contain it. Leave both inputs unchanged and keep reporting separate from the merge.\n\n**Checkpoints:** Merge draft and map with map and review. The result prints draft, map, review in order. Reversing the inputs gives the same labels. Merge with an empty revision and confirm that the input’s labels are preserved.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-34-applied-studio-17-pattern-implementation-lab-17-supplemental-3/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/3da74837443c3aa2a9b3e3c27bd9a5b1e15cc671/DPC-34-applied-studio-17-pattern-implementation-lab-17-supplemental-3/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-34-applied-studio-17-pattern-implementation-lab-17-supplemental-3/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/3da74837443c3aa2a9b3e3c27bd9a5b1e15cc671/DPC-34-applied-studio-17-pattern-implementation-lab-17-supplemental-3/solution"
 				}
 			]
 		}
@@ -1815,8 +1774,11 @@ function buildDesignPatternsCppStudioAppendix(
 		curriculum: [
 			{
 				title: "Applied Studio Scope Guide",
+				contentKind: "reading",
+				preserveInstructions: true,
+				preserveAssignment: true,
 				content:
-					"**Course flow:** These four studios preserve the complete applied practice collection without presenting them as four additional required units. Choose Ownership-Aware Refactor after DPC2 or DPC10, Runtime Variation after DPC4, Structural Boundary after DPC6, or Refactoring Capstone after DPC11. Begin from a green test and sanitizer baseline, close reference code before transfer work, and finish with an ownership or decision record.",
+					"Choose an optional studio after the matching lesson. Build the starter and record its baseline. Verify the studio project before its extension challenge, then complete the review.\n\n- **Pattern Lab 14: Ownership-Aware Refactor Studio.** Choose after DPC2 or DPC10.\n- **Pattern Lab 15: Runtime Variation Studio.** Choose after DPC4.\n- **Pattern Lab 16: Structural Boundary Studio.** Choose after DPC6.\n- **Pattern Lab 17: Refactoring Capstone Studio.** Choose after DPC11.",
 				learningPath: "core"
 			}
 		],

@@ -23,7 +23,8 @@ export async function checkScratchCheckpointTasks(
 			items: [
 				[
 					"Check-In #1: Nested Loops",
-					["repeat 3", "repeat 2", "hexagon"]
+					["repeat 3", "repeat 2", "hexagon", "Download the .sb3 file"],
+					true
 				],
 				[
 					"Check-In #1: Cloning",
@@ -48,7 +49,8 @@ export async function checkScratchCheckpointTasks(
 			items: [
 				[
 					"Check-In #2: Strings",
-					["first letter of their name", "how many letters"]
+					["first letter", "number of characters", "lengths are 4 and 2"],
+					true
 				],
 				[
 					"Check-In #2: Mathematical Operators and Randomness",
@@ -85,7 +87,7 @@ export async function checkScratchCheckpointTasks(
 					await page
 						.locator(".lesson-view-toggle button:nth-child(1)")
 						.click();
-					for (const [title, required] of module.items) {
+					for (const [title, required, blankStarter] of module.items) {
 						record.inProgress = { role, width, title };
 						await retain();
 						await page.waitForFunction(
@@ -117,8 +119,16 @@ export async function checkScratchCheckpointTasks(
 											?.textContent
 											.trim() === title
 								);
+								const starter = item.querySelector(
+									"a.resource-link.is-project[href^='/ide?mode=scratch&starter=blank&']"
+								);
+								const url = starter && new URL(starter.href);
 								return {
 									text: item.textContent.replace(/\s+/g, " "),
+									blankStarter: !!url
+										&& url.searchParams.get("course") === "scratch-level-2"
+										&& url.searchParams.get("lesson") === item.id
+										&& starter.textContent.includes("Start in IDE"),
 									contained:
 										item.scrollWidth
 										<= item.clientWidth + 1
@@ -129,6 +139,7 @@ export async function checkScratchCheckpointTasks(
 							title
 						);
 						assert.ok(actual.contained, `${title} containment`);
+						assert.equal(actual.blankStarter, !!blankStarter, `${title} blank workspace launch`);
 						record.views.push({ role, width, title, ...actual });
 						await retain();
 						if (

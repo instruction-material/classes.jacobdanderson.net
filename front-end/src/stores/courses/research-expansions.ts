@@ -10,7 +10,10 @@ interface ResearchExpansionProfile {
 	topics: string[];
 	moduleAdditions: string[];
 	projectTypes: string[];
-	projectBriefs?: Record<string, string>;
+	projectBriefs?: Record<
+		string,
+		string | { content: string; projectLink: string; solutionLink: string }
+	>;
 	guideReadings?: Record<string, string>;
 	assessments: string[];
 	materials: string[];
@@ -640,7 +643,7 @@ function buildProjectModule(
 			if (brief) {
 				return {
 					title,
-					content: brief,
+					...(typeof brief === "string" ? { content: brief } : brief),
 					contentKind: "assignment",
 					preserveInstructions: true
 				};
@@ -1535,6 +1538,80 @@ const designPatternsProfile: ResearchExpansionProfile = {
 	]
 };
 
+function cppPatternPractice(content: string, revision: string, folder: string) {
+	const source = `https://github.com/instruction-material/Design-Patterns-in-CPP/tree/${revision}/${folder}`;
+	return {
+		content,
+		projectLink: `${source}/starter`,
+		solutionLink: `${source}/solution`
+	};
+}
+
+const cppDesignPatternsProfile: ResearchExpansionProfile = {
+	...designPatternsProfile,
+	guideReadings: {
+		"Design Patterns in C++ Reference Guide":
+			"Use the [C++ Core Guidelines](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines) as a reference for ownership and lifetime in DPC1 and DPC10. In DPC0, use the [CTest tutorial](https://cmake.org/cmake/help/latest/guide/tutorial/Testing%20and%20CTest.html) to check how the formatter registers its tests. The project README records the commands for each starter.",
+		"Design Patterns in C++ Core Skills":
+			"Draw the owner and borrowers before editing a program. Choose a value for an independent copy, a reference for temporary access, or a unique pointer when a resource has one owner. Use the DPC1 draft exercise to trace the move, then check the original owner is empty.",
+		"Design Patterns in C++ Next Topics":
+			"After DPC4, use the Runtime Variation studio to swap a strategy while keeping the input fixed. After DPC6, try a second input representation against one validation function in the Structural Boundary studio. After DPC11, use the capstone studio to separate a behavior-preserving change from a feature change.",
+		"Design Patterns in C++ Boundaries":
+			"The source packs use C++20. Start DPC0 with classes, inheritance, containers, and basic tests. The site editor opens and exports the packs. Compile and run them locally using their README. Web frameworks, graphical toolkits and distributed services are outside the core path.",
+		"Design Patterns in C++ Prerequisite Check":
+			"In DPC0, build the title formatter and run CTest. Identify the demo executable, the test executable and the shared formatter library. Predict what happens when both main functions are compiled into a single executable. Then use the actual CMake targets to confirm the separation.",
+		"Design Patterns in C++ Pathway Map":
+			"Creation in DPC3 gives callers a stable interface for substituting strategies in DPC4. Observer and Command in DPC5 and DPC7 separate delivery and state changes from the caller. Use DPC10 to review lifetime before combining these ideas in DPC11 and DPC12.",
+		"Design Patterns in C++ Follow-Up Path":
+			"For a second pass after DPC12, choose one change that the capstone still makes awkward. Try a new parser format, a richer validation result, or a report that can consume an inventory snapshot. Record which files each option changes before choosing one.",
+		"Design Patterns in C++ Resource Map":
+			"Use the title formatter for build setup, the dashboard and simulator for pattern practice, and the asset inventory for the capstone. The starter role provides the work in progress. The reference pack shows one completed implementation. Read the role README for build requirements.",
+		"Design Patterns in C++ Module Alignment Guide":
+			"Track behavior and design separately. DPC3 checks that the selected factory builds a coherent family. DPC5 checks delivery order and expired listeners. DPC7 checks which commands enter history. DPC12 checks that a rejected import leaves the last accepted inventory intact.",
+		"Design Patterns in C++ Reference Map":
+			"Use the module titles to find an example by problem. DPC3 covers coordinated creation, DPC4 replaceable behavior, DPC6 input boundaries, and DPC10 cleanup. Reopen the corresponding project and test a changed input before applying its design to another program.",
+		"Design Patterns in C++ Prerequisite Map":
+			"Start with the tooling and ownership sequence in DPC0–DPC2. Use the virtual interfaces from DPC2 for the factory and strategy work. Use the weak observer handles from DPC5 and scope cleanup in DPC10 to explain who can outlive the dispatcher in DPC11.",
+		"Design Patterns in C++ Resource Inventory":
+			"Most practice folders contain main.cpp and a README for a C++20 console program. The DPC6 facade project uses json-c for the JSON Lines reference. The DPC12 inventory uses CMake and CTest. Download the complete pack before building so its supporting files are available.",
+		"Design Patterns in C++ Project Ladder":
+			"Begin with one observable change in the formatter. Compare two product families in the dashboard, then check two input formats through one validation boundary. Finish by changing the inventory parser while retaining the original totals and rejection behavior.",
+		"Design Patterns in C++ Checkpoints":
+			"Record the exact baseline before changing the implementation. Predict output for an ordinary case and one boundary. Run both cases after editing and describe any difference. For ownership exercises, include the owner before and after a move or scope exit.",
+		"Design Patterns in C++ Rubric":
+			"Present the build command and observed output, a test that detects a regression, and a short explanation of the boundary used by the project. Show which behavior remained stable and where a specific change became easier to make.",
+		"Design Patterns in C++ Capstone Gate":
+			"Run the four baseline CTest cases before changing the inventory. Save a valid import and the result of a malformed final row. Implement the parser refactor while those checks remain green, then introduce comma-separated input in a separate change and run all six cases."
+	},
+	projectBriefs: {
+		"Refactor if/else behavior into Strategy.": cppPatternPractice(
+			"Use the DPC4 simulator with a cart of 80 dollars. Keep shipping and membership fixed. Run the existing student and gold strategies, then add the eight-percent flash-sale policy for orders placed at most one day early. Compare one day and two days early.\n\n**Checkpoints:** Student saves 12 dollars, gold saves 4 dollars and the eligible flash sale saves 6.40 dollars. The two-day flash sale saves zero. Change the shipping policy once and verify the discount stays the same.",
+			"e2c2200e69ae97d5f807fe210aeab3c183018101",
+			"DPC2-Strategy-and-Policy-Simulator"
+		),
+		"Add Observer events to a small model.": cppPatternPractice(
+			"Use the DPC5 hub to compare a general listener with a listener that records severity four or higher. Publish the same topic at severities 1, 4 and 5. Record delivery order and filtered results separately.\n\n**Checkpoints:** The general listener receives all three values in order and the filtered listener records 4 and 5. Release the filtered listener owner and publish again. The general listener still receives the new event.",
+			"fa7e1c5b1f188e740685b031e196259d15f1c8bb",
+			"DPC3-Observer-Event-Hub"
+		),
+		"Convert duplicate constructors to Factory.": cppPatternPractice(
+			"Use the DPC3 dashboard to check how many products each factory makes. Supply a recording factory that returns a small widget for each requested kind, then run buildStandardDashboard. Keep the builder independent of the new factory.\n\n**Checkpoints:** Record two metrics, one badge and one button in that order. Compare all four returned rows with the order recorded by the factory. Run the two original families again.",
+			"748ac87bb93688229cb03b8c3618829319578156",
+			"DPC1-Factories-and-Builders-Workshop"
+		),
+		"Implement Command-based undo.": cppPatternPractice(
+			"In the DPC7 editor, call undo on an empty history. Then add two different phrases in draft mode, run the queue and undo twice. Record the document at each boundary.\n\n**Checkpoints:** Empty undo leaves the initial document intact. The first real undo removes the second phrase and the next restores the initial document. Add one rejected edit in review mode and verify it creates no additional undo entry.",
+			"e2c2200e69ae97d5f807fe210aeab3c183018101",
+			"DPC5-Command-and-State-Editor"
+		),
+		"Refactor a mini-app with tests before and after.": cppPatternPractice(
+			"Use the DPC12 inventory to compare an accepted row at the quantity limit with a rejected row above it. Run the baseline CTest cases before moving parsing and accumulation behind separate boundaries.\n\n**Checkpoints:** A space row with quantity 10000 is accepted. A later batch ending in 10001 is rejected and preserves the earlier totals. Run the same cases after the refactor and identify where parsing ends and commit begins.",
+			"29eaeb6da287955edd423e56da6143664043809c",
+			"DPC-09-dpc12-capstone-studio"
+		)
+	}
+};
+
 const chemistryProfile: ResearchExpansionProfile = {
 	family: "Chemistry",
 	priority: "urgent",
@@ -2126,14 +2203,46 @@ export const researchBackedExpansionProfiles: Record<
 	"cpp-level-3": cppProfile,
 	"data-science-in-python": dataScienceProfile,
 	"data-structures-and-algorithms-in-cpp": dsaProfile,
-	"design-patterns-in-cpp": designPatternsProfile,
+	"design-patterns-in-cpp": cppDesignPatternsProfile,
 	"design-patterns-in-java": designPatternsProfile,
 	"design-patterns-in-java-part-2": designPatternsProfile,
 	"elementary-science": elementaryScienceProfile,
 	"intro-to-chemistry": chemistryProfile,
 	"intro-to-physics": physicsProfile,
 	"intro-to-swift-app-development": swiftProfile,
-	"java-level-1": javaProfile,
+	"java-level-1": {
+		...javaProfile,
+		gaps: [
+			"Trace a robot command, then trace an input, branch and loop in a Java console program.",
+			"Write and test a method before using it in a list or grid."
+		],
+		topics: [
+			"Arrays, ArrayLists, two-dimensional grids and the single-player Battleship capstone.",
+			"Optional graphics apply coordinates, loops and methods."
+		],
+		assessments: [
+			"Predict a normal output and a boundary result before running the program.",
+			"Demonstrate a fresh board, a hit, a miss, a duplicate shot and the winning hit."
+		],
+		materials: [
+			"JDK 21 and a Main.java starter.",
+			"The two check-ins, fixed Battleship fixture and optional drawing projects."
+		],
+		projectBriefs: {
+			"CLI library or inventory manager.":
+				"Start with two copies of Atlas and one of Maps. Implement checkout and return by title. Check out Atlas three times: the first two succeed and the third leaves its stock at zero. Return one copy and list both titles with their quantities.\n\n**Checkpoints:** Display Atlas as 1 and Maps as 1 at the end. Check out an unknown title and verify both quantities stay the same. Use a separate inventory method so the console driver does not directly edit the stock.",
+			"Record-backed CSV or JSON data loader.":
+				"Use CSV rows Atlas,2 and Maps,3. Parse each into a record with a title and a nonnegative whole quantity. Report five total copies. Add Pens,nope and check that the two valid rows still total five and the rejected row is identified.\n\n**Checkpoints:** Treat this fixture as unquoted two-column CSV. Try a negative quantity and a row with a missing title. Report both as rejected records and still total the two valid rows. Put parsing and reporting in different methods.",
+			"Interface-driven simulator.":
+				"Give two counters the same step() operation. Start both at zero. One adds one per step, the other adds two. Call each twice through the interface and compare the final readings 2 and 4.\n\n**Checkpoints:** Store both counters in one list typed to the interface. Step the list again and expect 3 and 6. Identify where a caller can step either counter without needing its concrete type.",
+			"Abstract class hierarchy with tests.":
+				"Give a base Shape an area method. Implement a rectangle and a square. Check that sides 3 by 4 give 12 and side 3 gives 9. Choose how to reject negative lengths and test that choice.\n\n**Checkpoints:** Place both shapes in an array typed to Shape and compute area through that type. Verify both expected areas. Call the constructor with a negative length and record the rejection message or exception type.",
+			"Graphics app or non-graphics model-layer alternative.":
+				"Represent three dots at (2,3), (5,1) and (0,4). Shift every dot two columns right. Draw the result or print its coordinates. Check (4,3), (7,1), (2,4) and explain why the rows stay fixed.\n\n**Checkpoints:** Verify the original coordinates before and after the move. Run the same fixture through a plain-text representation to check the model independently of the drawing. Compare all three column and row pairs.",
+			"Multi-class capstone with persistence and tests.":
+				"As optional practice after Simple Battleship, separate board state from the save file. On a fresh board record a miss at (0,0) and a hit at (2,3). Save, start a new instance and reload. Both shots appear with the same marks and count as duplicates on replay.\n\n**Checkpoints:** Compare a board before and after saving. On loading it, try a fresh shot in addition to the two duplicate shots and verify that only the fresh shot changes the board. Keep valid board data when a malformed save is rejected."
+		}
+	},
 	"java-level-2": javaProfile,
 	"java-level-3": javaProfile,
 	"javascript-level-1-javascript-superstar": javaScriptProfile,

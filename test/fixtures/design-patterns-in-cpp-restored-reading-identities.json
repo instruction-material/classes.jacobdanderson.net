@@ -1,0 +1,27 @@
+[
+  {
+    "moduleId": "design-patterns-in-cpp-dpc11-legacy-refactoring-lab",
+    "id": "design-patterns-in-cpp-dpc11-legacy-refactoring-lab-curriculum-reducing-implicit-ownership",
+    "section": "core"
+  },
+  {
+    "moduleId": "design-patterns-in-cpp-dpc11-legacy-refactoring-lab",
+    "id": "design-patterns-in-cpp-dpc11-legacy-refactoring-lab-curriculum-separating-responsibilities",
+    "section": "core"
+  },
+  {
+    "moduleId": "design-patterns-in-cpp-dpc11-legacy-refactoring-lab",
+    "id": "design-patterns-in-cpp-dpc11-legacy-refactoring-lab-curriculum-compile-time-and-runtime-clarity",
+    "section": "core"
+  },
+  {
+    "moduleId": "design-patterns-in-cpp-dpc12-capstone-studio",
+    "id": "design-patterns-in-cpp-dpc12-capstone-studio-curriculum-pattern-justification-as-a-required-deliverable",
+    "section": "core"
+  },
+  {
+    "moduleId": "design-patterns-in-cpp-dpc12-capstone-studio",
+    "id": "design-patterns-in-cpp-dpc12-capstone-studio-curriculum-debugging-and-sanitizer-readiness",
+    "section": "core"
+  }
+]

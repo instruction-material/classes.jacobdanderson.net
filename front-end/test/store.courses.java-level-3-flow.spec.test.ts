@@ -114,8 +114,8 @@ describe("Java Level 3 learner flow", () => {
 			module.supplementalProjects.map(item => item.title)
 		);
 
-		// AJ4 now has one complete reading in place of four merged fragments.
-		expect(curriculumCount).toBe(139);
+		// Check-In 3 keeps its application check as a standalone reading.
+		expect(curriculumCount).toBe(142);
 		expect(optionCount).toBe(94);
 		for (const title of JUNI_CORE_PROJECTS) {
 			expect(curriculumTitles, title).toContain(title);
@@ -127,7 +127,7 @@ describe("Java Level 3 learner flow", () => {
 		);
 		expect(curriculumTitles).toContain("Check-In #2: Bubble Sort");
 		expect(curriculumTitles).toContain(
-			"AJ18 Repo Extension, Starter, and Capstone Library: Core Project"
+			"Compare a Reference and an Attempt"
 		);
 		expect(optionTitles).toContain(
 			"AJ22 Project 2: Event-Driven Simulation Capstone"
