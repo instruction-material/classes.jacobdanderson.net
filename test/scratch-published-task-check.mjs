@@ -21,7 +21,7 @@ const groups = [
 			},
 			{
 				id: "327610777",
-				reference: "327610727",
+				reference: "327610727-reference",
 				required: [
 					"random x",
 					"pick random",
@@ -347,7 +347,8 @@ export async function checkScratchPublishedTasks(
 									link.id === project.reference &&
 									link.role === "reference" &&
 									link.course === course
-							)
+							),
+							`${role}/${width}/${project.id}: editable reference ${project.reference}`
 						);
 					await page.screenshot({
 						path: path.join(
