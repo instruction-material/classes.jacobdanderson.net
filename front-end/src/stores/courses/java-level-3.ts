@@ -10,6 +10,7 @@ import {
 } from "./javaBubbleCheckIn2Teaching";
 import { buildJavaCheckIn1Module } from "./javaCheckIn1Teaching";
 import { buildJavaLinkedListModule } from "./javaLinkedListTeaching";
+import { buildJavaPriorityMapModule } from "./javaPriorityMapTeaching";
 import { completeJavaRecursionModule } from "./javaRecursionTeaching";
 import { completeJavaSearchModule } from "./javaSearchTeaching";
 import {
@@ -679,93 +680,7 @@ const javaLevel3SourceCourse: RawCourse = {
 		buildJavaSustainableProgrammingModule(),
 		buildJavaLinkedListModule(),
 		buildJavaStackQueueModule(),
-		{
-			title: "AJ13 Priority Queues and Maps",
-			curriculum: [
-				{
-					title: "Priority Queues",
-					content:
-						"Learn how priority queues differ from regular queues by removing highest-priority items first rather than strictly honoring insertion order."
-				},
-				{
-					title: "Using a Java Priority Queue",
-					content:
-						"Practice the Java `PriorityQueue` API, including adding, peeking, polling, removing, iterating, checking membership, and converting the queue into an array.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ13-Class-Rank"
-				},
-				{
-					title: "AJ13 Project 1: Class Rank",
-					content:
-						"Create a `Student` class and a comparator that orders `Student` objects by GPA, then use a priority queue to print the records from highest GPA to lowest.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ13-Class-Rank",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ13-Class-Rank"
-				},
-				{
-					title: "Maps",
-					content:
-						"Review key-value storage with maps, compare ordered and unordered implementations, and practice the core operations for insertion, retrieval, updates, and iteration."
-				},
-				{
-					title: "Using a Java Map",
-					content:
-						"Practice the Java `Map` API with `HashMap` and `TreeMap`, including creation, insertion, lookup, removal, and iteration through keys and values.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ13-Maps"
-				},
-				{
-					title: "AJ13 Project 2: Letter Frequencies",
-					content:
-						"Read a sentence from the user, build a frequency map of its letters, print the map contents, and identify the most frequent character.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ13-Letter-Frequencies",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ13-Letter-Frequencies"
-				}
-			],
-			supplementalProjects: [
-				{
-					title: "Priority Queues and Maps: Extension Challenge",
-					content: buildSupportSectionGuidance({
-						courseFamily: "Java Level 3",
-						moduleTitle: "Priority Queues and Maps",
-						section: "extension"
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ13-Class-Rank"
-				},
-				{
-					title: "Priority Queue Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 3",
-						moduleTitle: "AJ13 Priority Queues and Maps",
-						itemTitle: "Priority Queue Transfer Practice",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/J3-25-aj13-priority-queues-and-maps-supplemental-2/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/J3-25-aj13-priority-queues-and-maps-supplemental-2/solution"
-				},
-				{
-					title: "Map Lookup Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 3",
-						moduleTitle: "AJ13 Priority Queues and Maps",
-						itemTitle: "Map Lookup Extension Practice",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/J3-26-aj13-priority-queues-and-maps-supplemental-3/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/J3-26-aj13-priority-queues-and-maps-supplemental-3/solution"
-				}
-			]
-		},
+		buildJavaPriorityMapModule(),
 		{
 			title: "Check-In #3",
 			curriculum: [

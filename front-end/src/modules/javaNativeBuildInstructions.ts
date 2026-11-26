@@ -52,6 +52,7 @@ import {
 	javaLevel3SearchProjects,
 	javaLinkedListProjects,
 	javaMergeSortingProjects,
+	javaPriorityMapProjects,
 	javaSearchProjects,
 	javaSustainableProjects
 } from "./javaSearchResources";
@@ -200,7 +201,9 @@ const javaSearchExtensionInstructions: Partial<Record<string, string>> = {
 	[javaSustainableProjects[2].id]:
 		"Keep sample.txt in the same folder. Try java Main 5 2 sample.txt to check the numeric and file arguments.",
 	[javaLinkedListProjects[0].id]:
-		"For the first-match extension, run java Main find and java ContractTests find."
+		"For the first-match extension, run java Main find and java ContractTests find.",
+	[javaPriorityMapProjects[0].id]:
+		"For the cutoff extension, run java Main cutoff and java ContractTests cutoff."
 };
 
 const javaAlgorithmsWithAdditionalClasses = new Set<string>([
