@@ -416,6 +416,39 @@ export function javaHashTableURL(
 	return `https://github.com/instruction-material/Java-Level-3/tree/${javaHashTableRevision}/${pack}/${role}`;
 }
 
+export const javaGraphRevision = "4f82efdb43585981242bb485b5686af94bc8f640";
+export const javaGraphModuleID = "java-level-3-aj16-graphs";
+
+export const javaGraphProjects = [
+	{
+		pack: "AJ16-Basic-Graph-Packs",
+		id: `${javaGraphModuleID}-curriculum-aj16-project-1-basic-graph-implementation`
+	},
+	{
+		pack: "AJ16-Shortest-Path-Packs",
+		id: `${javaGraphModuleID}-curriculum-aj16-project-2-dijkstra-s-shortest-path`
+	},
+	{
+		pack: "AJ16-Eulerian-Mail-Circuit-Packs",
+		id: `${javaGraphModuleID}-supplemental-aj16-supplemental-project-1-eulerian-mail-circuit`
+	},
+	{
+		pack: "J3-33-aj16-graphs-supplemental-2",
+		id: `${javaGraphModuleID}-supplemental-graph-traversal-transfer-practice`
+	},
+	{
+		pack: "J3-34-aj16-graphs-supplemental-3",
+		id: `${javaGraphModuleID}-supplemental-graph-modeling-extension-practice`
+	}
+] as const;
+
+export function javaGraphURL(
+	pack: (typeof javaGraphProjects)[number]["pack"],
+	role: "starter" | "solution"
+) {
+	return `https://github.com/instruction-material/Java-Level-3/tree/${javaGraphRevision}/${pack}/${role}`;
+}
+
 const additionalAlgorithmFiles: Partial<Record<string, readonly string[]>> = {
 	[javaBubbleSortProjects[1].id]: ["words.txt"],
 	[javaCheckIn2Projects[1].id]: [
@@ -452,7 +485,8 @@ const searchGroups = [
 	{ revision: javaPriorityMapRevision, projects: javaPriorityMapProjects },
 	{ revision: javaCheckIn3Revision, projects: javaCheckIn3Projects },
 	{ revision: javaBinaryTreeRevision, projects: javaBinaryTreeProjects },
-	{ revision: javaHashTableRevision, projects: javaHashTableProjects }
+	{ revision: javaHashTableRevision, projects: javaHashTableProjects },
+	{ revision: javaGraphRevision, projects: javaGraphProjects }
 ] as const;
 
 export const javaLevel3SearchProjects = [
@@ -467,7 +501,8 @@ export const javaLevel3SearchProjects = [
 	...javaPriorityMapProjects,
 	...javaCheckIn3Projects,
 	...javaBinaryTreeProjects,
-	...javaHashTableProjects
+	...javaHashTableProjects,
+	...javaGraphProjects
 ];
 
 export function javaCheckIn1URL(

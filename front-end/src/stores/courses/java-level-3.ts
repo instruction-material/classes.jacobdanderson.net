@@ -11,6 +11,7 @@ import {
 } from "./javaBubbleCheckIn2Teaching";
 import { buildJavaCheckIn1Module } from "./javaCheckIn1Teaching";
 import { buildJavaCheckIn3Module } from "./javaCheckIn3Teaching";
+import { buildJavaGraphModule } from "./javaGraphTeaching";
 import { buildJavaHashTableModule } from "./javaHashTableTeaching";
 import { buildJavaLinkedListModule } from "./javaLinkedListTeaching";
 import { buildJavaPriorityMapModule } from "./javaPriorityMapTeaching";
@@ -687,83 +688,7 @@ const javaLevel3SourceCourse: RawCourse = {
 		buildJavaCheckIn3Module(),
 		buildJavaBinaryTreeModule(),
 		buildJavaHashTableModule(),
-		{
-			title: "AJ16 Graphs",
-			curriculum: [
-				{
-					title: "Graphs",
-					content:
-						"Learn how graphs use vertices and edges to represent relationships, and compare directed, undirected, weighted, and tree-like graph structures."
-				},
-				{
-					title: "Representing a Graph",
-					content:
-						"Compare adjacency lists, adjacency matrices, and incidence lists, and discuss when each representation is most useful. The evidence target is matching representation choice to graph density, edge lookup needs, traversal cost, and memory tradeoffs."
-				},
-				{
-					title: "AJ16 Project 1: Basic Graph Implementation",
-					content:
-						"Implement a graph with a `HashMap` of adjacency lists, add vertices and edges, and test the result through a `toString()` method and a simple main program.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ16-Simple-Graph-Starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ16-Simple-Graph"
-				},
-				{
-					title: "Dijkstra's Shortest Path Algorithm",
-					content:
-						"Learn how Dijkstra's algorithm uses distances, visited vertices, and a priority queue to find shortest paths in weighted graphs with positive edge weights."
-				},
-				{
-					title: "AJ16 Project 2: Dijkstra's Shortest Path",
-					content:
-						"Use a completed `Vertex` class, an adjacency matrix, and a priority queue to compute shortest paths and reconstruct the shortest path tree.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ16-Dijkstras-Shortest-Path-Starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ16-Dijkstras-Shortest-Path"
-				}
-			],
-			supplementalProjects: [
-				{
-					title: "AJ16 Supplemental Project 1: Eulerian Mail Circuit",
-					content:
-						"Use graph traversal and vertex degree analysis to determine whether a graph has a Eulerian path, a Eulerian cycle, or neither.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ16-Eulerian-Mail-Circuit",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ16-Eulerian-Mail-Circuit"
-				},
-				{
-					title: "Graph Traversal Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 3",
-						moduleTitle: "AJ16 Graphs",
-						itemTitle: "Graph Traversal Transfer Practice",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/J3-33-aj16-graphs-supplemental-2/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/J3-33-aj16-graphs-supplemental-2/solution"
-				},
-				{
-					title: "Graph Modeling Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 3",
-						moduleTitle: "AJ16 Graphs",
-						itemTitle: "Graph Modeling Extension Practice",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/J3-34-aj16-graphs-supplemental-3/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/J3-34-aj16-graphs-supplemental-3/solution"
-				}
-			]
-		},
+		buildJavaGraphModule(),
 		{
 			title: "Check-In #4",
 			curriculum: [
@@ -1489,14 +1414,6 @@ function strengthenJavaLevel3Item(
 		};
 	}
 
-	if (item.title === "Dijkstra's Shortest Path Algorithm") {
-		return {
-			...item,
-			content:
-				"Use Dijkstra only when every edge weight is nonnegative. Store overflow-aware distances, skip stale priority-queue entries, represent unreachable vertices explicitly, and retain predecessors so the returned path and total cost can both be verified."
-		};
-	}
-
 	if (item.title === "Introduction to Street Searcher") {
 		return {
 			...item,
@@ -1594,20 +1511,6 @@ function decorateJavaLevel3Module(
 				"- Generic APIs explain the type parameter, work with at least two concrete types, and introduce no raw types or unjustified unchecked casts.",
 				"- Expected invalid input is validated, recoverable exceptions are caught specifically at a useful boundary, and programming errors are not hidden.",
 				"- Characterization tests capture behavior before one refactor and prove the intended behavior remains afterward."
-			].join("\n"),
-			learningPath: "core"
-		});
-	}
-
-	if (module.title === "AJ16 Graphs") {
-		curriculum.push({
-			title: "Graph and Dijkstra Completion Contract",
-			content: [
-				"**Completion evidence:**",
-				"- Document directed versus undirected edges, vertex identity, duplicate-edge policy, self-loop policy, and nonnegative weight domain.",
-				"- Test empty, one-vertex, disconnected, cyclic, duplicate-edge, tie, and multiple-path fixtures.",
-				"- Dijkstra rejects negative weights, uses overflow-aware distances, skips stale queue entries, and returns an explicit unreachable result.",
-				"- Reconstructed predecessor paths contain valid edges and their independently summed weight equals the reported shortest distance."
 			].join("\n"),
 			learningPath: "core"
 		});
