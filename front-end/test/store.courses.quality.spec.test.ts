@@ -1,3 +1,4 @@
+import { javaSustainableURL } from "@/modules/javaSearchResources";
 import moneyMindedMaterials from "@/stores/courses/moneyMindedMaterials.json";
 import aiFoundationReadings from "@/stores/courses/aiFoundationReadingsData.json";
 import { beforeEach, describe, expect, it } from "vitest";
@@ -3386,10 +3387,10 @@ describe("course text quality normalization", () => {
 		);
 
 		expect(anythingArray.projectLink).toBe(
-			"https://github.com/instruction-material/Java-Level-3/tree/main/AJ10-Node-Class"
+			javaSustainableURL("AJ10-Anything-Array-Packs", "starter")
 		);
 		expect(anythingArray.solutionLink).toBe(
-			"https://github.com/instruction-material/Java-Level-3/tree/main/AJ10-Anything-Array"
+			javaSustainableURL("AJ10-Anything-Array-Packs", "solution")
 		);
 		expect(anythingArray.projectLink).not.toBe(anythingArray.solutionLink);
 	});

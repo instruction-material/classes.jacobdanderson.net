@@ -51,7 +51,8 @@ import {
 	javaCheckIn2Projects,
 	javaLevel3SearchProjects,
 	javaMergeSortingProjects,
-	javaSearchProjects
+	javaSearchProjects,
+	javaSustainableProjects
 } from "./javaSearchResources";
 import {
 	javaStructuralCoreID,
@@ -192,8 +193,17 @@ const javaSearchExtensionInstructions: Partial<Record<string, string>> = {
 	[javaCheckIn2Projects[0].id]:
 		"For the equal-run extension, run java Main range and java ContractTests range. The optional archive trace uses java Main bubble and java ContractTests bubble.",
 	[javaCheckIn2Projects[1].id]:
-		"Compile all Java classes in the benchmark folder. Preserve the provided sibling source files."
+		"Compile all Java classes in the benchmark folder. Preserve the provided sibling source files.",
+	[javaSustainableProjects[0].id]:
+		"Keep Bakery.java in the same folder. Run java Main input for standard input or java ContractTests batches for the optional task.",
+	[javaSustainableProjects[2].id]:
+		"Keep sample.txt in the same folder. Try java Main 5 2 sample.txt to check the numeric and file arguments."
 };
+
+const javaAlgorithmsWithAdditionalClasses = new Set<string>([
+	javaCheckIn2Projects[1].id,
+	javaSustainableProjects[0].id
+]);
 
 export function javaNativeBuildInstructions(
 	courseProjectKey?: string,
@@ -668,7 +678,7 @@ export function javaNativeBuildInstructions(
 		return [
 			"Java 21 search and growth workflow",
 			"Save and download the ZIP. Extract it and open a terminal in the folder containing Main.java and ContractTests.java.",
-			item === javaCheckIn2Projects[1].id
+			javaAlgorithmsWithAdditionalClasses.has(item ?? "")
 				? "javac --release 21 -Xlint:all -Werror *.java"
 				: "javac --release 21 -Xlint:all -Werror Main.java ContractTests.java",
 			"java Main",

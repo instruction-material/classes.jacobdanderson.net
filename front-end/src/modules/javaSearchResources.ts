@@ -187,6 +187,48 @@ const bubbleAndCheckInProjects = [
 	...javaCheckIn2Projects
 ];
 
+export function javaBubbleCheckIn2URL(
+	pack: (typeof bubbleAndCheckInProjects)[number]["pack"],
+	role: "starter" | "solution"
+) {
+	return `https://github.com/instruction-material/Java-Level-3/tree/${javaBubbleCheckIn2Revision}/${pack}/${role}`;
+}
+
+export const javaSustainableRevision =
+	"68e048d82539fe9b1e16295181a2042edfd785a9";
+export const javaSustainableModuleID =
+	"java-level-3-aj10-sustainable-programming";
+
+export const javaSustainableProjects = [
+	{
+		pack: "AJ10-Bakery-Packs",
+		id: `${javaSustainableModuleID}-curriculum-aj10-project-1-bakery-model`
+	},
+	{
+		pack: "AJ10-Anything-Array-Packs",
+		id: `${javaSustainableModuleID}-curriculum-aj10-project-2-anything-array`
+	},
+	{
+		pack: "AJ10-Exceptions-Packs",
+		id: `${javaSustainableModuleID}-curriculum-aj10-project-3-exception-practice`
+	},
+	{
+		pack: "J3-21-aj10-sustainable-programming-supplemental-2",
+		id: `${javaSustainableModuleID}-supplemental-refactoring-transfer-practice`
+	},
+	{
+		pack: "J3-22-aj10-sustainable-programming-supplemental-3",
+		id: `${javaSustainableModuleID}-supplemental-maintainability-extension-practice`
+	}
+] as const;
+
+export function javaSustainableURL(
+	pack: (typeof javaSustainableProjects)[number]["pack"],
+	role: "starter" | "solution"
+) {
+	return `https://github.com/instruction-material/Java-Level-3/tree/${javaSustainableRevision}/${pack}/${role}`;
+}
+
 const additionalAlgorithmFiles: Partial<Record<string, readonly string[]>> = {
 	[javaBubbleSortProjects[1].id]: ["words.txt"],
 	[javaCheckIn2Projects[1].id]: [
@@ -196,22 +238,21 @@ const additionalAlgorithmFiles: Partial<Record<string, readonly string[]>> = {
 		"MergeSort.java",
 		"SelectionSort.java",
 		"Sort.java"
-	]
+	],
+	[javaSustainableProjects[0].id]: ["Bakery.java"],
+	[javaSustainableProjects[2].id]: ["sample.txt"]
 };
-
-export function javaBubbleCheckIn2URL(
-	pack: (typeof bubbleAndCheckInProjects)[number]["pack"],
-	role: "starter" | "solution"
-) {
-	return `https://github.com/instruction-material/Java-Level-3/tree/${javaBubbleCheckIn2Revision}/${pack}/${role}`;
-}
 
 const searchGroups = [
 	{ revision: javaSearchRevision, projects: javaSearchProjects },
 	{ revision: javaBinarySearchRevision, projects: javaBinarySearchProjects },
 	{ revision: javaCheckIn1Revision, projects: javaCheckIn1Projects },
 	{ revision: javaSortingRevision, projects: javaSortingProjects },
-	{ revision: javaBubbleCheckIn2Revision, projects: bubbleAndCheckInProjects }
+	{
+		revision: javaBubbleCheckIn2Revision,
+		projects: bubbleAndCheckInProjects
+	},
+	{ revision: javaSustainableRevision, projects: javaSustainableProjects }
 ] as const;
 
 export const javaLevel3SearchProjects = [
@@ -219,7 +260,8 @@ export const javaLevel3SearchProjects = [
 	...javaBinarySearchProjects,
 	...javaCheckIn1Projects,
 	...javaSortingProjects,
-	...bubbleAndCheckInProjects
+	...bubbleAndCheckInProjects,
+	...javaSustainableProjects
 ];
 
 export function javaCheckIn1URL(

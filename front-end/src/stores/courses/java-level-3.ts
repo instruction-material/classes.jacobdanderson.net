@@ -15,6 +15,7 @@ import {
 	buildJavaElementarySortingModule,
 	buildJavaMergeSortingModule
 } from "./javaSortingTeaching";
+import { buildJavaSustainableProgrammingModule } from "./javaSustainableTeaching";
 import { isCoreProjectTitle } from "./projectGrouping";
 import { buildProjectGuidance } from "./projectGuidance";
 import { pendingStaticMediaNotice, staticMediaUrl } from "./staticMedia";
@@ -673,96 +674,7 @@ const javaLevel3SourceCourse: RawCourse = {
 		buildJavaBubbleSortModule(),
 		buildJavaMergeSortingModule(),
 		buildJavaCheckIn2Module(),
-		{
-			title: "AJ10 Sustainable Programming",
-			curriculum: [
-				{
-					title: "Nested Classes",
-					content:
-						"Compare static nested classes and inner classes, and learn when a HAS-A relationship makes nested classes a good fit."
-				},
-				{
-					title: "AJ10 Project 1: Bakery Model",
-					aliases: ["AJ10 Project 1: Juni Bakery"],
-					content:
-						"Use nested classes to model a bakery, its workers, and its baked goods, then collect input and print the resulting bakery state.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ10-Juni-Bakery-Starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ10-Juni-Bakery"
-				},
-				{
-					title: "Generics",
-					content:
-						"Learn how generic type placeholders such as `T` let one class work with many kinds of data without committing to a concrete type in advance."
-				},
-				{
-					title: "AJ10 Project 2: Anything Array",
-					content:
-						"Create a generic `Node`-style wrapper class, test it with several object types, and store those generic nodes inside an array.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ10-Node-Class",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ10-Anything-Array"
-				},
-				{
-					title: "Exception Handling",
-					content:
-						"Review checked versus runtime exceptions, custom exceptions, `try-catch` blocks, and the difference between handling an exception immediately and declaring it with `throws`."
-				},
-				{
-					title: "AJ10 Project 3: Exception Practice",
-					content:
-						"Handle file, input, null, and arithmetic exceptions, and create a custom `DivideByZeroException` for more precise error reporting. The checkpoint is separating recoverable input problems from programmer mistakes, then showing a small test for each handled path.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ10-Exception-Practice-Starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ10-Exception-Practice"
-				}
-			],
-			supplementalProjects: [
-				{
-					title: "Sustainable Programming: Extension Challenge",
-					content: buildSupportSectionGuidance({
-						courseFamily: "Java Level 3",
-						moduleTitle: "Sustainable Programming",
-						section: "extension"
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ10-Juni-Bakery-Starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ10-Juni-Bakery"
-				},
-				{
-					title: "Refactoring Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 3",
-						moduleTitle: "AJ10 Sustainable Programming",
-						itemTitle: "Refactoring Transfer Practice",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/J3-21-aj10-sustainable-programming-supplemental-2/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/J3-21-aj10-sustainable-programming-supplemental-2/solution"
-				},
-				{
-					title: "Maintainability Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 3",
-						moduleTitle: "AJ10 Sustainable Programming",
-						itemTitle: "Maintainability Extension Practice",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/J3-22-aj10-sustainable-programming-supplemental-3/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/J3-22-aj10-sustainable-programming-supplemental-3/solution"
-				}
-			]
-		},
+		buildJavaSustainableProgrammingModule(),
 		{
 			title: "AJ11 Linked Lists",
 			curriculum: [
