@@ -9,6 +9,7 @@ import {
 	buildJavaCheckIn2Module
 } from "./javaBubbleCheckIn2Teaching";
 import { buildJavaCheckIn1Module } from "./javaCheckIn1Teaching";
+import { buildJavaCheckIn3Module } from "./javaCheckIn3Teaching";
 import { buildJavaLinkedListModule } from "./javaLinkedListTeaching";
 import { buildJavaPriorityMapModule } from "./javaPriorityMapTeaching";
 import { completeJavaRecursionModule } from "./javaRecursionTeaching";
@@ -681,94 +682,7 @@ const javaLevel3SourceCourse: RawCourse = {
 		buildJavaLinkedListModule(),
 		buildJavaStackQueueModule(),
 		buildJavaPriorityMapModule(),
-		{
-			title: "Check-In #3",
-			curriculum: [
-				{
-					title: "Check-In #3 Overview",
-					content:
-						"This check-in revisits sustainable programming ideas, linked lists, stacks, queues, priority queues, and maps through a mix of short explanations and code extensions.",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ-Check-In-3"
-				},
-				{
-					title: "Check-In #3: Sustainable Programming",
-					content:
-						"Review nested classes, generics, and exception handling by building a nested `Riddle` class, a generic `Triple` class, and custom exception logic."
-				},
-				{
-					title: "Check-In #3: Linked Lists",
-					content:
-						"Compare singly and doubly linked lists, complete `Node` class structures, add methods such as `indexOf()` and `remove()`, and test those methods on real lists."
-				},
-				{
-					title: "Check-In #3: Stacks",
-					content:
-						"Review stack operations, LIFO behavior, and how stacks can process edit-style input such as backspaces in a stream of key presses."
-				},
-				{
-					title: "Check-In #3: Queues",
-					content:
-						"Review queue operations, FIFO behavior, the idea of a priority queue, and examples where queue-based processing is useful."
-				},
-				{
-					title: "Check-In #3: Maps",
-					content:
-						"Review map creation, iteration, membership checks, duplicate-key behavior, and practical use cases for key-value storage. Include a small scenario where a map replaces a nested loop and explain what the key and value represent in plain language."
-				},
-				{
-					title: "Check-In #3: Additional Practice Project",
-					content:
-						"Take a queue of names, reverse it with a stack, then sort it alphabetically with a priority queue, printing the queue after each transformation.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ-Check-In-3-Additional-Practice-Project-Starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ-Check-In-3-Additional-Practice-Project"
-				}
-			],
-			supplementalProjects: [
-				{
-					title: "Check In #3: Extension Challenge",
-					content: buildSupportSectionGuidance({
-						courseFamily: "Java Level 3",
-						moduleTitle: "Check In #3",
-						section: "extension"
-					}),
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ-Check-In-3"
-				},
-				{
-					title: "Data Structures Checkpoint Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 3",
-						moduleTitle: "Check-In #3",
-						itemTitle:
-							"Data Structures Checkpoint Transfer Practice",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/J3-27-check-in-3-supplemental-2/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/J3-27-check-in-3-supplemental-2/solution"
-				},
-				{
-					title: "Data Structures Checkpoint Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 3",
-						moduleTitle: "Check-In #3",
-						itemTitle:
-							"Data Structures Checkpoint Extension Practice",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/J3-28-check-in-3-supplemental-3/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/J3-28-check-in-3-supplemental-3/solution"
-				}
-			]
-		},
+		buildJavaCheckIn3Module(),
 		{
 			title: "AJ14 Binary Search Trees",
 			curriculum: [

@@ -324,6 +324,35 @@ export function javaPriorityMapURL(
 	return `https://github.com/instruction-material/Java-Level-3/tree/${javaPriorityMapRevision}/${pack}/${role}`;
 }
 
+export const javaCheckIn3Revision = "0092cb0068208745c24a7fed2014a992d09aae4b";
+export const javaCheckIn3ModuleID = "java-level-3-check-in-3";
+
+export const javaCheckIn3Projects = [
+	{
+		pack: "AJ-Check-In-3-Workbook-Packs",
+		id: `${javaCheckIn3ModuleID}-curriculum-java-level-3-check-in-3-overview`
+	},
+	{
+		pack: "AJ-Check-In-3-Collections-Practice-Packs",
+		id: `${javaCheckIn3ModuleID}-curriculum-java-level-3-check-in-3-practice-project`
+	},
+	{
+		pack: "J3-27-check-in-3-supplemental-2",
+		id: `${javaCheckIn3ModuleID}-supplemental-data-structures-checkpoint-transfer-practice`
+	},
+	{
+		pack: "J3-28-check-in-3-supplemental-3",
+		id: `${javaCheckIn3ModuleID}-supplemental-data-structures-checkpoint-extension-practice`
+	}
+] as const;
+
+export function javaCheckIn3URL(
+	pack: (typeof javaCheckIn3Projects)[number]["pack"],
+	role: "starter" | "solution"
+) {
+	return `https://github.com/instruction-material/Java-Level-3/tree/${javaCheckIn3Revision}/${pack}/${role}`;
+}
+
 const additionalAlgorithmFiles: Partial<Record<string, readonly string[]>> = {
 	[javaBubbleSortProjects[1].id]: ["words.txt"],
 	[javaCheckIn2Projects[1].id]: [
@@ -355,7 +384,8 @@ const searchGroups = [
 	{ revision: javaSustainableRevision, projects: javaSustainableProjects },
 	{ revision: javaLinkedListRevision, projects: javaLinkedListProjects },
 	{ revision: javaStackQueueRevision, projects: javaStackQueueProjects },
-	{ revision: javaPriorityMapRevision, projects: javaPriorityMapProjects }
+	{ revision: javaPriorityMapRevision, projects: javaPriorityMapProjects },
+	{ revision: javaCheckIn3Revision, projects: javaCheckIn3Projects }
 ] as const;
 
 export const javaLevel3SearchProjects = [
@@ -367,7 +397,8 @@ export const javaLevel3SearchProjects = [
 	...javaSustainableProjects,
 	...javaLinkedListProjects,
 	...javaStackQueueProjects,
-	...javaPriorityMapProjects
+	...javaPriorityMapProjects,
+	...javaCheckIn3Projects
 ];
 
 export function javaCheckIn1URL(

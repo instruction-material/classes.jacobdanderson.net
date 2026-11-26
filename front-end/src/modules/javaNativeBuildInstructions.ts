@@ -49,6 +49,7 @@ import {
 	javaBubbleSortProjects,
 	javaCheckIn1Projects,
 	javaCheckIn2Projects,
+	javaCheckIn3Projects,
 	javaLevel3SearchProjects,
 	javaLinkedListProjects,
 	javaMergeSortingProjects,
@@ -203,7 +204,9 @@ const javaSearchExtensionInstructions: Partial<Record<string, string>> = {
 	[javaLinkedListProjects[0].id]:
 		"For the first-match extension, run java Main find and java ContractTests find.",
 	[javaPriorityMapProjects[0].id]:
-		"For the cutoff extension, run java Main cutoff and java ContractTests cutoff."
+		"For the cutoff extension, run java Main cutoff and java ContractTests cutoff.",
+	[javaCheckIn3Projects[0].id]:
+		"For the grouped-count extension, run java Main groups and java ContractTests groups."
 };
 
 const javaAlgorithmsWithAdditionalClasses = new Set<string>([

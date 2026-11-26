@@ -114,8 +114,8 @@ describe("Java Level 3 learner flow", () => {
 			module.supplementalProjects.map(item => item.title)
 		);
 
-		// AJ4 now has one complete reading in place of four merged fragments.
-		expect(curriculumCount).toBe(139);
+		// Check-In 3 keeps its application check as a standalone reading.
+		expect(curriculumCount).toBe(140);
 		expect(optionCount).toBe(94);
 		for (const title of JUNI_CORE_PROJECTS) {
 			expect(curriculumTitles, title).toContain(title);
