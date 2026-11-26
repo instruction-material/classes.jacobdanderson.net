@@ -65,7 +65,17 @@ describe("Python Level 3 learner flow", () => {
 			["Insertion Sort Big-O Analysis", "near-best case"],
 			["Bubble Sort Big-O Analysis", "constant auxiliary space"],
 			["Merge Sort Big-O Analysis", "linear peak auxiliary storage"],
-			["Quicksort Big-O Analysis", "linear peak list storage"]
+			["Quicksort Big-O Analysis", "linear peak list storage"],
+			["Writing to a File", "letter A and one LF"],
+			["Reading From a File", "The blank line remains a record"],
+			[
+				"Introduction to Conway's Game of Life",
+				"The result is a live middle column"
+			],
+			[
+				"Introduction to Artificial Intelligence",
+				"blocks X but does not win"
+			]
 		];
 		const course =
 			(await useCoursesStore().loadCourseById("python-level-3"))!;
@@ -949,7 +959,7 @@ describe("Python Level 3 learner flow", () => {
 			expect(item.content).toContain(contract);
 		}
 		expect(module.curriculum[0]?.content).toContain(
-			"mode deliberately truncates"
+			"Write mode truncates an existing file as soon as it opens"
 		);
 		expect(module.curriculum[0]?.content).toContain(
 			"separate-file extension is optional"

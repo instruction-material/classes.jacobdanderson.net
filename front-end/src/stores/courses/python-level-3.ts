@@ -1335,8 +1335,18 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 			curriculum: [
 				{
 					title: "Writing to a File",
-					content:
-						'Use `with open("output.txt", "w", encoding="utf-8", newline="\\n") as f:` and `f.write(...)` to store text. The context manager closes the file on success or an error. Validate and format the whole input before opening: write mode deliberately truncates existing output. UTF-8 and LF make the byte format explicit; `w+` adds reading access this task does not need. An I/O failure after opening may leave partial output, so use a working copy for experiments.'
+					...authoredReading,
+					content: [
+						"Validate and format the entire input before opening the destination. Write mode truncates an existing file as soon as it opens. The context manager closes the file even if a write fails.",
+						[
+							"~~~python",
+							'text = "A\\n"',
+							'with open("output.txt", "w", encoding="utf-8", newline="\\n") as output:',
+							"    output.write(text)",
+							"~~~"
+						].join("\n"),
+						"This produces two bytes, the letter A and one LF. Predict the contents after repeating the code with the letter B, then reopen the file to check. Use a working copy because an I/O failure after opening can leave partial output."
+					].join("\n\n")
 				},
 				{
 					title: "AM12 Project 1: Crazy Name Tags Printer",
@@ -1366,8 +1376,12 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 				},
 				{
 					title: "Reading From a File",
-					content:
-						"`f.read()` handles the full file as one string, while `f.readlines()` returns a list of lines. Newline characters often appear in file input, so `strip()` is useful when a program needs the text without surrounding whitespace."
+					...authoredReading,
+					content: [
+						"Open a UTF-8 text file with a context manager. With default newline handling, Python converts line endings to LF. `read()` returns one string for the whole file. `readlines()` returns one string per record. Reopen the file before comparing them, because the first call consumes the input.",
+						'For a file containing `b"  Ada \\r\\n\\r\\nZ"`, `readlines()` gives `["  Ada \\n", "\\n", "Z"]`. Removing only the terminal LF gives `["  Ada ", "", "Z"]`. The blank line remains a record and the final record has no newline.',
+						'Use `line.removesuffix("\\n")` to keep literal spaces in a record. Use `strip()` when the contract calls for trimming field whitespace, as in the dictionary project. Predict the result for a line containing one space before comparing the two operations.'
+					].join("\n\n")
 				},
 				{
 					title: "AM12 Project 2: File IO and Dictionaries",
@@ -1535,8 +1549,12 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 			curriculum: [
 				{
 					title: "Introduction to Conway's Game of Life",
-					content:
-						"Conway's Game of Life is a cellular automaton. On a finite nonwrapping grid, count eight surrounding neighbors, excluding the cell: a dead cell is born with exactly three; a live cell survives with two or three (B3/S23). Compute every next cell from the same current generation. Complete the required Boolean simulation before the required ownership/strategy extension, predicting a small pattern before running."
+					...authoredReading,
+					content: [
+						"Conway's Game of Life is a cellular automaton. On a finite nonwrapping grid, count the eight surrounding positions and ignore positions outside the board. B3/S23 means a dead cell is born with exactly three live neighbors and a live cell survives with two or three. Read every neighbor from the same current generation.",
+						"Start with a 3 by 3 board whose middle row is live. The two live end cells each have one live neighbor and die. The center survives with two live neighbors. The dead cells above and below it each have three live neighbors and become live. The result is a live middle column. Predict the next generation before running the project.",
+						"The first project builds the simulation. The second adds ownership, a pair of edits per turn and decisions about when the game ends."
+					].join("\n\n")
 				},
 				{
 					title: "AM13 Project 1: Conway's Game of Life",
@@ -1607,8 +1625,12 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 			curriculum: [
 				{
 					title: "Introduction to Artificial Intelligence",
-					content:
-						"Artificial intelligence can be described as making a computer act rationally for a specific task. In this module, the goal is to design a Tic Tac Toe program that chooses strong moves instead of playing randomly."
+					...authoredReading,
+					content: [
+						"A Tic Tac Toe program can choose a move by testing possible next boards against a rule. Use a legal random player as a baseline, then implement and compare tactical rules.",
+						"With zero-based coordinates, let row 0 contain O, O, empty and row 1 contain X, X, empty. Leave row 2 empty. On O's turn, a copy with O at (0, 2) wins immediately. A separate copy with O at (1, 2) blocks X but does not win. Predict the chosen move before evaluating the candidates and keep the original board unchanged.",
+						"The four projects build a playable game, a basic strategy, a repeatable evaluation and a fork-aware strategy. A win rate from sampled games measures performance against the tested opponent. Checking every legal reply can establish a guarantee for a stated board and starting order."
+					].join("\n\n")
 				},
 				{
 					title: "AM14 Project 1: Tic Tac Toe UI",
