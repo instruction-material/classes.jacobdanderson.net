@@ -128,31 +128,25 @@ const designPatternsInCppSourceCourse: RawCourse = {
 				},
 				{
 					title: "Modern Ownership Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle:
-							"DPC1 Why Patterns Look Different in Modern C++",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"The inbox owns a draft through a unique pointer. Its preview is a borrowed read-only pointer valid while that draft stays in the inbox. Build the starter with C++20. Implement take so it hands ownership of the exact draft to a caller and leaves the inbox empty. Use the returned owner for subsequent access. The member pointer already records whether the inbox contains a draft.\n\n**Checkpoints:** The sample previews Sketch, takes it, and reads the same title through the returned owner. Check that the inbox is empty after transfer and a second take returns an empty pointer. Rename the transferred draft and place it into a new inbox. Draw which variable owns the draft before take, after take, and after the final move.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-03-dpc1-why-patterns-look-different-in-modern-cpp-supplemental-2/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/287527c8e559014b5b655b897d54623d18ac161f/DPC-03-dpc1-why-patterns-look-different-in-modern-cpp-supplemental-2/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-03-dpc1-why-patterns-look-different-in-modern-cpp-supplemental-2/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/287527c8e559014b5b655b897d54623d18ac161f/DPC-03-dpc1-why-patterns-look-different-in-modern-cpp-supplemental-2/solution"
 				},
 				{
 					title: "Pattern Adaptation Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle:
-							"DPC1 Why Patterns Look Different in Modern C++",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"A local exhibit tour has two kinds of steps: show a card or pause for a number of seconds. The input vector can contain both in any order. Build main.cpp with C++20 and trace the two describe overloads. Implement render by visiting the active alternative in the variant and returning the string from the matching overload. An exhibit step is a value and can be copied independently of its original.\n\n**Checkpoints:** The demo displays Welcome, pauses for 3 seconds, and displays Map. Add a pause of zero seconds and an empty string card to verify dispatch remains based on the active type. Copy a step, edit the original card title, and confirm the copied step retains its title. Explain where a closed variant works well and what changes when a third step type is added.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-04-dpc1-why-patterns-look-different-in-modern-cpp-supplemental-3/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/287527c8e559014b5b655b897d54623d18ac161f/DPC-04-dpc1-why-patterns-look-different-in-modern-cpp-supplemental-3/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-04-dpc1-why-patterns-look-different-in-modern-cpp-supplemental-3/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/287527c8e559014b5b655b897d54623d18ac161f/DPC-04-dpc1-why-patterns-look-different-in-modern-cpp-supplemental-3/solution"
 				}
 			]
 		},
@@ -205,29 +199,25 @@ const designPatternsInCppSourceCourse: RawCourse = {
 				},
 				{
 					title: "Interface Contract Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle: "DPC2 Design Foundations",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"Compare a fixed reading and a missing reading behind one read-only probe interface. Build the starter with C++20. Implement inspect using the Probe reference passed in by the caller. Call read once. An absent reading produces Missing, a reading strictly below the limit produces Below, and all other readings produce Ready. Keep the concrete probe types out of the decision code.\n\n**Checkpoints:** At limit 10, the demo reports Ready for 10, Below for 9, and Missing when no reading exists. Test a real zero reading with both limit 1 and limit 0. An absent reading and a recorded zero have different meanings. Create a probe that counts its read calls and show that inspect requests exactly one sample.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-05-dpc2-design-foundations-supplemental-2/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/287527c8e559014b5b655b897d54623d18ac161f/DPC-05-dpc2-design-foundations-supplemental-2/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-05-dpc2-design-foundations-supplemental-2/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/287527c8e559014b5b655b897d54623d18ac161f/DPC-05-dpc2-design-foundations-supplemental-2/solution"
 				},
 				{
 					title: "Move Semantics Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle: "DPC2 Design Foundations",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"A move-only slot lease releases its slot in the destructor. The move constructor already transfers a slot and makes the source lease empty. Build the starter and trace that constructor. Complete move assignment so it releases the destination’s existing slot before transferring the source slot. When the source and destination are the same object, keep the slot. The registry must outlive every lease.\n\n**Checkpoints:** The demo starts with two live slots. Assigning the first lease to the second by move leaves one live slot, and the source becomes empty. After both leases leave scope the registry has zero live slots. Also test assigning an empty moved-from lease and moving through an alias of the same object. Both cases preserve the expected release counts.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-06-dpc2-design-foundations-supplemental-3/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/287527c8e559014b5b655b897d54623d18ac161f/DPC-06-dpc2-design-foundations-supplemental-3/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-06-dpc2-design-foundations-supplemental-3/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/287527c8e559014b5b655b897d54623d18ac161f/DPC-06-dpc2-design-foundations-supplemental-3/solution"
 				}
 			]
 		},
