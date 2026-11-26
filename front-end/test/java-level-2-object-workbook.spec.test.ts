@@ -10,7 +10,7 @@ import {
 import { useAppStore } from "@/stores/app";
 import { useCoursesStore } from "@/stores/courses";
 
-it("keeps introductory, check-in, and inheritance workbooks in their original sections with separate role imports", async () => {
+it("keeps introductory, check-in, inheritance, and map workbooks in their original sections with separate role imports", async () => {
 	setActivePinia(createPinia());
 	const courseID = "java-level-2";
 	const read = () => useCoursesStore().loadCourseById(courseID);
@@ -49,7 +49,13 @@ it("keeps introductory, check-in, and inheritance workbooks in their original se
 		"JM4-Supplemental-Project-1-Pet-Dog-and-Cat-Class": "Cheeto says Meow",
 		"JM4-Lesson-and-DanceLesson-Class": "Ballet is easier: true",
 		"J2-04-jm4-subclasses-and-inheritance-supplemental-3":
-			"Market Lane: 800 cents"
+			"Market Lane: 800 cents",
+		"JM5-Maps": "Inventory: {banana=79, bread=400}",
+		"JM5-Letter-Frequencies": "Most frequent: a (2)",
+		"JM5-PROJECT-2-DealershipDatabase": "Missing VIN: null",
+		"JM5-Supplemental-Project-1-Lending-Library": "The Cat in the Hat",
+		"J2-05-jm5-maps-supplemental-2": "Missing room: 0",
+		"J2-06-jm5-maps-supplemental-3": "After second: {folder=2, pen=3}"
 	};
 	expect(javaObjectWorkbooks.map(pack => pack.pack)).toEqual(
 		Object.keys(samples)
@@ -64,7 +70,7 @@ it("keeps introductory, check-in, and inheritance workbooks in their original se
 				)
 				.find(item => item.id === pack.id);
 		const project = locate(tutor);
-		expect(project).toMatchObject({
+		expect(project, pack.pack).toMatchObject({
 			contentKind: "assignment",
 			ideImport: true
 		});
@@ -86,7 +92,8 @@ it("keeps introductory, check-in, and inheritance workbooks in their original se
 				`${courseID}:${pack.id}:${role}:native-java-objects`
 			);
 			expect(javaNativeBuildInstructions(key, url)).toContain(
-				pack.pack === "JM4-Project-3-Vehicle-Inheritance"
+				pack.pack === "JM4-Project-3-Vehicle-Inheritance" ||
+				pack.pack === "JM5-PROJECT-2-DealershipDatabase"
 					? "java -cp out vehicles.ContractTests"
 					: "java ContractTests"
 			);

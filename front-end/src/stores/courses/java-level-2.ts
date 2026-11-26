@@ -822,72 +822,211 @@ const javaLevel2SourceCourse: RawCourse = {
 			curriculum: [
 				{
 					title: "Maps",
-					content:
-						"Learn how Java maps store key-value pairs and why they are useful for contact lists, lookups, inventories, and other associative data problems."
+					contentKind: "reading",
+					preserveInstructions: true,
+					content: [
+						"A map pairs each key with one value. In a price map, the key is a product name and the value is its price in integer cents.",
+						"",
+						"- `put(key, value)` inserts a key or replaces its old value. `putIfAbsent(key, value)` preserves an existing non-null value.",
+						"- `get(key)` looks up a value. When values can be null, use `containsKey(key)` to tell a stored null from a missing key. `getOrDefault(key, fallback)` returns the fallback for an absent key without modifying the map.",
+						"- `remove(key)` removes a pair if it exists. `entrySet()` lets a loop read keys and values together, while `keySet()` and `values()` expose each part separately.",
+						"",
+						"Use stable keys such as strings. If a class defines key equality through `equals()`, equal keys must also return the same `hashCode()`. Changing fields used for hashing after insertion can make a key unreachable.",
+						"",
+						'**Trace:** Put bread at 375 and banana at 79 in a `HashMap<String, Integer>`. Try `putIfAbsent("bread", 400)`, then `put("bread", 400)`. Predict the bread price after each call. Put oats at zero and compare a lookup for oats with one for a missing product. Remove oats and check the map size.',
+						"",
+						"The bread price stays 375 after the first call and becomes 400 after the second. Before removal, oats is present even though its price is zero. After removal, two keys remain. A `HashMap` makes no iteration-order guarantee. A `TreeMap` copy lists these string keys in sorted order as banana, then bread."
+					].join("\n")
 				},
 				{
 					title: "Using a Java Map",
-					content:
-						"Practice `put()`, `get()`, `containsKey()`, `remove()`, `size()`, `keySet()`, `values()`, `getOrDefault()`, and `putIfAbsent()` while working with `HashMap` examples.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM5-Maps"
+					contentKind: "assignment",
+					preserveInstructions: true,
+					ideImport: true,
+					content: [
+						"Each item name is a key and has one price in integer cents. Calling `put` on an existing key replaces its value without adding another entry.",
+						"",
+						"1. Implement `priceFor` with `getOrDefault`. A missing lookup returns the caller's default and leaves the map unchanged.",
+						"2. Implement `addNew` with `putIfAbsent`. Try adding bread a second time and confirm that its first value remains.",
+						"3. Trace one replacement, one new value, and one removal. The driver reports prices and size, and uses the map's entries to print its final inventory.",
+						"",
+						"The driver first prints `Bread: 375`. After the lookup, replacement, and removal steps, the sorted report shows `Inventory: {banana=79, bread=400}`.",
+						"",
+						"Save the IDE workspace, download its ZIP, and extract the folder. Use Java 21 in that folder.",
+						"",
+						"```sh",
+						"javac --release 21 -Xlint:all -Werror *.java",
+						"java Main",
+						"java ContractTests",
+						"```",
+						"",
+						"The starter compiles. Its checks show which behavior still needs to be implemented."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL("JM5-Maps", "starter"),
+					solutionLink: javaObjectWorkbookURL("JM5-Maps", "solution")
 				},
 				{
 					title: "JM5 Project 1: Letter Frequencies",
-					content:
-						"Read a sentence from the user, build a frequency map of its letters, print the map contents, and determine which character appears most often.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM5-Letter-Frequencies",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM5-Letter-Frequencies"
+					contentKind: "assignment",
+					preserveInstructions: true,
+					ideImport: true,
+					content: [
+						"Count Unicode letters using a map from code point to count. Normalize each letter using Java's single-code-point lowercase mapping. Ignore other characters.",
+						"",
+						"1. For each input code point, identify whether it is a letter, then update the matching count.",
+						"2. Use numeric code-point order for the report. If counts tie for the maximum, keep the first key in that order. Report an empty result when the input has no letters.",
+						"3. Enter `B a A b!`. Expect `a: 2`, `b: 2`, and `Most frequent: a (2)`. Then enter `42?` to check the empty case.",
+						"",
+						"Save the IDE workspace, download its ZIP, and extract the folder. Use Java 21 in that folder.",
+						"",
+						"```sh",
+						"javac --release 21 -Xlint:all -Werror *.java",
+						"java Main",
+						"java ContractTests",
+						"```",
+						"",
+						"The starter compiles. Its checks show which behavior still needs to be implemented."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"JM5-Letter-Frequencies",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"JM5-Letter-Frequencies",
+						"solution"
+					)
 				},
 				{
 					title: "JM5 Project 2: Dealership Database",
-					content:
-						"Extend the vehicle inheritance project by using a map to build a dealership inventory keyed by vehicle identification number, with methods to add, remove, search, and display cars.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM5-PROJECT-2-DealershipDatabase",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM5-PROJECT-2-DealershipDatabase"
+					contentKind: "assignment",
+					preserveInstructions: true,
+					ideImport: true,
+					content: [
+						"Use a local map from vehicle ID to Car. The workbook reuses the Vehicle, LandVehicle, and Car types from the inheritance project. The sample IDs are fictional.",
+						"",
+						"1. Normalize a vehicle ID by trimming spaces and converting letters to uppercase. Reject a blank ID.",
+						"2. Use conditional insertion so a duplicate never replaces the original car. A missing lookup or removal returns null.",
+						"3. Enter two vehicles out of order and report the inventory by ID. Try the same key with different spaces and case. Confirm that the first car remains.",
+						"",
+						"The driver prints `Duplicate accepted: false`, `Missing VIN: null`, and both vehicle descriptions, starting with `DEMO-01: 2019 Camry, wheels 4, miles 13.5, doors 4`.",
+						"",
+						"Save and extract the workspace with its source directories and `sources.txt` intact. Use Java 21 from the extracted folder.",
+						"",
+						"```sh",
+						"javac --release 21 -Xlint:all -Werror -d out @sources.txt",
+						"java -cp out vehicles.Main",
+						"java -cp out vehicles.ContractTests",
+						"```"
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"JM5-PROJECT-2-DealershipDatabase",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"JM5-PROJECT-2-DealershipDatabase",
+						"solution"
+					)
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "JM5 Supplemental Project 1: Lending Library",
-					content:
-						"Build a library lookup program using a map from book titles to authors, with searching and full inventory display.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM5-Supplemental-Project-1-Lending-Library",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM5-Supplemental-Project-1-Lending-Library"
+					contentKind: "assignment",
+					preserveInstructions: true,
+					ideImport: true,
+					content: [
+						"Use a map from book title to author. A title lookup retrieves one author. An author search may find several titles.",
+						"",
+						"1. Use case-insensitive title lookups and trim spaces at input. When searching by author, compare author values and report the matching title keys in alphabetical order.",
+						"2. Print the stock list in title order. Keep missing titles distinct from existing titles.",
+						"3. Run the driver with a known title, then try the author search. Type a menu choice and a value on separate lines. Use `1` for title, `2` for author, or `3` for all entries. Invalid or incomplete input produces a message rather than an exception.",
+						"",
+						"For input `2` and `Dr. Seuss`, expect `Green Eggs and Ham` and `The Cat in the Hat`.",
+						"",
+						"Save the IDE workspace, download its ZIP, and extract the folder. Use Java 21 in that folder.",
+						"",
+						"```sh",
+						"javac --release 21 -Xlint:all -Werror *.java",
+						"java Main",
+						"java ContractTests",
+						"```",
+						"",
+						"The starter compiles. Its checks show which behavior still needs to be implemented."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"JM5-Supplemental-Project-1-Lending-Library",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"JM5-Supplemental-Project-1-Lending-Library",
+						"solution"
+					)
 				},
 				{
 					title: "Maps Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 2",
-						moduleTitle: "JM5 Maps",
-						itemTitle: "Maps Transfer Practice",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/J2-05-jm5-maps-supplemental-2/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/J2-05-jm5-maps-supplemental-2/solution"
+					contentKind: "assignment",
+					preserveInstructions: true,
+					ideImport: true,
+					content: [
+						"Store a set of attending names for each room. The map keeps rooms separate. The set ignores repeated entries in the same room.",
+						"",
+						"1. Use `computeIfAbsent` to create the first set for a room. Add the name to that set and return whether the attendance changed.",
+						"2. Read a missing room as count zero. Reading it leaves the map unchanged.",
+						"3. Enter Ada twice in Lab A and once in Lab B. The duplicate in Lab A returns false and each room has an independent count.",
+						"",
+						"The driver prints `Lab A: 2`, `Lab B: 1`, and `Missing room: 0`.",
+						"",
+						"Save the IDE workspace, download its ZIP, and extract the folder. Use Java 21 in that folder.",
+						"",
+						"```sh",
+						"javac --release 21 -Xlint:all -Werror *.java",
+						"java Main",
+						"java ContractTests",
+						"```",
+						"",
+						"The starter compiles. Its checks show which behavior still needs to be implemented."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"J2-05-jm5-maps-supplemental-2",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"J2-05-jm5-maps-supplemental-2",
+						"solution"
+					)
 				},
 				{
 					title: "Maps Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 2",
-						moduleTitle: "JM5 Maps",
-						itemTitle: "Maps Extension Practice",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/J2-06-jm5-maps-supplemental-3/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/J2-06-jm5-maps-supplemental-3/solution"
+					contentKind: "assignment",
+					preserveInstructions: true,
+					ideImport: true,
+					content: [
+						"Use one map for available units and another for requested units. A reservation succeeds only when every requested item exists and has enough stock.",
+						"",
+						"1. Check each requested quantity before changing the stock map. Reject unknown keys, nonpositive requests, and requests above the available units.",
+						"2. After the whole request passes validation, subtract the requested units. A rejected request leaves every count unchanged.",
+						"3. Reserve two pens and one folder. Next, request one pen together with too many folders. Confirm that the second request leaves both counts unchanged.",
+						"",
+						"Both reports show the same counts, ending with `After second: {folder=2, pen=3}`.",
+						"",
+						"Save the IDE workspace, download its ZIP, and extract the folder. Use Java 21 in that folder.",
+						"",
+						"```sh",
+						"javac --release 21 -Xlint:all -Werror *.java",
+						"java Main",
+						"java ContractTests",
+						"```",
+						"",
+						"The starter compiles. Its checks show which behavior still needs to be implemented."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"J2-06-jm5-maps-supplemental-3",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"J2-06-jm5-maps-supplemental-3",
+						"solution"
+					)
 				}
 			]
 		},
@@ -1847,14 +1986,6 @@ function javaLevel2SupplementalPath(title: string) {
 function strengthenJavaLevel2Item(
 	item: RawCourseModuleItem
 ): RawCourseModuleItem {
-	if (item.title === "Maps") {
-		return {
-			...item,
-			content:
-				"Learn how maps store key-value pairs and define behavior for missing, present, duplicate, and removed keys. Choose immutable or stable keys with correct `equals()` and `hashCode()`, and do not assume a `HashMap` iteration order."
-		};
-	}
-
 	if (item.title === "Errors and Exception Handling") {
 		return {
 			...item,

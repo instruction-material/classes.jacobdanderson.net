@@ -7,11 +7,13 @@ const jm3Revision = "a6cfdddf6101acbf20677257601c2d46903d2ef6";
 const checkIn1Revision = "5f2fe2649604a8abd97a2bff819fa6699317ac76";
 const checkIn1CoreRevision = "25ffdcd652077cbf95c61b306b4961222eac9910";
 const jm4Revision = "6d361004b256fca624703c26538777527c98b036";
+const jm5Revision = "9db6074ac0df5e628a32d5f60c753ffe8247c775";
 const jm1Module =
 	"java-level-2-jm1-instance-variables-constructors-and-methods";
 const jm2Module = "java-level-2-jm2-overloaded-constructors-comparison-methods";
 const jm3Module = "java-level-2-jm3-static-variables-methods";
 const jm4Module = "java-level-2-jm4-subclasses-inheritance";
+const jm5Module = "java-level-2-jm5-maps";
 
 export const javaCheckIn1CarExtensionID =
 	"java-level-2-check-in-1-supplemental-java-level-2-check-in-1-extension-challenge";
@@ -152,6 +154,55 @@ const javaObjectSources = {
 			"ContractTests.java",
 			"README.md"
 		]
+	},
+	"JM5-Maps": {
+		revision: jm5Revision,
+		id: `${jm5Module}-curriculum-java-level-2-using-a-java-map`,
+		files: ["Prices.java", "Main.java", "ContractTests.java", "README.md"]
+	},
+	"JM5-Letter-Frequencies": {
+		revision: jm5Revision,
+		id: `${jm5Module}-curriculum-jm5-project-1-letter-frequencies`,
+		files: [
+			"LetterCounts.java",
+			"Main.java",
+			"ContractTests.java",
+			"README.md"
+		]
+	},
+	"JM5-PROJECT-2-DealershipDatabase": {
+		revision: jm5Revision,
+		id: `${jm5Module}-curriculum-jm5-project-2-dealership-database`,
+		files: [
+			"src/main/java/vehicles/Vehicle.java",
+			"src/main/java/vehicles/LandVehicle.java",
+			"src/main/java/vehicles/Car.java",
+			"src/main/java/vehicles/Dealership.java",
+			"src/main/java/vehicles/Main.java",
+			"src/test/java/vehicles/ContractTests.java",
+			"sources.txt",
+			"README.md"
+		]
+	},
+	"JM5-Supplemental-Project-1-Lending-Library": {
+		revision: jm5Revision,
+		id: `${jm5Module}-supplemental-jm5-supplemental-project-1-lending-library`,
+		files: ["Library.java", "Main.java", "ContractTests.java", "README.md"]
+	},
+	"J2-05-jm5-maps-supplemental-2": {
+		revision: jm5Revision,
+		id: `${jm5Module}-supplemental-maps-transfer-practice`,
+		files: [
+			"Attendance.java",
+			"Main.java",
+			"ContractTests.java",
+			"README.md"
+		]
+	},
+	"J2-06-jm5-maps-supplemental-3": {
+		revision: jm5Revision,
+		id: `${jm5Module}-supplemental-maps-extension-practice`,
+		files: ["Stock.java", "Main.java", "ContractTests.java", "README.md"]
 	}
 } as const;
 
