@@ -4,13 +4,12 @@ import { javaNativeBuildInstructions } from "@/modules/javaNativeBuildInstructio
 import {
 	javaCourseProjectKey,
 	javaObjectWorkbooks,
-	javaObjectWorkbooksRevision,
 	javaSearchImportFiles
 } from "@/modules/javaSearchResources";
 import { useAppStore } from "@/stores/app";
 import { useCoursesStore } from "@/stores/courses";
 
-it("keeps the Dog assignment in Projects and gives tutors an independent reference for both JM1 workbooks", async () => {
+it("keeps the JM1 and JM2 assignments in their original sections with separate role imports", async () => {
 	setActivePinia(createPinia());
 	const courseID = "java-level-2";
 	const read = () => useCoursesStore().loadCourseById(courseID);
@@ -24,11 +23,21 @@ it("keeps the Dog assignment in Projects and gives tutors an independent referen
 		"After `fido.setAge(5)`, the ages are 5 and 2"
 	);
 
-	for (const [index, pack] of javaObjectWorkbooks.entries()) {
+	const samples = {
+		"JM1-Dog-Class": "Name: Fido, Age: 5",
+		"JM1-Supplemental-Project-1-Employee": "ID Number: 76544",
+		"JM2-Person-Class": "Name: Jack, Grade: 6, Age: 12",
+		"JM2-Book-Class": "Same title and author: true",
+		"JM2-Supplemental-Project-2-Boba": "Matches the most popular order."
+	};
+	expect(javaObjectWorkbooks.map(pack => pack.pack)).toEqual(
+		Object.keys(samples)
+	);
+	for (const pack of javaObjectWorkbooks) {
 		const locate = (course: typeof tutor) =>
 			course?.modules
 				.flatMap(module =>
-					index === 0
+					!pack.pack.includes("Supplemental")
 						? module.curriculum
 						: module.supplementalProjects
 				)
@@ -41,7 +50,7 @@ it("keeps the Dog assignment in Projects and gives tutors an independent referen
 		expect(locate(learner)?.solutionLink).toBeUndefined();
 		expect(locate(learner)?.projectLink).toBe(project?.projectLink);
 		expect(project?.content).toContain(
-			index === 0 ? "Name: Fido, Age: 5" : "ID Number: 76544"
+			samples[pack.pack as keyof typeof samples]
 		);
 
 		const starter = project?.projectLink ?? "";
@@ -62,9 +71,7 @@ it("keeps the Dog assignment in Projects and gives tutors an independent referen
 				javaSearchImportFiles(url)?.map(entry => entry.name)
 			).toEqual(pack.files);
 			expect(
-				javaSearchImportFiles(
-					url.replace(javaObjectWorkbooksRevision, "main")
-				)
+				javaSearchImportFiles(url.replace(pack.revision, "main"))
 			).toBeNull();
 		}
 		expect(

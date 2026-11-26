@@ -306,9 +306,12 @@ export function javaNativeBuildInstructions(
 	if (studioInstructions) return studioInstructions;
 	const parts = (courseProjectKey ?? "").split(":");
 	const [course, item, role, extra] = parts;
+	const objectWorkbook =
+		course === "java-level-2"
+			? javaObjectWorkbooks.find(project => project.id === item)
+			: undefined;
 	if (
-		course === "java-level-2" &&
-		javaObjectWorkbooks.some(project => project.id === item) &&
+		objectWorkbook &&
 		["starter", "reference"].includes(role ?? "") &&
 		parts.length === 4 &&
 		extra === "native-java-objects"
@@ -319,6 +322,11 @@ export function javaNativeBuildInstructions(
 			"javac --release 21 -Xlint:all -Werror *.java",
 			"java Main",
 			"java ContractTests",
+			...(objectWorkbook.pack === "JM2-Supplemental-Project-2-Boba"
+				? [
+						"In the terminal, enter a flavor, Y or N for iced, and a topping on separate lines. A blank topping line means none."
+					]
+				: []),
 			"Follow README.md for the expected output. The starter compiles and its method checks pass after the missing behavior is implemented."
 		];
 	}

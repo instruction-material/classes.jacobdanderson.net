@@ -1,29 +1,49 @@
 import { githubRawUrl, parseGitHubResource } from "@/modules/codePreview";
 import { javaRecursionProjectKey } from "@/modules/javaRecursionResources";
 
-export const javaObjectWorkbooksRevision =
-	"6dc5e5c6d2659d350b11b5d112f513adfd568bdf";
-const javaObjectModuleID =
+const jm1Revision = "6dc5e5c6d2659d350b11b5d112f513adfd568bdf";
+const jm2Revision = "9807e7a519e0d9121df1836467e33ccc2c29bd61";
+const jm1Module =
 	"java-level-2-jm1-instance-variables-constructors-and-methods";
+const jm2Module = "java-level-2-jm2-overloaded-constructors-comparison-methods";
 
-export const javaObjectWorkbooks = [
-	{
-		pack: "JM1-Dog-Class",
-		id: `${javaObjectModuleID}-curriculum-jm1-project-1-dog-class`,
+const javaObjectSources = {
+	"JM1-Dog-Class": {
+		revision: jm1Revision,
+		id: `${jm1Module}-curriculum-jm1-project-1-dog-class`,
 		files: ["Main.java", "Dog.java", "ContractTests.java", "README.md"]
 	},
-	{
-		pack: "JM1-Supplemental-Project-1-Employee",
-		id: `${javaObjectModuleID}-supplemental-jm1-supplemental-project-1-employee-class`,
+	"JM1-Supplemental-Project-1-Employee": {
+		revision: jm1Revision,
+		id: `${jm1Module}-supplemental-jm1-supplemental-project-1-employee-class`,
 		files: ["Main.java", "Employee.java", "ContractTests.java", "README.md"]
+	},
+	"JM2-Person-Class": {
+		revision: jm2Revision,
+		id: `${jm2Module}-curriculum-jm2-project-1-person-class`,
+		files: ["Main.java", "Person.java", "ContractTests.java", "README.md"]
+	},
+	"JM2-Book-Class": {
+		revision: jm2Revision,
+		id: `${jm2Module}-curriculum-jm2-project-2-book-class`,
+		files: ["Main.java", "Book.java", "ContractTests.java", "README.md"]
+	},
+	"JM2-Supplemental-Project-2-Boba": {
+		revision: jm2Revision,
+		id: `${jm2Module}-supplemental-jm2-supplemental-project-1-boba-shop`,
+		files: ["Main.java", "Boba.java", "ContractTests.java", "README.md"]
 	}
-] as const;
+} as const;
+
+export const javaObjectWorkbooks = Object.entries(javaObjectSources).map(
+	([pack, source]) => ({ pack, ...source })
+);
 
 export function javaObjectWorkbookURL(
-	pack: (typeof javaObjectWorkbooks)[number]["pack"],
+	pack: keyof typeof javaObjectSources,
 	role: "starter" | "solution"
 ) {
-	return `https://github.com/instruction-material/Java-Level-2/tree/${javaObjectWorkbooksRevision}/${pack}/${role}`;
+	return `https://github.com/instruction-material/Java-Level-2/tree/${javaObjectSources[pack].revision}/${pack}/${role}`;
 }
 
 export const javaSearchRevision = "c4c73df01fcbb97475dd75ef9d30af0940dc55a2";
@@ -861,12 +881,14 @@ export function javaSearchResource(url: string) {
 					candidate => candidate.revision === resource.ref
 				)
 			: undefined;
-	const projects =
-		repository === "java-level-2" &&
-		resource.ref === javaObjectWorkbooksRevision
-			? javaObjectWorkbooks
-			: searchGroup?.projects;
-	const project = projects?.find(candidate => candidate.pack === pack);
+	const project =
+		repository === "java-level-2"
+			? javaObjectWorkbooks.find(
+					candidate =>
+						candidate.pack === pack &&
+						candidate.revision === resource.ref
+				)
+			: searchGroup?.projects.find(candidate => candidate.pack === pack);
 	if (
 		!project ||
 		extra !== undefined ||

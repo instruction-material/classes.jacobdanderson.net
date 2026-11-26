@@ -159,12 +159,34 @@ const javaLevel2SourceCourse: RawCourse = {
 			curriculum: [
 				{
 					title: "JM2 Project 1: Person Class",
-					content:
-						"Create a `Person` class with core instance variables, constructors, getters, setters, and `toString()`, then create multiple people and update their state through methods.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM2-Person-Class",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM2-Person-Class"
+					contentKind: "assignment",
+					preserveInstructions: true,
+					ideImport: true,
+					content: [
+						"Build a `Person` with a name, age, and grade. The four constructor signatures let callers supply different inputs while storing the same kinds of fields.",
+						"",
+						"1. Use `Person(String name, int age, int grade)` to assign the fields and reject a negative age or grade.",
+						'2. Delegate with `this(...)` as the first statement. The text overload converts decimal grade text with `Integer.parseInt`. The two-argument overload supplies grade 0. The no-argument overload supplies name `"Unknown"`, age 0, and grade 0.',
+						'3. Predict the state of `new Person("Jack", 12, "6")`. Its age is 12 and its grade is the integer 6. A birthday on a second person leaves Jack’s age unchanged.',
+						"4. Save and extract the ZIP. With Java 21, run `javac --release 21 -Xlint:all -Werror *.java`, then `java Main` and `java ContractTests`.",
+						"",
+						"```text",
+						"Name: Abby, Grade: 2, Age: 9",
+						"Name: Jack, Grade: 6, Age: 12",
+						"Name: Tiffany, Grade: 0, Age: 10",
+						"Name: Unknown, Grade: 0, Age: 0",
+						"```",
+						"",
+						"Compare the trace with the output. Run the text overload with an invalid grade such as `six` and explain which step rejects it."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"JM2-Person-Class",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"JM2-Person-Class",
+						"solution"
+					)
 				},
 				{
 					title: "Overloaded and Default Constructors",
@@ -189,12 +211,33 @@ const javaLevel2SourceCourse: RawCourse = {
 				},
 				{
 					title: "JM2 Project 2: Book Class",
-					content:
-						"Create a `Book` class with overloaded constructors, getters, state-updating methods, and a `toString()` method. Then add comparison methods such as `hasSameAuthor()` and `isSameBook()`.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM2-Book-Class",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM2-Book-Class"
+					contentKind: "assignment",
+					preserveInstructions: true,
+					ideImport: true,
+					content: [
+						"The title and author identify a book in this exercise. The bookmark belongs to an individual copy. Two copies of the same book can be equal while their bookmarks differ.",
+						"",
+						"1. Give the two-argument constructor a default bookmark of 0. Compute a new bookmark before saving it. Use `Math.addExact` to reject integer overflow and throw `IllegalArgumentException` for a negative result.",
+						"2. In `hasSameAuthor(Book)`, compare author text with `String.equals`. If the other object is missing, return false.",
+						"3. Implement `equals(Object)` so it checks for a Book with the same title and author. Use the same fields in `hashCode()` and call `equals` from `isSameBook(Book)`.",
+						"4. Run the Java 21 build and check commands from Person Class. Compare two different titles by the same author, then compare two copies of one title.",
+						"",
+						"```text",
+						"Title: Redwall, Author: Brian Jacques, Page Number: 20",
+						"Same author: true",
+						"Same title and author: true",
+						"```",
+						"",
+						"Predict whether a `HashSet` still finds the book after its bookmark moves. Run `java ContractTests` to check the prediction."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"JM2-Book-Class",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"JM2-Book-Class",
+						"solution"
+					)
 				},
 				{
 					title: "Overloaded Constructors & Comparison Methods: Verification and Reflection",
@@ -209,12 +252,35 @@ const javaLevel2SourceCourse: RawCourse = {
 			supplementalProjects: [
 				{
 					title: "JM2 Supplemental Project 1: Boba Shop",
-					content:
-						"Create a `Boba` class with multiple constructors, update methods, and a comparison method to check whether two drink orders are the same.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM2-Supplemental-Project-2-Boba",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM2-Supplemental-Project-2-Boba"
+					contentKind: "assignment",
+					preserveInstructions: true,
+					ideImport: true,
+					content: [
+						"Use constructor overloads and a comparison method to model a drink order. An order includes flavor, iced status, and a topping.",
+						"",
+						"1. Delegate the shorter constructor with an empty string for an absent topping. The display shows that empty string as `none`.",
+						"2. In `isSameOrder(Boba)`, compare flavor and topping by case-sensitive text value and compare the iced flags. A missing comparison object returns false.",
+						"3. Predict how adding pearls to one of two matching drinks changes their comparison. Verify that the second drink still has an empty topping.",
+						"4. Save and extract the ZIP. Compile with `javac --release 21 -Xlint:all -Werror *.java` and run `java ContractTests`.",
+						"5. Run `java Main`. Enter a flavor, `Y` or `N`, and a topping in the terminal on separate lines. A blank topping line means none.",
+						"",
+						"Enter `brown sugar milk tea`, `Y`, and `pearls` to get this output after the prompt.",
+						"",
+						"```text",
+						"Flavor: brown sugar milk tea, Iced: true, Topping: pearls",
+						"Matches the most popular order.",
+						"```",
+						"",
+						"Repeat with a blank topping. Explain how the same constructor and driver support both paths."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"JM2-Supplemental-Project-2-Boba",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"JM2-Supplemental-Project-2-Boba",
+						"solution"
+					)
 				}
 			]
 		},
@@ -1597,12 +1663,18 @@ function decorateJavaLevel2Module(
 			"Overloaded Constructors & Comparison Methods: Verification and Reflection",
 			{
 				title: "Equality, Hashing, and Ordering Contract",
+				contentKind: "reading",
+				preserveInstructions: true,
 				content: [
-					"**Completion evidence:**",
-					"- Overloaded constructors delegate to one validity rule and produce equivalent state for equivalent inputs.",
-					"- `equals()` handles self, `null`, wrong type, equal objects, and unequal objects; equal objects return the same `hashCode()`.",
-					"- `compareTo()` documents its sort keys and tie breakers and is tested for negative, zero, and positive results.",
-					"- Ordering is antisymmetric and transitive on the fixture set, and its consistency or intentional difference from equality is stated."
+					"Two calls to `new Book(…)` create different objects. `first == second` compares their references. `first.equals(second)` can return true because the objects describe the same title and author.",
+					"",
+					"An equality method accepts `Object`. In `other instanceof Book book`, the test handles null and other types before exposing `book` for field comparisons. The check must agree in both directions and across a chain of equal objects.",
+					"",
+					"Matching title and author make these copies equal, and equal objects return the same `hashCode()`. Use the same stable fields for both methods. Different books can have the same hash. A `HashSet` uses the hash to find candidates, then uses equality to tell them apart.",
+					"",
+					"**Trace:** Put one copy of The Witches into a `HashSet`. Move its bookmark from 0 to 20. A second copy with the same title and author still matches because the bookmark is outside the equality and hash rules.",
+					"",
+					"**Next module:** JM3 House Class defines sorting separately. A comparison uses its sign and documented tie breakers. Returning zero for a tie does not by itself define equality."
 				].join("\n"),
 				learningPath: "core"
 			}
