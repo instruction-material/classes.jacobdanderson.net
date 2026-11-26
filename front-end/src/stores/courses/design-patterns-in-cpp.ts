@@ -814,31 +814,49 @@ const designPatternsInCppSourceCourse: RawCourse = {
 			title: "DPC11 Legacy Refactoring Lab",
 			curriculum: [
 				{
+					id: "design-patterns-in-cpp-dpc11-legacy-refactoring-lab-curriculum-legacy-refactoring-lab-core-concepts",
 					title: "Diagnosing Inheritance and Raw-Pointer Debt",
+					aliases: [
+						"Legacy Refactoring Lab Core Concepts",
+						"Core Concepts",
+						"Core Concepts and Learning Sequence"
+					],
+					preserveInstructions: true,
+					preserveAssignment: true,
+					contentKind: "reading",
 					content:
-						"Start from a design that still runs but hides ownership, creation, and variation inside raw pointers or switch-heavy control flow. Identify the dominant smells before proposing any pattern."
+						"Trace one task through the legacy dispatcher. The caller hands its channel to makeNotifier, receives a heap-allocated notifier, sends the task and deletes the notifier. The caller also decides when to print an escalation. These are separate responsibilities. The channel chooses the destination; urgency controls the priority report.\n\nRun the two supplied tasks. The ordinary email prints [email] Nightly report is ready. The urgent chat prints [chat] Deploy rollback requested and an escalation line. Save the two delivery lines as the behavior to preserve. Mark the manual delete as the lifetime responsibility to move."
 				},
 				{
 					title: "Reducing Implicit Ownership",
+					preserveInstructions: true,
+					preserveAssignment: true,
+					contentKind: "reading",
 					content:
-						"Refactor the dangerous lifetime edges first by replacing implicit ownership with values, `unique_ptr`, or other explicit handles. This keeps later pattern work from standing on an unsafe memory model."
+						"A return type of LegacyNotifier* does not say who releases the notifier. The starter relies on its caller reaching delete. A std::unique_ptr<DeliveryStrategy> return type gives that responsibility to the returned value. In dispatch, keep the returned pointer in a local variable. Destruction at scope exit also covers an early return or an exception. A virtual destructor lets that pointer correctly destroy a derived strategy.\n\nCompare the notifier with the task. send accepts a const Task& because the task already belongs to its caller and send only reads it during the call. Draw one ownership edge from the local unique pointer to the notifier, and one temporary borrowed edge from send to the task."
 				},
 				{
 					title: "Separating Responsibilities",
+					preserveInstructions: true,
+					preserveAssignment: true,
+					contentKind: "reading",
 					content:
-						"Split construction, delivery behavior, priority rules, and subsystem coordination into their proper places. The right pattern choices emerge from this responsibility cleanup rather than from a predetermined checklist."
+						"Use the two properties independently. DeliveryFactory selects email or chat from the channel. DeliveryStrategy::send reports the message to that destination. PriorityPolicy describes whether the task needs escalation. DispatchFacade coordinates one send followed by one priority report.\n\nTrace a second task with the same message and channel and the opposite urgency. Only its priority report changes. Then keep urgency and message fixed and change the channel. Only the delivery label changes. The core project defines two supported channels, email and chat."
 				},
 				{
 					title: "Compile-Time and Runtime Clarity",
+					preserveInstructions: true,
+					preserveAssignment: true,
+					contentKind: "reading",
 					content:
-						"Explain not just why the new design is safer, but also why it is easier to build, reason about, and debug. Effective C++ refactoring improves both lifetime correctness and day-to-day clarity."
+						"Compile with C++20 and warnings enabled. The factory signature lets the compiler check who can copy or move the owning handle. Run a two-by-two test of ordinary and urgent work on email and chat to check the behavior the type system cannot prove. Count one delivery per task and compare each message, channel and priority report with the prediction.\n\nIn a debugger, stop once at the call to send and once at the priority policy. Record the selected concrete strategy and the task urgency at those two points. Keeping selection and reporting separate makes a channel regression easier to distinguish from a priority regression."
 				},
 				{
 					title: "DPC11 Legacy Refactoring Lab: Core Project",
 					preserveInstructions: true,
 					contentKind: "assignment",
 					content:
-						"Run main.cpp with a C++20 compiler and record the channel and message delivered for each task. In the starter, the caller owns the raw pointer returned by makeNotifier and deletes it after sending. Replace that ownership convention with a factory that returns a unique_ptr to a delivery strategy. Put priority classification in a policy and let a dispatch facade coordinate creation, delivery and reporting.\n\n**Checkpoints:** Dispatch one ordinary chat task and one urgent email task. Each original message must reach its original channel exactly once. The reference also prints standard handling for the chat and immediate escalation for the email. Explain where cleanup happens if delivery exits early.",
+						"Run main.cpp with a C++20 compiler and record the channel and message delivered for each task. In the starter, the caller owns the raw pointer returned by makeNotifier and deletes it after sending. Replace that ownership convention with a factory that returns a unique_ptr to a delivery strategy. Put priority classification in a policy and let a dispatch facade coordinate creation, delivery and reporting.\n\n**Checkpoints:** Use the supplied ordinary email and urgent chat. Each message reaches its original channel exactly once. The reference prints standard handling for the email and immediate escalation for the chat. Explain where cleanup happens if delivery exits early.",
 					projectLink:
 						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/e2c2200e69ae97d5f807fe210aeab3c183018101/DPC8-Legacy-Refactor-Capstone/starter",
 					solutionLink:
@@ -859,29 +877,25 @@ const designPatternsInCppSourceCourse: RawCourse = {
 				},
 				{
 					title: "Legacy Refactor Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle: "DPC11 Legacy Refactoring Lab",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"The workshop charges daily fees for late loans. The existing function has the default rates written in two branches. Build the starter and record the two default totals. Refactor feeFor so the Fees value supplied by the caller is the only source of rates and negative late days count as zero. Use an integer total in cents.\n\n**Checkpoints:** An ordinary loan at two late days costs 150 cents by default. An oversize loan at one late day costs 200 cents. Use 25 and 50 cents as alternate daily rates and verify that the same requests cost 50 and 50. On-time and early returns both cost zero. Explain which behavior the refactor preserves and which result changes only when the caller supplies new rates.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-23-dpc11-legacy-refactoring-lab-supplemental-2/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/cee78b27b76c7c4d596a3df3463491c7e4e981cb/DPC-23-dpc11-legacy-refactoring-lab-supplemental-2/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-23-dpc11-legacy-refactoring-lab-supplemental-2/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/cee78b27b76c7c4d596a3df3463491c7e4e981cb/DPC-23-dpc11-legacy-refactoring-lab-supplemental-2/solution"
 				},
 				{
 					title: "Raw Pointer Refactor Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle: "DPC11 Legacy Refactoring Lab",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"The preview function allocates a receipt and passes the owning pointer back to its caller. The caller adopts it immediately with a unique pointer. Replace that API with a value return and update the caller to print the value directly. A receipt is a snapshot of the booking title and seat count, valid independently of what happens to the booking.\n\n**Checkpoints:** Both versions print Morning drawing: 2. Keep one receipt, change the booking title and seat count, and make a second receipt. The original still shows the original title and 2 seats. Draw the lifetime of the booking and both receipt variables. Verify that the revised function returns Receipt by value.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-24-dpc11-legacy-refactoring-lab-supplemental-3/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/cee78b27b76c7c4d596a3df3463491c7e4e981cb/DPC-24-dpc11-legacy-refactoring-lab-supplemental-3/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-24-dpc11-legacy-refactoring-lab-supplemental-3/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/cee78b27b76c7c4d596a3df3463491c7e4e981cb/DPC-24-dpc11-legacy-refactoring-lab-supplemental-3/solution"
 				}
 			]
 		},
@@ -889,24 +903,42 @@ const designPatternsInCppSourceCourse: RawCourse = {
 			title: "DPC12 Capstone Studio",
 			curriculum: [
 				{
+					id: "design-patterns-in-cpp-dpc12-capstone-studio-curriculum-capstone-studio-core-concepts",
 					title: "Choosing the Right Medium-Sized Problem",
+					aliases: [
+						"Capstone Studio Core Concepts",
+						"Core Concepts",
+						"Core Concepts and Learning Sequence"
+					],
+					preserveInstructions: true,
+					preserveAssignment: true,
+					contentKind: "reading",
 					content:
-						"Use a medium-sized engine, editor tool, simulation framework, or importer pipeline as the capstone target. The project needs enough size for real boundary pressure while staying small enough that every added abstraction can be justified."
+						"Use the asset inventory importer to define a problem with a clear boundary. A batch contains names and quantities. The importer accepts every row and updates the inventory, or rejects the batch and retains the earlier inventory. The command prints accepted totals in name order. The important design pressures are adding a second input format and keeping a failed batch from affecting the totals.\n\nStart with the supplied space format and four baseline tests. Write one accepted and one rejected batch. Keep formatting, file storage, and additional editor features outside the first change so each regression has a small cause to inspect."
 				},
 				{
 					title: "Pattern Justification as a Required Deliverable",
+					preserveInstructions: true,
+					preserveAssignment: true,
+					contentKind: "reading",
 					content:
-						"Name each pattern or C++ ownership tool in the capstone and explain which flexibility, lifetime, or testability pressure it solves. A pattern with no stated pressure is treated as suspect."
+						"For each design choice, name a specific change or failure it controls. A shared record reader keeps validation the same for both formats. A temporary inventory keeps a malformed final row from committing the earlier rows. An ordinary Record value keeps each parsed name and quantity local to one iteration. Show these three choices in a short decision table with a test for each.\n\nTrace a valid row followed by an invalid row. Identify the parser boundary, the temporary record and the point where a complete batch replaces the saved totals. Describe what a class hierarchy would buy if input formats needed their own long-lived state."
 				},
 				{
 					title: "Runtime and Compile-Time Tradeoff Review",
+					preserveInstructions: true,
+					preserveAssignment: true,
+					contentKind: "reading",
 					content:
-						"Review where they chose runtime polymorphism, where they chose compile-time structure, and where they stayed with plain values or small helpers. This keeps the course anchored in judgment rather than catalogue recall."
+						"The reference selects parseSpace or parseComma once at runtime from the requested format. Both functions share a Parser signature and feed readRecord, so the quantity and name rules stay in one place. The selection does not require a heap allocation. A virtual parser interface could carry format-specific state across calls. A fixed parser chosen at compile time fits a tool that is built for exactly one format.\n\nSketch the places a third format would change in each design, then run the same accepted and rejected batches. Compare the smallest change that preserves the common validation and commit boundary."
 				},
 				{
 					title: "Debugging and Sanitizer Readiness",
+					preserveInstructions: true,
+					preserveAssignment: true,
+					contentKind: "reading",
 					content:
-						"Capstone work is verified through warnings, debugger runs, and targeted sanitizer checks where available. The course ends with the expectation that a design is not complete until it survives inspection."
+						"Run ctest --test-dir build -L baseline --output-on-failure after the behavior-preserving refactor. Add the second format in a separate change, then run ctest --test-dir build --output-on-failure for all six supplied cases. Inspect input parsing and the pending totals if an assertion fails.\n\nIn a separate Debug build, enable warnings plus AddressSanitizer and UndefinedBehaviorSanitizer when the compiler supports them. Capture the compiler command and distinguish a test assertion from a sanitizer diagnostic. For the final review, show one successful batch, one rejected final row that leaves earlier totals intact, and a clean rebuild of the refactor without the feature change."
 				},
 				{
 					title: "DPC12 Capstone Studio: Core Project",
@@ -934,29 +966,25 @@ const designPatternsInCppSourceCourse: RawCourse = {
 				},
 				{
 					title: "Capstone Architecture Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle: "DPC12 Capstone Studio",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"A studio planner takes an ordered list of proposed tasks and a minute budget. Complete buildPlan as a function that returns the selected titles and total minutes. Ignore tasks with nonpositive durations. Keep positive-duration tasks in input order and stop at the first one that cannot fit. A task that exactly fills the available time fits. Keep all display code in print.\n\n**Checkpoints:** For tasks of 15, 20 and 10 minutes and a 35-minute budget, the first two tasks fit. At 19 minutes, only the first fits. At 10 minutes, stop at the first task, even though a later task would fit. Try a zero budget, an empty list and a task with a negative estimate. Verify the result by calling buildPlan without capturing console output.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-25-dpc12-capstone-studio-supplemental-2/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/cee78b27b76c7c4d596a3df3463491c7e4e981cb/DPC-25-dpc12-capstone-studio-supplemental-2/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-25-dpc12-capstone-studio-supplemental-2/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/cee78b27b76c7c4d596a3df3463491c7e4e981cb/DPC-25-dpc12-capstone-studio-supplemental-2/solution"
 				},
 				{
 					title: "Capstone Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle: "DPC12 Capstone Studio",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"The supply desk records requests by ID in arrival order. Extend submit to put an urgent request ahead of every ordinary request while maintaining arrival order within each group. An ID already in the queue is rejected and keeps its original position and priority. Work on the queue operation while leaving the display code unchanged.\n\n**Checkpoints:** Submit ordinary A, urgent B, ordinary C and urgent D. The result is B, D, A, C. Submit urgent A again and verify it returns false and the order stays fixed. Try an all-ordinary queue and an all-urgent queue and check that each keeps its original arrival order. Explain where the new insertion rule lives and how the existing duplicate rule still applies.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-26-dpc12-capstone-studio-supplemental-3/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/cee78b27b76c7c4d596a3df3463491c7e4e981cb/DPC-26-dpc12-capstone-studio-supplemental-3/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-26-dpc12-capstone-studio-supplemental-3/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/cee78b27b76c7c4d596a3df3463491c7e4e981cb/DPC-26-dpc12-capstone-studio-supplemental-3/solution"
 				}
 			]
 		},
