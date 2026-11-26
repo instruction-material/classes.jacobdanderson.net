@@ -35,7 +35,8 @@ import {
 import { pictureBookTaskInputs } from "@/stores/courses/pictureBookTaskInputs";
 import {
 	pyGamesCoreResource,
-	pyGamesCoreSourceRevision
+	pyGamesCoreSourceRevision,
+	pyGamesLightControlRevision
 } from "@/modules/pyGamesCoreProjectResources";
 import {
 	pyGamesPinnedSourceUrl,
@@ -5606,14 +5607,18 @@ describe("course text quality normalization", () => {
 			expect(generatedPracticeItem?.content).toContain(
 				"**Required variation:**"
 			);
-			expect(completePackItems).toHaveLength(7);
+			expect(completePackItems).toHaveLength(8);
 			for (const { item, starter } of completePackItems) {
 				const source = pyGamesCoreResource(starter);
 				expect(source).not.toBeNull();
 				expect(source?.role).toBe("starter");
-				expect(source?.resource.ref).toBe(pyGamesCoreSourceRevision);
+				const expectedRevision =
+					source?.pack === "PG-CORE-Light-Control"
+						? pyGamesLightControlRevision
+						: pyGamesCoreSourceRevision;
+				expect(source?.resource.ref).toBe(expectedRevision);
 				expect(item.solutionLink).toBe(
-					`https://github.com/instruction-material/PyGames/tree/${pyGamesCoreSourceRevision}/${source?.pack}/solution`
+					`https://github.com/instruction-material/PyGames/tree/${expectedRevision}/${source?.pack}/solution`
 				);
 			}
 			const selfContainedCoreItems = completePackItems.filter(

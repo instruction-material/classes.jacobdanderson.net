@@ -9,7 +9,9 @@ import {
 	pyGamesCoreImportFiles,
 	pyGamesCorePacks,
 	pyGamesCoreResource,
-	pyGamesCoreSourceRevision
+	pyGamesCoreSourceRevision,
+	pyGamesCoreUrl,
+	pyGamesLightControlRevision
 } from "@/modules/pyGamesCoreProjectResources";
 import {
 	clearLocalPythonProjects,
@@ -33,24 +35,43 @@ const fixture = JSON.parse(
 		{ contentBase64: string; sha256: string; byteLength: number }
 	>;
 };
+const lightControl = JSON.parse(
+	readFileSync(
+		resolve(
+			process.cwd(),
+			"../test/fixtures/pygames-light-control-verified-source.json"
+		),
+		"utf8"
+	)
+) as {
+	revision: string;
+	files: Record<string, string | { sameAs: string }>;
+};
 const roles = pyGamesCorePacks.flatMap(pack =>
 	(["starter", "solution"] as const).map(role => ({ ...pack, role }))
 );
 
-function url(pack: string, role: string) {
-	return `https://github.com/instruction-material/PyGames/tree/${fixture.revision}/${pack}/${role}`;
-}
+const url = pyGamesCoreUrl;
 
 function bytes(path: string) {
-	return Uint8Array.from(
-		Buffer.from(fixture.files[path]!.contentBase64, "base64")
-	);
+	const entry = lightControl.files[path];
+	const encoded =
+		typeof entry === "string"
+			? entry
+			: entry
+				? lightControl.files[entry.sameAs]
+				: fixture.files[path]?.contentBase64;
+	if (typeof encoded !== "string") throw new Error(`Missing fixture ${path}`);
+	return Uint8Array.from(Buffer.from(encoded, "base64"));
 }
 
 function stubFiles(change?: (path: string, body: Uint8Array) => Response) {
 	const fetcher = vi.fn(async (input: string | URL | Request) => {
 		const path = new URL(String(input)).pathname;
-		const prefix = `/instruction-material/PyGames/${fixture.revision}/`;
+		const revision = path.includes("/PG-CORE-Light-Control/")
+			? lightControl.revision
+			: fixture.revision;
+		const prefix = `/instruction-material/PyGames/${revision}/`;
 		expect(path.startsWith(prefix)).toBe(true);
 		const name = decodeURIComponent(path.slice(prefix.length));
 		const body = bytes(name);
@@ -69,7 +90,22 @@ afterEach(() => {
 it.each(roles)(
 	"imports and preserves complete $pack/$role bytes",
 	async entry => {
-		expect(fixture.revision).toBe(pyGamesCoreSourceRevision);
+		const light = entry.pack === "PG-CORE-Light-Control";
+		const assets = light
+			? [
+					"images/battery.png",
+					"images/off_bulb.png",
+					"images/on_bulb.png",
+					"sounds/buzz.ogg"
+				]
+			: ["images/alien.png"];
+		const revision = light ? lightControl.revision : fixture.revision;
+		expect(revision).toBe(
+			light ? pyGamesLightControlRevision : pyGamesCoreSourceRevision
+		);
+		expect(
+			pyGamesCoreResource(url(entry.pack, entry.role))?.resource.ref
+		).toBe(revision);
 		const fetcher = stubFiles();
 		const selected = pyGamesCoreImportFiles(url(entry.pack, entry.role))!;
 		const files = (await loadPyGamesCoreFiles(
@@ -81,10 +117,10 @@ it.each(roles)(
 			"contracts.py",
 			"requirements.txt",
 			"observations.md",
-			"images/alien.png",
+			...assets,
 			"README.md"
 		]);
-		expect(fetcher).toHaveBeenCalledTimes(7);
+		expect(fetcher).toHaveBeenCalledTimes(6 + assets.length);
 		for (const [index, file] of files.entries()) {
 			const data = Buffer.from(
 				file.content,
@@ -152,5 +188,15 @@ it("rejects changed source as well as changed assets", async () => {
 	});
 	await expect(
 		loadPyGamesCoreFiles(url(pyGamesCorePacks[0].pack, "starter"))
+	).rejects.toThrow("selected version");
+});
+
+it("rejects changed Light Control audio before importing a project", async () => {
+	stubFiles((path, body) => {
+		if (path.endsWith(".ogg")) body[body.length - 1] ^= 1;
+		return new Response(body);
+	});
+	await expect(
+		loadPyGamesCoreFiles(url("PG-CORE-Light-Control", "starter"))
 	).rejects.toThrow("selected version");
 });
