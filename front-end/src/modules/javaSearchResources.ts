@@ -6,10 +6,12 @@ const jm2Revision = "9807e7a519e0d9121df1836467e33ccc2c29bd61";
 const jm3Revision = "a6cfdddf6101acbf20677257601c2d46903d2ef6";
 const checkIn1Revision = "5f2fe2649604a8abd97a2bff819fa6699317ac76";
 const checkIn1CoreRevision = "25ffdcd652077cbf95c61b306b4961222eac9910";
+const jm4Revision = "6d361004b256fca624703c26538777527c98b036";
 const jm1Module =
 	"java-level-2-jm1-instance-variables-constructors-and-methods";
 const jm2Module = "java-level-2-jm2-overloaded-constructors-comparison-methods";
 const jm3Module = "java-level-2-jm3-static-variables-methods";
+const jm4Module = "java-level-2-jm4-subclasses-inheritance";
 
 export const javaCheckIn1CarExtensionID =
 	"java-level-2-check-in-1-supplemental-java-level-2-check-in-1-extension-challenge";
@@ -79,6 +81,77 @@ const javaObjectSources = {
 		revision: checkIn1CoreRevision,
 		id: "java-level-2-check-in-1-curriculum-java-level-2-check-in-1-practice-project",
 		files: ["Main.java", "Card.java", "ContractTests.java", "README.md"]
+	},
+	"JM4-Rectangle-and-Square-Class": {
+		revision: jm4Revision,
+		id: `${jm4Module}-curriculum-jm4-project-1-rectangle-and-square-class`,
+		files: [
+			"Main.java",
+			"Rectangle.java",
+			"Square.java",
+			"ContractTests.java",
+			"README.md"
+		]
+	},
+	"JM4-Book-and-Picture-Book-Class": {
+		revision: jm4Revision,
+		id: `${jm4Module}-curriculum-jm4-project-2-book-and-picturebook-class`,
+		files: [
+			"Main.java",
+			"Book.java",
+			"PictureBook.java",
+			"ContractTests.java",
+			"README.md"
+		]
+	},
+	"JM4-Project-3-Vehicle-Inheritance": {
+		revision: jm4Revision,
+		id: `${jm4Module}-curriculum-jm4-project-3-vehicle-inheritance`,
+		files: [
+			"src/main/java/vehicles/Vehicle.java",
+			"src/main/java/vehicles/LandVehicle.java",
+			"src/main/java/vehicles/Car.java",
+			"src/main/java/vehicles/Motorcycle.java",
+			"src/main/java/vehicles/Main.java",
+			"src/test/java/vehicles/ContractTests.java",
+			"sources.txt",
+			"README.md"
+		]
+	},
+	"JM4-Supplemental-Project-1-Pet-Dog-and-Cat-Class": {
+		revision: jm4Revision,
+		id: `${jm4Module}-supplemental-jm4-supplemental-project-1-pet-dog-and-cat-class`,
+		files: [
+			"Main.java",
+			"Pet.java",
+			"Dog.java",
+			"Cat.java",
+			"ContractTests.java",
+			"README.md"
+		]
+	},
+	"JM4-Lesson-and-DanceLesson-Class": {
+		revision: jm4Revision,
+		id: `${jm4Module}-supplemental-jm4-supplemental-project-2-lesson-and-dancelesson-class`,
+		files: [
+			"Main.java",
+			"Lesson.java",
+			"DanceLesson.java",
+			"ContractTests.java",
+			"README.md"
+		]
+	},
+	"J2-04-jm4-subclasses-and-inheritance-supplemental-3": {
+		revision: jm4Revision,
+		id: `${jm4Module}-supplemental-subclasses-inheritance-extension-practice`,
+		files: [
+			"Main.java",
+			"Address.java",
+			"Delivery.java",
+			"PriorityDelivery.java",
+			"ContractTests.java",
+			"README.md"
+		]
 	}
 } as const;
 

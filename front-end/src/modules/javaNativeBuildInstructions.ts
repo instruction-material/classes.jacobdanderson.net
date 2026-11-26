@@ -316,6 +316,16 @@ export function javaNativeBuildInstructions(
 		parts.length === 4 &&
 		extra === "native-java-objects"
 	) {
+		if (objectWorkbook.pack === "JM4-Project-3-Vehicle-Inheritance") {
+			return [
+				"Java 21 packaged vehicle workbook",
+				"Save and extract the ZIP with both src folders and sources.txt intact.",
+				"javac --release 21 -Xlint:all -Werror -d out @sources.txt",
+				"java -cp out vehicles.Main",
+				"java -cp out vehicles.ContractTests",
+				"README.md gives the expected two vehicle descriptions."
+			];
+		}
 		return [
 			"Java 21 object workbook",
 			"Save and download the ZIP. Extract it and open a terminal in the extracted folder.",

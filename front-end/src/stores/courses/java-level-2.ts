@@ -612,70 +612,208 @@ const javaLevel2SourceCourse: RawCourse = {
 			curriculum: [
 				{
 					title: "Subclasses",
-					content:
-						"Learn how subclasses extend superclasses, inherit public behavior, and add or override their own features while still respecting encapsulation."
+					contentKind: "reading",
+					preserveInstructions: true,
+					content: [
+						"A subclass can be used through its parent type when it preserves that type’s contract. Square can be a Rectangle when both dimensions remain fixed. Delivery has an Address, so the address can be stored directly as a value.",
+						"",
+						"The subclass constructor starts with `super(...)` to initialize its parent. A subclass can reuse public behavior and keep its own private fields. An override has the same signature as the method it replaces. Use `@Override` so the compiler checks the signature.",
+						"",
+						"The variable’s declared type determines which methods can be called. For an overridden instance method, the actual object determines which implementation runs. A Square assigned to a Rectangle variable still uses Square’s `shapeName()`.",
+						"",
+						"Predict which code runs in a three-level Vehicle hierarchy. Then change one subtype and check that a different subtype retains its behavior."
+					].join("\n")
 				},
 				{
 					title: "JM4 Project 1: Rectangle and Square Class",
-					content:
-						"Create a `Rectangle` class, then create a `Square` subclass that uses `extends`, calls parent constructors with `super()`, and optionally overrides methods such as `getArea()`.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM4-Rectangle-and-Square-Class",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM4-Rectangle-and-Square-Class"
+					contentKind: "assignment",
+					preserveInstructions: true,
+					ideImport: true,
+					content: [
+						"Give Rectangle immutable positive dimensions and let Square reuse that contract. A square passes its side twice to the parent constructor.",
+						"",
+						"1. Trace `super(side, side)` for a square with side 4. Compare its dimensions with a rectangle of width 3 and length 5.",
+						"2. Override `shapeName()` in Square. Keep the common area and perimeter formulas in Rectangle, where they widen the inputs before arithmetic.",
+						"3. Look at the `Rectangle[]` in the driver. Each iteration calls the correct label method on the actual object and uses the same formulas for all shapes.",
+						"",
+						"```text",
+						"Rectangle: area 15, perimeter 16",
+						"Square: area 16, perimeter 16",
+						"```",
+						"",
+						"Explain why independent width and height setters would break this version of the Square contract.",
+						"",
+						"Save and extract the ZIP. Use Java 21 to run `javac --release 21 -Xlint:all -Werror *.java`, then `java Main` and `java ContractTests`."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"JM4-Rectangle-and-Square-Class",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"JM4-Rectangle-and-Square-Class",
+						"solution"
+					)
 				},
 				{
 					title: "JM4 Project 2: Book and PictureBook Class",
-					content:
-						"Extend a previous `Book` class by creating a `PictureBook` subclass with an illustrator field, custom comparison methods, and an overridden `toString()` method.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM4-Book-and-Picture-Book-Class",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM4-Book-and-Picture-Book-Class"
+					contentKind: "assignment",
+					preserveInstructions: true,
+					ideImport: true,
+					content: [
+						"Use title and author to compare works. For two picture books, use the illustrator as an additional field when comparing illustrated editions.",
+						"",
+						"1. Pass title, author, and bookmark to Book with `super`. Keep the illustrator field in PictureBook.",
+						"2. Implement `sameIllustration(PictureBook)` by checking the inherited `isSameBook` result before comparing the illustrator. An absent book cannot match.",
+						"3. Override `toString()`. Start with the parent display and append the illustrator. A `Book` reference to a PictureBook still uses that display.",
+						"",
+						"```text",
+						"The Lantern by A. Reed, page 5, illustrated by K. Lin",
+						"Same work: true",
+						"Same illustrated edition: false",
+						"```",
+						"",
+						"Predict both comparisons for a pair with the same title and author but different illustrators. Move one bookmark and verify that both comparisons retain their original meaning.",
+						"",
+						"Save and extract the ZIP. Use Java 21 to run `javac --release 21 -Xlint:all -Werror *.java`, then `java Main` and `java ContractTests`."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"JM4-Book-and-Picture-Book-Class",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"JM4-Book-and-Picture-Book-Class",
+						"solution"
+					)
 				},
 				{
 					title: "JM4 Project 3: Vehicle Inheritance",
-					content:
-						"Use a starter project with `Vehicle`, `LandVehicle`, `Car`, and `Motorcycle` classes to practice multi-level inheritance, `super`, and subclass-specific implementations.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM4-Project-3-Vehicle-Inheritance-Starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM4-Project-3-Vehicle-Inheritance"
+					contentKind: "assignment",
+					preserveInstructions: true,
+					ideImport: true,
+					content: [
+						"Trace a three-level hierarchy. Vehicle stores model and year. LandVehicle adds wheels and mileage. Car adds doors, and Motorcycle adds sidecar status.",
+						"",
+						"1. Follow each call to `super(...)` from Car or Motorcycle through the two parent classes.",
+						"2. Add the subclass fields in the `details()` overrides. Call `super.details()` for the shared part. Compare the results through `Vehicle` references.",
+						"3. Predict how adding one mile to the car affects the two output lines. The model rejects negative or nonfinite additions before updating mileage.",
+						"",
+						"```text",
+						"2019 Camry, wheels 4, miles 13.5, doors 4",
+						"2020 Sportster, wheels 2, miles 4.0, sidecar false",
+						"```",
+						"",
+						"Save and extract the ZIP with the `src` folders and `sources.txt` intact. From that folder, use Java 21.",
+						"",
+						"```sh",
+						"javac --release 21 -Xlint:all -Werror -d out @sources.txt",
+						"java -cp out vehicles.Main",
+						"java -cp out vehicles.ContractTests",
+						"```"
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"JM4-Project-3-Vehicle-Inheritance",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"JM4-Project-3-Vehicle-Inheritance",
+						"solution"
+					)
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "JM4 Supplemental Project 1: Pet, Dog, and Cat Class",
-					content:
-						"Create a `Pet` superclass with `Dog` and `Cat` subclasses, override `toString()`, add subclass-specific behaviors, and optionally extend the hierarchy with another pet type.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM4-Supplemental-Project-1-Pet-Dog-and-Cat-Class",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM4-Supplemental-Project-1-Pet-Dog-and-Cat-Class"
+					contentKind: "assignment",
+					preserveInstructions: true,
+					ideImport: true,
+					content: [
+						"Use a shared Pet type for a dog and a cat. The parent field holds the name, and each subtype supplies its own sound.",
+						"",
+						"1. Follow the call from `Pet.introduce()` to the abstract `sound()` method. The method call uses the actual pet.",
+						"2. Implement the Cat override. Keep jump distance in Cat and service status in Dog.",
+						"3. Trace a `Pet[]` holding both objects. Only call subtype-specific methods through references that support those methods.",
+						"",
+						"```text",
+						"Cookie says Bark",
+						"Cheeto says Meow",
+						"Service dog: true",
+						"Jump distance: 5",
+						"```",
+						"",
+						"Check that a cat held through a Pet reference still meows and that creating a second cat leaves the first cat’s jump distance alone.",
+						"",
+						"Save and extract the ZIP. Use Java 21 to run `javac --release 21 -Xlint:all -Werror *.java`, then `java Main` and `java ContractTests`."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"JM4-Supplemental-Project-1-Pet-Dog-and-Cat-Class",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"JM4-Supplemental-Project-1-Pet-Dog-and-Cat-Class",
+						"solution"
+					)
 				},
 				{
 					title: "JM4 Supplemental Project 2: Lesson and DanceLesson Class",
-					content:
-						"Create a `Lesson` class, extend it with a `DanceLesson` subclass, sort lesson objects, and write comparison helpers based on difficulty.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM4-Lesson-and-DanceLesson-Class",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM4-Lesson-and-DanceLesson-Class"
+					contentKind: "assignment",
+					preserveInstructions: true,
+					ideImport: true,
+					content: [
+						"Order mixed lessons by duration. Compare the difficulty of two dance lessons separately. A longer dance lesson can still be easier.",
+						"",
+						"1. Pass the duration and subject to Lesson. Finish the display by appending the dance style and difficulty.",
+						"2. Complete `easierThan` using the two difficulty ratings. Equal ratings and a missing comparison lesson both give false.",
+						"3. Predict which of the 30-, 45-, and 60-minute lessons sorts first. Check whether easier difficulty changes that order.",
+						"",
+						"```text",
+						"Art, 30 minutes",
+						"Dance, 45 minutes, jazz (difficulty 3)",
+						"Dance, 60 minutes, ballet (difficulty 2)",
+						"Ballet is easier: true",
+						"```",
+						"",
+						"Add a second 45-minute lesson. Both compare equally by duration even if the topics differ.",
+						"",
+						"Save and extract the ZIP. Use Java 21 to run `javac --release 21 -Xlint:all -Werror *.java`, then `java Main` and `java ContractTests`."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"JM4-Lesson-and-DanceLesson-Class",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"JM4-Lesson-and-DanceLesson-Class",
+						"solution"
+					)
 				},
 				{
 					title: "Subclasses & Inheritance Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 2",
-						moduleTitle: "JM4 Subclasses & Inheritance",
-						itemTitle:
-							"Subclasses & Inheritance Extension Practice",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/J2-04-jm4-subclasses-and-inheritance-supplemental-3/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/J2-04-jm4-subclasses-and-inheritance-supplemental-3/solution"
+					contentKind: "assignment",
+					preserveInstructions: true,
+					ideImport: true,
+					content: [
+						"A priority delivery is a kind of delivery. A delivery has an address. Use a subclass for the priority fee and an Address field for the destination.",
+						"",
+						"1. Read the Address record as an immutable value holding the street. Trace both delivery constructors as they receive the same address.",
+						"2. Complete `PriorityDelivery.feeCents()` by adding 300 cents to the 500-cent fee from `super.feeCents()`.",
+						"3. Trace both receipt calls through Delivery references. The receipt reads the address and dispatches the fee method to the actual object.",
+						"",
+						"```text",
+						"Market Lane: 500 cents",
+						"Market Lane: 800 cents",
+						"```",
+						"",
+						"Change the destination in a new object. The displayed street changes and the fee stays the same.",
+						"",
+						"Save and extract the ZIP. Use Java 21 to run `javac --release 21 -Xlint:all -Werror *.java`, then `java Main` and `java ContractTests`."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"J2-04-jm4-subclasses-and-inheritance-supplemental-3",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"J2-04-jm4-subclasses-and-inheritance-supplemental-3",
+						"solution"
+					)
 				}
 			]
 		},
@@ -1709,14 +1847,6 @@ function javaLevel2SupplementalPath(title: string) {
 function strengthenJavaLevel2Item(
 	item: RawCourseModuleItem
 ): RawCourseModuleItem {
-	if (item.title === "Subclasses") {
-		return {
-			...item,
-			content:
-				"Learn how subclasses extend superclasses, call parent constructors, and override behavior while preserving the superclass contract. Apply an explicit is-a test, verify substitutability through a parent-typed reference, and compare the design with composition before adding a hierarchy."
-		};
-	}
-
 	if (item.title === "Maps") {
 		return {
 			...item,

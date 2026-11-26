@@ -2175,8 +2175,11 @@ describe("course text quality normalization", () => {
 			expect(corpus).toContain(
 				"Sorting a copy preserves the original order"
 			);
-			expect(corpus).toMatch(
+			expect(corpus).not.toMatch(
 				/Keep a small driver example for [^.\n]+ available while compiling after each state, branch, loop, or dispatch change/
+			);
+			expect(corpus).toContain(
+				"The receipt reads the address and dispatches the fee method to the actual object"
 			);
 			expect(corpus).toMatch(
 				/Change one [^.\n]+ API, allocation, loop, branch, build setting, or diagnostic hook at a time/
