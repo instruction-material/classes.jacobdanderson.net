@@ -1442,10 +1442,10 @@ describe("course text quality normalization", () => {
 				itemTitle: "Reference and Solution Boundaries",
 				minWords: 70,
 				required: [
-					/starter-style/i,
-					/solution-style/i,
-					/course pacing/i,
-					/current project/i
+					/starter/i,
+					/completed reference/i,
+					/truncated input/i,
+					/count mismatch/i
 				]
 			},
 			{
@@ -1461,7 +1461,7 @@ describe("course text quality normalization", () => {
 				required: [
 					/try/i,
 					/catch/i,
-					/checked exceptions/i,
+					/checked exception IOException/i,
 					/safely continue/i
 				]
 			},
@@ -6873,7 +6873,7 @@ describe("course text quality normalization", () => {
 		expect(corpus).not.toMatch(/\bImplementation Lab\b/);
 		expect(corpus).not.toMatch(/\bSupplemental [23]\b/);
 		expect(corpus).toContain(
-			"JM Master Project Example Quiz Game: Practice Studio"
+			"The extension keeps earlier arrivals first on a tie."
 		);
 		expect(corpus).toContain("JM Maze Runner Project Extension Practice");
 		expect(corpus).toContain(

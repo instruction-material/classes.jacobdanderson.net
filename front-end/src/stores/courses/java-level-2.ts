@@ -1,8 +1,6 @@
 import type { RawCourse, RawCourseModuleItem } from "./types";
 import { javaObjectWorkbookURL } from "@/modules/javaSearchResources";
-import { buildImplementationLabGuidance } from "./implementationLabGuidance";
 import { isCoreProjectTitle } from "./projectGrouping";
-import { buildProjectGuidance } from "./projectGuidance";
 import { pendingStaticMediaNotice, staticMediaUrl } from "./staticMedia";
 import { buildSupportSectionGuidance } from "./supportSectionGuidance";
 
@@ -2149,77 +2147,199 @@ const javaLevel2SourceCourse: RawCourse = {
 			curriculum: [
 				{
 					title: "How to Use the Extra Java Level 2 Folders",
-					content:
-						"Treat the additional `Java-Level-2` folders as a deliberate extension bank for file I/O, exception handling, data-structure examples, and alternate console projects. They reinforce the main course rather than replacing it."
+					id: "java-level-2-optional-java-level-2-practice-and-reference-archive-supplemental-how-to-use-the-extra-java-level-2-folders",
+					contentKind: "reading",
+					preserveInstructions: true,
+					preserveAssignment: true,
+					content: [
+						"Choose one exercise that fits a current question. Console Line practices one read and end of input. Counted Sum practices rejecting an incomplete batch. The File I/O extension applies a similar count to an on-disk fixture. For independent review, predict one output before running the code. In a walkthrough, pause at the first rejected input and explain what the caller can still use."
+					].join("\n")
 				},
 				{
 					title: "Reference and Solution Boundaries",
-					content:
-						"The extra folders are support material for comparison, recovery, and extension work. Starter-style folders are useful when a concept needs a smaller practice surface than the main module project; solution-style folders are for reference comparison, debugging comparison, or checking a completed approach after the core reasoning has already been attempted. The main Java 2 progression remains the source of course pacing. These references are best used by naming the concept being checked, the file or class being inspected, and the difference between the reference structure and the current project."
+					id: "java-level-2-optional-java-level-2-practice-and-reference-archive-supplemental-reference-and-solution-boundaries",
+					contentKind: "reading",
+					preserveInstructions: true,
+					preserveAssignment: true,
+					content: [
+						"A starter contains the exercise and a repeatable check. Test the first request before changing code and use the check message to locate the unfinished method. In a review, compare two concrete behaviors, such as what happens on a missing map key or a zero count. Then run the same case in the next project. For example, remove the last row from a copy of values.txt. Compare the starter and the completed reference on that truncated input. The completed reader reports the count mismatch before a caller can use a partial list."
+					].join("\n")
 				},
 				{
 					title: "When to Reach for the Extension Bank",
-					content:
-						"Use these extensions for more structured practice with maps, file handling, console project design, or threading previews before moving on to higher-level Java work."
+					id: "java-level-2-optional-java-level-2-practice-and-reference-archive-supplemental-when-to-reach-for-the-extension-bank",
+					contentKind: "reading",
+					preserveInstructions: true,
+					preserveAssignment: true,
+					content: [
+						"After JM5, use the map reference or fictional alias directory to isolate a duplicate key. After JM6, use the exception example to trace a recovered division. After JM8, use the file exercise to separate an invalid format from a missing file. Use the quiz after JM10 for a small comparison between scoring and result ordering."
+					].join("\n")
 				},
 				{
 					title: "Repo Extension and Reference Library: Verification and Reflection",
-					content: buildSupportSectionGuidance({
-						courseFamily: "Java Level 2",
-						moduleTitle: "Repo Extension and Reference Library",
-						section: "verification"
-					})
+					id: "java-level-2-optional-java-level-2-practice-and-reference-archive-supplemental-verification-review-repo-extension-and-reference-library",
+					contentKind: "reading",
+					preserveInstructions: true,
+					preserveAssignment: true,
+					content: [
+						"Compare an empty line, an empty batch and a missing file. The first is a valid console response, the second is a batch with zero records, and the third is an I/O failure. For a walkthrough, show the relevant test for each case, then explain what callers receive and which inputs can be retried."
+					].join("\n")
 				},
 				{
 					title: "JM11 Repo Extension and Reference Library: Core Project",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 2",
-						moduleTitle:
-							"JM11 Repo Extension and Reference Library",
-						itemTitle:
-							"JM11 Repo Extension and Reference Library: Core Project",
-						projectKind: "extension",
-						hasReference: false
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM-stdinstdout"
+					id: "java-level-2-optional-java-level-2-practice-and-reference-archive-supplemental-core-project-repo-extension-and-reference-library",
+					contentKind: "assignment",
+					preserveInstructions: true,
+					preserveAssignment: true,
+					ideImport: true,
+					content: [
+						"A console tool sees a stream of lines. One request uses a single whole line. Preserve spaces, allow an empty line, and distinguish end of input from an empty line. Read at most once so the same reader can supply another request.",
+						"",
+						"Implement ConsoleLine.read. Trace the two successive reads in ContractTests. Compare a scripted reader with a reader wrapped around System.in. Both provide the same method contract.",
+						"",
+						"The supplied example prints `Echo: [  red fox  ]`.",
+						"",
+						"Save the IDE workspace, download and extract its ZIP, and run the workbook with Java 21 from that folder.",
+						"",
+						"```sh",
+						"javac --release 21 -Xlint:all -Werror *.java",
+						"java Main",
+						"java ContractTests",
+						"```",
+						"",
+						"The starter runs with unfinished behavior. The checks identify which contract still needs to be implemented."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"Archive-Console-Echo",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"Archive-Console-Echo",
+						"solution"
+					)
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "Extension: stdin/stdout Practice",
-					content:
-						"Use a focused console-I/O exercise for more confidence with Java input/output mechanics in isolation.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM-stdinstdout"
+					id: "java-level-2-optional-java-level-2-practice-and-reference-archive-supplemental-extension-stdin-stdout-practice",
+					contentKind: "assignment",
+					preserveInstructions: true,
+					preserveAssignment: true,
+					ideImport: true,
+					content: [
+						"The first input line holds a nonnegative count. Exactly that many signed int values follow, one per line. Whitespace around a number is allowed. Use a long for the sum. Reject a missing header, negative count, missing or extra values, and malformed numbers with IllegalArgumentException.",
+						"",
+						"Implement CountedSum.sum. Use 0 as the header for an empty batch. Compare two inputs that differ only by the last line. Predict whether each produces a sum or an error.",
+						"",
+						"The supplied example prints `Sum: 9`.",
+						"",
+						"Save the IDE workspace, download and extract its ZIP, and run the workbook with Java 21 from that folder.",
+						"",
+						"```sh",
+						"javac --release 21 -Xlint:all -Werror *.java",
+						"java Main",
+						"java ContractTests",
+						"```",
+						"",
+						"The starter runs with unfinished behavior. The checks identify which contract still needs to be implemented."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"Archive-Counted-Sum",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"Archive-Counted-Sum",
+						"solution"
+					)
 				},
 				{
 					title: "Extension: Java File I/O",
-					content:
-						"Use the dedicated file-I/O folder for one more direct pass over reading, writing, and file handling before the larger JM8 work.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM-Java-File-IO"
+					id: "java-level-2-optional-java-level-2-practice-and-reference-archive-supplemental-extension-java-file-i-o",
+					contentKind: "assignment",
+					preserveInstructions: true,
+					preserveAssignment: true,
+					ideImport: true,
+					content: [
+						"The first row of values.txt is the number of integers that follow. Parse UTF-8 text, keep the integers in file order, and return an immutable list. A count of zero gives an empty list. Reject a missing, invalid, or mismatched count and malformed records. Leave the input file intact. An unreadable path still reports an I/O failure.",
+						"",
+						"Implement IntegerFile.read. Change the last number in a copy of values.txt and predict the resulting list. Then remove a line and check that the program reports a format failure before returning any records.",
+						"",
+						"The supplied example prints `Values: [12, -3, 0, 7]`.",
+						"",
+						"Save the IDE workspace, download and extract its ZIP, and run the workbook with Java 21 from that folder.",
+						"",
+						"```sh",
+						"javac --release 21 -Xlint:all -Werror *.java",
+						"java Main",
+						"java ContractTests",
+						"```",
+						"",
+						"The starter runs with unfinished behavior. The checks identify which contract still needs to be implemented."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"Archive-Integer-File",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"Archive-Integer-File",
+						"solution"
+					)
 				},
 				{
 					title: "Reference: HashMaps Examples",
-					content:
-						"This smaller maps example bank isolates `HashMap` mechanics from the larger dealership and file-I/O projects. It is useful for checking key-value vocabulary, insertion, lookup, replacement, removal, iteration over keys or entries, and the difference between a missing key and a key whose value is present but unexpected. A good reference pass compares one concrete map operation with the same operation inside the larger project, then names what data type is used for the key, what data type is used for the value, and what behavior is expected when the key is not found.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM-Java-Hash-Maps-Examples"
+					id: "java-level-2-optional-java-level-2-practice-and-reference-archive-supplemental-reference-hashmaps-examples",
+					contentKind: "reading",
+					preserveInstructions: true,
+					preserveAssignment: true,
+					content: [
+						'With Map<String, Integer> values = new HashMap<>(), put("oak", 2) creates a record. put("oak", 5) replaces the value for the same key, so the map still has one entry. containsKey("elm") is false. remove("oak") returns 5 and the next lookup has no entry. Use getOrDefault("elm", 0) for an absent count when a missing key does not have to be distinguished from a stored zero. To distinguish the two states, put a zero under elm and call containsKey again. Label the key-value types before repeating the trace with the directory project.'
+					].join("\n")
 				},
 				{
 					title: "Extension: Dog Class Test",
-					content:
-						"Use the dog-class test harness as a lightweight object-model review before the later multi-class projects.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM1-Dog-Class-Test"
+					id: "java-level-2-optional-java-level-2-practice-and-reference-archive-supplemental-extension-dog-class-test",
+					contentKind: "assignment",
+					preserveInstructions: true,
+					preserveAssignment: true,
+					ideImport: true,
+					content: [
+						"Each Dog owns its own age and name. The constructor rejects a negative age. birthday increases only the receiver's age by one. At the largest int, it reports overflow before changing that age. A formatted name and age let the caller read the result without accessing the fields.",
+						"",
+						"Implement Dog.birthday. Create two dogs with the same starting age. Call birthday on one and trace the two objects separately. Compare a state check with a check of the formatted text.",
+						"",
+						"The supplied example prints `Dog: Fido (6)`.",
+						"",
+						"Save the IDE workspace, download and extract its ZIP, and run the workbook with Java 21 from that folder.",
+						"",
+						"```sh",
+						"javac --release 21 -Xlint:all -Werror *.java",
+						"java Main",
+						"java ContractTests",
+						"```",
+						"",
+						"The starter runs with unfinished behavior. The checks identify which contract still needs to be implemented."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"Archive-Dog-Birthdays",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"Archive-Dog-Birthdays",
+						"solution"
+					)
 				},
 				{
-					title: "Extension: Tic Tac Toe Console",
-					content:
-						"Use a compact console game to reinforce control flow, object organization, and user interaction without the complexity of the maze branch.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM10-Tic-Tac-Toe-Console"
+					title: "Tic-tac-toe Turn Trace",
+					id: "java-level-2-optional-java-level-2-practice-and-reference-archive-supplemental-extension-tic-tac-toe-console",
+					contentKind: "reading",
+					preserveInstructions: true,
+					preserveAssignment: true,
+					content: [
+						"The console version belongs to the Java Level 2 capstone. Use its Board and GameSession to compare two possible designs. In the supplied program the board rejects a repeated move, so the session asks again with the same mark. Trace X at (1, 1), O at (1, 1), then O at (2, 2). The last move is accepted because the retry does not advance the turn.",
+						"",
+						"Open the [tic-tac-toe capstone](/courses#java-level-2-jm10-master-project-java-level-2-jm10-master-project-curriculum-core-project-java-level-2) to run or edit the same game."
+					].join("\n")
 				},
 				{
 					title: "Preview: Threading Example",
@@ -2230,17 +2350,46 @@ const javaLevel2SourceCourse: RawCourse = {
 				},
 				{
 					title: "Reference: Try-Catch Example",
-					content:
-						"This focused exception-handling example separates the `try`, `catch`, and recovery path from the larger projects. It is useful for comparing checked exceptions, unchecked exceptions, parse failures, file failures, and input validation without extra application logic in the way. The reference target is not just adding a `catch` block; it is identifying which operation can fail, what exception or invalid state represents that failure, what message or fallback is produced, and whether the program can safely continue afterward. A useful review also names which values remain trustworthy after the failure.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM6-Try-Catch-Example"
+					id: "java-level-2-optional-java-level-2-practice-and-reference-archive-supplemental-reference-try-catch-example",
+					contentKind: "reading",
+					preserveInstructions: true,
+					preserveAssignment: true,
+					content: [
+						"When the divisor is 2, integer division of 10 yields 5. When the divisor is 0, Java throws ArithmeticException at the division. A handler for that exception can report the invalid divisor and let the caller try again. The later output still runs. Catch the most specific exception the operation actually expects. Put the division inside try and put the message inside catch. After the handler, the original numerator remains valid. Try another nonzero divisor to verify that the caller can safely continue. ArithmeticException is unchecked. A file read can instead raise the checked exception IOException, which the caller must catch or declare."
+					].join("\n")
 				},
 				{
-					title: "Extension: Password Management System",
-					content:
-						"Use a stronger practical console project to reinforce classes, file handling, and guarded user interaction in one place.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM-Password-Management-System"
+					title: "Extension: Fictional Account Alias Directory",
+					id: "java-level-2-optional-java-level-2-practice-and-reference-archive-supplemental-extension-password-management-system",
+					contentKind: "assignment",
+					preserveInstructions: true,
+					preserveAssignment: true,
+					ideImport: true,
+					content: [
+						"A directory stores one fictional display alias per service. Use supplied names like library and Luna. Trim surrounding spaces and use case-sensitive keys. Reject blank keys, blank aliases and duplicate services. A missing key returns an empty Optional. Real credentials and password storage are outside this exercise.",
+						"",
+						"Implement Directory.add. Key lookup is supplied. Verify that a rejected duplicate leaves the first alias available. Explain which input rule prevents two differently spaced keys from creating duplicate records.",
+						"",
+						"The supplied example prints `Alias: Luna`.",
+						"",
+						"Save the IDE workspace, download and extract its ZIP, and run the workbook with Java 21 from that folder.",
+						"",
+						"```sh",
+						"javac --release 21 -Xlint:all -Werror *.java",
+						"java Main",
+						"java ContractTests",
+						"```",
+						"",
+						"The starter runs with unfinished behavior. The checks identify which contract still needs to be implemented."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"Archive-Fictional-Accounts",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"Archive-Fictional-Accounts",
+						"solution"
+					)
 				}
 			]
 		},
@@ -2249,56 +2398,101 @@ const javaLevel2SourceCourse: RawCourse = {
 			curriculum: [
 				{
 					title: "JM Master Project Example Quiz Game: Core Concepts",
-					content: buildImplementationLabGuidance({
-						courseFamily: "Java Level 2",
-						moduleTitle:
-							"JM Master Project Example Quiz Game: Practice Studio",
-						section: "concepts"
-					})
+					id: "java-level-2-optional-java-level-2-practice-and-reference-archive-supplemental-jm-master-project-example-quiz-game-core-concepts",
+					contentKind: "reading",
+					preserveInstructions: true,
+					preserveAssignment: true,
+					content: [
+						"A quiz keeps the expected answers in question order. A round has a response for each question. Trimming and case-insensitive comparison make ordinary formatting differences irrelevant. A blank response counts as incorrect. A missing item means that the round is incomplete and cannot be included in a score report."
+					].join("\n")
 				},
 				{
 					title: "JM Master Project Example Quiz Game: Guided Example",
-					content: buildImplementationLabGuidance({
-						courseFamily: "Java Level 2",
-						moduleTitle:
-							"JM Master Project Example Quiz Game: Practice Studio",
-						section: "example"
-					})
+					id: "java-level-2-optional-java-level-2-practice-and-reference-archive-supplemental-jm-master-project-example-quiz-game-guided-example",
+					contentKind: "reading",
+					preserveInstructions: true,
+					preserveAssignment: true,
+					content: [
+						"With expected answers Saturn, oxygen and Pacific, the responses “ SATURN ”, “argon” and “pacific” earn two points. The first and last match after normalization. Keep the expected and observed lists at the same indices. Predict the score after changing the middle response to oxygen, then compare a blank middle response with dropping the middle item."
+					].join("\n")
 				},
 				{
 					title: "JM Master Project Example Quiz Game: Core Project",
-					content: buildImplementationLabGuidance({
-						courseFamily: "Java Level 2",
-						moduleTitle:
-							"JM Master Project Example Quiz Game: Practice Studio",
-						section: "coreProject",
-						hasReference: false
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM-Master-Project-Example-Quiz-Game"
+					id: "java-level-2-optional-java-level-2-practice-and-reference-archive-supplemental-core-project-jm-master-project-example-quiz-game",
+					contentKind: "assignment",
+					preserveInstructions: true,
+					preserveAssignment: true,
+					ideImport: true,
+					content: [
+						"The answer key and responses are in question order. Compare a response with the key at the same position. Ignore surrounding spaces and differences in letter case. Each exact normalized match earns one point. A blank response counts as incorrect. Reject an incomplete or oversized response list so a partial round never receives a score.",
+						"",
+						"Implement QuizRound.score. The supplied answers are Saturn, oxygen and Pacific. Explain which two sample responses match. Check how a blank response differs from a missing response.",
+						"",
+						"The supplied example prints `Correct: 2/3`.",
+						"",
+						"Save the IDE workspace, download and extract its ZIP, and run the workbook with Java 21 from that folder.",
+						"",
+						"```sh",
+						"javac --release 21 -Xlint:all -Werror *.java",
+						"java Main",
+						"java ContractTests",
+						"```",
+						"",
+						"The starter runs with unfinished behavior. The checks identify which contract still needs to be implemented."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"Archive-Quiz-Round",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"Archive-Quiz-Round",
+						"solution"
+					)
 				},
 				{
 					title: "JM Master Project Example Quiz Game: Review and Reflection",
-					content: buildImplementationLabGuidance({
-						courseFamily: "Java Level 2",
-						moduleTitle:
-							"JM Master Project Example Quiz Game: Practice Studio",
-						section: "review"
-					})
+					id: "java-level-2-optional-java-level-2-practice-and-reference-archive-supplemental-review-jm-master-project-example-quiz-game",
+					contentKind: "reading",
+					preserveInstructions: true,
+					preserveAssignment: true,
+					content: [
+						"Check a normal match, a blank response, and a response list that ends early. If the result is complete, compare two entries with the same score. The extension keeps earlier arrivals first on a tie. The transfer practice instead groups attempts by topic. Use one trace to explain why those lists serve different purposes."
+					].join("\n")
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "JM Master Project Example Quiz Game: Extension Challenge",
-					content: buildImplementationLabGuidance({
-						courseFamily: "Java Level 2",
-						moduleTitle:
-							"JM Master Project Example Quiz Game: Practice Studio",
-						section: "extension",
-						hasReference: false
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM-Master-Project-Example-Quiz-Game"
+					id: "java-level-2-optional-java-level-2-practice-and-reference-archive-supplemental-extension-challenge-jm-master-project-example-quiz-game",
+					contentKind: "assignment",
+					preserveInstructions: true,
+					preserveAssignment: true,
+					ideImport: true,
+					content: [
+						"Each complete result has a fictional alias and a nonnegative score. Return at most the requested number of entries. Highest scores come first. An equal score stays in original arrival order. Keep the supplied result list unchanged. A zero limit gives an empty list, and a negative limit is invalid.",
+						"",
+						"Implement Leaderboard.top. Lee and Ari tie in the sample. The earlier entry appears first. Try a limit of one and explain why sorting by name would change the result.",
+						"",
+						"The supplied example prints `Top: [Lee (3), Ari (3)]`.",
+						"",
+						"Save the IDE workspace, download and extract its ZIP, and run the workbook with Java 21 from that folder.",
+						"",
+						"```sh",
+						"javac --release 21 -Xlint:all -Werror *.java",
+						"java Main",
+						"java ContractTests",
+						"```",
+						"",
+						"The starter runs with unfinished behavior. The checks identify which contract still needs to be implemented."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"Archive-Quiz-Leaderboard",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"Archive-Quiz-Leaderboard",
+						"solution"
+					)
 				},
 				{
 					title: "JM Master Project Example Quiz Game Transfer Practice",
@@ -2369,53 +2563,57 @@ const javaLevel2SourceCourse: RawCourse = {
 			curriculum: [
 				{
 					title: "JM Maze Runner Project: Core Concepts",
-					content: buildImplementationLabGuidance({
-						courseFamily: "Java Level 2",
-						moduleTitle: "JM Maze Runner Project: Practice Studio",
-						section: "concepts"
-					})
+					id: "java-level-2-optional-java-level-2-practice-and-reference-archive-supplemental-jm-maze-runner-project-core-concepts",
+					contentKind: "reading",
+					preserveInstructions: true,
+					preserveAssignment: true,
+					content: [
+						"A board answers whether a proposed coordinate is legal. A player stores an accepted position. The session reads commands and ends when the exit is reached, time expires, or the input ends. A hint looks only at legal neighbors. A shortest-route search records predecessor moves so it can reconstruct several steps."
+					].join("\n")
 				},
 				{
 					title: "JM Maze Runner Project: Guided Example",
-					content: buildImplementationLabGuidance({
-						courseFamily: "Java Level 2",
-						moduleTitle: "JM Maze Runner Project: Practice Studio",
-						section: "example"
-					})
+					id: "java-level-2-optional-java-level-2-practice-and-reference-archive-supplemental-jm-maze-runner-project-guided-example",
+					contentKind: "reading",
+					preserveInstructions: true,
+					preserveAssignment: true,
+					content: [
+						"In a board row #P E#, the player starts at column 1 and the exit is at column 3. D is legal from the first cell and moves right. A then returns to column 1. Ask for a hint before each move and compare it with the two-step shortest route from the start."
+					].join("\n")
 				},
 				{
-					title: "JM Maze Runner Project: Core Project",
-					content: buildImplementationLabGuidance({
-						courseFamily: "Java Level 2",
-						moduleTitle: "JM Maze Runner Project: Practice Studio",
-						section: "coreProject"
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/Maze-Runner-Part-3",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM-Maze-Runner-Project-Solution"
+					title: "Timed Maze Walkthrough",
+					id: "java-level-2-optional-java-level-2-practice-and-reference-archive-supplemental-core-project-jm-maze-runner-project",
+					contentKind: "reading",
+					preserveInstructions: true,
+					preserveAssignment: true,
+					content: [
+						"The timed console maze has its own starter and reference in JM9. Run the practice board with W, D, D. A wall rejects W without changing the player position. The second D reaches the exit. Start a fresh round and choose Q to verify that leaving the round stops its timer.",
+						"",
+						"Open [Maze Runner Part 3](/courses#java-level-2-optional-java-concurrency-extension-java-level-2-optional-java-concurrency-extension-supplemental-jm9-supplemental-project-1-maze-runner-part-3) to run or edit the timed game."
+					].join("\n")
 				},
 				{
 					title: "JM Maze Runner Project: Review and Reflection",
-					content: buildImplementationLabGuidance({
-						courseFamily: "Java Level 2",
-						moduleTitle: "JM Maze Runner Project: Practice Studio",
-						section: "review"
-					})
+					id: "java-level-2-optional-java-level-2-practice-and-reference-archive-supplemental-review-jm-maze-runner-project",
+					contentKind: "reading",
+					preserveInstructions: true,
+					preserveAssignment: true,
+					content: [
+						"Use a wall, a legal move, and an unreachable exit to distinguish hint behavior from route search. Hints report immediate neighbors. The route can be empty even when some neighbors are legal. On the same board, show one attempted move that is rejected before either query changes its answer."
+					].join("\n")
 				}
 			],
 			supplementalProjects: [
 				{
-					title: "JM Maze Runner Project: Extension Challenge",
-					content: buildImplementationLabGuidance({
-						courseFamily: "Java Level 2",
-						moduleTitle: "JM Maze Runner Project: Practice Studio",
-						section: "extension"
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/Maze-Runner-Part-3",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM-Maze-Runner-Project-Solution"
+					title: "Trace the Maze Deadline Rule",
+					id: "java-level-2-optional-java-level-2-practice-and-reference-archive-supplemental-extension-challenge-jm-maze-runner-project",
+					contentKind: "reading",
+					preserveInstructions: true,
+					preserveAssignment: true,
+					content: [
+						"Compare two rules for a time limit when the player reaches the exit on the boundary tick. Under exit-first rules a legal move that arrives at the exit ends the game before checking elapsed time. Under deadline-first rules the same input may expire. Trace both rules for one accepted move at the deadline and a rejected wall move at the deadline. Write expected end states before checking the timed game in JM9."
+					].join("\n")
 				},
 				{
 					title: "JM Maze Runner Project Transfer Practice",

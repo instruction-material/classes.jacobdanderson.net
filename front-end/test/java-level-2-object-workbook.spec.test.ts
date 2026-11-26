@@ -89,7 +89,14 @@ it("keeps introductory, check-in, inheritance, map, and concurrency workbooks in
 		"J2-19-applied-studio-14-jm-master-project-example-quiz-game-supplemental-2": "Science: 2/3",
 		"J2-20-applied-studio-14-jm-master-project-example-quiz-game-supplemental-3": "Practice: [What orbits Earth?, What is a solid?]",
 		"J2-21-applied-studio-15-jm-maze-runner-project-supplemental-2": "From middle: [A, D]",
-		"J2-22-applied-studio-15-jm-maze-runner-project-supplemental-3": "Shortest route: [D, D]"
+		"J2-22-applied-studio-15-jm-maze-runner-project-supplemental-3": "Shortest route: [D, D]",
+		"Archive-Console-Echo": "Echo: [  red fox  ]",
+		"Archive-Counted-Sum": "Sum: 9",
+		"Archive-Integer-File": "Values: [12, -3, 0, 7]",
+		"Archive-Dog-Birthdays": "Dog: Fido (6)",
+		"Archive-Fictional-Accounts": "Alias: Luna",
+		"Archive-Quiz-Round": "Correct: 2/3",
+		"Archive-Quiz-Leaderboard": "Top: [Lee (3), Ari (3)]"
 	};
 	expect(javaObjectWorkbooks.map(pack => pack.pack)).toEqual(
 		Object.keys(samples)
@@ -141,6 +148,25 @@ it("keeps introductory, check-in, inheritance, map, and concurrency workbooks in
 		expect(
 			javaCourseProjectKey(courseID, pack.id, "reference", starter)
 		).toBe(`${courseID}:${pack.id}:reference`);
+	}
+
+	const archive = tutor?.modules.find(module =>
+		module.title === "Optional Java Level 2 Practice and Reference Archive"
+	);
+	for (const [suffix, targetPack] of [
+		["extension-tic-tac-toe-console", "JM10-Tic-Tac-Toe-Console"],
+		["core-project-jm-maze-runner-project", "Maze-Runner-Part-3"]
+	]) {
+		const walkthrough = archive?.supplementalProjects.find(item => item.id.endsWith(suffix));
+		const target = javaObjectWorkbooks.find(pack => pack.pack === targetPack);
+		const module = tutor?.modules.find(module =>
+			[...module.curriculum, ...module.supplementalProjects].some(item => item.id === target?.id)
+		);
+		expect(walkthrough).toMatchObject({ contentKind: "reading" });
+		expect(walkthrough?.projectLink).toBeUndefined();
+		expect(walkthrough?.solutionLink).toBeUndefined();
+		expect(module).toBeDefined();
+		expect(walkthrough?.content).toContain("/courses#" + module?.id + "-" + target?.id);
 	}
 
 	const car = javaObjectWorkbooks.find(

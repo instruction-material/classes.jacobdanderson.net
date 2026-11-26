@@ -13,6 +13,7 @@ const checkIn2Revision = "24fba59c70a26235ac04138f37f1687ff1bd4208";
 const accountFileRevision = "f9ba887f6da0697318b305aa7ed6cb08e3948692";
 const jm9Revision = "762099a8fe8e6f80ba4c6424ab62000f2400f049";
 const jm10StudiosRevision = "39e8838011f4d781c129aaeee7ba59b33d3147ee";
+const javaArchiveRevision = "8fb61725bd1adcbf7b5efb881add0c726e010291";
 const jm1Module =
 	"java-level-2-jm1-instance-variables-constructors-and-methods";
 const jm2Module = "java-level-2-jm2-overloaded-constructors-comparison-methods";
@@ -595,6 +596,72 @@ const javaObjectSources = {
 			"README.md",
 			"practice.txt",
 			"blocked.txt"
+		]
+	},
+	"Archive-Console-Echo": {
+		revision: javaArchiveRevision,
+		id: `${java2ArchiveModule}-supplemental-core-project-repo-extension-and-reference-library`,
+		files: [
+			"Main.java",
+			"ConsoleLine.java",
+			"ContractTests.java",
+			"README.md"
+		]
+	},
+	"Archive-Counted-Sum": {
+		revision: javaArchiveRevision,
+		id: `${java2ArchiveModule}-supplemental-extension-stdin-stdout-practice`,
+		files: [
+			"Main.java",
+			"CountedSum.java",
+			"ContractTests.java",
+			"README.md"
+		]
+	},
+	"Archive-Integer-File": {
+		revision: javaArchiveRevision,
+		id: `${java2ArchiveModule}-supplemental-extension-java-file-i-o`,
+		files: [
+			"Main.java",
+			"IntegerFile.java",
+			"ContractTests.java",
+			"README.md",
+			"values.txt"
+		]
+	},
+	"Archive-Dog-Birthdays": {
+		revision: javaArchiveRevision,
+		id: `${java2ArchiveModule}-supplemental-extension-dog-class-test`,
+		files: ["Main.java", "Dog.java", "ContractTests.java", "README.md"]
+	},
+	"Archive-Fictional-Accounts": {
+		revision: javaArchiveRevision,
+		id: `${java2ArchiveModule}-supplemental-extension-password-management-system`,
+		files: [
+			"Main.java",
+			"Directory.java",
+			"ContractTests.java",
+			"README.md"
+		]
+	},
+	"Archive-Quiz-Round": {
+		revision: javaArchiveRevision,
+		id: `${java2ArchiveModule}-supplemental-core-project-jm-master-project-example-quiz-game`,
+		files: [
+			"Main.java",
+			"QuizRound.java",
+			"ContractTests.java",
+			"README.md"
+		]
+	},
+	"Archive-Quiz-Leaderboard": {
+		revision: javaArchiveRevision,
+		id: `${java2ArchiveModule}-supplemental-extension-challenge-jm-master-project-example-quiz-game`,
+		files: [
+			"Main.java",
+			"Leaderboard.java",
+			"ContractTests.java",
+			"README.md"
 		]
 	}
 } as const;
