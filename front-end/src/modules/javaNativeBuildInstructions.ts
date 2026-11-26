@@ -52,6 +52,7 @@ import {
 	javaCheckIn2Projects,
 	javaCheckIn3Projects,
 	javaCheckIn4Projects,
+	javaCollectionPipelinesProjects,
 	javaHashTableProjects,
 	javaLevel3SearchProjects,
 	javaLinkedListProjects,
@@ -220,6 +221,12 @@ const javaSearchExtensionInstructions: Partial<Record<string, string>> = {
 		"Enter a name on the first line and a favorite activity on the second line.",
 	[javaReviewProjects[8].id]:
 		"For the optional attendance challenge, run java ContractTests attendance and java Main attendance.",
+	[javaCollectionPipelinesProjects[3].id]:
+		"Keep events.txt next to Main.java. The tests verify both loop and stream counts using the bundled data.",
+	[javaCollectionPipelinesProjects[4].id]:
+		"Keep records.csv next to Main.java. The importer reports rejected rows and leaves its initial records intact.",
+	[javaCollectionPipelinesProjects[5].id]:
+		"Run java Main before editing the starter so its report can be compared with the refactored output.",
 	[javaCheckIn4Projects[0].id]:
 		"For the shortest-hops extension, run java Main hops and java ContractTests hops.",
 	[javaBinaryTreeProjects[0].id]:
@@ -231,6 +238,7 @@ const javaSearchExtensionInstructions: Partial<Record<string, string>> = {
 };
 
 const javaAlgorithmsWithAdditionalClasses = new Set<string>([
+	javaCollectionPipelinesProjects[0].id,
 	javaReferenceLibraryProjects[2].id,
 	javaCheckIn2Projects[1].id,
 	javaSustainableProjects[0].id,

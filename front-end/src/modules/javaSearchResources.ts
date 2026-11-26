@@ -634,6 +634,43 @@ export function javaPackageReviewURL(
 	return `https://github.com/instruction-material/Java-Level-3/tree/${javaPackageReviewRevision}/${pack}/${role}`;
 }
 
+export const javaCollectionPipelinesRevision =
+	"bd188f6179d5596a974e4760efdc3a4b401bdc8b";
+
+export const javaCollectionPipelinesProjects = [
+	{
+		pack: "AJ20-Generic-Repository",
+		id: `${javaAdvancedSequenceModuleID}-supplemental-aj20-project-1-generic-repository-and-query-filters`
+	},
+	{
+		pack: "AJ20-Comparator-Priority-Scheduler",
+		id: `${javaAdvancedSequenceModuleID}-supplemental-aj20-project-2-comparator-driven-priority-scheduler`
+	},
+	{
+		pack: "AJ20-Type-Safe-Plugin-Registry",
+		id: `${javaAdvancedSequenceModuleID}-supplemental-aj20-project-3-type-safe-plugin-registry`
+	},
+	{
+		pack: "AJ21-Log-Analyzer-Pipeline",
+		id: `${javaAdvancedSequenceModuleID}-supplemental-aj21-project-1-log-analyzer-pipeline`
+	},
+	{
+		pack: "AJ21-CSV-Import-Validator",
+		id: `${javaAdvancedSequenceModuleID}-supplemental-aj21-project-2-csv-import-validator`
+	},
+	{
+		pack: "AJ21-Report-Builder-Refactor",
+		id: `${javaAdvancedSequenceModuleID}-supplemental-aj21-project-3-report-builder-refactor`
+	}
+] as const;
+
+export function javaCollectionPipelinesURL(
+	pack: (typeof javaCollectionPipelinesProjects)[number]["pack"],
+	role: "starter" | "solution"
+) {
+	return `https://github.com/instruction-material/Java-Level-3/tree/${javaCollectionPipelinesRevision}/${pack}/${role}`;
+}
+
 const additionalAlgorithmFiles: Partial<Record<string, readonly string[]>> = {
 	[javaBubbleSortProjects[1].id]: ["words.txt"],
 	[javaCheckIn2Projects[1].id]: [
@@ -659,7 +696,15 @@ const additionalAlgorithmFiles: Partial<Record<string, readonly string[]>> = {
 		"RouteFinder.java",
 		"roads.txt"
 	],
-	[javaReferenceLibraryProjects[2].id]: ["HashMap.java"]
+	[javaReferenceLibraryProjects[2].id]: ["HashMap.java"],
+	[javaCollectionPipelinesProjects[0].id]: [
+		"Identified.java",
+		"CourseRecord.java",
+		"StudentRecord.java",
+		"Repository.java"
+	],
+	[javaCollectionPipelinesProjects[3].id]: ["events.txt"],
+	[javaCollectionPipelinesProjects[4].id]: ["records.csv"]
 };
 
 const searchGroups = [
@@ -689,7 +734,14 @@ const searchGroups = [
 		revision: javaReferenceLibraryRevision,
 		projects: javaReferenceLibraryProjects
 	},
-	{ revision: javaPackageReviewRevision, projects: javaPackageReviewProjects }
+	{
+		revision: javaPackageReviewRevision,
+		projects: javaPackageReviewProjects
+	},
+	{
+		revision: javaCollectionPipelinesRevision,
+		projects: javaCollectionPipelinesProjects
+	}
 ] as const;
 
 export const javaLevel3SearchProjects = [
@@ -710,7 +762,8 @@ export const javaLevel3SearchProjects = [
 	...javaStreetSearcherProjects,
 	...javaReviewProjects,
 	...javaReferenceLibraryProjects,
-	...javaPackageReviewProjects
+	...javaPackageReviewProjects,
+	...javaCollectionPipelinesProjects
 ];
 
 export function javaCheckIn1URL(

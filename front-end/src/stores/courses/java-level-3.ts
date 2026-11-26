@@ -12,6 +12,10 @@ import {
 import { buildJavaCheckIn1Module } from "./javaCheckIn1Teaching";
 import { buildJavaCheckIn3Module } from "./javaCheckIn3Teaching";
 import { buildJavaCheckIn4Module } from "./javaCheckIn4Teaching";
+import {
+	buildJavaCollectionsModule,
+	buildJavaPipelinesModule
+} from "./javaCollectionPipelinesTeaching";
 import { completeJavaFoundationReview } from "./javaFoundationReviewTeaching";
 import { buildJavaGraphModule } from "./javaGraphTeaching";
 import { buildJavaHashTableModule } from "./javaHashTableTeaching";
@@ -698,92 +702,8 @@ const javaLevel3SourceCourse: RawCourse = {
 		buildJavaStreetSearcherModule(),
 		buildJavaReferenceLibraryModule(),
 		buildJavaPackageReviewModule(),
-		{
-			title: "AJ20 Generics, Interfaces, and Collection API Design",
-			curriculum: [
-				{
-					title: "Generics as API Contracts",
-					content:
-						"**Concept path:** Generics are API contracts for reusable, type-safe code, not angle-bracket decoration. A generic class or method states which type varies while preserving compile-time checks that would be lost with raw `Object` values.\n**Core topics:** Generic classes, generic methods, bounded type parameters, raw-type warnings, and invalid combinations that a well-designed generic API can reject before runtime.\n**Evidence target:** A correct generic design explains the type parameter in plain language, demonstrates at least two concrete type uses, and avoids unchecked casts unless there is a documented reason."
-				},
-				{
-					title: "Interfaces, Comparators, and Collection Choices",
-					content:
-						"**Concept path:** Interfaces separate what a component promises from how it stores data. Collection APIs become clearer when the required behavior is named first: ordering, uniqueness, lookup by key, priority access, queue behavior, or stable iteration.\n**Core topics:** `Comparable`, `Comparator`, `List`, `Set`, `Map`, `Queue`, `PriorityQueue`, iteration order, uniqueness rules, lookup behavior, and custom ordering logic.\n**Decision checkpoint:** The collection choice comes from the operations the program performs most often, not from habit. A scheduler, registry, search index, and report builder each justify different tradeoffs."
-				},
-				{
-					title: "Records as Immutable Data Carriers",
-					content:
-						"**Concept path:** Java `record` types are useful for small immutable data carriers. A record automatically provides a canonical constructor, accessors, `equals`, `hashCode`, and `toString`, which reduces boilerplate when the object mainly represents a named bundle of values.\n**Core topics:** Compact constructors for validation, records implementing interfaces, records as map keys or report rows, and the limits of records when a domain object needs mutation, inheritance, or substantial behavior.\n**Design checkpoint:** A record is a good fit for immutable snapshots such as parsed rows, task requests, coordinates, or score entries. A normal class remains better when identity, lifecycle, mutation, or polymorphic behavior is central."
-				},
-				{
-					title: "AJ20 Project 1: Generic Repository and Query Filters",
-					content:
-						"Build a generic in-memory repository that stores Java `record` objects by ID through a shared interface, supports filtering with predicates, and exposes only safe collection views. Explain the type parameter, what invariants the repository protects, and why records fit immutable snapshot-style data.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ20-Generic-Repository/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ20-Generic-Repository/solution"
-				},
-				{
-					title: "AJ20 Project 2: Comparator-Driven Priority Scheduler",
-					content:
-						"Create a scheduler that can order tasks by deadline, importance, duration, or a custom comparator. Compare `PriorityQueue`, sorted lists, and maps before choosing the main representation.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ20-Comparator-Priority-Scheduler"
-				}
-			],
-			supplementalProjects: [
-				{
-					title: "AJ20 Project 3: Type-Safe Plugin Registry",
-					content:
-						"Design a small registry of named tools or commands with a shared interface. The challenge is to keep registration flexible without falling back to raw `Object` values or unsafe casts.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ20-Type-Safe-Plugin-Registry"
-				}
-			]
-		},
-		{
-			title: "AJ21 Streams, Files, and Data Pipelines",
-			curriculum: [
-				{
-					title: "File-Backed Data Pipelines",
-					content:
-						"**Concept path:** Java file I/O connects naturally to parser and persistence habits from C++. A file-backed pipeline reads raw text, validates records, separates accepted rows from rejected rows, and writes output without corrupting the original data.\n\n**Core topics:** Reading lines, validating required fields, representing bad rows, writing clean output, preserving existing data when import fails, and keeping parsing separate from reporting.\n\n**Design sequence:** Treat raw text as untrusted until it has passed through parsing and validation. Convert each accepted row into a typed object or record, store rejected rows with reasons, then let the reporting stage work only with clean typed data plus a separate warning list.\n\n**Evidence target:** A reliable pipeline shows accepted-row counts, rejected-row reasons, one malformed-input case, and one output file or report that can be regenerated consistently."
-				},
-				{
-					title: "Lambdas, Streams, and Readable Transformations",
-					content:
-						"**Concept path:** Lambdas and streams are tools for clear transformations over collections. They are most useful when the operation can be described as filtering, mapping, sorting, grouping, or collecting rather than mutating many pieces of state at once.\n**Core topics:** `map`, `filter`, `sorted`, `collect`, grouping, custom comparators, method references, and the readability tradeoff between stream chains and explicit loops.\n**Decision checkpoint:** A stream is a good fit when each stage has a clear purpose and minimal hidden state. An explicit loop is better when the logic depends on multiple changing variables, early exits, or step-by-step debugging."
-				},
-				{
-					title: "AJ21 Project 1: Log Analyzer Pipeline",
-					content:
-						"Read a text log, parse valid rows, collect invalid rows, group events by type, compute summary statistics, and print a stable report. Implement the first version with loops and then refactor part of it to streams.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ21-Log-Analyzer-Pipeline"
-				},
-				{
-					title: "AJ21 Project 2: CSV Import Validator",
-					content:
-						"Build a CSV-style importer for records with required fields, type checks, duplicate detection, and a rejected-row report. The program never corrupts the accepted-data set when a later row fails.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ21-CSV-Import-Validator"
-				}
-			],
-			supplementalProjects: [
-				{
-					title: "AJ21 Project 3: Report Builder Refactor",
-					content: `**Project target:** Refactor a messy report generator into a clear data pipeline with separate parsing, aggregation, formatting, and output stages.
-
-**Build path:** First identify the current mixed responsibilities and write down the inputs and outputs for each stage. Then extract one stage at a time, keeping the program runnable after each change so behavior can be compared against the original report.
-
-**Evidence target:** The final version can swap or modify one stage without rewriting the whole pipeline, and a short before-and-after explanation names which responsibility moved into each new method or class.`,
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ21-Report-Builder-Refactor"
-				}
-			]
-		},
+		buildJavaCollectionsModule(),
+		buildJavaPipelinesModule(),
 		{
 			title: "AJ22 Concurrency, Services, and Capstone Architecture",
 			curriculum: [
