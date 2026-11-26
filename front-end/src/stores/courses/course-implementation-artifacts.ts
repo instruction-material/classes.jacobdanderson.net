@@ -5,6 +5,7 @@ import type {
 	RawCourseModuleItem
 } from "./types";
 import { algebra2CheckInFocus } from "./algebra2CheckInFocus";
+import { cppToolchainGuidance } from "./cppToolchainGuidance";
 import { researchBackedExpansionProfiles } from "./research-expansions";
 
 const INSTRUCTION_MATERIAL_URL = "https://github.com/instruction-material";
@@ -2457,6 +2458,7 @@ function addToolchainAssumptionsModule(courseId: string, course: RawCourse) {
 	const courseLabel = course.name.trim() || courseId;
 	const profile = profileFor(courseId);
 	const familyLabel = profile?.family ?? courseLabel;
+	const cpp = cppToolchainGuidance[courseId];
 
 	appendModule(course, {
 		kind: "appendix",
@@ -2464,49 +2466,73 @@ function addToolchainAssumptionsModule(courseId: string, course: RawCourse) {
 		curriculum: [
 			{
 				title: `${courseLabel} Setup Assumptions`,
-				content: [
-					`**Concept path:** Treat ${courseLabel} setup and version expectations as part of the course material. Before a project begins, confirm the expected runtime, editor, compiler, simulator, or lab environment and record any version-specific deviation in the reproducibility notes.`,
-					`**Assumptions:**\n${bullets(assumptions)}`,
-					`**Evidence target:** Each ${courseLabel} project opens with a clear expected toolchain, first verification command or smoke test, and any version-specific behavior that matters.`
-				].join("\n\n")
+				contentKind: cpp ? "reading" : undefined,
+				preserveInstructions: cpp ? true : undefined,
+				content:
+					cpp?.setup ??
+					[
+						`**Concept path:** Treat ${courseLabel} setup and version expectations as part of the course material. Before a project begins, confirm the expected runtime, editor, compiler, simulator, or lab environment and record any version-specific deviation in the reproducibility notes.`,
+						`**Assumptions:**\n${bullets(assumptions)}`,
+						`**Evidence target:** Each ${courseLabel} project opens with a clear expected toolchain, first verification command or smoke test, and any version-specific behavior that matters.`
+					].join("\n\n")
 			},
 			{
 				title: `${courseLabel} Upgrade Rule`,
-				content: [
-					`**Concept path:** When the ${courseLabel} toolchain changes, update starter files, screenshots, setup wording, and smoke tests together. The setup does not silently rely on a local machine that already has old dependencies installed.`,
-					`**Update checklist:** Re-run the first project from a clean checkout, confirm the first error message or success output still matches the course text, refresh any screenshot that shows a versioned UI, and update dependency or compiler notes if defaults changed.`,
-					`**Evidence targets:**\n- The current ${familyLabel} version is named.\n- The ${courseLabel} first-run verification step is still valid.\n- Any known ${courseLabel} version-specific exception is documented.\n- A fresh setup for ${courseLabel} does not depend on old global packages, cached editor settings, or unrecorded local files.`
-				].join("\n\n")
+				contentKind: cpp ? "reading" : undefined,
+				preserveInstructions: cpp ? true : undefined,
+				content:
+					cpp?.upgrade ??
+					[
+						`**Concept path:** When the ${courseLabel} toolchain changes, update starter files, screenshots, setup wording, and smoke tests together. The setup does not silently rely on a local machine that already has old dependencies installed.`,
+						`**Update checklist:** Re-run the first project from a clean checkout, confirm the first error message or success output still matches the course text, refresh any screenshot that shows a versioned UI, and update dependency or compiler notes if defaults changed.`,
+						`**Evidence targets:**\n- The current ${familyLabel} version is named.\n- The ${courseLabel} first-run verification step is still valid.\n- Any known ${courseLabel} version-specific exception is documented.\n- A fresh setup for ${courseLabel} does not depend on old global packages, cached editor settings, or unrecorded local files.`
+					].join("\n\n")
 			},
 			{
 				title: `${courseLabel} Platform Fallbacks`,
-				content: [
-					`**Concept path:** If ${courseLabel} can run on multiple operating systems, name the primary path and at least one fallback. If it cannot, say so directly and explain the prerequisite. A fallback preserves the learning objective even when the exact editor, compiler, simulator, operating system, or package version differs.`,
-					`**Evidence target:** The ${courseLabel} setup notes identify whether the work requires macOS, Windows, Linux, a VM/container, browser-only tools, or an online simulation.`
-				].join("\n\n")
+				contentKind: cpp ? "reading" : undefined,
+				preserveInstructions: cpp ? true : undefined,
+				content:
+					cpp?.fallback ??
+					[
+						`**Concept path:** If ${courseLabel} can run on multiple operating systems, name the primary path and at least one fallback. If it cannot, say so directly and explain the prerequisite. A fallback preserves the learning objective even when the exact editor, compiler, simulator, operating system, or package version differs.`,
+						`**Evidence target:** The ${courseLabel} setup notes identify whether the work requires macOS, Windows, Linux, a VM/container, browser-only tools, or an online simulation.`
+					].join("\n\n")
 			},
 			{
 				title: `${courseLabel} Reproducibility Notes`,
-				content: [
-					`**Concept path:** Reusable ${courseLabel} projects include enough setup notes that a fresh checkout or fresh browser session can reproduce the assignment. Record package versions, compiler flags, data paths, Unity/Xcode/editor versions, or lab VM assumptions when they affect the work. The notes identify what is required, what is optional, and what can be substituted without changing the core concept.`,
-					`**Evidence target:** Re-running the ${courseLabel} project does not depend on hidden local state.`
-				].join("\n\n")
+				contentKind: cpp ? "reading" : undefined,
+				preserveInstructions: cpp ? true : undefined,
+				content:
+					cpp?.reproduce ??
+					[
+						`**Concept path:** Reusable ${courseLabel} projects include enough setup notes that a fresh checkout or fresh browser session can reproduce the assignment. Record package versions, compiler flags, data paths, Unity/Xcode/editor versions, or lab VM assumptions when they affect the work. The notes identify what is required, what is optional, and what can be substituted without changing the core concept.`,
+						`**Evidence target:** Re-running the ${courseLabel} project does not depend on hidden local state.`
+					].join("\n\n")
 			}
 		],
 		supplementalProjects: [
 			{
 				title: `${courseLabel} First-Run Smoke Test`,
-				content: [
-					`**Project goal:** Create or run the smallest verification step that proves the ${courseLabel} toolchain is ready. A useful smoke test avoids full-project complexity and checks only the first thing that must work: compile and run, open the simulator, load the dataset, start the local server, or execute a minimal script.`,
-					`**Completion checks:**\n- The exact ${courseLabel} command, editor action, or simulation URL is recorded.\n- The expected ${courseLabel} success output is documented.\n- One common ${familyLabel} failure and recovery step is listed.\n- The ${courseLabel} smoke test is small enough to rerun after updates without masking setup problems inside unrelated project code.`
-				].join("\n\n")
+				contentKind: cpp ? "assignment" : undefined,
+				preserveInstructions: cpp ? true : undefined,
+				content:
+					cpp?.smoke ??
+					[
+						`**Project goal:** Create or run the smallest verification step that proves the ${courseLabel} toolchain is ready. A useful smoke test avoids full-project complexity and checks only the first thing that must work: compile and run, open the simulator, load the dataset, start the local server, or execute a minimal script.`,
+						`**Completion checks:**\n- The exact ${courseLabel} command, editor action, or simulation URL is recorded.\n- The expected ${courseLabel} success output is documented.\n- One common ${familyLabel} failure and recovery step is listed.\n- The ${courseLabel} smoke test is small enough to rerun after updates without masking setup problems inside unrelated project code.`
+					].join("\n\n")
 			},
 			{
 				title: `${courseLabel} Version Drift Review`,
-				content: [
-					`**Project goal:** Compare the current ${courseLabel} assumption against the installed or recommended version and document whether the course needs an update. Version drift matters when screenshots no longer match, commands change, package APIs move, browser behavior changes, or a compiler/runtime emits different warnings than the lesson expects.`,
-					`**Completion checks:**\n- Current installed/recommended ${familyLabel} version is named.\n- Any breaking ${courseLabel} UI/API/build difference is recorded.\n- The ${courseLabel} version-drift note shows whether to proceed, update, or use a fallback.\n- The ${courseLabel} review distinguishes harmless cosmetic differences from changes that affect instructions, tests, or expected output.`
-				].join("\n\n")
+				contentKind: cpp ? "assignment" : undefined,
+				preserveInstructions: cpp ? true : undefined,
+				content:
+					cpp?.drift ??
+					[
+						`**Project goal:** Compare the current ${courseLabel} assumption against the installed or recommended version and document whether the course needs an update. Version drift matters when screenshots no longer match, commands change, package APIs move, browser behavior changes, or a compiler/runtime emits different warnings than the lesson expects.`,
+						`**Completion checks:**\n- Current installed/recommended ${familyLabel} version is named.\n- Any breaking ${courseLabel} UI/API/build difference is recorded.\n- The ${courseLabel} version-drift note shows whether to proceed, update, or use a fallback.\n- The ${courseLabel} review distinguishes harmless cosmetic differences from changes that affect instructions, tests, or expected output.`
+					].join("\n\n")
 			}
 		]
 	});
