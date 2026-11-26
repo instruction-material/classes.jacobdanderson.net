@@ -29,6 +29,26 @@ function allItems() {
 }
 
 describe("Python to Java and C++ Bridge learner flow", () => {
+	it("keeps authored checkpoints and language choices free of generated tasks", async () => {
+		const course = (await loadRawCourse("python-to-java-and-cpp-bridge"))!;
+		const items = course.modules.flatMap(module => [
+			...module.curriculum,
+			...module.supplementalProjects
+		]);
+		const sourceReview = items.find(
+			item => item.title === "Project: Starter Source Review"
+		)!;
+		expect(sourceReview.content).toContain(
+			"reading checkpoint within the warmup"
+		);
+		expect(sourceReview.projectLink).toBeUndefined();
+		for (const item of items) {
+			expect(item.content, item.title).not.toMatch(
+				/^\*\*(?:Goal|Focus|Concept path|Optional · Extension):\*\*/m
+			);
+		}
+	});
+
 	it("keeps the authored capstone instructions specific to the chosen port", async () => {
 		const course = await loadRawCourse("python-to-java-and-cpp-bridge");
 		const capstone = course?.modules.find(
