@@ -1,4 +1,5 @@
 import type { RawCourse, RawCourseModuleItem } from "./types";
+import { javaObjectWorkbookURL } from "@/modules/javaSearchResources";
 import { buildImplementationLabGuidance } from "./implementationLabGuidance";
 import { isCoreProjectTitle } from "./projectGrouping";
 import { buildProjectGuidance } from "./projectGuidance";
@@ -38,29 +39,29 @@ const javaLevel2SourceCourse: RawCourse = {
 				{
 					title: "Bridge from Robot Objects to Custom Classes",
 					content:
-						"Start Java Level 2 by revisiting the visible robot object from Java Level 1. The robot had state, constructor arguments, and methods; now students design their own classes with the same ideas made explicit in fields, constructors, and instance methods."
+						"A robot’s row and column can change while the robot’s class stays the same. A `Dog` follows the same pattern: its fields store the state, the constructor fills those fields, and instance methods act on the object that receives the call. Creating a second dog makes a separate set of fields."
 				},
 				{
 					title: "BlueJ Object Bench and Console Fallback",
 					content:
-						"BlueJ's object bench supports in-class object instantiation, field inspection, and method calls before a larger driver program is written. CodeHS or the browser Code IDE provides the outside-class fallback, with small `main()` traces and `toString()` output replacing object-bench inspection."
+						"In BlueJ, compile the class, create two `Dog` objects from its constructor, then call `setAge(5)` on the first object and `getAge()` on both. For the same experiment with the site IDE, open the Dog workbook, save it, and export the ZIP. Open the extracted folder in a terminal with Java 21, compile with `javac --release 21 -Xlint:all -Werror *.java`, then run `java Main`. The starter includes incomplete methods, so compare the finished program with the trace."
 				},
 				{
 					title: "Object State Trace",
 					content:
-						"Before the `Dog`, `Person`, or `Book` projects, a written trace shows constructor call, initial field values, one method call, and the resulting state change. This keeps object-oriented programming tied to visible evidence instead of vocabulary alone."
+						'Trace `new Dog("Fido", 4, 15.5, true)` and `new Dog("Scout", 2, 11, true)`. Before calling a setter, the ages are 4 and 2. After `fido.setAge(5)`, the ages are 5 and 2 because the receiver of the call is `fido`. Calling `fido.getAge()` reads 5 and leaves both ages unchanged.'
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "JM0 Supplemental Project 1: Robot-to-Dog Mapping",
 					content:
-						"Make a two-column map from robot ideas to class-design ideas: street/avenue to fields, constructor arguments to initial state, movement commands to methods, and world output to `toString()` or printed traces."
+						"Make a two-column map that pairs each Java Level 1 robot operation with an operation on a dog. For each pair, record the initial fields, the call, and the fields it changes. Include one getter or printed observation that leaves state untouched."
 				},
 				{
 					title: "JM0 Supplemental Project 2: Constructor Trace Card",
 					content:
-						"Pick one upcoming class project and write three constructor calls with expected field values before coding. The completed class makes those predictions visible through getters or `toString()`."
+						"Trace three constructor calls: a 4-year-old dog, a 0-year-old dog, and a dog with age −1. Record all four initial fields for valid objects. The age −1 call should throw an exception before the program can use the object. Compare the trace with the Dog workbook after completing its age rule."
 				}
 			]
 		},
@@ -70,35 +71,86 @@ const javaLevel2SourceCourse: RawCourse = {
 				{
 					title: "Introductions and Java Setup",
 					content:
-						"Get comfortable with the Java workspace, custom Java files, and the shift from visual object use to object-oriented class design. Review the role of `main()` as a testing driver while starting to define additional classes in separate files."
+						"Place each public class in its matching file, such as `Dog.java`. Keep `public static void main(String[] args)` in `Main.java` to create objects and print predictions. The Dog workbook uses `ContractTests.java` to compare those predictions with the actual behavior."
 				},
 				{
 					title: "Objects vs. Classes",
 					content:
-						"Learn how a class acts as a template and an object acts as an instance with its own data and behavior. Connect this directly to the earlier robot object: constructor arguments create object state, and method calls change or report that state."
+						"A class defines fields and available methods. Each instance has its own values for instance fields. Inside a constructor with an argument named `age`, `this.age` is the current object’s field and `age` is the parameter. A getter reads a value, a setter controls how it changes, and `toString()` returns a representation that the driver can print."
 				},
 				{
 					title: "JM1 Project 1: Dog Class",
-					content:
-						"Create a `Dog` class with private instance variables, constructors, getters, setters, and a `toString()` method. Then create dog objects in `main()` and use them to practice encapsulation and controlled updates.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM1-Dog-Class"
+					contentKind: "assignment",
+					preserveInstructions: true,
+					ideImport: true,
+					content: [
+						"Create a class whose private instance fields hold each dog’s name, age, weight, and alive status. The starter defines the class and its method signatures in `Dog.java`.",
+						"",
+						"1. Finish `getAge()` so it returns the current dog’s age. Predict the ages of Fido and Scout before making any changes.",
+						"2. Implement `setAge(int)`. Accept zero and positive ages. Throw `IllegalArgumentException` for a negative age before assigning the field. Call the setter from the constructor to apply the same rule at creation.",
+						"3. Finish `toString()` with all four fields in the order shown below. The method returns a string. The caller prints it.",
+						"4. Save the project, export the ZIP, and run these commands with Java 21 from the extracted folder.",
+						"",
+						"```sh",
+						"javac --release 21 -Xlint:all -Werror *.java",
+						"java Main",
+						"java ContractTests",
+						"```",
+						"",
+						"Expected driver output",
+						"",
+						"```text",
+						"4",
+						"Name: Fido, Age: 5, Weight: 15.5, Alive: true",
+						"2",
+						"```",
+						"",
+						"Predict which values should change before running the driver. Use the first failing check to pick the next method to inspect. The completed checks cover two independent dogs, a rejected age, and an age of zero."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"JM1-Dog-Class",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"JM1-Dog-Class",
+						"solution"
+					)
 				},
 				{
 					title: "More on Object-Oriented Programming",
 					content:
-						"Connect the `Dog` class to broader OOP ideas such as modularity, reusability, encapsulation, and scalability."
+						"Private fields keep age updates behind the setter. If the setter checks the new age before assigning it, a rejected call leaves the old age in place. The constructor uses the same rule when an object first receives its age. Trace a valid and a rejected call and explain which line can change the field."
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "JM1 Supplemental Project 1: Employee Class",
-					content:
-						"Create an `Employee` class with identifying information, getters, setters, and a `toString()` method, then create and update employee objects in `main()`.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM1-Supplemental-Project-1-Employee",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM1-Supplemental-Project-1-Employee"
+					contentKind: "assignment",
+					preserveInstructions: true,
+					ideImport: true,
+					content: [
+						"Use the Dog Class field and method pattern to model an employee. The name and numeric ID stay fixed after construction. The position and years worked can change.",
+						"",
+						"1. Inspect the fields, constructor, and getters in `Employee.java`. Record both employees’ initial positions and years.",
+						"2. Complete `setPosition(String)` and `setYearsWorked(int)`. Reject a negative number of years with `IllegalArgumentException` before assigning it. Apply the same rule in the constructor.",
+						"3. Complete `toString()` with the name, position, years worked, and ID. Write Tina’s example ID as `76544`. In Java, the leading zero in `076544` makes the number octal.",
+						"4. Run the same Java 21 build and check commands as the Dog Class project. In the driver, a promotion changes only Jacky’s position and the second setter changes only Tina’s years.",
+						"",
+						"```text",
+						"Name: Jacky, Position: Engineer, Years worked: 1, ID Number: 556614",
+						"Name: Tina, Position: Manager, Years worked: 4, ID Number: 76544",
+						"```",
+						"",
+						"Compare the resulting state for both objects with the original predictions. For an extra check, predict what each getter returns after a rejected years-worked update."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"JM1-Supplemental-Project-1-Employee",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"JM1-Supplemental-Project-1-Employee",
+						"solution"
+					)
 				}
 			]
 		},

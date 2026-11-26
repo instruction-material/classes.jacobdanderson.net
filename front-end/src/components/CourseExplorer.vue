@@ -50,7 +50,7 @@ import {
 	javascriptCourseProjectKey,
 	javascriptCourseResource
 } from "@/modules/javascriptCourseResources";
-import { javaLevel3ProjectKey } from "@/modules/javaSearchResources";
+import { javaCourseProjectKey } from "@/modules/javaSearchResources";
 import { javaStudioProjectKey } from "@/modules/javaStudioResources";
 import { linuxCourseProjectKey } from "@/modules/linuxProjectResources";
 import { machineLearningLibraryProjectKey } from "@/modules/machineLearningNativeInstructions";
@@ -1829,6 +1829,9 @@ function ideStarterHref(item: CourseModuleItem, resource: ResourceLink) {
 	);
 	if (!mode) return "";
 
+	const javaCourse = ["java-level-2", "java-level-3"].includes(
+		selectedCourse.value.id
+	);
 	const starterUrl =
 		mode === "swift"
 			? (swiftCourseResourceUrl(resource.url) ?? resource.url)
@@ -1863,9 +1866,8 @@ function ideStarterHref(item: CourseModuleItem, resource: ResourceLink) {
 											: selectedCourse.value.id ===
 												  "c-systems-engineering"
 												? c17CourseProjectKey
-												: selectedCourse.value.id ===
-													  "java-level-3"
-													? javaLevel3ProjectKey
+												: javaCourse
+													? javaCourseProjectKey
 													: selectedCourse.value
 																.id ===
 														  "design-patterns-in-java"

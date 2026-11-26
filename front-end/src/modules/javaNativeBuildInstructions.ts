@@ -58,6 +58,7 @@ import {
 	javaLevel3SearchProjects,
 	javaLinkedListProjects,
 	javaMergeSortingProjects,
+	javaObjectWorkbooks,
 	javaPackageReviewProjects,
 	javaPriorityMapProjects,
 	javaReferenceLibraryProjects,
@@ -305,6 +306,22 @@ export function javaNativeBuildInstructions(
 	if (studioInstructions) return studioInstructions;
 	const parts = (courseProjectKey ?? "").split(":");
 	const [course, item, role, extra] = parts;
+	if (
+		course === "java-level-2" &&
+		javaObjectWorkbooks.some(project => project.id === item) &&
+		["starter", "reference"].includes(role ?? "") &&
+		parts.length === 4 &&
+		extra === "native-java-objects"
+	) {
+		return [
+			"Java 21 object workbook",
+			"Save and download the ZIP. Extract it and open a terminal in the extracted folder.",
+			"javac --release 21 -Xlint:all -Werror *.java",
+			"java Main",
+			"java ContractTests",
+			"Follow README.md for the expected output. The starter compiles and its method checks pass after the missing behavior is implemented."
+		];
+	}
 	if (
 		course === "design-patterns-in-java" &&
 		[javaCapstoneCoreID, javaCapstoneReadingID].includes(item ?? "") &&

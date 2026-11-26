@@ -1,6 +1,31 @@
 import { githubRawUrl, parseGitHubResource } from "@/modules/codePreview";
 import { javaRecursionProjectKey } from "@/modules/javaRecursionResources";
 
+export const javaObjectWorkbooksRevision =
+	"6dc5e5c6d2659d350b11b5d112f513adfd568bdf";
+const javaObjectModuleID =
+	"java-level-2-jm1-instance-variables-constructors-and-methods";
+
+export const javaObjectWorkbooks = [
+	{
+		pack: "JM1-Dog-Class",
+		id: `${javaObjectModuleID}-curriculum-jm1-project-1-dog-class`,
+		files: ["Main.java", "Dog.java", "ContractTests.java", "README.md"]
+	},
+	{
+		pack: "JM1-Supplemental-Project-1-Employee",
+		id: `${javaObjectModuleID}-supplemental-jm1-supplemental-project-1-employee-class`,
+		files: ["Main.java", "Employee.java", "ContractTests.java", "README.md"]
+	}
+] as const;
+
+export function javaObjectWorkbookURL(
+	pack: (typeof javaObjectWorkbooks)[number]["pack"],
+	role: "starter" | "solution"
+) {
+	return `https://github.com/instruction-material/Java-Level-2/tree/${javaObjectWorkbooksRevision}/${pack}/${role}`;
+}
+
 export const javaSearchRevision = "c4c73df01fcbb97475dd75ef9d30af0940dc55a2";
 export const javaSearchModuleID =
 	"java-level-3-aj5-linear-search-and-big-o-notation";
@@ -824,16 +849,24 @@ export function javaSearchResource(url: string) {
 	if (
 		!resource ||
 		resource.mode !== "tree" ||
-		resource.owner.toLowerCase() !== "instruction-material" ||
-		resource.repo.toLowerCase() !== "java-level-3"
+		resource.owner.toLowerCase() !== "instruction-material"
 	) {
 		return null;
 	}
 	const [pack, role, extra] = resource.path.split("/");
-	const group = searchGroups.find(
-		candidate => candidate.revision === resource.ref
-	);
-	const project = group?.projects.find(candidate => candidate.pack === pack);
+	const repository = resource.repo.toLowerCase();
+	const searchGroup =
+		repository === "java-level-3"
+			? searchGroups.find(
+					candidate => candidate.revision === resource.ref
+				)
+			: undefined;
+	const projects =
+		repository === "java-level-2" &&
+		resource.ref === javaObjectWorkbooksRevision
+			? javaObjectWorkbooks
+			: searchGroup?.projects;
+	const project = projects?.find(candidate => candidate.pack === pack);
 	if (
 		!project ||
 		extra !== undefined ||
@@ -851,10 +884,32 @@ export function javaLevel3ProjectKey(
 	url: string
 ) {
 	const selected = javaSearchResource(url);
-	if (selected && courseID === "java-level-3") {
+	if (
+		selected?.resource.repo.toLowerCase() === "java-level-3" &&
+		courseID === "java-level-3"
+	) {
 		return `${courseID}:${selected.project.id}:${role}:native-java-search`;
 	}
 	return javaRecursionProjectKey(courseID, itemID, role, url);
+}
+
+export function javaCourseProjectKey(
+	courseID: string,
+	itemID: string,
+	role: "starter" | "reference",
+	url: string
+) {
+	if (courseID === "java-level-3") {
+		return javaLevel3ProjectKey(courseID, itemID, role, url);
+	}
+	const base = `${courseID}:${itemID}:${role}`;
+	const selected = javaSearchResource(url);
+	return courseID === "java-level-2" &&
+		selected?.resource.repo.toLowerCase() === courseID &&
+		selected.project.id === itemID &&
+		selected.role === (role === "reference" ? "solution" : "starter")
+		? `${base}:native-java-objects`
+		: base;
 }
 
 export function javaSearchImportFiles(url: string) {
