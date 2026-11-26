@@ -56,6 +56,7 @@ import {
 	javaLevel3SearchProjects,
 	javaLinkedListProjects,
 	javaMergeSortingProjects,
+	javaPackageReviewProjects,
 	javaPriorityMapProjects,
 	javaReferenceLibraryProjects,
 	javaReviewProjects,
@@ -700,6 +701,24 @@ export function javaNativeBuildInstructions(
 				? "The console accepts whitespace-separated integers until quit or end-of-input; an invalid or out-of-range token prints Invalid integer. and processing continues."
 				: "The console prints demonstrations of the five recursive methods. Full input domains, bounds and failure contracts are in README.md.",
 			"Run displays these native build instructions for this pack. Use the terminal's standard input for the console driver."
+		];
+	}
+	if (
+		course === "java-level-3" &&
+		javaPackageReviewProjects.some(project => project.id === item) &&
+		["starter", "reference"].includes(role ?? "") &&
+		parts.length === 4 &&
+		extra === "native-java-search"
+	) {
+		return [
+			"Java 21 packaged workbook",
+			"Save and extract the ZIP with its src directory intact. Run these commands from the folder containing sources.txt.",
+			"javac --release 21 -Xlint:all -Werror -d out @sources.txt",
+			"java -cp out checks.ContractTests",
+			"java -cp out runner.Main",
+			item === javaPackageReviewProjects[2].id && role === "starter"
+				? "Before changing the starter, record the old behavior with java -cp out checks.ContractTests characterize."
+				: "Read README.md for the exercise contract and expected output."
 		];
 	}
 	if (

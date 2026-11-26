@@ -598,6 +598,42 @@ export function javaReferenceLibraryURL(
 	return `https://github.com/instruction-material/Java-Level-3/tree/${javaReferenceLibraryRevision}/${pack}/${role}`;
 }
 
+export const javaPackageReviewRevision =
+	"743f9870eadf6030d688cf7d628d0c02c73b6e4f";
+export const javaAdvancedSequenceModuleID =
+	"java-level-3-optional-advanced-java-engineering-sequence";
+const javaPackageReviewFiles = [
+	"src/runner/Main.java",
+	"src/checks/ContractTests.java",
+	"sources.txt",
+	"README.md"
+] as const;
+
+export const javaPackageReviewProjects = [
+	{
+		pack: "AJ19-Tested-Gradebook-Service",
+		id: `${javaAdvancedSequenceModuleID}-supplemental-aj19-project-1-tested-gradebook-service`,
+		files: ["src/gradebook/Gradebook.java", ...javaPackageReviewFiles]
+	},
+	{
+		pack: "AJ19-Command-Parser-Test-Harness",
+		id: `${javaAdvancedSequenceModuleID}-supplemental-aj19-project-2-command-parser-test-harness`,
+		files: ["src/commands/Parser.java", ...javaPackageReviewFiles]
+	},
+	{
+		pack: "AJ19-Characterization-Test-Bug-Fix",
+		id: `${javaAdvancedSequenceModuleID}-supplemental-aj19-project-3-characterization-test-bug-fix`,
+		files: ["src/quotes/Shipping.java", ...javaPackageReviewFiles]
+	}
+] as const;
+
+export function javaPackageReviewURL(
+	pack: (typeof javaPackageReviewProjects)[number]["pack"],
+	role: "starter" | "solution"
+) {
+	return `https://github.com/instruction-material/Java-Level-3/tree/${javaPackageReviewRevision}/${pack}/${role}`;
+}
+
 const additionalAlgorithmFiles: Partial<Record<string, readonly string[]>> = {
 	[javaBubbleSortProjects[1].id]: ["words.txt"],
 	[javaCheckIn2Projects[1].id]: [
@@ -652,7 +688,8 @@ const searchGroups = [
 	{
 		revision: javaReferenceLibraryRevision,
 		projects: javaReferenceLibraryProjects
-	}
+	},
+	{ revision: javaPackageReviewRevision, projects: javaPackageReviewProjects }
 ] as const;
 
 export const javaLevel3SearchProjects = [
@@ -672,7 +709,8 @@ export const javaLevel3SearchProjects = [
 	...javaCheckIn4Projects,
 	...javaStreetSearcherProjects,
 	...javaReviewProjects,
-	...javaReferenceLibraryProjects
+	...javaReferenceLibraryProjects,
+	...javaPackageReviewProjects
 ];
 
 export function javaCheckIn1URL(
@@ -734,12 +772,15 @@ export function javaLevel3ProjectKey(
 export function javaSearchImportFiles(url: string) {
 	const selected = javaSearchResource(url);
 	if (!selected) return null;
-	const files = [
-		"Main.java",
-		"ContractTests.java",
-		"README.md",
-		...(additionalAlgorithmFiles[selected.project.id] ?? [])
-	];
+	const files =
+		"files" in selected.project
+			? selected.project.files
+			: [
+					"Main.java",
+					"ContractTests.java",
+					"README.md",
+					...(additionalAlgorithmFiles[selected.project.id] ?? [])
+				];
 	return files.map(name => {
 		const path = `${selected.resource.path}/${name}`;
 		return {

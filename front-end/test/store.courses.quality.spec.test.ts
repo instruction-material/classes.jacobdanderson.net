@@ -3440,19 +3440,20 @@ describe("course text quality normalization", () => {
 			"src/stores/courses/java-level-3.ts",
 			"utf8"
 		);
-		const advancedTrackSource = source.slice(
-			source.indexOf(
-				'title: "AJ19 Post-C++ Java Tooling, Testing, and Packages"'
-			)
+		const advanced = course?.modules.find(
+			module => module.title === "Optional Advanced Java Engineering Sequence"
 		);
+		expect(advanced).toBeDefined();
+		const advancedTrackText = [
+			...advanced!.curriculum,
+			...advanced!.supplementalProjects
+		].map(item => item.content).join("\n");
 
-		expect(advancedTrackSource).not.toMatch(/\bCover:/);
-		expect(advancedTrackSource).not.toMatch(
-			/Start with a small buggy service/i
-		);
+		expect(advancedTrackText).not.toMatch(/\bCover:/);
+		expect(advancedTrackText).not.toMatch(/Start with a small buggy service/i);
 		expect(source).not.toMatch(/\bshould\b/i);
 		expect(corpus).toContain(
-			"Package-organized Java projects separate source roots, package names, public APIs, helper classes, build commands, and test entry points"
+			"A class declared in package gradebook belongs under src/gradebook"
 		);
 		expect(corpus).toContain(
 			"Generics are API contracts for reusable, type-safe code"

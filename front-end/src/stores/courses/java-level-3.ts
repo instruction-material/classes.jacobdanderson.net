@@ -16,6 +16,7 @@ import { completeJavaFoundationReview } from "./javaFoundationReviewTeaching";
 import { buildJavaGraphModule } from "./javaGraphTeaching";
 import { buildJavaHashTableModule } from "./javaHashTableTeaching";
 import { buildJavaLinkedListModule } from "./javaLinkedListTeaching";
+import { buildJavaPackageReviewModule } from "./javaPackageReviewTeaching";
 import { buildJavaPriorityMapModule } from "./javaPriorityMapTeaching";
 import { completeJavaRecursionModule } from "./javaRecursionTeaching";
 import { buildJavaReferenceLibraryModule } from "./javaReferenceLibraryTeaching";
@@ -696,44 +697,7 @@ const javaLevel3SourceCourse: RawCourse = {
 		buildJavaCheckIn4Module(),
 		buildJavaStreetSearcherModule(),
 		buildJavaReferenceLibraryModule(),
-		{
-			title: "AJ19 Post-C++ Java Tooling, Testing, and Packages",
-			curriculum: [
-				{
-					title: "Positioning the Advanced Java Track",
-					content:
-						"**Concept path:** This track fits after `C++ Level 3` when the next Java step needs real engineering weight rather than another syntax review. It assumes comfort with classes, data structures, recursion, file-backed command programs, parsing, and medium-size program organization.\n**Java-specific goals:** The emphasis shifts to repeatable builds, packages, testable services, standard-library fluency, safer APIs, and capstone-scale architecture. The problem-solving ideas stay familiar while Java's tooling, library, and design conventions become explicit.\n**Evidence target:** By the end of the track, a project has named package boundaries, a thin console or UI layer, independently testable logic, documented edge cases, and a clear reason for each major data-structure or API choice."
-				},
-				{
-					title: "Packages, Builds, and Test Boundaries",
-					content:
-						"**Concept path:** Package-organized Java projects separate source roots, package names, public APIs, helper classes, build commands, and test entry points. This structure makes the program easier to navigate as it grows and prevents every file from depending on the console runner.\n**Practice targets:** Define a package name that matches the folder structure, keep public classes and helper classes in appropriate places, run the program from the command line or IDE, and create a small test harness even when formal JUnit setup is not used yet.\n**Design checkpoint:** Model logic belongs outside console input and output. A gradebook, parser, or scheduler is stronger when tests can call it without typing into `Scanner`, which is one reason testable code is usually easier to extend."
-				},
-				{
-					title: "AJ19 Project 1: Tested Gradebook Service",
-					content:
-						"Build a package-organized gradebook service with students, assignments, score validation, weighted averages, and a small test harness. The console runner stays thin; the gradebook logic remains independently testable.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ19-Tested-Gradebook-Service"
-				},
-				{
-					title: "AJ19 Project 2: Command Parser Test Harness",
-					content:
-						"Write a command parser for a small CLI and test it without running the whole application. Parse valid commands, reject malformed commands, and explain where validation belongs.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ19-Command-Parser-Test-Harness"
-				}
-			],
-			supplementalProjects: [
-				{
-					title: "AJ19 Project 3: Characterization Test Bug Fix",
-					content:
-						"Characterization tests document what a buggy service currently does before the fix is attempted. The project flow is to capture the current behavior with small repeatable tests, identify the intended behavior, make one safe repair, and update the tests only when the intended behavior is clear. The strongest result includes one test that proves the bug existed and one test that proves the repaired behavior is stable.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ19-Characterization-Test-Bug-Fix"
-				}
-			]
-		},
+		buildJavaPackageReviewModule(),
 		{
 			title: "AJ20 Generics, Interfaces, and Collection API Design",
 			curriculum: [
