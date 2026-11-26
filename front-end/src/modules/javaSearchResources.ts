@@ -671,6 +671,36 @@ export function javaCollectionPipelinesURL(
 	return `https://github.com/instruction-material/Java-Level-3/tree/${javaCollectionPipelinesRevision}/${pack}/${role}`;
 }
 
+export const javaConcurrencySimulationRevision =
+	"58838f5f6eaf09bb5211c8fb7094726b4024f536";
+export const javaConcurrencySimulationProjects = [
+	{
+		pack: "AJ22-Concurrent-Task-Runner",
+		id: `${javaAdvancedSequenceModuleID}-supplemental-aj22-project-1-concurrent-task-runner`,
+		files: ["src/tasks/Runner.java", ...javaPackageReviewFiles]
+	},
+	{
+		pack: "AJ22-Event-Driven-Simulation-Capstone",
+		id: `${javaAdvancedSequenceModuleID}-supplemental-aj22-project-2-event-driven-simulation-capstone`,
+		files: [
+			"src/service/Circulation.java",
+			"src/model/Event.java",
+			"src/input/Script.java",
+			"src/service/EventSink.java",
+			"requests.txt",
+			...javaPackageReviewFiles
+		]
+	}
+] as const;
+export const javaSimulationExtensionID = `${javaAdvancedSequenceModuleID}-supplemental-aj22-project-3-capstone-extension-review`;
+
+export function javaConcurrencySimulationURL(
+	pack: (typeof javaConcurrencySimulationProjects)[number]["pack"],
+	role: "starter" | "solution"
+) {
+	return `https://github.com/instruction-material/Java-Level-3/tree/${javaConcurrencySimulationRevision}/${pack}/${role}`;
+}
+
 const additionalAlgorithmFiles: Partial<Record<string, readonly string[]>> = {
 	[javaBubbleSortProjects[1].id]: ["words.txt"],
 	[javaCheckIn2Projects[1].id]: [
@@ -741,6 +771,10 @@ const searchGroups = [
 	{
 		revision: javaCollectionPipelinesRevision,
 		projects: javaCollectionPipelinesProjects
+	},
+	{
+		revision: javaConcurrencySimulationRevision,
+		projects: javaConcurrencySimulationProjects
 	}
 ] as const;
 
@@ -763,7 +797,8 @@ export const javaLevel3SearchProjects = [
 	...javaReviewProjects,
 	...javaReferenceLibraryProjects,
 	...javaPackageReviewProjects,
-	...javaCollectionPipelinesProjects
+	...javaCollectionPipelinesProjects,
+	...javaConcurrencySimulationProjects
 ];
 
 export function javaCheckIn1URL(

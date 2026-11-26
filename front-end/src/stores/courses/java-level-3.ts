@@ -16,6 +16,7 @@ import {
 	buildJavaCollectionsModule,
 	buildJavaPipelinesModule
 } from "./javaCollectionPipelinesTeaching";
+import { buildJavaConcurrencySimulationModule } from "./javaConcurrencySimulationTeaching";
 import { completeJavaFoundationReview } from "./javaFoundationReviewTeaching";
 import { buildJavaGraphModule } from "./javaGraphTeaching";
 import { buildJavaHashTableModule } from "./javaHashTableTeaching";
@@ -704,44 +705,7 @@ const javaLevel3SourceCourse: RawCourse = {
 		buildJavaPackageReviewModule(),
 		buildJavaCollectionsModule(),
 		buildJavaPipelinesModule(),
-		{
-			title: "AJ22 Concurrency, Services, and Capstone Architecture",
-			curriculum: [
-				{
-					title: "Executors, Tasks, and Shared-State Discipline",
-					content:
-						"**Concept path:** Java concurrency begins with bounded task execution rather than raw thread chaos. An executor manages a controlled pool of workers, while each task keeps its input clear and reports its result through a stable return value or future.\n**Core topics:** `Runnable`, `Callable`, `ExecutorService`, futures, immutable task inputs, deterministic reporting, synchronized shared state when necessary, and ownership rules for mutable data.\n**Safety checkpoint:** Most beginner concurrency bugs come from unclear ownership of mutable state. A correct design identifies which data is task-local, which data is shared, and which code is allowed to mutate shared state."
-				},
-				{
-					title: "Capstone Architecture and Java-Specific Readiness",
-					content:
-						"**Concept path:** The capstone brings the advanced Java track together through explicit architecture decisions. Packages, service boundaries, interfaces, data models, test harnesses, error handling, and one concurrency or event-processing component all need a clear reason to exist.\n**Readiness target:** A strong capstone demonstrates preparation for serious Java design-pattern work, larger data-structure projects, or a service/application course. The code is explainable by responsibilities and data flow, not only by a list of files.\n**Review target:** The final review identifies one strong design choice, one tradeoff that was accepted deliberately, and one concrete improvement that would make the system easier to test, extend, or debug."
-				},
-				{
-					title: "AJ22 Project 1: Concurrent Task Runner",
-					content:
-						"Build a task runner that accepts jobs, executes them with a small executor pool, records success or failure, and prints a final report in deterministic order. The design explanation names task-local data, shared data, synchronization or immutability choices, and the reason the final output remains stable even when tasks finish in different orders.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ22-Concurrent-Task-Runner"
-				},
-				{
-					title: "AJ22 Project 2: Event-Driven Simulation Capstone",
-					content:
-						"Build a medium-size simulation such as a tournament scheduler, delivery dispatch board, library queue, or course registration system. It must include packages, interfaces, persistent input/output, tests or test harnesses, and a clear event loop or task-processing model.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ22-Event-Driven-Simulation-Capstone"
-				}
-			],
-			supplementalProjects: [
-				{
-					title: "AJ22 Project 3: Capstone Extension Review",
-					content:
-						"Perform a structured second pass on the capstone: identify one class that does too much, one API that leaks representation details, and one missing test or manual verification case, then fix the most important issue.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ22-Capstone-Extension-Review"
-				}
-			]
-		},
+		buildJavaConcurrencySimulationModule(),
 		{
 			title: "Pending Demo Media",
 			kind: "appendix",

@@ -53,6 +53,7 @@ import {
 	javaCheckIn3Projects,
 	javaCheckIn4Projects,
 	javaCollectionPipelinesProjects,
+	javaConcurrencySimulationProjects,
 	javaHashTableProjects,
 	javaLevel3SearchProjects,
 	javaLinkedListProjects,
@@ -713,7 +714,10 @@ export function javaNativeBuildInstructions(
 	}
 	if (
 		course === "java-level-3" &&
-		javaPackageReviewProjects.some(project => project.id === item) &&
+		(javaPackageReviewProjects.some(project => project.id === item) ||
+			javaConcurrencySimulationProjects.some(
+				project => project.id === item
+			)) &&
 		["starter", "reference"].includes(role ?? "") &&
 		parts.length === 4 &&
 		extra === "native-java-search"
@@ -726,7 +730,9 @@ export function javaNativeBuildInstructions(
 			"java -cp out runner.Main",
 			item === javaPackageReviewProjects[2].id && role === "starter"
 				? "Before changing the starter, record the old behavior with java -cp out checks.ContractTests characterize."
-				: "Read README.md for the exercise contract and expected output."
+				: item === javaConcurrencySimulationProjects[1].id
+					? "Keep requests.txt beside sources.txt. Run java -cp out checks.ContractTests extension for the snapshot exercise."
+					: "Read README.md for the exercise contract and expected output."
 		];
 	}
 	if (

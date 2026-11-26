@@ -3459,7 +3459,7 @@ describe("course text quality normalization", () => {
 			"Generics are API contracts for reusable, type-safe code"
 		);
 		expect(corpus).toContain(
-			"Java concurrency begins with bounded task execution rather than raw thread chaos"
+			"Keep at most one batch of jobs outstanding"
 		);
 		expect(corpus).toContain("Refactoring Transfer Practice");
 		expect(corpus).toContain("Priority Queue Transfer Practice");
