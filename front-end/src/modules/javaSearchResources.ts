@@ -8,12 +8,15 @@ const checkIn1Revision = "5f2fe2649604a8abd97a2bff819fa6699317ac76";
 const checkIn1CoreRevision = "25ffdcd652077cbf95c61b306b4961222eac9910";
 const jm4Revision = "6d361004b256fca624703c26538777527c98b036";
 const jm5Revision = "9db6074ac0df5e628a32d5f60c753ffe8247c775";
+const jm6Revision = "8971dbd9abd89c73393b58502f907e4177e4ecc3";
 const jm1Module =
 	"java-level-2-jm1-instance-variables-constructors-and-methods";
 const jm2Module = "java-level-2-jm2-overloaded-constructors-comparison-methods";
 const jm3Module = "java-level-2-jm3-static-variables-methods";
 const jm4Module = "java-level-2-jm4-subclasses-inheritance";
 const jm5Module = "java-level-2-jm5-maps";
+const jm6Module = "java-level-2-jm6-exceptions-and-failure-handling";
+const concurrencyModule = "java-level-2-optional-java-concurrency-extension";
 
 export const javaCheckIn1CarExtensionID =
 	"java-level-2-check-in-1-supplemental-java-level-2-check-in-1-extension-challenge";
@@ -203,6 +206,51 @@ const javaObjectSources = {
 		revision: jm5Revision,
 		id: `${jm5Module}-supplemental-maps-extension-practice`,
 		files: ["Stock.java", "Main.java", "ContractTests.java", "README.md"]
+	},
+	"JM6-Try-Catch-Practice": {
+		revision: jm6Revision,
+		id: `${jm6Module}-curriculum-jm6-project-1-try-catch-this`,
+		files: ["Main.java", "Recovery.java", "ContractTests.java", "README.md"]
+	},
+	"JM6-Bouncing-Zeros": {
+		revision: jm6Revision,
+		id: `${concurrencyModule}-curriculum-jm6-project-2-bouncing-zeros`,
+		files: [
+			"Main.java",
+			"SimpleAnimation.java",
+			"ContractTests.java",
+			"README.md"
+		]
+	},
+	"JM6-Supplemental-Project-1-Barnyard-Orchestra": {
+		revision: jm6Revision,
+		id: `${concurrencyModule}-supplemental-jm6-supplemental-project-1-barnyard-orchestra`,
+		files: [
+			"Main.java",
+			"AnimalPlayer.java",
+			"ContractTests.java",
+			"README.md"
+		]
+	},
+	"J2-07-jm6-threading-and-error-handling-supplemental-2": {
+		revision: jm6Revision,
+		id: `${concurrencyModule}-supplemental-threading-error-handling-transfer-practice`,
+		files: [
+			"Main.java",
+			"TemperatureBatch.java",
+			"ContractTests.java",
+			"README.md"
+		]
+	},
+	"J2-08-jm6-threading-and-error-handling-supplemental-3": {
+		revision: jm6Revision,
+		id: `${concurrencyModule}-supplemental-threading-error-handling-extension-practice`,
+		files: [
+			"Main.java",
+			"GateWorker.java",
+			"ContractTests.java",
+			"README.md"
+		]
 	}
 } as const;
 

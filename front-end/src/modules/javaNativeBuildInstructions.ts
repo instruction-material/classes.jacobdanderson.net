@@ -340,6 +340,12 @@ export function javaNativeBuildInstructions(
 						"In the terminal, enter a flavor, Y or N for iced, and a topping on separate lines. A blank topping line means none."
 					]
 				: []),
+			...(objectWorkbook.pack ===
+			"JM6-Supplemental-Project-1-Barnyard-Orchestra"
+				? [
+						"In the terminal, enter cow 0, pig 0, and frog 0 on separate lines."
+					]
+				: []),
 			...(objectWorkbook.pack === "JM-Check-in-1"
 				? [
 						"For the optional batch challenge, run java ContractTests extension."

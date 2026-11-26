@@ -1035,72 +1035,196 @@ const javaLevel2SourceCourse: RawCourse = {
 			curriculum: [
 				{
 					title: "Errors and Exception Handling",
-					content:
-						"Review exceptions as a way to detect and manage problems in a program, then use `try-catch` blocks to keep programs running even when some operations fail."
+					contentKind: "reading",
+					preserveInstructions: true,
+					content: [
+						"Java throws an exception when an operation cannot finish normally. A try block marks the operation. If it throws, Java skips the rest of that block and looks for the first handler whose catch type matches.",
+						"",
+						"Integer division by zero throws `ArithmeticException`. Access outside an array throws `ArrayIndexOutOfBoundsException`. Place each operation in its own try block so the handler can explain the specific failure.",
+						"",
+						"```java",
+						"static String divide(int numerator, int divisor) {",
+						"    try {",
+						'        return "Quotient: " + (numerator / divisor);',
+						"    } catch (ArithmeticException failure) {",
+						'        return "Cannot divide by zero.";',
+						"    }",
+						"}",
+						"```",
+						"",
+						"Trace the expression at divisors 3 and 0 with a numerator of 12. The calls return `Quotient: 4` and `Cannot divide by zero.`. A later call with divisor 2 returns `Quotient: 6` because the failed calculation changed no saved state.",
+						"",
+						"When a normal input check can detect a mistake, validate at the input boundary. Catch an exception where the code can recover, give the caller specific feedback, and try again from trustworthy state."
+					].join("\n")
 				},
 				{
 					title: "JM6 Project 1: Try-Catch This",
-					content:
-						"Practice writing `try-catch` blocks for arithmetic errors such as division by zero and array access errors such as out-of-bounds indices.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM6-Try-Catch-Practice",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM6-Try-Catch-Practice"
+					contentKind: "assignment",
+					preserveInstructions: true,
+					ideImport: true,
+					content: [
+						"Use one method for integer division and one method for looking up a number by array index. Each recovers from one specific failure.",
+						"",
+						"1. Keep only the operation that can fail and its success result inside each try block. Catch `ArithmeticException` around division and `ArrayIndexOutOfBoundsException` around the array lookup. Use the documented response when the operation fails.",
+						"2. Trace the fixed cases in Main. In order, the division cases are 12 ÷ 3, 12 ÷ 0, then 12 ÷ 2. The array cases use indices 1, −1, 3, then 2 with the array [4, 9, 15].",
+						"3. Check that the failed operations leave the array unchanged and allow a corrected request. The driver prints `Quotient: 4`, `Cannot divide by zero.`, and `Quotient: 6` before the index checks. An index outside the array prints `Index outside array.`.",
+						"",
+						"Save the IDE workspace, download and extract its ZIP, and use Java 21 in the extracted folder.",
+						"",
+						"```sh",
+						"javac --release 21 -Xlint:all -Werror *.java",
+						"java Main",
+						"java ContractTests",
+						"```",
+						"",
+						"The starter compiles. Its method checks pass after the missing behavior is implemented."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"JM6-Try-Catch-Practice",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"JM6-Try-Catch-Practice",
+						"solution"
+					)
 				},
 				{
 					title: "Threading in Java",
-					content:
-						"Learn how a thread creates an independent path of execution, how `run()` and `start()` work together, and how `sleep()` introduces delays that often need `try-catch` protection."
+					content: [
+						"A Thread can run a task independently. Put the task body in a Runnable. Calling start schedules it on a new thread. Calling run directly executes the task on the caller’s current thread.",
+						"",
+						"The caller waits with join before reading results produced by the worker. Give each worker its own mutable state, keep its work bounded, and let the caller publish results after every join.",
+						"",
+						"Interrupt requests let a caller signal cancellation. A blocked sleep or await throws InterruptedException and clears the interrupt flag. A worker that exits in that handler restores the flag with Thread.currentThread().interrupt() so its caller can observe the interruption.",
+						"",
+						"Trace a worker that records one frame, then waits before the next. If interrupted during that wait, it exits with just one frame recorded. Tests check the recorded frames and the completion signal, so scheduling and console speed can vary."
+					].join("\n")
 				},
 				{
 					title: "JM6 Project 2: Bouncing Zeros",
-					content:
-						"Create a simple console animation by printing a moving `0`, updating its position, and running the animation inside a thread with controlled timing.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM6-Bouncing-Zeros",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM6-Bouncing-Zeros"
+					contentKind: "assignment",
+					preserveInstructions: true,
+					ideImport: true,
+					content: [
+						"Animate a zero across one row using a single worker. The worker owns its position and direction. Main starts the worker and joins it before announcing completion.",
+						"",
+						"1. Start at column zero, moving right. Print the current frame before moving. Reverse direction at either endpoint, with no repeated edge frame.",
+						"2. Stop after the configured frame count. If a pause is interrupted, restore the thread's interrupted status and exit. The console pause changes the display pace.",
+						"3. Trace seven frames with a width of four. The positions are 0, 1, 2, 3, 2, 1, 0. The two middle frames around the right edge include `...0` and `..0.`. The final line is `Animation complete.`. The checks also interrupt a worker during its first frame without using elapsed time as the correctness check.",
+						"",
+						"Save the IDE workspace, download and extract its ZIP, and use Java 21 in the extracted folder.",
+						"",
+						"```sh",
+						"javac --release 21 -Xlint:all -Werror *.java",
+						"java Main",
+						"java ContractTests",
+						"```",
+						"",
+						"The starter compiles. Its method checks pass after the missing behavior is implemented."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"JM6-Bouncing-Zeros",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"JM6-Bouncing-Zeros",
+						"solution"
+					)
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "JM6 Supplemental Project 1: Barnyard Orchestra",
-					content:
-						"Use multiple threads to create a simple orchestra of repeating animal sounds played at different intervals.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM6-Supplemental-Project-1-Barnyard-Orchestra",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM6-Supplemental-Project-1-Barnyard-Orchestra"
+					contentKind: "assignment",
+					preserveInstructions: true,
+					ideImport: true,
+					content: [
+						"Create a small orchestra with three independent workers. Each worker records two occurrences of one sound. Its optional pause separates the two events.",
+						"",
+						"1. Enter three lines with a known animal and an integer delay from 0 to 1,000 milliseconds, for example `cow 0`, `pig 0`, and `frog 0`. Main validates all three lines before starting workers and handles incomplete input.",
+						"2. Implement the two sound events in AnimalPlayer. After an interrupted delay, restore the interrupted status and end the worker without emitting any further sounds.",
+						"3. Each worker records into a separate list. Main joins all three workers before printing their individual lists in input order. In the example, the first line is `cow: [moo, moo]`. Workers can complete in any order.",
+						"",
+						"Save the IDE workspace, download and extract its ZIP, and use Java 21 in the extracted folder.",
+						"",
+						"```sh",
+						"javac --release 21 -Xlint:all -Werror *.java",
+						"java Main",
+						"java ContractTests",
+						"```",
+						"",
+						"The starter compiles. Its method checks pass after the missing behavior is implemented."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"JM6-Supplemental-Project-1-Barnyard-Orchestra",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"JM6-Supplemental-Project-1-Barnyard-Orchestra",
+						"solution"
+					)
 				},
 				{
 					title: "Threading & Error Handling Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 2",
-						moduleTitle: "JM6 Threading & Error Handling",
-						itemTitle:
-							"Threading & Error Handling Transfer Practice",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/J2-07-jm6-threading-and-error-handling-supplemental-2/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/J2-07-jm6-threading-and-error-handling-supplemental-2/solution"
+					contentKind: "assignment",
+					preserveInstructions: true,
+					ideImport: true,
+					content: [
+						"Summarize two sets of fictional temperature readings. Give each set to a separate worker. Copy the input when constructing a worker so a later edit to the original array cannot affect the report.",
+						"",
+						"1. For a nonempty batch, initialize the minimum and maximum from its first reading. Scan the remaining readings, then publish one summary string.",
+						"2. Return `No readings.` for an empty batch. Use the same result format for one reading and for negative readings.",
+						"3. Main starts both workers and waits with join before reading either result. The sample prints `Hill: min -3, max 5` and `Lake: min 7, max 7`. Predict which result prints first even if the other worker finishes first.",
+						"",
+						"Save the IDE workspace, download and extract its ZIP, and use Java 21 in the extracted folder.",
+						"",
+						"```sh",
+						"javac --release 21 -Xlint:all -Werror *.java",
+						"java Main",
+						"java ContractTests",
+						"```",
+						"",
+						"The starter compiles. Its method checks pass after the missing behavior is implemented."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"J2-07-jm6-threading-and-error-handling-supplemental-2",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"J2-07-jm6-threading-and-error-handling-supplemental-2",
+						"solution"
+					)
 				},
 				{
 					title: "Threading & Error Handling Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 2",
-						moduleTitle: "JM6 Threading & Error Handling",
-						itemTitle:
-							"Threading & Error Handling Extension Practice",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/J2-08-jm6-threading-and-error-handling-supplemental-3/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/J2-08-jm6-threading-and-error-handling-supplemental-3/solution"
+					contentKind: "assignment",
+					preserveInstructions: true,
+					ideImport: true,
+					content: [
+						"Use two CountDownLatch objects as one-time signals. The first lets the caller know a worker is ready. The second lets the caller release that worker. A deadline keeps the wait bounded.",
+						"",
+						"1. Signal readiness, then wait for release with a time limit. Record `Released` when the release arrives or `Timed out` when the deadline passes first.",
+						"2. Catch InterruptedException, record `Cancelled`, and restore the current thread's interrupted status before returning. The caller joins the worker before reading its outcome.",
+						"3. Run Main to release the first worker and cancel the second. The resulting lines are `First job: Released` and `Second job: Cancelled`. Predict what the outcome would be if the caller issued neither signal and kept the release closed.",
+						"",
+						"Save the IDE workspace, download and extract its ZIP, and use Java 21 in the extracted folder.",
+						"",
+						"```sh",
+						"javac --release 21 -Xlint:all -Werror *.java",
+						"java Main",
+						"java ContractTests",
+						"```",
+						"",
+						"The starter compiles. Its method checks pass after the missing behavior is implemented."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"J2-08-jm6-threading-and-error-handling-supplemental-3",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"J2-08-jm6-threading-and-error-handling-supplemental-3",
+						"solution"
+					)
 				}
 			]
 		},
@@ -1986,14 +2110,6 @@ function javaLevel2SupplementalPath(title: string) {
 function strengthenJavaLevel2Item(
 	item: RawCourseModuleItem
 ): RawCourseModuleItem {
-	if (item.title === "Errors and Exception Handling") {
-		return {
-			...item,
-			content:
-				"Use exceptions to represent failures that cannot be handled as ordinary return values. Catch the most specific exception at a boundary that can recover, validate expected user mistakes before throwing, preserve a trustworthy state, and never use an empty catch block or a broad `catch (Exception)` without rethrowing or a documented boundary reason."
-		};
-	}
-
 	if (item.title === "Check-In #2 Overview") {
 		return {
 			...item,

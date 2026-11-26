@@ -10,7 +10,7 @@ import {
 import { useAppStore } from "@/stores/app";
 import { useCoursesStore } from "@/stores/courses";
 
-it("keeps introductory, check-in, inheritance, and map workbooks in their original sections with separate role imports", async () => {
+it("keeps introductory, check-in, inheritance, map, and concurrency workbooks in their original sections with separate role imports", async () => {
 	setActivePinia(createPinia());
 	const courseID = "java-level-2";
 	const read = () => useCoursesStore().loadCourseById(courseID);
@@ -55,7 +55,12 @@ it("keeps introductory, check-in, inheritance, and map workbooks in their origin
 		"JM5-PROJECT-2-DealershipDatabase": "Missing VIN: null",
 		"JM5-Supplemental-Project-1-Lending-Library": "The Cat in the Hat",
 		"J2-05-jm5-maps-supplemental-2": "Missing room: 0",
-		"J2-06-jm5-maps-supplemental-3": "After second: {folder=2, pen=3}"
+		"J2-06-jm5-maps-supplemental-3": "After second: {folder=2, pen=3}",
+		"JM6-Try-Catch-Practice": "Quotient: 6",
+		"JM6-Bouncing-Zeros": "Animation complete.",
+		"JM6-Supplemental-Project-1-Barnyard-Orchestra": "cow: [moo, moo]",
+		"J2-07-jm6-threading-and-error-handling-supplemental-2": "Hill: min -3, max 5",
+		"J2-08-jm6-threading-and-error-handling-supplemental-3": "Second job: Cancelled"
 	};
 	expect(javaObjectWorkbooks.map(pack => pack.pack)).toEqual(
 		Object.keys(samples)
