@@ -127,7 +127,7 @@ describe("Java Level 3 learner flow", () => {
 		);
 		expect(curriculumTitles).toContain("Check-In #2: Bubble Sort");
 		expect(curriculumTitles).toContain(
-			"AJ18 Repo Extension, Starter, and Capstone Library: Core Project"
+			"Compare a Reference and an Attempt"
 		);
 		expect(optionTitles).toContain(
 			"AJ22 Project 2: Event-Driven Simulation Capstone"

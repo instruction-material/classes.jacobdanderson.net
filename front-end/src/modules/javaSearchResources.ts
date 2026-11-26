@@ -476,33 +476,6 @@ export function javaStreetSearcherURL(
 	return `https://github.com/instruction-material/Java-Level-3/tree/${javaStreetSearcherRevision}/${pack}/${role}`;
 }
 
-const additionalAlgorithmFiles: Partial<Record<string, readonly string[]>> = {
-	[javaBubbleSortProjects[1].id]: ["words.txt"],
-	[javaCheckIn2Projects[1].id]: [
-		"BubbleSort.java",
-		"InsertionSort.java",
-		"ListGenerator.java",
-		"MergeSort.java",
-		"SelectionSort.java",
-		"Sort.java"
-	],
-	[javaSustainableProjects[0].id]: ["Bakery.java"],
-	[javaSustainableProjects[2].id]: ["sample.txt"],
-	[javaLinkedListProjects[0].id]: ["LinkedList.java", "ListContract.java"],
-	[javaLinkedListProjects[1].id]: [
-		"DoublyLinkedList.java",
-		"ListContract.java"
-	],
-	[javaHashTableProjects[0].id]: ["HashMap.java", "Map.java"],
-	[javaHashTableProjects[1].id]: ["HashMap.java", "Map.java", "corpus.txt"],
-	[javaStreetSearcherProjects[0].id]: [
-		"StreetGraph.java",
-		"RoadFile.java",
-		"RouteFinder.java",
-		"roads.txt"
-	]
-};
-
 export const javaCheckIn4Revision = "f84c390604c00ae6191122432bd28004b9721fd3";
 export const javaCheckIn4ModuleID = "java-level-3-check-in-4";
 
@@ -601,6 +574,58 @@ export function javaReviewURL(
 	return `https://github.com/instruction-material/Java-Level-3/tree/${javaReviewRevision}/${pack}/${role}`;
 }
 
+export const javaReferenceLibraryRevision =
+	"ba9efe1488db1ef959b0e9ccc51f940c1f5480bc";
+export const javaReferenceLibraryProjects = [
+	{
+		pack: "AJ18-Checked-Reading-Boundary-Packs",
+		id: `${javaReviewPrefix}-supplemental-extension-exceptions-reference-lab`
+	},
+	{
+		pack: "AJ18-Nested-Room-Packs",
+		id: `${javaReviewPrefix}-supplemental-extension-nested-classes`
+	},
+	{
+		pack: "AJ18-Chaining-Resize-Packs",
+		id: `${javaReviewPrefix}-supplemental-extension-separate-chaining-hash-table`
+	}
+] as const;
+
+export function javaReferenceLibraryURL(
+	pack: (typeof javaReferenceLibraryProjects)[number]["pack"],
+	role: "starter" | "solution"
+) {
+	return `https://github.com/instruction-material/Java-Level-3/tree/${javaReferenceLibraryRevision}/${pack}/${role}`;
+}
+
+const additionalAlgorithmFiles: Partial<Record<string, readonly string[]>> = {
+	[javaBubbleSortProjects[1].id]: ["words.txt"],
+	[javaCheckIn2Projects[1].id]: [
+		"BubbleSort.java",
+		"InsertionSort.java",
+		"ListGenerator.java",
+		"MergeSort.java",
+		"SelectionSort.java",
+		"Sort.java"
+	],
+	[javaSustainableProjects[0].id]: ["Bakery.java"],
+	[javaSustainableProjects[2].id]: ["sample.txt"],
+	[javaLinkedListProjects[0].id]: ["LinkedList.java", "ListContract.java"],
+	[javaLinkedListProjects[1].id]: [
+		"DoublyLinkedList.java",
+		"ListContract.java"
+	],
+	[javaHashTableProjects[0].id]: ["HashMap.java", "Map.java"],
+	[javaHashTableProjects[1].id]: ["HashMap.java", "Map.java", "corpus.txt"],
+	[javaStreetSearcherProjects[0].id]: [
+		"StreetGraph.java",
+		"RoadFile.java",
+		"RouteFinder.java",
+		"roads.txt"
+	],
+	[javaReferenceLibraryProjects[2].id]: ["HashMap.java"]
+};
+
 const searchGroups = [
 	{ revision: javaSearchRevision, projects: javaSearchProjects },
 	{ revision: javaBinarySearchRevision, projects: javaBinarySearchProjects },
@@ -623,7 +648,11 @@ const searchGroups = [
 		revision: javaStreetSearcherRevision,
 		projects: javaStreetSearcherProjects
 	},
-	{ revision: javaReviewRevision, projects: javaReviewProjects }
+	{ revision: javaReviewRevision, projects: javaReviewProjects },
+	{
+		revision: javaReferenceLibraryRevision,
+		projects: javaReferenceLibraryProjects
+	}
 ] as const;
 
 export const javaLevel3SearchProjects = [
@@ -642,7 +671,8 @@ export const javaLevel3SearchProjects = [
 	...javaGraphProjects,
 	...javaCheckIn4Projects,
 	...javaStreetSearcherProjects,
-	...javaReviewProjects
+	...javaReviewProjects,
+	...javaReferenceLibraryProjects
 ];
 
 export function javaCheckIn1URL(

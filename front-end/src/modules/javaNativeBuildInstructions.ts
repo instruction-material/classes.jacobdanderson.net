@@ -57,6 +57,7 @@ import {
 	javaLinkedListProjects,
 	javaMergeSortingProjects,
 	javaPriorityMapProjects,
+	javaReferenceLibraryProjects,
 	javaReviewProjects,
 	javaSearchProjects,
 	javaStreetSearcherProjects,
@@ -229,6 +230,7 @@ const javaSearchExtensionInstructions: Partial<Record<string, string>> = {
 };
 
 const javaAlgorithmsWithAdditionalClasses = new Set<string>([
+	javaReferenceLibraryProjects[2].id,
 	javaCheckIn2Projects[1].id,
 	javaSustainableProjects[0].id,
 	javaLinkedListProjects[0].id,
