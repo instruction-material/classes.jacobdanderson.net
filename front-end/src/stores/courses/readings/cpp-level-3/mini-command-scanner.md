@@ -11,7 +11,7 @@ c++ -std=c++20 -Wall -Wextra -Wpedantic -Werror main.cpp -o scanner
 ./scanner
 ```
 
-The untouched starter builds and prints a trace. Before editing, find where its output splits the quoted text and prints words from the comment. The instructor reference produces the complete trace.
+The untouched starter builds and prints a trace. Before editing, find where its output splits the quoted text and prints words from the comment. The reference produces the complete trace.
 
 ## Token rules
 

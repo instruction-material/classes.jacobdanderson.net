@@ -75,7 +75,7 @@ describe("C++ Level 3 learner flow", () => {
 		);
 
 		expect(requiredCount).toBe(22);
-		expect(optionCount).toBe(8);
+		expect(optionCount).toBe(14);
 		expect(options).toContainEqual({
 			path: "challenge",
 			title: "CPPI1 Project 3: Mini Command Scanner"

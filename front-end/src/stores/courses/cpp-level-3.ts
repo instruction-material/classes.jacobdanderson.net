@@ -8,6 +8,7 @@ import { cppCapstoneLessons } from "./cppCapstoneLessons";
 import { cppContainerAuditWorksheet } from "./cppContainerAuditWorksheet";
 import { cppContainerLessons } from "./cppContainerLessons";
 import { cppDebugEvidenceNotebookBrief } from "./cppDebugEvidenceNotebookBrief";
+import { cppLevel3TransferPractice } from "./cppLevel3TransferPractice";
 import { cppMazeSearchBriefs } from "./cppMazeSearchBriefs";
 import { cppRecursionTraceWorksheet } from "./cppRecursionTraceWorksheet";
 import { cppResourceSafetyLessons } from "./cppResourceSafetyLessons";
@@ -50,7 +51,8 @@ const cppLevel3SourceCourse: RawCourse = {
 						"https://github.com/instruction-material/CPP-Level-3/blob/main/CPPI0-Warnings-and-Debugger-Notebook/starter/EVIDENCE.md",
 					solutionLink:
 						"https://github.com/instruction-material/CPP-Level-3/blob/main/CPPI0-Warnings-and-Debugger-Notebook/solution/EVIDENCE.md"
-				}
+				},
+				cppLevel3TransferPractice.build
 			]
 		},
 		{
@@ -125,7 +127,8 @@ const cppLevel3SourceCourse: RawCourse = {
 						"https://github.com/instruction-material/CPP-Level-3/blob/main/CPPI2-Recursion-Trace-Drill/starter/WORKSHEET.md",
 					solutionLink:
 						"https://github.com/instruction-material/CPP-Level-3/blob/main/CPPI2-Recursion-Trace-Drill/solution/WORKED-TRACE.md"
-				}
+				},
+				cppLevel3TransferPractice.maze
 			]
 		},
 		{
@@ -162,7 +165,8 @@ const cppLevel3SourceCourse: RawCourse = {
 						"https://github.com/instruction-material/CPP-Level-3/blob/main/CPPI3-Container-Tradeoff-Audit/starter/WORKSHEET.md",
 					solutionLink:
 						"https://github.com/instruction-material/CPP-Level-3/blob/main/CPPI3-Container-Tradeoff-Audit/solution/WORKED-AUDIT.md"
-				}
+				},
+				cppLevel3TransferPractice.inventory
 			]
 		},
 		{
@@ -195,7 +199,8 @@ const cppLevel3SourceCourse: RawCourse = {
 						"https://github.com/instruction-material/CPP-Level-3/blob/main/CPPI4-Ownership-Rewrite-Reflection/starter/NOTES.md",
 					solutionLink:
 						"https://github.com/instruction-material/CPP-Level-3/blob/main/CPPI4-Ownership-Rewrite-Reflection/solution/WORKED.md"
-				}
+				},
+				cppLevel3TransferPractice.files
 			]
 		},
 		{
@@ -228,7 +233,8 @@ const cppLevel3SourceCourse: RawCourse = {
 						"https://github.com/instruction-material/CPP-Level-3/blob/main/CPPI5-Template-Error-Reading-Drill/WORKSHEET.md",
 					solutionLink:
 						"/ide?course=cpp-level-3&mode=cpp&projectKey=cpp-level-3%3Acppi5-template-diagnostic%3Areference-pack-v1&starterUrl=https%3A%2F%2Fgithub.com%2Finstruction-material%2FCPP-Level-3%2Ftree%2Fmain%2FCPPI5-Template-Error-Reading-Drill%2Fsolution&starterTitle=CPPI5+Project+2%3A+Template+Error+Reading+Drill&starterLabel=Worked+reference&lesson=cpp-level-3-cppi5-value-types-operator-overloading-and-templates"
-				}
+				},
+				cppLevel3TransferPractice.fractions
 			]
 		},
 		{
@@ -261,7 +267,8 @@ const cppLevel3SourceCourse: RawCourse = {
 						"https://github.com/instruction-material/CPP-Level-3/blob/main/CPPI6-Enum-vs-Polymorphic-State-Review/WORKSHEET.md",
 					solutionLink:
 						"/ide?course=cpp-level-3&mode=cpp&projectKey=cpp-level-3%3Acppi6-state-review%3Areference-pack-v1&starterUrl=https%3A%2F%2Fgithub.com%2Finstruction-material%2FCPP-Level-3%2Ftree%2Fmain%2FCPPI6-Enum-vs-Polymorphic-State-Review%2Fsolution&starterTitle=CPPI6+Project+2%3A+Enum+State+versus+Polymorphic+State+Review&starterLabel=Worked+reference&lesson=cpp-level-3-cppi6-polymorphism-and-bridge-to-advanced-c"
-				}
+				},
+				cppLevel3TransferPractice.rover
 			]
 		}
 	]
