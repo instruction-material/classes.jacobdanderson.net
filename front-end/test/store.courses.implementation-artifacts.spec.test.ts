@@ -2,6 +2,12 @@ import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
 import { courseCatalog, loadRawCourse } from "@/stores/courses/index";
+import {
+	javaBinaryTreeURL,
+	javaCollectionPipelinesURL,
+	javaPriorityMapURL,
+	javaStreetSearcherURL
+} from "@/modules/javaSearchResources";
 import { silverJavaPacks } from "@/modules/usacoSilverJavaPacks";
 import {
 	courseContentOnlySourcePolicies,
@@ -629,14 +635,14 @@ describe("implemented course development artifacts", () => {
 		expectAuthoredSourcePair(
 			javaLevel3,
 			"AJ14 Project 3: BST Clear and Remove",
-			"Java-Level-3/tree/main/AJ14-BST-Starter",
-			"Java-Level-3/tree/main/AJ14-BST"
+			javaBinaryTreeURL("AJ14-BST-Removal-Packs", "starter"),
+			javaBinaryTreeURL("AJ14-BST-Removal-Packs", "solution")
 		);
 		expectAuthoredSourcePair(
 			javaLevel3,
 			"AJ17 Project 3: Finding Shortest Paths",
-			"Java-Level-3/tree/main/AJ17-Street-Searcher-Starter",
-			"Java-Level-3/tree/main/AJ17-Street-Searcher"
+			javaStreetSearcherURL("AJ17-Street-Searcher-Packs", "starter"),
+			javaStreetSearcherURL("AJ17-Street-Searcher-Packs", "solution")
 		);
 		expectAuthoredSourcePair(
 			machineLearning,
@@ -924,15 +930,15 @@ describe("implemented course development artifacts", () => {
 		expect(javaLevel1).toContain(`${javaPracticeSource}/Check-In-1/solution`);
 		expect(javaLevel1).not.toContain('APCS/tree/main/APCS-Check-in-1"');
 		expect(javaLevel3).toContain(
-			"Java-Level-3/tree/main/AJ20-Generic-Repository/starter"
+			javaCollectionPipelinesURL("AJ20-Generic-Repository", "starter")
 		);
 		expect(javaLevel3).toContain(
-			"Java-Level-3/tree/main/AJ20-Generic-Repository/solution"
+			javaCollectionPipelinesURL("AJ20-Generic-Repository", "solution")
 		);
-		expect(javaLevel3).not.toContain(
-			'Java-Level-3/tree/main/AJ20-Generic-Repository"'
+		expect(javaLevel3).not.toMatch(
+			/Java-Level-3\/tree\/(?:main|[a-f0-9]{40})\/AJ20-Generic-Repository"/
 		);
-		expect(javaLevel3).toContain("Java-Level-3/tree/main/AJ13-Class-Rank");
+		expect(javaLevel3).toContain(javaPriorityMapURL("AJ13-Class-Rank-Packs", "starter"));
 		expect(javaLevel3).not.toContain(
 			"Python-Level-3/tree/main/AM13-Priority-Queue"
 		);
