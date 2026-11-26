@@ -44,6 +44,7 @@ import {
 import { javaRecursionProjects } from "./javaRecursionResources";
 import { javaRefactoringNativeInstructions } from "./javaRefactoringResources";
 import { javaRefactoringUnitNativeInstructions } from "./javaRefactoringUnits";
+import { javaSearchProjects } from "./javaSearchResources";
 import {
 	javaStructuralCoreID,
 	javaStructuralReadingID
@@ -628,6 +629,25 @@ export function javaNativeBuildInstructions(
 				? "The console accepts whitespace-separated integers until quit or end-of-input; an invalid or out-of-range token prints Invalid integer. and processing continues."
 				: "The console prints demonstrations of the five recursive methods. Full input domains, bounds and failure contracts are in README.md.",
 			"Run displays these native build instructions for this pack. Use the terminal's standard input for the console driver."
+		];
+	}
+	if (
+		course === "java-level-3" &&
+		javaSearchProjects.some(project => project.id === item) &&
+		["starter", "reference"].includes(role ?? "") &&
+		parts.length === 4 &&
+		extra === "native-java-search"
+	) {
+		return [
+			"Java 21 search and growth workflow",
+			"Save and download the ZIP. Extract it and open a terminal in the folder containing Main.java and ContractTests.java.",
+			"javac --release 21 -Xlint:all -Werror Main.java ContractTests.java",
+			"java Main",
+			"java ContractTests",
+			item === javaSearchProjects[0].id
+				? "For the all-matches extension, run java Main all and java ContractTests all."
+				: "Read README.md for the project contract and expected output.",
+			"Compile each pack in a separate folder. Run displays these native build instructions."
 		];
 	}
 	const bronze = bronzeRequiredAssignment(course ?? "", item ?? "");

@@ -2112,10 +2112,10 @@ describe("course text quality normalization", () => {
 				/\*\*Path:\*\* (?:Build|Debug|Explanation|Planning|Model|Required build|Transfer|Extension) path for the (?:lab|studio):/i
 			);
 			expect(corpus).toContain(
-				"The program demonstrates the required Java behavior without relying on stale build output or hidden IDE state"
+				"Compile the exported AJ5 pack in a clean Java 21 build directory before checking the reported output."
 			);
 			expect(corpus).toContain(
-				"Map the program into Java responsibilities before coding: constructor data, method parameters, return values, stored state, and any collection shape"
+				"Pass the array and target as parameters and return an index without changing the input."
 			);
 			expect(corpus).not.toContain(
 				"Map Java/C++ bridge PTJ0 Positioning and Workflow Translation into Java responsibilities before coding"

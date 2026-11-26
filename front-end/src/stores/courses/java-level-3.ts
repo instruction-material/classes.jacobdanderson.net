@@ -4,6 +4,7 @@ import {
 	gitCourseGuideLink
 } from "./classroomReferenceGuides";
 import { completeJavaRecursionModule } from "./javaRecursionTeaching";
+import { completeJavaSearchModule } from "./javaSearchTeaching";
 import { isCoreProjectTitle } from "./projectGrouping";
 import { buildProjectGuidance } from "./projectGuidance";
 import { pendingStaticMediaNotice, staticMediaUrl } from "./staticMedia";
@@ -3023,7 +3024,9 @@ for (const module of [
 export const javaLevel3Course: RawCourse = {
 	...javaLevel3SourceCourse,
 	modules: [
-		...javaLevel3PrimaryModules.map(completeJavaRecursionModule),
+		...javaLevel3PrimaryModules
+			.map(completeJavaRecursionModule)
+			.map(completeJavaSearchModule),
 		buildJavaLevel3PlacementArchive(javaLevel3PlacementArchiveModules),
 		buildAdvancedJavaEngineeringArchive(javaLevel3AdvancedModules),
 		{

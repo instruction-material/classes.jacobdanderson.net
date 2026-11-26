@@ -45,12 +45,12 @@ import { dataScienceFoundationsProjectKey } from "@/modules/dataScienceFoundatio
 import { dataScienceGroupedProjectKey } from "@/modules/dataScienceGroupedResources";
 import { dataScienceReportProjectKey } from "@/modules/dataScienceReportResources";
 import { dataScienceStatisticsStorytellingProjectKey } from "@/modules/dataScienceStatisticsStorytellingResources";
-import { javaRecursionProjectKey } from "@/modules/javaRecursionResources";
 import { javaRefactoringProjectKey } from "@/modules/javaRefactoringResources";
 import {
 	javascriptCourseProjectKey,
 	javascriptCourseResource
 } from "@/modules/javascriptCourseResources";
+import { javaLevel3ProjectKey } from "@/modules/javaSearchResources";
 import { javaStudioProjectKey } from "@/modules/javaStudioResources";
 import { linuxCourseProjectKey } from "@/modules/linuxProjectResources";
 import { machineLearningLibraryProjectKey } from "@/modules/machineLearningNativeInstructions";
@@ -1865,7 +1865,7 @@ function ideStarterHref(item: CourseModuleItem, resource: ResourceLink) {
 												? c17CourseProjectKey
 												: selectedCourse.value.id ===
 													  "java-level-3"
-													? javaRecursionProjectKey
+													? javaLevel3ProjectKey
 													: selectedCourse.value
 																.id ===
 														  "design-patterns-in-java"
