@@ -1428,8 +1428,17 @@ function repositoryArchiveLabel(item: CourseModuleItem) {
 	return "Source archive";
 }
 
+function isCppLevel1WorkedExample(item: CourseModuleItem) {
+	return (
+		selectedCourse.value?.id === "c-level-1" &&
+		item.contentKind === "reading" &&
+		item.ideImport === true
+	);
+}
+
 function projectLabel(item: CourseModuleItem, url: string) {
 	if (url.startsWith("/ide?")) return "Start in IDE";
+	if (isCppLevel1WorkedExample(item)) return "Worked example";
 	const normalizedTitle = item.title.toLowerCase();
 	const normalizedUrl = url.toLowerCase();
 
@@ -1828,6 +1837,8 @@ function ideStarterHref(item: CourseModuleItem, resource: ResourceLink) {
 		resource.url
 	);
 	if (!mode) return "";
+	const workedExample =
+		resource.kind === "project" && isCppLevel1WorkedExample(item);
 
 	const javaCourse = ["java-level-2", "java-level-3"].includes(
 		selectedCourse.value.id
@@ -1898,7 +1909,9 @@ function ideStarterHref(item: CourseModuleItem, resource: ResourceLink) {
 																		: goldHistoricalProjectKey)(
 			selectedCourse.value.id,
 			item.id,
-			resource.kind === "solution" ? "reference" : "starter",
+			resource.kind === "solution" || workedExample
+				? "reference"
+				: "starter",
 			starterUrl
 		),
 		starterUrl,
@@ -2636,7 +2649,10 @@ function writeStoredValue(key: string, value: string) {
 												>
 													{{
 														resource.kind ===
-														"solution"
+															"solution" ||
+														isCppLevel1WorkedExample(
+															item
+														)
 															? "Open reference in IDE"
 															: resource.host ===
 																  "scratch.mit.edu"

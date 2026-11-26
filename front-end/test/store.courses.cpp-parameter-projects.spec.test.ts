@@ -59,7 +59,8 @@ describe("original C++ parameter-passing assignments", () => {
 			[sequence[2], "structs", "CPPF6-Structs-Example"]
 		] as const) {
 			const item = module.curriculum.find(item => item.title === name)!;
-			expect(item.projectLink).toBeUndefined();
+			expect(item.projectLink).toMatch(new RegExp(`/${folder}$`));
+			expect(item.contentKind).toBe("reading");
 			expect(item.solutionLink).toBeUndefined();
 			expect(item.content).toContain(
 				`https://github.com/instruction-material/CPP-Level-1/tree/main/${folder}`

@@ -68,13 +68,14 @@ describe("C++ grid assignments and readable reference", () => {
 			expect(item.solutionLink).toBeUndefined();
 		}
 	});
-	it("shows the complete lesson and exact supplied program without a starter import", async () => {
+	it("shows the complete lesson and exact supplied program with a worked example import", async () => {
 		setActivePinia(createPinia());
 		const course = await useCoursesStore().loadCourseById("c-level-1");
 		const item = course!.modules.find(module => module.title === title)!
 			.curriculum[0];
 		expect(item.title).toBe(lessonTitle);
-		expect(item.projectLink).toBeUndefined();
+		expect(item.projectLink).toMatch(/\/CPPF7-Grids-and-2D-Vectors-Reference$/);
+		expect(item.contentKind).toBe("reading");
 		expect(item.solutionLink).toBeUndefined();
 		expect(item.content).toContain("/CPPF7-Grids-and-2D-Vectors-Reference");
 		const programs = [
