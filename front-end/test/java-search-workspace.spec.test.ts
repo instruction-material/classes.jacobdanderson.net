@@ -7,6 +7,9 @@ import {
 	javaBinarySearchModuleID,
 	javaBinarySearchProjects,
 	javaBinarySearchURL,
+	javaCheckIn1ModuleID,
+	javaCheckIn1Projects,
+	javaCheckIn1URL,
 	javaLevel3ProjectKey,
 	javaSearchImportFiles,
 	javaSearchProjects,
@@ -159,5 +162,74 @@ describe("AJ6 native workspace", () => {
 				line.includes("java ContractTests count")
 			)
 		).toBe(true);
+	});
+});
+
+describe("Java Level 3 Check-In 1 workspace", () => {
+	it("keeps four readings, role-aware exact projects and a shared extension", async () => {
+		setActivePinia(createPinia());
+		const catalog = useCoursesStore();
+		const learner = await catalog.loadCourseById("java-level-3");
+		const learnerModule = learner?.modules.find(
+			item => item.id === javaCheckIn1ModuleID
+		);
+		expect(
+			learnerModule?.curriculum.filter(item => !item.projectLink)
+		).toHaveLength(4);
+		expect(learnerModule?.curriculum[0]?.solutionLink).toBeUndefined();
+		useAppStore().currentTutor = {
+			coursePermissions: ["java-level-3"]
+		} as never;
+		const staff = await catalog.loadCourseById("java-level-3");
+		const module = staff?.modules.find(
+			item => item.id === javaCheckIn1ModuleID
+		);
+		if (!module) throw new Error("Missing the first Java check-in");
+		expect(module.curriculum).toHaveLength(6);
+		expect(module.supplementalProjects).toHaveLength(3);
+		for (const project of javaCheckIn1Projects) {
+			const item = [
+				...module.curriculum,
+				...module.supplementalProjects
+			].find(candidate => candidate.id === project.id);
+			expect(item?.ideImport, project.id).toBe(true);
+			expect(item?.projectLink).toBe(
+				javaCheckIn1URL(project.pack, "starter")
+			);
+			expect(item?.solutionLink).toBe(
+				javaCheckIn1URL(project.pack, "solution")
+			);
+			const entry = javaSearchImportFiles(item?.projectLink ?? "");
+			expect(entry?.map(file => file.file.path)).toEqual(
+				["Main.java", "ContractTests.java", "README.md"].map(
+					name => `${project.pack}/starter/${name}`
+				)
+			);
+		}
+		const [overview] = module.curriculum;
+		const [extension] = module.supplementalProjects;
+		expect(overview?.projectLink).toBe(extension?.projectLink);
+		expect(overview?.solutionLink).toBe(extension?.solutionLink);
+		const url = javaCheckIn1URL(javaCheckIn1Projects[0].pack, "starter");
+		const key = javaLevel3ProjectKey(
+			"java-level-3",
+			javaCheckIn1Projects[0].id,
+			"starter",
+			url
+		);
+		expect(
+			javaLevel3ProjectKey(
+				"java-level-3",
+				extension?.id ?? "",
+				"starter",
+				url
+			)
+		).toBe(key);
+		expect(javaNativeBuildInstructions(key, url)?.join("\n")).toContain(
+			"java ContractTests memo"
+		);
+		expect(javaNativeBuildInstructions(key, url)?.join("\n")).toContain(
+			"java Main trace"
+		);
 	});
 });

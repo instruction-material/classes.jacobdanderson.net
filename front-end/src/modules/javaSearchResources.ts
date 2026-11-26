@@ -51,6 +51,47 @@ export const javaBinarySearchProjects = [
 	}
 ] as const;
 
+export const javaCheckIn1Revision = "2bab8041dfa2b2171a3852711dfd3b9c086fa5c6";
+export const javaCheckIn1ModuleID = "java-level-3-check-in-1";
+
+export const javaCheckIn1Projects = [
+	{
+		pack: "AJ-Check-In-1-Workbook-Packs",
+		id: `${javaCheckIn1ModuleID}-curriculum-java-level-3-check-in-1-core-concepts`
+	},
+	{
+		pack: "AJ-Check-In-1-Benchmark-Packs",
+		id: `${javaCheckIn1ModuleID}-curriculum-java-level-3-check-in-1-practice-project`
+	},
+	{
+		pack: "J3-11-check-in-1-supplemental-2",
+		id: `${javaCheckIn1ModuleID}-supplemental-review-checkpoint-transfer-practice`
+	},
+	{
+		pack: "J3-12-check-in-1-supplemental-3",
+		id: `${javaCheckIn1ModuleID}-supplemental-review-checkpoint-extension-practice`
+	}
+] as const;
+
+const searchGroups = [
+	{ revision: javaSearchRevision, projects: javaSearchProjects },
+	{ revision: javaBinarySearchRevision, projects: javaBinarySearchProjects },
+	{ revision: javaCheckIn1Revision, projects: javaCheckIn1Projects }
+] as const;
+
+export const javaLevel3SearchProjects = [
+	...javaSearchProjects,
+	...javaBinarySearchProjects,
+	...javaCheckIn1Projects
+];
+
+export function javaCheckIn1URL(
+	pack: (typeof javaCheckIn1Projects)[number]["pack"],
+	role: "starter" | "solution"
+) {
+	return `https://github.com/instruction-material/Java-Level-3/tree/${javaCheckIn1Revision}/${pack}/${role}`;
+}
+
 export function javaBinarySearchURL(
 	pack: (typeof javaBinarySearchProjects)[number]["pack"],
 	role: "starter" | "solution"
@@ -68,17 +109,15 @@ export function javaSearchResource(url: string) {
 		!resource ||
 		resource.mode !== "tree" ||
 		resource.owner.toLowerCase() !== "instruction-material" ||
-		resource.repo.toLowerCase() !== "java-level-3" ||
-		![javaSearchRevision, javaBinarySearchRevision].includes(resource.ref)
+		resource.repo.toLowerCase() !== "java-level-3"
 	) {
 		return null;
 	}
 	const [pack, role, extra] = resource.path.split("/");
-	const projects =
-		resource.ref === javaBinarySearchRevision
-			? javaBinarySearchProjects
-			: javaSearchProjects;
-	const project = projects.find(candidate => candidate.pack === pack);
+	const group = searchGroups.find(
+		candidate => candidate.revision === resource.ref
+	);
+	const project = group?.projects.find(candidate => candidate.pack === pack);
 	if (
 		!project ||
 		extra !== undefined ||

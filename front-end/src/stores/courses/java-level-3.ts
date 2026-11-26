@@ -4,6 +4,7 @@ import {
 	gitCourseGuideLink
 } from "./classroomReferenceGuides";
 import { buildJavaBinarySearchModule } from "./javaBinarySearchTeaching";
+import { buildJavaCheckIn1Module } from "./javaCheckIn1Teaching";
 import { completeJavaRecursionModule } from "./javaRecursionTeaching";
 import { completeJavaSearchModule } from "./javaSearchTeaching";
 import { isCoreProjectTitle } from "./projectGrouping";
@@ -659,109 +660,7 @@ const javaLevel3SourceCourse: RawCourse = {
 			]
 		},
 		buildJavaBinarySearchModule(),
-		{
-			title: "Check-In #1",
-			curriculum: [
-				{
-					title: "Check-In #1 Overview",
-					content: `**Check-in target:** This review connects recursion, time complexity, linear search, and binary search into one algorithmic reasoning checkpoint.
-
-**Practice targets:** Explain what the code does, trace the important variables, identify the stopping condition, and connect the implementation to its runtime.
-
-**Evidence target:** Strong answers include both the result and the reason: what value is returned or printed, why termination occurs, and how input size changes the amount of work.`,
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ-Check-In-1-Starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ-Check-In-1"
-				},
-				{
-					title: "Check-In #1: Recursion",
-					content: `**Concept path:** Recursion questions test the ability to identify a base case, verify progress toward it, and trace how values return through the call stack.
-
-**Practice targets:** Analyze recursive string length, Pascal-style recurrence, and recursive printing. Look for unchanged recursive calls because they signal infinite recursion.
-
-**Evidence target:** A correct trace shows the order of calls and the order of returns; for printing methods, it also shows whether output occurs before or after the recursive call.`
-				},
-				{
-					title: "Check-In #1: Time Complexity",
-					content: `**Concept path:** Time-complexity questions reduce code or formulas to growth categories. The key is identifying which operation is being counted and how many times it runs as input grows.
-
-**Practice targets:** Simplify expressions, compare best and worst cases, and classify loops, nested loops, repeated halving, and recursive branching.
-
-**Evidence target:** Each answer includes a short reason tied to a loop bound, recursive split, or counted operation rather than only the final notation.`
-				},
-				{
-					title: "Check-In #1: Linear Search",
-					content: `**Concept path:** Linear search is useful when no sorted-order guarantee exists or when the collection is small enough that a simple scan is appropriate.
-
-**Practice targets:** Complete unfinished search code, identify the return value for found and missing targets, and describe best case and worst case in terms of target position.
-
-**Evidence target:** The implementation does not return "missing" too early and does not read beyond the final valid index.`
-				},
-				{
-					title: "Check-In #1: Binary Search",
-					content: `**Concept path:** Binary search combines sorted-data reasoning with careful bound updates. Small off-by-one mistakes can skip the target or create a loop that never ends.
-
-**Practice targets:** Complete iterative and recursive versions, trace low, high, and mid, and compare logarithmic growth with the linear growth of a full scan.
-
-**Evidence target:** The algorithm handles missing values and boundary values while preserving the sorted-data precondition.`
-				},
-				{
-					title: "Check-In #1: Additional Practice Project",
-					content: `**Project target:** Compare observed search times for linear search and binary search across many repeated runs.
-
-**Build path:** Generate or load a large sorted array, select targets in several positions, time many searches with millisecond or nanosecond timestamps, and average results to reduce noise.
-
-**Evidence target:** The written comparison separates measured timing from theoretical Big-O and explains why small runs may not visibly match the long-term growth prediction.`,
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ-Check-In-1-Additional-Practice-Project",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ-Check-In-1-Additional-Practice-Project"
-				}
-			],
-			supplementalProjects: [
-				{
-					title: "Check In #1: Extension Challenge",
-					content: buildSupportSectionGuidance({
-						courseFamily: "Java Level 3",
-						moduleTitle: "Check In #1",
-						section: "extension"
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ-Check-In-1-Starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ-Check-In-1"
-				},
-				{
-					title: "Review Checkpoint Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 3",
-						moduleTitle: "Check-In #1",
-						itemTitle: "Review Checkpoint Transfer Practice",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/J3-11-check-in-1-supplemental-2/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/J3-11-check-in-1-supplemental-2/solution"
-				},
-				{
-					title: "Review Checkpoint Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 3",
-						moduleTitle: "Check-In #1",
-						itemTitle: "Review Checkpoint Extension Practice",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/J3-12-check-in-1-supplemental-3/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/J3-12-check-in-1-supplemental-3/solution"
-				}
-			]
-		},
+		buildJavaCheckIn1Module(),
 		{
 			title: "AJ7 Selection and Insertion Sort",
 			curriculum: [

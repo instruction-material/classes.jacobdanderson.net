@@ -46,6 +46,8 @@ import { javaRefactoringNativeInstructions } from "./javaRefactoringResources";
 import { javaRefactoringUnitNativeInstructions } from "./javaRefactoringUnits";
 import {
 	javaBinarySearchProjects,
+	javaCheckIn1Projects,
+	javaLevel3SearchProjects,
 	javaSearchProjects
 } from "./javaSearchResources";
 import {
@@ -170,6 +172,15 @@ const knapsackItem =
 	"usaco-gold-unit-1-dynamic-programming-knapsack-and-state-design-supplemental-problem-0-1-knapsack";
 const fruitFeastItem =
 	"usaco-gold-unit-1-dynamic-programming-knapsack-and-state-design-supplemental-problem-fruit-feast";
+
+const javaSearchExtensionInstructions: Partial<Record<string, string>> = {
+	[javaSearchProjects[0].id]:
+		"For the all-matches extension, run java Main all and java ContractTests all.",
+	[javaBinarySearchProjects[0].id]:
+		"For the midpoint-count extension, run java Main count and java ContractTests count.",
+	[javaCheckIn1Projects[0].id]:
+		"For the Pascal cache extension, run java Main memo and java ContractTests memo. Use java Main trace to check the workbook's recursive call order."
+};
 
 export function javaNativeBuildInstructions(
 	courseProjectKey?: string,
@@ -636,9 +647,7 @@ export function javaNativeBuildInstructions(
 	}
 	if (
 		course === "java-level-3" &&
-		[...javaSearchProjects, ...javaBinarySearchProjects].some(
-			project => project.id === item
-		) &&
+		javaLevel3SearchProjects.some(project => project.id === item) &&
 		["starter", "reference"].includes(role ?? "") &&
 		parts.length === 4 &&
 		extra === "native-java-search"
@@ -649,11 +658,8 @@ export function javaNativeBuildInstructions(
 			"javac --release 21 -Xlint:all -Werror Main.java ContractTests.java",
 			"java Main",
 			"java ContractTests",
-			item === javaSearchProjects[0].id
-				? "For the all-matches extension, run java Main all and java ContractTests all."
-				: item === javaBinarySearchProjects[0].id
-					? "For the midpoint-count extension, run java Main count and java ContractTests count."
-					: "Read README.md for the project contract and expected output.",
+			javaSearchExtensionInstructions[item ?? ""] ??
+				"Read README.md for the project contract and expected output.",
 			"Compile each pack in a separate folder. Run displays these native build instructions."
 		];
 	}
