@@ -3,6 +3,7 @@ import type { RawCourse, RawCourseModuleItem } from "./types";
 import { buildImplementationLabGuidance } from "./implementationLabGuidance";
 import { javaLevel1GraphicsExtensionModules } from "./java-graphics-extensions";
 import {
+	javaMadLibsSource,
 	javaPracticeSource,
 	legacyJavaSource
 } from "./javaLevel1PracticeSources";
@@ -342,15 +343,15 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "JS1 Supplemental Project 1: Mad Libs",
 					preserveInstructions: true,
 					content:
-						"Ask for parts of speech, store each response, and insert the answers in a story. Try a multiword noun such as paper kite, then change just that answer. Check that the rest of the story stays the same.",
-					projectLink: `${javaPracticeSource}/JS1-Mad-Libs/starter`,
-					solutionLink: `${legacyJavaSource}/JS1-Mad-Libs`
+						"Ask for parts of speech, store each response, and insert the answers in a story. Try a multiword noun such as paper kite, then change just that answer. Check that the rest of the story stays the same.\n\n**Checkpoints:** Choose a noun, verb and adjective before writing the story. Read each answer on its own line using Scanner.nextLine. Enter paper kite, floats and silver. A possible output is The silver paper kite floats above town. Use the variables to print the story after all three reads. Change paper kite to weather balloon and verify the new noun appears intact. Repeat with a second set of words and make sure the old answers disappear.",
+					projectLink: `${javaMadLibsSource}/JS1-Mad-Libs/starter`,
+					solutionLink: `${javaMadLibsSource}/JS1-Mad-Libs/solution`
 				},
 				{
 					title: "JS1 Supplemental Project 2: Division Facts",
 					preserveInstructions: true,
 					content:
-						"Read two integers in dividend, divisor order. Without %, print the quotient and remainder: 17 divided by 5 equals 3 with a remainder of 2. Reject a zero divisor.",
+						"Read two integers in dividend, divisor order. Without %, print the quotient and remainder: 17 divided by 5 equals 3 with a remainder of 2. Reject a zero divisor.\n\n**Checkpoints:** Use integer division to find the quotient and subtract the product of quotient and divisor from the dividend to recover the remainder. Validate the divisor before dividing. For 20 and 5 expect quotient 4 and remainder 0. For 3 and 5 expect quotient 0 and remainder 3. For 17 and 0 print a clear division-by-zero message without attempting the calculation. Check each valid case by reconstructing the dividend from quotient, divisor and remainder.",
 					projectLink: `${javaPracticeSource}/JS1-Division-Facts/starter`,
 					solutionLink: `${javaPracticeSource}/JS1-Division-Facts/solution`
 				},
@@ -358,9 +359,9 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "Variable Types & Input/Output Extension Practice",
 					preserveInstructions: true,
 					content:
-						"Change two of your story blanks to full-line inputs. Use paper kite and night sky. Check that both phrases appear intact.",
-					projectLink: `${javaPracticeSource}/JS1-Mad-Libs/starter`,
-					solutionLink: `${legacyJavaSource}/JS1-Mad-Libs`
+						"Run the starter with flight number 17, object paper kite and destination night sky, one input per line. After nextInt, the cursor remains before the newline on the number line. The first nextLine therefore captures an empty object and the destination receives paper kite. Keep the numeric read and discard the rest of the number line before reading the two text lines.\n\n**Checkpoints:** The repaired story reads Flight 17 carries paper kite toward night sky. Try number 9 with letter and Mars. Check that neither read drops a word or shifts input into the wrong field.",
+					projectLink: `${javaMadLibsSource}/JS1-Mad-Libs-Mixed-Input/starter`,
+					solutionLink: `${javaMadLibsSource}/JS1-Mad-Libs-Mixed-Input/solution`
 				}
 			]
 		},
@@ -371,16 +372,18 @@ const javaLevel1SourceCourse: RawCourse = {
 				{
 					title: "Casting",
 					preserveInstructions: true,
+					contentKind: "reading",
 					content:
-						"Inside main, print 5 / 2, (double) 5 / 2, and (double) (5 / 2). Predict 2, 2.5 and 2.0. The last cast happens after integer division has already discarded the fraction.",
+						"Inside main, print 5 / 2, (double) 5 / 2, and (double) (5 / 2). Predict 2, 2.5 and 2.0. The last cast happens after integer division has already discarded the fraction.\n\nUse an explicit cast when a calculation requires a different numeric type. If both sides of division are int, Java computes an int and drops the fractional part toward zero. Casting the result cannot recover what was dropped. Casting either operand to double asks Java to perform decimal division. A separate example is casting 4.9 to int, which gives 4. Predict the same expressions for negative inputs. Check why -5 / 2 is -2 while casting the numerator first gives -2.5.",
 					projectLink:
 						"https://github.com/instruction-material/Java-Level-1/tree/main/JS1-Casting-Reference"
 				},
 				{
 					title: "Mathematical Operators",
 					preserveInstructions: true,
+					contentKind: "reading",
 					content:
-						"Compare 2 + 3 * 4 with (2 + 3) * 4: the results are 14 and 20. For nonnegative whole numbers, 17 / 5 gives 3 complete groups and 17 % 5 gives the 2 left over.",
+						"Compare 2 + 3 * 4 with (2 + 3) * 4: the results are 14 and 20. For nonnegative whole numbers, 17 / 5 gives 3 complete groups and 17 % 5 gives the 2 left over.\n\nJava evaluates multiplication, division and remainder before addition and subtraction. Operations at the same precedence ordinarily group from left to right. Parentheses can select a different order. Draw the calculation for 12 / 3 * 2 and for 12 / (3 * 2). The first evaluates to 8 and the second to 2. The remainder operator answers how much remains after integer division. Try 20 % 5 for an exact multiple and 3 % 5 when the dividend is smaller than the divisor.",
 					projectLink:
 						"https://github.com/instruction-material/Java-Level-1/tree/main/JS2-Math-Operators-Reference"
 				},
@@ -388,7 +391,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "JS2 Project 1: Temperature Converter",
 					preserveInstructions: true,
 					content:
-						"Read Fahrenheit and then Celsius. Use (F - 32) * 5.0 / 9 and C * 9.0 / 5 + 32. Print each result as a decimal and rounded to the nearest degree. Try 31 F and -40 C: the rounded results are -1 C and -40 F.",
+						"Read Fahrenheit and then Celsius. Use (F - 32) * 5.0 / 9 and C * 9.0 / 5 + 32. Print each result as a decimal and rounded to the nearest degree. Try 31 F and -40 C: the rounded results are -1 C and -40 F.\n\n**Checkpoints:** Label the units in prompts and in output so a reader can verify the conversion direction. Keep the decimal result as a double and store Math.round in a separate variable. Try the freezing pair 32 F and 0 C. Expect 0 C and 32 F. Try 33 F for about 0.56 C rounded to 1. If the decimal result is zero, look for division of two integer literals before multiplication.",
 					projectLink: `${javaPracticeSource}/JS2-Temperature-Converter/starter`,
 					solutionLink: `${javaPracticeSource}/JS2-Temperature-Converter/solution`
 				},
@@ -406,7 +409,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "JS2 Supplemental Project 1: Rainbow",
 					preserveInstructions: true,
 					content:
-						"Draw six nested arcs from outside to inside: red, orange, yellow, green, blue and magenta. Keep the arcs centered. Export Main.java and run it with JDK 21 (javac Main.java, then java Main). Open drawing.png after each change.",
+						"Draw six nested arcs from outside to inside: red, orange, yellow, green, blue and magenta. Keep the arcs centered. Export Main.java and run it with JDK 21 (javac Main.java, then java Main). Open drawing.png after each change.\n\n**Checkpoints:** Use the supplied draw method and reuse one center for all six arcs. Sketch the bounding rectangles first, then calculate left as center minus half the width for each arc. Work from a wide arc toward narrower arcs so the inner colors remain visible. Check the left and right extremes of the picture for matching distances from the center. Export after changing one color and confirm the same band changes on both sides.",
 					projectLink: `${javaPracticeSource}/JS2_Rainbow/starter`,
 					solutionLink: `${javaPracticeSource}/JS2_Rainbow/solution`
 				},
@@ -414,7 +417,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "JS2 Supplemental Project 2: Snowman",
 					preserveInstructions: true,
 					content:
-						"Stack three white snowballs on a contrasting background. Add a hat, arms and a face. Export Main.java and run it with JDK 21 (javac Main.java, then java Main). Open drawing.png after each change.",
+						"Stack three white snowballs on a contrasting background. Add a hat, arms and a face. Export Main.java and run it with JDK 21 (javac Main.java, then java Main). Open drawing.png after each change.\n\n**Checkpoints:** Plan three oval bounding boxes with a shared horizontal center and decreasing sizes toward the top. Overlap adjacent edges enough to avoid a strip of background between them. Draw arms and hat after the snowballs and check that both stay visible. Move the face down a few pixels and confirm the eyes remain inside the head. Check the background color through pixels outside the snowman.",
 					projectLink: `${javaPracticeSource}/JS2_Snowman/starter`,
 					solutionLink: `${javaPracticeSource}/JS2_Snowman/solution`
 				},
@@ -422,7 +425,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "Casting and Operators Extension Practice",
 					preserveInstructions: true,
 					content:
-						"Track integer division before and after casting in the Fahrenheit conversion. For 33 F compare the truncated zero with 5.0/9. For 31 F compare the rounded result with -1.",
+						"Track integer division before and after casting in the Fahrenheit conversion. For 33 F compare the truncated zero with 5.0/9. For 31 F compare the rounded result with -1.\n\n**Checkpoints:** Use the same Fahrenheit inputs for three expressions: (F - 32) * (5 / 9), (double) ((F - 32) * 5 / 9) and (F - 32) * 5.0 / 9. Write a prediction for each result before running the program. At 33 F the first two report zero and the third reports about 0.56. At 31 F the decimal conversion is about -0.56 and the rounded answer is -1. Circle the operation that first drops the fraction.",
 					projectLink: `${javaPracticeSource}/JS2-Temperature-Converter/starter`,
 					solutionLink: `${javaPracticeSource}/JS2-Temperature-Converter/solution`
 				},
@@ -430,7 +433,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "Basic Shapes (Optional)",
 					preserveInstructions: true,
 					content:
-						"Draw a filled rectangle, oval and arc. Predict each bounding box and check its position, size and color. Export Main.java and run it with JDK 21 (javac Main.java, then java Main). Open drawing.png after each change.",
+						"Draw a filled rectangle, oval and arc. Predict each bounding box and check its position, size and color. Export Main.java and run it with JDK 21 (javac Main.java, then java Main). Open drawing.png after each change.\n\n**Checkpoints:** Use the starter’s draw method. Work on a 500 by 500 canvas and place the three shapes far enough apart to verify each against the background. Record the upper-left coordinate and width and height for all three, then choose visibly different colors. Use the center of each intended bounding box to check the oval or rectangle placement. Change only the arc start angle and compare the two PNGs to see which section moves.",
 					projectLink: `${javaPracticeSource}/JS2_Basic_Shapes/starter`,
 					solutionLink: `${javaPracticeSource}/JS2_Basic_Shapes/solution`
 				},
@@ -438,7 +441,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "Happy Graphics (Optional)",
 					preserveInstructions: true,
 					content:
-						"Draw two eyes and a smiling mouth, then draw two yellow Pac-Men facing one another. Export Main.java and run it with JDK 21 (javac Main.java, then java Main). Open drawing.png after each change.",
+						"Draw two eyes and a smiling mouth, then draw two yellow Pac-Men facing one another. Export Main.java and run it with JDK 21 (javac Main.java, then java Main). Open drawing.png after each change.\n\n**Checkpoints:** Sketch the smile as an arc on a bounding box inside the face. Place the two eye shapes at the same height and the same distance from the centerline. Use different starting angles for the two Pac-Man arcs so the open wedges face one another. Verify that changing the first arc angle does not affect the second. If either shape looks like a full disk, inspect the arc extent.",
 					projectLink: `${javaPracticeSource}/JS2_Happy_Graphics/starter`,
 					solutionLink: `${javaPracticeSource}/JS2_Happy_Graphics/solution`
 				}
@@ -458,7 +461,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "JS3 Project 1: Code Your Own Adventure",
 					preserveInstructions: true,
 					content:
-						"Plan two opening choices and give at least one branch a second choice with different endings. Test each ending and an unknown command.",
+						"Plan two opening choices and give at least one branch a second choice with different endings. Test each ending and an unknown command.\n\n**Checkpoints:** Use a table with a row for each valid sequence of commands. For example, cave followed by light can reach a safe exit, cave followed by dark can lead to a dead end, and river can have its own ending. Store the first input before checking whether a second is required. Try each legal path and an invalid first or second command. A valid command should lead to one ending and an invalid command should print a clear response.",
 					projectLink: `${javaPracticeSource}/JS3-Code-Your-Own-Adventure/starter`,
 					solutionLink: `${legacyJavaSource}/JS3-Code-Your-Own-Adventure`
 				},
@@ -466,7 +469,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "JS3 Project 2: Color Mixer",
 					preserveInstructions: true,
 					content:
-						"Accept red, yellow or blue for each color. Test red + yellow and yellow + red (orange), two blues (blue), and green as either input (error).",
+						"Accept red, yellow or blue for each color. Test red + yellow and yellow + red (orange), two blues (blue), and green as either input (error).\n\n**Checkpoints:** Write a table with two input columns and one result column before coding. Equal colors keep their color. Red and blue make purple, red and yellow make orange, and yellow and blue make green, in either order. Handle the invalid-color check before any mixture. Test both orders for blue and red and confirm both return purple. Try red with red, then try a valid color paired with green. The second case should report invalid input.",
 					projectLink: `${javaPracticeSource}/JS3-Color-Mixer/starter`,
 					solutionLink: `${legacyJavaSource}/JS3-Color-Mixer`
 				},
