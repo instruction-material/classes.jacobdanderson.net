@@ -353,6 +353,40 @@ export function javaCheckIn3URL(
 	return `https://github.com/instruction-material/Java-Level-3/tree/${javaCheckIn3Revision}/${pack}/${role}`;
 }
 
+export const javaBinaryTreeRevision =
+	"2219ebbf8c499f54a66f8219a657f952fe801e4d";
+export const javaBinaryTreeModuleID = "java-level-3-aj14-binary-search-trees";
+
+export const javaBinaryTreeProjects = [
+	{
+		pack: "AJ14-BST-Basic-Packs",
+		id: `${javaBinaryTreeModuleID}-curriculum-aj14-project-1-bst-basic-implementation`
+	},
+	{
+		pack: "AJ14-BST-Traversal-Packs",
+		id: `${javaBinaryTreeModuleID}-curriculum-aj14-project-2-bst-traversals`
+	},
+	{
+		pack: "AJ14-BST-Removal-Packs",
+		id: `${javaBinaryTreeModuleID}-curriculum-aj14-project-3-bst-clear-and-remove`
+	},
+	{
+		pack: "J3-29-aj14-binary-search-trees-supplemental-2",
+		id: `${javaBinaryTreeModuleID}-supplemental-bst-traversal-transfer-practice`
+	},
+	{
+		pack: "J3-30-aj14-binary-search-trees-supplemental-3",
+		id: `${javaBinaryTreeModuleID}-supplemental-bst-mutation-extension-practice`
+	}
+] as const;
+
+export function javaBinaryTreeURL(
+	pack: (typeof javaBinaryTreeProjects)[number]["pack"],
+	role: "starter" | "solution"
+) {
+	return `https://github.com/instruction-material/Java-Level-3/tree/${javaBinaryTreeRevision}/${pack}/${role}`;
+}
+
 const additionalAlgorithmFiles: Partial<Record<string, readonly string[]>> = {
 	[javaBubbleSortProjects[1].id]: ["words.txt"],
 	[javaCheckIn2Projects[1].id]: [
@@ -385,7 +419,8 @@ const searchGroups = [
 	{ revision: javaLinkedListRevision, projects: javaLinkedListProjects },
 	{ revision: javaStackQueueRevision, projects: javaStackQueueProjects },
 	{ revision: javaPriorityMapRevision, projects: javaPriorityMapProjects },
-	{ revision: javaCheckIn3Revision, projects: javaCheckIn3Projects }
+	{ revision: javaCheckIn3Revision, projects: javaCheckIn3Projects },
+	{ revision: javaBinaryTreeRevision, projects: javaBinaryTreeProjects }
 ] as const;
 
 export const javaLevel3SearchProjects = [
@@ -398,7 +433,8 @@ export const javaLevel3SearchProjects = [
 	...javaLinkedListProjects,
 	...javaStackQueueProjects,
 	...javaPriorityMapProjects,
-	...javaCheckIn3Projects
+	...javaCheckIn3Projects,
+	...javaBinaryTreeProjects
 ];
 
 export function javaCheckIn1URL(

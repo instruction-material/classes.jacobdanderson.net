@@ -4,6 +4,7 @@ import {
 	gitCourseGuideLink
 } from "./classroomReferenceGuides";
 import { buildJavaBinarySearchModule } from "./javaBinarySearchTeaching";
+import { buildJavaBinaryTreeModule } from "./javaBinaryTreeTeaching";
 import {
 	buildJavaBubbleSortModule,
 	buildJavaCheckIn2Module
@@ -683,100 +684,7 @@ const javaLevel3SourceCourse: RawCourse = {
 		buildJavaStackQueueModule(),
 		buildJavaPriorityMapModule(),
 		buildJavaCheckIn3Module(),
-		{
-			title: "AJ14 Binary Search Trees",
-			curriculum: [
-				{
-					title: "Trees",
-					content:
-						"Core tree vocabulary includes nodes, edges, parents, children, ancestors, descendants, leaves, roots, height, and subtrees. Draw a small tree, label each term directly on the drawing, and distinguish structural vocabulary from traversal order."
-				},
-				{
-					title: "Binary Search Trees",
-					content:
-						"Review how BSTs organize values so smaller items go left and larger items go right, enabling efficient search, insert, and remove operations."
-				},
-				{
-					title: "BST Practice Problems",
-					content:
-						"Practice inserting and deleting nodes from drawn binary search trees and reason through in-order predecessor replacement. The checkpoint is identifying which deletion case applies: leaf, one child, or two children, then preserving the BST ordering invariant afterward."
-				},
-				{
-					title: "AJ14 Project 1: BST Basic Implementation",
-					content:
-						"Write the `Node` inner class, core BST instance variables, and basic methods such as insert and membership testing.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ14-BST-Starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ14-Basic-BST"
-				},
-				{
-					title: "Depth First Search",
-					content:
-						"Use depth-first traversal to print a BST in preorder, inorder, and postorder, and understand how each traversal changes only the print order, not the path taken through the tree."
-				},
-				{
-					title: "AJ14 Project 2: BST Traversals",
-					content:
-						"Implement preorder, inorder, and postorder traversals and use inorder traversal to define `toString()`. Trace one sample tree by hand first so each traversal order has a visible purpose rather than becoming three nearly identical recursive methods.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ14-BST-Traversals",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ14-BST-Traversals"
-				},
-				{
-					title: "AJ14 Project 3: BST Clear and Remove",
-					content:
-						"Add recursive clear and remove operations to the BST, including removal cases for nodes with zero, one, or two children.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ14-BST-Starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ14-BST"
-				}
-			],
-			supplementalProjects: [
-				{
-					title: "Binary Search Trees: Extension Challenge",
-					content: buildSupportSectionGuidance({
-						courseFamily: "Java Level 3",
-						moduleTitle: "Binary Search Trees",
-						section: "extension"
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ14-BST-Starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ14-Basic-BST"
-				},
-				{
-					title: "BST Traversal Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 3",
-						moduleTitle: "AJ14 Binary Search Trees",
-						itemTitle: "BST Traversal Transfer Practice",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/J3-29-aj14-binary-search-trees-supplemental-2/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/J3-29-aj14-binary-search-trees-supplemental-2/solution"
-				},
-				{
-					title: "BST Mutation Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 3",
-						moduleTitle: "AJ14 Binary Search Trees",
-						itemTitle: "BST Mutation Extension Practice",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/J3-30-aj14-binary-search-trees-supplemental-3/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/J3-30-aj14-binary-search-trees-supplemental-3/solution"
-				}
-			]
-		},
+		buildJavaBinaryTreeModule(),
 		{
 			title: "AJ15 Hash Tables",
 			curriculum: [
@@ -1773,24 +1681,6 @@ function decorateJavaLevel3Module(
 			].join("\n"),
 			learningPath: "core"
 		});
-	}
-
-	if (module.title === "AJ14 Binary Search Trees") {
-		curriculum = insertJavaLevel3Item(
-			curriculum,
-			"Binary Search Trees: Extension Challenge",
-			{
-				title: "BST Invariant and Mutation Contract",
-				content: [
-					"**Completion evidence:**",
-					"- Document ordering, equality, duplicate, null, and size policies.",
-					"- After each insertion or removal fixture, an invariant walk proves ordering, reachability, node count, and expected root.",
-					"- Tests cover empty, root, leaf, one-child, two-child, missing, duplicate, skewed, and balanced cases.",
-					"- Traversal outputs match an independently constructed expected sequence; optional removal begins only after insertion and traversal pass."
-				].join("\n"),
-				learningPath: "core"
-			}
-		);
 	}
 
 	if (module.title === "AJ15 Hash Tables") {

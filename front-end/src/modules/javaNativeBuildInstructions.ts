@@ -46,6 +46,7 @@ import { javaRefactoringNativeInstructions } from "./javaRefactoringResources";
 import { javaRefactoringUnitNativeInstructions } from "./javaRefactoringUnits";
 import {
 	javaBinarySearchProjects,
+	javaBinaryTreeProjects,
 	javaBubbleSortProjects,
 	javaCheckIn1Projects,
 	javaCheckIn2Projects,
@@ -206,7 +207,9 @@ const javaSearchExtensionInstructions: Partial<Record<string, string>> = {
 	[javaPriorityMapProjects[0].id]:
 		"For the cutoff extension, run java Main cutoff and java ContractTests cutoff.",
 	[javaCheckIn3Projects[0].id]:
-		"For the grouped-count extension, run java Main groups and java ContractTests groups."
+		"For the grouped-count extension, run java Main groups and java ContractTests groups.",
+	[javaBinaryTreeProjects[0].id]:
+		"For the ceiling-search extension, run java Main ceiling and java ContractTests ceiling."
 };
 
 const javaAlgorithmsWithAdditionalClasses = new Set<string>([
