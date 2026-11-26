@@ -1,3 +1,7 @@
+import {
+	javaPracticeSource,
+	legacyJavaSource
+} from "@/stores/courses/javaLevel1PracticeSources";
 import { apComputerScienceANativeInstructions } from "./apComputerScienceAResources";
 import {
 	javaArchitectureCoreID,
@@ -164,8 +168,45 @@ const fruitFeastItem =
 	"usaco-gold-unit-1-dynamic-programming-knapsack-and-state-design-supplemental-problem-fruit-feast";
 
 export function javaNativeBuildInstructions(
-	courseProjectKey?: string
+	courseProjectKey?: string,
+	starterUrl?: string
 ): string[] | null {
+	if (courseProjectKey?.startsWith("java-level-1:") && starterUrl) {
+		const pack = starterUrl.startsWith(`${javaPracticeSource}/`)
+			? starterUrl.slice(javaPracticeSource.length + 1).split("/")[0]
+			: starterUrl.startsWith(`${legacyJavaSource}/`)
+				? starterUrl.slice(legacyJavaSource.length + 1)
+				: undefined;
+		if (pack && /^JS[2346]_/.test(pack)) {
+			return [
+				"Export the project and extract its folder.",
+				"Run javac --release 21 Main.java and then java Main.",
+				"Open drawing.png in the extracted folder."
+			];
+		}
+		if (
+			pack &&
+			[
+				"JS9-Simple-Battleship",
+				"JS9-Advanced-Battleship",
+				"JS1-Mad-Libs",
+				"JS7-String-to-Array",
+				"JS5-Random-Number-Guesser",
+				"JS5-Letter-Guesser"
+			].includes(pack)
+		) {
+			const seeded =
+				pack === "JS5-Letter-Guesser" ||
+				pack === "JS5-Random-Number-Guesser";
+			return [
+				"Export the project and extract its folder.",
+				"Run javac --release 21 Main.java and then java Main.",
+				...(seeded
+					? ["For a repeatable target, run java Main 12345."]
+					: [])
+			];
+		}
+	}
 	const apInstructions =
 		apComputerScienceANativeInstructions(courseProjectKey);
 	if (apInstructions) return apInstructions;

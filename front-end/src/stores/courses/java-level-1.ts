@@ -2,8 +2,11 @@ import type { ImplementationLabSection } from "./implementationLabGuidance";
 import type { RawCourse, RawCourseModuleItem } from "./types";
 import { buildImplementationLabGuidance } from "./implementationLabGuidance";
 import { javaLevel1GraphicsExtensionModules } from "./java-graphics-extensions";
+import {
+	javaPracticeSource,
+	legacyJavaSource
+} from "./javaLevel1PracticeSources";
 import { isCoreProjectTitle } from "./projectGrouping";
-import { buildProjectGuidance } from "./projectGuidance";
 import { pendingStaticMediaNotice, staticMediaUrl } from "./staticMedia";
 import { buildSupportSectionGuidance } from "./supportSectionGuidance";
 
@@ -337,34 +340,27 @@ const javaLevel1SourceCourse: RawCourse = {
 			supplementalProjects: [
 				{
 					title: "JS1 Supplemental Project 1: Mad Libs",
+					preserveInstructions: true,
 					content:
-						"Ask the user for different parts of speech and print a completed Mad Lib story using their responses.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS1-Mad-Libs",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS1-Mad-Libs"
+						"Ask for parts of speech, store each response, and insert the answers in a story. Try a multiword noun such as paper kite, then change just that answer. Check that the rest of the story stays the same.",
+					projectLink: `${javaPracticeSource}/JS1-Mad-Libs/starter`,
+					solutionLink: `${legacyJavaSource}/JS1-Mad-Libs`
 				},
 				{
 					title: "JS1 Supplemental Project 2: Division Facts",
+					preserveInstructions: true,
 					content:
-						"Build Division Facts as an object-design exercise that asks for two numbers, computes the quotient and remainder without using the `%` operator, and explains the arithmetic rule in code. Verify the Division Facts object-design exercise with one standard case and one boundary case that exposes the key concept.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS1-Division-Facts",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS1-Division-Facts"
+						"Read two integers in dividend, divisor order. Without %, print the quotient and remainder: 17 divided by 5 equals 3 with a remainder of 2. Reject a zero divisor.",
+					projectLink: `${javaPracticeSource}/JS1-Division-Facts/starter`,
+					solutionLink: `${javaPracticeSource}/JS1-Division-Facts/solution`
 				},
 				{
 					title: "Variable Types & Input/Output Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 1",
-						moduleTitle: "JS1 Variable Types & Input/Output",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/J1-01-js1-variable-types-input-output-supplemental-3/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/J1-01-js1-variable-types-input-output-supplemental-3/solution"
+					preserveInstructions: true,
+					content:
+						"Change two of your story blanks to full-line inputs. Use paper kite and night sky. Check that both phrases appear intact.",
+					projectLink: `${javaPracticeSource}/JS1-Mad-Libs/starter`,
+					solutionLink: `${legacyJavaSource}/JS1-Mad-Libs`
 				}
 			]
 		},
@@ -374,26 +370,27 @@ const javaLevel1SourceCourse: RawCourse = {
 			curriculum: [
 				{
 					title: "Casting",
+					preserveInstructions: true,
 					content:
-						"Learn how casting changes the type the computer uses for a value. Compare automatic casting with explicit casts, especially when mixing `int` and `double` values in arithmetic.",
+						"Inside main, print 5 / 2, (double) 5 / 2, and (double) (5 / 2). Predict 2, 2.5 and 2.0. The last cast happens after integer division has already discarded the fraction.",
 					projectLink:
 						"https://github.com/instruction-material/Java-Level-1/tree/main/JS1-Casting-Reference"
 				},
 				{
 					title: "Mathematical Operators",
+					preserveInstructions: true,
 					content:
-						"Practice Java arithmetic with `+`, `-`, `*`, `/`, and `%`, and compare how order of operations and parentheses affect the result of expressions.",
+						"Compare 2 + 3 * 4 with (2 + 3) * 4: the results are 14 and 20. For nonnegative whole numbers, 17 / 5 gives 3 complete groups and 17 % 5 gives the 2 left over.",
 					projectLink:
 						"https://github.com/instruction-material/Java-Level-1/tree/main/JS2-Math-Operators-Reference"
 				},
 				{
 					title: "JS2 Project 1: Temperature Converter",
+					preserveInstructions: true,
 					content:
-						"Read temperature input from the user, convert between Fahrenheit and Celsius, and use casting to produce more accurate results before rounding to whole numbers.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS2-Temperature-Converter/src/main/java",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS2-Temperature-Converter/src/main/java"
+						"Read Fahrenheit and then Celsius. Use (F - 32) * 5.0 / 9 and C * 9.0 / 5 + 32. Print each result as a decimal and rounded to the nearest degree. Try 31 F and -40 C: the rounded results are -1 C and -40 F.",
+					projectLink: `${javaPracticeSource}/JS2-Temperature-Converter/starter`,
+					solutionLink: `${javaPracticeSource}/JS2-Temperature-Converter/solution`
 				},
 				{
 					title: "Casting and Operators: Verification and Reflection",
@@ -407,48 +404,43 @@ const javaLevel1SourceCourse: RawCourse = {
 			supplementalProjects: [
 				{
 					title: "JS2 Supplemental Project 1: Rainbow",
+					preserveInstructions: true,
 					content:
-						"Use the graphics methods introduced in the optional BlueJ workflow to create a six-color rainbow.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS2-Rainbow",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS2-Rainbow"
+						"Draw six nested arcs from outside to inside: red, orange, yellow, green, blue and magenta. Keep the arcs centered. Export Main.java and run it with JDK 21 (javac Main.java, then java Main). Open drawing.png after each change.",
+					projectLink: `${javaPracticeSource}/JS2_Rainbow/starter`,
+					solutionLink: `${javaPracticeSource}/JS2_Rainbow/solution`
 				},
 				{
 					title: "JS2 Supplemental Project 2: Snowman",
+					preserveInstructions: true,
 					content:
-						"Use graphics methods to draw and customize a snowman with extra features such as a scarf, arms, or snowflakes.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS2-Snowman",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS2-Snowman"
+						"Stack three white snowballs on a contrasting background. Add a hat, arms and a face. Export Main.java and run it with JDK 21 (javac Main.java, then java Main). Open drawing.png after each change.",
+					projectLink: `${javaPracticeSource}/JS2_Snowman/starter`,
+					solutionLink: `${javaPracticeSource}/JS2_Snowman/solution`
 				},
 				{
 					title: "Casting and Operators Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 1",
-						moduleTitle: "JS2 Casting and Operators",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/J1-02-js2-casting-and-operators-supplemental-3/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/J1-02-js2-casting-and-operators-supplemental-3/solution"
+					preserveInstructions: true,
+					content:
+						"Track integer division before and after casting in the Fahrenheit conversion. For 33 F compare the truncated zero with 5.0/9. For 31 F compare the rounded result with -1.",
+					projectLink: `${javaPracticeSource}/JS2-Temperature-Converter/starter`,
+					solutionLink: `${javaPracticeSource}/JS2-Temperature-Converter/solution`
 				},
 				{
 					title: "Basic Shapes (Optional)",
+					preserveInstructions: true,
 					content:
-						"Use BlueJ graphics methods such as `fillRect`, `fillOval`, and `fillArc` with `setColor` to explore Java graphics coordinates, color, and shape sizing.",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/blob/main/graphics/JS2_Basic_Shapes.java"
+						"Draw a filled rectangle, oval and arc. Predict each bounding box and check its position, size and color. Export Main.java and run it with JDK 21 (javac Main.java, then java Main). Open drawing.png after each change.",
+					projectLink: `${javaPracticeSource}/JS2_Basic_Shapes/starter`,
+					solutionLink: `${javaPracticeSource}/JS2_Basic_Shapes/solution`
 				},
 				{
 					title: "Happy Graphics (Optional)",
+					preserveInstructions: true,
 					content:
-						"Use the same drawing methods to create a smiley face and a pair of Pac-Man characters.",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/blob/main/graphics/JS2_Happy_Graphics.java"
+						"Draw two eyes and a smiling mouth, then draw two yellow Pac-Men facing one another. Export Main.java and run it with JDK 21 (javac Main.java, then java Main). Open drawing.png after each change.",
+					projectLink: `${javaPracticeSource}/JS2_Happy_Graphics/starter`,
+					solutionLink: `${javaPracticeSource}/JS2_Happy_Graphics/solution`
 				}
 			]
 		},
@@ -458,26 +450,25 @@ const javaLevel1SourceCourse: RawCourse = {
 			curriculum: [
 				{
 					title: "Conditionals",
+					preserveInstructions: true,
 					content:
-						"Practice `if`, `else if`, and `else`, along with comparison operators and logical operators such as `!`, `&&`, and `||`. Pay special attention to comparing strings with `.equals()` rather than `==`."
+						'A branch checks a boolean before executing its body. Given String color = "blue", color.equals("blue") is true. Write an if/else chain that accepts red, yellow or blue and reports any other input. Test one valid and one unknown value; compare the text using equals.'
 				},
 				{
 					title: "JS3 Project 1: Code Your Own Adventure",
+					preserveInstructions: true,
 					content:
-						"Create a text-based choose-your-own-adventure game using nested conditionals to handle multiple user choices and branching outcomes.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS3-Code-Your-Own-Adventure",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS3-Code-Your-Own-Adventure"
+						"Plan two opening choices and give at least one branch a second choice with different endings. Test each ending and an unknown command.",
+					projectLink: `${javaPracticeSource}/JS3-Code-Your-Own-Adventure/starter`,
+					solutionLink: `${legacyJavaSource}/JS3-Code-Your-Own-Adventure`
 				},
 				{
 					title: "JS3 Project 2: Color Mixer",
+					preserveInstructions: true,
 					content:
-						"Ask the user for two primary colors, validate the input, and use conditional logic to determine the resulting mixed color or print an error if the input is invalid.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS3-Color-Mixer",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS3-Color-Mixer"
+						"Accept red, yellow or blue for each color. Test red + yellow and yellow + red (orange), two blues (blue), and green as either input (error).",
+					projectLink: `${javaPracticeSource}/JS3-Color-Mixer/starter`,
+					solutionLink: `${legacyJavaSource}/JS3-Color-Mixer`
 				},
 				{
 					title: "Conditionals: Verification and Reflection",
@@ -491,48 +482,43 @@ const javaLevel1SourceCourse: RawCourse = {
 			supplementalProjects: [
 				{
 					title: "Supplemental Graphics Project: Which Shape? (Optional)",
+					preserveInstructions: true,
 					content:
-						"Use a string and conditionals in a BlueJ graphics project to decide whether to draw a circle, square, Pac-Man, or another shape.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/blob/main/graphics/JS3_Which_Shape.java",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/blob/main/graphics/JS3_Which_Shape.java"
+						"Use the shape string to select a circle, square or Pac-Man. Test all three and give unknown values a visible fallback. Export Main.java and run it with JDK 21 (javac Main.java, then java Main). Open drawing.png after each change.",
+					projectLink: `${javaPracticeSource}/JS3_Which_Shape/starter`,
+					solutionLink: `${javaPracticeSource}/JS3_Which_Shape/solution`
 				},
 				{
 					title: "JS3 Supplemental Project 1: Elevator Limits",
+					preserveInstructions: true,
 					content:
-						"Check whether an elevator is above or below its weight limit and print how far over or under the limit it is.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS3-Elevator-Limits",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS3-Elevator-Limits"
+						"Use the 1,500-pound limit. With 1,475 pounds report 25 under; with 1,525 report 25 over. Check exactly 1,500.",
+					projectLink: `${javaPracticeSource}/JS3-Elevator-Limits/starter`,
+					solutionLink: `${legacyJavaSource}/JS3-Elevator-Limits`
 				},
 				{
 					title: "JS3 Supplemental Project 2: Weather Activities",
+					preserveInstructions: true,
 					content:
-						"Ask the user about the weather and recommend an activity based on their answer.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS3-Weather-Activities",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS3-Weather-Activities"
+						"Choose activities for several weather conditions. Test a known condition and one outside your choices, which should receive a fallback message.",
+					projectLink: `${javaPracticeSource}/JS3-Weather-Activities/starter`,
+					solutionLink: `${legacyJavaSource}/JS3-Weather-Activities`
 				},
 				{
 					title: "JS3 Supplemental Project 3: Too Chicken to Cross the Road",
+					preserveInstructions: true,
 					content:
-						"Read booleans for the left and right sides of the road and use conditionals to tell Charlie the chicken whether it is safe to cross.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS3-Too-Chicken-to-Cross-the-Road",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS3-Too-Chicken-to-Cross-the-Road"
+						"Read two booleans, left clear and right clear. Try all four combinations. Only true/true is safe; name the blocked side or sides in the other cases.",
+					projectLink: `${javaPracticeSource}/JS3-Too-Chicken-to-Cross-the-Road/starter`,
+					solutionLink: `${legacyJavaSource}/JS3-Too-Chicken-to-Cross-the-Road`
 				},
 				{
 					title: "JS3 Supplemental Project 4: Spreadsheet Width",
+					preserveInstructions: true,
 					content:
-						"Format a word so it fits within a given spreadsheet cell width by either trimming or padding it, then print it between vertical bars.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS3-Spreadsheet-Width",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS3-Spreadsheet-Width"
+						"Read a width then a word. Width 5 with conditionals should print |condi|. With hi it should print |hi   |, including three spaces.",
+					projectLink: `${javaPracticeSource}/JS3-Spreadsheet-Width/starter`,
+					solutionLink: `${legacyJavaSource}/JS3-Spreadsheet-Width`
 				}
 			]
 		},
@@ -542,69 +528,65 @@ const javaLevel1SourceCourse: RawCourse = {
 			curriculum: [
 				{
 					title: "For Loops",
+					preserveInstructions: true,
 					content:
-						"Use `for` loops to repeat code with a loop variable, a stopping condition, and an update step. Practice counting forward, backward, and by larger increments."
+						"In for (int i = 2; i <= 6; i += 2), initialization happens once. The test runs before each iteration and the update after it. Printing i in the body gives 2, 4, 6. Predict the last value if <= becomes <."
 				},
 				{
 					title: "While Loops",
+					preserveInstructions: true,
 					content:
-						"Compare `while` loops with `for` loops, and practice using changing conditions and `while (true)` plus `break` to control repetition."
+						"Start int n = 3. In while (n > 0) { System.out.println(n); n--; }, each pass reduces n by one. You see 3, 2, 1; starting at zero prints nothing. Point to the update that guarantees the loop stops."
 				},
 				{
 					title: "JS4 Project 1: Loops Practice",
+					preserveInstructions: true,
 					content:
-						"Use loops to print ranges of numbers, even numbers, countdowns, and the sum of 1 through 100 with both `for` loops and `while` loops.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS4-Loop-Practice",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS4-Loop-Practice"
+						"Using for and then while loops, print 1 through 10, evens 2 through 10, and 10 down to 1. Accumulate the sum from 1 through 100; both versions should give 5050.",
+					projectLink: `${javaPracticeSource}/JS4-Loop-Practice/starter`,
+					solutionLink: `${legacyJavaSource}/JS4-Loop-Practice`
 				},
 				{
 					title: "JS4 Project 2: Nested Loops",
+					preserveInstructions: true,
 					content:
-						"Use nested loops to print multiplication tables and text patterns such as triangles of stars and diagonal marker patterns that combine loops with conditionals.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS4-Nested-Loops",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS4-Nested-Loops"
+						"Print a 12 by 12 multiplication table, a five-row increasing star triangle, its reverse, and a 5 by 5 field of dashes with a star on the main diagonal. Check the bottom right of the table is 144.",
+					projectLink: `${javaPracticeSource}/JS4-Nested-Loops/starter`,
+					solutionLink: `${legacyJavaSource}/JS4-Nested-Loops`
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "JS4 Supplemental Graphics Project: Paintball (Optional)",
+					preserveInstructions: true,
 					content:
-						"Use loops and coordinates in a BlueJ graphics project to draw diagonals of circles and experiment with other repeated patterns.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/blob/main/graphics/JS4_Paintball.java",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/blob/main/graphics/JS4_Paintball.java"
+						"Draw an X from two diagonals of circles. Use one loop and two fillOval calls. Predict where the two paths meet. Export Main.java and run it with JDK 21 (javac Main.java, then java Main). Open drawing.png after each change.",
+					projectLink: `${javaPracticeSource}/JS4_Paintball/starter`,
+					solutionLink: `${javaPracticeSource}/JS4_Paintball/solution`
 				},
 				{
 					title: "JS4 Supplemental Project 1: Letter Square",
+					preserveInstructions: true,
 					content:
-						"Ask the user for a letter and a size, then print a square made of that letter using both `for` loops and `while` loops.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS4-Letter-Square",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS4-Letter-Square"
+						"For H and 3 print three rows of HHH. Produce the same square using nested for loops and nested while loops. Compare at size 1.",
+					projectLink: `${javaPracticeSource}/JS4-Letter-Square/starter`,
+					solutionLink: `${legacyJavaSource}/JS4-Letter-Square`
 				},
 				{
 					title: "JS4 Supplemental Project 2: Checkout Calculator",
+					preserveInstructions: true,
 					content:
-						"Keep asking the user for item prices until they enter 0, then print the total cost.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS4-Checkout-Calculator",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS4-Checkout-Calculator"
+						"Read prices until the first zero. For 1.25, 2.50, 0 the total is 3.75. Starting with zero gives zero.",
+					projectLink: `${javaPracticeSource}/JS4-Checkout-Calculator/starter`,
+					solutionLink: `${legacyJavaSource}/JS4-Checkout-Calculator`
 				},
 				{
 					title: "JS4 Supplemental Project 3: Pyramid",
+					preserveInstructions: true,
 					content:
-						"Use nested loops to print a slash-and-backslash pyramid pattern in the console.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS4-Pyramid",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS4-Pyramid"
+						"Make a centered five-row pyramid of slash pairs. Row 1 has four leading spaces, one forward slash and one backslash. Each row loses a space and adds one slash of each kind.",
+					projectLink: `${javaPracticeSource}/JS4-Pyramid/starter`,
+					solutionLink: `${legacyJavaSource}/JS4-Pyramid`
 				}
 			]
 		},
@@ -619,21 +601,19 @@ const javaLevel1SourceCourse: RawCourse = {
 				},
 				{
 					title: "JS5 Project 1: Letter Guesser",
+					preserveInstructions: true,
 					content:
-						"Pick a random lowercase letter, ask the user to guess until they get it right, and count how many guesses it took.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS5-Letter-Guesser",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS5-Letter-Guesser"
+						"Select a random lowercase letter from a through z, read guesses and count attempts until it matches. Use one fixed seed to replay the guesses. Ignore blank lines.",
+					projectLink: `${javaPracticeSource}/JS5-Letter-Guesser/starter`,
+					solutionLink: `${javaPracticeSource}/JS5-Letter-Guesser/solution`
 				},
 				{
 					title: "JS5 Project 2: Mathematical Challenges",
+					preserveInstructions: true,
 					content:
-						"Complete several challenge problems, including FizzBuzz, listing all factors of a number, and reversing a string.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS5-Mathematical-Challenges",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS5-Mathematical-Challenges"
+						"Print FizzBuzz for 1 through 50 (3: Fizz, 5: Buzz, 15: FizzBuzz). List every positive factor of a number up to 1000; for 12 expect 1, 2, 3, 4, 6, 12. Reverse a word such as loop to pool.",
+					projectLink: `${javaPracticeSource}/JS5-Mathematical-Challenges/starter`,
+					solutionLink: `${javaPracticeSource}/JS5-Mathematical-Challenges/solution`
 				},
 				{
 					title: "Practice with Loops & Conditionals: Verification and Reflection",
@@ -647,42 +627,27 @@ const javaLevel1SourceCourse: RawCourse = {
 			supplementalProjects: [
 				{
 					title: "JS5 Supplemental Project 1: Number Guesser",
+					preserveInstructions: true,
 					content:
-						"Create a number guessing game with a user-defined range, random target, feedback on each guess, and a final guess count.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS5-Random-Number-Guesser",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS5-Random-Number-Guesser"
+						"Choose a secret integer between the entered minimum and maximum, inclusive. Give higher/lower feedback and count guesses. With minimum and maximum both 7, guesses 6, 8, 7 should take three tries.",
+					projectLink: `${javaPracticeSource}/JS5-Random-Number-Guesser/starter`,
+					solutionLink: `${javaPracticeSource}/JS5-Random-Number-Guesser/solution`
 				},
 				{
 					title: "Practice with Loops & Conditionals Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 1",
-						moduleTitle: "JS5 Practice with Loops & Conditionals",
-						itemTitle:
-							"Practice with Loops & Conditionals Transfer Practice",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/J1-03-js5-practice-with-loops-conditionals-supplemental-2/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/J1-03-js5-practice-with-loops-conditionals-supplemental-2/solution"
+					preserveInstructions: true,
+					content:
+						"Run a seeded round twice with the same guesses. Add a blank line to the second run. Count only nonblank guesses and explain why the target repeats.",
+					projectLink: `${javaPracticeSource}/JS5-Letter-Guesser/starter`,
+					solutionLink: `${javaPracticeSource}/JS5-Letter-Guesser/solution`
 				},
 				{
 					title: "Practice with Loops & Conditionals Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 1",
-						moduleTitle: "JS5 Practice with Loops & Conditionals",
-						itemTitle:
-							"Practice with Loops & Conditionals Extension Practice",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/J1-04-js5-practice-with-loops-conditionals-supplemental-3/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/J1-04-js5-practice-with-loops-conditionals-supplemental-3/solution"
+					preserveInstructions: true,
+					content:
+						"Test the guessing loop with the one-number range 4 through 4, then with a reversed range. The first accepts 4 and the second reports an invalid range.",
+					projectLink: `${javaPracticeSource}/JS5-Random-Number-Guesser/starter`,
+					solutionLink: `${javaPracticeSource}/JS5-Random-Number-Guesser/solution`
 				}
 			]
 		},
@@ -692,12 +657,11 @@ const javaLevel1SourceCourse: RawCourse = {
 			curriculum: [
 				{
 					title: "Check-In #1 Overview",
+					preserveInstructions: true,
 					content:
-						"This module is a low-pressure review of variables, strings, conditionals, and loops after the visual-to-text bridge. Work through the prompts independently first, then revisit any ideas that need reinforcement by translating the text output back to state changes, method calls, and visible evidence.",
-					projectLink:
-						"https://github.com/instruction-material/APCS/tree/main/APCS-Check-in-1/starter",
-					solutionLink:
-						"https://github.com/instruction-material/APCS/tree/main/APCS-Check-in-1/solution"
+						"Try the check-in independently, then review the first unexpected output with your tutor. Read an animal and a color. Print the first animal letter and color length. Distinguish a black cat, one matching answer, and neither. Use loops to print 0 through 9 and 20 down to 10.",
+					projectLink: `${javaPracticeSource}/Check-In-1/starter`,
+					solutionLink: `${javaPracticeSource}/Check-In-1/solution`
 				},
 				{
 					title: "Check-In #1: Variables and Strings",
@@ -716,54 +680,37 @@ const javaLevel1SourceCourse: RawCourse = {
 				},
 				{
 					title: "Check-In #1: Additional Practice Project",
+					preserveInstructions: true,
 					content:
-						"Ask the user for a row and column, then print a grid with `O` characters along that row and column and an `X` at the exact chosen coordinate.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS-Check-in-1-Additional-Project-Starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS-Check-in-1-Additional-Project"
+						"Read a row and column from 1 through 10. Print ten rows of ten characters: X at the intersection, O in the selected row or column, and - elsewhere. Input 7 and 2 should make row 7 OXOOOOOOOO.",
+					projectLink: `${javaPracticeSource}/Check-In-1-Grid/starter`,
+					solutionLink: `${javaPracticeSource}/Check-In-1-Grid/solution`
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "Check In #1: Extension Challenge",
-					content: buildSupportSectionGuidance({
-						courseFamily: "Java Level 1",
-						moduleTitle: "Check In #1",
-						section: "extension"
-					}),
-					projectLink:
-						"https://github.com/instruction-material/APCS/tree/main/APCS-Check-in-1/starter",
-					solutionLink:
-						"https://github.com/instruction-material/APCS/tree/main/APCS-Check-in-1/solution"
+					preserveInstructions: true,
+					content:
+						"Trace the three animal-and-color branches for black cat, white cat and brown dog. Then change the correct animal and repeat all three tests.",
+					projectLink: `${javaPracticeSource}/Check-In-1/starter`,
+					solutionLink: `${javaPracticeSource}/Check-In-1/solution`
 				},
 				{
 					title: "Check In #1 Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 1",
-						moduleTitle: "Check-In #1",
-						itemTitle: "Check In #1 Transfer Practice",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/J1-05-check-in-1-supplemental-2/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/J1-05-check-in-1-supplemental-2/solution"
+					preserveInstructions: true,
+					content:
+						"Use (1,10) for the grid intersection. Check that the upper right is X and the remaining nine entries of row 1 are O.",
+					projectLink: `${javaPracticeSource}/Check-In-1-Grid/starter`,
+					solutionLink: `${javaPracticeSource}/Check-In-1-Grid/solution`
 				},
 				{
 					title: "Check In #1 Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 1",
-						moduleTitle: "Check-In #1",
-						itemTitle: "Check In #1 Extension Practice",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/J1-06-check-in-1-supplemental-3/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/J1-06-check-in-1-supplemental-3/solution"
+					preserveInstructions: true,
+					content:
+						"Format the same word at widths one shorter, equal to and one longer than its length. Mark the bars so the final padding space is visible.",
+					projectLink: `${javaPracticeSource}/JS3-Spreadsheet-Width/starter`,
+					solutionLink: `${legacyJavaSource}/JS3-Spreadsheet-Width`
 				}
 			]
 		},
@@ -773,17 +720,17 @@ const javaLevel1SourceCourse: RawCourse = {
 			curriculum: [
 				{
 					title: "Methods",
+					preserveInstructions: true,
 					content:
-						"Learn how methods package reusable logic with parameters, return types, and method calls. Practice writing simple helpers such as `sum`, `subtract`, `double`, and `max`."
+						"Define static int twice(int x) { return x + x; } inside Main but outside main. In main, print twice(4), then twice(-2): the calls return 8 and -4. The parameter belongs to the call. Change the argument and predict the return before printing it."
 				},
 				{
 					title: "JS6 Project 1: Methods Practice",
+					preserveInstructions: true,
 					content:
-						"Write methods that compute an average, test whether a number is even, find the smallest of three doubles, compute a factorial, and raise a base to a power.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS6-Methods-Practice",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS6-Methods-Practice"
+						"Write methods for the precise average of two integers, evenness, the minimum of three doubles, factorial and integer exponentiation with nonnegative exponents. Check average(3,6) = 4.5, factorial(0) = 1 and exponent(5,3) = 125.",
+					projectLink: `${javaPracticeSource}/JS6-Methods-Practice/starter`,
+					solutionLink: `${javaPracticeSource}/JS6-Methods-Practice/solution`
 				},
 				{
 					title: "Methods: Planning and Architecture",
@@ -805,48 +752,43 @@ const javaLevel1SourceCourse: RawCourse = {
 			supplementalProjects: [
 				{
 					title: "JS6 Supplemental Graphics Project: Picasso (Optional)",
+					preserveInstructions: true,
 					content:
-						"Use methods plus random size, color, and position values in a BlueJ graphics project to generate abstract art from multiple shapes.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/blob/main/graphics/JS6_Picasso.java",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/blob/main/graphics/JS6_Picasso.java"
+						"Write three shape helpers with color, position and size parameters. Call each helper 500 times using random inputs. Export Main.java and run it with JDK 21 (javac Main.java, then java Main). Open drawing.png after each change.",
+					projectLink: `${javaPracticeSource}/JS6_Picasso/starter`,
+					solutionLink: `${javaPracticeSource}/JS6_Picasso/solution`
 				},
 				{
 					title: "JS6 Supplemental Project 1: Min and Max",
+					preserveInstructions: true,
 					content:
-						"Write `min()` and `max()` methods for three integers without using `Math.min()` or `Math.max()`.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS6-Min-and-Max",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS6-Min-and-Max"
+						"Return the smallest and largest of three integers using comparisons. Try (4,-2,4) and three equal values. Work without Math.min or Math.max.",
+					projectLink: `${javaPracticeSource}/JS6-Min-and-Max/starter`,
+					solutionLink: `${legacyJavaSource}/JS6-Min-and-Max`
 				},
 				{
 					title: "JS6 Supplemental Project 2: Caught Speeding",
+					preserveInstructions: true,
 					content:
-						"Write a method that returns a ticket category based on driving speed and whether it is the driver's birthday.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS6-Caught-Speeding",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS6-Caught-Speeding"
+						"Return “No ticket!” at 65 mph or below, “Small ticket!” from 66 through 79, and “Big ticket!” at 80 or above. A birthday lowers the ticket by one level. Test 65, 66, 79 and 80 with both birthday values.",
+					projectLink: `${javaPracticeSource}/JS6-Caught-Speeding/starter`,
+					solutionLink: `${javaPracticeSource}/JS6-Caught-Speeding/solution`
 				},
 				{
 					title: "JS6 Supplemental Project 3: String Expander",
+					preserveInstructions: true,
 					content:
-						"Write a method that repeats each character in a string a specified number of times.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS6-String-Expander",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS6-String-Expander"
+						"Expand each character in order. For “cat” and 2 return “ccaatt”. For a repeat count of 0 return the empty string.",
+					projectLink: `${javaPracticeSource}/JS6-String-Expander/starter`,
+					solutionLink: `${legacyJavaSource}/JS6-String-Expander`
 				},
 				{
 					title: "JS6 Supplemental Project 4: Palindrome Checker",
+					preserveInstructions: true,
 					content:
-						"Write an `isPalindrome()` method that checks whether a string reads the same forward and backward.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS6-Palindrome-Checker",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS6-Palindrome-Checker"
+						"Compare mirrored characters. racecar and a single character are palindromes; java is not. Check the empty string too.",
+					projectLink: `${javaPracticeSource}/JS6-Palindrome-Checker/starter`,
+					solutionLink: `${legacyJavaSource}/JS6-Palindrome-Checker`
 				}
 			]
 		},
@@ -861,21 +803,19 @@ const javaLevel1SourceCourse: RawCourse = {
 				},
 				{
 					title: "JS7 Project 1: Practice with Arrays",
+					preserveInstructions: true,
 					content:
-						"Build arrays of perfect squares, write methods that inspect or transform arrays, test for values such as 0, create arrays of random doubles, and optionally reverse arrays or swap the smallest and largest values.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS7-Practice-with-Arrays",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS7-Practice-with-Arrays"
+						"Generate ten perfect squares. Write methods for matching first/last, sum, total string lengths, presence of zero and N random doubles from 0 up to 10. Optionally return a reversed array and swap min/max. Trace [2,0,2] and an empty array.",
+					projectLink: `${javaPracticeSource}/JS7-Practice-with-Arrays/starter`,
+					solutionLink: `${javaPracticeSource}/JS7-Practice-with-Arrays/solution`
 				},
 				{
 					title: "JS7 Project 2: Fortune Teller",
+					preserveInstructions: true,
 					content:
-						"Store several fortunes in an array and print a random one each time the program runs.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS7-Fortune-Teller",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS7-Fortune-Teller"
+						"Store five fortunes in an array. Select an index from 0 through length - 1 and print its fortune. Change the array length and check every possible index remains valid.",
+					projectLink: `${javaPracticeSource}/JS7-Fortune-Teller/starter`,
+					solutionLink: `${javaPracticeSource}/JS7-Fortune-Teller/solution`
 				},
 				{
 					title: "ArrayLists",
@@ -884,68 +824,61 @@ const javaLevel1SourceCourse: RawCourse = {
 				},
 				{
 					title: "JS7 Project 3: Practice with ArrayLists",
+					preserveInstructions: true,
 					content:
-						"Write methods that generate lists of random integers, filter even numbers, remove the smallest value, add a sum, edit multiples of 3, collect user-entered words, and insert `MIDDLE` into the center of a list.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS7-Array-List-Practice",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS7-Array-List-Practice"
+						"Generate N integers from -50 through 50. Return a separate list of evens. Remove a smallest value, append the sum, and divide multiples of 3 by 3. Read N words and insert MIDDLE at index size()/2. Check [6,1,3] and an empty list.",
+					projectLink: `${javaPracticeSource}/JS7-Array-List-Practice/starter`,
+					solutionLink: `${javaPracticeSource}/JS7-Array-List-Practice/solution`
 				},
 				{
 					title: "JS7 Project 4: High Score List",
+					preserveInstructions: true,
 					content:
-						"Create a sorted high-score list that inserts each new score in the correct place from highest to lowest.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS7-High-Score-List",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS7-High-Score-List"
+						"Start with scores 500, 450, 375. Insert 400 then 550 in descending order. Add another 450 and a new lowest score. Print the list after each input.",
+					projectLink: `${javaPracticeSource}/JS7-High-Score-List/starter`,
+					solutionLink: `${javaPracticeSource}/JS7-High-Score-List/solution`
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "JS7 Supplemental Project 1: Lucky Array",
+					preserveInstructions: true,
 					content:
-						"Ask the user for a lucky number, then check whether it appears in an array of random integers.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS7-Lucky-Array",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS7-Lucky-Array"
+						"Generate ten numbers and check whether a chosen lucky number occurs. Use [4,8,4] to test 4 (present) and 7 (absent).",
+					projectLink: `${javaPracticeSource}/JS7-Lucky-Array/starter`,
+					solutionLink: `${legacyJavaSource}/JS7-Lucky-Array`
 				},
 				{
 					title: "JS7 Supplemental Project 2: Arithmetic Sequence",
+					preserveInstructions: true,
 					content:
-						"Write `generateArithSeq()` to return an array representing an arithmetic sequence from a starting value, term count, and common difference.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS7-Practice-with-Arrays",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS7-Practice-with-Arrays"
+						"Implement generateArithSeq(first, count, difference). For (5,4,2) return [5,7,9,11]. Test a negative difference and zero terms.",
+					projectLink: `${javaPracticeSource}/JS7-Arithmetic-Sequence/starter`,
+					solutionLink: `${javaPracticeSource}/JS7-Arithmetic-Sequence/solution`
 				},
 				{
 					title: "JS7 Supplemental Project 3: String to Array",
+					preserveInstructions: true,
 					content:
-						"Convert strings to arrays of characters, including a version that keeps every other character starting from the first.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS7-String-to-Array",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS7-String-to-Array"
+						"Return each character of Java, then write a second method that keeps indices 0,2,4 and so on. For array the second result is [a,r,y].",
+					projectLink: `${javaPracticeSource}/JS7-String-to-Array/starter`,
+					solutionLink: `${legacyJavaSource}/JS7-String-to-Array`
 				},
 				{
 					title: "JS7 Supplemental Project 4: Too Much Reversing",
+					preserveInstructions: true,
 					content:
-						"Reverse every string in an array and also reverse the order of the strings in the array itself.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS7-Too-Much-Reversing",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS7-Too-Much-Reversing"
+						"Reverse each word and the order of the words. For [sun,moon] return [noom,nus]. Check the empty array. Read the output array without changing the input.",
+					projectLink: `${javaPracticeSource}/JS7-Too-Much-Reversing/starter`,
+					solutionLink: `${legacyJavaSource}/JS7-Too-Much-Reversing`
 				},
 				{
 					title: "JS7 Supplemental Project 5: Airline Management",
+					preserveInstructions: true,
 					content:
-						"Use a boolean array to represent airplane seats, then write methods that reserve seats and detect when the flight is full.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS7-Airline-Management",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS7-Airline-Management"
+						"Store five reservations as booleans. Seats are numbered 1 through 5. Use reserveSeat and isFull. Reserve seat 1 twice, then fill seats 2 through 5; the duplicate must leave the count unchanged.",
+					projectLink: `${javaPracticeSource}/JS7-Airline-Management/starter`,
+					solutionLink: `${javaPracticeSource}/JS7-Airline-Management/solution`
 				},
 				{
 					title: "JS7 Supplemental Project 6: Song Shuffler",
@@ -969,21 +902,19 @@ const javaLevel1SourceCourse: RawCourse = {
 				},
 				{
 					title: "JS8 Project 1: Practice with 2D Arrays",
+					preserveInstructions: true,
 					content:
-						"Write methods that sum all values in a grid, find the minimum value, generate an `N x N` multiplication table, and return row averages as doubles.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS8-Practice-with-2D-Arrays",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS8-Practice-with-2D-Arrays"
+						"Write sum, minimum, an N by N multiplication table, and double row averages. For [[1,2,3],[4,5,6]] expect 21, 1 and [2.0,5.0]. Check a one-cell table.",
+					projectLink: `${javaPracticeSource}/JS8-Practice-with-2D-Arrays/starter`,
+					solutionLink: `${javaPracticeSource}/JS8-Practice-with-2D-Arrays/solution`
 				},
 				{
 					title: "JS8 Project 2: Grid Drawer",
+					preserveInstructions: true,
 					content:
-						"Create a 10x10 grid that lets the user place `x` markers at chosen row and column positions until they enter `-1` to stop.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS8-Grid-Drawer",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS8-Grid-Drawer"
+						"Start with a 10 by 10 blank grid, mark a valid row and column, and display it after each edit. Mark (0,9) and (9,0). Typing -1 at either prompt stops immediately.",
+					projectLink: `${javaPracticeSource}/JS8-Grid-Drawer/starter`,
+					solutionLink: `${javaPracticeSource}/JS8-Grid-Drawer/solution`
 				},
 				{
 					title: "Two Dimensional Arrays: Verification and Reflection",
@@ -997,30 +928,27 @@ const javaLevel1SourceCourse: RawCourse = {
 			supplementalProjects: [
 				{
 					title: "JS8 Supplemental Project 1: Square of Squares",
+					preserveInstructions: true,
 					content:
-						"Ask the user for a size, fill a 2D array with perfect squares, and print the resulting square grid.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS8-Square-of-Squares",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS8-Square-of-Squares"
+						"Fill a square grid row by row with successive positive perfect squares. Size 2 should show 1 4 on the first row and 9 16 on the second.",
+					projectLink: `${javaPracticeSource}/JS8-Square-of-Squares/starter`,
+					solutionLink: `${legacyJavaSource}/JS8-Square-of-Squares`
 				},
 				{
 					title: "JS8 Supplemental Project 2: 2D Array to String",
+					preserveInstructions: true,
 					content:
-						"Write `arrToString()` to return a string representation of a 2D array using nested loops.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS8-2D-Array-to-String",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS8-2D-Array-to-String"
+						"Use nested loops to produce [[0, 1], [2, 3], [4, 5]], including the commas and spaces. Try an empty grid and a single row.",
+					projectLink: `${javaPracticeSource}/JS8-2D-Array-to-String/starter`,
+					solutionLink: `${javaPracticeSource}/JS8-2D-Array-to-String/solution`
 				},
 				{
 					title: "JS8 Supplemental Project 3: Magic Square",
+					preserveInstructions: true,
 					content:
-						"Write `isMagicSquare()` to check whether all rows, columns, and diagonals in a square grid have the same sum.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS8-Magic-Square",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS8-Magic-Square"
+						"Compare every row, column and both diagonals with the first row sum. [[2,7,6],[9,5,1],[4,3,8]] passes. Swap two unequal entries and check again. An empty or non-square grid fails.",
+					projectLink: `${javaPracticeSource}/JS8-Magic-Square/starter`,
+					solutionLink: `${javaPracticeSource}/JS8-Magic-Square/solution`
 				}
 			]
 		},
@@ -1055,50 +983,37 @@ const javaLevel1SourceCourse: RawCourse = {
 				},
 				{
 					title: "Check-In #2: Additional Practice Project",
+					preserveInstructions: true,
 					content:
-						"Fill an integer array with random values and write a method called `countNumElementsAboveFive()` that returns how many entries are greater than 5.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS7-Practice-with-Arrays",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS7-Practice-with-Arrays"
+						"Fill ten integers with random values from 0 through 10 inclusive. Return the count strictly above 5. Before trying random data, test [0,5,6,10] (2) and [] (0).",
+					projectLink: `${javaPracticeSource}/Check-In-2-Count/starter`,
+					solutionLink: `${javaPracticeSource}/Check-In-2-Count/solution`
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "Check In #2: Extension Challenge",
-					content: buildSupportSectionGuidance({
-						courseFamily: "Java Level 1",
-						moduleTitle: "Check In #2",
-						section: "extension"
-					})
+					preserveInstructions: true,
+					content:
+						"Predict a random integer range and character conversion. Write a sum method, simulate coin flips, traverse an array and print a two-dimensional grid. Explain each bound before running the example.",
+					projectLink: `${javaPracticeSource}/Check-In-2/starter`,
+					solutionLink: `${javaPracticeSource}/Check-In-2/solution`
 				},
 				{
 					title: "Check In #2 Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 1",
-						moduleTitle: "Check-In #2",
-						itemTitle: "Check In #2 Transfer Practice",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/J1-07-check-in-2-supplemental-2/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/J1-07-check-in-2-supplemental-2/solution"
+					preserveInstructions: true,
+					content:
+						"Create three fixed arrays with no values above 5, one above 5 and every value above 5. Record the expected counts before running your method.",
+					projectLink: `${javaPracticeSource}/Check-In-2-Count/starter`,
+					solutionLink: `${javaPracticeSource}/Check-In-2-Count/solution`
 				},
 				{
 					title: "Check In #2 Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 1",
-						moduleTitle: "Check-In #2",
-						itemTitle: "Check In #2 Extension Practice",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/J1-08-check-in-2-supplemental-3/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/J1-08-check-in-2-supplemental-3/solution"
+					preserveInstructions: true,
+					content:
+						"For rows [2,3] and [4,8], predict the sum (17), minimum (2), and row averages (2.5 and 6.0). Change one cell and predict which averages change.",
+					projectLink: `${javaPracticeSource}/JS8-Practice-with-2D-Arrays/starter`,
+					solutionLink: `${javaPracticeSource}/JS8-Practice-with-2D-Arrays/solution`
 				}
 			]
 		},
@@ -1108,21 +1023,20 @@ const javaLevel1SourceCourse: RawCourse = {
 			curriculum: [
 				{
 					title: "JS9 Master Project: Simple Battleship",
+					preserveInstructions: true,
 					content:
-						"Plan and build a playable Battleship game using the core ideas from the course, including loops, conditionals, methods, arrays, and two-dimensional arrays. Think carefully about how to store ships, guesses, and hits, and keep the player guessing until all ships are sunk.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS9-Simple-Battleship",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS9-Simple-Battleship"
+						"Plan the board, hidden ships and shot history in pseudocode. Build a 10 by 10 single-player game with one two-cell and one three-cell ship. Read row and column from 0 to 9. Record hits and misses, reject repeat shots, and end when all five different ship cells are hit. Test a corner, a duplicate miss, bad input and a fresh board. Use one coordinate per line. Explain one decision in your finished game and share your run with your tutor.",
+					projectLink: `${javaPracticeSource}/JS9-Simple-Battleship/starter`,
+					solutionLink: `${javaPracticeSource}/JS9-Simple-Battleship/solution`
 				},
 				{
 					title: "JS9 Master Project: Advanced Battleship",
+					learningPath: "challenge",
+					preserveInstructions: true,
 					content:
-						"Extend the project into a configurable multiplayer Battleship game with custom board sizes, multiple ship types, setup validation, alternating turns, and win detection.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS9-Advanced-Battleship",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS9-Advanced-Battleship"
+						"Optional after Simple Battleship. Choose the board size and counts of 2-, 3- and 4-cell ships. Each player places a fleet and then takes turns firing at the other board. Test overlapping or out-of-bounds placement, repeated shots, a miss and the winning hit.",
+					projectLink: `${javaPracticeSource}/JS9-Advanced-Battleship/starter`,
+					solutionLink: `${javaPracticeSource}/JS9-Advanced-Battleship/solution`
 				},
 				{
 					title: "Course Recap",
@@ -1141,45 +1055,27 @@ const javaLevel1SourceCourse: RawCourse = {
 			supplementalProjects: [
 				{
 					title: "Master Project: Battleship: Extension Challenge",
-					content: buildSupportSectionGuidance({
-						courseFamily: "Java Level 1",
-						moduleTitle: "Master Project: Battleship",
-						section: "extension"
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS9-Simple-Battleship",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS9-Simple-Battleship"
+					preserveInstructions: true,
+					content:
+						"After completing your game, replay three malformed coordinates. Keep the board unchanged and end after the third consecutive invalid shot. Try a valid shot between two errors and explain when the retry count resets.",
+					projectLink: `${javaPracticeSource}/JS9-Simple-Battleship/starter`,
+					solutionLink: `${javaPracticeSource}/JS9-Simple-Battleship/solution`
 				},
 				{
 					title: "Master Project: Battleship Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 1",
-						moduleTitle: "JS9 Master Project: Battleship",
-						itemTitle:
-							"Master Project: Battleship Transfer Practice",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/J1-09-js9-master-project-battleship-supplemental-2/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/J1-09-js9-master-project-battleship-supplemental-2/solution"
+					preserveInstructions: true,
+					content:
+						"Write a transcript for a duplicate miss followed by a duplicate hit. In each pair only the first shot changes the displayed board.",
+					projectLink: `${javaPracticeSource}/JS9-Simple-Battleship/starter`,
+					solutionLink: `${javaPracticeSource}/JS9-Simple-Battleship/solution`
 				},
 				{
 					title: "Master Project: Battleship Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 1",
-						moduleTitle: "JS9 Master Project: Battleship",
-						itemTitle:
-							"Master Project: Battleship Extension Practice",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/J1-10-js9-master-project-battleship-supplemental-3/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/J1-10-js9-master-project-battleship-supplemental-3/solution"
+					preserveInstructions: true,
+					content:
+						"Run a complete fixed fleet twice. Before the second run predict the initial board and verify that no previous shot is marked.",
+					projectLink: `${javaPracticeSource}/JS9-Simple-Battleship/starter`,
+					solutionLink: `${javaPracticeSource}/JS9-Simple-Battleship/solution`
 				}
 			]
 		},
@@ -1218,35 +1114,19 @@ const javaLevel1SourceCourse: RawCourse = {
 				},
 				{
 					title: "J1X02 Java Foundations Build 13 Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 1",
-						moduleTitle:
-							"J1X02 Java Foundations Build 13: Practice Studio",
-						itemTitle:
-							"J1X02 Java Foundations Build 13 Transfer Practice",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/J1-11-applied-studio-12-j1x02-java-foundations-build-13-supplemental-2/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/J1-11-applied-studio-12-j1x02-java-foundations-build-13-supplemental-2/solution"
+					preserveInstructions: true,
+					content:
+						"Use [0,-2,5,8]. Sum only the evens: the total is 6. Check an empty input.",
+					projectLink: `${legacyJavaSource}/J1-02-java-foundations-build-13/starter`,
+					solutionLink: `${legacyJavaSource}/J1-02-java-foundations-build-13/solution`
 				},
 				{
 					title: "J1X02 Java Foundations Build 13 Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 1",
-						moduleTitle:
-							"J1X02 Java Foundations Build 13: Practice Studio",
-						itemTitle:
-							"J1X02 Java Foundations Build 13 Extension Practice",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/J1-12-applied-studio-12-j1x02-java-foundations-build-13-supplemental-3/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/J1-12-applied-studio-12-j1x02-java-foundations-build-13-supplemental-3/solution"
+					preserveInstructions: true,
+					content:
+						"Add an odd number to [2,8] and then an even number. Explain why only the second addition changes the score.",
+					projectLink: `${legacyJavaSource}/J1-02-java-foundations-build-13/starter`,
+					solutionLink: `${legacyJavaSource}/J1-02-java-foundations-build-13/solution`
 				}
 			]
 		},
@@ -1285,35 +1165,19 @@ const javaLevel1SourceCourse: RawCourse = {
 				},
 				{
 					title: "J1X03 Java Foundations Build 14 Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 1",
-						moduleTitle:
-							"J1X03 Java Foundations Build 14: Practice Studio",
-						itemTitle:
-							"J1X03 Java Foundations Build 14 Transfer Practice",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/J1-13-applied-studio-13-j1x03-java-foundations-build-14-supplemental-2/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/J1-13-applied-studio-13-j1x03-java-foundations-build-14-supplemental-2/solution"
+					preserveInstructions: true,
+					content:
+						"Compare [9,10,11] with [9,9,11]. Doubling only values at least 10 produces 51 and 40.",
+					projectLink: `${legacyJavaSource}/J1-03-java-foundations-build-14/starter`,
+					solutionLink: `${legacyJavaSource}/J1-03-java-foundations-build-14/solution`
 				},
 				{
 					title: "J1X03 Java Foundations Build 14 Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 1",
-						moduleTitle:
-							"J1X03 Java Foundations Build 14: Practice Studio",
-						itemTitle:
-							"J1X03 Java Foundations Build 14 Extension Practice",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/J1-14-applied-studio-13-j1x03-java-foundations-build-14-supplemental-3/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/J1-14-applied-studio-13-j1x03-java-foundations-build-14-supplemental-3/solution"
+					preserveInstructions: true,
+					content:
+						"Compare [10,10] with [9,11]. Both sum to 20 before weighting. Verify the weighted scores 40 and 31.",
+					projectLink: `${legacyJavaSource}/J1-03-java-foundations-build-14/starter`,
+					solutionLink: `${legacyJavaSource}/J1-03-java-foundations-build-14/solution`
 				}
 			]
 		},
@@ -1352,35 +1216,19 @@ const javaLevel1SourceCourse: RawCourse = {
 				},
 				{
 					title: "J1X04 Java Foundations Build 15 Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 1",
-						moduleTitle:
-							"J1X04 Java Foundations Build 15: Practice Studio",
-						itemTitle:
-							"J1X04 Java Foundations Build 15 Transfer Practice",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/J1-15-applied-studio-14-j1x04-java-foundations-build-15-supplemental-2/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/J1-15-applied-studio-14-j1x04-java-foundations-build-15-supplemental-2/solution"
+					preserveInstructions: true,
+					content:
+						"Count entries in the inclusive range 5 through 10 in [4,5,10,11]. Both endpoints count, giving 2.",
+					projectLink: `${legacyJavaSource}/J1-04-java-foundations-build-15/starter`,
+					solutionLink: `${legacyJavaSource}/J1-04-java-foundations-build-15/solution`
 				},
 				{
 					title: "J1X04 Java Foundations Build 15 Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 1",
-						moduleTitle:
-							"J1X04 Java Foundations Build 15: Practice Studio",
-						itemTitle:
-							"J1X04 Java Foundations Build 15 Extension Practice",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/J1-16-applied-studio-14-j1x04-java-foundations-build-15-supplemental-3/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/J1-16-applied-studio-14-j1x04-java-foundations-build-15-supplemental-3/solution"
+					preserveInstructions: true,
+					content:
+						"Set both range endpoints to 5. For [4,5,5,6] the count is 2; for [4,6] it is 0.",
+					projectLink: `${legacyJavaSource}/J1-04-java-foundations-build-15/starter`,
+					solutionLink: `${legacyJavaSource}/J1-04-java-foundations-build-15/solution`
 				}
 			]
 		},
@@ -1419,35 +1267,19 @@ const javaLevel1SourceCourse: RawCourse = {
 				},
 				{
 					title: "J1X05 Java Foundations Build 16 Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 1",
-						moduleTitle:
-							"J1X05 Java Foundations Build 16: Practice Studio",
-						itemTitle:
-							"J1X05 Java Foundations Build 16 Transfer Practice",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/J1-17-applied-studio-15-j1x05-java-foundations-build-16-supplemental-2/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/J1-17-applied-studio-15-j1x05-java-foundations-build-16-supplemental-2/solution"
+					preserveInstructions: true,
+					content:
+						"Trace [9,3,8,7]. Its largest positive adjacent increase is 5. A one-element list returns 0.",
+					projectLink: `${legacyJavaSource}/J1-05-java-foundations-build-16/starter`,
+					solutionLink: `${legacyJavaSource}/J1-05-java-foundations-build-16/solution`
 				},
 				{
 					title: "J1X05 Java Foundations Build 16 Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 1",
-						moduleTitle:
-							"J1X05 Java Foundations Build 16: Practice Studio",
-						itemTitle:
-							"J1X05 Java Foundations Build 16 Extension Practice",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/J1-18-applied-studio-15-j1x05-java-foundations-build-16-supplemental-3/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/J1-18-applied-studio-15-j1x05-java-foundations-build-16-supplemental-3/solution"
+					preserveInstructions: true,
+					content:
+						"Compare [5,1,4] with [1,4,5]. For each list write the two adjacent differences; both largest increases are 3.",
+					projectLink: `${legacyJavaSource}/J1-05-java-foundations-build-16/starter`,
+					solutionLink: `${legacyJavaSource}/J1-05-java-foundations-build-16/solution`
 				}
 			]
 		},
@@ -1486,35 +1318,19 @@ const javaLevel1SourceCourse: RawCourse = {
 				},
 				{
 					title: "J1X06 Java Foundations Build 17 Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 1",
-						moduleTitle:
-							"J1X06 Java Foundations Build 17: Practice Studio",
-						itemTitle:
-							"J1X06 Java Foundations Build 17 Transfer Practice",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/J1-19-applied-studio-16-j1x06-java-foundations-build-17-supplemental-2/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/J1-19-applied-studio-16-j1x06-java-foundations-build-17-supplemental-2/solution"
+					preserveInstructions: true,
+					content:
+						"For [2,3,3] the mean is 8/3 and two values exceed it. Check that equal values produce count 0.",
+					projectLink: `${legacyJavaSource}/J1-06-java-foundations-build-17/starter`,
+					solutionLink: `${legacyJavaSource}/J1-06-java-foundations-build-17/solution`
 				},
 				{
 					title: "J1X06 Java Foundations Build 17 Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 1",
-						moduleTitle:
-							"J1X06 Java Foundations Build 17: Practice Studio",
-						itemTitle:
-							"J1X06 Java Foundations Build 17 Extension Practice",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/J1-20-applied-studio-16-j1x06-java-foundations-build-17-supplemental-3/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/J1-20-applied-studio-16-j1x06-java-foundations-build-17-supplemental-3/solution"
+					preserveInstructions: true,
+					content:
+						"Compare [-3,0,3] and [-3,0,6]. The means are 0 and 1. Check that only one value exceeds the mean in each case.",
+					projectLink: `${legacyJavaSource}/J1-06-java-foundations-build-17/starter`,
+					solutionLink: `${legacyJavaSource}/J1-06-java-foundations-build-17/solution`
 				}
 			]
 		},
@@ -1539,14 +1355,11 @@ const javaLevel1SourceCourse: RawCourse = {
 				},
 				{
 					title: "Temperature Converter: Core Project",
-					content: buildImplementationLabGuidance({
-						courseFamily: "Java Level 1",
-						moduleTitle: "Temperature Converter: Practice Studio",
-						section: "coreProject",
-						hasReference: false
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS2-Temperature-Converter"
+					preserveInstructions: true,
+					content:
+						"Read Fahrenheit and then Celsius. Use (F - 32) * 5.0 / 9 and C * 9.0 / 5 + 32. Print each result as a decimal and rounded to the nearest degree. Try 31 F and -40 C: the rounded results are -1 C and -40 F.",
+					projectLink: `${javaPracticeSource}/JS2-Temperature-Converter/starter`,
+					solutionLink: `${javaPracticeSource}/JS2-Temperature-Converter/solution`
 				},
 				{
 					title: "Temperature Converter: Review and Reflection",
@@ -1560,42 +1373,27 @@ const javaLevel1SourceCourse: RawCourse = {
 			supplementalProjects: [
 				{
 					title: "Temperature Converter: Extension Challenge",
-					content: buildImplementationLabGuidance({
-						courseFamily: "Java Level 1",
-						moduleTitle: "Temperature Converter: Practice Studio",
-						section: "extension",
-						hasReference: false
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/JS2-Temperature-Converter"
+					preserveInstructions: true,
+					content:
+						"Compare -40, 0 and 100 Celsius with the reverse conversion. Predict -40, 32 and 212 Fahrenheit. Explain where a cast before dividing preserves a fraction.",
+					projectLink: `${javaPracticeSource}/JS2-Temperature-Converter/starter`,
+					solutionLink: `${javaPracticeSource}/JS2-Temperature-Converter/solution`
 				},
 				{
 					title: "Temperature Converter Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 1",
-						moduleTitle: "Temperature Converter: Practice Studio",
-						itemTitle: "Temperature Converter Transfer Practice",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/J1-21-applied-studio-17-temperature-converter-supplemental-2/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/J1-21-applied-studio-17-temperature-converter-supplemental-2/solution"
+					preserveInstructions: true,
+					content:
+						"Compare the two scales at -40 degrees. Both conversions should give -40. Then test 0 C and 32 F.",
+					projectLink: `${javaPracticeSource}/JS2-Temperature-Converter/starter`,
+					solutionLink: `${javaPracticeSource}/JS2-Temperature-Converter/solution`
 				},
 				{
 					title: "Temperature Converter Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 1",
-						moduleTitle: "Temperature Converter: Practice Studio",
-						itemTitle: "Temperature Converter Extension Practice",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/J1-22-applied-studio-17-temperature-converter-supplemental-3/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-1/tree/main/J1-22-applied-studio-17-temperature-converter-supplemental-3/solution"
+					preserveInstructions: true,
+					content:
+						"Use 30 F and 34 F to check rounding on either side of freezing. Their nearest whole Celsius temperatures are -1 and 1.",
+					projectLink: `${javaPracticeSource}/JS2-Temperature-Converter/starter`,
+					solutionLink: `${javaPracticeSource}/JS2-Temperature-Converter/solution`
 				}
 			]
 		},
@@ -1823,32 +1621,36 @@ function strengthenJavaLevel1Item(
 	if (item.title === "Random Numbers and Letters") {
 		return {
 			...item,
+			preserveInstructions: true,
 			content:
-				"Create and reuse one `java.util.Random` object. Pass a fixed seed such as `new Random(12345)` during tests so a run can be reproduced, then use `new Random()` only for ordinary play. Derive integer ranges with `nextInt(bound)` and verify the smallest and largest possible values before using numeric character ranges."
+				"Create and reuse one `java.util.Random` object. Pass a fixed seed such as `new Random(12345)` during tests so a run can be reproduced, then use `new Random()` only for ordinary play. Derive integer ranges with `nextInt(bound)` and verify the smallest and largest possible values before using numeric character ranges.\n\nFor a lowercase letter, use (char) ('a' + random.nextInt(26)). The offsets 0 and 25 produce a and z. Construct two Random objects with the same seed and compare three successive draws from each."
 		};
 	}
 
 	if (item.title === "Arrays") {
 		return {
 			...item,
+			preserveInstructions: true,
 			content:
-				"Create fixed-size arrays, access and update elements by index, and traverse them without reading outside `0` through `length - 1`. Test empty, one-element, first-index, and last-index arrays, and state whether each method mutates the original array or returns a separate result."
+				"Create fixed-size arrays, access and update elements by index, and traverse them without reading outside `0` through `length - 1`. Test empty, one-element, first-index, and last-index arrays, and state whether each method mutates the original array or returns a separate result.\n\nFor int[] scores = {4, 7, 9}, setting scores[1] = 5 produces [4,5,9]. The length stays 3. Sum the elements with an enhanced for loop; the result is 18. Try an empty array: the loop runs zero times."
 		};
 	}
 
 	if (item.title === "ArrayLists") {
 		return {
 			...item,
+			preserveInstructions: true,
 			content:
-				"Compare arrays with `ArrayList`, then use `add()`, `get()`, `set()`, `remove()`, and `size()` with explicit empty-list and index-boundary handling. State whether a helper mutates the supplied list or returns a new list, especially when removing items during traversal."
+				'Compare arrays with `ArrayList`, then use `add()`, `get()`, `set()`, `remove()`, and `size()` with explicit empty-list and index-boundary handling. State whether a helper mutates the supplied list or returns a new list, especially when removing items during traversal.\n\nStarting with an empty `ArrayList<String>`, add "red" and "blue". set(1,"green") replaces blue without growing the list. remove(0) leaves [green], now at index 0. Check size() before reading index 1.'
 		};
 	}
 
 	if (item.title === "Two-Dimensional Arrays") {
 		return {
 			...item,
+			preserveInstructions: true,
 			content:
-				"Treat a 2D array as rows containing columns and traverse it with separate row and column bounds. Test empty, one-cell, non-square, edge, and corner cases; validate or document a rectangular-grid precondition before assuming every row has the same length."
+				"Treat a 2D array as rows containing columns and traverse it with separate row and column bounds. Test empty, one-cell, non-square, edge, and corner cases; validate or document a rectangular-grid precondition before assuming every row has the same length.\n\nFor int[][] grid = {{1,2,3},{4,5,6}}, grid.length is 2 and grid[0].length is 3. grid[1][2] is 6. Traverse using grid[r].length inside the row loop; this also visits all cells when the second row is shorter."
 		};
 	}
 
@@ -1883,7 +1685,7 @@ function decorateJavaLevel1Module(
 				index === 0
 					? `**Course flow:** ${flow.flowNote}\n\n${item.content}`
 					: item.content,
-			learningPath: "core" as const
+			learningPath: item.learningPath ?? ("core" as const)
 		}));
 
 	if (module.title === "J1C Text Bridge: Variables, Strings, and Input") {

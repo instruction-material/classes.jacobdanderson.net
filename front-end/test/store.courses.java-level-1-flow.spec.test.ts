@@ -125,7 +125,14 @@ describe("Java Level 1 learner flow", () => {
 				module.title
 			).toBeGreaterThanOrEqual(5);
 			expect(
-				module.curriculum.every(item => item.learningPath === "core"),
+				module.curriculum.every(
+					item =>
+						item.learningPath ===
+						(item.title ===
+						"JS9 Master Project: Advanced Battleship"
+							? "challenge"
+							: "core")
+				),
 				module.title
 			).toBe(true);
 			expect(
@@ -219,6 +226,6 @@ describe("Java Level 1 learner flow", () => {
 		expect(contract?.content).toContain("duplicate shot");
 		expect(contract?.content).toContain("edge and corner coordinates");
 		expect(contract?.content).toContain("fresh-game reset");
-		expect(advanced?.learningPath).toBe("core");
+		expect(advanced?.learningPath).toBe("challenge");
 	});
 });

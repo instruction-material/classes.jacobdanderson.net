@@ -7068,34 +7068,192 @@ interface UsacoOnDemandStageSpec {
 }
 
 const bronzeIndependentReadings: Record<string, string> = {
+	"Concepts: Blocked Billboard":
+		"The two billboards do not overlap. Measure the visible area of each separately by subtracting its intersection with the truck. A truck that touches an edge covers zero area there. It can hide part of both signs even when it also spans bare space between them.",
+	"Practice Map: Blocked Billboard":
+		"Use this input in `billboard.in`.\n\n```\n0 0 2 2\n4 0 6 2\n1 0 5 1\n```\n\nEach sign has area 4. The truck hides a strip of area 1 on each sign, leaving 6 square units visible.\n\n**Checkpoints:** Check the two intersections separately before adding the remainders.\n\nExpected `billboard.out`:\n\n```\n6\n```",
+	"Extension Review: Blocked Billboard":
+		"Move the truck into the gap using `2 0 4 2`. It now touches both signs and hides neither, leaving `8`. Then give the truck corners `0 0 6 2`. The output falls to `0`. Which width became zero in the edge-touching case?",
+	"Concepts: The Bovine Shuffle":
+		"The shuffle list gives a destination for each old position. To undo a round, fill old position i from the cow at its listed destination. Repeat that reversal three times. Test your reconstructed lineup by shuffling it forward three times and comparing it with the given final IDs.",
+	"Practice Map: The Bovine Shuffle":
+		"Use this input in `shuffle.in`.\n\n```\n4\n2 3 4 1\n1111111 2222222 3333333 4444444\n```\n\nThe positions form a four-cycle. Tracking the first original cow through three moves takes her from position 1 to 4, so the fourth final ID belongs on the first output line.\n\n**Checkpoints:** Track each remaining position in the same way.\n\nExpected `shuffle.out`:\n\n```\n4444444\n1111111\n2222222\n3333333\n```",
+	"Extension Review: The Bovine Shuffle":
+		"Keep the four final IDs and try the identity list `1 2 3 4`. Every ID stays put. With `2 1 4 3`, each pair swaps in one round and returns in two. After three rounds the output IDs, one per line, are `2222222`, `1111111`, `4444444`, `3333333`.",
+	"Concepts: Milk Measurement":
+		"Bessie, Elsie and Mildred begin tied at seven gallons. Sort observations by day, apply one change, and compare the entire set of leaders with the previous display. Raising the sole leader’s output again leaves the same photo on the wall. A new tie changes the display even if the former leader remains.",
+	"Practice Map: Milk Measurement":
+		"Use this input in `measurement.in`.\n\n```\n3\n3 Elsie +1\n1 Bessie +1\n2 Bessie +1\n```\n\nOn day 1, Bessie takes the lead. Her day-2 increase keeps the same photo.\n\n**Checkpoints:** Elsie reaches only eight on day 3, below Bessie’s nine. Count the first display change once.\n\nExpected `measurement.out`:\n\n```\n1\n```",
+	"Extension Review: Milk Measurement":
+		"Change Elsie’s day-3 record to `3 Elsie +2`. She now ties Bessie, so the answer becomes `2`. In a fresh log with only `1 Elsie +1` and `2 Elsie -1`, the original three-way tie returns. Why does restoring the opening display count as another change?",
+	"Concepts: Blocked Billboard II":
+		"A rectangular tarp must span every still-visible part of the lawnmower sign. A feed sign covering only the middle can leave visible strips at both edges. Their combined area may be small, but the tarp still spans the original width. Cover an entire side instead and one tarp edge can move inward.",
+	"Practice Map: Blocked Billboard II":
+		"Use this input in `billboard.in`.\n\n```\n0 0 4 3\n1 0 3 3\n```\n\nThe first row describes a 4-by-3 lawnmower ad. The second sign covers the central strip from x=1 to x=3.\n\n**Checkpoints:** Mark a point near each outside edge. A single tarp covering both strips must still have area 12.\n\nExpected `billboard.out`:\n\n```\n12\n```",
+	"Extension Review: Blocked Billboard II":
+		"Move the feed sign to `0 0 2 3`. The remaining half needs a tarp of area `6`. Now try `-1 -1 5 4`. There is no visible ad and the answer is `0`. Compare these cases with the middle strip before using visible area as a shortcut.",
+	"Concepts: Lifeguards":
+		"Fire exactly one lifeguard and measure the union of the shifts that remain. A shift from 1 to 5 covers four time units. If every unit in one guard’s shift is already covered by another, removing that guard loses no coverage. Otherwise compare the lengths covered exclusively by each guard.",
+	"Practice Map: Lifeguards":
+		"Use this input in `lifeguards.in`.\n\n```\n3\n1 5\n2 4\n6 8\n```\n\nThe shift 2 to 4 sits inside 1 to 5. Firing its guard retains four units from 1 to 5 and two more from 6 to 8, giving the maximum of 6.\n\n**Checkpoints:** The gap from 5 to 6 is uncovered.\n\nExpected `lifeguards.out`:\n\n```\n6\n```",
+	"Extension Review: Lifeguards":
+		"Try the three shifts `1 3`, `4 6`, `7 9`. All are disjoint and firing any guard leaves `4`. With `1 5`, `2 4`, `3 7`, firing the middle guard leaves `6`. Mark each covered unit once to explain why adding shift lengths gives the wrong total in the second case.",
+	"Concepts: Out of Place":
+		"Bessie moved once within an otherwise sorted line. Equal heights are interchangeable. In 2, 4, 4, 5, 3, compare the line with 2, 3, 4, 4, 5. Only three positions differ, even though two cows have height 4. A swap may involve any pair.",
+	"Practice Map: Out of Place":
+		"Use this input in `outofplace.in`.\n\n```\n5\n2\n4\n4\n5\n3\n```\n\nSwap the 3 with the 5 to get 2, 4, 4, 3, 5. Swap that 3 with the first 4.\n\n**Checkpoints:** Two swaps suffice. One swap can fix at most two of the three mismatched positions, so two is also a lower bound.\n\nExpected `outofplace.out`:\n\n```\n2\n```",
+	"Extension Review: Out of Place":
+		"Change the lineup to 2, 4, 4, 3, 5. A single swap now sorts it. If a cow moves past another of equal height, the observed heights can already be 2, 3, 4, 4, 5. The required number of swaps in that case is `0`. Which test should run before subtracting one from a mismatch count?",
+	"Concepts: Teleportation":
+		"Compare the direct hauling distance with both possible ways to use the teleporter. Travel between its endpoints costs zero. Walking from the load to the entrance and from the exit to the destination still costs the absolute difference in coordinates.",
+	"Practice Map: Teleportation":
+		"Use this input in `teleport.in`.\n\n```\n2 9 3 8\n```\n\nThe direct trip from 2 to 9 costs 7. Reaching the endpoint at 3 costs 1, and the trip from 8 to 9 costs another 1.\n\n**Checkpoints:** That route totals 2. Calculate the route using the endpoints in reverse as a check.\n\nExpected `teleport.out`:\n\n```\n2\n```",
+	"Extension Review: Teleportation":
+		"Swap the endpoints to get `2 9 8 3`. The best distance stays `2`. Now try `2 9 20 30`: the direct route wins with `7`. Identify which of your three candidate distances wins each time.",
+	"Concepts: Hoofball":
+		"Draw one arrow from each cow to her nearest neighbor, breaking equal-distance ties to the left. A starting ball eventually repeats a cycle. Positions 1 and 3 form one mutual pair, and 9 and 11 form another. No pass can cross between the pairs, so each pair needs a ball.",
+	"Practice Map: Hoofball":
+		"Use this input in `hoofball.in`.\n\n```\n4\n1 3 9 11\n```\n\nTrace both directions in each pair. One ball reaches only two of the four cows, while starting one ball in each pair reaches all four.\n\n**Checkpoints:** Distinguish cows reached from the number of passes.\n\nExpected `hoofball.out`:\n\n```\n2\n```",
+	"Extension Review: Hoofball":
+		"Use positions `1 3 5 7` instead. Starting at 7 follows 7, 5, 3, 1 and then repeats. One ball is enough. Add a cow at 9 and change the count to 5: starting at 9 still reaches every cow. Which tie decides the direction of the chain?",
+	"Concepts: Taming the Herd":
+		"Day one is a breakout. A known counter value d means the last breakout occurred d days earlier and there was no breakout between then and today. For a four-day log ending in 1, day three must be a breakout and day four cannot be one. An unknown day can be optional only if no known entry constrains it.",
+	"Practice Map: Taming the Herd":
+		"Use this input in `taming.in`.\n\n```\n4\n-1 -1 -1 1\n```\n\nThe final 1 fixes day three. Day one is also fixed, while day two can be either a breakout or an ordinary day.\n\n**Checkpoints:** That gives a minimum of 2 and a maximum of 3. Write both integers on one line.\n\nExpected `taming.out`:\n\n```\n2 3\n```",
+	"Extension Review: Taming the Herd":
+		"With `0 -1 -1 3`, the counter on day four requires a single breakout on day one, so output `1 1`. Change day two to 0: `0 0 -1 3` contradicts that same final reading. An impossible log produces the single integer `-1`.",
+	"Concepts: Team Tic Tac Toe":
+		"Inspect all three rows, all three columns and both diagonals. One distinct letter on a line gives a solo win. Exactly two letters give a team win for the unordered pair, with both cows participating. Record winning letters and pairs in sets so a second winning line cannot score the same cow or team twice.",
+	"Practice Map: Team Tic Tac Toe":
+		"Use this input in `tttt.in`.\n\n```\nAAA\nAAA\nBBB\n```\n\nThe first two rows both name A as a solo winner and the last row names B. Every column contains exactly the team A and B.\n\n**Checkpoints:** Count two solo winners and one distinct team, on separate lines.\n\nExpected `tttt.out`:\n\n```\n2\n1\n```",
+	"Extension Review: Team Tic Tac Toe":
+		"Use rows `ABA`, `BAB`, `ABA`. A wins alone on the diagonals, and the only winning team is A with B. Expect `1` and `1`. With `ABC`, `DEF`, `GHI`, every line contains three distinct letters, so both output lines are `0`.",
+	"Concepts: Greedy Gift Givers":
+		"Start each person’s balance at zero. Divide a giver’s budget evenly among the listed recipients using whole units. Debit only the amount actually given. Keep any remainder with the giver and print net balances in the original name order.",
+	"Practice Map: Greedy Gift Givers":
+		"Use this input in `gift1.in`.\n\n```\n3\nANA\nBOB\nCY\nANA\n5 2\nBOB\nCY\nBOB\n0 0\nCY\n0 0\n```\n\nANA can give 2 each to BOB and CY out of a budget of 5. Her net change is −4.\n\n**Checkpoints:** A record with zero recipients changes no balance. Check that the three final balances sum to zero.\n\nExpected `gift1.out`:\n\n```\nANA -4\nBOB 2\nCY 2\n```",
+	"Extension Review: Greedy Gift Givers":
+		"Keep the same recipients but change ANA’s budget to 1. All balances are zero. Restore her budget to 5 and make BOB give 2 to ANA: replace his `0 0` with `2 1` followed by `ANA`. The final balances in name order are `-2`, `0`, `2`.",
+	"Concepts: Name That Number":
+		"Encode candidate names one letter at a time. The training keypad groups are ABC, DEF, GHI, JKL, MNO, PRS, TUV and WXY on digits 2 through 9. Q and Z have no mapping. Keep whole names whose encoded digits equal the complete brand number. Write every match in alphabetical order, or NONE if there are no matches.",
+	"Practice Map: Name That Number":
+		"Use this input in `namenum.in`.\n\n```\n726\n```\n\nFor this practice case, create `dict.txt` with `PAM`, `QUINN`, `RAM`, `SAM`, `ZOE` on separate lines. The initial letters P, R and S all map to 7, and AM maps to 26.\n\n**Checkpoints:** The other two names cannot be encoded on this keypad.\n\nExpected `namenum.out`:\n\n```\nPAM\nRAM\nSAM\n```",
+	"Extension Review: Name That Number":
+		"Use the same five-name practice dictionary. With `963`, expect `NONE`: Z does not map to 9. With `7266`, expect `NONE` again. A three-letter name whose code merely starts with the same digits cannot match a four-digit brand. Try `78466` as well. It gives `NONE` because Q in QUINN has no digit.",
+	"Concepts: Palindromic Squares":
+		"For each integer from 1 through 300 inclusive, square it and convert the square to the input base. A row qualifies when that digit string reads the same in both directions. Print the root and the square in that base. For base ten, 11 qualifies because 121 is a palindrome. The root itself need not be a palindrome: 264² is 69696.",
+	"Practice Map: Palindromic Squares":
+		"Use this input in `palsquare.in`.\n\n```\n10\n```\n\nIn base ten there are 12 output rows, starting with `1 1`, `2 4`, `3 9`, `11 121` and ending with `264 69696`. Compare the whole list in increasing order of the root.\n\n**Checkpoints:** A missing last row can mean your palindrome test ran on the root.",
+	"Extension Review: Palindromic Squares":
+		"Use base `2`. The entire output is `1 1` and `11 1001`, on separate lines: decimal 3 squared is 9. In base `16`, there are eight rows and the final pair is `121 14641`. Explain why the upper bound of decimal 300 applies before conversion.",
+	"Concepts: Dual Palindromes":
+		"Search integers strictly greater than S. For each candidate, test its representations in bases 2 through 10. Accept it once two different bases give palindromes, then count the candidate only once. For 26, base three gives 222 and base five gives 101.",
+	"Practice Map: Dual Palindromes":
+		"Use this input in `dualpal.in`.\n\n```\n3 25\n```\n\nStarting after 25, the first three successes are consecutive. Verify 27 as binary 11011 and octal 33, then 28 as base-three 1001 and base-six 44.\n\n**Checkpoints:** The output numbers themselves are decimal.\n\nExpected `dualpal.out`:\n\n```\n26\n27\n28\n```",
+	"Extension Review: Dual Palindromes":
+		"Ask for one result after 26 using `1 26`. Expect `27` even though 26 qualifies too. With `1 27`, expect `28`. Explain why an outer loop starting at S would give the previous answer again.",
+	"Concepts: Additional Practice Problems":
+		"For [It’s Mooin’ Time II](https://usaco.org/index.php?page=viewproblem2&cpid=1468), mark a value that appears twice and look for different values before its second-to-last occurrence. In `1 2 3 3 3`, either 1 or 2 can precede two 3s. The distinct triples are (1,3,3) and (2,3,3), giving `2`.\n\n**Checkpoints:** In `3 3 3 1 2`, neither 1 nor 2 comes early enough, giving `0`. Count value triples once regardless of how many position triples realize them.",
+	"Practice Map: Additional Practice Problems":
+		"Give the counting problem standard input `6` followed by `1 2 1 2 2 1`. Before coding, list distinct triples with repeated 1, then with repeated 2. Both (2,1,1) and (1,2,2) occur, so stdout should contain `2`.\n\n**Checkpoints:** Check your list by enumerating position triples on these six values. For a million values, explain how counting distinct earlier values at each repeated value’s second-to-last occurrence avoids enumerating triples.",
+	"Extension Review: Additional Practice Problems":
+		"In [It’s Mooin’ Time IV](https://usaco.org/index.php?page=viewproblem2&cpid=1563), test the witness as well as the verdict. Use standard input with header `3 1`, followed by the lines `1`, `O`, `2`, `OO`, `2`, `MO`. The six output lines are `YES`, `O`, `YES`, `MO`, `YES`, `OO`. Replay the keys: typing O flips the prefix before appending O. Change only the header to `3 0`.\n\n**Checkpoints:** Now the output has three lines of `YES`. Which line would leak from one mode into the other if your formatting ignored k?",
+	"Concepts: Contaminated Milk":
+		"For each milk, ask whether every reported sick person drank it strictly before falling ill. A drink at the recorded illness time cannot explain that illness. Then count the distinct people who ever drank each possible milk. If one possible milk reached people 1 and 2 and another reached people 1 and 3, two doses cover the worst case. Adding the groups would assume two bad milks.",
+	"Practice Map: Contaminated Milk":
+		"Use `badmilk.in` below. The header gives people, milks, drink records and illness reports. Each drink row gives person, milk and time. The last row says person 1 fell ill at time 3.\n\n```\n3 2 4 1\n1 1 1\n1 2 3\n2 1 4\n3 1 5\n1 3\n```\n\nOnly milk 1 was consumed before the illness.\n\n**Checkpoints:** All three people drank it, so `badmilk.out` should contain `3`. Explain why the later drinks by people 2 and 3 still count toward the medicine supply.",
+	"Extension Review: Contaminated Milk":
+		"Add the drink `1 1 4` to the four-drink example, immediately before the illness report, and change the header to `3 2 5 1`. Person 1 drank milk 1 at times 1 and 4 and fell ill at time 3. The earlier drink still qualifies and the extra drink adds no new person. Predict `3` in `badmilk.out`. A different result points to how your program handles repeated drinks.",
+	"Concepts: Promotion Counting":
+		"Read the four before-and-after counts from Bronze up through Platinum. A contestant who reaches Platinum from Bronze crosses all three boundaries. If the Platinum count grows by one while Silver and Gold stay level, each of those divisions must have received someone to replace the contestant who left. The three promotion counts are 1, 1 and 1. New Bronze entrants alone can increase the total number of contestants without a single promotion.",
+	"Practice Map: Promotion Counting":
+		"Put these four lines in `promote.in`: `5 5`, `3 4`, `2 4`, `1 2`. Platinum gains one contestant. Gold gains two and sends one to Platinum, so three enter Gold. Silver gains one and sends three on, so four enter Silver.\n\n**Checkpoints:** Write your three answers in the order required by `promote.out`: `4`, `3`, `1`, one per line. If your first line is 1, check which division boundary it represents.",
+	"Extension Review: Promotion Counting":
+		"Predict both output files. With `5 5`, `3 3`, `2 2`, `1 2`, only Platinum changes size, yet `promote.out` has three lines of `1`. Change the four rows to `5 7`, `3 3`, `2 2`, `1 1`. This time all three lines are `0`. Explain how the Bronze total can change without anyone entering Silver.",
+	"Concepts: Angry Cows":
+		"Choose one bale to explode at time zero. Its blast reaches one unit. Newly hit bales explode together at the next time with radius two, then three, and so on. For bales at 1, 2, 4 and 7, starting at 1 reaches 2, then 4, then 7. When a wave reaches no new bale the chain ends, even if a larger radius on a later turn would have reached one.",
+	"Practice Map: Angry Cows":
+		"Put `4` then `1`, `2`, `4`, `7` on separate lines in `angry.in`. List newly exploding bales at each time for a launch at 1. You can reach all four, so `angry.out` should contain `4`. Replace the last two positions with `5` and `8`.\n\n**Checkpoints:** Try each starting bale: the pair at 1 and 2 can trigger each other, but the second blast cannot bridge the gap to 5. The maximum is `2`.",
+	"Extension Review: Angry Cows":
+		"With bales at 1, 2, 5 and 8, compare a launch at 1 with a launch at 5. The first hits two bales and the second hits only itself. Now use `3` followed by positions `1`, `3`, `5`. No first blast reaches a neighbor, so `angry.out` should contain `1`. Which event has to happen before radius two is available?",
+	"Concepts: Mowing the Field":
+		"Record the starting cell at time zero and the destination of every single step. The grass must have regrown by every return visit, so its longest possible regrowth time is the smallest gap between visits to one cell. Walking east, north, west and south once each returns to the start at time 4, giving a gap of 4. Stop after the westward step and there is no revisit. In that case the required output is −1.",
+	"Practice Map: Mowing the Field":
+		"In `mowing.in`, write `4`, then `E 1`, `N 1`, `W 1`, `S 1`. Trace the five visited cells, including the start. Only the final step repeats a cell, so `mowing.out` should contain `4`. Remove `S 1` and change the header to `3`.\n\n**Checkpoints:** Expect `-1`. If both runs give the same output, check which cell your loop records after the final move.",
+	"Extension Review: Mowing the Field":
+		"Start with the four-step square `E 1`, `N 1`, `W 1`, `S 1`. Append `N 1` and change the command count to `5`. The start was visited at times 0 and 4, but the final cell was visited at times 3 and 5. Predict `2` for `mowing.out`. Why would using only the first repeat miss the tighter upper bound?",
+	"Concepts: Milk Pails":
+		"Each pour adds one full pail. With sizes 4 and 7 and a limit of 12, choosing 7 first leaves room for just one 4, giving 11. Three pours of 4 reach 12 exactly. Try every feasible count of the larger pail, then fill the space left with as many smaller pails as fit. Include zero pours of either size.",
+	"Practice Map: Milk Pails":
+		"Put `4 7 12` in `pails.in`. Make a row for zero and one large pail. The best totals in those rows are 12 and 11, so `pails.out` should contain `12`. Increase the limit to 13.\n\n**Checkpoints:** The output remains `12`: two large pails overflow, and one large pail still leaves space for just one small one. Identify the largest unused capacity in your two rows.",
+	"Extension Review: Milk Pails":
+		"Try `4 7 14`. For zero, one and two large pails, the best totals are 12, 11 and 14. The new output is `14`. Compare that with `4 7 13`, which gives `12`. Explain why a loop that stops before testing a pail count exactly equal to the capacity divided by seven fails on the first input.",
+	"Concepts: Circular Barn":
+		"All cows enter through one exterior door and walk clockwise to their rooms. Count a door crossing once per cow that makes it. With room demands 1, 4 and 1, opening room 1 costs 0×1 + 1×4 + 2×1 = 6. Opening room 2 costs 0×4 + 1×1 + 2×1 = 3. Opening room 3 costs 0×1 + 1×1 + 2×4 = 9. The minimum is 3.",
+	"Practice Map: Circular Barn":
+		"Write `3`, then `1`, `4`, `1` on separate lines in `cbarn.in`. List the clockwise destination order from each possible door and sum distance times demand. `cbarn.out` should contain `3`. Rotate the demand rows to `4`, `1`, `1`.\n\n**Checkpoints:** The best door moves to room 1 but the answer stays `3`. If the output changes, check the step from the last room back to the first.",
+	"Extension Review: Circular Barn":
+		"With demands 4, 1 and 1, one entry door is best. Replace the demands with 2, 2 and 2. Each door now sends two cows zero rooms, two cows one room and two cows two rooms, so `cbarn.out` should contain `6`. Explain why the output contains a walking distance even when several doors tie.",
+	"Concepts: Load Balancing":
+		"Place one vertical and one horizontal fence at even coordinates. The cows occupy odd coordinates, so none lie on a fence. At (1,1), (1,5), (5,1) and (5,5), fences at x=2 and y=2 leave one cow per quadrant. If all four cows share x=1, a vertical fence cannot split them. A horizontal fence can still divide them two and two. Minimize the largest quadrant count across legal placements.",
+	"Practice Map: Load Balancing":
+		"In `balancing.in`, use header `4 9`, then `1 1`, `1 5`, `5 1`, `5 5` on separate lines. Count cows in each quadrant at fences x=2, y=2. The expected `balancing.out` is `1`. Add `3 3` and change the header to `5 9`.\n\n**Checkpoints:** The same fences achieve `2`. Explain why five cows divided among four quadrants make a value of 1 impossible.",
+	"Extension Review: Load Balancing":
+		"Use `4 9` and positions `1 1`, `1 3`, `1 5`, `1 7`. Predict the maximum quadrant size with y=2, then with y=4, using x=2 both times. The counts split 1 and 3, then 2 and 2. The minimum possible maximum is `2`. Describe why a method that divides cows with the same x-coordinate between left and right can report an impossible answer.",
+	"Concepts: Diamond Collector":
+		"One display case may hold any number of diamonds as long as its largest and smallest sizes differ by at most K. Sort sizes 4, 1, 3, 3, 6 to get 1, 3, 3, 4, 6. With K=2, a case containing 1, 3 and 3 is legal. Adding 4 would make the span 3 even though neighboring sizes are close. Repeated sizes represent separate diamonds.",
+	"Practice Map: Diamond Collector":
+		"Put `5 2` in `diamond.in`, followed by `4`, `1`, `3`, `3`, `6` on separate lines. Starting from the smallest size, find the last diamond within two units. Try the other starting sizes before checking `diamond.out` for `3`.\n\n**Checkpoints:** Change only the header to `5 0`. The two diamonds of size 3 fit together, so the output is `2`.",
+	"Extension Review: Diamond Collector":
+		"Keep the five sizes 4, 1, 3, 3 and 6. Increase K from 2 to 3. Sizes 1, 3, 3 and 4 now fit in one case, so the answer rises from `3` to `4`. Explain why an implementation that tests a strict inequality would miss diamonds at exactly the allowed difference.",
+	"Concepts: Bull in a China Shop":
+		"Slide pieces horizontally or vertically, keeping every filled square. A valid pair covers each filled square of the target exactly once. For a three-square L, a horizontal two-square piece and a single square can fit. A straight three-square piece already accounts for all three squares, so pairing it with any nonempty piece is impossible. Counting squares rules out some pairs before testing translations.",
+	"Practice Map: Bull in a China Shop":
+		"Use this grid sequence in `bcs.in`. The first grid is the target and the next three are the numbered pieces.\n\n```\n3 3\n##.\n#..\n...\n###\n...\n...\n...\n.##\n...\n...\n...\n..#\n```\n\nSlide piece 2 up and left to cover the top row of the L. Move piece 3 to the remaining square.\n\n**Checkpoints:** `bcs.out` should contain `2 3`. Verify that neither translated piece overlaps the other or loses a filled square beyond the grid.",
+	"Extension Review: Bull in a China Shop":
+		"For the three-square L, reorder the pieces as single square, straight triple, horizontal pair. The shape is unchanged but `bcs.out` now reads `1 3`. Next use a straight horizontal triple as the target and offer a horizontal pair, a vertical pair and a single square, in that order. The valid answer is again `1 3`. Explain why rotating piece 2 or sliding one of its squares out of view would admit a false match.",
+	"Concepts: Field Reduction":
+		"After removing one cow, a tight axis-aligned fence has area (largest x − smallest x) × (largest y − smallest y). With four cows at the corners of a square from (1,1) to (3,3), removing any one leaves the same extrema and area 4. An additional cow at (9,2) extends the right boundary. Removing that cow brings the area back to 4. Keep track of ties when deciding whether a boundary can move.",
+	"Practice Map: Field Reduction":
+		"Write `5` followed by `1 1`, `1 3`, `3 1`, `3 3`, `9 2` on separate lines in `reduce.in`. Make one row per possible removal. Removing (9,2) leaves width 2 and height 2, so `reduce.out` should contain `4`. Now remove that input row and set the header to `4`.\n\n**Checkpoints:** You must still remove one cow. The answer remains `4` because each extreme coordinate occurs twice.",
+	"Extension Review: Field Reduction":
+		"Try `4` followed by `1 1`, `1 3`, `1 5`, `9 2`. Predict the best cow to remove before computing the fence. The three remaining points share x=1, giving width zero and `0` in `reduce.out`. If you get a positive area, check whether you counted grid cells rather than measuring the distance between the extreme coordinates.",
+	"Practice Map: Milking Order":
+		"Use this case for preparation before a protected mock or for a retry afterward. In `milkorder.in`, put `5 3 1`, then `3 1 4`, then `2 1`. Cow 2 occupies the first slot. Cow 3 must precede cow 1, so the earliest legal slot for cow 1 is third. A witness order is 2, 3, 1, 4, 5. Expect `3` in `milkorder.out`. Move cow 2’s fixed slot to 5 and construct an order that gives `2`.",
+	"Extension Review: Milking Order":
+		"With header `5 3 1` and hierarchy `3 1 4`, first fix cow 2 in slot 5. Order 3, 1, 4, 5, 2 puts cow 1 second. Replace the fixed pair with `1 4`. The answer becomes `4` even though slot two would satisfy the hierarchy alone. Write a full order that satisfies the new pair. In your postmortem, distinguish the earliest feasible slot from the earliest empty slot.",
+	"Practice Map: Family Tree":
+		"In `family.in`, put `3 BETH DORA`, then `ADA BETH`, `ADA CLIO`, `CLIO DORA`. Each row gives mother then child. BETH and CLIO share a mother and DORA is CLIO’s child. The exact line in `family.out` is `BETH is the aunt of DORA`. Reverse the two names in the header: the same sentence is still correct. With header `3 BETH CLIO`, predict `SIBLINGS`.",
+	"Extension Review: Family Tree":
+		"Use the mother-child rows `ADA BETH`, `ADA CLIO`, `CLIO DORA` with header `3 ADA DORA`. Two parent steps lead from DORA to ADA, so write `ADA is the grand-mother of DORA` with the hyphen. Now use `3 BETH DORA` and replace `ADA CLIO` with `EVE CLIO`. Trace both chains to their roots. The exact result becomes `NOT RELATED`. Keep both outputs with your exit-portfolio trace.",
 	"Concepts: The Lost Cow":
 		"Each turning point is an offset from Farmer John’s starting coordinate: +1, −2, +4, −8, and so on. From 5 the first three destinations are 6, 3 and 9. When the cow is at 8, the third leg ends early. The distance traveled is 1 + 3 + 5 = 9. A cow at 6 ends the search on the very first leg, after distance 1.",
 	"Practice Map: The Lost Cow":
-		"Put `5 8` in `lostcow.in`. Write down each leg’s start, planned destination and distance actually walked before you run the program. The last row should read 3, 9, 5 and `lostcow.out` should contain `9`. Change the input to `5 3`. This time the cow is exactly at the second turning point. The output is `4`. If you get a larger value, check whether your stopping test includes both endpoints.",
+		"Put `5 8` in `lostcow.in`. Write down each leg’s start, planned destination and distance actually walked before you run the program. The last row should read 3, 9, 5 and `lostcow.out` should contain `9`. Change the input to `5 3`. This time the cow is exactly at the second turning point. The output is `4`. If you get a larger value, check whether your stopping test includes both endpoints.\n\n**Checkpoints:** Run the second case again with the target moved one step past the turning point. Trace the new leg before predicting the longer distance.",
 	"Extension Review: The Lost Cow":
 		"Predict three runs before checking them. For `5 4`, the return from 6 reaches 4 after two more steps, for `3` in total. For `5 9`, reaching the full third turning point costs `10`. For `15 18`, the answer is `9`. Explain why shifting both coordinates ten places preserves the distance for `5 8`, while shifting only the cow from 8 to 9 adds one step.",
 	"Concepts: Bovine Genomics":
 		"A position distinguishes the groups only when no letter in that column occurs in both groups. For spotty genomes `AAC`, `CGT` and plain genomes `GAC`, `TGT`, column one separates {A,C} from {G,T}. Columns two and three share letters, so the count is 1. Pairwise comparison in input order can miss a match: for spotty `A`, `C` and plain `C`, `A`, both groups contain both letters and the count is 0.",
 	"Practice Map: Bovine Genomics":
-		"In `cownomics.in`, put `2 3` followed by four lines: `AAC`, `CGT`, `GAC`, `TGT`. The first two genomes are spotty. Make a row for each position and cross out any row whose two groups share a letter. Only position one survives, so `cownomics.out` should contain `1`. Replace `GAC` with `AAC` and predict `0`. If the answer stays at 1, check whether your code compared every spotty letter with the plain group.",
+		"In `cownomics.in`, put `2 3` followed by four lines: `AAC`, `CGT`, `GAC`, `TGT`. The first two genomes are spotty. Make a row for each position and cross out any row whose two groups share a letter. Only position one survives, so `cownomics.out` should contain `1`. Replace `GAC` with `AAC` and predict `0`. If the answer stays at 1, check whether your code compared every spotty letter with the plain group.\n\n**Checkpoints:** For each column, write the two sets of bases on paper and circle where they overlap. Count only disjoint pairs of sets.",
 	"Extension Review: Bovine Genomics":
 		"Does the number of qualifying positions depend on the order of the cows? With `2 3` followed by `CGT`, `AAC`, `TGT`, `GAC`, the answer remains `1`. Now use `2 2` with `AA`, `CC`, `GG`, `TT`. Both columns qualify. Replace `CC` with a second `AA` and predict the output again: it is still `2`. Explain what duplicate letters change in a list and what they change in a set.",
 	"Concepts: Modern Art":
 		"Each color was painted as a solid rectangle. Even when part of it is hidden, the smallest box around its visible squares must have been painted in that color. On the three rows `111`, `121`, `111`, the box for 1 includes the central 2. Color 2 had to come later, leaving one visible candidate for first. On `110`, `110`, `002`, the boxes are disjoint. Both visible colors could be first. Zero means unpainted canvas.",
 	"Practice Map: Modern Art":
-		"Write `3` followed by `111`, `122`, `123` on separate lines in `art.in`. List every different color inside each visible color’s box. Cross out 2 and 3 as possible first colors. Even though two boxes rule out 3, it is one color. Compare your candidate count with `art.out`, which should contain `1`. Change the grid to `100`, `020`, `003`: the three singleton boxes leave `3` candidates.",
+		"Write `3` followed by `111`, `122`, `123` on separate lines in `art.in`. List every different color inside each visible color’s box. Cross out 2 and 3 as possible first colors. Even though two boxes rule out 3, it is one color. Compare your candidate count with `art.out`, which should contain `1`. Change the grid to `100`, `020`, `003`: the three singleton boxes leave `3` candidates.\n\n**Checkpoints:** Keep a set of colors ruled out by the rectangles. Record the set after scanning each rectangle and compare its final size with your output.",
 	"Extension Review: Modern Art":
 		"Swap the labels in the ring: use `3`, then `222`, `212`, `222` in `art.in`. Name the first color before running the program. It must be 2, while `art.out` is `1` because the question asks for a count. Now try `2` with `12`, `12`. Both vertical stripes can be painted first and the output is `2`. Describe a valid painting order for each candidate.",
 	"Concepts: Fence Painting":
 		"An interval from 1 to 5 paints four units of fence. For intervals 1 to 5 and 3 to 7, adding their lengths counts 3 to 5 twice. Subtract that overlap once to obtain 6. For intervals 1 to 5 and 7 to 10, the fence between 5 and 7 is bare. The covered length is 4 + 3 = 7. In either case the overlap length is the smaller right endpoint minus the larger left endpoint, clamped to zero.",
 	"Practice Map: Fence Painting":
-		"Put `1 5` and `3 7` on separate lines in `paint.in`. Mark each unit of fence covered by either painter before checking `paint.out` for `6`. Try `1 5` and `5 8`: touching at one point gives no shared length, so expect `7`. Now change the second row to `3 5`. The first interval already covers the second and the output is `4`. If you get 5, check whether your loop counted fence posts instead of gaps.",
+		"Put `1 5` and `3 7` on separate lines in `paint.in`. Mark each unit of fence covered by either painter before checking `paint.out` for `6`. Try `1 5` and `5 8`: touching at one point gives no shared length, so expect `7`. Now change the second row to `3 5`. The first interval already covers the second and the output is `4`. If you get 5, check whether your loop counted fence posts instead of gaps.\n\n**Checkpoints:** Draw each interval above the same number line. Trace the covered gaps in the contained case and compare them with the longer interval.",
 	"Extension Review: Fence Painting":
 		"Try `2 8` and `4 6` as the two rows in `paint.in`. Compare the covered length with the longer interval: both are `6`. Reverse the order of an overlapping pair with `3 7` followed by `1 5`: the union still has length `6`. Finally try `0 100` and `99 100`. Predict `100`, then explain why an implementation that marks individual fence posts can incorrectly report 101.",
 	"Concepts: Speeding Ticket":
 		"A road segment and a driving segment can end at different miles. Suppose the limit is 60 for 40 miles, then 40 for 60 miles. Driving 55 for 50 miles and 35 for the rest exceeds the limit only on miles 41 through 50. The maximum excess is 15. If the speed instead drops to 35 after mile 40, the maximum excess is zero. Compare speeds at the same mile and retain the largest positive difference.",
 	"Practice Map: Speeding Ticket":
-		"Write `2 2` in `speeding.in`, then one pair per line: `40 60`, `60 40`, `50 55`, `50 35`. The first two pairs describe the road and the last two describe the drive. Mark the changes after miles 40 and 50. `speeding.out` should contain `15`. Split the first road row into two `20 60` rows and change the header to `3 2`. The answer stays `15` because the limit at each mile stays the same.",
+		"Write `2 2` in `speeding.in`, then one pair per line: `40 60`, `60 40`, `50 55`, `50 35`. The first two pairs describe the road and the last two describe the drive. Mark the changes after miles 40 and 50. `speeding.out` should contain `15`. Split the first road row into two `20 60` rows and change the header to `3 2`. The answer stays `15` because the limit at each mile stays the same.\n\n**Checkpoints:** Write down the mile at which the maximum occurs. With the split row, verify that both the maximum and its location stay the same.",
 	"Extension Review: Speeding Ticket":
 		"Try `1 2` followed by `100 50`, `99 50`, `1 70` in `speeding.in`. Only the last mile exceeds the limit, so the expected maximum is `20`. If your answer is zero, check whether your loop visits mile 100. For a full road at limit 50 with one 100-mile driving segment, predict `0` at speed 50 and `5` at speed 55. Distinguish the largest excess from the number of miles spent speeding.",
 	"Concepts: Don't Be Last":
@@ -7271,7 +7429,10 @@ function buildUsacoOnDemandStage(
 			})),
 			...sourceModule.curriculum.map((item, index) => ({
 				...item,
-				content: bronzeIndependentReadings[item.title] ?? item.content,
+				...(bronzeIndependentReadings[item.title] && {
+					content: bronzeIndependentReadings[item.title],
+					preserveInstructions: true
+				}),
 				learningPath: "core" as const,
 				...(index === 0 && anchorPath
 					? {
