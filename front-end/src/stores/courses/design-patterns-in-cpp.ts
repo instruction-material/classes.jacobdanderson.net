@@ -652,29 +652,25 @@ const designPatternsInCppSourceCourse: RawCourse = {
 				},
 				{
 					title: "Composite Traversal Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle: "DPC8 Composite and Iterator",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"Build the starter with C++20. A playlist owns tracks and can also own nested playlists. Track.totalSeconds returns its own duration. Implement Playlist.totalSeconds by asking each entry for its total through the common interface. A nested playlist reports its descendants through the same operation. Keep duration separate from the display name so two tracks with the same name can still contribute their own time.\n\n**Checkpoints:** The demo has a 120-second intro and a nested playlist containing tracks of 90 and 45 seconds, for a total of 255. An empty playlist contributes zero. Add a second track with the same name and a duration of 30 seconds, then predict the new total. Test a second level of nesting before comparing with the reference.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-17-dpc8-composite-and-iterator-supplemental-2/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/0e50dcb7b9ddb16a0d845e14bd2649453972b74b/DPC-17-dpc8-composite-and-iterator-supplemental-2/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-17-dpc8-composite-and-iterator-supplemental-2/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/0e50dcb7b9ddb16a0d845e14bd2649453972b74b/DPC-17-dpc8-composite-and-iterator-supplemental-2/solution"
 				},
 				{
 					title: "Iterator Boundary Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle: "DPC8 Composite and Iterator",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"Use a read-only cursor to visit a static outline in breadth-first order. Build main.cpp with C++20. The starter can take the first node from a queue and report exhaustion, but only the root ever enters the queue. Before returning the current node, append its children at the back in their original order. Store borrowed pointers in the queue. Keep the source outline alive and fixed for the entire traversal.\n\n**Checkpoints:** The sample order is Course, Week 1, Week 2, Arrays, Loops, Grid. Test a one-node tree and call next twice after exhaustion. Both calls return null. Start two cursors on the same outline and advance one; the other remains at the root. Explain what would be invalidated if the caller rebuilt a child vector during traversal.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-18-dpc8-composite-and-iterator-supplemental-3/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/0e50dcb7b9ddb16a0d845e14bd2649453972b74b/DPC-18-dpc8-composite-and-iterator-supplemental-3/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-18-dpc8-composite-and-iterator-supplemental-3/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/0e50dcb7b9ddb16a0d845e14bd2649453972b74b/DPC-18-dpc8-composite-and-iterator-supplemental-3/solution"
 				}
 			]
 		},
