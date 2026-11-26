@@ -9,6 +9,29 @@ import {
 	courseToolchainAssumptions
 } from "@/stores/courses/course-implementation-artifacts";
 import { researchBackedExpansionCourseIds } from "@/stores/courses/research-expansions";
+import { javaPracticeSource, legacyJavaSource } from "@/stores/courses/javaLevel1PracticeSources";
+
+// These projects retain the original Juni reference beside the new starter.
+const javaLegacyReferenceFolders = [
+	"JS3-Code-Your-Own-Adventure",
+	"JS3-Color-Mixer",
+	"JS3-Elevator-Limits",
+	"JS3-Spreadsheet-Width",
+	"JS3-Too-Chicken-to-Cross-the-Road",
+	"JS3-Weather-Activities",
+	"JS4-Checkout-Calculator",
+	"JS4-Letter-Square",
+	"JS4-Loop-Practice",
+	"JS4-Nested-Loops",
+	"JS4-Pyramid",
+	"JS6-Min-and-Max",
+	"JS6-Palindrome-Checker",
+	"JS6-String-Expander",
+	"JS7-Lucky-Array",
+	"JS7-String-to-Array",
+	"JS7-Too-Much-Reversing",
+	"JS8-Square-of-Squares"
+];
 
 const authoredLearnerCourseIds = new Set(["intro-to-chemistry"]);
 const COURSE_SWEEP_TIMEOUT = 180000;
@@ -742,7 +765,7 @@ describe("implemented course development artifacts", () => {
 
 		expect(rootOnlyLinks).toHaveLength(0);
 		expect(serializedCourse).toContain(
-			"Java-Level-1/tree/main/JS7-Practice-with-Arrays"
+			`${javaPracticeSource}/JS7-Practice-with-Arrays/starter`
 		);
 	});
 
@@ -897,8 +920,8 @@ describe("implemented course development artifacts", () => {
 			await requireCourse("scratch-level-2")
 		);
 
-		expect(javaLevel1).toContain("APCS/tree/main/APCS-Check-in-1/starter");
-		expect(javaLevel1).toContain("APCS/tree/main/APCS-Check-in-1/solution");
+		expect(javaLevel1).toContain(`${javaPracticeSource}/Check-In-1/starter`);
+		expect(javaLevel1).toContain(`${javaPracticeSource}/Check-In-1/solution`);
 		expect(javaLevel1).not.toContain('APCS/tree/main/APCS-Check-in-1"');
 		expect(javaLevel3).toContain(
 			"Java-Level-3/tree/main/AJ20-Generic-Repository/starter"
@@ -1264,6 +1287,11 @@ describe("implemented course development artifacts", () => {
 							) &&
 							item.projectLink.includes("/starter") &&
 							!item.solutionLink?.includes("/solution") &&
+								!(courseId === "java-level-1" &&
+									javaLegacyReferenceFolders.some(folder =>
+										item.projectLink === `${javaPracticeSource}/${folder}/starter` &&
+										item.solutionLink === `${legacyJavaSource}/${folder}`
+									)) &&
 							!worksheetExtensions?.has(item) &&
 							!(
 								(item.learningPath === "choice" ||

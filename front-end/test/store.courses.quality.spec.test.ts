@@ -72,6 +72,8 @@ import {
 import { formatAuthoredReading } from "@/stores/courses/authoredReading";
 import algebra1APracticeData from "@/stores/courses/algebra1APracticeData.json";
 
+import { javaPracticeSource } from "@/stores/courses/javaLevel1PracticeSources";
+
 const COURSE_SWEEP_TIMEOUT = 180000;
 const elementaryMaterials = {
 	"early-elementary-a-math": earlyElementaryAMaterials,
@@ -1944,7 +1946,7 @@ describe("course text quality normalization", () => {
 			);
 			expect(corpus).toContain("replace one unfinished body at a time");
 			expect(corpus).toContain(
-				"Build the web-development extension challenge for **JSM1 Fundamentals Review** as a browser-visible feature with clear state, interaction, and error-handling evidence"
+				"Compare exact answer matching with trimmed, case-insensitive matching"
 			);
 			expect(corpus).toContain(
 				"Explain cow-ID indexing and retain a trace for two interleaved cows"
@@ -1978,7 +1980,7 @@ describe("course text quality normalization", () => {
 				/Check the draft against the expected behavior after a working version exists; record one difference that affects correctness, readability, robustness, or design/
 			);
 			expect(corpus).toMatch(
-				/Identify the [^\n.]+ user interaction, state change, DOM\/canvas\/API output, and visible error or empty state/
+				/For the first question, keep the accepted word program; answer the other two with easier and clear/
 			);
 			expect(corpus).toMatch(
 				/For [^\n.]+, translate the prompt into input format, output format, constraints, and invariant/
@@ -1987,7 +1989,7 @@ describe("course text quality normalization", () => {
 				/For [^\n.]+, state the local scope, target, starting state, allowed tools, and stop condition/
 			);
 			expect(corpus).toMatch(
-				/Once [^\n.]+ page behavior works, compare against the reference and record one difference in UI state, validation, accessibility, or error handling/
+				/Explain which inputs each policy accepts and choose a policy for the intended game/
 			);
 			expect(corpus).not.toMatch(
 				/After the code compiles and tests run, compare against the reference and record one difference in class responsibility, method contract, state handling, or edge-case coverage/
@@ -2179,16 +2181,16 @@ describe("course text quality normalization", () => {
 				/Add [^.\n]+ implementation details in slices that keep errors tied to one field, constructor, method, branch, or list operation/
 			);
 			expect(corpus).toMatch(
-				/Implement the smallest visible [^.\n]+ slice first, then add validation, layout, or persistence behavior with browser checks/
+				/Keep the null check before either comparison/
 			);
 			expect(corpus).toMatch(
-				/Recheck [^.\n]+ after refresh, at another viewport width, and with one invalid or incomplete interaction/
+				/Try program, PROGRAM, a space-padded program, an empty answer, a cancelled prompt and wrong/
 			);
 			expect(corpus).toMatch(
 				/Build the core [^.\n]+ first, then add one diagnostic, error path, or data-structure detail at a time/
 			);
 			expect(corpus).toContain(
-				"The page or app shows the expected state change, output, validation, or canvas behavior"
+				"Record predicted and observed scores for both policies in CASES.md"
 			);
 			expect(corpus).not.toContain(
 				"The JSS4 Combining Loops and Variables page or app shows the expected state change"
@@ -2206,7 +2208,7 @@ describe("course text quality normalization", () => {
 				"Extend the Java work with one additional method and a test or console trace that proves its contract"
 			);
 			expect(corpus).toContain(
-				"Verify the Division Facts object-design exercise with one standard case and one boundary case that exposes the key concept"
+				"reconstructing the dividend from quotient, divisor and remainder"
 			);
 			expect(corpus).toContain(
 				"Predict a missing-return diagnostic and a wrong-argument-type diagnostic"
@@ -2428,7 +2430,7 @@ describe("course text quality normalization", () => {
 			);
 			expect(corpus).toContain("rerun cleanly with predictable output");
 			expect(corpus).toContain("PyGame development");
-			expect(corpus).toContain("Swift app development");
+			expect(corpus).toContain("Use @State for transient view-owned data");
 			expect(corpus).toContain("Linux systems practice");
 			expect(corpus).toContain("network systems practice");
 			expect(corpus).toContain("AP CSA Java reasoning");
@@ -5517,24 +5519,24 @@ describe("course text quality normalization", () => {
 					link
 				)
 			);
-			const expectedSourceLinks = [
-				"graphics/JS2_Basic_Shapes.java",
-				"graphics/JS2_Happy_Graphics.java",
-				"graphics/JS3_Which_Shape.java",
-				"graphics/JS4_Paintball.java",
-				"graphics/JS6_Picasso.java"
+			const expectedSourceFolders = [
+				"JS2_Basic_Shapes",
+				"JS2_Happy_Graphics",
+				"JS3_Which_Shape",
+				"JS4_Paintball",
+				"JS6_Picasso"
 			];
 
 			expect(legacyJavaGraphicsLinks).toEqual([]);
-			for (const sourcePath of expectedSourceLinks) {
-				expect(
-					links.some(
-						({ link }) =>
-							link ===
-							`https://github.com/instruction-material/Java-Level-1/blob/main/${sourcePath}`
-					),
-					sourcePath
-				).toBe(true);
+			for (const sourceFolder of expectedSourceFolders) {
+				for (const role of ["starter", "solution"]) {
+					expect(
+						links.some(({ link }) =>
+							link === `${javaPracticeSource}/${sourceFolder}/${role}`
+						),
+						`${sourceFolder}/${role}`
+					).toBe(true);
+				}
 			}
 		},
 		COURSE_SWEEP_TIMEOUT
@@ -7762,6 +7764,10 @@ describe("course text quality normalization", () => {
 				expectElementaryReadings(course, courseId);
 			} else if (courseId in authoredReadingCounts) {
 				expectAuthoredReadings(course, courseId);
+			} else if (courseId === "usaco-bronze-on-demand") {
+				expect(text).toContain("Record first-read complexity, attempt order, submission time, and judge outcome");
+				expect(text).toContain("**Checkpoints:**");
+				expect(text).toContain("preserve the last attempt");
 			} else {
 				expect(text).toContain("**Concept path:**");
 				expect(text).toContain("Core topics in this module:");
@@ -7914,11 +7920,15 @@ describe("course text quality normalization", () => {
 						expect(task.contentKind).toBe("assignment");
 					}
 				}
+			} else if (courseId === "usaco-bronze-on-demand") {
+				expect(text).toContain("predicted runtime and the judge result");
 			} else {
 				expect(text).toContain("**Setup:**");
 				expect(text).toContain("**Process:**");
 			}
-			expect(text).toContain("**Completion evidence:**");
+			expect(text).toContain(
+				courseId === "usaco-bronze-on-demand" ? "**Checkpoints:**" : "**Completion evidence:**"
+			);
 			expect(text).not.toMatch(
 				/The .* connection matters because .* builds skill through repeated evidence/i
 			);
@@ -7953,7 +7963,7 @@ describe("course text quality normalization", () => {
 		expect(allCourseText(earlyReading!)).toContain(
 			"An inference is an idea drawn from clues"
 		);
-		expect(corpus).toContain("problem-solving record with inputs");
+		expect(corpus).toContain("one successful delayed rewrite of a previously missed problem");
 		for (const material of earlyElementaryAMaterials) {
 			for (const task of material.tasks) {
 				expect(allCourseText(earlyMath!), task.title).toContain(
@@ -9065,6 +9075,8 @@ describe("course text quality normalization", () => {
 				courseId === "money-minded-investing"
 			) {
 				expect(text, courseId).toContain("Project self-check");
+			} else if (courseId === "usaco-bronze-on-demand") {
+				expect(text, courseId).toContain("**Checkpoints:**");
 			} else expect(text, courseId).toContain("**Completion evidence:**");
 			expect(text, courseId).not.toMatch(
 				/Juni|Recording Studio|your instructor|with your instructor|Whiteboard|Learning Targets|HQ Support|Slack/i

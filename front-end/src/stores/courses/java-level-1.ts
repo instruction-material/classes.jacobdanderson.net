@@ -495,7 +495,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "JS3 Supplemental Project 1: Elevator Limits",
 					preserveInstructions: true,
 					content:
-						"Use the 1,500-pound limit. With 1,475 pounds report 25 under; with 1,525 report 25 over. Check exactly 1,500.",
+						"Use the 1,500-pound limit. With 1,475 pounds report 25 under; with 1,525 report 25 over. Check exactly 1,500.\n\n**Checkpoints:** Compute the difference between the total and the limit just once. Use the sign of that difference to choose an overload, exact-capacity or space-remaining message. At exactly 1,500 the difference is zero, so avoid printing a warning. Try 1,499 and 1,501 to check the nearest cases on both sides.",
 					projectLink: `${javaPracticeSource}/JS3-Elevator-Limits/starter`,
 					solutionLink: `${legacyJavaSource}/JS3-Elevator-Limits`
 				},
@@ -503,7 +503,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "JS3 Supplemental Project 2: Weather Activities",
 					preserveInstructions: true,
 					content:
-						"Choose activities for several weather conditions. Test a known condition and one outside your choices, which should receive a fallback message.",
+						"Choose activities for several weather conditions. Test a known condition and one outside your choices, which should receive a fallback message.\n\n**Checkpoints:** Make a two-column table of supported weather words and activities. Use a known word such as snowy to choose an activity and an unsupported word such as windy to exercise the fallback. Clear the input between runs and check that exactly one message is printed. Add a new valid word and verify the other rows still work.",
 					projectLink: `${javaPracticeSource}/JS3-Weather-Activities/starter`,
 					solutionLink: `${legacyJavaSource}/JS3-Weather-Activities`
 				},
@@ -511,7 +511,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "JS3 Supplemental Project 3: Too Chicken to Cross the Road",
 					preserveInstructions: true,
 					content:
-						"Read two booleans, left clear and right clear. Try all four combinations. Only true/true is safe; name the blocked side or sides in the other cases.",
+						"Read two booleans, left clear and right clear. Try all four combinations. Only true/true is safe; name the blocked side or sides in the other cases.\n\n**Checkpoints:** Write the two input values and the expected blocked sides as a truth table. With false and true, report the left is blocked. With true and false, report the right. With false twice, report both. Decide how to order the conditions so the case with two blocked sides reaches its own message.",
 					projectLink: `${javaPracticeSource}/JS3-Too-Chicken-to-Cross-the-Road/starter`,
 					solutionLink: `${legacyJavaSource}/JS3-Too-Chicken-to-Cross-the-Road`
 				},
@@ -519,7 +519,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "JS3 Supplemental Project 4: Spreadsheet Width",
 					preserveInstructions: true,
 					content:
-						"Read a width then a word. Width 5 with conditionals should print |condi|. With hi it should print |hi   |, including three spaces.",
+						"Read a width then a word. Width 5 with conditionals should print |condi|. With hi it should print |hi   |, including three spaces.\n\n**Checkpoints:** Choose actions by comparing the string length to the requested width. When the word is longer, take the first width characters. When it is shorter, append exactly their difference in spaces. Use the boundary markers to see the spaces. With width 4 and java verify |java|, then compare widths 3 and 6.",
 					projectLink: `${javaPracticeSource}/JS3-Spreadsheet-Width/starter`,
 					solutionLink: `${legacyJavaSource}/JS3-Spreadsheet-Width`
 				}
@@ -532,6 +532,7 @@ const javaLevel1SourceCourse: RawCourse = {
 				{
 					title: "For Loops",
 					preserveInstructions: true,
+					contentKind: "reading",
 					content:
 						"In for (int i = 2; i <= 6; i += 2), initialization happens once. The test runs before each iteration and the update after it. Printing i in the body gives 2, 4, 6. Predict the last value if <= becomes <."
 				},
@@ -545,7 +546,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "JS4 Project 1: Loops Practice",
 					preserveInstructions: true,
 					content:
-						"Using for and then while loops, print 1 through 10, evens 2 through 10, and 10 down to 1. Accumulate the sum from 1 through 100; both versions should give 5050.",
+						"Using for and then while loops, print 1 through 10, evens 2 through 10, and 10 down to 1. Accumulate the sum from 1 through 100; both versions should give 5050.\n\n**Checkpoints:** Draw a trace table with the counter before the condition, the printed value, and the counter after the update. For the evens pass expect exactly five values and stop at 10. For the countdown expect ten values and stop before zero. Build both versions using the same bounds, then compare their printed lines and sum.",
 					projectLink: `${javaPracticeSource}/JS4-Loop-Practice/starter`,
 					solutionLink: `${legacyJavaSource}/JS4-Loop-Practice`
 				},
@@ -553,7 +554,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "JS4 Project 2: Nested Loops",
 					preserveInstructions: true,
 					content:
-						"Print a 12 by 12 multiplication table, a five-row increasing star triangle, its reverse, and a 5 by 5 field of dashes with a star on the main diagonal. Check the bottom right of the table is 144.",
+						"Print a 12 by 12 multiplication table, a five-row increasing star triangle, its reverse, and a 5 by 5 field of dashes with a star on the main diagonal. Check the bottom right of the table is 144.\n\n**Checkpoints:** Trace row 2 and column 3 before generating the whole table. Their product is 6. In the increasing triangle, row 1 prints one star and row 5 prints five. The reverse swaps those counts. For the diagonal, print a star only when row equals column. Check the first and last lines of each pattern and count the rows.",
 					projectLink: `${javaPracticeSource}/JS4-Nested-Loops/starter`,
 					solutionLink: `${legacyJavaSource}/JS4-Nested-Loops`
 				}
@@ -563,7 +564,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "JS4 Supplemental Graphics Project: Paintball (Optional)",
 					preserveInstructions: true,
 					content:
-						"Draw an X from two diagonals of circles. Use one loop and two fillOval calls. Predict where the two paths meet. Export Main.java and run it with JDK 21 (javac Main.java, then java Main). Open drawing.png after each change.",
+						"Draw an X from two diagonals of circles. Use one loop and two fillOval calls. Predict where the two paths meet. Export Main.java and run it with JDK 21 (javac Main.java, then java Main). Open drawing.png after each change.\n\n**Checkpoints:** Draw the first two pairs of circle positions on graph paper. One x coordinate increases as the other decreases, while the two y coordinates advance together. Mark the center where the diagonals cross. Run the export on JDK 21 and compare the image at the center and all four ends of the X.",
 					projectLink: `${javaPracticeSource}/JS4_Paintball/starter`,
 					solutionLink: `${javaPracticeSource}/JS4_Paintball/solution`
 				},
@@ -571,7 +572,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "JS4 Supplemental Project 1: Letter Square",
 					preserveInstructions: true,
 					content:
-						"For H and 3 print three rows of HHH. Produce the same square using nested for loops and nested while loops. Compare at size 1.",
+						"For H and 3 print three rows of HHH. Produce the same square using nested for loops and nested while loops. Compare at size 1.\n\n**Checkpoints:** Start every new row with the inner counter reset to zero. Print characters with print and end each row with println. For size 3, count three lines with three characters each. For size 1, expect one line and one character. Run the same cases in both loop versions and compare their output character by character.",
 					projectLink: `${javaPracticeSource}/JS4-Letter-Square/starter`,
 					solutionLink: `${legacyJavaSource}/JS4-Letter-Square`
 				},
@@ -579,7 +580,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "JS4 Supplemental Project 2: Checkout Calculator",
 					preserveInstructions: true,
 					content:
-						"Read prices until the first zero. For 1.25, 2.50, 0 the total is 3.75. Starting with zero gives zero.",
+						"Read prices until the first zero. For 1.25, 2.50, 0 the total is 3.75. Starting with zero gives zero.\n\n**Checkpoints:** Keep a running total that starts at zero. Each read either ends the loop or adds one more price. Record the total after each input. Try 0.10, 0.20, 0 and format the final total with two decimal places. Then enter 1, 0, 9 and check that the 9 never enters the total.",
 					projectLink: `${javaPracticeSource}/JS4-Checkout-Calculator/starter`,
 					solutionLink: `${legacyJavaSource}/JS4-Checkout-Calculator`
 				},
@@ -587,7 +588,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "JS4 Supplemental Project 3: Pyramid",
 					preserveInstructions: true,
 					content:
-						"Make a centered five-row pyramid of slash pairs. Row 1 has four leading spaces, one forward slash and one backslash. Each row loses a space and adds one slash of each kind.",
+						"Make a centered five-row pyramid of slash pairs. Row 1 has four leading spaces, one forward slash and one backslash. Each row loses a space and adds one slash of each kind.\n\n**Checkpoints:** Use the outer loop for the five rows and separate inner loops for spaces, forward slashes and backslashes. Draw row 3 on paper before coding. It contains two leading spaces, three forward slashes and three backslashes. Escape each backslash in the Java string. Count the first and last row’s leading spaces to check alignment.",
 					projectLink: `${javaPracticeSource}/JS4-Pyramid/starter`,
 					solutionLink: `${legacyJavaSource}/JS4-Pyramid`
 				}
@@ -606,7 +607,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "JS5 Project 1: Letter Guesser",
 					preserveInstructions: true,
 					content:
-						"Select a random lowercase letter from a through z, read guesses and count attempts until it matches. Use one fixed seed to replay the guesses. Ignore blank lines.",
+						"Select a random lowercase letter from a through z, read guesses and count attempts until it matches. Use one fixed seed to replay the guesses. Ignore blank lines.\n\n**Checkpoints:** Draw the secret once before the loop. Keep one seeded Random instance and count only guesses accepted as input. Try a valid wrong guess, an empty line, the correct answer, and an extra valid guess afterward. The result reports two accepted attempts and ends before the extra guess. Repeat with the same seed and confirm the original secret returns.",
 					projectLink: `${javaPracticeSource}/JS5-Letter-Guesser/starter`,
 					solutionLink: `${javaPracticeSource}/JS5-Letter-Guesser/solution`
 				},
@@ -614,7 +615,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "JS5 Project 2: Mathematical Challenges",
 					preserveInstructions: true,
 					content:
-						"Print FizzBuzz for 1 through 50 (3: Fizz, 5: Buzz, 15: FizzBuzz). List every positive factor of a number up to 1000; for 12 expect 1, 2, 3, 4, 6, 12. Reverse a word such as loop to pool.",
+						"Print FizzBuzz for 1 through 50 (3: Fizz, 5: Buzz, 15: FizzBuzz). List every positive factor of a number up to 1000; for 12 expect 1, 2, 3, 4, 6, 12. Reverse a word such as loop to pool.\n\n**Checkpoints:** Put the divisible-by-both check before either single divisor check. Confirm 1 prints itself and 15 prints FizzBuzz exactly once. In the factor loop, test the smallest positive input 1 and a prime such as 13. For reversing, trace the source index moving backward while the answer grows. Try a word like level to verify it stays the same.",
 					projectLink: `${javaPracticeSource}/JS5-Mathematical-Challenges/starter`,
 					solutionLink: `${javaPracticeSource}/JS5-Mathematical-Challenges/solution`
 				},
@@ -632,7 +633,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "JS5 Supplemental Project 1: Number Guesser",
 					preserveInstructions: true,
 					content:
-						"Choose a secret integer between the entered minimum and maximum, inclusive. Give higher/lower feedback and count guesses. With minimum and maximum both 7, guesses 6, 8, 7 should take three tries.",
+						"Choose a secret integer between the entered minimum and maximum, inclusive. Give higher/lower feedback and count guesses. With minimum and maximum both 7, guesses 6, 8, 7 should take three tries.\n\n**Checkpoints:** Reject a minimum greater than the maximum before drawing the secret. Include both bounds when computing how many values can be selected. In the single-value range, 6 receives higher and 8 receives lower. Then 7 ends the round. Reverse the two bounds and check that the program gives a clear error without asking for guesses.",
 					projectLink: `${javaPracticeSource}/JS5-Random-Number-Guesser/starter`,
 					solutionLink: `${javaPracticeSource}/JS5-Random-Number-Guesser/solution`
 				},
@@ -640,7 +641,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "Practice with Loops & Conditionals Transfer Practice",
 					preserveInstructions: true,
 					content:
-						"Run a seeded round twice with the same guesses. Add a blank line to the second run. Count only nonblank guesses and explain why the target repeats.",
+						"Run a seeded round twice with the same guesses. Add a blank line to the second run. Count only nonblank guesses and explain why the target repeats.\n\n**Checkpoints:** Record the initial seed, three guesses, and the count after each read. Reuse the same seed and the same three guesses, adding a blank line before the last one. The selected letter and the final count agree. Look at the position of the increment if the extra blank line changes the count.",
 					projectLink: `${javaPracticeSource}/JS5-Letter-Guesser/starter`,
 					solutionLink: `${javaPracticeSource}/JS5-Letter-Guesser/solution`
 				},
@@ -648,7 +649,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					title: "Practice with Loops & Conditionals Extension Practice",
 					preserveInstructions: true,
 					content:
-						"Test the guessing loop with the one-number range 4 through 4, then with a reversed range. The first accepts 4 and the second reports an invalid range.",
+						"Test the guessing loop with the one-number range 4 through 4, then with a reversed range. The first accepts 4 and the second reports an invalid range.\n\n**Checkpoints:** Locate the first statement that uses the difference between minimum and maximum. Make sure the range is valid before that calculation or random selection. Add one test with the endpoint 4 itself as the successful guess and one input with minimum 5 and maximum 4. A rejected range never enters the guessing loop.",
 					projectLink: `${javaPracticeSource}/JS5-Random-Number-Guesser/starter`,
 					solutionLink: `${javaPracticeSource}/JS5-Random-Number-Guesser/solution`
 				}
