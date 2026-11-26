@@ -76,7 +76,12 @@ it("keeps introductory, check-in, inheritance, map, and concurrency workbooks in
 		"JM8-Project-2-File-IO-and-Maps": "Pairs: {pen=blue, folder=green}",
 		"JM8-Supplemental-Project-Bank-Account": "Reopened: {DEMO-A=275, DEMO-B=50}",
 		"J2-13-jm8-file-i-o-supplemental-2": "Counts: {cedar=2, fern=1}",
-		"J2-14-jm8-file-i-o-supplemental-3": "Added: [Workshop]"
+		"J2-14-jm8-file-i-o-supplemental-3": "Added: [Workshop]",
+		"Maze-Reader": "Start: (1, 1)",
+		"Maze-Runner-Part-2": "Congratulations! You've reached the exit!",
+		"Maze-Runner-Part-3": "Time's up! You failed to reach the exit.",
+		"J2-15-jm9-maze-runner-supplemental-2": "Accepted: 2, rejected: 1, escaped: true",
+		"J2-16-jm9-maze-runner-supplemental-3": "practice: Ready at (1, 1)"
 	};
 	expect(javaObjectWorkbooks.map(pack => pack.pack)).toEqual(
 		Object.keys(samples)

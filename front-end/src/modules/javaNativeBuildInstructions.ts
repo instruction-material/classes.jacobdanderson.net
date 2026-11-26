@@ -346,6 +346,12 @@ export function javaNativeBuildInstructions(
 						"In the terminal, enter cow 0, pig 0, and frog 0 on separate lines."
 					]
 				: []),
+			...(objectWorkbook.pack === "Maze-Runner-Part-2" ||
+			objectWorkbook.pack === "Maze-Runner-Part-3"
+				? [
+						"Enter W, D, and D on separate lines for the practice board, or Q to quit."
+					]
+				: []),
 			...(objectWorkbook.pack === "JM-Check-in-1"
 				? [
 						"For the optional batch challenge, run java ContractTests extension."

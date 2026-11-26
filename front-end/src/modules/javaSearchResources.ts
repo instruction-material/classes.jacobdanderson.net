@@ -11,6 +11,7 @@ const jm5Revision = "9db6074ac0df5e628a32d5f60c753ffe8247c775";
 const jm6Revision = "8971dbd9abd89c73393b58502f907e4177e4ecc3";
 const checkIn2Revision = "24fba59c70a26235ac04138f37f1687ff1bd4208";
 const accountFileRevision = "f9ba887f6da0697318b305aa7ed6cb08e3948692";
+const jm9Revision = "762099a8fe8e6f80ba4c6424ab62000f2400f049";
 const jm1Module =
 	"java-level-2-jm1-instance-variables-constructors-and-methods";
 const jm2Module = "java-level-2-jm2-overloaded-constructors-comparison-methods";
@@ -23,6 +24,8 @@ const checkIn2Module = "java-level-2-check-in-2";
 
 const jm7Module = "java-level-2-jm7-bank-account";
 const jm8Module = "java-level-2-jm8-file-i-o";
+
+const jm9Module = "java-level-2-jm9-maze-runner";
 
 export const javaCheckIn1CarExtensionID =
 	"java-level-2-check-in-1-supplemental-java-level-2-check-in-1-extension-challenge";
@@ -429,6 +432,79 @@ const javaObjectSources = {
 			"WorkbookFolder.java",
 			"ContractTests.java",
 			"README.md"
+		]
+	},
+	"Maze-Reader": {
+		revision: jm9Revision,
+		id: `${jm9Module}-curriculum-jm9-project-1-maze-reader`,
+		files: [
+			"Main.java",
+			"Maze.java",
+			"ContractTests.java",
+			"README.md",
+			"easy.txt",
+			"medium.txt",
+			"hard.txt",
+			"practice.txt"
+		]
+	},
+	"Maze-Runner-Part-2": {
+		revision: jm9Revision,
+		id: `${jm9Module}-curriculum-jm9-project-2-maze-runner`,
+		files: [
+			"Main.java",
+			"Maze.java",
+			"Player.java",
+			"MazeGame.java",
+			"ContractTests.java",
+			"README.md",
+			"easy.txt",
+			"medium.txt",
+			"hard.txt",
+			"practice.txt"
+		]
+	},
+	"Maze-Runner-Part-3": {
+		revision: jm9Revision,
+		id: `${concurrencyModule}-supplemental-jm9-supplemental-project-1-maze-runner-part-3`,
+		files: [
+			"Main.java",
+			"Maze.java",
+			"Player.java",
+			"MazeGame.java",
+			"Timer.java",
+			"ContractTests.java",
+			"README.md",
+			"easy.txt",
+			"medium.txt",
+			"hard.txt",
+			"practice.txt"
+		]
+	},
+	"J2-15-jm9-maze-runner-supplemental-2": {
+		revision: jm9Revision,
+		id: `${jm9Module}-supplemental-maze-runner-transfer-practice`,
+		files: [
+			"Main.java",
+			"Maze.java",
+			"RouteReplay.java",
+			"ContractTests.java",
+			"README.md",
+			"practice.txt",
+			"commands.txt"
+		]
+	},
+	"J2-16-jm9-maze-runner-supplemental-3": {
+		revision: jm9Revision,
+		id: `${jm9Module}-supplemental-maze-runner-extension-practice`,
+		files: [
+			"Main.java",
+			"Maze.java",
+			"MazeBatch.java",
+			"ContractTests.java",
+			"README.md",
+			"practice.txt",
+			"no-exit.txt"
 		]
 	}
 } as const;

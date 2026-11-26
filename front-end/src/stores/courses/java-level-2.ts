@@ -1813,76 +1813,176 @@ const javaLevel2SourceCourse: RawCourse = {
 			curriculum: [
 				{
 					title: "JM9 Project 1: Maze Reader",
-					content:
-						"Create a `Maze` class that reads maze layouts from text files, stores the starting position, prints the maze, and determines whether moves and exits are valid.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/Maze-Reader-Starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/Maze-Reader"
+					contentKind: "assignment",
+					preserveInstructions: true,
+					ideImport: true,
+					content: [
+						"Load a rectangular UTF-8 grid with spaces for open cells, # for walls, one P for the start, and one E for the exit. Coordinates are zero-based, with x across and y down.",
+						"",
+						"1. Trace the loader from the first row through the recorded start position. Add the check that the number of exits is exactly one. Reject missing, empty, uneven, and otherwise malformed boards before displaying a grid.",
+						"2. Complete isValidMove. A move can reach a space or the exit. Check the coordinate bounds before looking up a cell, and reject walls.",
+						"3. Run practice.txt. Its start is `Start: (1, 1)`. The exit is (3, 1). Predict the result for a wall, a space, the exit, and a coordinate beyond the board. Try `java Main medium.txt` to see a larger supplied layout.",
+						"",
+						"Save the IDE workspace, download and extract its ZIP, and use Java 21 in the extracted folder.",
+						"",
+						"```sh",
+						"javac --release 21 -Xlint:all -Werror *.java",
+						"java Main",
+						"java ContractTests",
+						"```",
+						"",
+						"In the starter, the driver runs and the method checks identify unfinished behavior."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"Maze-Reader",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"Maze-Reader",
+						"solution"
+					)
 				},
 				{
 					title: "JM9 Project 2: Maze Runner",
-					content:
-						"Build a playable maze game by adding a `Player` class and a `MazeGame` controller that processes user input, updates player movement, and ends the game when the exit is reached.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/Maze-Runner-Part-2",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/Maze-Runner-Part-2"
+					contentKind: "assignment",
+					preserveInstructions: true,
+					ideImport: true,
+					content: [
+						"Use Maze for the fixed layout, Player for the position, and MazeGame for the console. The practice board puts the exit two steps right of the start.",
+						"",
+						"1. Translate W, A, S, and D into one candidate coordinate. Check that cell against the maze before changing the player’s position. A wall or invalid command leaves the position alone.",
+						"2. After a valid move, check the exit. A win prints `Congratulations! You've reached the exit!` and ends the game. Q and closed input also end it.",
+						"3. Run the supplied fixture and enter W, D, D on separate lines. W hits the upper wall. The following moves advance to (2, 1) and (3, 1). Predict the positions and compare each printed board.",
+						"",
+						"Save the IDE workspace, download and extract its ZIP, and use Java 21 in the extracted folder.",
+						"",
+						"```sh",
+						"javac --release 21 -Xlint:all -Werror *.java",
+						"java Main",
+						"java ContractTests",
+						"```",
+						"",
+						"In the starter, the driver runs and the method checks identify unfinished behavior."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"Maze-Runner-Part-2",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"Maze-Runner-Part-2",
+						"solution"
+					)
 				},
 				{
 					title: "Maze Runner: Planning and Architecture",
-					content: buildSupportSectionGuidance({
-						courseFamily: "Java Level 2",
-						moduleTitle: "Maze Runner",
-						section: "planning"
-					})
+					content: [
+						"The board owns wall and exit cells. The player owns a position. The controller owns input and applies moves. Draw those three responsibilities before editing the controller.",
+						"",
+						"Trace W and D from (1, 1) in practice.txt. W proposes (1, 0), a wall. D proposes (2, 1), an open cell. The first proposal leaves the player where it was."
+					].join("\n")
 				},
 				{
 					title: "Maze Runner: Verification and Reflection",
-					content: buildSupportSectionGuidance({
-						courseFamily: "Java Level 2",
-						moduleTitle: "Maze Runner",
-						section: "verification"
-					})
+					content: [
+						"Run the reader check for a row with the wrong width and for a board with no exit. Run the game with W, D, D, then repeat with just Q. Compare the last printed message from each run.",
+						"",
+						"Close the console input and check that the program returns. In the optional timer exercise, verify that exiting also stops the worker."
+					].join("\n")
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "JM9 Supplemental Project 1: Maze Runner Part 3",
-					content:
-						"Add a countdown timer to the maze game with threading and end the game when time runs out.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/Maze-Runner-Part-3",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/Maze-Runner-Part-3"
+					contentKind: "assignment",
+					preserveInstructions: true,
+					ideImport: true,
+					content: [
+						"Add a thread that counts down while the main thread owns the board, player, and input. Start with the untimed runner and keep movement rules the same.",
+						"",
+						"1. Complete Timer.run so it decreases the shared countdown once per tick and ends at zero. If its wait is interrupted, restore the interrupted flag and return.",
+						"2. Keep the owner’s cleanup path around the game loop. Closing the timer interrupts and joins its worker after a win, quit, closed input, or timeout.",
+						"3. Try Q and expect `Game ended.`. Close input and expect `Input ended.`. The checks use a short countdown to verify the expiry message `Time's up! You failed to reach the exit.`. If the console is waiting when time expires, Enter lets the loop report expiry. The late move is rejected.",
+						"",
+						"Save the IDE workspace, download and extract its ZIP, and use Java 21 in the extracted folder.",
+						"",
+						"```sh",
+						"javac --release 21 -Xlint:all -Werror *.java",
+						"java Main",
+						"java ContractTests",
+						"```",
+						"",
+						"In the starter, the driver runs and the method checks identify unfinished behavior."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"Maze-Runner-Part-3",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"Maze-Runner-Part-3",
+						"solution"
+					)
 				},
 				{
 					title: "Maze Runner Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 2",
-						moduleTitle: "JM9 Maze Runner",
-						itemTitle: "Maze Runner Transfer Practice",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/J2-15-jm9-maze-runner-supplemental-2/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/J2-15-jm9-maze-runner-supplemental-2/solution"
+					contentKind: "assignment",
+					preserveInstructions: true,
+					ideImport: true,
+					content: [
+						"Replay one movement command per line from a UTF-8 file. Report which actions succeeded without asking for live input. Use a fresh player position for every replay.",
+						"",
+						"1. Read the supplied commands.txt. Trim each row, map W, A, S, or D to the next cell, and count unknown input and blocked cells as rejected moves.",
+						"2. Move only on a legal candidate. Once a move reaches the exit, end the replay and ignore the remaining commands.",
+						"3. For W, D, d, W on the practice board, the result is `Accepted: 2, rejected: 1, escaped: true`. Compare the report with a route that ends early or has no commands.",
+						"",
+						"Save the IDE workspace, download and extract its ZIP, and use Java 21 in the extracted folder.",
+						"",
+						"```sh",
+						"javac --release 21 -Xlint:all -Werror *.java",
+						"java Main",
+						"java ContractTests",
+						"```",
+						"",
+						"In the starter, the driver runs and the method checks identify unfinished behavior."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"J2-15-jm9-maze-runner-supplemental-2",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"J2-15-jm9-maze-runner-supplemental-2",
+						"solution"
+					)
 				},
 				{
 					title: "Maze Runner Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 2",
-						moduleTitle: "JM9 Maze Runner",
-						itemTitle: "Maze Runner Extension Practice",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/J2-16-jm9-maze-runner-supplemental-3/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/J2-16-jm9-maze-runner-supplemental-3/solution"
+					contentKind: "assignment",
+					preserveInstructions: true,
+					ideImport: true,
+					content: [
+						"Validate a batch of maze layouts and summarize the result for each labeled case. An error in one file leaves the other reports available.",
+						"",
+						"1. Use the supplied map of case labels to paths. For each board, create a Maze and report its start coordinates. Catch IllegalArgumentException for that board and report the diagnostic without printing its contents.",
+						"2. Use a TreeMap so report order is independent of input order. Keep results for missing, malformed, and ready boards in one table.",
+						"3. Run the sample. Its first line is `broken: Maze needs one player start and one exit.`, and its last line is `practice: Ready at (1, 1)`. Change the order of the input labels and compare the result.",
+						"",
+						"Save the IDE workspace, download and extract its ZIP, and use Java 21 in the extracted folder.",
+						"",
+						"```sh",
+						"javac --release 21 -Xlint:all -Werror *.java",
+						"java Main",
+						"java ContractTests",
+						"```",
+						"",
+						"In the starter, the driver runs and the method checks identify unfinished behavior."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"J2-16-jm9-maze-runner-supplemental-3",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"J2-16-jm9-maze-runner-supplemental-3",
+						"solution"
+					)
 				}
 			]
 		},
