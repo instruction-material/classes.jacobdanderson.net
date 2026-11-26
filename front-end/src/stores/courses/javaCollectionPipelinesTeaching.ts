@@ -63,7 +63,7 @@ A final record component can still refer to a mutable object. If the component h
 				"AJ20 Project 1: Generic Repository and Query Filters",
 				`Complete findAll in Repository.java. Visit stored values in registration order, apply the supplied predicate and return an immutable snapshot. Implement sorted by copying the values and sorting the copy with the supplied comparator. The repository keeps one value per ID and its original order. Lookups and removals return an empty Optional for a missing ID.
 
-Use one repository for course records and a second for fictional student records. The included example finds Java Level 3 as the active large course and Ada as the student with at least 12 completed modules. Take a snapshot, remove an item from the repository and check that the snapshot still contains it.`,
+The two repositories hold course records and sample enrollments. The included example finds Java Level 3 as the active large course and Ada’s enrollment with at least 12 completed modules. Take a snapshot, remove an item from the repository and check that the snapshot still contains it.`,
 				"*.java"
 			),
 			project(

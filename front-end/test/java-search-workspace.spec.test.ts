@@ -166,7 +166,7 @@ describe("AJ6 native workspace", () => {
 });
 
 describe("Java Level 3 Check-In 1 workspace", () => {
-	it("keeps four readings, role-aware exact projects and a shared extension", async () => {
+	it("preserves the overview and four topic readings, role-aware projects and a shared extension", async () => {
 		setActivePinia(createPinia());
 		const catalog = useCoursesStore();
 		const learner = await catalog.loadCourseById("java-level-3");
@@ -175,7 +175,7 @@ describe("Java Level 3 Check-In 1 workspace", () => {
 		);
 		expect(
 			learnerModule?.curriculum.filter(item => !item.projectLink)
-		).toHaveLength(4);
+		).toHaveLength(5);
 		expect(learnerModule?.curriculum[0]?.solutionLink).toBeUndefined();
 		useAppStore().currentTutor = {
 			coursePermissions: ["java-level-3"]
@@ -185,7 +185,13 @@ describe("Java Level 3 Check-In 1 workspace", () => {
 			item => item.id === javaCheckIn1ModuleID
 		);
 		if (!module) throw new Error("Missing the first Java check-in");
-		expect(module.curriculum).toHaveLength(6);
+		expect(module.curriculum).toHaveLength(7);
+		const [overview, workbook] = module.curriculum;
+		expect(overview?.id).toBe(
+			`${javaCheckIn1ModuleID}-curriculum-java-level-3-check-in-1-overview`
+		);
+		expect(overview?.contentKind).toBe("reading");
+		expect(overview?.projectLink).toBeUndefined();
 		expect(module.supplementalProjects).toHaveLength(3);
 		for (const project of javaCheckIn1Projects) {
 			const item = [
@@ -206,10 +212,9 @@ describe("Java Level 3 Check-In 1 workspace", () => {
 				)
 			);
 		}
-		const [overview] = module.curriculum;
 		const [extension] = module.supplementalProjects;
-		expect(overview?.projectLink).toBe(extension?.projectLink);
-		expect(overview?.solutionLink).toBe(extension?.solutionLink);
+		expect(workbook?.projectLink).toBe(extension?.projectLink);
+		expect(workbook?.solutionLink).toBe(extension?.solutionLink);
 		const url = javaCheckIn1URL(javaCheckIn1Projects[0].pack, "starter");
 		const key = javaLevel3ProjectKey(
 			"java-level-3",

@@ -65,6 +65,7 @@ import elementaryBAdditions from "../../test/fixtures/early-elementary-b-restore
 import ventureAdditions from "../../test/fixtures/entrepreneurship-restored-core-identities.json";
 import grammarAdditions from "../../test/fixtures/grammar-mechanics-restored-identities.json";
 import joyOfReadingAdditions from "../../test/fixtures/joy-of-reading-restored-identities.json";
+import java3Readings from "../../test/fixtures/java-level-3-restored-reading-identities.json";
 import lateElementaryAAdditions from "../../test/fixtures/late-elementary-a-restored-identities.json";
 import lateElementaryBAdditions from "../../test/fixtures/late-elementary-b-restored-identities.json";
 
@@ -153,7 +154,7 @@ const cases = [
 		id: "java-level-3",
 		source: javaLevel3Course,
 		readings: 1,
-		additions: []
+		additions: java3Readings
 	},
 	{
 		id: "intro-to-environmental-science",

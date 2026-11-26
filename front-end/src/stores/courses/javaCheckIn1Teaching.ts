@@ -50,8 +50,15 @@ export function buildJavaCheckIn1Module(): RawCourseModule {
 		id: javaCheckIn1ModuleID,
 		title: "Check-In #1",
 		curriculum: [
+			{
+				...reading(
+					"Check-In #1 Overview",
+					"Start with one search target and predict its result and stopping condition. Then work through the recursion, growth and search traces before running the workbook. Use the separate timing project to compare the searches on identical inputs."
+				),
+				id: `${javaCheckIn1ModuleID}-curriculum-java-level-3-check-in-1-overview`
+			},
 			assignment(
-				"Check-In #1 Overview",
+				"Check-In #1 Workbook",
 				workbook.pack,
 				`Complete the workbook by explaining and tracing recursion, classifying growth expressions, and implementing a linear scan plus both binary-search variants. The next four readings give the inputs, result contracts and trace prompts. Record a returned or printed value, the stopping condition, and one case that tests a boundary for each unfinished algorithm.
 
