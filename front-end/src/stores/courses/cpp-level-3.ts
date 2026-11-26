@@ -1,5 +1,9 @@
 import type { RawCourse } from "./types";
-import { cppBuildDebugProjectBrief } from "./cppBuildDebugProjectBrief";
+import {
+	cppBuildDebugProjectBrief,
+	cppBuildPositioningReading,
+	cppBuildReadinessBrief
+} from "./cppBuildDebugProjectBrief";
 import { cppCapstoneLessons } from "./cppCapstoneLessons";
 import { cppContainerAuditWorksheet } from "./cppContainerAuditWorksheet";
 import { cppContainerLessons } from "./cppContainerLessons";
@@ -10,6 +14,10 @@ import { cppResourceSafetyLessons } from "./cppResourceSafetyLessons";
 import { cppRowImportProjectBrief } from "./cppRowImportProjectBrief";
 import { cppTaskManagerBriefs } from "./cppTaskManagerBriefs";
 import { cppValueTemplateLessons } from "./cppValueTemplateLessons";
+import cppMiniCommandScannerBrief from "./readings/cpp-level-3/mini-command-scanner.md?raw";
+
+const cppMiniScannerSource =
+	"https://github.com/instruction-material/CPP-Level-3/tree/5695d18a91ab249b7db4003df49cd4dc47d8c480/CPPI1-Mini-Command-Scanner";
 
 const cppLevel3SourceCourse: RawCourse = {
 	name: "C++ Level 3",
@@ -19,8 +27,9 @@ const cppLevel3SourceCourse: RawCourse = {
 			curriculum: [
 				{
 					title: "Bridge Course Goals, Scale, and Tooling",
-					content:
-						"Position `C++ Level 3` as the bridge between beginner/manual-memory C++ and larger idiomatic C++ work. Cover the assumed baseline from Levels 1-2, what makes a program medium-size instead of just longer, why command structure and file-backed state matter, how standard-library fluency connects to recursion and RAII, and how repeatable build commands, warnings, debugger stepping, and trace output provide evidence. By the end of this setup module, the expected outcome is a compiled multi-file program, one explained warning or runtime failure, and a clear description of the structure needed before moving into data structures or design patterns."
+					content: cppBuildPositioningReading,
+					contentKind: "reading",
+					preserveInstructions: true
 				},
 				{
 					title: "CPPI0 Project: Build and Debug Checkpoint",
@@ -77,12 +86,12 @@ const cppLevel3SourceCourse: RawCourse = {
 				},
 				{
 					title: "CPPI1 Project 3: Mini Command Scanner",
-					content:
-						"Build a small tokenizer for task-manager-style commands. It recognizes words, numbers, quoted strings, punctuation, comments, line numbers, and malformed input before any command mutates application state.",
-					projectLink:
-						"https://github.com/instruction-material/CPP-Level-3/tree/main/CPPI1-Mini-Command-Scanner/starter",
-					solutionLink:
-						"https://github.com/instruction-material/CPP-Level-3/tree/main/CPPI1-Mini-Command-Scanner/solution"
+					content: cppMiniCommandScannerBrief,
+					contentKind: "assignment",
+					preserveInstructions: true,
+					ideImport: true,
+					projectLink: `${cppMiniScannerSource}/starter`,
+					solutionLink: `${cppMiniScannerSource}/solution`
 				}
 			]
 		},
@@ -378,13 +387,9 @@ function decorateCppLevel3Module(
 	if (module.title === "CPPI0 Bridge Course Setup and Positioning") {
 		curriculum.splice(1, 0, {
 			title: "CPPI0 Project 0: Reproducible Build and Test Readiness",
-			content: [
-				"**Completion evidence:**",
-				"- Compiler name and version plus one documented C++20 configure/build/test/run path from a clean checkout.",
-				"- Warning-clean output using `-Wall -Wextra -Wpedantic` or the closest supported equivalent.",
-				"- A small deterministic test or command harness that exits unsuccessfully when a regression is introduced.",
-				"- One debugger, trace, sanitizer, or failed-test artifact connected to the exact code change that resolved it."
-			].join("\n"),
+			content: cppBuildReadinessBrief,
+			contentKind: "assignment",
+			preserveInstructions: true,
 			learningPath: "core"
 		});
 	}

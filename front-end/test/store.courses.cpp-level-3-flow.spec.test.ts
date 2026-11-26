@@ -107,6 +107,11 @@ describe("C++ Level 3 learner flow", () => {
 		expect(readiness?.content).toContain(
 			"exits unsuccessfully when a regression is introduced"
 		);
+		expect(readiness?.content).toContain("./checkpoint --check");
+		expect(readiness?.content).toContain("expects 180 and reports FAIL");
+		expect(readiness?.content).toContain("./checkpoint-debug --trace");
+		expect(setup.curriculum[0]?.contentKind).toBe("reading");
+		expect(setup.curriculum[0]?.content).toContain("## Separate three kinds of failure");
 	});
 
 	it("ends with robust persistence and safe polymorphic boundaries", () => {

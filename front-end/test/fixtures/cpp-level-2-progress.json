@@ -295,23 +295,28 @@
 		"supplementalProjects": [
 			{
 				"id": "cpp-level-2-project-practice-guide-supplemental-practice-project-command-line-task-tracker-with-file-persistence",
-				"title": "Practice Project: Command-line Task Tracker with File Persistence"
+				"title": "Practice Project: Trace a Different Call Order",
+				"learningPath": "choice"
 			},
 			{
 				"id": "cpp-level-2-project-practice-guide-supplemental-practice-project-inventory-or-gradebook-using-stl-containers-and-serialization",
-				"title": "Practice Project: Inventory or Gradebook Using STL Containers and Serialization"
+				"title": "Practice Project: Sum a Logical Prefix",
+				"learningPath": "choice"
 			},
 			{
 				"id": "cpp-level-2-project-practice-guide-supplemental-practice-project-state-machine-text-adventure-or-vending-machine",
-				"title": "Practice Project: State-machine Text Adventure or Vending Machine"
+				"title": "Practice Project: Find a Value Within a Pointer Range",
+				"learningPath": "choice"
 			},
 			{
 				"id": "cpp-level-2-project-practice-guide-supplemental-practice-project-parser-for-a-small-config-format",
-				"title": "Practice Project: Parser for a Small Config Format"
+				"title": "Practice Project: Compare Rows and Columns in Fixed Storage",
+				"learningPath": "choice"
 			},
 			{
 				"id": "cpp-level-2-project-practice-guide-supplemental-practice-project-plugin-style-shape-game-or-entity-system-using-abstract-base-classes",
-				"title": "Practice Project: Plugin-style Shape, Game, or Entity System Using Abstract Base Classes"
+				"title": "Practice Project: Verify the Lifetime of an Allocated Value",
+				"learningPath": "choice"
 			}
 		]
 	},

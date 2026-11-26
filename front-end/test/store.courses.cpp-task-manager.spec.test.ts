@@ -83,6 +83,21 @@ describe("C++ task commands and persistence", () => {
 			.find(item => item.title === moduleTitle)!
 			.curriculum.find(item => item.title === projectTitle)!;
 		expect(project.solutionLink).toBeUndefined();
+		const scanner = learner.modules
+			.find(item => item.title === moduleTitle)!
+			.supplementalProjects.find(item =>
+				item.title.endsWith("Mini Command Scanner")
+			)!;
+		expect(scanner.learningPath).toBe("challenge");
+		expect(scanner.contentKind).toBe("assignment");
+		expect(scanner.ideImport).toBe(true);
+		expect(scanner.projectLink).toMatch(
+			/\/tree\/[0-9a-f]{40}\/CPPI1-Mini-Command-Scanner\/starter$/
+		);
+		expect(scanner.solutionLink).toBeUndefined();
+		expect(scanner.content).toContain("## Token rules");
+		expect(scanner.content).toContain("c++ -std=c++20");
+		expect(scanner.content).toContain("END is on line 6");
 		const parser = learner.modules
 			.find(item => item.title === moduleTitle)!
 			.curriculum.find(
@@ -118,5 +133,11 @@ describe("C++ task commands and persistence", () => {
 				.curriculum.find(item => item.title === projectTitle)!
 				.solutionLink
 		).toBe(source + "solution");
+		const staffScanner = staff.modules
+			.find(item => item.title === moduleTitle)!
+			.supplementalProjects.find(item => item.id === scanner.id)!;
+		expect(staffScanner.solutionLink).toBe(
+			scanner.projectLink!.replace(/\/starter$/, "/solution")
+		);
 	});
 });
