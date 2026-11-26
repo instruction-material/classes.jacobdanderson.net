@@ -120,7 +120,8 @@
 			"learningPath": "choice",
 			"caseUrl": "/course-assets/swift/intro-swift-practice-pack.md#swift-basics-in-app-context-case",
 			"verificationUrl": "/course-assets/swift/intro-swift-verification-guide.md#swift-basics-in-app-context-key",
-			"taskText": "Replace literal profile content with typed model values and render a supplied list with an explicit empty state."
+			"taskText": "Replace literal profile content with typed model values and render a supplied list with an explicit empty state.",
+			"currentTaskText": "Change the displayed member to Rae with a tagline of"
 		},
 		{
 			"moduleId": "intro-to-swift-app-development-sw4-swift-basics-in-app-context",
@@ -137,7 +138,8 @@
 			"learningPath": "challenge",
 			"caseUrl": "/course-assets/swift/intro-swift-practice-pack.md#swift-basics-in-app-context-case",
 			"verificationUrl": "/course-assets/swift/intro-swift-verification-guide.md#swift-basics-in-app-context-key",
-			"taskText": "Add filtering, sorting, and optional metadata while keeping model transformations outside deeply nested view markup."
+			"taskText": "Add filtering, sorting, and optional metadata while keeping model transformations outside deeply nested view markup.",
+			"currentTaskText": "Predict the two matching names in display order and write the stored array beside them."
 		},
 		{
 			"moduleId": "intro-to-swift-app-development-sw5-functions-structs-and-enums",
@@ -154,7 +156,8 @@
 			"learningPath": "choice",
 			"caseUrl": "/course-assets/swift/intro-swift-practice-pack.md#functions-structs-and-enums-case",
 			"verificationUrl": "/course-assets/swift/intro-swift-verification-guide.md#functions-structs-and-enums-key",
-			"taskText": "Refactor profile data into a small model, function, and display-state enum while preserving the same visible behavior."
+			"taskText": "Refactor profile data into a small model, function, and display-state enum while preserving the same visible behavior.",
+			"currentTaskText": "Write the ID, status payload and label for each copy."
 		},
 		{
 			"moduleId": "intro-to-swift-app-development-sw5-functions-structs-and-enums",
@@ -171,7 +174,8 @@
 			"learningPath": "challenge",
 			"caseUrl": "/course-assets/swift/intro-swift-practice-pack.md#functions-structs-and-enums-case",
 			"verificationUrl": "/course-assets/swift/intro-swift-verification-guide.md#functions-structs-and-enums-key",
-			"taskText": "Add validation and model-only tests, then explain where value semantics reduce accidental shared mutation."
+			"taskText": "Add validation and model-only tests, then explain where value semantics reduce accidental shared mutation.",
+			"currentTaskText": "A rejected value must leave the card planned."
 		},
 		{
 			"moduleId": "intro-to-swift-app-development-sw6-app-structure-and-lifecycle",
