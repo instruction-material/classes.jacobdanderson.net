@@ -3,6 +3,7 @@ import {
 	classroomReferenceItem,
 	gitCourseGuideLink
 } from "./classroomReferenceGuides";
+import { buildJavaBinarySearchModule } from "./javaBinarySearchTeaching";
 import { completeJavaRecursionModule } from "./javaRecursionTeaching";
 import { completeJavaSearchModule } from "./javaSearchTeaching";
 import { isCoreProjectTitle } from "./projectGrouping";
@@ -657,109 +658,7 @@ const javaLevel3SourceCourse: RawCourse = {
 				}
 			]
 		},
-		{
-			title: "AJ6 Binary Search",
-			curriculum: [
-				{
-					title: "Binary Search",
-					content: `**Concept path:** Binary search relies on sorted data. Each comparison with the middle element eliminates half of the remaining search interval because the sorted order proves where the target cannot be.
-
-**Practice targets:** Trace low, high, and mid values for found and missing targets. Include cases where the target is below all values, above all values, at the first element, and at the last element.
-
-**Implementation caution:** Bound updates must move past the midpoint after an unsuccessful comparison. If low or high can remain unchanged, a missing target may create an infinite loop even though the midpoint calculation looks reasonable.
-
-**Evidence target:** Correct binary search reasoning always names the sorted-data precondition and explains why each discarded half is safe to ignore. The final trace shows the interval shrinking until the target is found or no valid interval remains.`
-				},
-				{
-					title: "AJ6 Project 1: Binary Search with Iteration",
-					content: `**Project target:** Implement iterative binary search with lower and upper bounds that shrink after every comparison.
-
-**Build path:** Initialize bounds, calculate the midpoint safely, compare the middle value with the target, update one bound, and stop when the target is found or the interval becomes empty.
-
-**Evidence target:** Tests cover odd and even array lengths, missing values, boundary values, and arrays with one element.`,
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ6-Binary-Search-with-Iteration",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ6-Binary-Search-with-Iteration"
-				},
-				{
-					title: "AJ6 Project 2: Binary Search with Recursion",
-					content: `**Project target:** Implement recursive binary search using either bounds parameters or smaller subarrays.
-
-**Build path:** Treat an empty interval as the missing-target base case, treat a matching midpoint as the found-target base case, and recurse only into the half where the target could still exist.
-
-**Evidence target:** The recursive version produces the same answers as the iterative version and terminates for missing targets as well as found targets.`,
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ6-Binary-Search-with-Recursion",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ6-Binary-Search-with-Recursion"
-				},
-				{
-					title: "Binary Search Big-O Analysis",
-					content: `**Concept path:** Binary search has logarithmic runtime because each unsuccessful comparison halves the remaining search interval. Doubling the input size adds about one more comparison rather than doubling the work.
-
-**Practice targets:** Compare the maximum number of checks for arrays of size 8, 16, 32, and 1024. Then contrast that growth with linear search on the same sizes.
-
-**Precondition tradeoff:** Binary search is only faster after sortedness is already available or worth creating. If the program searches once, sorting first may cost more than a linear scan; if it searches many times, the sort cost can be amortized across repeated fast lookups.
-
-**Evidence target:** The analysis connects repeated halving to logarithms and also names the cost of the precondition: the data must already be sorted or sorted before searching.`
-				},
-				{
-					title: "AJ6 Project 3: Precise Square Roots",
-					content: `**Project target:** Use binary-search reasoning on a numeric interval to approximate square roots.
-
-**Build path:** Maintain low and high numeric bounds, test the midpoint by squaring it, and shrink the interval until the approximation reaches the chosen precision.
-
-**Evidence target:** The method handles perfect squares, non-perfect squares, values between 0 and 1, and values greater than 1 with a documented precision tolerance.`,
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ6-Precision-Square-Root",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ6-Precision-Square-Root"
-				}
-			],
-			supplementalProjects: [
-				{
-					title: "Binary Search: Extension Challenge",
-					content: buildSupportSectionGuidance({
-						courseFamily: "Java Level 3",
-						moduleTitle: "Binary Search",
-						section: "extension"
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ6-Binary-Search-with-Iteration",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ6-Binary-Search-with-Iteration"
-				},
-				{
-					title: "Binary Search Trace Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 3",
-						moduleTitle: "AJ6 Binary Search",
-						itemTitle: "Binary Search Trace Practice",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/J3-09-aj6-binary-search-supplemental-2/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/J3-09-aj6-binary-search-supplemental-2/solution"
-				},
-				{
-					title: "Binary Search Edge-Case Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 3",
-						moduleTitle: "AJ6 Binary Search",
-						itemTitle: "Binary Search Edge-Case Practice",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/J3-10-aj6-binary-search-supplemental-3/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/J3-10-aj6-binary-search-supplemental-3/solution"
-				}
-			]
-		},
+		buildJavaBinarySearchModule(),
 		{
 			title: "Check-In #1",
 			curriculum: [

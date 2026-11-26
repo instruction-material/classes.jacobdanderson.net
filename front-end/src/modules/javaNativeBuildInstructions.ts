@@ -44,7 +44,10 @@ import {
 import { javaRecursionProjects } from "./javaRecursionResources";
 import { javaRefactoringNativeInstructions } from "./javaRefactoringResources";
 import { javaRefactoringUnitNativeInstructions } from "./javaRefactoringUnits";
-import { javaSearchProjects } from "./javaSearchResources";
+import {
+	javaBinarySearchProjects,
+	javaSearchProjects
+} from "./javaSearchResources";
 import {
 	javaStructuralCoreID,
 	javaStructuralReadingID
@@ -633,7 +636,9 @@ export function javaNativeBuildInstructions(
 	}
 	if (
 		course === "java-level-3" &&
-		javaSearchProjects.some(project => project.id === item) &&
+		[...javaSearchProjects, ...javaBinarySearchProjects].some(
+			project => project.id === item
+		) &&
 		["starter", "reference"].includes(role ?? "") &&
 		parts.length === 4 &&
 		extra === "native-java-search"
@@ -646,7 +651,9 @@ export function javaNativeBuildInstructions(
 			"java ContractTests",
 			item === javaSearchProjects[0].id
 				? "For the all-matches extension, run java Main all and java ContractTests all."
-				: "Read README.md for the project contract and expected output.",
+				: item === javaBinarySearchProjects[0].id
+					? "For the midpoint-count extension, run java Main count and java ContractTests count."
+					: "Read README.md for the project contract and expected output.",
 			"Compile each pack in a separate folder. Run displays these native build instructions."
 		];
 	}

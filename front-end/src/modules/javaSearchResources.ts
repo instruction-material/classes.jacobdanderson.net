@@ -24,6 +24,40 @@ export const javaSearchProjects = [
 	}
 ] as const;
 
+export const javaBinarySearchRevision =
+	"629659e63143303c135181590c5ca542a1559397";
+export const javaBinarySearchModuleID = "java-level-3-aj6-binary-search";
+
+export const javaBinarySearchProjects = [
+	{
+		pack: "AJ6-Binary-Search-Iteration-Packs",
+		id: `${javaBinarySearchModuleID}-curriculum-aj6-project-1-binary-search-with-iteration`
+	},
+	{
+		pack: "AJ6-Binary-Search-Recursion-Packs",
+		id: `${javaBinarySearchModuleID}-curriculum-aj6-project-2-binary-search-with-recursion`
+	},
+	{
+		pack: "AJ6-Precision-Square-Root-Packs",
+		id: `${javaBinarySearchModuleID}-curriculum-aj6-project-3-precise-square-roots`
+	},
+	{
+		pack: "J3-09-aj6-binary-search-supplemental-2",
+		id: `${javaBinarySearchModuleID}-supplemental-binary-search-trace-practice`
+	},
+	{
+		pack: "J3-10-aj6-binary-search-supplemental-3",
+		id: `${javaBinarySearchModuleID}-supplemental-binary-search-edge-case-practice`
+	}
+] as const;
+
+export function javaBinarySearchURL(
+	pack: (typeof javaBinarySearchProjects)[number]["pack"],
+	role: "starter" | "solution"
+) {
+	return `https://github.com/instruction-material/Java-Level-3/tree/${javaBinarySearchRevision}/${pack}/${role}`;
+}
+
 export function javaSearchURL(pack: string, role: "starter" | "solution") {
 	return `https://github.com/instruction-material/Java-Level-3/tree/${javaSearchRevision}/${pack}/${role}`;
 }
@@ -35,14 +69,16 @@ export function javaSearchResource(url: string) {
 		resource.mode !== "tree" ||
 		resource.owner.toLowerCase() !== "instruction-material" ||
 		resource.repo.toLowerCase() !== "java-level-3" ||
-		resource.ref !== javaSearchRevision
+		![javaSearchRevision, javaBinarySearchRevision].includes(resource.ref)
 	) {
 		return null;
 	}
 	const [pack, role, extra] = resource.path.split("/");
-	const project = javaSearchProjects.find(
-		candidate => candidate.pack === pack
-	);
+	const projects =
+		resource.ref === javaBinarySearchRevision
+			? javaBinarySearchProjects
+			: javaSearchProjects;
+	const project = projects.find(candidate => candidate.pack === pack);
 	if (
 		!project ||
 		extra !== undefined ||
