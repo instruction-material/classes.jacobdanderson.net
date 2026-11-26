@@ -83,7 +83,7 @@ it("gives the three C++ levels distinct source-linked practice at their own leve
 			optionTitles.add(option.title);
 			expect(option.learningPath).toBe("choice");
 			expect(option.contentKind).toBe("assignment");
-			expect(option.content).toContain("## Checks");
+			expect(option.content).toContain("**Checkpoints:**");
 			expect(option.ideImport).toBe(true);
 			expect(option.projectLink).toMatch(
 				new RegExp(`/${repo}/tree/[0-9a-f]{40}/`)

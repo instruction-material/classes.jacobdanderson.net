@@ -11,6 +11,8 @@ interface PracticeGuide {
 	repository: string;
 	revision: string;
 	focus: string;
+	checkpoints: string;
+	rubric: string;
 	capstone: string;
 	cases: PracticeCase[];
 }
@@ -28,6 +30,9 @@ const guides: Partial<Record<string, PracticeGuide>> = {
 		repository: "CPP-Level-1",
 		revision: "770aa14c51891d73e4f5c960fa839f8bdf15b964",
 		focus: "Practice loop boundaries, vector queries, independent objects, small records and nested iteration using complete examples.",
+		checkpoints:
+			"Run the worked example and record its output. Make one change in a separate practice copy, then compare a normal input and a boundary input. For the range exercise, test cases with several matches, no matches, and one endpoint that matches.",
+		rubric: "Keep the small source change, build command, predictions and results. Name the value that changes on each iteration or state update. Explain how the result differs for an empty vector, a singleton range, or another boundary from the chosen exercise.",
 		capstone:
 			"For Profile Posts, verify one added post, an invalid selection that preserves the list, and a fresh start with fictional data. Explain which fields belong to Post and which collection belongs to Profile.",
 		cases: [
@@ -67,6 +72,9 @@ const guides: Partial<Record<string, PracticeGuide>> = {
 		repository: "CPP-Level-2",
 		revision: "a6aeab398adc05ec7a654301a2e055f6acfeadaa",
 		focus: "Practice aliasing, logical lengths, valid pointer ranges, fixed layouts and lifetime on the course's working examples.",
+		checkpoints:
+			"Before changing an example, mark the owning object, each observer and each valid index or offset. Record which values change after a call. In a bounds exercise, test the empty range and the last valid element, and show where the read is prevented for an invalid range.",
+		rubric: "Include the compiler command, the inputs, and the observed states or diagnostics. Explain which object owns the storage and when a borrowed access is valid. When a sanitizer run is available, identify the operations that run exercised.",
 		capstone:
 			"For a manual-memory capstone, identify the owner and release point for each allocation. Check one rejected operation and one copy or move case in the warning-clean and supported sanitizer builds.",
 		cases: [
@@ -106,6 +114,9 @@ const guides: Partial<Record<string, PracticeGuide>> = {
 		repository: "CPP-Level-3",
 		revision: "d2b1820f2c253e7c3e7a07f6c6daef38ed7a2952",
 		focus: "Use completed base projects to practice persistence, rejected input, index consistency, file publication and command-state transitions.",
+		checkpoints:
+			"Begin with a working base project and an isolated copy of any input and output files. Record the accepted state before the variation. Check a successful update and a rejected input or command, then record the resulting state and any file changes that should survive a restart.",
+		rubric: "Keep the build command, input or command transcript, exit status and observed state for each case. State where validation ends and an accepted update begins. When persistence is involved, compare the saved and restored results or check that rejected input leaves accepted bytes unchanged.",
 		capstone:
 			"For the saveable simulation, demonstrate a complete round trip and a rejected command from a documented phase. Use a fresh directory and show that rejected work preserves accepted state.",
 		cases: [
@@ -161,14 +172,12 @@ export function cppPracticeGuide(
 			},
 			{
 				title: `${label} Checkpoints`,
-				content:
-					"Open the linked project from a practice card and confirm the IDE import. Follow its README to build a native baseline. For a project already completed, continue from a separate copy of that work. Record the baseline, prediction and result for the chosen variation.",
+				content: guide.checkpoints,
 				contentKind: "reading"
 			},
 			{
 				title: `${label} Rubric`,
-				content:
-					"Submit the changed source, exact build command, expected and observed outputs, and one sentence explaining the relevant state or ownership rule. In a guided session, compare predictions before each run and identify the first step where an unexpected result diverges.",
+				content: guide.rubric,
 				contentKind: "reading"
 			},
 			{
@@ -181,11 +190,14 @@ export function cppPracticeGuide(
 			id: `${courseId}-project-practice-guide-supplemental-practice-project-${priorIds[index]}`,
 			title: `Practice Project: ${exercise.title}`,
 			projectLink: `${source}/${exercise.folder}`,
+			solutionLink: exercise.folder.endsWith("/starter")
+				? `${source}/${exercise.folder.replace(/\/starter$/, "/solution")}`
+				: undefined,
 			ideImport: true,
 			learningPath: "choice",
 			contentKind: "assignment",
 			preserveInstructions: true,
-			content: `${exercise.task}\n\n## Checks\n\n${exercise.check}`
+			content: `${exercise.task}\n\n**Checkpoints:** ${exercise.check}`
 		}))
 	};
 }
