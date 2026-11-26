@@ -1,4 +1,5 @@
 import type { RawCourse, RawCourseModule } from "./types";
+import { cppPracticeGuide } from "./cppPracticeGuide";
 
 type ExpansionPriority = "urgent" | "soon" | "later";
 
@@ -678,12 +679,13 @@ function projectOptionCheckpoints(
 
 function buildExpansionModules(
 	profile: ResearchExpansionProfile,
-	courseLabel: string
+	courseLabel: string,
+	projectGuide = buildProjectModule(profile, courseLabel)
 ) {
 	const modules = [
 		buildStandardsModule(profile, courseLabel),
 		buildSequencingModule(profile, courseLabel),
-		buildProjectModule(profile, courseLabel)
+		projectGuide
 	];
 	if (profile.guideReadings) {
 		for (const module of modules) {
@@ -2306,5 +2308,11 @@ export function applyResearchBackedExpansions(
 
 	if (alreadyExpanded) return;
 
-	course.modules.push(...buildExpansionModules(profile, label));
+	course.modules.push(
+		...buildExpansionModules(
+			profile,
+			label,
+			cppPracticeGuide(courseId, label)
+		)
+	);
 }

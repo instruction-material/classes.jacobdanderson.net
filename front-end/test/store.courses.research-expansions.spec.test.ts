@@ -1,4 +1,7 @@
+import { createPinia, setActivePinia } from "pinia";
 import { describe, expect, it } from "vitest";
+import { pythonIdeModeForCourseResource } from "@/modules/pythonIde";
+import { useCoursesStore } from "@/stores/courses";
 import { loadRawCourse } from "@/stores/courses/index";
 import {
 	researchBackedExpansionCourseIds,
@@ -6,6 +9,46 @@ import {
 } from "@/stores/courses/research-expansions";
 
 const COURSE_SWEEP_TIMEOUT = 180000;
+
+it("gives the three C++ levels distinct source-linked practice at their own level", async () => {
+	setActivePinia(createPinia());
+	const courses = useCoursesStore();
+	const optionTitles = new Set<string>();
+	const sharedPriorFirstOption =
+		"project-practice-guide-supplemental-practice-project-command-line-task-tracker-with-file-persistence";
+	for (const [id, repo, first] of [
+		["c-level-1", "CPP-Level-1", "Count Matches in a Range"],
+		["cpp-level-2", "CPP-Level-2", "Trace a Different Call Order"],
+		["cpp-level-3", "CPP-Level-3", "Test Task Ordering After Save and Reload"]
+	]) {
+		const course = (await courses.loadCourseById(id))!;
+		const guide = course.modules.find(
+			module => module.title === "Project Practice Guide"
+		)!;
+		expect(guide.kind).toBe("appendix");
+		expect(guide.curriculum).toHaveLength(4);
+		expect(guide.supplementalProjects).toHaveLength(5);
+		expect(guide.supplementalProjects[0]?.id).toBe(
+			`${id}-${sharedPriorFirstOption}`
+		);
+		expect(guide.supplementalProjects[0]?.title).toBe(
+			`Practice Project: ${first}`
+		);
+		for (const option of guide.supplementalProjects) {
+			optionTitles.add(option.title);
+			expect(option.learningPath).toBe("choice");
+			expect(option.contentKind).toBe("assignment");
+			expect(option.content).toContain("## Checks");
+			expect(option.ideImport).toBe(true);
+			expect(option.projectLink).toMatch(
+				new RegExp(`/${repo}/tree/[0-9a-f]{40}/`)
+			);
+			expect(pythonIdeModeForCourseResource(id, option.projectLink!)).toBe("cpp");
+			expect(option.solutionLink).toBeUndefined();
+		}
+	}
+	expect(optionTitles.size).toBe(15);
+});
 
 function allText(
 	course: NonNullable<Awaited<ReturnType<typeof loadRawCourse>>>
