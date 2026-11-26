@@ -229,6 +229,36 @@ export function javaSustainableURL(
 	return `https://github.com/instruction-material/Java-Level-3/tree/${javaSustainableRevision}/${pack}/${role}`;
 }
 
+export const javaLinkedListRevision =
+	"14f6c4a008125873efd503abe59f7c3da5dbf6ca";
+export const javaLinkedListModuleID = "java-level-3-aj11-linked-lists";
+
+export const javaLinkedListProjects = [
+	{
+		pack: "AJ11-Singly-Linked-List-Packs",
+		id: `${javaLinkedListModuleID}-curriculum-aj11-project-1-singly-linked-list`
+	},
+	{
+		pack: "AJ11-Doubly-Linked-List-Packs",
+		id: `${javaLinkedListModuleID}-curriculum-aj11-project-2-doubly-linked-list`
+	},
+	{
+		pack: "J3-23-aj11-linked-lists-supplemental-2",
+		id: `${javaLinkedListModuleID}-supplemental-linked-list-transfer-practice`
+	},
+	{
+		pack: "J3-24-aj11-linked-lists-supplemental-3",
+		id: `${javaLinkedListModuleID}-supplemental-linked-list-extension-practice`
+	}
+] as const;
+
+export function javaLinkedListURL(
+	pack: (typeof javaLinkedListProjects)[number]["pack"],
+	role: "starter" | "solution"
+) {
+	return `https://github.com/instruction-material/Java-Level-3/tree/${javaLinkedListRevision}/${pack}/${role}`;
+}
+
 const additionalAlgorithmFiles: Partial<Record<string, readonly string[]>> = {
 	[javaBubbleSortProjects[1].id]: ["words.txt"],
 	[javaCheckIn2Projects[1].id]: [
@@ -240,7 +270,12 @@ const additionalAlgorithmFiles: Partial<Record<string, readonly string[]>> = {
 		"Sort.java"
 	],
 	[javaSustainableProjects[0].id]: ["Bakery.java"],
-	[javaSustainableProjects[2].id]: ["sample.txt"]
+	[javaSustainableProjects[2].id]: ["sample.txt"],
+	[javaLinkedListProjects[0].id]: ["LinkedList.java", "ListContract.java"],
+	[javaLinkedListProjects[1].id]: [
+		"DoublyLinkedList.java",
+		"ListContract.java"
+	]
 };
 
 const searchGroups = [
@@ -252,7 +287,8 @@ const searchGroups = [
 		revision: javaBubbleCheckIn2Revision,
 		projects: bubbleAndCheckInProjects
 	},
-	{ revision: javaSustainableRevision, projects: javaSustainableProjects }
+	{ revision: javaSustainableRevision, projects: javaSustainableProjects },
+	{ revision: javaLinkedListRevision, projects: javaLinkedListProjects }
 ] as const;
 
 export const javaLevel3SearchProjects = [
@@ -261,7 +297,8 @@ export const javaLevel3SearchProjects = [
 	...javaCheckIn1Projects,
 	...javaSortingProjects,
 	...bubbleAndCheckInProjects,
-	...javaSustainableProjects
+	...javaSustainableProjects,
+	...javaLinkedListProjects
 ];
 
 export function javaCheckIn1URL(

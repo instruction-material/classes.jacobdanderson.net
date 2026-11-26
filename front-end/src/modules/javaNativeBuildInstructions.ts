@@ -50,6 +50,7 @@ import {
 	javaCheckIn1Projects,
 	javaCheckIn2Projects,
 	javaLevel3SearchProjects,
+	javaLinkedListProjects,
 	javaMergeSortingProjects,
 	javaSearchProjects,
 	javaSustainableProjects
@@ -197,12 +198,16 @@ const javaSearchExtensionInstructions: Partial<Record<string, string>> = {
 	[javaSustainableProjects[0].id]:
 		"Keep Bakery.java in the same folder. Run java Main input for standard input or java ContractTests batches for the optional task.",
 	[javaSustainableProjects[2].id]:
-		"Keep sample.txt in the same folder. Try java Main 5 2 sample.txt to check the numeric and file arguments."
+		"Keep sample.txt in the same folder. Try java Main 5 2 sample.txt to check the numeric and file arguments.",
+	[javaLinkedListProjects[0].id]:
+		"For the first-match extension, run java Main find and java ContractTests find."
 };
 
 const javaAlgorithmsWithAdditionalClasses = new Set<string>([
 	javaCheckIn2Projects[1].id,
-	javaSustainableProjects[0].id
+	javaSustainableProjects[0].id,
+	javaLinkedListProjects[0].id,
+	javaLinkedListProjects[1].id
 ]);
 
 export function javaNativeBuildInstructions(

@@ -9,6 +9,7 @@ import {
 	buildJavaCheckIn2Module
 } from "./javaBubbleCheckIn2Teaching";
 import { buildJavaCheckIn1Module } from "./javaCheckIn1Teaching";
+import { buildJavaLinkedListModule } from "./javaLinkedListTeaching";
 import { completeJavaRecursionModule } from "./javaRecursionTeaching";
 import { completeJavaSearchModule } from "./javaSearchTeaching";
 import {
@@ -675,86 +676,7 @@ const javaLevel3SourceCourse: RawCourse = {
 		buildJavaMergeSortingModule(),
 		buildJavaCheckIn2Module(),
 		buildJavaSustainableProgrammingModule(),
-		{
-			title: "AJ11 Linked Lists",
-			curriculum: [
-				{
-					title: "Introduction to Linked Lists",
-					content:
-						"Compare linked lists with arrays and `ArrayList`s, focusing on how nodes and references make insertion and deletion easier at the cost of direct indexing."
-				},
-				{
-					title: "Singly Linked Lists",
-					content:
-						"Review heads, nodes, links, and one-directional traversal in a singly linked list. Trace how insertion, removal, and search update references, especially at the head, at the tail, in the middle, and in an empty list."
-				},
-				{
-					title: "AJ11 Project 1: Singly Linked List",
-					content:
-						"Implement a singly linked list from starter code, write its inner `Node` class, and build out the methods defined in the interface.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ11-Linked-List-Starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ11-Linked-List"
-				},
-				{
-					title: "Doubly Linked Lists",
-					content:
-						"Compare doubly linked lists with singly linked lists, focusing on head and tail references plus links in both directions."
-				},
-				{
-					title: "AJ11 Project 2: Doubly Linked List",
-					content:
-						"Extend the linked list implementation to support both next and previous links, a tail reference, and more efficient inserts and deletions.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ11-Doubly-Linked-List-Starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ11-Doubly-Linked-List"
-				}
-			],
-			supplementalProjects: [
-				{
-					title: "Linked Lists: Extension Challenge",
-					content: buildSupportSectionGuidance({
-						courseFamily: "Java Level 3",
-						moduleTitle: "Linked Lists",
-						section: "extension"
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ11-Linked-List-Starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ11-Linked-List"
-				},
-				{
-					title: "Linked List Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 3",
-						moduleTitle: "AJ11 Linked Lists",
-						itemTitle: "Linked List Transfer Practice",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/J3-23-aj11-linked-lists-supplemental-2/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/J3-23-aj11-linked-lists-supplemental-2/solution"
-				},
-				{
-					title: "Linked List Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 3",
-						moduleTitle: "AJ11 Linked Lists",
-						itemTitle: "Linked List Extension Practice",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/J3-24-aj11-linked-lists-supplemental-3/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/J3-24-aj11-linked-lists-supplemental-3/solution"
-				}
-			]
-		},
+		buildJavaLinkedListModule(),
 		{
 			title: "AJ12 Stacks and Queues",
 			curriculum: [
