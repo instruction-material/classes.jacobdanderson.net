@@ -11,6 +11,7 @@ import {
 } from "./javaBubbleCheckIn2Teaching";
 import { buildJavaCheckIn1Module } from "./javaCheckIn1Teaching";
 import { buildJavaCheckIn3Module } from "./javaCheckIn3Teaching";
+import { buildJavaHashTableModule } from "./javaHashTableTeaching";
 import { buildJavaLinkedListModule } from "./javaLinkedListTeaching";
 import { buildJavaPriorityMapModule } from "./javaPriorityMapTeaching";
 import { completeJavaRecursionModule } from "./javaRecursionTeaching";
@@ -685,92 +686,7 @@ const javaLevel3SourceCourse: RawCourse = {
 		buildJavaPriorityMapModule(),
 		buildJavaCheckIn3Module(),
 		buildJavaBinaryTreeModule(),
-		{
-			title: "AJ15 Hash Tables",
-			curriculum: [
-				{
-					title: "Hash Tables",
-					content:
-						"Learn how hash tables implement maps by storing key-value pairs in buckets chosen by hash functions, ideally enabling near-constant-time lookup."
-				},
-				{
-					title: "Writing a Hash Function",
-					content:
-						"Review the properties of good hash functions, polynomial combinations, and how modulo compression maps a hash code into the table's bounds."
-				},
-				{
-					title: "Dealing with Collisions",
-					content:
-						"Compare separate chaining with open addressing, and focus on linear probing plus tombstones as the strategy used in this course."
-				},
-				{
-					title: "Rehashing",
-					content:
-						"Track load factor and resize the table when it becomes too full by rehashing items into a larger prime-sized array."
-				},
-				{
-					title: "AJ15 Project 1: HashMap",
-					content:
-						"Implement a custom `HashMap` with linear probing, tombstones, rehashing, and the usual map operations. Trace how put, get, remove, and contains behave through collisions, deleted slots, duplicate keys, and a resize triggered by load factor.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ15-Hash-Map-Starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ15-Hash-Map"
-				},
-				{
-					title: "AJ15 Project 2: Mini Search Engine",
-					aliases: ["AJ15 Project 2: Juni Search Engine"],
-					content:
-						"Use the custom `HashMap`, file reading, and string splitting to build a simple keyword search engine over a text corpus of URLs and tags.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ15-Search-Engine-Starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ15-Search-Engine"
-				}
-			],
-			supplementalProjects: [
-				{
-					title: "Hash Tables: Extension Challenge",
-					content: buildSupportSectionGuidance({
-						courseFamily: "Java Level 3",
-						moduleTitle: "Hash Tables",
-						section: "extension"
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ15-Hash-Map-Starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ15-Hash-Map"
-				},
-				{
-					title: "Hash Table Collision Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 3",
-						moduleTitle: "AJ15 Hash Tables",
-						itemTitle: "Hash Table Collision Transfer Practice",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/J3-31-aj15-hash-tables-supplemental-2/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/J3-31-aj15-hash-tables-supplemental-2/solution"
-				},
-				{
-					title: "Hash Table Resizing Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 3",
-						moduleTitle: "AJ15 Hash Tables",
-						itemTitle: "Hash Table Resizing Extension Practice",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/J3-32-aj15-hash-tables-supplemental-3/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/J3-32-aj15-hash-tables-supplemental-3/solution"
-				}
-			]
-		},
+		buildJavaHashTableModule(),
 		{
 			title: "AJ16 Graphs",
 			curriculum: [
@@ -1678,20 +1594,6 @@ function decorateJavaLevel3Module(
 				"- Generic APIs explain the type parameter, work with at least two concrete types, and introduce no raw types or unjustified unchecked casts.",
 				"- Expected invalid input is validated, recoverable exceptions are caught specifically at a useful boundary, and programming errors are not hidden.",
 				"- Characterization tests capture behavior before one refactor and prove the intended behavior remains afterward."
-			].join("\n"),
-			learningPath: "core"
-		});
-	}
-
-	if (module.title === "AJ15 Hash Tables") {
-		curriculum.push({
-			title: "Hash Table Collision and Rehash Contract",
-			content: [
-				"**Completion evidence:**",
-				"- Key equality and hash-code behavior are tested with distinct but equal keys, collisions, negative hashes, updates, removals, and missing lookups.",
-				"- Bucket indices use a safe nonnegative mapping such as `Math.floorMod`, including the minimum integer hash case.",
-				"- Load-factor threshold and capacity-growth rules are documented; rehashing preserves every key-value pair exactly once.",
-				"- Separate chaining or open addressing states its deletion policy, and an invariant check runs before and after resize."
 			].join("\n"),
 			learningPath: "core"
 		});

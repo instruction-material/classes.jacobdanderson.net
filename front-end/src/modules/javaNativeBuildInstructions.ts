@@ -51,6 +51,7 @@ import {
 	javaCheckIn1Projects,
 	javaCheckIn2Projects,
 	javaCheckIn3Projects,
+	javaHashTableProjects,
 	javaLevel3SearchProjects,
 	javaLinkedListProjects,
 	javaMergeSortingProjects,
@@ -209,14 +210,20 @@ const javaSearchExtensionInstructions: Partial<Record<string, string>> = {
 	[javaCheckIn3Projects[0].id]:
 		"For the grouped-count extension, run java Main groups and java ContractTests groups.",
 	[javaBinaryTreeProjects[0].id]:
-		"For the ceiling-search extension, run java Main ceiling and java ContractTests ceiling."
+		"For the ceiling-search extension, run java Main ceiling and java ContractTests ceiling.",
+	[javaHashTableProjects[0].id]:
+		"For the tombstone compaction extension, run java Main compact and java ContractTests compact.",
+	[javaHashTableProjects[1].id]:
+		"Keep corpus.txt beside the Java files. Run java Main corpus.txt JAVA tools to choose the local corpus and search terms."
 };
 
 const javaAlgorithmsWithAdditionalClasses = new Set<string>([
 	javaCheckIn2Projects[1].id,
 	javaSustainableProjects[0].id,
 	javaLinkedListProjects[0].id,
-	javaLinkedListProjects[1].id
+	javaLinkedListProjects[1].id,
+	javaHashTableProjects[0].id,
+	javaHashTableProjects[1].id
 ]);
 
 export function javaNativeBuildInstructions(

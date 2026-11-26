@@ -387,6 +387,35 @@ export function javaBinaryTreeURL(
 	return `https://github.com/instruction-material/Java-Level-3/tree/${javaBinaryTreeRevision}/${pack}/${role}`;
 }
 
+export const javaHashTableRevision = "c0354fdcc81a685334edeea6581aeecc30bb161c";
+export const javaHashTableModuleID = "java-level-3-aj15-hash-tables";
+
+export const javaHashTableProjects = [
+	{
+		pack: "AJ15-Hash-Map-Packs",
+		id: `${javaHashTableModuleID}-curriculum-aj15-project-1-hashmap`
+	},
+	{
+		pack: "AJ15-Search-Engine-Packs",
+		id: `${javaHashTableModuleID}-curriculum-aj15-project-2-mini-search-engine`
+	},
+	{
+		pack: "J3-31-aj15-hash-tables-supplemental-2",
+		id: `${javaHashTableModuleID}-supplemental-hash-table-collision-transfer-practice`
+	},
+	{
+		pack: "J3-32-aj15-hash-tables-supplemental-3",
+		id: `${javaHashTableModuleID}-supplemental-hash-table-resizing-extension-practice`
+	}
+] as const;
+
+export function javaHashTableURL(
+	pack: (typeof javaHashTableProjects)[number]["pack"],
+	role: "starter" | "solution"
+) {
+	return `https://github.com/instruction-material/Java-Level-3/tree/${javaHashTableRevision}/${pack}/${role}`;
+}
+
 const additionalAlgorithmFiles: Partial<Record<string, readonly string[]>> = {
 	[javaBubbleSortProjects[1].id]: ["words.txt"],
 	[javaCheckIn2Projects[1].id]: [
@@ -403,7 +432,9 @@ const additionalAlgorithmFiles: Partial<Record<string, readonly string[]>> = {
 	[javaLinkedListProjects[1].id]: [
 		"DoublyLinkedList.java",
 		"ListContract.java"
-	]
+	],
+	[javaHashTableProjects[0].id]: ["HashMap.java", "Map.java"],
+	[javaHashTableProjects[1].id]: ["HashMap.java", "Map.java", "corpus.txt"]
 };
 
 const searchGroups = [
@@ -420,7 +451,8 @@ const searchGroups = [
 	{ revision: javaStackQueueRevision, projects: javaStackQueueProjects },
 	{ revision: javaPriorityMapRevision, projects: javaPriorityMapProjects },
 	{ revision: javaCheckIn3Revision, projects: javaCheckIn3Projects },
-	{ revision: javaBinaryTreeRevision, projects: javaBinaryTreeProjects }
+	{ revision: javaBinaryTreeRevision, projects: javaBinaryTreeProjects },
+	{ revision: javaHashTableRevision, projects: javaHashTableProjects }
 ] as const;
 
 export const javaLevel3SearchProjects = [
@@ -434,7 +466,8 @@ export const javaLevel3SearchProjects = [
 	...javaStackQueueProjects,
 	...javaPriorityMapProjects,
 	...javaCheckIn3Projects,
-	...javaBinaryTreeProjects
+	...javaBinaryTreeProjects,
+	...javaHashTableProjects
 ];
 
 export function javaCheckIn1URL(
