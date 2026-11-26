@@ -136,18 +136,90 @@ export function javaSortingURL(
 	return `https://github.com/instruction-material/Java-Level-3/tree/${javaSortingRevision}/${pack}/${role}`;
 }
 
+export const javaBubbleCheckIn2Revision =
+	"79e4ebf1e155ecf060b07451d30fd0b7c93dffda";
+export const javaBubbleSortArchiveID =
+	"java-level-3-optional-java-foundations-bubble-sort-and-reference-archive";
+export const javaCheckIn2ModuleID = "java-level-3-check-in-2";
+
+const foundationID = "java-level-3-java-foundations-reference-archive";
+
+export const javaBubbleSortProjects = [
+	{
+		pack: "AJ8-Bubble-Sort-Packs",
+		id: `${foundationID}-curriculum-aj8-project-1-bubble-sort-implementation`
+	},
+	{
+		pack: "AJ8-Alphabetical-Order-Packs",
+		id: `${foundationID}-curriculum-aj8-project-2-alphabetical-order`
+	},
+	{
+		pack: "J3-15-aj8-bubble-sort-supplemental-2",
+		id: `${foundationID}-supplemental-bubble-sort-trace-practice`
+	},
+	{
+		pack: "J3-16-aj8-bubble-sort-supplemental-3",
+		id: `${foundationID}-supplemental-bubble-sort-optimization-practice`
+	}
+] as const;
+
+export const javaCheckIn2Projects = [
+	{
+		pack: "AJ-Check-In-2-Workbook-Packs",
+		id: `${javaCheckIn2ModuleID}-curriculum-java-level-3-check-in-2-overview`
+	},
+	{
+		pack: "AJ-Check-In-2-Benchmark-Packs",
+		id: `${javaCheckIn2ModuleID}-curriculum-java-level-3-check-in-2-practice-project`
+	},
+	{
+		pack: "J3-19-check-in-2-supplemental-2",
+		id: `${javaCheckIn2ModuleID}-supplemental-sorting-checkpoint-transfer-practice`
+	},
+	{
+		pack: "J3-20-check-in-2-supplemental-3",
+		id: `${javaCheckIn2ModuleID}-supplemental-sorting-checkpoint-extension-practice`
+	}
+] as const;
+
+const bubbleAndCheckInProjects = [
+	...javaBubbleSortProjects,
+	...javaCheckIn2Projects
+];
+
+const additionalAlgorithmFiles: Partial<Record<string, readonly string[]>> = {
+	[javaBubbleSortProjects[1].id]: ["words.txt"],
+	[javaCheckIn2Projects[1].id]: [
+		"BubbleSort.java",
+		"InsertionSort.java",
+		"ListGenerator.java",
+		"MergeSort.java",
+		"SelectionSort.java",
+		"Sort.java"
+	]
+};
+
+export function javaBubbleCheckIn2URL(
+	pack: (typeof bubbleAndCheckInProjects)[number]["pack"],
+	role: "starter" | "solution"
+) {
+	return `https://github.com/instruction-material/Java-Level-3/tree/${javaBubbleCheckIn2Revision}/${pack}/${role}`;
+}
+
 const searchGroups = [
 	{ revision: javaSearchRevision, projects: javaSearchProjects },
 	{ revision: javaBinarySearchRevision, projects: javaBinarySearchProjects },
 	{ revision: javaCheckIn1Revision, projects: javaCheckIn1Projects },
-	{ revision: javaSortingRevision, projects: javaSortingProjects }
+	{ revision: javaSortingRevision, projects: javaSortingProjects },
+	{ revision: javaBubbleCheckIn2Revision, projects: bubbleAndCheckInProjects }
 ] as const;
 
 export const javaLevel3SearchProjects = [
 	...javaSearchProjects,
 	...javaBinarySearchProjects,
 	...javaCheckIn1Projects,
-	...javaSortingProjects
+	...javaSortingProjects,
+	...bubbleAndCheckInProjects
 ];
 
 export function javaCheckIn1URL(
@@ -209,7 +281,13 @@ export function javaLevel3ProjectKey(
 export function javaSearchImportFiles(url: string) {
 	const selected = javaSearchResource(url);
 	if (!selected) return null;
-	return ["Main.java", "ContractTests.java", "README.md"].map(name => {
+	const files = [
+		"Main.java",
+		"ContractTests.java",
+		"README.md",
+		...(additionalAlgorithmFiles[selected.project.id] ?? [])
+	];
+	return files.map(name => {
 		const path = `${selected.resource.path}/${name}`;
 		return {
 			name,

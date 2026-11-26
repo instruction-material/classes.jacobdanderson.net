@@ -46,7 +46,9 @@ import { javaRefactoringNativeInstructions } from "./javaRefactoringResources";
 import { javaRefactoringUnitNativeInstructions } from "./javaRefactoringUnits";
 import {
 	javaBinarySearchProjects,
+	javaBubbleSortProjects,
 	javaCheckIn1Projects,
+	javaCheckIn2Projects,
 	javaLevel3SearchProjects,
 	javaMergeSortingProjects,
 	javaSearchProjects
@@ -182,7 +184,15 @@ const javaSearchExtensionInstructions: Partial<Record<string, string>> = {
 	[javaCheckIn1Projects[0].id]:
 		"For the Pascal cache extension, run java Main memo and java ContractTests memo. Use java Main trace to check the workbook's recursive call order.",
 	[javaMergeSortingProjects[0].id]:
-		"For the stable merge extension, run java Main stable and java ContractTests stable."
+		"For the stable merge extension, run java Main stable and java ContractTests stable.",
+	[javaBubbleSortProjects[0].id]:
+		"For the last-exchange extension, run java Main last and java ContractTests last.",
+	[javaBubbleSortProjects[1].id]:
+		"Keep the imported words.txt beside Main.java. The console reads it as UTF-8.",
+	[javaCheckIn2Projects[0].id]:
+		"For the equal-run extension, run java Main range and java ContractTests range. The optional archive trace uses java Main bubble and java ContractTests bubble.",
+	[javaCheckIn2Projects[1].id]:
+		"Compile all Java classes in the benchmark folder. Preserve the provided sibling source files."
 };
 
 export function javaNativeBuildInstructions(
@@ -658,7 +668,9 @@ export function javaNativeBuildInstructions(
 		return [
 			"Java 21 search and growth workflow",
 			"Save and download the ZIP. Extract it and open a terminal in the folder containing Main.java and ContractTests.java.",
-			"javac --release 21 -Xlint:all -Werror Main.java ContractTests.java",
+			item === javaCheckIn2Projects[1].id
+				? "javac --release 21 -Xlint:all -Werror *.java"
+				: "javac --release 21 -Xlint:all -Werror Main.java ContractTests.java",
 			"java Main",
 			"java ContractTests",
 			javaSearchExtensionInstructions[item ?? ""] ??
