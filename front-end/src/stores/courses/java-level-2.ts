@@ -1432,75 +1432,155 @@ const javaLevel2SourceCourse: RawCourse = {
 			curriculum: [
 				{
 					title: "JM7 Project 1: Bank Account",
-					content:
-						"Design and build a `BankAccount` class and a `BankSystem` class that manages accounts with a map. Implement methods for registration, login, deposits, withdrawals, password changes, and balance checks.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM7-Bank-Account",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM7-Bank-Account"
+					contentKind: "assignment",
+					preserveInstructions: true,
+					ideImport: true,
+					content: [
+						"Build a classroom bank that keeps fictional accounts in a map. Use integer cents throughout. A balance of 250 means 2.50.",
+						"",
+						"1. Open each DEMO account once. Reject a duplicate ID, an invalid ID, or a negative opening amount. A missing lookup returns null.",
+						"2. Deposit only positive amounts that fit in a long. Withdraw only a positive amount at or below the current balance. Decide whether the request is allowed before changing the balance.",
+						"3. Trace the supplied deposit, overdraft, and corrected withdrawal. The final lines include `Overdraft accepted: false`, `DEMO-A: 250 cents`, and `DEMO-B: 50 cents`. Compare the two accounts after the rejected operation.",
+						"",
+						"The exercise uses fictional IDs and amounts. The program accepts no names or login data.",
+						"",
+						"Save the IDE workspace, download and extract its ZIP, and use Java 21 in the extracted folder.",
+						"",
+						"```sh",
+						"javac --release 21 -Xlint:all -Werror *.java",
+						"java Main",
+						"java ContractTests",
+						"```",
+						"",
+						"The starter runs with unfinished behavior. The method checks identify what still needs to be implemented."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"JM7-Bank-Account",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"JM7-Bank-Account",
+						"solution"
+					)
 				},
 				{
 					title: "Bank Account: Debugging and Failure Modes",
-					content: buildSupportSectionGuidance({
-						courseFamily: "Java Level 2",
-						moduleTitle: "Bank Account",
-						section: "debugging"
-					})
+					content: [
+						"Trace a 200-cent balance through a 75-cent deposit, a rejected 500-cent withdrawal, and a 25-cent withdrawal. The three balances are 275, 275, and 250 cents.",
+						"",
+						"If the rejected request changes the balance, move the validation before the subtraction. Run the overflow test with an account at Long.MAX_VALUE and verify that a one-cent deposit leaves it unchanged."
+					].join("\n")
 				},
 				{
 					title: "Bank Account: Planning and Architecture",
-					content: buildSupportSectionGuidance({
-						courseFamily: "Java Level 2",
-						moduleTitle: "Bank Account",
-						section: "planning"
-					})
+					content: [
+						"BankSystem maps each fictional ID to its BankAccount. BankAccount owns its balance and validates changes. Main supplies the sample operations and displays a copy of the balances.",
+						"",
+						"Draw the two sample IDs pointing to different account objects. Trace duplicate registration and explain why it keeps the original object. Then trace one missing ID and show where the lookup ends."
+					].join("\n")
 				},
 				{
 					title: "Bank Account: Verification and Reflection",
-					content: buildSupportSectionGuidance({
-						courseFamily: "Java Level 2",
-						moduleTitle: "Bank Account",
-						section: "verification"
-					})
+					content: [
+						"Run the method checks, then explain which check proves exact cents, which proves recovery after rejection, and which proves that updating one account leaves the other alone.",
+						"",
+						"Add a repeated-ID case and estimate the expected result before running it. Compare the reported map with the balance of the original object."
+					].join("\n")
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "JM7 Supplemental Project 1: Calculator",
-					content:
-						"Create a `Calculator` class with methods for arithmetic operations, factorials, and exponents, then build a console interface for the user to choose operations and inputs.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM7-Calculator/src/main/java",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM7-Calculator/src/main/java"
+					contentKind: "assignment",
+					preserveInstructions: true,
+					ideImport: true,
+					content: [
+						"Use methods for arithmetic, remainder, powers, and factorial. The caller chooses one operation and provides its operands. Invalid input produces a specific message.",
+						"",
+						"1. Choose an arithmetic operation with two operands. Reject division or remainder by zero and reject nonfinite inputs or results. For factorial use one whole number from 0 to 20 and return an exact long.",
+						"2. The default run demonstrates `add 10 2`, `factorial 5`, and `divide 5 0`. It prints `Sum: 12.0`, `5!: 120`, and `Divide by zero.`.",
+						"3. Run `java Main power 2 4`, `java Main remainder 9 4`, or `java Main factorial 0`. Compare the exact factorial result with the arithmetic output. Try missing, extra, and malformed operands.",
+						"",
+						"Save the IDE workspace, download and extract its ZIP, and use Java 21 in the extracted folder.",
+						"",
+						"```sh",
+						"javac --release 21 -Xlint:all -Werror *.java",
+						"java Main",
+						"java ContractTests",
+						"```",
+						"",
+						"The starter runs with unfinished behavior. The method checks identify what still needs to be implemented."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"JM7-Calculator",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"JM7-Calculator",
+						"solution"
+					)
 				},
 				{
 					title: "Bank Account Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 2",
-						moduleTitle: "JM7 Bank Account",
-						itemTitle: "Bank Account Transfer Practice",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/J2-11-jm7-bank-account-supplemental-2/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/J2-11-jm7-bank-account-supplemental-2/solution"
+					contentKind: "assignment",
+					preserveInstructions: true,
+					ideImport: true,
+					content: [
+						"Move fictional cents between two accounts. A transfer succeeds only when the source can pay and the destination can receive the full amount.",
+						"",
+						"1. Reject a missing account, a transfer to the same account, an invalid amount, and destination overflow. Check both sides before changing either balance.",
+						"2. Withdraw and deposit the same amount after validation. The transfer runs on one thread, so the checks and updates occur in order.",
+						"3. Move 30 cents from A to B, then try moving 90 cents out of the remaining 70. The failed attempt leaves `Balances: {DEMO-A=70, DEMO-B=80}`. Show that the two balances still add to 150.",
+						"",
+						"Save the IDE workspace, download and extract its ZIP, and use Java 21 in the extracted folder.",
+						"",
+						"```sh",
+						"javac --release 21 -Xlint:all -Werror *.java",
+						"java Main",
+						"java ContractTests",
+						"```",
+						"",
+						"The starter runs with unfinished behavior. The method checks identify what still needs to be implemented."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"J2-11-jm7-bank-account-supplemental-2",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"J2-11-jm7-bank-account-supplemental-2",
+						"solution"
+					)
 				},
 				{
 					title: "Bank Account Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 2",
-						moduleTitle: "JM7 Bank Account",
-						itemTitle: "Bank Account Extension Practice",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/J2-12-jm7-bank-account-supplemental-3/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/J2-12-jm7-bank-account-supplemental-3/solution"
+					contentKind: "assignment",
+					preserveInstructions: true,
+					ideImport: true,
+					content: [
+						"Group fictional charges by category and produce an alphabetically ordered spending summary. Keep the category totals in integer cents.",
+						"",
+						"1. Trim surrounding spaces from category names. Reject a blank name, a nonpositive charge, or a total that would overflow.",
+						"2. Add each valid charge to its category. A rejected charge leaves the current totals unchanged. Return a copy for each report.",
+						"3. Record supplies at 175 cents and again at 25 cents, then travel at 50 cents. The completed report is `Summary: {supplies=200, travel=50}`. Compare a snapshot before and after another valid charge.",
+						"",
+						"Save the IDE workspace, download and extract its ZIP, and use Java 21 in the extracted folder.",
+						"",
+						"```sh",
+						"javac --release 21 -Xlint:all -Werror *.java",
+						"java Main",
+						"java ContractTests",
+						"```",
+						"",
+						"The starter runs with unfinished behavior. The method checks identify what still needs to be implemented."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"J2-12-jm7-bank-account-supplemental-3",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"J2-12-jm7-bank-account-supplemental-3",
+						"solution"
+					)
 				}
 			]
 		},
@@ -1509,74 +1589,222 @@ const javaLevel2SourceCourse: RawCourse = {
 			curriculum: [
 				{
 					title: "Writing to a File",
-					content:
-						"Use `FileWriter` inside a try-with-resources block to create or open files and write lines of output directly to disk instead of only printing to the console.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM8-Writing-to-a-File"
+					contentKind: "assignment",
+					preserveInstructions: true,
+					ideImport: true,
+					content: [
+						"Write text rows in UTF-8. Replace starts a new file or discards the old contents. Append adds a row while preserving the rows already stored.",
+						"",
+						"1. Use the supplied temporary folder and write the two lines A and Café. Use Files.write with an explicit UTF-8 charset.",
+						"2. Append End with CREATE and APPEND, then read back the lines. Expect `After append: [A, Café, End]`.",
+						"3. Replace the file with New and expect `After replace: [New]`. Compare the old and new line counts to verify the operation.",
+						"",
+						"Save the IDE workspace, download and extract its ZIP, and use Java 21 in the extracted folder.",
+						"",
+						"```sh",
+						"javac --release 21 -Xlint:all -Werror *.java",
+						"java Main",
+						"java ContractTests",
+						"```",
+						"",
+						"The starter runs with unfinished behavior. The method checks identify what still needs to be implemented."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"JM8-Writing-to-a-File",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"JM8-Writing-to-a-File",
+						"solution"
+					)
 				},
 				{
 					title: "JM8 Project 1: Crazy Name Tags Printer",
-					content:
-						"Ask the user for a name, then write different letter-by-letter transformations of that name into one or more files.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM8-Project-1-Crazy-Name-Tags-Printer",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM8-Project-1-Crazy-Name-Tags-Printer"
+					contentKind: "assignment",
+					preserveInstructions: true,
+					ideImport: true,
+					content: [
+						"Use the fictional label Zoë to produce three lines in one UTF-8 file. The output shows an uppercase version, every other character starting with the first, and the reverse.",
+						"",
+						"1. Trim surrounding spaces and reject an empty label before writing. Apply uppercase with Locale.ROOT.",
+						"2. Count positions by Unicode code point. With Zoë, selecting positions 0 and 2 yields Zë. Reversing yields ëoZ.",
+						"3. From the temporary file, verify `Tags: [ZOË, Zë, ëoZ]`. Try `java Main 'A🌼B'` to check that selection and reversal keep the flower intact.",
+						"",
+						"Save the IDE workspace, download and extract its ZIP, and use Java 21 in the extracted folder.",
+						"",
+						"```sh",
+						"javac --release 21 -Xlint:all -Werror *.java",
+						"java Main",
+						"java ContractTests",
+						"```",
+						"",
+						"The starter runs with unfinished behavior. The method checks identify what still needs to be implemented."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"JM8-Project-1-Crazy-Name-Tags-Printer",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"JM8-Project-1-Crazy-Name-Tags-Printer",
+						"solution"
+					)
 				},
 				{
 					title: "Reading from a File",
-					content:
-						"Use `File` and `Scanner` inside `try-catch` logic to read lines from a text file, collect them into a string, and close resources properly after reading.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM8-Reading-from-a-File/src/main/java"
+					contentKind: "assignment",
+					preserveInstructions: true,
+					ideImport: true,
+					content: [
+						"Read one signed integer per line from the supplied UTF-8 file numbers.txt. A blank or nonnumeric row is a format error. An empty file has zero total.",
+						"",
+						"1. Open a buffered reader with try-with-resources. Number lines from 1, trim each row, and parse it. Report the line number if parsing fails.",
+						"2. Add each parsed value to a long total. Check the file containing 4, −2, and 13. The sample prints `Total: 15`.",
+						"3. Compare a missing file, an empty file, and a file with an invalid row. A missing file gives a missing-file message. An invalid row gives its line number and leaves no partial total to report.",
+						"",
+						"Save the IDE workspace, download and extract its ZIP, and use Java 21 in the extracted folder.",
+						"",
+						"```sh",
+						"javac --release 21 -Xlint:all -Werror *.java",
+						"java Main",
+						"java ContractTests",
+						"```",
+						"",
+						"The starter runs with unfinished behavior. The method checks identify what still needs to be implemented."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"JM8-Reading-from-a-File",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"JM8-Reading-from-a-File",
+						"solution"
+					)
 				},
 				{
 					title: "JM8 Project 2: File IO and Maps",
-					content:
-						"Read alternating lines from a file and load them into a map so odd-numbered lines become keys and the following lines become their values.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM8-Project-2-File-IO-and-Maps/src/main/java",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM8-Project-2-File-IO-and-Maps/src/main/java"
+					contentKind: "assignment",
+					preserveInstructions: true,
+					ideImport: true,
+					content: [
+						"Load alternating lines from a UTF-8 file. Lines 1 and 2 form the first key and value, lines 3 and 4 the second pair, and so on.",
+						"",
+						"1. Trim keys and values. Reject blank entries, an unpaired final key, and duplicate keys. Identify a failing record by its line number without printing the record itself.",
+						"2. Keep input order with a LinkedHashMap. Return the loaded table only after every pair passes. A rejected file never replaces a prior result.",
+						"3. Read the supplied input.txt and verify `Pairs: {pen=blue, folder=green}`. Compare an empty file, a two-pair file, and a repeated key.",
+						"",
+						"Save the IDE workspace, download and extract its ZIP, and use Java 21 in the extracted folder.",
+						"",
+						"```sh",
+						"javac --release 21 -Xlint:all -Werror *.java",
+						"java Main",
+						"java ContractTests",
+						"```",
+						"",
+						"The starter runs with unfinished behavior. The method checks identify what still needs to be implemented."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"JM8-Project-2-File-IO-and-Maps",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"JM8-Project-2-File-IO-and-Maps",
+						"solution"
+					)
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "JM8 Supplemental Project 1: Bank Account with File I/O",
-					content:
-						"Extend the bank account system so account information can be saved to a file and loaded again when the program starts.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM8-Supplemental-Project-Bank-Account/src/main/java",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/JM8-Supplemental-Project-Bank-Account/src/main/java"
+					contentKind: "assignment",
+					preserveInstructions: true,
+					ideImport: true,
+					content: [
+						"Save and reopen a fictional balance snapshot. The file starts with BALANCES-1, followed by one DEMO ID and a balance in integer cents on each comma-separated row.",
+						"",
+						"1. Save from the bank’s snapshot in ID order. Write the complete UTF-8 file to a temporary sibling, then replace the destination atomically. An unsupported atomic move is reported as an I/O error.",
+						"2. Load and validate every row into a fresh bank, then return it. Reject an unknown format, duplicate ID or negative amount with a line number. A missing file starts an empty bank.",
+						"3. Save the supplied two accounts, update the first, and save again. Reopen the file in a new bank. The final report is `Reopened: {DEMO-A=275, DEMO-B=50}`. This format contains only fictional IDs and amounts.",
+						"",
+						"Save the IDE workspace, download and extract its ZIP, and use Java 21 in the extracted folder.",
+						"",
+						"```sh",
+						"javac --release 21 -Xlint:all -Werror *.java",
+						"java Main",
+						"java ContractTests",
+						"```",
+						"",
+						"The starter runs with unfinished behavior. The method checks identify what still needs to be implemented."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"JM8-Supplemental-Project-Bank-Account",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"JM8-Supplemental-Project-Bank-Account",
+						"solution"
+					)
 				},
 				{
 					title: "File I/O Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 2",
-						moduleTitle: "JM8 File I/O",
-						itemTitle: "File I/O Transfer Practice",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/J2-13-jm8-file-i-o-supplemental-2/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/J2-13-jm8-file-i-o-supplemental-2/solution"
+					contentKind: "assignment",
+					preserveInstructions: true,
+					ideImport: true,
+					content: [
+						"Count repeated entries in a fictional reading journal. An entry occupies a whole line. Empty lines are ignored.",
+						"",
+						"1. Trim each UTF-8 row and convert it to lowercase with Locale.ROOT. Leave spaces inside an entry intact.",
+						"2. Increment the count when an entry is repeated. Return an alphabetically ordered report. For Cedar, Fern, a blank row, and another cedar, the result is `Counts: {cedar=2, fern=1}`.",
+						"3. Verify that an empty journal gives an empty report. Compare a missing file with an empty file.",
+						"",
+						"Save the IDE workspace, download and extract its ZIP, and use Java 21 in the extracted folder.",
+						"",
+						"```sh",
+						"javac --release 21 -Xlint:all -Werror *.java",
+						"java Main",
+						"java ContractTests",
+						"```",
+						"",
+						"The starter runs with unfinished behavior. The method checks identify what still needs to be implemented."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"J2-13-jm8-file-i-o-supplemental-2",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"J2-13-jm8-file-i-o-supplemental-2",
+						"solution"
+					)
 				},
 				{
 					title: "File I/O Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 2",
-						moduleTitle: "JM8 File I/O",
-						itemTitle: "File I/O Extension Practice",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/J2-14-jm8-file-i-o-supplemental-3/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-2/tree/main/J2-14-jm8-file-i-o-supplemental-3/solution"
+					contentKind: "assignment",
+					preserveInstructions: true,
+					ideImport: true,
+					content: [
+						"Compare two fictional lists of room names in UTF-8 text files. Each list is a snapshot taken at one point in time.",
+						"",
+						"1. Trim each line and ignore blank rows. Treat repeated names as one entry. Each sorted result set uses complete names.",
+						"2. Build additions from the newer set minus the older set. Build removals from the older set minus the newer set. Use copies so the original sets can be compared again.",
+						"3. The original set contains Storage and Studio. The newer set contains Studio and Workshop. The program prints `Added: [Workshop]` and `Removed: [Storage]`.",
+						"",
+						"Save the IDE workspace, download and extract its ZIP, and use Java 21 in the extracted folder.",
+						"",
+						"```sh",
+						"javac --release 21 -Xlint:all -Werror *.java",
+						"java Main",
+						"java ContractTests",
+						"```",
+						"",
+						"The starter runs with unfinished behavior. The method checks identify what still needs to be implemented."
+					].join("\n"),
+					projectLink: javaObjectWorkbookURL(
+						"J2-14-jm8-file-i-o-supplemental-3",
+						"starter"
+					),
+					solutionLink: javaObjectWorkbookURL(
+						"J2-14-jm8-file-i-o-supplemental-3",
+						"solution"
+					)
 				}
 			]
 		},
@@ -2229,30 +2457,6 @@ function javaLevel2SupplementalPath(title: string) {
 function strengthenJavaLevel2Item(
 	item: RawCourseModuleItem
 ): RawCourseModuleItem {
-	if (item.title === "JM7 Project 1: Bank Account") {
-		return {
-			...item,
-			content:
-				"Design a classroom `BankAccount` simulation and a `BankSystem` that manages fictional accounts in a map. Represent money with integer cents or `BigDecimal`, reject non-positive deposits and disallowed overdrafts without partial state changes, and test exact balances. If a login-like prompt is retained, use a clearly fake classroom PIN in memory only; never collect, persist, or log real passwords or personal financial data."
-		};
-	}
-
-	if (item.title === "Writing to a File") {
-		return {
-			...item,
-			content:
-				"Use `Path` and `Files` with explicit UTF-8 to write course-owned text fixtures inside a temporary directory. Use try-with-resources when a stream or writer is needed, define overwrite versus append behavior, and verify the resulting lines rather than relying only on a successful call."
-		};
-	}
-
-	if (item.title === "Reading from a File") {
-		return {
-			...item,
-			content:
-				"Use `Path` and `Files` with explicit UTF-8 to read a documented text format. Handle missing, empty, malformed, and ordinary files separately, close any opened resource with try-with-resources, and report line or record context without exposing private file contents."
-		};
-	}
-
 	if (item.title === "JM10 Master Project") {
 		return {
 			...item,

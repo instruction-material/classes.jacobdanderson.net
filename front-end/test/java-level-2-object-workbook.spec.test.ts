@@ -65,7 +65,18 @@ it("keeps introductory, check-in, inheritance, map, and concurrency workbooks in
 		"JM-Check-in-2-Additional-Project": "Time: 1:00",
 		"JM-Check-in-2-Clock-Playback": "Hours: [11, 12, 1, 2]",
 		"J2-09-check-in-2-supplemental-2": "After retry: -2",
-		"J2-10-check-in-2-supplemental-3": "At 1: {Harbor=5, Ridge=22}"
+		"J2-10-check-in-2-supplemental-3": "At 1: {Harbor=5, Ridge=22}",
+		"JM7-Bank-Account": "DEMO-A: 250 cents",
+		"JM7-Calculator": "5!: 120",
+		"J2-11-jm7-bank-account-supplemental-2": "Balances: {DEMO-A=70, DEMO-B=80}",
+		"J2-12-jm7-bank-account-supplemental-3": "Summary: {supplies=200, travel=50}",
+		"JM8-Writing-to-a-File": "After append: [A, Café, End]",
+		"JM8-Project-1-Crazy-Name-Tags-Printer": "Tags: [ZOË, Zë, ëoZ]",
+		"JM8-Reading-from-a-File": "Total: 15",
+		"JM8-Project-2-File-IO-and-Maps": "Pairs: {pen=blue, folder=green}",
+		"JM8-Supplemental-Project-Bank-Account": "Reopened: {DEMO-A=275, DEMO-B=50}",
+		"J2-13-jm8-file-i-o-supplemental-2": "Counts: {cedar=2, fern=1}",
+		"J2-14-jm8-file-i-o-supplemental-3": "Added: [Workshop]"
 	};
 	expect(javaObjectWorkbooks.map(pack => pack.pack)).toEqual(
 		Object.keys(samples)

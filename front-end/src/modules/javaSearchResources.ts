@@ -10,6 +10,7 @@ const jm4Revision = "6d361004b256fca624703c26538777527c98b036";
 const jm5Revision = "9db6074ac0df5e628a32d5f60c753ffe8247c775";
 const jm6Revision = "8971dbd9abd89c73393b58502f907e4177e4ecc3";
 const checkIn2Revision = "24fba59c70a26235ac04138f37f1687ff1bd4208";
+const accountFileRevision = "f9ba887f6da0697318b305aa7ed6cb08e3948692";
 const jm1Module =
 	"java-level-2-jm1-instance-variables-constructors-and-methods";
 const jm2Module = "java-level-2-jm2-overloaded-constructors-comparison-methods";
@@ -19,6 +20,9 @@ const jm5Module = "java-level-2-jm5-maps";
 const jm6Module = "java-level-2-jm6-exceptions-and-failure-handling";
 const concurrencyModule = "java-level-2-optional-java-concurrency-extension";
 const checkIn2Module = "java-level-2-check-in-2";
+
+const jm7Module = "java-level-2-jm7-bank-account";
+const jm8Module = "java-level-2-jm8-file-i-o";
 
 export const javaCheckIn1CarExtensionID =
 	"java-level-2-check-in-1-supplemental-java-level-2-check-in-1-extension-challenge";
@@ -303,6 +307,126 @@ const javaObjectSources = {
 		files: [
 			"Main.java",
 			"StationHours.java",
+			"ContractTests.java",
+			"README.md"
+		]
+	},
+	"JM7-Bank-Account": {
+		revision: accountFileRevision,
+		id: `${jm7Module}-curriculum-jm7-project-1-bank-account`,
+		files: [
+			"Main.java",
+			"BankAccount.java",
+			"BankSystem.java",
+			"ContractTests.java",
+			"README.md"
+		]
+	},
+	"JM7-Calculator": {
+		revision: accountFileRevision,
+		id: `${jm7Module}-supplemental-jm7-supplemental-project-1-calculator`,
+		files: [
+			"Main.java",
+			"Calculator.java",
+			"ContractTests.java",
+			"README.md"
+		]
+	},
+	"J2-11-jm7-bank-account-supplemental-2": {
+		revision: accountFileRevision,
+		id: `${jm7Module}-supplemental-bank-account-transfer-practice`,
+		files: [
+			"Main.java",
+			"BankAccount.java",
+			"BankSystem.java",
+			"Transfers.java",
+			"ContractTests.java",
+			"README.md"
+		]
+	},
+	"J2-12-jm7-bank-account-supplemental-3": {
+		revision: accountFileRevision,
+		id: `${jm7Module}-supplemental-bank-account-extension-practice`,
+		files: ["Main.java", "Spending.java", "ContractTests.java", "README.md"]
+	},
+	"JM8-Writing-to-a-File": {
+		revision: accountFileRevision,
+		id: `${jm8Module}-curriculum-writing-to-a-file`,
+		files: [
+			"Main.java",
+			"FileLines.java",
+			"WorkbookFolder.java",
+			"ContractTests.java",
+			"README.md"
+		]
+	},
+	"JM8-Project-1-Crazy-Name-Tags-Printer": {
+		revision: accountFileRevision,
+		id: `${jm8Module}-curriculum-jm8-project-1-crazy-name-tags-printer`,
+		files: [
+			"Main.java",
+			"NameTags.java",
+			"WorkbookFolder.java",
+			"ContractTests.java",
+			"README.md"
+		]
+	},
+	"JM8-Reading-from-a-File": {
+		revision: accountFileRevision,
+		id: `${jm8Module}-curriculum-reading-from-a-file`,
+		files: [
+			"Main.java",
+			"NumberFile.java",
+			"WorkbookFolder.java",
+			"ContractTests.java",
+			"README.md",
+			"numbers.txt"
+		]
+	},
+	"JM8-Project-2-File-IO-and-Maps": {
+		revision: accountFileRevision,
+		id: `${jm8Module}-curriculum-jm8-project-2-file-io-and-maps`,
+		files: [
+			"Main.java",
+			"PairFile.java",
+			"WorkbookFolder.java",
+			"ContractTests.java",
+			"README.md",
+			"input.txt"
+		]
+	},
+	"JM8-Supplemental-Project-Bank-Account": {
+		revision: accountFileRevision,
+		id: `${jm8Module}-supplemental-jm8-supplemental-project-1-bank-account-with-file-i-o`,
+		files: [
+			"Main.java",
+			"BankAccount.java",
+			"BankSystem.java",
+			"BalanceFile.java",
+			"WorkbookFolder.java",
+			"ContractTests.java",
+			"README.md",
+			"accounts.txt"
+		]
+	},
+	"J2-13-jm8-file-i-o-supplemental-2": {
+		revision: accountFileRevision,
+		id: `${jm8Module}-supplemental-file-i-o-transfer-practice`,
+		files: [
+			"Main.java",
+			"JournalCounts.java",
+			"WorkbookFolder.java",
+			"ContractTests.java",
+			"README.md"
+		]
+	},
+	"J2-14-jm8-file-i-o-supplemental-3": {
+		revision: accountFileRevision,
+		id: `${jm8Module}-supplemental-file-i-o-extension-practice`,
+		files: [
+			"Main.java",
+			"SnapshotDiff.java",
+			"WorkbookFolder.java",
 			"ContractTests.java",
 			"README.md"
 		]
