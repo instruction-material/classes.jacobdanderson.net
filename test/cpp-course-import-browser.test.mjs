@@ -1980,11 +1980,20 @@ async function verifyPublishedCourse(courseId) {
 			if (mode === "cpp") {
 				await page.waitForSelector("button.run-control:not(:disabled)");
 				await page.click("button.run-control");
-				await page.waitForFunction(standard => document.querySelector(".output-panel")?.textContent.includes(`-std=c++${standard}`), {}, standard);
+				const cmake = expectedFiles["CMakeLists.txt"]?.trim();
+				const buildCommand = cmake ? "cmake -S . -B cmake-build" : `-std=c++${standard}`;
+				await page.waitForFunction(command => document.querySelector(".output-panel")?.textContent.includes(command), {}, buildCommand);
 				assert.equal(await page.$(".stdin-panel"), null);
 				const instructions = await page.$eval(".output-panel", element => element.textContent);
 				assert.match(instructions, /does not compile or execute/);
-				for (const name of Object.keys(expectedFiles).filter(name => name.endsWith(".cpp"))) assert.ok(instructions.includes(`'${name}'`));
+				if (cmake) {
+					assert.match(instructions, /cmake --build cmake-build/);
+					if (/^\s*(?:enable_testing\s*\(|include\s*\(\s*CTest\s*\))/im.test(cmake)) {
+						assert.match(instructions, /ctest --test-dir cmake-build --output-on-failure/);
+					}
+				} else {
+					for (const name of Object.keys(expectedFiles).filter(name => name.endsWith(".cpp"))) assert.ok(instructions.includes(`'${name}'`));
+				}
 				assert.equal(runtimeRequests, beforeRuntime, "C++ instructions never start a Python or Java runtime");
 			}
 			if (mode === "java") {
