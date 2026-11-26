@@ -534,7 +534,7 @@ const javaLevel1SourceCourse: RawCourse = {
 					preserveInstructions: true,
 					contentKind: "reading",
 					content:
-						"In for (int i = 2; i <= 6; i += 2), initialization happens once. The test runs before each iteration and the update after it. Printing i in the body gives 2, 4, 6. Predict the last value if <= becomes <."
+						"A for loop can repeat code with a loop variable, a stopping condition, and an update step. Practice counting forward, backward, and by larger increments. In for (int i = 2; i <= 6; i += 2), initialization happens once. The test runs before each iteration and the update after it. Printing i in the body gives 2, 4, 6. Predict the last value if <= becomes <."
 				},
 				{
 					title: "While Loops",
