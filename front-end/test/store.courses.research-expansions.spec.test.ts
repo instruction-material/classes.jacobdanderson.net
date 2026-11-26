@@ -526,6 +526,22 @@ describe("research-backed course family expansions", () => {
 					expect(roadmapText).toContain("Binary search assumes sorted input");
 					expect(roadmapText).toContain("GateLog.java counts the observations");
 				}
+				else if (profile.family === "C++ Levels 1-3") {
+					const readings = [
+						...roadmapModule!.curriculum,
+						...roadmapModule!.supplementalProjects
+					];
+					expect(readings.map(item => item.title)).toEqual([
+						"Follow-Up Path",
+						"Resource Map",
+						"Module Alignment Guide",
+						"Reference Map",
+						"Prerequisite Map",
+						"Resource Inventory"
+					].map(title => `${courseLabel} ${title}`));
+					for (const item of readings)
+						expect(item.contentKind, item.title).toBe("reading");
+				}
 				else {
 					for (const label of [
 						"Map purpose",
@@ -637,7 +653,9 @@ describe("research-backed course family expansions", () => {
 
 		expect(corpus).toContain("NIST AI RMF");
 		expect(corpus).toContain("ACS Chemistry Guidelines");
-		expect(corpus).toContain("ISO C++ Core Guidelines");
+		expect(corpus).toContain(
+			"[C++ Core Guidelines](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#s-functions)"
+		);
 		expect(corpus).toContain("OWASP Web Security Testing Guide");
 		expect(corpus).toContain(
 			"https://scikit-learn.org/stable/modules/model_evaluation.html"
