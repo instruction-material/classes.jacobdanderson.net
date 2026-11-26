@@ -2453,5 +2453,3204 @@
 				]
 			}
 		]
+	},
+	{
+		"id": "302948550",
+		"sourceSHA256": "fab2b479522139bbee1c3b298f611d92f5b6c622531fd06d3deffaa8197243f6",
+		"summary": "Survival countdown: wait a second before decrementing; a collision at zero cannot take the last life away from a surviving ship.",
+		"displaySummary": "Reference correction: reaching zero with a life wins the round.",
+		"addedBlocks": 2,
+		"target": "Rocketship",
+		"changes": [
+			{
+				"blockId": "Lt]*yRT5RAfxpt;N#7-c",
+				"before": {
+					"opcode": "control_repeat",
+					"next": "c3clPq}SD,m63+dG|#7E",
+					"parent": "Z6}VdQUzP6DoQnegEpQc",
+					"inputs": {
+						"TIMES": [1, [6, "60"]],
+						"SUBSTACK": [2, "vNAM=,XFY97Zs.xBX7RT"]
+					},
+					"fields": {},
+					"shadow": false,
+					"topLevel": false
+				},
+				"after": {
+					"opcode": "control_repeat",
+					"next": "c3clPq}SD,m63+dG|#7E",
+					"parent": "Z6}VdQUzP6DoQnegEpQc",
+					"inputs": {
+						"TIMES": [1, [6, "60"]],
+						"SUBSTACK": [2, ":-p6fi1C67-yM?kif2oK"]
+					},
+					"fields": {},
+					"shadow": false,
+					"topLevel": false
+				}
+			},
+			{
+				"blockId": "vNAM=,XFY97Zs.xBX7RT",
+				"before": {
+					"opcode": "data_changevariableby",
+					"next": ":-p6fi1C67-yM?kif2oK",
+					"parent": "Lt]*yRT5RAfxpt;N#7-c",
+					"inputs": { "VALUE": [1, [4, "-1"]] },
+					"fields": { "VARIABLE": ["Timer", "NUui0YVXH-na:*F+KRx^"] },
+					"shadow": false,
+					"topLevel": false
+				},
+				"after": {
+					"opcode": "data_changevariableby",
+					"next": null,
+					"parent": ":-p6fi1C67-yM?kif2oK",
+					"inputs": { "VALUE": [1, [4, "-1"]] },
+					"fields": { "VARIABLE": ["Timer", "NUui0YVXH-na:*F+KRx^"] },
+					"shadow": false,
+					"topLevel": false
+				}
+			},
+			{
+				"blockId": ":-p6fi1C67-yM?kif2oK",
+				"before": {
+					"opcode": "control_wait",
+					"next": null,
+					"parent": "vNAM=,XFY97Zs.xBX7RT",
+					"inputs": { "DURATION": [1, [5, "1"]] },
+					"fields": {},
+					"shadow": false,
+					"topLevel": false
+				},
+				"after": {
+					"opcode": "control_wait",
+					"next": "vNAM=,XFY97Zs.xBX7RT",
+					"parent": "Lt]*yRT5RAfxpt;N#7-c",
+					"inputs": { "DURATION": [1, [5, "1"]] },
+					"fields": {},
+					"shadow": false,
+					"topLevel": false
+				}
+			},
+			{
+				"blockId": "0.*Ug*72_Gl7j=J4L/-|",
+				"before": {
+					"opcode": "event_whenbroadcastreceived",
+					"next": "+}8d^-u4ebR4}8oOC1hc",
+					"parent": null,
+					"inputs": {},
+					"fields": {
+						"BROADCAST_OPTION": [
+							"Ship Hit!",
+							"hQh6^c,/D@)TNwq;7Yv$"
+						]
+					},
+					"shadow": false,
+					"topLevel": true,
+					"x": 447,
+					"y": 50
+				},
+				"after": {
+					"opcode": "event_whenbroadcastreceived",
+					"next": "classes-asteroid-active-hit",
+					"parent": null,
+					"inputs": {},
+					"fields": {
+						"BROADCAST_OPTION": [
+							"Ship Hit!",
+							"hQh6^c,/D@)TNwq;7Yv$"
+						]
+					},
+					"shadow": false,
+					"topLevel": true,
+					"x": 447,
+					"y": 50
+				}
+			},
+			{
+				"blockId": "+}8d^-u4ebR4}8oOC1hc",
+				"before": {
+					"opcode": "data_changevariableby",
+					"next": "G*k|,v/0y{G*~O}tw(v=",
+					"parent": "0.*Ug*72_Gl7j=J4L/-|",
+					"inputs": { "VALUE": [1, [4, "-1"]] },
+					"fields": { "VARIABLE": ["Lives", ".T-I5cay.JQ6oNn6JqW-"] },
+					"shadow": false,
+					"topLevel": false
+				},
+				"after": {
+					"opcode": "data_changevariableby",
+					"next": "G*k|,v/0y{G*~O}tw(v=",
+					"parent": "classes-asteroid-active-hit",
+					"inputs": { "VALUE": [1, [4, "-1"]] },
+					"fields": { "VARIABLE": ["Lives", ".T-I5cay.JQ6oNn6JqW-"] },
+					"shadow": false,
+					"topLevel": false
+				}
+			},
+			{
+				"blockId": "classes-asteroid-time-remains",
+				"before": null,
+				"after": {
+					"opcode": "operator_gt",
+					"next": null,
+					"parent": "classes-asteroid-active-hit",
+					"inputs": {
+						"OPERAND1": [
+							3,
+							[12, "Timer", "NUui0YVXH-na:*F+KRx^"],
+							[10, ""]
+						],
+						"OPERAND2": [1, [10, "0"]]
+					},
+					"fields": {},
+					"shadow": false,
+					"topLevel": false
+				}
+			},
+			{
+				"blockId": "classes-asteroid-active-hit",
+				"before": null,
+				"after": {
+					"opcode": "control_if",
+					"next": null,
+					"parent": "0.*Ug*72_Gl7j=J4L/-|",
+					"inputs": {
+						"CONDITION": [2, "classes-asteroid-time-remains"],
+						"SUBSTACK": [2, "+}8d^-u4ebR4}8oOC1hc"]
+					},
+					"fields": {},
+					"shadow": false,
+					"topLevel": false
+				}
+			}
+		]
+	},
+	{
+		"id": "304003593",
+		"sourceSHA256": "cd61dc36ed31866af8d55f0e197bc36bff787c1e2b0c871633d2e4f173babf5e",
+		"summary": "Close both game endings to new movement and hard-mode clicks; show each second before decrementing the timer.",
+		"displaySummary": "Sample correction: movement and hard mode stop when the game ends.",
+		"addedBlocks": 17,
+		"target": "Hippo1",
+		"changes": [
+			{
+				"blockId": "@._9vO0qxnEw(rVEybyo",
+				"before": {
+					"opcode": "event_whenkeypressed",
+					"next": "5$w^fMcXU@69FncdE`t}",
+					"parent": null,
+					"inputs": {},
+					"fields": { "KEY_OPTION": ["up arrow", null] },
+					"shadow": false,
+					"topLevel": true,
+					"x": 89,
+					"y": 212
+				},
+				"after": {
+					"opcode": "event_whenkeypressed",
+					"next": "classes-hippo-up-move",
+					"parent": null,
+					"inputs": {},
+					"fields": { "KEY_OPTION": ["up arrow", null] },
+					"shadow": false,
+					"topLevel": true,
+					"x": 89,
+					"y": 212
+				}
+			},
+			{
+				"blockId": "5$w^fMcXU@69FncdE`t}",
+				"before": {
+					"opcode": "motion_pointindirection",
+					"next": "[8aLx4VeNOgZ%1dL$qMM",
+					"parent": "@._9vO0qxnEw(rVEybyo",
+					"inputs": { "DIRECTION": [1, [8, "0"]] },
+					"fields": {},
+					"shadow": false,
+					"topLevel": false
+				},
+				"after": {
+					"opcode": "motion_pointindirection",
+					"next": "[8aLx4VeNOgZ%1dL$qMM",
+					"parent": "classes-hippo-up-move",
+					"inputs": { "DIRECTION": [1, [8, "0"]] },
+					"fields": {},
+					"shadow": false,
+					"topLevel": false
+				}
+			},
+			{
+				"blockId": "F47Z(08*s~b,L:aMt(7Y",
+				"before": {
+					"opcode": "event_whenkeypressed",
+					"next": "=A7g53P%%st$NyWh~uj^",
+					"parent": null,
+					"inputs": {},
+					"fields": { "KEY_OPTION": ["down arrow", null] },
+					"shadow": false,
+					"topLevel": true,
+					"x": 89,
+					"y": 403
+				},
+				"after": {
+					"opcode": "event_whenkeypressed",
+					"next": "classes-hippo-down-move",
+					"parent": null,
+					"inputs": {},
+					"fields": { "KEY_OPTION": ["down arrow", null] },
+					"shadow": false,
+					"topLevel": true,
+					"x": 89,
+					"y": 403
+				}
+			},
+			{
+				"blockId": "=A7g53P%%st$NyWh~uj^",
+				"before": {
+					"opcode": "motion_pointindirection",
+					"next": "*,eo`_?%b{2q|qE$XW4:",
+					"parent": "F47Z(08*s~b,L:aMt(7Y",
+					"inputs": { "DIRECTION": [1, [8, "180"]] },
+					"fields": {},
+					"shadow": false,
+					"topLevel": false
+				},
+				"after": {
+					"opcode": "motion_pointindirection",
+					"next": "*,eo`_?%b{2q|qE$XW4:",
+					"parent": "classes-hippo-down-move",
+					"inputs": { "DIRECTION": [1, [8, "180"]] },
+					"fields": {},
+					"shadow": false,
+					"topLevel": false
+				}
+			},
+			{
+				"blockId": "ZdsZAd[)@VS;w?lwoav%",
+				"before": {
+					"opcode": "event_whenkeypressed",
+					"next": "F~[=W6Ot4JWw.VaFL]Cb",
+					"parent": null,
+					"inputs": {},
+					"fields": { "KEY_OPTION": ["right arrow", null] },
+					"shadow": false,
+					"topLevel": true,
+					"x": 409,
+					"y": 214
+				},
+				"after": {
+					"opcode": "event_whenkeypressed",
+					"next": "classes-hippo-right-move",
+					"parent": null,
+					"inputs": {},
+					"fields": { "KEY_OPTION": ["right arrow", null] },
+					"shadow": false,
+					"topLevel": true,
+					"x": 409,
+					"y": 214
+				}
+			},
+			{
+				"blockId": "F~[=W6Ot4JWw.VaFL]Cb",
+				"before": {
+					"opcode": "motion_pointindirection",
+					"next": "8?7[pZ.aQ71b!dH9RK6I",
+					"parent": "ZdsZAd[)@VS;w?lwoav%",
+					"inputs": { "DIRECTION": [1, [8, "90"]] },
+					"fields": {},
+					"shadow": false,
+					"topLevel": false
+				},
+				"after": {
+					"opcode": "motion_pointindirection",
+					"next": "8?7[pZ.aQ71b!dH9RK6I",
+					"parent": "classes-hippo-right-move",
+					"inputs": { "DIRECTION": [1, [8, "90"]] },
+					"fields": {},
+					"shadow": false,
+					"topLevel": false
+				}
+			},
+			{
+				"blockId": "OnZB_(],]sS{7iJBz8-A",
+				"before": {
+					"opcode": "event_whenkeypressed",
+					"next": "*%.-/f_`@5}]Oh}*@tHl",
+					"parent": null,
+					"inputs": {},
+					"fields": { "KEY_OPTION": ["left arrow", null] },
+					"shadow": false,
+					"topLevel": true,
+					"x": 409,
+					"y": 411
+				},
+				"after": {
+					"opcode": "event_whenkeypressed",
+					"next": "classes-hippo-left-move",
+					"parent": null,
+					"inputs": {},
+					"fields": { "KEY_OPTION": ["left arrow", null] },
+					"shadow": false,
+					"topLevel": true,
+					"x": 409,
+					"y": 411
+				}
+			},
+			{
+				"blockId": "*%.-/f_`@5}]Oh}*@tHl",
+				"before": {
+					"opcode": "motion_pointindirection",
+					"next": "B4x?gV|0pAfCc0[nR(0P",
+					"parent": "OnZB_(],]sS{7iJBz8-A",
+					"inputs": { "DIRECTION": [1, [8, "-90"]] },
+					"fields": {},
+					"shadow": false,
+					"topLevel": false
+				},
+				"after": {
+					"opcode": "motion_pointindirection",
+					"next": "B4x?gV|0pAfCc0[nR(0P",
+					"parent": "classes-hippo-left-move",
+					"inputs": { "DIRECTION": [1, [8, "-90"]] },
+					"fields": {},
+					"shadow": false,
+					"topLevel": false
+				}
+			},
+			{
+				"blockId": "XF+h3#:6GIN;#JYdi0!R",
+				"before": {
+					"opcode": "control_repeat",
+					"next": "F,1@gsX;YxiBqa2_qRYV",
+					"parent": "q#Z91BZ4]H]D6P.FCDNl",
+					"inputs": {
+						"TIMES": [1, [6, "60"]],
+						"SUBSTACK": [2, "g!du1vR.~gKlU.0UWF48"]
+					},
+					"fields": {},
+					"shadow": false,
+					"topLevel": false
+				},
+				"after": {
+					"opcode": "control_forever",
+					"next": null,
+					"parent": "q#Z91BZ4]H]D6P.FCDNl",
+					"inputs": { "SUBSTACK": [2, "Df(3F]S4m7_;ZcqVUuOk"] },
+					"fields": {},
+					"shadow": false,
+					"topLevel": false
+				}
+			},
+			{
+				"blockId": "g!du1vR.~gKlU.0UWF48",
+				"before": {
+					"opcode": "data_changevariableby",
+					"next": "Df(3F]S4m7_;ZcqVUuOk",
+					"parent": "XF+h3#:6GIN;#JYdi0!R",
+					"inputs": { "VALUE": [1, [4, "-1"]] },
+					"fields": { "VARIABLE": ["Timer", "3g$7A[^`yx.mLi^1TWV:"] },
+					"shadow": false,
+					"topLevel": false
+				},
+				"after": {
+					"opcode": "data_changevariableby",
+					"next": "classes-hippo-zero-end",
+					"parent": "Df(3F]S4m7_;ZcqVUuOk",
+					"inputs": { "VALUE": [1, [4, "-1"]] },
+					"fields": { "VARIABLE": ["Timer", "3g$7A[^`yx.mLi^1TWV:"] },
+					"shadow": false,
+					"topLevel": false
+				}
+			},
+			{
+				"blockId": "Df(3F]S4m7_;ZcqVUuOk",
+				"before": {
+					"opcode": "control_wait",
+					"next": null,
+					"parent": "g!du1vR.~gKlU.0UWF48",
+					"inputs": { "DURATION": [1, [5, "1"]] },
+					"fields": {},
+					"shadow": false,
+					"topLevel": false
+				},
+				"after": {
+					"opcode": "control_wait",
+					"next": "g!du1vR.~gKlU.0UWF48",
+					"parent": "XF+h3#:6GIN;#JYdi0!R",
+					"inputs": { "DURATION": [1, [5, "1"]] },
+					"fields": {},
+					"shadow": false,
+					"topLevel": false
+				}
+			},
+			{
+				"blockId": "F,1@gsX;YxiBqa2_qRYV",
+				"before": {
+					"opcode": "looks_switchbackdropto",
+					"next": "g4vTdrlaLP6oXujJevb%",
+					"parent": "XF+h3#:6GIN;#JYdi0!R",
+					"inputs": { "BACKDROP": [1, "`If{f(Su.Wy8=,MgNpaq"] },
+					"fields": {},
+					"shadow": false,
+					"topLevel": false
+				},
+				"after": {
+					"opcode": "looks_switchbackdropto",
+					"next": "g4vTdrlaLP6oXujJevb%",
+					"parent": "classes-hippo-zero-end",
+					"inputs": { "BACKDROP": [1, "`If{f(Su.Wy8=,MgNpaq"] },
+					"fields": {},
+					"shadow": false,
+					"topLevel": false
+				}
+			},
+			{
+				"blockId": "classes-hippo-up-backdrop",
+				"before": null,
+				"after": {
+					"opcode": "looks_backdropnumbername",
+					"next": null,
+					"parent": "classes-hippo-up-playfield",
+					"inputs": {},
+					"fields": { "NUMBER_NAME": ["name", null] },
+					"shadow": false,
+					"topLevel": false
+				}
+			},
+			{
+				"blockId": "classes-hippo-up-playfield",
+				"before": null,
+				"after": {
+					"opcode": "operator_equals",
+					"next": null,
+					"parent": "classes-hippo-up-move",
+					"inputs": {
+						"OPERAND1": [3, "classes-hippo-up-backdrop", [10, ""]],
+						"OPERAND2": [1, [10, "Neon Tunnel"]]
+					},
+					"fields": {},
+					"shadow": false,
+					"topLevel": false
+				}
+			},
+			{
+				"blockId": "classes-hippo-up-move",
+				"before": null,
+				"after": {
+					"opcode": "control_if",
+					"next": null,
+					"parent": "@._9vO0qxnEw(rVEybyo",
+					"inputs": {
+						"CONDITION": [2, "classes-hippo-up-playfield"],
+						"SUBSTACK": [2, "5$w^fMcXU@69FncdE`t}"]
+					},
+					"fields": {},
+					"shadow": false,
+					"topLevel": false
+				}
+			},
+			{
+				"blockId": "classes-hippo-down-backdrop",
+				"before": null,
+				"after": {
+					"opcode": "looks_backdropnumbername",
+					"next": null,
+					"parent": "classes-hippo-down-playfield",
+					"inputs": {},
+					"fields": { "NUMBER_NAME": ["name", null] },
+					"shadow": false,
+					"topLevel": false
+				}
+			},
+			{
+				"blockId": "classes-hippo-down-playfield",
+				"before": null,
+				"after": {
+					"opcode": "operator_equals",
+					"next": null,
+					"parent": "classes-hippo-down-move",
+					"inputs": {
+						"OPERAND1": [
+							3,
+							"classes-hippo-down-backdrop",
+							[10, ""]
+						],
+						"OPERAND2": [1, [10, "Neon Tunnel"]]
+					},
+					"fields": {},
+					"shadow": false,
+					"topLevel": false
+				}
+			},
+			{
+				"blockId": "classes-hippo-down-move",
+				"before": null,
+				"after": {
+					"opcode": "control_if",
+					"next": null,
+					"parent": "F47Z(08*s~b,L:aMt(7Y",
+					"inputs": {
+						"CONDITION": [2, "classes-hippo-down-playfield"],
+						"SUBSTACK": [2, "=A7g53P%%st$NyWh~uj^"]
+					},
+					"fields": {},
+					"shadow": false,
+					"topLevel": false
+				}
+			},
+			{
+				"blockId": "classes-hippo-right-backdrop",
+				"before": null,
+				"after": {
+					"opcode": "looks_backdropnumbername",
+					"next": null,
+					"parent": "classes-hippo-right-playfield",
+					"inputs": {},
+					"fields": { "NUMBER_NAME": ["name", null] },
+					"shadow": false,
+					"topLevel": false
+				}
+			},
+			{
+				"blockId": "classes-hippo-right-playfield",
+				"before": null,
+				"after": {
+					"opcode": "operator_equals",
+					"next": null,
+					"parent": "classes-hippo-right-move",
+					"inputs": {
+						"OPERAND1": [
+							3,
+							"classes-hippo-right-backdrop",
+							[10, ""]
+						],
+						"OPERAND2": [1, [10, "Neon Tunnel"]]
+					},
+					"fields": {},
+					"shadow": false,
+					"topLevel": false
+				}
+			},
+			{
+				"blockId": "classes-hippo-right-move",
+				"before": null,
+				"after": {
+					"opcode": "control_if",
+					"next": null,
+					"parent": "ZdsZAd[)@VS;w?lwoav%",
+					"inputs": {
+						"CONDITION": [2, "classes-hippo-right-playfield"],
+						"SUBSTACK": [2, "F~[=W6Ot4JWw.VaFL]Cb"]
+					},
+					"fields": {},
+					"shadow": false,
+					"topLevel": false
+				}
+			},
+			{
+				"blockId": "classes-hippo-left-backdrop",
+				"before": null,
+				"after": {
+					"opcode": "looks_backdropnumbername",
+					"next": null,
+					"parent": "classes-hippo-left-playfield",
+					"inputs": {},
+					"fields": { "NUMBER_NAME": ["name", null] },
+					"shadow": false,
+					"topLevel": false
+				}
+			},
+			{
+				"blockId": "classes-hippo-left-playfield",
+				"before": null,
+				"after": {
+					"opcode": "operator_equals",
+					"next": null,
+					"parent": "classes-hippo-left-move",
+					"inputs": {
+						"OPERAND1": [
+							3,
+							"classes-hippo-left-backdrop",
+							[10, ""]
+						],
+						"OPERAND2": [1, [10, "Neon Tunnel"]]
+					},
+					"fields": {},
+					"shadow": false,
+					"topLevel": false
+				}
+			},
+			{
+				"blockId": "classes-hippo-left-move",
+				"before": null,
+				"after": {
+					"opcode": "control_if",
+					"next": null,
+					"parent": "OnZB_(],]sS{7iJBz8-A",
+					"inputs": {
+						"CONDITION": [2, "classes-hippo-left-playfield"],
+						"SUBSTACK": [2, "*%.-/f_`@5}]Oh}*@tHl"]
+					},
+					"fields": {},
+					"shadow": false,
+					"topLevel": false
+				}
+			},
+			{
+				"blockId": "classes-hippo-zero-end",
+				"before": null,
+				"after": {
+					"opcode": "control_if",
+					"next": null,
+					"parent": "g!du1vR.~gKlU.0UWF48",
+					"inputs": {
+						"CONDITION": [2, "classes-hippo-zero"],
+						"SUBSTACK": [2, "F,1@gsX;YxiBqa2_qRYV"]
+					},
+					"fields": {},
+					"shadow": false,
+					"topLevel": false
+				}
+			},
+			{
+				"blockId": "classes-hippo-zero",
+				"before": null,
+				"after": {
+					"opcode": "operator_equals",
+					"next": null,
+					"parent": "classes-hippo-zero-end",
+					"inputs": {
+						"OPERAND1": [
+							3,
+							[12, "Timer", "3g$7A[^`yx.mLi^1TWV:"],
+							[10, ""]
+						],
+						"OPERAND2": [1, [10, "0"]]
+					},
+					"fields": {},
+					"shadow": false,
+					"topLevel": false
+				}
+			}
+		],
+		"additionalTargets": [
+			{
+				"target": "Button2",
+				"changes": [
+					{
+						"blockId": "`vJ)`sk_|o%f]W-7-H9*",
+						"before": {
+							"opcode": "event_whenthisspriteclicked",
+							"next": "6U`Ubn7D!m|my`Lr!aNS",
+							"parent": null,
+							"inputs": {},
+							"fields": {},
+							"shadow": false,
+							"topLevel": true,
+							"x": -176,
+							"y": 240
+						},
+						"after": {
+							"opcode": "event_whenthisspriteclicked",
+							"next": "classes-hippo-start-hard",
+							"parent": null,
+							"inputs": {},
+							"fields": {},
+							"shadow": false,
+							"topLevel": true,
+							"x": -176,
+							"y": 240
+						}
+					},
+					{
+						"blockId": "6U`Ubn7D!m|my`Lr!aNS",
+						"before": {
+							"opcode": "event_broadcast",
+							"next": null,
+							"parent": "`vJ)`sk_|o%f]W-7-H9*",
+							"inputs": {
+								"BROADCAST_INPUT": [
+									1,
+									[11, "Hard Mode", "wlJW+Q9:?A`C)j*1Ng#!"]
+								]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						},
+						"after": {
+							"opcode": "event_broadcast",
+							"next": null,
+							"parent": "classes-hippo-start-hard",
+							"inputs": {
+								"BROADCAST_INPUT": [
+									1,
+									[11, "Hard Mode", "wlJW+Q9:?A`C)j*1Ng#!"]
+								]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "classes-hippo-hard-backdrop",
+						"before": null,
+						"after": {
+							"opcode": "looks_backdropnumbername",
+							"next": null,
+							"parent": "classes-hippo-hard-playfield",
+							"inputs": {},
+							"fields": { "NUMBER_NAME": ["name", null] },
+							"shadow": false,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "classes-hippo-hard-playfield",
+						"before": null,
+						"after": {
+							"opcode": "operator_equals",
+							"next": null,
+							"parent": "classes-hippo-start-hard",
+							"inputs": {
+								"OPERAND1": [
+									3,
+									"classes-hippo-hard-backdrop",
+									[10, ""]
+								],
+								"OPERAND2": [1, [10, "Neon Tunnel"]]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "classes-hippo-start-hard",
+						"before": null,
+						"after": {
+							"opcode": "control_if",
+							"next": null,
+							"parent": "`vJ)`sk_|o%f]W-7-H9*",
+							"inputs": {
+								"CONDITION": [
+									2,
+									"classes-hippo-hard-playfield"
+								],
+								"SUBSTACK": [2, "6U`Ubn7D!m|my`Lr!aNS"]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						}
+					}
+				]
+			}
+		]
+	},
+	{
+		"id": "330724703",
+		"sourceSHA256": "753b2968182289f118d5561fee8c9729ea8114c792d6229abd2b9b7d56a8fbeb",
+		"summary": "Show alternate frog costumes at successive levels while keeping the walking pose distinct and reserving the wizard costume for victory.",
+		"displaySummary": "Reference correction: leveling up and down changes the frog’s costume as well as its size.",
+		"addedBlocks": 5,
+		"target": "Frog Wizard",
+		"changes": [
+			{
+				"blockId": "_V:gy@uh9wVcE|Y@j$rL",
+				"before": {
+					"opcode": "control_if",
+					"next": null,
+					"parent": "$E8g$qr^-SUPaodJBhdz",
+					"inputs": {
+						"CONDITION": [2, "uX-9K;:^T]_7XN${tG0j"],
+						"SUBSTACK": [2, "9OvBXwm8}Re/J7Smb2(y"]
+					},
+					"fields": {},
+					"shadow": false,
+					"topLevel": false
+				},
+				"after": {
+					"opcode": "control_if",
+					"next": "classes-wizard-pose-for-level",
+					"parent": "$E8g$qr^-SUPaodJBhdz",
+					"inputs": {
+						"CONDITION": [2, "uX-9K;:^T]_7XN${tG0j"],
+						"SUBSTACK": [2, "9OvBXwm8}Re/J7Smb2(y"]
+					},
+					"fields": {},
+					"shadow": false,
+					"topLevel": false
+				}
+			},
+			{
+				"blockId": "lv3cH_PNJI6)ke)y-fyN",
+				"before": {
+					"opcode": "data_changevariableby",
+					"next": "1Yz@$.Ul0{Bp?_i$H#O]",
+					"parent": "Wb)ygZy^B0M4v`_uia()",
+					"inputs": { "VALUE": [1, [4, "-1"]] },
+					"fields": { "VARIABLE": ["Level", "X+g:3R9qr1o!I0hT0*3C"] },
+					"shadow": false,
+					"topLevel": false
+				},
+				"after": {
+					"opcode": "data_changevariableby",
+					"next": "32djc`qIOFohE?jnLAS(",
+					"parent": "Wb)ygZy^B0M4v`_uia()",
+					"inputs": { "VALUE": [1, [4, "-1"]] },
+					"fields": { "VARIABLE": ["Level", "X+g:3R9qr1o!I0hT0*3C"] },
+					"shadow": false,
+					"topLevel": false
+				}
+			},
+			{
+				"blockId": "1Yz@$.Ul0{Bp?_i$H#O]",
+				"before": {
+					"opcode": "looks_switchcostumeto",
+					"next": "32djc`qIOFohE?jnLAS(",
+					"parent": "lv3cH_PNJI6)ke)y-fyN",
+					"inputs": {
+						"COSTUME": [
+							3,
+							[12, "Level", "X+g:3R9qr1o!I0hT0*3C"],
+							"pEic7@YbB{`x+YSulr5u"
+						]
+					},
+					"fields": {},
+					"shadow": false,
+					"topLevel": false
+				},
+				"after": {
+					"opcode": "looks_switchcostumeto",
+					"next": null,
+					"parent": "classes-wizard-pose-for-level",
+					"inputs": {
+						"COSTUME": [
+							3,
+							"classes-wizard-other-frog-pose",
+							"pEic7@YbB{`x+YSulr5u"
+						]
+					},
+					"fields": {},
+					"shadow": false,
+					"topLevel": false
+				}
+			},
+			{
+				"blockId": "pEic7@YbB{`x+YSulr5u",
+				"before": {
+					"opcode": "looks_costume",
+					"next": null,
+					"parent": "1Yz@$.Ul0{Bp?_i$H#O]",
+					"inputs": {},
+					"fields": { "COSTUME": ["fish-d", null] },
+					"shadow": true,
+					"topLevel": false
+				},
+				"after": {
+					"opcode": "looks_costume",
+					"next": null,
+					"parent": "1Yz@$.Ul0{Bp?_i$H#O]",
+					"inputs": {},
+					"fields": { "COSTUME": ["Wizard-toad-a", null] },
+					"shadow": true,
+					"topLevel": false
+				}
+			},
+			{
+				"blockId": "32djc`qIOFohE?jnLAS(",
+				"before": {
+					"opcode": "looks_changesizeby",
+					"next": "_c5Aw{3~_d@}wK_WT947",
+					"parent": "1Yz@$.Ul0{Bp?_i$H#O]",
+					"inputs": { "CHANGE": [1, [4, "-10"]] },
+					"fields": {},
+					"shadow": false,
+					"topLevel": false
+				},
+				"after": {
+					"opcode": "looks_changesizeby",
+					"next": "_c5Aw{3~_d@}wK_WT947",
+					"parent": "lv3cH_PNJI6)ke)y-fyN",
+					"inputs": { "CHANGE": [1, [4, "-10"]] },
+					"fields": {},
+					"shadow": false,
+					"topLevel": false
+				}
+			},
+			{
+				"blockId": "classes-wizard-level-parity",
+				"before": null,
+				"after": {
+					"opcode": "operator_mod",
+					"next": null,
+					"parent": "classes-wizard-even-level",
+					"inputs": {
+						"NUM1": [
+							3,
+							[12, "Level", "X+g:3R9qr1o!I0hT0*3C"],
+							[4, ""]
+						],
+						"NUM2": [1, [4, "2"]]
+					},
+					"fields": {},
+					"shadow": false,
+					"topLevel": false
+				}
+			},
+			{
+				"blockId": "classes-wizard-even-level",
+				"before": null,
+				"after": {
+					"opcode": "operator_equals",
+					"next": null,
+					"parent": "classes-wizard-pose-for-level",
+					"inputs": {
+						"OPERAND1": [
+							3,
+							"classes-wizard-level-parity",
+							[10, ""]
+						],
+						"OPERAND2": [1, [10, "0"]]
+					},
+					"fields": {},
+					"shadow": false,
+					"topLevel": false
+				}
+			},
+			{
+				"blockId": "classes-wizard-pose-for-level",
+				"before": null,
+				"after": {
+					"opcode": "control_if",
+					"next": null,
+					"parent": "_V:gy@uh9wVcE|Y@j$rL",
+					"inputs": {
+						"CONDITION": [2, "classes-wizard-even-level"],
+						"SUBSTACK": [2, "1Yz@$.Ul0{Bp?_i$H#O]"]
+					},
+					"fields": {},
+					"shadow": false,
+					"topLevel": false
+				}
+			},
+			{
+				"blockId": "classes-wizard-current-pose",
+				"before": null,
+				"after": {
+					"opcode": "looks_costumenumbername",
+					"next": null,
+					"parent": "classes-wizard-other-frog-pose",
+					"inputs": {},
+					"fields": { "NUMBER_NAME": ["number", null] },
+					"shadow": false,
+					"topLevel": false
+				}
+			},
+			{
+				"blockId": "classes-wizard-other-frog-pose",
+				"before": null,
+				"after": {
+					"opcode": "operator_subtract",
+					"next": null,
+					"parent": "1Yz@$.Ul0{Bp?_i$H#O]",
+					"inputs": {
+						"NUM1": [1, [4, "3"]],
+						"NUM2": [3, "classes-wizard-current-pose", [4, ""]]
+					},
+					"fields": {},
+					"shadow": false,
+					"topLevel": false
+				}
+			}
+		]
+	},
+	{
+		"id": "302811491",
+		"sourceSHA256": "e0ba59af29d66726f5742c09f3ebbaacbf2b25de43660ff77854df822949cc95",
+		"summary": "Timed collection: stop scoring and steering at zero; the bowls flash while the three foods finish their spins.",
+		"displaySummary": "Reference correction: the ending animation locks both players’ scores.",
+		"addedBlocks": 12,
+		"target": "Bowl1",
+		"changes": [
+			{
+				"blockId": "{n;#;U0R(o$ifbz~ymQu",
+				"before": {
+					"opcode": "event_broadcastandwait",
+					"next": "dk6.L15r9`2l]?)/)0C5",
+					"parent": "pkp3RwV[{,@G8EIZUPOz",
+					"inputs": {
+						"BROADCAST_INPUT": [
+							1,
+							[11, "Game over!", "008NpXDepX:|:s9[z,+t"]
+						]
+					},
+					"fields": {},
+					"shadow": false,
+					"topLevel": false
+				},
+				"after": {
+					"opcode": "event_broadcast",
+					"next": null,
+					"parent": "pkp3RwV[{,@G8EIZUPOz",
+					"inputs": {
+						"BROADCAST_INPUT": [
+							1,
+							[11, "Game over!", "008NpXDepX:|:s9[z,+t"]
+						]
+					},
+					"fields": {},
+					"shadow": false,
+					"topLevel": false
+				}
+			},
+			{
+				"blockId": "dk6.L15r9`2l]?)/)0C5",
+				"before": {
+					"opcode": "control_stop",
+					"next": null,
+					"parent": "{n;#;U0R(o$ifbz~ymQu",
+					"inputs": {},
+					"fields": { "STOP_OPTION": ["all", null] },
+					"shadow": false,
+					"topLevel": false,
+					"mutation": {
+						"tagName": "mutation",
+						"children": [],
+						"hasnext": "false"
+					}
+				},
+				"after": null
+			},
+			{
+				"blockId": "classes-bowl1-end",
+				"before": null,
+				"after": {
+					"opcode": "event_whenbroadcastreceived",
+					"next": "classes-bowl1-stop-input",
+					"parent": null,
+					"inputs": {},
+					"fields": {
+						"BROADCAST_OPTION": [
+							"Game over!",
+							"008NpXDepX:|:s9[z,+t"
+						]
+					},
+					"shadow": false,
+					"topLevel": true,
+					"x": 1000,
+					"y": 100
+				}
+			},
+			{
+				"blockId": "classes-bowl1-stop-input",
+				"before": null,
+				"after": {
+					"opcode": "control_stop",
+					"next": "classes-bowl1-flash",
+					"parent": "classes-bowl1-end",
+					"inputs": {},
+					"fields": {
+						"STOP_OPTION": ["other scripts in sprite", null]
+					},
+					"shadow": false,
+					"topLevel": false,
+					"mutation": {
+						"tagName": "mutation",
+						"children": [],
+						"hasnext": "true"
+					}
+				}
+			},
+			{
+				"blockId": "classes-bowl1-flash",
+				"before": null,
+				"after": {
+					"opcode": "looks_seteffectto",
+					"next": "classes-bowl1-pause",
+					"parent": "classes-bowl1-stop-input",
+					"inputs": { "VALUE": [1, [4, "40"]] },
+					"fields": { "EFFECT": ["BRIGHTNESS", null] },
+					"shadow": false,
+					"topLevel": false
+				}
+			},
+			{
+				"blockId": "classes-bowl1-pause",
+				"before": null,
+				"after": {
+					"opcode": "control_wait",
+					"next": "classes-bowl1-clear",
+					"parent": "classes-bowl1-flash",
+					"inputs": { "DURATION": [1, [5, "0.4"]] },
+					"fields": {},
+					"shadow": false,
+					"topLevel": false
+				}
+			},
+			{
+				"blockId": "classes-bowl1-clear",
+				"before": null,
+				"after": {
+					"opcode": "looks_cleargraphiceffects",
+					"next": null,
+					"parent": "classes-bowl1-pause",
+					"inputs": {},
+					"fields": {},
+					"shadow": false,
+					"topLevel": false
+				}
+			}
+		],
+		"additionalTargets": [
+			{
+				"target": "Bowl2",
+				"changes": [
+					{
+						"blockId": "classes-bowl2-end",
+						"before": null,
+						"after": {
+							"opcode": "event_whenbroadcastreceived",
+							"next": "classes-bowl2-stop-input",
+							"parent": null,
+							"inputs": {},
+							"fields": {
+								"BROADCAST_OPTION": [
+									"Game over!",
+									"008NpXDepX:|:s9[z,+t"
+								]
+							},
+							"shadow": false,
+							"topLevel": true,
+							"x": 1000,
+							"y": 100
+						}
+					},
+					{
+						"blockId": "classes-bowl2-stop-input",
+						"before": null,
+						"after": {
+							"opcode": "control_stop",
+							"next": "classes-bowl2-flash",
+							"parent": "classes-bowl2-end",
+							"inputs": {},
+							"fields": {
+								"STOP_OPTION": ["other scripts in sprite", null]
+							},
+							"shadow": false,
+							"topLevel": false,
+							"mutation": {
+								"tagName": "mutation",
+								"children": [],
+								"hasnext": "true"
+							}
+						}
+					},
+					{
+						"blockId": "classes-bowl2-flash",
+						"before": null,
+						"after": {
+							"opcode": "looks_seteffectto",
+							"next": "classes-bowl2-pause",
+							"parent": "classes-bowl2-stop-input",
+							"inputs": { "VALUE": [1, [4, "40"]] },
+							"fields": { "EFFECT": ["BRIGHTNESS", null] },
+							"shadow": false,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "classes-bowl2-pause",
+						"before": null,
+						"after": {
+							"opcode": "control_wait",
+							"next": "classes-bowl2-clear",
+							"parent": "classes-bowl2-flash",
+							"inputs": { "DURATION": [1, [5, "0.4"]] },
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "classes-bowl2-clear",
+						"before": null,
+						"after": {
+							"opcode": "looks_cleargraphiceffects",
+							"next": null,
+							"parent": "classes-bowl2-pause",
+							"inputs": {},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						}
+					}
+				]
+			},
+			{
+				"target": "cheese",
+				"changes": [
+					{
+						"blockId": "0kkcOK0]|k-KkIWt8T40",
+						"before": {
+							"opcode": "event_whenbroadcastreceived",
+							"next": "-e~:kZFi:|IGJ!t-x9R{",
+							"parent": null,
+							"inputs": {},
+							"fields": {
+								"BROADCAST_OPTION": [
+									"Game over!",
+									"008NpXDepX:|:s9[z,+t"
+								]
+							},
+							"shadow": false,
+							"topLevel": true,
+							"x": 402,
+							"y": 99
+						},
+						"after": {
+							"opcode": "event_whenbroadcastreceived",
+							"next": "classes-bowl-cheese-end-collection",
+							"parent": null,
+							"inputs": {},
+							"fields": {
+								"BROADCAST_OPTION": [
+									"Game over!",
+									"008NpXDepX:|:s9[z,+t"
+								]
+							},
+							"shadow": false,
+							"topLevel": true,
+							"x": 402,
+							"y": 99
+						}
+					},
+					{
+						"blockId": "-e~:kZFi:|IGJ!t-x9R{",
+						"before": {
+							"opcode": "control_repeat",
+							"next": null,
+							"parent": "0kkcOK0]|k-KkIWt8T40",
+							"inputs": {
+								"TIMES": [1, [6, "2"]],
+								"SUBSTACK": [2, "StRbH.ic;n{Cc`F]/#/w"]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						},
+						"after": {
+							"opcode": "control_repeat",
+							"next": null,
+							"parent": "classes-bowl-cheese-end-collection",
+							"inputs": {
+								"TIMES": [1, [6, "2"]],
+								"SUBSTACK": [2, "StRbH.ic;n{Cc`F]/#/w"]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "classes-bowl-cheese-end-collection",
+						"before": null,
+						"after": {
+							"opcode": "control_stop",
+							"next": "-e~:kZFi:|IGJ!t-x9R{",
+							"parent": "0kkcOK0]|k-KkIWt8T40",
+							"inputs": {},
+							"fields": {
+								"STOP_OPTION": ["other scripts in sprite", null]
+							},
+							"shadow": false,
+							"topLevel": false,
+							"mutation": {
+								"tagName": "mutation",
+								"children": [],
+								"hasnext": "true"
+							}
+						}
+					}
+				]
+			},
+			{
+				"target": "Fish",
+				"changes": [
+					{
+						"blockId": "*7*s4+Hn9:g-sRcAqXaH",
+						"before": {
+							"opcode": "event_whenbroadcastreceived",
+							"next": ";^n3dXLT=e[Uh~*ds.G~",
+							"parent": null,
+							"inputs": {},
+							"fields": {
+								"BROADCAST_OPTION": [
+									"Game over!",
+									"008NpXDepX:|:s9[z,+t"
+								]
+							},
+							"shadow": false,
+							"topLevel": true,
+							"x": 0,
+							"y": 0
+						},
+						"after": {
+							"opcode": "event_whenbroadcastreceived",
+							"next": "classes-bowl-fish-end-collection",
+							"parent": null,
+							"inputs": {},
+							"fields": {
+								"BROADCAST_OPTION": [
+									"Game over!",
+									"008NpXDepX:|:s9[z,+t"
+								]
+							},
+							"shadow": false,
+							"topLevel": true,
+							"x": 0,
+							"y": 0
+						}
+					},
+					{
+						"blockId": ";^n3dXLT=e[Uh~*ds.G~",
+						"before": {
+							"opcode": "control_repeat",
+							"next": null,
+							"parent": "*7*s4+Hn9:g-sRcAqXaH",
+							"inputs": {
+								"TIMES": [1, [6, "2"]],
+								"SUBSTACK": [2, "72j{#,S_}~YX8FDRQD[+"]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						},
+						"after": {
+							"opcode": "control_repeat",
+							"next": null,
+							"parent": "classes-bowl-fish-end-collection",
+							"inputs": {
+								"TIMES": [1, [6, "2"]],
+								"SUBSTACK": [2, "72j{#,S_}~YX8FDRQD[+"]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "classes-bowl-fish-end-collection",
+						"before": null,
+						"after": {
+							"opcode": "control_stop",
+							"next": ";^n3dXLT=e[Uh~*ds.G~",
+							"parent": "*7*s4+Hn9:g-sRcAqXaH",
+							"inputs": {},
+							"fields": {
+								"STOP_OPTION": ["other scripts in sprite", null]
+							},
+							"shadow": false,
+							"topLevel": false,
+							"mutation": {
+								"tagName": "mutation",
+								"children": [],
+								"hasnext": "true"
+							}
+						}
+					}
+				]
+			},
+			{
+				"target": "Apple",
+				"changes": [
+					{
+						"blockId": "aH3S8{2YFbY~.29A7J/}",
+						"before": {
+							"opcode": "event_whenbroadcastreceived",
+							"next": "g%9%Q/s!070[rom`4jea",
+							"parent": null,
+							"inputs": {},
+							"fields": {
+								"BROADCAST_OPTION": [
+									"Game over!",
+									"008NpXDepX:|:s9[z,+t"
+								]
+							},
+							"shadow": false,
+							"topLevel": true,
+							"x": 0,
+							"y": 0
+						},
+						"after": {
+							"opcode": "event_whenbroadcastreceived",
+							"next": "classes-bowl-apple-end-collection",
+							"parent": null,
+							"inputs": {},
+							"fields": {
+								"BROADCAST_OPTION": [
+									"Game over!",
+									"008NpXDepX:|:s9[z,+t"
+								]
+							},
+							"shadow": false,
+							"topLevel": true,
+							"x": 0,
+							"y": 0
+						}
+					},
+					{
+						"blockId": "g%9%Q/s!070[rom`4jea",
+						"before": {
+							"opcode": "control_repeat",
+							"next": null,
+							"parent": "aH3S8{2YFbY~.29A7J/}",
+							"inputs": {
+								"TIMES": [1, [6, "2"]],
+								"SUBSTACK": [2, "u6U:N2;)33XX#A4fEhA%"]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						},
+						"after": {
+							"opcode": "control_repeat",
+							"next": null,
+							"parent": "classes-bowl-apple-end-collection",
+							"inputs": {
+								"TIMES": [1, [6, "2"]],
+								"SUBSTACK": [2, "u6U:N2;)33XX#A4fEhA%"]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "classes-bowl-apple-end-collection",
+						"before": null,
+						"after": {
+							"opcode": "control_stop",
+							"next": "g%9%Q/s!070[rom`4jea",
+							"parent": "aH3S8{2YFbY~.29A7J/}",
+							"inputs": {},
+							"fields": {
+								"STOP_OPTION": ["other scripts in sprite", null]
+							},
+							"shadow": false,
+							"topLevel": false,
+							"mutation": {
+								"tagName": "mutation",
+								"children": [],
+								"hasnext": "true"
+							}
+						}
+					}
+				]
+			}
+		]
+	},
+	{
+		"id": "305082197",
+		"sourceSHA256": "d01e4837d36e434af2a70d8390c56bee42ccf973f4357c2becbf72201b2836a7",
+		"summary": "Alternating race inputs: require a key release between steps and check the finish after each step, and award one win per race.",
+		"displaySummary": "Reference correction: either alternating step can finish the race.",
+		"addedBlocks": 40,
+		"target": "Stage",
+		"changes": [],
+		"variables": [
+			{
+				"variableId": "classes-race-open",
+				"before": null,
+				"after": ["Race open", 0]
+			}
+		],
+		"additionalTargets": [
+			{
+				"target": "Hedgehog1",
+				"changes": [
+					{
+						"blockId": "CgpjAY?B)@O*/UQx10,6",
+						"before": {
+							"opcode": "looks_switchcostumeto",
+							"next": "uK}T,GVY[kP7bEp_:pcQ",
+							"parent": "e-d_6C6Po.=8s$aA4Soe",
+							"inputs": {
+								"COSTUME": [1, "Z;UDz!^9=W9_bEgvxl_U"]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						},
+						"after": {
+							"opcode": "looks_switchcostumeto",
+							"next": "classes-hedgehog1-first-finish-40",
+							"parent": "e-d_6C6Po.=8s$aA4Soe",
+							"inputs": {
+								"COSTUME": [1, "Z;UDz!^9=W9_bEgvxl_U"]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "uK}T,GVY[kP7bEp_:pcQ",
+						"before": {
+							"opcode": "control_wait_until",
+							"next": "RemK*/4F!B-GAS[^A*b^",
+							"parent": "CgpjAY?B)@O*/UQx10,6",
+							"inputs": {
+								"CONDITION": [2, "gJ4/lN7CG~9%H5%+AlRa"]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						},
+						"after": {
+							"opcode": "control_wait_until",
+							"next": "RemK*/4F!B-GAS[^A*b^",
+							"parent": "classes-hedgehog1-wait-release-0",
+							"inputs": {
+								"CONDITION": [2, "gJ4/lN7CG~9%H5%+AlRa"]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "l-@[UT2#QG?6_yNQRCFA",
+						"before": {
+							"opcode": "control_if",
+							"next": null,
+							"parent": "$BxrB=^-)}5?9`Dq`3)l",
+							"inputs": {
+								"CONDITION": [2, "8o.V4~YW|^vt{y~j0TrL"],
+								"SUBSTACK": [2, "`X}x(/==(%$nV0ebrq9q"]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						},
+						"after": {
+							"opcode": "control_if",
+							"next": "classes-hedgehog1-wait-release-1",
+							"parent": "$BxrB=^-)}5?9`Dq`3)l",
+							"inputs": {
+								"CONDITION": [
+									2,
+									"classes-hedgehog1-finish-open"
+								],
+								"SUBSTACK": [
+									2,
+									"classes-hedgehog1-claim-finish"
+								]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "8o.V4~YW|^vt{y~j0TrL",
+						"before": {
+							"opcode": "sensing_touchingobject",
+							"next": null,
+							"parent": "l-@[UT2#QG?6_yNQRCFA",
+							"inputs": {
+								"TOUCHINGOBJECTMENU": [
+									1,
+									"e?]AmSiG7~TEYY!i,q(0"
+								]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						},
+						"after": {
+							"opcode": "sensing_touchingobject",
+							"next": null,
+							"parent": "classes-hedgehog1-finish-open",
+							"inputs": {
+								"TOUCHINGOBJECTMENU": [
+									1,
+									"e?]AmSiG7~TEYY!i,q(0"
+								]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "`X}x(/==(%$nV0ebrq9q",
+						"before": {
+							"opcode": "data_changevariableby",
+							"next": "R-${I}Vx;3{Mt328fVL8",
+							"parent": "l-@[UT2#QG?6_yNQRCFA",
+							"inputs": { "VALUE": [1, [4, "1"]] },
+							"fields": {
+								"VARIABLE": ["P1 Wins", "~EsC+)Yoda.Q^M0Io77c"]
+							},
+							"shadow": false,
+							"topLevel": false
+						},
+						"after": {
+							"opcode": "data_changevariableby",
+							"next": "R-${I}Vx;3{Mt328fVL8",
+							"parent": "classes-hedgehog1-claim-finish",
+							"inputs": { "VALUE": [1, [4, "1"]] },
+							"fields": {
+								"VARIABLE": ["P1 Wins", "~EsC+)Yoda.Q^M0Io77c"]
+							},
+							"shadow": false,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "classes-hedgehog1-finish-open",
+						"before": null,
+						"after": {
+							"opcode": "operator_and",
+							"next": null,
+							"parent": "l-@[UT2#QG?6_yNQRCFA",
+							"inputs": {
+								"OPERAND1": [2, "8o.V4~YW|^vt{y~j0TrL"],
+								"OPERAND2": [2, "classes-hedgehog1-race-open"]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "classes-hedgehog1-race-open",
+						"before": null,
+						"after": {
+							"opcode": "operator_equals",
+							"next": null,
+							"parent": "classes-hedgehog1-finish-open",
+							"inputs": {
+								"OPERAND1": [
+									3,
+									[12, "Race open", "classes-race-open"],
+									[10, ""]
+								],
+								"OPERAND2": [1, [10, "1"]]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "classes-hedgehog1-claim-finish",
+						"before": null,
+						"after": {
+							"opcode": "data_setvariableto",
+							"next": "`X}x(/==(%$nV0ebrq9q",
+							"parent": "l-@[UT2#QG?6_yNQRCFA",
+							"inputs": { "VALUE": [1, [4, "0"]] },
+							"fields": {
+								"VARIABLE": ["Race open", "classes-race-open"]
+							},
+							"shadow": false,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "classes-hedgehog1-first-finish-40",
+						"before": null,
+						"after": {
+							"opcode": "control_if",
+							"next": "classes-hedgehog1-wait-release-0",
+							"parent": "CgpjAY?B)@O*/UQx10,6",
+							"inputs": {
+								"CONDITION": [
+									2,
+									"classes-hedgehog1-first-finish-41"
+								],
+								"SUBSTACK": [
+									2,
+									"classes-hedgehog1-first-finish-45"
+								]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "classes-hedgehog1-first-finish-41",
+						"before": null,
+						"after": {
+							"opcode": "operator_and",
+							"next": null,
+							"parent": "classes-hedgehog1-first-finish-40",
+							"inputs": {
+								"OPERAND1": [
+									2,
+									"classes-hedgehog1-first-finish-42"
+								],
+								"OPERAND2": [
+									2,
+									"classes-hedgehog1-first-finish-44"
+								]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "classes-hedgehog1-first-finish-42",
+						"before": null,
+						"after": {
+							"opcode": "sensing_touchingobject",
+							"next": null,
+							"parent": "classes-hedgehog1-first-finish-41",
+							"inputs": {
+								"TOUCHINGOBJECTMENU": [
+									1,
+									"classes-hedgehog1-first-finish-43"
+								]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "classes-hedgehog1-first-finish-43",
+						"before": null,
+						"after": {
+							"opcode": "sensing_touchingobjectmenu",
+							"next": null,
+							"parent": "classes-hedgehog1-first-finish-42",
+							"inputs": {},
+							"fields": {
+								"TOUCHINGOBJECTMENU": ["Finish", null]
+							},
+							"shadow": true,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "classes-hedgehog1-first-finish-44",
+						"before": null,
+						"after": {
+							"opcode": "operator_equals",
+							"next": null,
+							"parent": "classes-hedgehog1-first-finish-41",
+							"inputs": {
+								"OPERAND1": [
+									3,
+									[12, "Race open", "classes-race-open"],
+									[10, ""]
+								],
+								"OPERAND2": [1, [10, "1"]]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "classes-hedgehog1-first-finish-45",
+						"before": null,
+						"after": {
+							"opcode": "data_setvariableto",
+							"next": "classes-hedgehog1-first-finish-46",
+							"parent": "classes-hedgehog1-first-finish-40",
+							"inputs": { "VALUE": [1, [4, "0"]] },
+							"fields": {
+								"VARIABLE": ["Race open", "classes-race-open"]
+							},
+							"shadow": false,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "classes-hedgehog1-first-finish-46",
+						"before": null,
+						"after": {
+							"opcode": "data_changevariableby",
+							"next": "classes-hedgehog1-first-finish-47",
+							"parent": "classes-hedgehog1-first-finish-45",
+							"inputs": { "VALUE": [1, [4, "1"]] },
+							"fields": {
+								"VARIABLE": ["P1 Wins", "~EsC+)Yoda.Q^M0Io77c"]
+							},
+							"shadow": false,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "classes-hedgehog1-first-finish-47",
+						"before": null,
+						"after": {
+							"opcode": "event_broadcast",
+							"next": null,
+							"parent": "classes-hedgehog1-first-finish-46",
+							"inputs": {
+								"BROADCAST_INPUT": [
+									1,
+									[11, "End Race", "#MGsK,;=fs1MSL]w/Y=0"]
+								]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "classes-hedgehog1-released-0",
+						"before": null,
+						"after": {
+							"opcode": "operator_not",
+							"next": null,
+							"parent": "classes-hedgehog1-wait-release-0",
+							"inputs": {
+								"OPERAND": [2, "classes-hedgehog1-key-49"]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "classes-hedgehog1-key-49",
+						"before": null,
+						"after": {
+							"opcode": "sensing_keypressed",
+							"next": null,
+							"parent": "classes-hedgehog1-released-0",
+							"inputs": {
+								"KEY_OPTION": [1, "classes-hedgehog1-key-50"]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "classes-hedgehog1-key-50",
+						"before": null,
+						"after": {
+							"opcode": "sensing_keyoptions",
+							"next": null,
+							"parent": "classes-hedgehog1-key-49",
+							"inputs": {},
+							"fields": { "KEY_OPTION": ["left arrow", null] },
+							"shadow": true,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "classes-hedgehog1-wait-release-0",
+						"before": null,
+						"after": {
+							"opcode": "control_wait_until",
+							"next": "uK}T,GVY[kP7bEp_:pcQ",
+							"parent": "classes-hedgehog1-first-finish-40",
+							"inputs": {
+								"CONDITION": [2, "classes-hedgehog1-released-0"]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "classes-hedgehog1-released-1",
+						"before": null,
+						"after": {
+							"opcode": "operator_not",
+							"next": null,
+							"parent": "classes-hedgehog1-wait-release-1",
+							"inputs": {
+								"OPERAND": [2, "classes-hedgehog1-key-53"]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "classes-hedgehog1-key-53",
+						"before": null,
+						"after": {
+							"opcode": "sensing_keypressed",
+							"next": null,
+							"parent": "classes-hedgehog1-released-1",
+							"inputs": {
+								"KEY_OPTION": [1, "classes-hedgehog1-key-54"]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "classes-hedgehog1-key-54",
+						"before": null,
+						"after": {
+							"opcode": "sensing_keyoptions",
+							"next": null,
+							"parent": "classes-hedgehog1-key-53",
+							"inputs": {},
+							"fields": { "KEY_OPTION": ["right arrow", null] },
+							"shadow": true,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "classes-hedgehog1-wait-release-1",
+						"before": null,
+						"after": {
+							"opcode": "control_wait_until",
+							"next": null,
+							"parent": "l-@[UT2#QG?6_yNQRCFA",
+							"inputs": {
+								"CONDITION": [2, "classes-hedgehog1-released-1"]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						}
+					}
+				]
+			},
+			{
+				"target": "Hedgehog2",
+				"changes": [
+					{
+						"blockId": "o}/czyur1P6,.rP%i5-X",
+						"before": {
+							"opcode": "looks_switchcostumeto",
+							"next": "9lNB5BG8y.(K0+BGAN6w",
+							"parent": "`zT:CT;hZ~P{565F],;~",
+							"inputs": {
+								"COSTUME": [1, "H(AK{KcL+}X_WK(Db0;`"]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						},
+						"after": {
+							"opcode": "looks_switchcostumeto",
+							"next": "classes-hedgehog2-first-finish-27",
+							"parent": "`zT:CT;hZ~P{565F],;~",
+							"inputs": {
+								"COSTUME": [1, "H(AK{KcL+}X_WK(Db0;`"]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "9lNB5BG8y.(K0+BGAN6w",
+						"before": {
+							"opcode": "control_wait_until",
+							"next": "aSeO/lqbWzp971WAn5AP",
+							"parent": "o}/czyur1P6,.rP%i5-X",
+							"inputs": {
+								"CONDITION": [2, "4Sbq;+}K8;km*RKN:t=j"]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						},
+						"after": {
+							"opcode": "control_wait_until",
+							"next": "aSeO/lqbWzp971WAn5AP",
+							"parent": "classes-hedgehog2-wait-release-0",
+							"inputs": {
+								"CONDITION": [2, "4Sbq;+}K8;km*RKN:t=j"]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "^jehJrSOT.vOIi*sFnt!",
+						"before": {
+							"opcode": "control_if",
+							"next": null,
+							"parent": "=uh?a!=;a;o#U]a~m@sG",
+							"inputs": {
+								"CONDITION": [2, "6Fka.*?E#^y01PaS!7Xg"],
+								"SUBSTACK": [2, "/+Xbsy.kN(0_G[1hZK=/"]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						},
+						"after": {
+							"opcode": "control_if",
+							"next": "classes-hedgehog2-wait-release-1",
+							"parent": "=uh?a!=;a;o#U]a~m@sG",
+							"inputs": {
+								"CONDITION": [
+									2,
+									"classes-hedgehog2-finish-open"
+								],
+								"SUBSTACK": [
+									2,
+									"classes-hedgehog2-claim-finish"
+								]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "6Fka.*?E#^y01PaS!7Xg",
+						"before": {
+							"opcode": "sensing_touchingobject",
+							"next": null,
+							"parent": "^jehJrSOT.vOIi*sFnt!",
+							"inputs": {
+								"TOUCHINGOBJECTMENU": [
+									1,
+									")UD]T1AFn}K![{?u]Mb/"
+								]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						},
+						"after": {
+							"opcode": "sensing_touchingobject",
+							"next": null,
+							"parent": "classes-hedgehog2-finish-open",
+							"inputs": {
+								"TOUCHINGOBJECTMENU": [
+									1,
+									")UD]T1AFn}K![{?u]Mb/"
+								]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "/+Xbsy.kN(0_G[1hZK=/",
+						"before": {
+							"opcode": "data_changevariableby",
+							"next": "aoN1_rk*)qT#VPExjK[*",
+							"parent": "^jehJrSOT.vOIi*sFnt!",
+							"inputs": { "VALUE": [1, [4, "1"]] },
+							"fields": {
+								"VARIABLE": ["P2 Wins", "9b8uT@kb}cU#,lVt7IB:"]
+							},
+							"shadow": false,
+							"topLevel": false
+						},
+						"after": {
+							"opcode": "data_changevariableby",
+							"next": "aoN1_rk*)qT#VPExjK[*",
+							"parent": "classes-hedgehog2-claim-finish",
+							"inputs": { "VALUE": [1, [4, "1"]] },
+							"fields": {
+								"VARIABLE": ["P2 Wins", "9b8uT@kb}cU#,lVt7IB:"]
+							},
+							"shadow": false,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "classes-hedgehog2-finish-open",
+						"before": null,
+						"after": {
+							"opcode": "operator_and",
+							"next": null,
+							"parent": "^jehJrSOT.vOIi*sFnt!",
+							"inputs": {
+								"OPERAND1": [2, "6Fka.*?E#^y01PaS!7Xg"],
+								"OPERAND2": [2, "classes-hedgehog2-race-open"]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "classes-hedgehog2-race-open",
+						"before": null,
+						"after": {
+							"opcode": "operator_equals",
+							"next": null,
+							"parent": "classes-hedgehog2-finish-open",
+							"inputs": {
+								"OPERAND1": [
+									3,
+									[12, "Race open", "classes-race-open"],
+									[10, ""]
+								],
+								"OPERAND2": [1, [10, "1"]]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "classes-hedgehog2-claim-finish",
+						"before": null,
+						"after": {
+							"opcode": "data_setvariableto",
+							"next": "/+Xbsy.kN(0_G[1hZK=/",
+							"parent": "^jehJrSOT.vOIi*sFnt!",
+							"inputs": { "VALUE": [1, [4, "0"]] },
+							"fields": {
+								"VARIABLE": ["Race open", "classes-race-open"]
+							},
+							"shadow": false,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "classes-hedgehog2-first-finish-27",
+						"before": null,
+						"after": {
+							"opcode": "control_if",
+							"next": "classes-hedgehog2-wait-release-0",
+							"parent": "o}/czyur1P6,.rP%i5-X",
+							"inputs": {
+								"CONDITION": [
+									2,
+									"classes-hedgehog2-first-finish-28"
+								],
+								"SUBSTACK": [
+									2,
+									"classes-hedgehog2-first-finish-32"
+								]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "classes-hedgehog2-first-finish-28",
+						"before": null,
+						"after": {
+							"opcode": "operator_and",
+							"next": null,
+							"parent": "classes-hedgehog2-first-finish-27",
+							"inputs": {
+								"OPERAND1": [
+									2,
+									"classes-hedgehog2-first-finish-29"
+								],
+								"OPERAND2": [
+									2,
+									"classes-hedgehog2-first-finish-31"
+								]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "classes-hedgehog2-first-finish-29",
+						"before": null,
+						"after": {
+							"opcode": "sensing_touchingobject",
+							"next": null,
+							"parent": "classes-hedgehog2-first-finish-28",
+							"inputs": {
+								"TOUCHINGOBJECTMENU": [
+									1,
+									"classes-hedgehog2-first-finish-30"
+								]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "classes-hedgehog2-first-finish-30",
+						"before": null,
+						"after": {
+							"opcode": "sensing_touchingobjectmenu",
+							"next": null,
+							"parent": "classes-hedgehog2-first-finish-29",
+							"inputs": {},
+							"fields": { "TOUCHINGOBJECTMENU": ["Finish"] },
+							"shadow": true,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "classes-hedgehog2-first-finish-31",
+						"before": null,
+						"after": {
+							"opcode": "operator_equals",
+							"next": null,
+							"parent": "classes-hedgehog2-first-finish-28",
+							"inputs": {
+								"OPERAND1": [
+									3,
+									[12, "Race open", "classes-race-open"],
+									[10, ""]
+								],
+								"OPERAND2": [1, [10, "1"]]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "classes-hedgehog2-first-finish-32",
+						"before": null,
+						"after": {
+							"opcode": "data_setvariableto",
+							"next": "classes-hedgehog2-first-finish-33",
+							"parent": "classes-hedgehog2-first-finish-27",
+							"inputs": { "VALUE": [1, [4, "0"]] },
+							"fields": {
+								"VARIABLE": ["Race open", "classes-race-open"]
+							},
+							"shadow": false,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "classes-hedgehog2-first-finish-33",
+						"before": null,
+						"after": {
+							"opcode": "data_changevariableby",
+							"next": "classes-hedgehog2-first-finish-34",
+							"parent": "classes-hedgehog2-first-finish-32",
+							"inputs": { "VALUE": [1, [4, "1"]] },
+							"fields": {
+								"VARIABLE": ["P2 Wins", "9b8uT@kb}cU#,lVt7IB:"]
+							},
+							"shadow": false,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "classes-hedgehog2-first-finish-34",
+						"before": null,
+						"after": {
+							"opcode": "event_broadcast",
+							"next": null,
+							"parent": "classes-hedgehog2-first-finish-33",
+							"inputs": {
+								"BROADCAST_INPUT": [
+									1,
+									[11, "End Race", "#MGsK,;=fs1MSL]w/Y=0"]
+								]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "classes-hedgehog2-released-0",
+						"before": null,
+						"after": {
+							"opcode": "operator_not",
+							"next": null,
+							"parent": "classes-hedgehog2-wait-release-0",
+							"inputs": {
+								"OPERAND": [2, "classes-hedgehog2-key-36"]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "classes-hedgehog2-key-36",
+						"before": null,
+						"after": {
+							"opcode": "sensing_keypressed",
+							"next": null,
+							"parent": "classes-hedgehog2-released-0",
+							"inputs": {
+								"KEY_OPTION": [1, "classes-hedgehog2-key-37"]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "classes-hedgehog2-key-37",
+						"before": null,
+						"after": {
+							"opcode": "sensing_keyoptions",
+							"next": null,
+							"parent": "classes-hedgehog2-key-36",
+							"inputs": {},
+							"fields": { "KEY_OPTION": ["a"] },
+							"shadow": true,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "classes-hedgehog2-wait-release-0",
+						"before": null,
+						"after": {
+							"opcode": "control_wait_until",
+							"next": "9lNB5BG8y.(K0+BGAN6w",
+							"parent": "classes-hedgehog2-first-finish-27",
+							"inputs": {
+								"CONDITION": [2, "classes-hedgehog2-released-0"]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "classes-hedgehog2-released-1",
+						"before": null,
+						"after": {
+							"opcode": "operator_not",
+							"next": null,
+							"parent": "classes-hedgehog2-wait-release-1",
+							"inputs": {
+								"OPERAND": [2, "classes-hedgehog2-key-40"]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "classes-hedgehog2-key-40",
+						"before": null,
+						"after": {
+							"opcode": "sensing_keypressed",
+							"next": null,
+							"parent": "classes-hedgehog2-released-1",
+							"inputs": {
+								"KEY_OPTION": [1, "classes-hedgehog2-key-41"]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "classes-hedgehog2-key-41",
+						"before": null,
+						"after": {
+							"opcode": "sensing_keyoptions",
+							"next": null,
+							"parent": "classes-hedgehog2-key-40",
+							"inputs": {},
+							"fields": { "KEY_OPTION": ["d"] },
+							"shadow": true,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "classes-hedgehog2-wait-release-1",
+						"before": null,
+						"after": {
+							"opcode": "control_wait_until",
+							"next": null,
+							"parent": "^jehJrSOT.vOIi*sFnt!",
+							"inputs": {
+								"CONDITION": [2, "classes-hedgehog2-released-1"]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						}
+					}
+				]
+			},
+			{
+				"target": "Button2",
+				"changes": [
+					{
+						"blockId": "8`bJA2]{cCjstW@%Uzh5",
+						"before": {
+							"opcode": "event_whenflagclicked",
+							"next": "|%EV?LV;g$taTa=sx%Ed",
+							"parent": null,
+							"inputs": {},
+							"fields": {},
+							"shadow": false,
+							"topLevel": true,
+							"x": 53,
+							"y": 128
+						},
+						"after": {
+							"opcode": "event_whenflagclicked",
+							"next": "classes-race-idle",
+							"parent": null,
+							"inputs": {},
+							"fields": {},
+							"shadow": false,
+							"topLevel": true,
+							"x": 53,
+							"y": 128
+						}
+					},
+					{
+						"blockId": "|%EV?LV;g$taTa=sx%Ed",
+						"before": {
+							"opcode": "looks_show",
+							"next": "fz?=Yl]/GL8ooar~eVIA",
+							"parent": "8`bJA2]{cCjstW@%Uzh5",
+							"inputs": {},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						},
+						"after": {
+							"opcode": "looks_show",
+							"next": "fz?=Yl]/GL8ooar~eVIA",
+							"parent": "classes-race-idle",
+							"inputs": {},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "49DbY#Z.{;sCnMY9j(8D",
+						"before": {
+							"opcode": "event_whenthisspriteclicked",
+							"next": "UpfZvuWAD4+(24iR`^6d",
+							"parent": null,
+							"inputs": {},
+							"fields": {},
+							"shadow": false,
+							"topLevel": true,
+							"x": 443,
+							"y": 132
+						},
+						"after": {
+							"opcode": "event_whenthisspriteclicked",
+							"next": "classes-race-ready",
+							"parent": null,
+							"inputs": {},
+							"fields": {},
+							"shadow": false,
+							"topLevel": true,
+							"x": 443,
+							"y": 132
+						}
+					},
+					{
+						"blockId": "UpfZvuWAD4+(24iR`^6d",
+						"before": {
+							"opcode": "looks_hide",
+							"next": "hVIs}F[-Yjyk]Cvaza/[",
+							"parent": "49DbY#Z.{;sCnMY9j(8D",
+							"inputs": {},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						},
+						"after": {
+							"opcode": "looks_hide",
+							"next": "hVIs}F[-Yjyk]Cvaza/[",
+							"parent": "classes-race-ready",
+							"inputs": {},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "classes-race-ready",
+						"before": null,
+						"after": {
+							"opcode": "data_setvariableto",
+							"next": "UpfZvuWAD4+(24iR`^6d",
+							"parent": "49DbY#Z.{;sCnMY9j(8D",
+							"inputs": { "VALUE": [1, [4, "1"]] },
+							"fields": {
+								"VARIABLE": ["Race open", "classes-race-open"]
+							},
+							"shadow": false,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "classes-race-idle",
+						"before": null,
+						"after": {
+							"opcode": "data_setvariableto",
+							"next": "|%EV?LV;g$taTa=sx%Ed",
+							"parent": "8`bJA2]{cCjstW@%Uzh5",
+							"inputs": { "VALUE": [1, [4, "0"]] },
+							"fields": {
+								"VARIABLE": ["Race open", "classes-race-open"]
+							},
+							"shadow": false,
+							"topLevel": false
+						}
+					}
+				]
+			}
+		]
+	},
+	{
+		"id": "328312475",
+		"sourceSHA256": "31d3293a2d4a788d4252025c73f0e0fe93fbfea6061524ee34ceedac8cc7fb35",
+		"summary": "Claim the first visible partner selection before broadcasting so rapid choices cannot hide every partner.",
+		"displaySummary": "Reference correction: the first selection pairs one partner with Dani.",
+		"addedBlocks": 11,
+		"target": "Stage",
+		"changes": [],
+		"variables": [
+			{
+				"variableId": "classes-choosing-partner",
+				"before": null,
+				"after": ["Choosing partner", 0]
+			}
+		],
+		"additionalTargets": [
+			{
+				"target": "Spongebob",
+				"changes": [
+					{
+						"blockId": "f:TY~qQhPB5CXnl,(68$",
+						"before": {
+							"opcode": "event_whenthisspriteclicked",
+							"next": "6n}pF9A}6u(G9i=f28w#",
+							"parent": null,
+							"inputs": {},
+							"fields": {},
+							"shadow": false,
+							"topLevel": true,
+							"x": -213,
+							"y": 186
+						},
+						"after": {
+							"opcode": "event_whenthisspriteclicked",
+							"next": "classes-cartoon-spongebob-choose",
+							"parent": null,
+							"inputs": {},
+							"fields": {},
+							"shadow": false,
+							"topLevel": true,
+							"x": -213,
+							"y": 186
+						}
+					},
+					{
+						"blockId": "6n}pF9A}6u(G9i=f28w#",
+						"before": {
+							"opcode": "event_broadcast",
+							"next": "kWv/s3!7K~|QBAgk^/4P",
+							"parent": "f:TY~qQhPB5CXnl,(68$",
+							"inputs": {
+								"BROADCAST_INPUT": [
+									1,
+									[
+										11,
+										"Spongebob Chosen",
+										"?LP6Km=P`_qwI,[^RkPd"
+									]
+								]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						},
+						"after": {
+							"opcode": "event_broadcast",
+							"next": "kWv/s3!7K~|QBAgk^/4P",
+							"parent": "classes-cartoon-spongebob-claim",
+							"inputs": {
+								"BROADCAST_INPUT": [
+									1,
+									[
+										11,
+										"Spongebob Chosen",
+										"?LP6Km=P`_qwI,[^RkPd"
+									]
+								]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "classes-cartoon-spongebob-open",
+						"before": null,
+						"after": {
+							"opcode": "operator_equals",
+							"next": null,
+							"parent": "classes-cartoon-spongebob-choose",
+							"inputs": {
+								"OPERAND1": [
+									3,
+									[
+										12,
+										"Choosing partner",
+										"classes-choosing-partner"
+									],
+									[10, ""]
+								],
+								"OPERAND2": [1, [10, "1"]]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "classes-cartoon-spongebob-choose",
+						"before": null,
+						"after": {
+							"opcode": "control_if",
+							"next": null,
+							"parent": "f:TY~qQhPB5CXnl,(68$",
+							"inputs": {
+								"CONDITION": [
+									2,
+									"classes-cartoon-spongebob-open"
+								],
+								"SUBSTACK": [
+									2,
+									"classes-cartoon-spongebob-claim"
+								]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "classes-cartoon-spongebob-claim",
+						"before": null,
+						"after": {
+							"opcode": "data_setvariableto",
+							"next": "6n}pF9A}6u(G9i=f28w#",
+							"parent": "classes-cartoon-spongebob-choose",
+							"inputs": { "VALUE": [1, [4, "0"]] },
+							"fields": {
+								"VARIABLE": [
+									"Choosing partner",
+									"classes-choosing-partner"
+								]
+							},
+							"shadow": false,
+							"topLevel": false
+						}
+					}
+				]
+			},
+			{
+				"target": "Spiderman",
+				"changes": [
+					{
+						"blockId": "ICso+m;.j*gnM,kNQ|!p",
+						"before": {
+							"opcode": "event_whenthisspriteclicked",
+							"next": "joXNL88kIfEH45}@ln}W",
+							"parent": null,
+							"inputs": {},
+							"fields": {},
+							"shadow": false,
+							"topLevel": true,
+							"x": -288,
+							"y": 187
+						},
+						"after": {
+							"opcode": "event_whenthisspriteclicked",
+							"next": "classes-cartoon-spiderman-choose",
+							"parent": null,
+							"inputs": {},
+							"fields": {},
+							"shadow": false,
+							"topLevel": true,
+							"x": -288,
+							"y": 187
+						}
+					},
+					{
+						"blockId": "joXNL88kIfEH45}@ln}W",
+						"before": {
+							"opcode": "event_broadcast",
+							"next": "U,OWs(31Uah)rgDsJc=k",
+							"parent": "ICso+m;.j*gnM,kNQ|!p",
+							"inputs": {
+								"BROADCAST_INPUT": [
+									1,
+									[
+										11,
+										"Spiderman Chosen",
+										"|t4P1gL@NRJK:Z/DuC|`"
+									]
+								]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						},
+						"after": {
+							"opcode": "event_broadcast",
+							"next": "U,OWs(31Uah)rgDsJc=k",
+							"parent": "classes-cartoon-spiderman-claim",
+							"inputs": {
+								"BROADCAST_INPUT": [
+									1,
+									[
+										11,
+										"Spiderman Chosen",
+										"|t4P1gL@NRJK:Z/DuC|`"
+									]
+								]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "classes-cartoon-spiderman-open",
+						"before": null,
+						"after": {
+							"opcode": "operator_equals",
+							"next": null,
+							"parent": "classes-cartoon-spiderman-choose",
+							"inputs": {
+								"OPERAND1": [
+									3,
+									[
+										12,
+										"Choosing partner",
+										"classes-choosing-partner"
+									],
+									[10, ""]
+								],
+								"OPERAND2": [1, [10, "1"]]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "classes-cartoon-spiderman-choose",
+						"before": null,
+						"after": {
+							"opcode": "control_if",
+							"next": null,
+							"parent": "ICso+m;.j*gnM,kNQ|!p",
+							"inputs": {
+								"CONDITION": [
+									2,
+									"classes-cartoon-spiderman-open"
+								],
+								"SUBSTACK": [
+									2,
+									"classes-cartoon-spiderman-claim"
+								]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "classes-cartoon-spiderman-claim",
+						"before": null,
+						"after": {
+							"opcode": "data_setvariableto",
+							"next": "joXNL88kIfEH45}@ln}W",
+							"parent": "classes-cartoon-spiderman-choose",
+							"inputs": { "VALUE": [1, [4, "0"]] },
+							"fields": {
+								"VARIABLE": [
+									"Choosing partner",
+									"classes-choosing-partner"
+								]
+							},
+							"shadow": false,
+							"topLevel": false
+						}
+					}
+				]
+			},
+			{
+				"target": "Pikachu",
+				"changes": [
+					{
+						"blockId": "XQS?Gv_w0(_yzxr/%SNr",
+						"before": {
+							"opcode": "event_whenthisspriteclicked",
+							"next": "C-oEMWd$f-Zl^PK[8LcK",
+							"parent": null,
+							"inputs": {},
+							"fields": {},
+							"shadow": false,
+							"topLevel": true,
+							"x": -300,
+							"y": 242
+						},
+						"after": {
+							"opcode": "event_whenthisspriteclicked",
+							"next": "classes-cartoon-pikachu-choose",
+							"parent": null,
+							"inputs": {},
+							"fields": {},
+							"shadow": false,
+							"topLevel": true,
+							"x": -300,
+							"y": 242
+						}
+					},
+					{
+						"blockId": "C-oEMWd$f-Zl^PK[8LcK",
+						"before": {
+							"opcode": "event_broadcast",
+							"next": "p]M=UqzX*6X;/avt`mXW",
+							"parent": "XQS?Gv_w0(_yzxr/%SNr",
+							"inputs": {
+								"BROADCAST_INPUT": [
+									1,
+									[
+										11,
+										"Pikachu Chosen",
+										"~{K6GRP_4+:{+K#PQ]+5"
+									]
+								]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						},
+						"after": {
+							"opcode": "event_broadcast",
+							"next": "p]M=UqzX*6X;/avt`mXW",
+							"parent": "classes-cartoon-pikachu-claim",
+							"inputs": {
+								"BROADCAST_INPUT": [
+									1,
+									[
+										11,
+										"Pikachu Chosen",
+										"~{K6GRP_4+:{+K#PQ]+5"
+									]
+								]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "classes-cartoon-pikachu-open",
+						"before": null,
+						"after": {
+							"opcode": "operator_equals",
+							"next": null,
+							"parent": "classes-cartoon-pikachu-choose",
+							"inputs": {
+								"OPERAND1": [
+									3,
+									[
+										12,
+										"Choosing partner",
+										"classes-choosing-partner"
+									],
+									[10, ""]
+								],
+								"OPERAND2": [1, [10, "1"]]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "classes-cartoon-pikachu-choose",
+						"before": null,
+						"after": {
+							"opcode": "control_if",
+							"next": null,
+							"parent": "XQS?Gv_w0(_yzxr/%SNr",
+							"inputs": {
+								"CONDITION": [
+									2,
+									"classes-cartoon-pikachu-open"
+								],
+								"SUBSTACK": [2, "classes-cartoon-pikachu-claim"]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "classes-cartoon-pikachu-claim",
+						"before": null,
+						"after": {
+							"opcode": "data_setvariableto",
+							"next": "C-oEMWd$f-Zl^PK[8LcK",
+							"parent": "classes-cartoon-pikachu-choose",
+							"inputs": { "VALUE": [1, [4, "0"]] },
+							"fields": {
+								"VARIABLE": [
+									"Choosing partner",
+									"classes-choosing-partner"
+								]
+							},
+							"shadow": false,
+							"topLevel": false
+						}
+					}
+				]
+			},
+			{
+				"target": "Start",
+				"changes": [
+					{
+						"blockId": "?^;I+32Z`OaBMIq^3n~*",
+						"before": {
+							"opcode": "event_whenflagclicked",
+							"next": "b=JvAoR[-O`)BU@9ZRok",
+							"parent": null,
+							"inputs": {},
+							"fields": {},
+							"shadow": false,
+							"topLevel": true,
+							"x": 0,
+							"y": 0
+						},
+						"after": {
+							"opcode": "event_whenflagclicked",
+							"next": "classes-cartoon-reset-choice",
+							"parent": null,
+							"inputs": {},
+							"fields": {},
+							"shadow": false,
+							"topLevel": true,
+							"x": 0,
+							"y": 0
+						}
+					},
+					{
+						"blockId": "b=JvAoR[-O`)BU@9ZRok",
+						"before": {
+							"opcode": "motion_gotoxy",
+							"next": "L[kt3VeVbl-$i0C3*yeP",
+							"parent": "?^;I+32Z`OaBMIq^3n~*",
+							"inputs": {
+								"X": [1, [4, "-10"]],
+								"Y": [1, [4, "120"]]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						},
+						"after": {
+							"opcode": "motion_gotoxy",
+							"next": "L[kt3VeVbl-$i0C3*yeP",
+							"parent": "classes-cartoon-reset-choice",
+							"inputs": {
+								"X": [1, [4, "-10"]],
+								"Y": [1, [4, "120"]]
+							},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "sJ`XKTjuTRk^p+M:Lu!M",
+						"before": {
+							"opcode": "event_whenthisspriteclicked",
+							"next": "Vsonaj/=oT8{$ty4cI:D",
+							"parent": null,
+							"inputs": {},
+							"fields": {},
+							"shadow": false,
+							"topLevel": true,
+							"x": 0,
+							"y": 200
+						},
+						"after": {
+							"opcode": "event_whenthisspriteclicked",
+							"next": "classes-cartoon-open-choice",
+							"parent": null,
+							"inputs": {},
+							"fields": {},
+							"shadow": false,
+							"topLevel": true,
+							"x": 0,
+							"y": 200
+						}
+					},
+					{
+						"blockId": "Vsonaj/=oT8{$ty4cI:D",
+						"before": {
+							"opcode": "looks_hide",
+							"next": "3c/8mYI|VNt*@UhIA|FZ",
+							"parent": "sJ`XKTjuTRk^p+M:Lu!M",
+							"inputs": {},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						},
+						"after": {
+							"opcode": "looks_hide",
+							"next": "3c/8mYI|VNt*@UhIA|FZ",
+							"parent": "classes-cartoon-open-choice",
+							"inputs": {},
+							"fields": {},
+							"shadow": false,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "classes-cartoon-reset-choice",
+						"before": null,
+						"after": {
+							"opcode": "data_setvariableto",
+							"next": "b=JvAoR[-O`)BU@9ZRok",
+							"parent": "?^;I+32Z`OaBMIq^3n~*",
+							"inputs": { "VALUE": [1, [4, "0"]] },
+							"fields": {
+								"VARIABLE": [
+									"Choosing partner",
+									"classes-choosing-partner"
+								]
+							},
+							"shadow": false,
+							"topLevel": false
+						}
+					},
+					{
+						"blockId": "classes-cartoon-open-choice",
+						"before": null,
+						"after": {
+							"opcode": "data_setvariableto",
+							"next": "Vsonaj/=oT8{$ty4cI:D",
+							"parent": "sJ`XKTjuTRk^p+M:Lu!M",
+							"inputs": { "VALUE": [1, [4, "1"]] },
+							"fields": {
+								"VARIABLE": [
+									"Choosing partner",
+									"classes-choosing-partner"
+								]
+							},
+							"shadow": false,
+							"topLevel": false
+						}
+					}
+				]
+			}
+		]
+	},
+	{
+		"id": "300644693",
+		"sourceSHA256": "46e5a2a8f214f84563d22dacc9ca56dde5d09b3deeb524cc6fe5750a0e85600f",
+		"summary": "Final music cue: stop the soundtrack loop and active music before playing the final cheer.",
+		"displaySummary": "Reference correction: the soundtrack stops when Champ finishes.",
+		"addedBlocks": 2,
+		"target": "Stage",
+		"changes": [
+			{
+				"blockId": "ZQf:Pkt@t2aO;|({UD!s",
+				"before": {
+					"opcode": "event_whenbroadcastreceived",
+					"next": "m_8?2j^qay_J_mFS}gRr",
+					"parent": null,
+					"inputs": {},
+					"fields": {
+						"BROADCAST_OPTION": ["All done", "O,qk?f(S-$^NT3grT~,Y"]
+					},
+					"shadow": false,
+					"topLevel": true,
+					"x": 797,
+					"y": 292
+				},
+				"after": {
+					"opcode": "event_whenbroadcastreceived",
+					"next": "classes-dance-finish-loops",
+					"parent": null,
+					"inputs": {},
+					"fields": {
+						"BROADCAST_OPTION": ["All done", "O,qk?f(S-$^NT3grT~,Y"]
+					},
+					"shadow": false,
+					"topLevel": true,
+					"x": 797,
+					"y": 292
+				}
+			},
+			{
+				"blockId": "m_8?2j^qay_J_mFS}gRr",
+				"before": {
+					"opcode": "sound_playuntildone",
+					"next": "Lu?y{-m9qf25Wf4Y8iya",
+					"parent": "ZQf:Pkt@t2aO;|({UD!s",
+					"inputs": { "SOUND_MENU": [1, "BCPAP_8dEQ[#((v.FV%`"] },
+					"fields": {},
+					"shadow": false,
+					"topLevel": false
+				},
+				"after": {
+					"opcode": "sound_playuntildone",
+					"next": "Lu?y{-m9qf25Wf4Y8iya",
+					"parent": "classes-dance-stop-music",
+					"inputs": { "SOUND_MENU": [1, "BCPAP_8dEQ[#((v.FV%`"] },
+					"fields": {},
+					"shadow": false,
+					"topLevel": false
+				}
+			},
+			{
+				"blockId": "classes-dance-finish-loops",
+				"before": null,
+				"after": {
+					"opcode": "control_stop",
+					"next": "classes-dance-stop-music",
+					"parent": "ZQf:Pkt@t2aO;|({UD!s",
+					"inputs": {},
+					"fields": {
+						"STOP_OPTION": ["other scripts in sprite", null]
+					},
+					"shadow": false,
+					"topLevel": false,
+					"mutation": {
+						"tagName": "mutation",
+						"children": [],
+						"hasnext": "true"
+					}
+				}
+			},
+			{
+				"blockId": "classes-dance-stop-music",
+				"before": null,
+				"after": {
+					"opcode": "sound_stopallsounds",
+					"next": "m_8?2j^qay_J_mFS}gRr",
+					"parent": "classes-dance-finish-loops",
+					"inputs": {},
+					"fields": {},
+					"shadow": false,
+					"topLevel": false
+				}
+			}
+		]
 	}
 ]

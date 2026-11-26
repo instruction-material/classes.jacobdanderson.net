@@ -352,7 +352,7 @@ export const pyGamesCourse: RawCourse = hideBroadPyGamesRootPairs({
 				{
 					title: "PyG3 Project 2: Light Control",
 					content:
-						'Create a bulb actor centered on the screen and a battery actor near the top-left. In on_mouse_move(pos, buttons), move the battery to the mouse position only when the left mouse button is held. In update(), check if the bulb and battery collide; set the bulb image to an "on" version when colliding and an "off" version otherwise. In draw(), draw both actors so it looks like the battery powers the bulb when it touches.',
+						'Create a bulb actor centered on the screen and a battery actor near the top-left. In on_mouse_move(pos, buttons), move the battery to the mouse position only when the left mouse button is held. In update(), check if the bulb and battery collide; set the bulb image to an "on" version when colliding and an "off" version otherwise. Draw both actors each frame. Start one looping buzz when the bulb changes from off to on. Stop it when the battery moves away. Hold the battery on the bulb for several frames, release contact, then reconnect. Each contact plays one steady buzz and each separation restores silence.',
 					projectLink:
 						"https://github.com/instruction-material/PyGames/tree/main",
 					solutionLink:

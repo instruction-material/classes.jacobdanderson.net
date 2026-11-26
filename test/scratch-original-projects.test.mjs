@@ -415,6 +415,13 @@ test("all original Scratch archives retain upstream bytes and only declared corr
 
 		if (
 			[
+				"300644693",
+				"302811491",
+				"302948550",
+				"304003593",
+				"305082197",
+				"328312475",
+				"330724703",
 				"341945558",
 				"342645999",
 				"343348430",
@@ -513,6 +520,13 @@ test("all original Scratch archives retain upstream bytes and only declared corr
 	assert.equal(correctedProjects.size, 5);
 	assert.deepEqual(programCorrections, [
 		"299311602",
+		"300644693",
+		"302811491",
+		"302948550",
+		"304003593",
+		"305082197",
+		"328312475",
+		"330724703",
 		"332459692",
 		"338501835",
 		"341945558",
@@ -532,7 +546,7 @@ test("all original Scratch archives retain upstream bytes and only declared corr
 				process.env.SCRATCH_ORIGINAL_BROWSER_PROOF_DIR,
 				"archive-identity.json"
 			),
-			`${JSON.stringify({ projects: 168, assets: 505, originalSourceBytesRetained: true, unchangedPrograms: 158, declaredProgramCorrections: programCorrections, onlyDeclaredAttributionSvgAndProgramChanges: true, compatibilityAssets: correctedAssets.size, compatibilityProjects: correctedProjects.size, records }, null, 2)}\n`
+			`${JSON.stringify({ projects: 168, assets: 505, originalSourceBytesRetained: true, unchangedPrograms: records.length - programCorrections.length, declaredProgramCorrections: programCorrections, onlyDeclaredAttributionSvgAndProgramChanges: true, compatibilityAssets: correctedAssets.size, compatibilityProjects: correctedProjects.size, records }, null, 2)}\n`
 		);
 	}
 });
