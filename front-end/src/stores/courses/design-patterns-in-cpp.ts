@@ -491,29 +491,25 @@ const designPatternsInCppSourceCourse: RawCourse = {
 				},
 				{
 					title: "Structural Wrapper Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle: "DPC6 Decorator, Adapter, and Facade",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"Wrap a notice sink with a decorator that records the result of each delivery. NoticeSink is the shared interface. A line can be accepted or rejected. Complete TracingSink::deliver so it forwards the original line once, then records one accepted or rejected entry and returns the wrapped sink’s result. This decorator borrows its sink and trace. Keep those objects alive during its use.\n\n**Checkpoints:** Deliver an ordinary note and an empty note. The plain sink accepts the first and rejects the second. The trace records both outcomes in order. Try two identical notes and verify that there are two calls and two entries. Compose two decorators around one sink and verify that the real sink still receives only one call per message.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-13-dpc6-decorator-adapter-and-facade-supplemental-2/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/596a491a2da9e2da7d9a31438f74ccbf423d221d/DPC-13-dpc6-decorator-adapter-and-facade-supplemental-2/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-13-dpc6-decorator-adapter-and-facade-supplemental-2/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/596a491a2da9e2da7d9a31438f74ccbf423d221d/DPC-13-dpc6-decorator-adapter-and-facade-supplemental-2/solution"
 				},
 				{
 					title: "Facade Boundary Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle: "DPC6 Decorator, Adapter, and Facade",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"The audio tour facade coordinates a track catalog and a player. The caller gives a stop name and a volume from 0 to 100 inclusive. Implement AudioGuide::start. Reject an invalid volume before searching the catalog. If the name has no track ID, return UnknownStop without calling the player. Otherwise pass the looked-up ID and the requested volume to the player exactly once and return Started.\n\n**Checkpoints:** Try the garden at volume 50, an unknown stop and the garden at volume 110. Only the garden at 50 reaches the player. Test the inclusive volume limits of 0 and 100 and check that the same track can start twice. Change the ID stored for the garden and start the same stop with the same volume. Verify that the player receives the new ID.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-14-dpc6-decorator-adapter-and-facade-supplemental-3/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/596a491a2da9e2da7d9a31438f74ccbf423d221d/DPC-14-dpc6-decorator-adapter-and-facade-supplemental-3/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-14-dpc6-decorator-adapter-and-facade-supplemental-3/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/596a491a2da9e2da7d9a31438f74ccbf423d221d/DPC-14-dpc6-decorator-adapter-and-facade-supplemental-3/solution"
 				}
 			]
 		},
@@ -792,29 +788,25 @@ const designPatternsInCppSourceCourse: RawCourse = {
 				},
 				{
 					title: "RAII Wrapper Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle: "DPC10 Patterns for Resource Management",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"An output channel allows one active drawing window. The lease holds a reference to the channel, and the channel must outlive the lease. The constructor already tries to open the channel and stores the result. Implement the destructor so only a lease that acquired the channel closes it. The lease stays in its current scope and cannot be copied or moved.\n\n**Checkpoints:** Open one lease and attempt another while the channel is busy. The denied lease owns nothing, and leaving its scope must leave the channel open. Leaving the first lease’s scope closes the channel once. Create a successful lease and throw a simple exception inside that scope. After the catch, check that the channel is available again.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-21-dpc10-patterns-for-resource-management-supplemental-2/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/596a491a2da9e2da7d9a31438f74ccbf423d221d/DPC-21-dpc10-patterns-for-resource-management-supplemental-2/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-21-dpc10-patterns-for-resource-management-supplemental-2/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/596a491a2da9e2da7d9a31438f74ccbf423d221d/DPC-21-dpc10-patterns-for-resource-management-supplemental-2/solution"
 				},
 				{
 					title: "Resource Boundary Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "C++",
-						moduleTitle: "DPC10 Patterns for Resource Management",
-						projectKind: "extension",
-						hasReference: true
-					}),
+					preserveInstructions: true,
+					contentKind: "assignment",
+					content:
+						"A drawing board owns its current labels. A FrameBatch stores proposed changes in a separate vector. Complete commit so it rejects an empty batch or one with an empty label and leaves the board unchanged. When every label is valid, swap the whole batch into the board, then finish the batch. A finished batch rejects another commit and any later append. The board must outlive the batch.\n\n**Checkpoints:** Propose a two-label replacement with one empty label and check that the original board remains visible. Use a fresh batch to replace the board with Map and Key. Call commit again and verify the new labels stay in order. Verify that destroying an uncommitted batch also leaves the board unchanged.",
 					projectLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-22-dpc10-patterns-for-resource-management-supplemental-3/starter",
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/596a491a2da9e2da7d9a31438f74ccbf423d221d/DPC-22-dpc10-patterns-for-resource-management-supplemental-3/starter",
 					solutionLink:
-						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/main/DPC-22-dpc10-patterns-for-resource-management-supplemental-3/solution"
+						"https://github.com/instruction-material/Design-Patterns-in-CPP/tree/596a491a2da9e2da7d9a31438f74ccbf423d221d/DPC-22-dpc10-patterns-for-resource-management-supplemental-3/solution"
 				}
 			]
 		},
