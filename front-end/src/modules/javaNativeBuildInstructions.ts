@@ -48,6 +48,7 @@ import {
 	javaBinarySearchProjects,
 	javaCheckIn1Projects,
 	javaLevel3SearchProjects,
+	javaMergeSortingProjects,
 	javaSearchProjects
 } from "./javaSearchResources";
 import {
@@ -179,7 +180,9 @@ const javaSearchExtensionInstructions: Partial<Record<string, string>> = {
 	[javaBinarySearchProjects[0].id]:
 		"For the midpoint-count extension, run java Main count and java ContractTests count.",
 	[javaCheckIn1Projects[0].id]:
-		"For the Pascal cache extension, run java Main memo and java ContractTests memo. Use java Main trace to check the workbook's recursive call order."
+		"For the Pascal cache extension, run java Main memo and java ContractTests memo. Use java Main trace to check the workbook's recursive call order.",
+	[javaMergeSortingProjects[0].id]:
+		"For the stable merge extension, run java Main stable and java ContractTests stable."
 };
 
 export function javaNativeBuildInstructions(

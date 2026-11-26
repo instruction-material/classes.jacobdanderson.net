@@ -73,16 +73,81 @@ export const javaCheckIn1Projects = [
 	}
 ] as const;
 
+export const javaSortingRevision = "8c4a69683e0af396344c373ee9eb3f1561a14cd3";
+export const javaElementarySortingModuleID =
+	"java-level-3-aj7-selection-and-insertion-sort";
+export const javaMergeSortingModuleID = "java-level-3-aj9-merge-sort";
+
+export const javaElementarySortingProjects = [
+	{
+		pack: "AJ7-Selection-Sort-Packs",
+		id: `${javaElementarySortingModuleID}-curriculum-aj7-project-1-selection-sort`
+	},
+	{
+		pack: "AJ7-Insertion-Sort-Packs",
+		id: `${javaElementarySortingModuleID}-curriculum-aj7-project-2-insertion-sort`
+	},
+	{
+		pack: "AJ7-Bookshelf-Packs",
+		id: `${javaElementarySortingModuleID}-supplemental-aj7-supplemental-project-1-biggest-to-smallest-bookshelf`
+	},
+	{
+		pack: "J3-13-aj7-selection-and-insertion-sort-supplemental-2",
+		id: `${javaElementarySortingModuleID}-supplemental-elementary-sorting-transfer-practice`
+	},
+	{
+		pack: "J3-14-aj7-selection-and-insertion-sort-supplemental-3",
+		id: `${javaElementarySortingModuleID}-supplemental-elementary-sorting-extension-practice`
+	}
+] as const;
+
+export const javaMergeSortingProjects = [
+	{
+		pack: "AJ9-Merge-Packs",
+		id: `${javaMergeSortingModuleID}-curriculum-aj9-project-1-merge-method`
+	},
+	{
+		pack: "AJ9-Split-Packs",
+		id: `${javaMergeSortingModuleID}-curriculum-aj9-project-2-split-method`
+	},
+	{
+		pack: "AJ9-Merge-Sort-Packs",
+		id: `${javaMergeSortingModuleID}-curriculum-aj9-project-3-merge-sort`
+	},
+	{
+		pack: "J3-17-aj9-merge-sort-supplemental-2",
+		id: `${javaMergeSortingModuleID}-supplemental-merge-sort-trace-practice`
+	},
+	{
+		pack: "J3-18-aj9-merge-sort-supplemental-3",
+		id: `${javaMergeSortingModuleID}-supplemental-merge-sort-extension-practice`
+	}
+] as const;
+
+const javaSortingProjects = [
+	...javaElementarySortingProjects,
+	...javaMergeSortingProjects
+];
+
+export function javaSortingURL(
+	pack: (typeof javaSortingProjects)[number]["pack"],
+	role: "starter" | "solution"
+) {
+	return `https://github.com/instruction-material/Java-Level-3/tree/${javaSortingRevision}/${pack}/${role}`;
+}
+
 const searchGroups = [
 	{ revision: javaSearchRevision, projects: javaSearchProjects },
 	{ revision: javaBinarySearchRevision, projects: javaBinarySearchProjects },
-	{ revision: javaCheckIn1Revision, projects: javaCheckIn1Projects }
+	{ revision: javaCheckIn1Revision, projects: javaCheckIn1Projects },
+	{ revision: javaSortingRevision, projects: javaSortingProjects }
 ] as const;
 
 export const javaLevel3SearchProjects = [
 	...javaSearchProjects,
 	...javaBinarySearchProjects,
-	...javaCheckIn1Projects
+	...javaCheckIn1Projects,
+	...javaSortingProjects
 ];
 
 export function javaCheckIn1URL(
