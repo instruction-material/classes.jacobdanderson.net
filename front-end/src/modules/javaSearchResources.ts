@@ -449,6 +449,33 @@ export function javaGraphURL(
 	return `https://github.com/instruction-material/Java-Level-3/tree/${javaGraphRevision}/${pack}/${role}`;
 }
 
+export const javaStreetSearcherRevision =
+	"10ad5449a3e13e397c7907c670cf9c41bf68aab3";
+export const javaStreetSearcherModuleID =
+	"java-level-3-aj17-master-project-google-maps";
+
+export const javaStreetSearcherProjects = [
+	{
+		pack: "AJ17-Street-Searcher-Packs",
+		id: `${javaStreetSearcherModuleID}-curriculum-aj17-project-1-weighted-graph`
+	},
+	{
+		pack: "J3-37-aj17-master-project-google-maps-supplemental-2",
+		id: `${javaStreetSearcherModuleID}-supplemental-google-maps-transfer-practice`
+	},
+	{
+		pack: "J3-38-aj17-master-project-google-maps-supplemental-3",
+		id: `${javaStreetSearcherModuleID}-supplemental-google-maps-extension-practice`
+	}
+] as const;
+
+export function javaStreetSearcherURL(
+	pack: (typeof javaStreetSearcherProjects)[number]["pack"],
+	role: "starter" | "solution"
+) {
+	return `https://github.com/instruction-material/Java-Level-3/tree/${javaStreetSearcherRevision}/${pack}/${role}`;
+}
+
 const additionalAlgorithmFiles: Partial<Record<string, readonly string[]>> = {
 	[javaBubbleSortProjects[1].id]: ["words.txt"],
 	[javaCheckIn2Projects[1].id]: [
@@ -467,7 +494,13 @@ const additionalAlgorithmFiles: Partial<Record<string, readonly string[]>> = {
 		"ListContract.java"
 	],
 	[javaHashTableProjects[0].id]: ["HashMap.java", "Map.java"],
-	[javaHashTableProjects[1].id]: ["HashMap.java", "Map.java", "corpus.txt"]
+	[javaHashTableProjects[1].id]: ["HashMap.java", "Map.java", "corpus.txt"],
+	[javaStreetSearcherProjects[0].id]: [
+		"StreetGraph.java",
+		"RoadFile.java",
+		"RouteFinder.java",
+		"roads.txt"
+	]
 };
 
 export const javaCheckIn4Revision = "f84c390604c00ae6191122432bd28004b9721fd3";
@@ -516,7 +549,11 @@ const searchGroups = [
 	{ revision: javaBinaryTreeRevision, projects: javaBinaryTreeProjects },
 	{ revision: javaHashTableRevision, projects: javaHashTableProjects },
 	{ revision: javaGraphRevision, projects: javaGraphProjects },
-	{ revision: javaCheckIn4Revision, projects: javaCheckIn4Projects }
+	{ revision: javaCheckIn4Revision, projects: javaCheckIn4Projects },
+	{
+		revision: javaStreetSearcherRevision,
+		projects: javaStreetSearcherProjects
+	}
 ] as const;
 
 export const javaLevel3SearchProjects = [
@@ -533,7 +570,8 @@ export const javaLevel3SearchProjects = [
 	...javaBinaryTreeProjects,
 	...javaHashTableProjects,
 	...javaGraphProjects,
-	...javaCheckIn4Projects
+	...javaCheckIn4Projects,
+	...javaStreetSearcherProjects
 ];
 
 export function javaCheckIn1URL(

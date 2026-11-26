@@ -58,6 +58,7 @@ import {
 	javaMergeSortingProjects,
 	javaPriorityMapProjects,
 	javaSearchProjects,
+	javaStreetSearcherProjects,
 	javaSustainableProjects
 } from "./javaSearchResources";
 import {
@@ -690,6 +691,24 @@ export function javaNativeBuildInstructions(
 				? "The console accepts whitespace-separated integers until quit or end-of-input; an invalid or out-of-range token prints Invalid integer. and processing continues."
 				: "The console prints demonstrations of the five recursive methods. Full input domains, bounds and failure contracts are in README.md.",
 			"Run displays these native build instructions for this pack. Use the terminal's standard input for the console driver."
+		];
+	}
+	if (
+		course === "java-level-3" &&
+		item === javaStreetSearcherProjects[0].id &&
+		["starter", "reference"].includes(role ?? "") &&
+		parts.length === 4 &&
+		extra === "native-java-search"
+	) {
+		return [
+			"Java 21 Street Searcher workflow",
+			"Save the project and extract its ZIP. Keep roads.txt in the folder with the Java files.",
+			"javac --release 21 -Xlint:all -Werror *.java",
+			"java ContractTests graph",
+			"java ContractTests load",
+			"java ContractTests route",
+			"java Main roads.txt Harbor Station",
+			"Run java ContractTests for all three required stages. For optional closures, run java ContractTests avoid and java Main roads.txt Harbor Station Market."
 		];
 	}
 	if (

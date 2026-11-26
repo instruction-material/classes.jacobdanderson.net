@@ -23,6 +23,7 @@ import {
 	buildJavaMergeSortingModule
 } from "./javaSortingTeaching";
 import { buildJavaStackQueueModule } from "./javaStackQueueTeaching";
+import { buildJavaStreetSearcherModule } from "./javaStreetSearcherTeaching";
 import { buildJavaSustainableProgrammingModule } from "./javaSustainableTeaching";
 import { isCoreProjectTitle } from "./projectGrouping";
 import { buildProjectGuidance } from "./projectGuidance";
@@ -691,90 +692,7 @@ const javaLevel3SourceCourse: RawCourse = {
 		buildJavaHashTableModule(),
 		buildJavaGraphModule(),
 		buildJavaCheckIn4Module(),
-		{
-			title: "AJ17 Master Project: Google Maps",
-			curriculum: [
-				{
-					title: "Introduction to Street Searcher",
-					content:
-						"Review a Google-Maps-style shortest path tool that loads locations and distances into a weighted graph and uses Dijkstra's algorithm to find routes."
-				},
-				{
-					title: "AJ17 Project 1: Weighted Graph",
-					content:
-						"Create a weighted graph implementation that will support the street searcher project. Store vertices, weighted edges, and neighbor lookups in a way that makes Dijkstra's algorithm possible without mixing parsing, graph storage, and route-search logic.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ17-Weighted-Graph-Starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ17-Weighted-Graph"
-				},
-				{
-					title: "AJ17 Project 2: Loading Data",
-					content:
-						"Read location data from files, store locations in a `HashMap`, and connect those locations in the weighted graph using location names as vertices.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ17-Loading-Data-Starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ17-Loading-Data"
-				},
-				{
-					title: "AJ17 Project 3: Finding Shortest Paths",
-					content:
-						"Complete the street searcher by running Dijkstra's algorithm on the loaded graph, printing the shortest path, and refining the user interface and error handling.",
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ17-Street-Searcher-Starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ17-Street-Searcher"
-				},
-				{
-					title: "Course Recap",
-					content:
-						"Review the major ideas from the course, including recursion, searching, sorting, OOP review, generics, exceptions, linked lists, stacks, queues, priority queues, maps, trees, hash tables, and graphs."
-				}
-			],
-			supplementalProjects: [
-				{
-					title: "Master Project: Google Maps: Extension Challenge",
-					content: buildSupportSectionGuidance({
-						courseFamily: "Java Level 3",
-						moduleTitle: "Master Project: Google Maps",
-						section: "extension"
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ17-Weighted-Graph-Starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/AJ17-Weighted-Graph"
-				},
-				{
-					title: "Google Maps Transfer Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 3",
-						moduleTitle: "AJ17 Master Project: Google Maps",
-						itemTitle: "Google Maps Transfer Practice",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/J3-37-aj17-master-project-google-maps-supplemental-2/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/J3-37-aj17-master-project-google-maps-supplemental-2/solution"
-				},
-				{
-					title: "Google Maps Extension Practice",
-					content: buildProjectGuidance({
-						courseFamily: "Java Level 3",
-						moduleTitle: "AJ17 Master Project: Google Maps",
-						itemTitle: "Google Maps Extension Practice",
-						projectKind: "extension",
-						hasReference: true
-					}),
-					projectLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/J3-38-aj17-master-project-google-maps-supplemental-3/starter",
-					solutionLink:
-						"https://github.com/instruction-material/Java-Level-3/tree/main/J3-38-aj17-master-project-google-maps-supplemental-3/solution"
-				}
-			]
-		},
+		buildJavaStreetSearcherModule(),
 		{
 			title: "AJ18 Repo Extension, Starter, and Capstone Library",
 			curriculum: [
@@ -1338,14 +1256,6 @@ function strengthenJavaLevel3Item(
 		};
 	}
 
-	if (item.title === "Introduction to Street Searcher") {
-		return {
-			...item,
-			content:
-				"Build the capstone as a local street-searcher over course-owned or openly licensed graph fixtures. Do not collect live location or personal travel data and do not depend on an external routing API; the learning target is the loader, weighted graph, shortest-path result, and route reconstruction."
-		};
-	}
-
 	return item;
 }
 
@@ -1435,20 +1345,6 @@ function decorateJavaLevel3Module(
 				"- Generic APIs explain the type parameter, work with at least two concrete types, and introduce no raw types or unjustified unchecked casts.",
 				"- Expected invalid input is validated, recoverable exceptions are caught specifically at a useful boundary, and programming errors are not hidden.",
 				"- Characterization tests capture behavior before one refactor and prove the intended behavior remains afterward."
-			].join("\n"),
-			learningPath: "core"
-		});
-	}
-
-	if (module.title === "AJ17 Master Project: Google Maps") {
-		curriculum = insertJavaLevel3Item(curriculum, "Course Recap", {
-			title: "Street Searcher Capstone Definition of Done",
-			content: [
-				"**Required evidence:**",
-				"- Course-owned or openly licensed local fixtures with documented format, provenance, nonnegative weight meaning, and malformed-record policy.",
-				"- Separate loader, graph model, shortest-path service, route reconstruction, and presentation boundaries.",
-				"- Hand-computed tests for missing vertex, same start/end, direct route, cheaper indirect route, equal-cost tie, disconnected destination, and malformed data.",
-				"- Reported path consists of real edges and its summed cost matches the returned distance; no live location, personal travel data, or external routing dependency is used, and no unbounded background compute is used."
 			].join("\n"),
 			learningPath: "core"
 		});
