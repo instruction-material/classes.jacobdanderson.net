@@ -115,7 +115,7 @@ describe("Java Level 3 learner flow", () => {
 		);
 
 		// Check-In 3 keeps its application check as a standalone reading.
-		expect(curriculumCount).toBe(141);
+		expect(curriculumCount).toBe(142);
 		expect(optionCount).toBe(94);
 		for (const title of JUNI_CORE_PROJECTS) {
 			expect(curriculumTitles, title).toContain(title);
