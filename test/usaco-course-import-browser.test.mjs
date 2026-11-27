@@ -37,8 +37,8 @@ assert.ok(!process.env.COURSE_IMPORT_SCOPE || focusedBronze, "Unknown local acce
 assert.ok(!focusedBronze || !process.env.CI, "Hosted CI must verify every USACO fixture");
 const selectedFixtures = focusedBronze ? usacoFixtures.filter(fixture => fixture.bronzeRequiredPack) : usacoFixtures;
 const selectedPackCount = new Set(selectedFixtures.map(fixture => `${fixture.repository}/${fixture.folder.split("/")[0]}`)).size;
-assert.equal(usacoFixtures.length, 200);
-assert.equal(new Set(usacoFixtures.map(fixture => `${fixture.repository}/${fixture.folder.split("/")[0]}`)).size, 58);
+assert.equal(usacoFixtures.length, 208);
+assert.equal(new Set(usacoFixtures.map(fixture => `${fixture.repository}/${fixture.folder.split("/")[0]}`)).size, 62);
 // Cache only immutable, hash-verified test-source bytes. Every browser action,
 // request-count assertion, native role check and saved-attempt check still runs.
 const sourceCache = new Map();
@@ -1517,6 +1517,10 @@ nodeTest(
 					else if (fixture.demonstration) {
 						assert.match(output, /reads no input file or standard input/);
 						assert.doesNotMatch(output, /sample.in|java Main </);
+					}
+					else if (fixture.silverJavaPack && fixture.input === "sample.in") {
+						assert.match(output, /java -ea -cp target\/classes Main < sample.in/);
+						assert.match(output, /sample.expected/);
 					}
 					else if (fixture.silverJavaPack && fixture.stdio) {
                         assert.match(output,/java -ea -cp target\/classes Main < input.txt/);

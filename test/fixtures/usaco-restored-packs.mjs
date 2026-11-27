@@ -1,5 +1,8 @@
+import { silverPracticeFixtures } from "./usaco-silver-practice-packs.mjs";
+
 // Verified source revisions and Git blob digests, not checkout line endings.
 export const usacoFixtures = [
+	...silverPracticeFixtures,
 	{
 		repository: "instruction-material/USACO-Bronze",
 		revision: "9def4c6337b899af9367f6ade93e570a007303be",

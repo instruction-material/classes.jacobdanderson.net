@@ -55,6 +55,37 @@ function gifts(rows) {
 	return `${best.join("\n")}\n`;
 }
 
+const practiceCases = {
+	dfs: {
+		valid: [
+			["1 0 0\n", "0\n"],
+			["5 5 0\n0 0\n0 2\n0 1\n2 3\n3 0\n", "0 2 3 1\n"]
+		],
+		invalid: "2 1 0\n0 2\n"
+	},
+	bfs: {
+		valid: [
+			["1 0 0\n", "0\n"],
+			["5 5 0\n0 0\n0 2\n0 1\n2 3\n3 0\n", "0 1 1 2 -1\n"]
+		],
+		invalid: "2 1 0\n0 2\n"
+	},
+	stacks: {
+		valid: [
+			["0\n", ""],
+			["7\nPUSH -3\nPUSH -3\nPEEK\nPOP\nSIZE\nPOP\nEMPTY\n", "-3\n-3\n1\n-3\ntrue\n"]
+		],
+		invalid: "2\nPUSH\nPOP\n"
+	},
+	queues: {
+		valid: [
+			["0\n", ""],
+			["7\nADD -3\nADD 9\nPEEK\nPOLL\nSIZE\nPOLL\nEMPTY\n", "-3\n-3\n1\n9\ntrue\n"]
+		],
+		invalid: "2\nADD\nPOLL\n"
+	}
+};
+
 export async function verifySilverJavaExport(
 	fixture,
 	files,
@@ -63,16 +94,22 @@ export async function verifySilverJavaExport(
 	record
 ) {
 	const slug = fixture.silverJavaPack;
-	assert.ok(["maxcross", "cowdance", "gifts"].includes(slug));
+	const practice = practiceCases[slug];
+	assert.ok(practice || ["maxcross", "cowdance", "gifts"].includes(slug));
 	assert.doesNotMatch(files["README.md"], /\.\.\/README\.md/);
-	assert.match(files["README.md"], /Contract/);
-	assert.match(files["README.md"], /Independent/);
+	if (practice) {
+		assert.match(files["README.md"], /sample.in/);
+		assert.equal(files["sample.expected"], fixture.expected);
+	} else {
+		assert.match(files["README.md"], /Contract/);
+		assert.match(files["README.md"], /Independent/);
+	}
 	assert.ok(Object.hasOwn(files, fixture.mainFile));
 	if (fixture.reference)
 		assert.ok(
 			Object.hasOwn(
 				files,
-				slug === "gifts" ? "sample.expected" : `${slug}.expected`
+				practice || slug === "gifts" ? "sample.expected" : `${slug}.expected`
 			)
 		);
 	if (slug === "gifts" && fixture.reference)
@@ -97,6 +134,35 @@ export async function verifySilverJavaExport(
 	);
 	assert.equal(compile.code, 0, compile.stderr);
 	const args = ["-ea", "-Xmx256m", "-cp", "target/classes", "Main"];
+	if (practice) {
+		const exactCases = [
+			[files[fixture.input], fixture.expected],
+			...practice.valid
+		];
+		for (const [input, expected] of exactCases) {
+			const run = await runNative(java, args, directory, {}, input);
+			assert.equal(run.code, fixture.reference ? 0 : 2, run.stderr);
+			assert.equal(run.stdout, fixture.reference ? expected : "");
+			if (!fixture.reference) assert.match(run.stderr, /^TASK:/);
+		}
+		const malformed = await runNative(java, args, directory, {}, practice.invalid);
+		assert.equal(malformed.code, 2);
+		assert.equal(malformed.stdout, "");
+		assert.ok(malformed.stderr);
+		assert.doesNotMatch(malformed.stderr, /^TASK:/);
+		for (const [name, content] of Object.entries(files))
+			assert.equal(await readFile(join(directory, name), "utf8"), content);
+		record("verified-silver-java-native-role", {
+			pack: slug,
+			variant: "practice",
+			role: fixture.reference ? "reference" : "learner",
+			nativeStdio: true,
+			sourceFilesUnchanged: true,
+			legalCases: exactCases.length,
+			malformedRejected: true
+		});
+		return;
+	}
 	const cases = [
 		{
 			input: files[fixture.input],

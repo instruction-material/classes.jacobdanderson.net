@@ -77,7 +77,9 @@ describe("Silver native Java lessons", () => {
 						expect(item.content).toContain(
 							assignment.variant === "log"
 								? "Optional transition log"
-								: "Optional changed-case reconstruction"
+								: assignment.variant === "practice"
+									? "Optional practice"
+									: "Optional changed-case reconstruction"
 						);
 					}
 					if (assignment.variant === "log")
@@ -139,6 +141,11 @@ describe("Silver native Java lessons", () => {
 						expect(instructions).toContain(
 							"Direct > answer.txt truncates"
 						);
+					}
+					if (assignment.variant === "practice") {
+						expect(instructions).toContain("Main < sample.in");
+						expect(instructions).toContain("sample.expected");
+						expect(javaNativeBuildInstructions(base)).toBeNull();
 					}
 				}
 		expect(

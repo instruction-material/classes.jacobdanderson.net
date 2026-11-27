@@ -1869,7 +1869,7 @@ export const usacoSilverCourse: RawCourse = {
 	]
 };
 
-// Preserve all six progress identities and the existing required/log/retry placements.
+// Preserve existing progress identities and the roles of the activities.
 for (const pack of silverJavaPacks) {
 	for (const assignment of pack.assignments) {
 		const matches = usacoSilverCourse.modules.flatMap(module =>

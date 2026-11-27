@@ -1,4 +1,70 @@
 import { silverFoundationAssignment } from "./usacoSilverFoundationPacks";
+
+const studioTitle = "Optional Historical and Applied Silver Studios";
+const studioId = "usaco-silver-optional-historical-and-applied-silver-studios";
+const practiceRevision = "ec45d3f9fff2496ba6322b9dd71888cdcc5daee2";
+const graphContract =
+	"Read N, M and the start vertex from standard input. N is 1 to 10,000 and M is 0 to 30,000. Read M directed edges as pairs of zero-based vertex numbers. Each vertex's edges retain their input order. Self loops, repeated edges and disconnected vertices are valid.";
+const graphSample =
+	"The sample starts at 0 and has the edges 0→1, 0→2, 1→3, 1→4, 3→1 and 2→4. Vertex 5 is disconnected.";
+
+const silverJavaPractice = [
+	{
+		slug: "dfs",
+		folder: "US6-DFS",
+		legacySlug: "dfs",
+		title: "Depth-First Search: Discovery Order",
+		purpose: "Practice stack-based graph discovery after Unit 2.",
+		contract: `${graphContract} Print the reachable vertices in depth-first preorder on one space-separated line. Examine outgoing edges in input order.`,
+		prediction: `${graphSample} The discovery order is \`0 1 3 4 2\` because the branch through 1 finishes before 0 resumes its next edge.`,
+		tasks: "Complete `discoveryOrder` in `Main.java`. Keep the next unexamined edge for each active vertex on the stack. Mark a vertex when it is discovered. Remove its frame only after all its outgoing edges have been examined. Trace the back edge from 3 to 1 before changing the code.",
+		checks: "Compare with a small recursive preorder traversal. Check an isolated start, parallel edges and a self loop. The order follows input adjacency, so reordering edges can change the answer. The traversal takes O(N + M) time and O(N) extra space beyond the input graph.",
+		retry: "Change the start to 2 and predict `2 4`. In a shared walkthrough, pause at the first return to the parent and explain which outgoing edge is examined next."
+	},
+	{
+		slug: "bfs",
+		folder: "US7-BFS",
+		legacySlug: "bfs",
+		title: "Breadth-First Search: Distances by Layer",
+		purpose: "Practice shortest paths in an unweighted graph after Unit 2.",
+		contract: `${graphContract} Print the minimum number of edges from the start to each vertex in vertex-number order on one space-separated line. Print -1 for unreachable vertices.`,
+		prediction: `${graphSample} The distances are \`0 1 1 2 2 -1\`. Both 1 and 2 lead to 4, which enters the queue only once.`,
+		tasks: "Complete `distances` in `Main.java`. Give the start distance 0 and enqueue it. When inspecting an edge from distance d, give the undiscovered neighbor distance d + 1 before enqueueing it. Trace two layers and explain why all distance-d entries leave the queue before distance-(d + 1) entries.",
+		checks: "For a small graph, repeatedly relax all edges from a copy of the previous round's distances until they stop changing. Compare that result with the queue traversal. Include an isolated start, a repeated edge and two equal-length paths. Time is O(N + M) and the queue and distances take O(N) extra space.",
+		retry: "Change the start to 2 and predict `-1 -1 0 -1 1 -1`. In a shared walkthrough, pause when both routes to vertex 4 have been seen and explain the first discovery."
+	},
+	{
+		slug: "stacks",
+		folder: "US6-Stacks",
+		legacySlug: "usaco-silver-stacks",
+		title: "Stacks: Last In, First Out",
+		purpose:
+			"Practice the collection behavior used by depth-first traversal.",
+		contract:
+			"Read a count from 0 to 30,000 followed by that many commands. PUSH takes a signed integer and adds it to the top. POP removes and returns the top. PEEK returns it while leaving the stack intact. SIZE prints the count, and EMPTY prints true or false. POP and PEEK print EMPTY when there are no values. Print one line for each command other than PUSH.",
+		prediction:
+			"The nine sample commands are PUSH 1, PUSH 2, PEEK, POP, SIZE, PUSH 2, POP, POP and POP. The first PEEK and POP both print 2, and SIZE then prints 1. The full output is 2, 2, 1, 2, 1 and EMPTY on separate lines.",
+		tasks: "Complete `runStack` in `Main.java`. Use one end of a deque for insertion, inspection and removal. Sketch the stack after each command, then implement the operations without removing a value during PEEK.",
+		checks: "Check zero commands, repeated removal on an empty stack, duplicate values, a negative value and PEEK followed by SIZE. Use a short list as an independent model. Each operation takes constant amortized time. The supplied input and output buffers and the stack take O(commands) space in total.",
+		retry: "Trace PUSH 4, PUSH 9, POP and PEEK before running. The two output lines are 9 and 4. Compare this trace with the queue exercise using the same inputs."
+	},
+	{
+		slug: "queues",
+		folder: "US7-Queues",
+		legacySlug: "queues",
+		title: "Queues: First In, First Out",
+		purpose:
+			"Practice the collection behavior used by breadth-first traversal.",
+		contract:
+			"Read a count from 0 to 30,000 followed by that many commands. ADD takes a signed integer and appends it. POLL removes and returns the earliest remaining value. PEEK returns it while leaving the queue intact. SIZE prints the count, and EMPTY prints true or false. POLL and PEEK print EMPTY when there are no values. Print one line for each command other than ADD.",
+		prediction:
+			"The nine sample commands are ADD 1, ADD 2, PEEK, POLL, SIZE, ADD 2, POLL, POLL and POLL. The first PEEK and POLL both print 1, and SIZE then prints 1. The full output is 1, 1, 1, 2, 2 and EMPTY on separate lines.",
+		tasks: "Complete `runQueue` in `Main.java`. Append new values at the back and inspect or remove values at the front. Trace the front and back after every operation before writing the loop.",
+		checks: "Check zero commands, repeated removal on an empty queue, duplicate values, a negative value and PEEK followed by SIZE. Compare with a short list whose first element is the next one out. Each operation takes constant amortized time, and the supplied buffers and the queue take O(commands) space in total.",
+		retry: "Trace ADD 4, ADD 9, POLL and PEEK before running. The two output lines are 4 and 9. Compare the order with the stack exercise."
+	}
+] as const;
+
 // Exact source roles and existing lesson identities, including the transition log.
 export const silverJavaPacks = [
 	{
@@ -122,7 +188,25 @@ export const silverJavaPacks = [
 				title: "Redistributing Gifts: Changed-Preference Retry"
 			}
 		]
-	}
+	},
+	...silverJavaPractice.map(({ legacySlug, ...practice }) => ({
+		...practice,
+		revision: practiceRevision,
+		input: "sample.in" as const,
+		output: "stdout",
+		mainFile: "Main.java",
+		assignments: [
+			{
+				itemId: `${studioId}-supplemental-${legacySlug}`,
+				moduleId: studioId,
+				moduleTitle: studioTitle,
+				section: "supplementalProjects" as const,
+				variant: "practice" as const,
+				learningPath: "choice" as const,
+				title: practice.title
+			}
+		]
+	}))
 ] as const;
 
 export function silverJavaAssignment(itemId: string) {
@@ -163,9 +247,18 @@ export function silverJavaNativeInstructions(
 		`javac --release 17 -encoding UTF-8 -Xlint:all -Werror -d target/classes ${pack.mainFile}`,
 		pack.slug === "gifts"
 			? "java -ea -cp target/classes Main < input.txt"
-			: "java -ea -cp target/classes Main",
+			: pack.input === "sample.in"
+				? "java -ea -cp target/classes Main < sample.in"
+				: "java -ea -cp target/classes Main",
 		"Run Java only after compilation succeeds. Keep learner and reference source and compiled classes in separate folders."
 	];
+	if (pack.input === "sample.in") {
+		return [
+			...commands,
+			"Compare standard output with sample.expected. An unfinished learner exits 2 with a task message on standard error and no standard output.",
+			'In PowerShell, create target/classes with New-Item -ItemType Directory -Force. Run the same javac command, check $LASTEXITCODE, then use cmd /c "java -ea -cp target/classes Main < sample.in".'
+		];
+	}
 	if (pack.slug === "gifts") {
 		return [
 			...commands,
@@ -202,12 +295,18 @@ export function silverJavaCourseBrief(
 			? "**Learning sequence:** Required implementation checkpoint. Predict, state an invariant, trace a tiny case, implement and save an attempt before comparing the separate reference."
 			: assignment.variant === "log"
 				? "**Learning sequence:** This optional practice is a transition log. Preserve the structural idea, failed approach and transfer from Bronze; use a changed case to explain the decision, not only another copy of the sample."
-				: "**Learning sequence:** This is optional practice after the required checkpoint. Close the reference and reconstruct a changed-case attempt with fresh predictions and a mismatch explanation. Repeating the original sample does not complete this retry.";
+				: assignment.variant === "practice"
+					? "**Learning sequence:** Optional practice. Predict the result, trace the state, and compare an independent check with the completed learner attempt."
+					: "**Learning sequence:** This is optional practice after the required checkpoint. Close the reference and reconstruct a changed-case attempt with fresh predictions and a mismatch explanation. Repeating the original sample does not complete this retry.";
 	return [
 		`## ${assignment.title}`,
 		sequence,
 		purpose,
-		"Existing saved attempts keep their code, inputs, notes and timestamps. The confirmed Java import saves separately from older C++ attempts. The existing required and optional progress entries remain separate; learner and reference have separate saved roles.",
+		...(assignment.variant === "practice"
+			? []
+			: [
+					"Existing saved attempts keep their code, inputs, notes and timestamps. The confirmed Java import saves separately from older C++ attempts. The existing required and optional progress entries remain separate; learner and reference have separate saved roles."
+				]),
 		"## Contract and reasoning",
 		pack.contract,
 		"## Guided implementation",
@@ -222,6 +321,8 @@ export function silverJavaCourseBrief(
 		workflow,
 		`\`\`\`sh\n${[mkdir, compile, run].join("\n")}\n\`\`\``,
 		...nativeNotes,
-		"Open the learner resource and confirm the import before fetching files. Save the learner attempt and explanation before opening the separately saved reference. The driver validates input and answer structure, not optimality. Protected mocks and active contests start from empty files and keep solution browsing closed."
+		assignment.variant === "practice"
+			? "Start in IDE and confirm the import. Save the learner attempt and explain one changed case before opening the separate reference. Use the printed result and an independent check to evaluate the completed algorithm."
+			: "Open the learner resource and confirm the import before fetching files. Save the learner attempt and explanation before opening the separately saved reference. The driver validates input and answer structure, not optimality. Protected mocks and active contests start from empty files and keep solution browsing closed."
 	].join("\n\n");
 }

@@ -100,6 +100,30 @@ export const usacoRestoredResources = [
 		mode: "java"
 	},
 	{
+		course: "usaco-silver",
+		repository: "USACO-Silver",
+		folder: "US6-DFS",
+		mode: "java"
+	},
+	{
+		course: "usaco-silver",
+		repository: "USACO-Silver",
+		folder: "US7-BFS",
+		mode: "java"
+	},
+	{
+		course: "usaco-silver",
+		repository: "USACO-Silver",
+		folder: "US6-Stacks",
+		mode: "java"
+	},
+	{
+		course: "usaco-silver",
+		repository: "USACO-Silver",
+		folder: "US7-Queues",
+		mode: "java"
+	},
+	{
 		course: "usaco-gold",
 		repository: "USACO-Gold",
 		folder: "UG33-Lasers-and-Mirrors",

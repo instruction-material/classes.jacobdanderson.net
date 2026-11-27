@@ -855,7 +855,8 @@ export function javaNativeBuildInstructions(
 		course === "usaco-silver" &&
 		silver &&
 		["starter", "reference"].includes(role ?? "") &&
-		(parts.length === 3 || (parts.length === 4 && extra === "native-java"))
+		((parts.length === 3 && silver.assignment.variant !== "practice") ||
+			(parts.length === 4 && extra === "native-java"))
 	) {
 		return silverJavaNativeInstructions(silver);
 	}
