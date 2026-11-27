@@ -139,7 +139,7 @@ describe("USACO Bronze: On Demand learner flow", () => {
 			},
 			{
 				kind: "appendix",
-				title: "Pending Static Assets"
+				title: "Worked Traces"
 			}
 		]);
 	});

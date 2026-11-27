@@ -3788,25 +3788,9 @@ describe("course text quality normalization", () => {
 		expect(content).not.toContain("static.junilearning.com");
 	});
 
-	it("reserves pending USACO assets on the class static host", async () => {
-		const bronzeOnDemand = await loadRawCourse("usaco-bronze-on-demand");
+	it("reserves pending USACO Gold assets on the class static host", async () => {
 		const gold = await loadRawCourse("usaco-gold");
-		expect(bronzeOnDemand).not.toBeNull();
 		expect(gold).not.toBeNull();
-
-		const bronzeModule = bronzeOnDemand!.modules.find(
-			module => module.title === "Pending Static Assets"
-		);
-		const bronzeContent =
-			bronzeModule?.curriculum.map(item => item.content).join("\n\n") ??
-			"";
-
-		for (const filename of ["missionTitle2.png", "nextStepTitle.png"]) {
-			expect(bronzeContent).toContain(staticMediaUrl(filename));
-			expect(hasPendingStaticMediaNotice(bronzeContent, filename)).toBe(
-				true
-			);
-		}
 
 		const goldModule = gold!.modules.find(
 			module => module.title === "Pending Static Assets"
@@ -9089,44 +9073,22 @@ describe("course text quality normalization", () => {
 		}
 	});
 
-	it("reserves source-library static assets from original source files", async () => {
-		const expectedAssetsByCourse = {
-			"usaco-bronze-on-demand": [
-				"UB1.png",
-				"UB2.png",
-				"UB3.png",
-				"UB4.png",
-				"UB5.png",
-				"UB6.png",
-				"missionTitle2.png",
-				"nextStepTitle.png"
-			]
-		} as const;
-
-		for (const [courseId, filenames] of Object.entries(
-			expectedAssetsByCourse
-		)) {
-			const course = await loadRawCourse(courseId);
-			expect(course).not.toBeNull();
-			if (!course) continue;
-
-			const mediaModule = course.modules.find(
-				module => module.title === "Pending Static Assets"
-			);
-			expect(mediaModule?.kind).toBe("appendix");
-			const content =
-				mediaModule?.curriculum
-					.map(item => item.content)
-					.join("\n\n") ?? "";
-
-			for (const filename of filenames) {
-				expect(content).toContain(staticMediaUrl(filename));
-				expect(hasPendingStaticMediaNotice(content, filename)).toBe(
-					true
-				);
-			}
-			expect(content).not.toContain("static.junilearning.com");
-		}
+	it("keeps the Bronze On Demand trace appendix on its original route", async () => {
+		const course = await loadRawCourse("usaco-bronze-on-demand");
+		const appendix = course?.modules.find(
+			module => module.title === "Worked Traces"
+		);
+		expect(appendix).toMatchObject({
+			id: "usaco-bronze-on-demand-pending-static-assets",
+			kind: "appendix"
+		});
+		const reading = appendix?.curriculum[0];
+		expect(reading?.id).toBe(
+			"usaco-bronze-on-demand-pending-static-assets-curriculum-pending-static-assets"
+		);
+		expect(reading?.contentKind).toBe("reading");
+		expect(reading?.content?.match(/^## /gm)).toHaveLength(4);
+		expect(reading?.content).not.toContain("static.classes.jacobdanderson.net");
 	});
 
 	it("adds Pre-Algebra A reference archive from the math sequence", async () => {

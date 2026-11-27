@@ -1,4 +1,5 @@
 import type { RawCourse, RawCourseModule } from "./types";
+import { bronzeCourseGuideReadings } from "./bronzeCourseGuideReadings";
 import { cppCourseGuideReadings } from "./cppCourseGuideReadings";
 import { cppPracticeGuide } from "./cppPracticeGuide";
 
@@ -2281,7 +2282,8 @@ export const researchBackedExpansionProfiles: Record<
 	"unity-game-development": unityProfile,
 	"usaco-bronze": {
 		...usacoProfile,
-		projectBriefs: bronzePracticeProjectBriefs
+		projectBriefs: bronzePracticeProjectBriefs,
+		guideReadings: bronzeCourseGuideReadings
 	},
 	"usaco-gold": usacoProfile,
 	"usaco-silver": usacoProfile,
