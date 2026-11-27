@@ -46,7 +46,7 @@ const focusedReadingCounts = {
 	"unity-game-development": 36,
 	"data-science-in-python": 53,
 	"pythonic-design-patterns": 51,
-	"python-to-java-and-cpp-bridge": 8,
+	"python-to-java-and-cpp-bridge": 9,
 	"pre-algebra-b": 11,
 	"ai-level-1": 34,
 	"network-systems": 56,
@@ -59,7 +59,7 @@ const focusedReadingCounts = {
 	"elementary-science": 36,
 	"intro-to-biology": 8,
 	"intro-to-chemistry": 62,
-	"python-level-3": 18,
+	"python-level-3": 29,
 	"python-level-1": 1,
 	"python-level-1-classroom": 1
 };

@@ -1,6 +1,6 @@
 import { createPinia, setActivePinia } from "pinia";
 import { describe, expect, it } from "vitest";
-import { pythonIdeModeForCourseId } from "@/modules/pythonIde";
+import { pythonIdeModeForCourseId, pythonIdeModeForCourseResource } from "@/modules/pythonIde";
 import { useCoursesStore } from "@/stores/courses";
 import { cppLevel1Course } from "@/stores/courses/cpp-level-1";
 import { cppFoundationLessonBriefs } from "@/stores/courses/cppFoundationProjectBriefs";
@@ -72,21 +72,32 @@ describe("c++ foundation assignment contracts", () => {
 		expect(pythonIdeModeForCourseId("c-level-1")).toBe("cpp");
 	});
 
-	it("keeps complete demonstrations as lesson references", async () => {
-		const course = await loadRawCourse("c-level-1");
-		const items = course!.modules
-			.filter(module => /^CPPF[12] /.test(module.title))
-			.flatMap(module => module.curriculum);
-		for (const folder of [
+	it("offers all ten complete demonstrations as learner-visible IDE readings", async () => {
+		setActivePinia(createPinia());
+		const course = await useCoursesStore().loadCourseById("c-level-1");
+		const items = course!.modules.flatMap(module => module.curriculum);
+		const references = items.filter(item => item.contentKind === "reading" && item.ideImport);
+		expect(references.map(item => item.projectLink!.split("/").at(-1))).toEqual([
 			"CPPF1-Primitive-Types-and-Strings-Reference",
 			"CPPF2-For-Loop-Practice",
-			"CPPF2-While-Loop-Practice"
-		]) {
-			const item = items.find(item => item.solutionLink?.endsWith(folder));
-			expect(item, folder).toBeDefined();
-			expect(item?.projectLink, folder).toBeUndefined();
-			expect(item?.content, folder).toMatch(/complete reference/i);
+			"CPPF2-While-Loop-Practice",
+			"CPPF3-rand-Reference",
+			"CPPF4-Point-Class",
+			"CPPF4-Person-Class-with-BMI",
+			"CPPF5-Vectors-Reference",
+			"CPPF6-Parameter-Passing-Introduction",
+			"CPPF6-Structs-Example",
+			"CPPF7-Grids-and-2D-Vectors-Reference"
+		]);
+		for (const item of references) {
+			expect(item.learningPath, item.title).toBe("core");
+			expect(item.solutionLink, item.title).toBeUndefined();
+			expect(pythonIdeModeForCourseResource("c-level-1", item.projectLink!), item.title).toBe("cpp");
 		}
+		const whileLoops = items.find(item => item.title === "While-Loop Reference and State Tracing");
+		expect(whileLoops?.content).toContain("c++ -std=c++20");
+		expect(whileLoops?.content).toContain("3628800");
+		expect(whileLoops?.content).toContain("zero");
 		expect(JSON.stringify(items)).not.toContain(
 			"Variables-Types-and-Input-and-Output-Supplemental-2"
 		);

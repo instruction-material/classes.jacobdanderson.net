@@ -2325,7 +2325,7 @@ pgzrun.go()
 		expect(pageSource).toContain("cancelTurtleAnimation()");
 	});
 
-	it("limits Turtle work per run across tracer changes and canvas resets", () => {
+	it("limits retained Turtle work per run and manual pose changes per timer", () => {
 		const pageSource = readFileSync(
 			resolve(__dirname, "../src/components/CodeIdeWorkspace.vue"),
 			"utf8"
@@ -2342,12 +2342,24 @@ pgzrun.go()
 			pageSource.indexOf("function trackTurtleFillPoint"),
 			pageSource.indexOf("function teleportTurtle")
 		);
+		const callbackSource = pageSource.slice(
+			pageSource.indexOf("async function runTurtleTimerCallback"),
+			pageSource.indexOf("function releaseIdlePythonRuntimeCallbacks")
+		);
 
 		expect(queueSource).toContain("reserveTurtleAnimationStep(");
 		expect(queueSource.indexOf("reserveTurtleAnimationStep(")).toBeLessThan(
 			queueSource.indexOf("if (!turtleTracerEnabled)")
 		);
 		expect(resetSource).not.toContain("createTurtleAnimationBudget()");
+		expect(queueSource).toContain(
+			"!turtleTracerEnabled && !step.command && !turtleFillState.active"
+		);
+		expect(queueSource).toContain("poseBudget ?? turtleAnimationBudget");
+		expect(callbackSource).toContain(
+			"turtleTimerPoseBudget = createTurtleAnimationBudget()"
+		);
+		expect(callbackSource).toContain("turtleTimerPoseBudget = null;");
 		expect(fillSource).toContain(
 			"assertTurtleStepAvailable(turtleAnimationBudget);"
 		);

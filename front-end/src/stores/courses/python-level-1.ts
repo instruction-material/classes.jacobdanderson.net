@@ -5,15 +5,18 @@ import type {
 	RawCourseModuleItem
 } from "./types";
 import { isCoreProjectTitle } from "./projectGrouping";
+import {
+	pythonLevel1ArcadeSupplementalProjects,
+	pythonLevel1SpaceEaterProject
+} from "./pythonLevel1ArcadeProjects";
+import { pythonLevel1CheckIn } from "./pythonLevel1CheckInProjects";
+import { pythonLevel1GameMechanicsProjects } from "./pythonLevel1GameMechanicsProjects";
+import { pythonLevel1ListProjects } from "./pythonLevel1ListProjects";
 
 const TURTLE_REFERENCE = "/course-assets/python/turtle-project-reference.md";
 const TURTLE_COMMAND_REFERENCE = `${TURTLE_REFERENCE}#turtle-command-reference`;
-const TURTLE_BOUNDARY_REFERENCE = `${TURTLE_REFERENCE}#boundaries-and-in-bounds-checks`;
-const TURTLE_SCORE_REFERENCE = `${TURTLE_REFERENCE}#score-turtle-pattern`;
 const TURTLE_GAME_TEMPLATE_REFERENCE = `${TURTLE_REFERENCE}#game-template-with-score-boundaries-and-moving-triangles`;
 const TURTLE_COLOR_REFERENCE = "https://trinket.io/docs/colors";
-const PYTHON_LIST_METHOD_REFERENCE =
-	"https://www.w3schools.com/python/python_ref_list.asp";
 
 export const pythonLevel1Course: RawCourse = {
 	name: "Python Level 1",
@@ -383,13 +386,7 @@ Complete the explanations and one short variable-based drawing example. This rec
 		{
 			title: "Check-In #1",
 			curriculum: [
-				{
-					title: "Check-In #1 Overview",
-					content:
-						"This check-in is a guided review of Turtle basics, loops, variables, random numbers, and conditionals. Try each prompt independently first, then revisit any topics that need more practice.",
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/Check-in-1/solution"
-				},
+				pythonLevel1CheckIn("Check-In #1 Overview"),
 				{
 					title: "Check-In #1: Basics with Turtle",
 					content:
@@ -418,16 +415,16 @@ Complete the explanations and one short variable-based drawing example. This rec
 						"https://github.com/instruction-material/Python-Level-1/tree/main/Reflection-Template-Updated/starter",
 					solutionLink:
 						"https://github.com/instruction-material/Python-Level-1/tree/main/Reflection-Template-Updated/solution"
-				},
-				{
-					title: "Check-In #1: Additional Practice Project",
-					content:
-						"Create a zigzagging line with about 30 turns, then extend it by connecting the zigzag to one or more original shapes. Use variables for repeated values such as turn amount, step length, and number of turns so the pattern can be adjusted without rewriting the loop. Verify that the extension is connected intentionally rather than added as unrelated drawing code.",
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS-Check-in-1-Additional-Practice-Project/solution"
 				}
 			],
-			supplementalProjects: []
+			supplementalProjects: [
+				{
+					...pythonLevel1CheckIn(
+						"Check-In #1: Additional Practice Project"
+					),
+					id: "python-level-1-check-in-1-curriculum-check-in-1-additional-practice-project"
+				}
+			]
 		},
 		{
 			title: "GrS5 Loops with Variables",
@@ -667,11 +664,7 @@ Complete the explanations and one short variable-based drawing example. This rec
 		{
 			title: "Check-In #2",
 			curriculum: [
-				{
-					title: "Check-In #2 Overview",
-					content:
-						"This review revisits advanced loops, functions, and event listeners. Focus on explaining not just how the code works, but why each structure is useful."
-				},
+				pythonLevel1CheckIn("Check-In #2 Overview"),
 				{
 					title: "Check-In #2: Advanced Loops",
 					content:
@@ -697,16 +690,16 @@ The reflection is specific. Instead of saying "loops are easier," explain what c
 						"https://github.com/instruction-material/Python-Level-1/tree/main/Reflection-Template-Updated/starter",
 					solutionLink:
 						"https://github.com/instruction-material/Python-Level-1/tree/main/Reflection-Template-Updated/solution"
-				},
-				{
-					title: "Check-In #2: Additional Practice Project",
-					content:
-						"Build an event-driven drawing program where different keys move the turtle to random locations or draw layered diamonds, pyramids, and circles in changing colors.",
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/Check-in-Two-Additional-Practice-ProjectUpdated/solution"
 				}
 			],
-			supplementalProjects: []
+			supplementalProjects: [
+				{
+					...pythonLevel1CheckIn(
+						"Check-In #2: Additional Practice Project"
+					),
+					id: "python-level-1-check-in-2-curriculum-check-in-2-additional-practice-project"
+				}
+			]
 		},
 		{
 			title: "GrS9 Functions Part 2",
@@ -894,27 +887,29 @@ Include one original example with at least three possible outcomes. A strong rec
 			title: "GrS12 Lists",
 			curriculum: [
 				{
-					title: "GrS12 Project 1: List Exploration",
-					content: `Create empty lists, append values, loop through list items, and check whether a value is present with the \`in\` operator.
+					title: "Lists: Order, Indexes and Membership",
+					contentKind: "reading",
+					preserveInstructions: true,
+					content: `A list keeps values in the order they were added. Use a for loop to visit every value, an index to select one position, and in to ask whether a value is present.
 
-Method reference: use W3Schools' Python list methods page when checking what list operations such as \`.append()\` and \`.remove()\` do: ${PYTHON_LIST_METHOD_REFERENCE}`,
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS12-List-Exploration/solution"
+\`\`\`python
+colors = []
+colors.append("red")
+colors.append("purple")
+
+for color in colors:
+    print(color)
+print(colors[0])
+print("purple" in colors)
+\`\`\`
+
+The loop prints red and then purple. Index 0 prints red again. The last line prints True. On an empty list, the loop prints nothing and the membership check returns False. An index has to name an item that exists, so check the list length before reading position 0.
+
+Predict what changes after appending green. The order becomes red, purple, green. The first value and the membership result stay the same. In the next project, the loop draws with each color instead of printing it.
+
+[Python list method reference](https://www.w3schools.com/python/python_ref_list.asp)`
 				},
-				{
-					title: "GrS12 Project 2: Which Way Turtles",
-					content:
-						"Store multiple turtles in a list and iterate through that list so each turtle can be positioned and moved using the same loop.",
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS12-Which-Way-Turtles/solution"
-				},
-				{
-					title: "GrS12 Project 3: Random Number Lists",
-					content:
-						"Build lists of random numbers, iterate through them, and use the stored data to display multiple lines of output based on those values.",
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS12-Random-Number-Lists/solution"
-				}
+				...pythonLevel1ListProjects
 			],
 			supplementalProjects: [
 				{
@@ -956,65 +951,9 @@ For each example, explain what kind of problem it solves. The recap makes clear 
 		},
 		{
 			title: "GrS13 Game Mechanics",
-			curriculum: [
-				{
-					title: "GrS13 Project 1: Perpetual Motion",
-					content:
-						"Use `while True` loops to create continuous movement and pair that loop with event listeners that let the player turn the turtle in real time.",
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS13-Perpetual-Motion/solution"
-				},
-				{
-					title: "GrS13 Project 2: Stay Inbounds",
-					content:
-						"Draw a boundary, monitor a turtle's coordinates, and use a conditional plus `break` to end the game when the turtle leaves the allowed area.",
-					datasetLink: TURTLE_BOUNDARY_REFERENCE,
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS13-Stay-Inbounds/solution"
-				},
-				{
-					title: "GrS13 Project 3: Fluid Motion",
-					content: `Use \`screen.tracer(0)\` and \`screen.update()\` to control when the Turtle screen redraws. This makes animations smoother because the program can move objects first and then update the screen once per frame.
-
-Build a small animation loop that moves one or more turtles, calls \`screen.update()\`, and pauses briefly if needed. Compare the result with and without manual screen updates so the reason for the pattern is visible, not just memorized.`,
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/Python-Level-1-ScreenUpdate/solution"
-				},
-				{
-					title: "GrS13 Project 4: Bouncy Ball Room",
-					content:
-						"Create many moving turtles inside a boundary box, store them in a list, and write a collision helper that turns them around when they hit the walls.",
-					datasetLink: TURTLE_GAME_TEMPLATE_REFERENCE,
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS13-Bouncy-Ball-Room/solution"
-				},
-				{
-					title: "GrS13 Project 5: Turtle Collision",
-					content: `Detect collisions by comparing two turtles' positions. Use absolute value or distance calculations to decide when their x and y coordinates are close enough to count as a hitbox overlap.
-
-Start with two turtles and print or display a message when they collide. Then test boundary cases: barely touching, almost touching, clearly overlapping, and far apart. A reliable collision check behaves consistently before it is added to a larger game.`,
-					datasetLink: TURTLE_SCORE_REFERENCE,
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS14-Turtle-Collision/solution"
-				}
-			],
+			curriculum: pythonLevel1GameMechanicsProjects,
 			supplementalProjects: [
-				{
-					title: "GrS13 Supplemental Project 1: Light the Stars",
-					content: `Create a timed sky scene where the player controls a turtle and lights stars before time runs out. The game combines keyboard movement, a list of star objects or positions, collision checks, and a visible timer or changing background state.
-
-Keep the game state explicit: which stars are still unlit, how time is represented, and what condition ends the game. Test both outcomes, winning by lighting enough stars and losing when time expires.`,
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS14-Light-the-Stars/solution"
-				},
-				{
-					title: "GrS13 Supplemental Project 2: Dodgeball",
-					content: `Turn Bouncy Ball Room into a dodgeball game. Keep the bouncing-object logic, then add a player turtle, keyboard controls, collision checks between the player and each ball, a lives counter, and a game-over state.
-
-Build the game in layers: movement first, then bouncing balls, then player collision, then lives and ending behavior. This makes bugs easier to isolate because each mechanic can be tested before the next one is added.`,
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/Grs13-Dodgeball/solution"
-				},
+				...pythonLevel1ArcadeSupplementalProjects,
 				{
 					title: "GrS13 Supplemental Project 3: Game Mechanics Recap",
 					preserveInstructions: true,
@@ -1034,11 +973,7 @@ Explain which value changes on each iteration and why each loop eventually stops
 		{
 			title: "Check-In #3",
 			curriculum: [
-				{
-					title: "Check-In #3 Overview",
-					content:
-						"This module reviews nested loops, game mechanics, advanced conditionals, and lists. Treat it as a progress snapshot and a chance to strengthen weaker topics."
-				},
+				pythonLevel1CheckIn("Check-In #3 Overview"),
 				{
 					title: "Check-In #3: Nested Loops and Game Mechanics",
 					content:
@@ -1064,14 +999,7 @@ The check-in shows that only one branch of an \`if\`/\`elif\`/\`else\` chain run
 					solutionLink:
 						"https://github.com/instruction-material/Python-Level-1/tree/main/Reflection-Template-Updated/solution"
 				},
-				{
-					title: "Check-In #3: Additional Practice Project",
-					content: `Create a simple target game with a spinning turtle, a randomly placed goal, and a spacebar-controlled launch mechanic. The player waits for the turtle to face a useful direction, presses space, and sees whether the launch reaches the target.
-
-Use conditionals or collision checks to decide whether the launch succeeds. Include a clear reset or replay path so the game can be tested several times without restarting the whole program.`,
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS-Check-in-2-Practice-Project/solution"
-				}
+				pythonLevel1CheckIn("Check-In #3: Additional Practice Project")
 			],
 			supplementalProjects: []
 		},
@@ -1079,12 +1007,8 @@ Use conditionals or collision checks to decide whether the launch succeeds. Incl
 			title: "GrS14 Space Eater",
 			curriculum: [
 				{
-					title: "GrS14 Project 1: Space Eater",
-					content:
-						"Bring together movement, lists, event listeners, collision logic, boundaries, scoring, and continuous loops to build a complete game where a player turtle eats moving targets.",
-					datasetLink: TURTLE_GAME_TEMPLATE_REFERENCE,
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS14-Space-Eater/solution"
+					...pythonLevel1SpaceEaterProject,
+					datasetLink: TURTLE_GAME_TEMPLATE_REFERENCE
 				}
 			],
 			supplementalProjects: [
@@ -1375,22 +1299,21 @@ const PYTHON_LEVEL_1_FLOW: PythonLevel1FlowConfig[] = [
 			"index",
 			"in"
 		],
-		choiceCurriculumTitles: ["GrS12 Project 3: Random Number Lists"],
 		projectThread:
-			"Explore list creation and mutation, then use Which Way Turtles to apply one command to many objects. Random Number Lists is a data-focused choice after iteration is reliable."
+			"Explore list creation and mutation, then use Which Way Turtles to apply one command to many objects. In Random Number Lists, keep the original values while drawing two transformed rows."
 	},
 	{
 		title: "GrS13 Game Mechanics",
 		estimatedTime: "4–5 sessions · 45–60 minutes each",
 		keyBlocks: [
-			"while True",
+			"screen.ontimer()",
 			"screen.tracer() / update()",
 			"boundary checks",
 			"object lists",
 			"collision helper"
 		],
 		projectThread:
-			"Build the real-time game loop in layers: continuous motion, boundaries, manual screen updates, many moving objects, then collision detection. Test each mechanic before combining it with the next."
+			"Schedule a short movement frame and let key handlers run between frames. Add a stopping boundary, one redraw per frame, reflected movement, and a collision transition. Test each mechanic before combining it with the next."
 	},
 	{
 		title: "Check-In #3",

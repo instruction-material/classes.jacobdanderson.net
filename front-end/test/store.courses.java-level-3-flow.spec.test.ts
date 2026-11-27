@@ -70,7 +70,7 @@ describe("Java Level 3 learner flow", () => {
 			},
 			{
 				kind: "appendix",
-				title: "Pending Demo Media"
+				title: "Project Walkthroughs"
 			}
 		]);
 	});

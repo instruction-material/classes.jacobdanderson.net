@@ -75,7 +75,7 @@ describe("C++ Level 3 learner flow", () => {
 		);
 
 		expect(requiredCount).toBe(22);
-		expect(optionCount).toBe(8);
+		expect(optionCount).toBe(14);
 		expect(options).toContainEqual({
 			path: "challenge",
 			title: "CPPI1 Project 3: Mini Command Scanner"
@@ -107,6 +107,11 @@ describe("C++ Level 3 learner flow", () => {
 		expect(readiness?.content).toContain(
 			"exits unsuccessfully when a regression is introduced"
 		);
+		expect(readiness?.content).toContain("./checkpoint --check");
+		expect(readiness?.content).toContain("expects 180 and reports FAIL");
+		expect(readiness?.content).toContain("./checkpoint-debug --trace");
+		expect(setup.curriculum[0]?.contentKind).toBe("reading");
+		expect(setup.curriculum[0]?.content).toContain("## Separate three kinds of failure");
 	});
 
 	it("ends with robust persistence and safe polymorphic boundaries", () => {
@@ -122,12 +127,16 @@ describe("C++ Level 3 learner flow", () => {
 
 		expect(capstoneText).toContain("virtual destructors");
 		expect(capstoneText).toContain("object-slicing avoidance");
-		expect(contract?.content).toContain(
-			"Save/reload round-trip equivalence"
-		);
-		expect(contract?.content).toContain(
-			"malformed or corrupted-file recovery"
-		);
-		expect(contract?.content).toContain("no object slicing");
+		for (const check of [
+			"make CXX=c++ main",
+			"five legal phase transitions",
+			"empty input",
+			"registered but unreachable target",
+			"save/reload round-trip equivalence",
+			"malformed copy",
+			"graph owned by `Rover`"
+		]) {
+			expect(contract?.content).toContain(check);
+		}
 	});
 });

@@ -26,6 +26,15 @@ import {
 import { cppProfileProjectBriefs } from "./cppProfileProjectBriefs";
 import { isCoreProjectTitle } from "./projectGrouping";
 
+function workedExample(folder: string) {
+	return {
+		contentKind: "reading" as const,
+		ideImport: true,
+		preserveInstructions: true,
+		projectLink: `https://github.com/instruction-material/CPP-Level-1/tree/770aa14c51891d73e4f5c960fa839f8bdf15b964/${folder}`
+	};
+}
+
 const cppLevel1SourceCourse: RawCourse = {
 	name: "C++ Level 1",
 	modules: [
@@ -42,8 +51,9 @@ const cppLevel1SourceCourse: RawCourse = {
 				{
 					title: "Primitive Types, Strings, and Console I/O",
 					content: cppFoundationLessonBriefs.values,
-					solutionLink:
-						"https://github.com/instruction-material/CPP-Level-1/tree/main/CPPF1-Primitive-Types-and-Strings-Reference"
+					...workedExample(
+						"CPPF1-Primitive-Types-and-Strings-Reference"
+					)
 				},
 				{
 					title: "Token Input, Full-Line Input, and Failure",
@@ -74,15 +84,12 @@ const cppLevel1SourceCourse: RawCourse = {
 				{
 					title: "Branching and Repetition",
 					content: cppFoundationLessonBriefs.branches,
-					solutionLink:
-						"https://github.com/instruction-material/CPP-Level-1/tree/main/CPPF2-For-Loop-Practice"
+					...workedExample("CPPF2-For-Loop-Practice")
 				},
 				{
 					title: "While-Loop Reference and State Tracing",
-					content:
-						"The supplied while-loop program is a complete reference, not starter work. Predict each counter's initial value, condition and update before running it. It prints 0–10, even values 0–10, a countdown 10–0, the letters of one ASCII word forward/backward, sum 5050 and factorial 3628800. Missing word input skips the character examples while the constant examples finish. Use its README and compare zero-iteration, one-iteration and normal traces with the for-loop reference.",
-					solutionLink:
-						"https://github.com/instruction-material/CPP-Level-1/tree/main/CPPF2-While-Loop-Practice"
+					content: cppFoundationLessonBriefs.whileLoops,
+					...workedExample("CPPF2-While-Loop-Practice")
 				},
 				{
 					title: "CPPF2 Project 1: Number Games",
@@ -135,8 +142,7 @@ const cppLevel1SourceCourse: RawCourse = {
 						"c-level-1-cppf3-functions-curriculum-functions-application-check"
 					],
 					content: cppFunctionsLessonBriefs.random,
-					solutionLink:
-						"https://github.com/instruction-material/CPP-Level-1/tree/main/CPPF3-rand-Reference"
+					...workedExample("CPPF3-rand-Reference")
 				},
 				{
 					title: "CPPF3 Project 2: Probability Events and Random",
@@ -176,8 +182,7 @@ const cppLevel1SourceCourse: RawCourse = {
 						"c-level-1-cppf4-classes-and-objects-curriculum-multi-file-class-implementation"
 					],
 					content: cppClassesLessonBriefs.point,
-					solutionLink:
-						"https://github.com/instruction-material/CPP-Level-1/tree/main/CPPF4-Point-Class"
+					...workedExample("CPPF4-Point-Class")
 				},
 				{
 					title: "CPPF4 Project 1: Person Class",
@@ -193,8 +198,7 @@ const cppLevel1SourceCourse: RawCourse = {
 						"c-level-1-cppf4-classes-and-objects-supplemental-classes-and-objects-bmi-extension"
 					],
 					content: cppClassesLessonBriefs.initializers,
-					solutionLink:
-						"https://github.com/instruction-material/CPP-Level-1/tree/main/CPPF4-Person-Class-with-BMI"
+					...workedExample("CPPF4-Person-Class-with-BMI")
 				},
 				{
 					title: "CPPF4 Project 2: Cat Class",
@@ -216,8 +220,7 @@ const cppLevel1SourceCourse: RawCourse = {
 				{
 					title: "Vectors as Growable Sequences and Function Inputs",
 					content: cppCollectionsLessonBrief,
-					solutionLink:
-						"https://github.com/instruction-material/CPP-Level-1/tree/main/CPPF5-Vectors-Reference"
+					...workedExample("CPPF5-Vectors-Reference")
 				},
 				{
 					title: "CPPF5 Project 1: Vector Practice",
@@ -244,8 +247,7 @@ const cppLevel1SourceCourse: RawCourse = {
 				{
 					title: "References, Const References, and Function Boundaries",
 					content: cppParameterLessonBriefs.introduction,
-					solutionLink:
-						"https://github.com/instruction-material/CPP-Level-1/tree/main/CPPF6-Parameter-Passing-Introduction"
+					...workedExample("CPPF6-Parameter-Passing-Introduction")
 				},
 				{
 					title: "CPPF6 Project 1: Parameter Passing Tracing",
@@ -258,8 +260,7 @@ const cppLevel1SourceCourse: RawCourse = {
 				{
 					title: "Structs for Small Records",
 					content: cppParameterLessonBriefs.structs,
-					solutionLink:
-						"https://github.com/instruction-material/CPP-Level-1/tree/main/CPPF6-Structs-Example"
+					...workedExample("CPPF6-Structs-Example")
 				},
 				{
 					title: "CPPF6 Project 2: Defanging a Website Address",
@@ -287,8 +288,7 @@ const cppLevel1SourceCourse: RawCourse = {
 				{
 					title: "Nested Vectors, Grid Traversal, and Nested Loop Patterns",
 					content: cppGridLessonBrief,
-					solutionLink:
-						"https://github.com/instruction-material/CPP-Level-1/tree/main/CPPF7-Grids-and-2D-Vectors-Reference"
+					...workedExample("CPPF7-Grids-and-2D-Vectors-Reference")
 				},
 				{
 					title: "CPPF7 Project: Matrix Addition",

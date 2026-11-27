@@ -170,6 +170,14 @@ const learnerRequest = computed(() =>
 			: ""
 		: initialLearnerRequest.value
 );
+const courseRequest = computed(() => {
+	const value = navigationRoute
+		? navigationRoute.query.course
+		: typeof window === "undefined"
+			? ""
+			: new URLSearchParams(window.location.search).get("course");
+	return typeof value === "string" ? value : "";
+});
 function clearLearnerRequest() {
 	if (navigationRouter && navigationRoute) {
 		const query = { ...navigationRoute.query };
@@ -440,7 +448,13 @@ watch(
 );
 
 watch(
-	[managedLearners, isStorageReady, currentHashAnchor, learnerRequest],
+	[
+		managedLearners,
+		isStorageReady,
+		currentHashAnchor,
+		learnerRequest,
+		courseRequest
+	],
 	([value, storageReady]) => {
 		if (!isStaffContext.value) return;
 
@@ -487,10 +501,13 @@ watch(
 			selectedLearnerId.value,
 			value
 		);
-		const hashCourseId = courseIdFromHash(
+		const requestedCourseId = courseIdFromLocation(
 			allCourses.value.map(course => course.id)
 		);
-		const learnerForHash = preferredLearnerIdForCourse(value, hashCourseId);
+		const learnerForCourse = preferredLearnerIdForCourse(
+			value,
+			requestedCourseId
+		);
 		const storedLearnerId = readStoredValue(LEARNER_SELECTION_STORAGE_KEY);
 		const storedLearner = value.find(user => user._id === storedLearnerId);
 		const storedAllLearners = isAllLearnersSelection(storedLearnerId);
@@ -505,15 +522,15 @@ watch(
 
 			if (
 				storedLearner &&
-				(!hashCourseId ||
-					learnerCanAccessCourse(storedLearner, hashCourseId))
+				(!requestedCourseId ||
+					learnerCanAccessCourse(storedLearner, requestedCourseId))
 			) {
 				selectedLearnerId.value = storedLearner._id;
 				return;
 			}
 
-			if (learnerForHash) {
-				selectedLearnerId.value = learnerForHash;
+			if (learnerForCourse) {
+				selectedLearnerId.value = learnerForCourse;
 				return;
 			}
 
@@ -525,15 +542,18 @@ watch(
 
 		if (
 			selectedStillValid &&
-			(!hashCourseId ||
+			(!requestedCourseId ||
 				isAllLearnersContext.value ||
-				learnerCanAccessCourse(selectedLearner.value, hashCourseId))
+				learnerCanAccessCourse(
+					selectedLearner.value,
+					requestedCourseId
+				))
 		) {
 			return;
 		}
 
-		if (learnerForHash) {
-			selectedLearnerId.value = learnerForHash;
+		if (learnerForCourse) {
+			selectedLearnerId.value = learnerForCourse;
 			return;
 		}
 
@@ -549,7 +569,7 @@ watch([selectedLearnerId, selectedCourseId], () => {
 });
 
 watch(
-	[courseList, isStorageReady, currentHashAnchor],
+	[courseList, isStorageReady, currentHashAnchor, courseRequest],
 	([availableCourses, storageReady]) => {
 		if (availableCourses.length === 0) {
 			selectedCourseId.value = "";
@@ -559,11 +579,11 @@ watch(
 		if (!storageReady) return;
 
 		const availableCourseIds = availableCourses.map(course => course.id);
-		const hashCourseId = courseIdFromHash(availableCourseIds);
+		const requestedCourseId = courseIdFromLocation(availableCourseIds);
 		const storedCourseId = readStoredValue(COURSE_SELECTION_STORAGE_KEY);
 
-		if (hashCourseId) {
-			selectedCourseId.value = hashCourseId;
+		if (requestedCourseId) {
+			selectedCourseId.value = requestedCourseId;
 			return;
 		}
 
@@ -963,7 +983,9 @@ function syncHashAnchor() {
 	currentHashAnchor.value = readCurrentHashAnchor();
 }
 
-function courseIdFromHash(courseIds: string[]) {
+function courseIdFromLocation(courseIds: string[]) {
+	if (courseIds.includes(courseRequest.value)) return courseRequest.value;
+
 	const anchor = currentHashAnchor.value;
 	if (!anchor) return "";
 
@@ -1428,8 +1450,17 @@ function repositoryArchiveLabel(item: CourseModuleItem) {
 	return "Source archive";
 }
 
+function isCppLevel1WorkedExample(item: CourseModuleItem) {
+	return (
+		selectedCourse.value?.id === "c-level-1" &&
+		item.contentKind === "reading" &&
+		item.ideImport === true
+	);
+}
+
 function projectLabel(item: CourseModuleItem, url: string) {
 	if (url.startsWith("/ide?")) return "Start in IDE";
+	if (isCppLevel1WorkedExample(item)) return "Worked example";
 	const normalizedTitle = item.title.toLowerCase();
 	const normalizedUrl = url.toLowerCase();
 
@@ -1828,6 +1859,8 @@ function ideStarterHref(item: CourseModuleItem, resource: ResourceLink) {
 		resource.url
 	);
 	if (!mode) return "";
+	const workedExample =
+		resource.kind === "project" && isCppLevel1WorkedExample(item);
 
 	const javaCourse = ["java-level-2", "java-level-3"].includes(
 		selectedCourse.value.id
@@ -1898,7 +1931,9 @@ function ideStarterHref(item: CourseModuleItem, resource: ResourceLink) {
 																		: goldHistoricalProjectKey)(
 			selectedCourse.value.id,
 			item.id,
-			resource.kind === "solution" ? "reference" : "starter",
+			resource.kind === "solution" || workedExample
+				? "reference"
+				: "starter",
 			starterUrl
 		),
 		starterUrl,
@@ -2636,7 +2671,10 @@ function writeStoredValue(key: string, value: string) {
 												>
 													{{
 														resource.kind ===
-														"solution"
+															"solution" ||
+														isCppLevel1WorkedExample(
+															item
+														)
 															? "Open reference in IDE"
 															: resource.host ===
 																  "scratch.mit.edu"

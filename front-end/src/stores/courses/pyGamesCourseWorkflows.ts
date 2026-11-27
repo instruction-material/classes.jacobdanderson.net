@@ -366,7 +366,8 @@ function originalSource(module: RawCourseModule, item: RawCourseModuleItem) {
 const corePacks = {
 	music: "PG-CORE-Workspace-and-Assets",
 	images: "PG-CORE-Image-Anchors",
-	sounds: "PG-CORE-Arena-Capstone"
+	sounds: "PG-CORE-Arena-Capstone",
+	light: "PG-CORE-Light-Control"
 } as const;
 
 function coreWorkspace(
@@ -416,6 +417,29 @@ function coreReading(kind: string, classroom: boolean) {
 
 ${reading}`;
 }
+
+const lightControlReading = `Open the starter and run \`main.py\`. The battery follows left clicks and drags, and the bulb stays dark until the contact rule is written. The project includes three images, the buzz sound and a worksheet.
+
+In \`contact.py\`, implement \`transition(touching, powered)\`. \`touching\` comes from the two actors' \`colliderect()\` check. \`powered\` records whether the bulb image is on. Return the command for the current pair and let \`update()\` apply it.
+
+| Touching | Already on | Return value |
+| --- | --- | --- |
+| No | No | \`None\` |
+| Yes | No | \`"on"\` |
+| Yes | Yes | \`None\` |
+| No | Yes | \`"off"\` |
+
+Run \`contracts.py\` to check all four transitions. Run \`main.py\` again and test separation, contact, held contact, separation and reconnection. The bulb lights and starts one continuous buzz on first contact. It stays on with a steady buzz while held, falls dark and silent on separation, then lights and buzzes on reconnection.
+
+Record predictions and observations in \`observations.md\`. In a guided walkthrough, pause before first contact and again while holding it to explain why only one frame starts playback. For a local run, export the whole workspace, install \`requirements.txt\` in Python 3.12 and run the same two files.`;
+
+const classroomLightControlReading = `Run the working \`main.py\` and test separation, contact, held contact and reconnection. Record when the image changes and when the sound starts or stops. In a guided walkthrough, predict the first two frames before moving the battery. Save the working baseline.
+
+**Normal:** Add a status label in \`draw()\` that reads “Contact” when \`battery.colliderect(bulb)\` is true and “Move battery to bulb” while separated. Verify both labels, then repeat the held-contact and separation checks to confirm the display change leaves the bulb and buzz working.
+
+**Hard:** After saving the Normal version, add an M-key mute toggle. While touching, muting should silence the buzz immediately while the bulb stays on. Unmuting while touching resumes one loop. Hold contact for several frames, separate, then reconnect and repeat the test while muted. Reconnection should remain silent until unmuted.
+
+**Success criteria:** Record the expected and actual results in \`observations.md\`. Run \`contracts.py\` to check that the original four contact transitions still work. Save the selected variation with its image and sound files.`;
 
 const checkIn2Reading = `Open the checkpoint starter and run it once before making changes. Keep the imported file with \`STARTER_GAME = "bigfoot"\` for gravity and platforms. In the same workspace, add \`shuffleboard.py\`, copy in the starter code and set \`STARTER_GAME = "shuffleboard"\`. Select a file before running its game.
 
@@ -535,6 +559,24 @@ Model source: [Course program](${pyGamesPinnedSourceUrl(practice.file)}).`;
 				continue;
 			}
 			const file = originalSource(module, item);
+			if (file === "PyG3-Light-Control.py") {
+				item.projectLink = coreWorkspace(courseID, item, "light");
+				if (classroom) {
+					delete item.solutionLink;
+				} else {
+					item.solutionLink = pyGamesCoreUrl(
+						corePacks.light,
+						"solution"
+					);
+				}
+				item.contentKind = "assignment";
+				item.ideImport = true;
+				item.preserveInstructions = true;
+				item.content = classroom
+					? classroomLightControlReading
+					: lightControlReading;
+				continue;
+			}
 			if (file === "PyG12-Master-Project.py") {
 				item.projectLink = coreWorkspace(courseID, item, "sounds");
 				item.solutionLink = pyGamesCoreUrl(

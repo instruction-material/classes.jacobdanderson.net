@@ -790,6 +790,7 @@ let turtleStampCounter = 0;
 let turtleCompletedCommands: TurtleCompletedCommand[] = [];
 let turtleQueuedSteps: TurtleAnimationStep[] = [];
 let turtleAnimationBudget = createTurtleAnimationBudget();
+let turtleTimerPoseBudget: typeof turtleAnimationBudget | null = null;
 let turtleManualFrame: TurtleManualFrame | null = null;
 let turtleVisiblePoses = new Map<string, TurtlePose>();
 let turtleWorldCoordinates: [number, number, number, number] | null = null;
@@ -1411,6 +1412,19 @@ const returnLessonHash = computed(() => {
 		/^[\w-]+$/.test(lesson)
 		? `#${lesson}`
 		: `#${requestedCourseId.value}`;
+});
+const returnLessonRoute = computed(() => {
+	const course = requestedCourseId.value;
+	const hash = returnLessonHash.value;
+	return {
+		path: "/courses",
+		hash,
+		// Classroom editions can share their original lesson IDs with another course.
+		query:
+			hash === `#${course}` || hash.startsWith(`#${course}-`)
+				? undefined
+				: { course }
+	};
 });
 const requestedCourseProjectKey = computed(() =>
 	typeof route.query.projectKey === "string" ? route.query.projectKey : ""
@@ -4788,11 +4802,17 @@ function scheduleTurtleAnimation() {
 function queueTurtleStep(
 	step: Omit<TurtleAnimationStep, "turtleID"> & { turtleID?: string }
 ) {
+	// Manual timer frames replace pose state. Draw commands and fill points
+	// retain history, so they still share the run-wide drawing budget.
+	const updatesPoseOnly =
+		!turtleTracerEnabled && !step.command && !turtleFillState.active;
+	const poseBudget = updatesPoseOnly ? turtleTimerPoseBudget : null;
 	const admission = reserveTurtleAnimationStep(
-		turtleAnimationBudget,
+		poseBudget ?? turtleAnimationBudget,
 		turtleTracerEnabled ? step.durationMs : 0
 	);
-	turtleAnimationBudget = admission.budget;
+	if (poseBudget) turtleTimerPoseBudget = admission.budget;
+	else turtleAnimationBudget = admission.budget;
 	const nextStep = {
 		...step,
 		durationMs: admission.durationMs,
@@ -4932,6 +4952,7 @@ async function runTurtleTimerCallback(
 	await waitForTurtleAnimation();
 	if (timerGeneration !== turtleTimerGeneration) return;
 
+	turtleTimerPoseBudget = createTurtleAnimationBudget();
 	try {
 		callback();
 	} catch (error) {
@@ -4942,6 +4963,8 @@ async function runTurtleTimerCallback(
 				: "Turtle timer handler failed."
 		);
 		recordIdeFailure(error);
+	} finally {
+		turtleTimerPoseBudget = null;
 	}
 }
 
@@ -8258,10 +8281,7 @@ defineExpose({ stop: stopCurrentProject, runIsolated, releaseIsolatedPointer });
 				data-testid="ide-run-status"
 				>{{ runMessage }}</strong
 			>
-			<RouterLink
-				v-if="requestedCourseId"
-				:to="{ path: '/courses', hash: returnLessonHash }"
-			>
+			<RouterLink v-if="requestedCourseId" :to="returnLessonRoute">
 				Return to lesson
 			</RouterLink>
 		</WorkspaceHeader>

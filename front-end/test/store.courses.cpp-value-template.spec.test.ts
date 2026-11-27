@@ -55,6 +55,7 @@ describe("complete value and template teaching with separate diagnostic practice
 			expect(project.id).toBe(
 				`${anchor}-curriculum-cppi5-project-score-or-fraction-toolkit`
 			);
+			expect(project.title).toBe("CPPI5 Project: Fraction Toolkit");
 			expect(project.learningPath).toBe("core");
 			expect(project.ideImport).toBe(true);
 			expect(isLessonLearningItem(project)).toBe(false);
@@ -131,7 +132,7 @@ describe("complete value and template teaching with separate diagnostic practice
 				(n, item) => n + item.supplementalProjects.length,
 				0
 			)
-		).toBe(8);
+		).toBe(14);
 	});
 	it("keeps the actual diagnostic packs importable", () => {
 		expect(

@@ -57,7 +57,8 @@ describe("C++ collection assignments", () => {
 			"CPPF5 Project 2: Bank Accounts"
 		]);
 		const lesson = module.curriculum[0];
-		expect(lesson.projectLink).toBeUndefined();
+		expect(lesson.projectLink).toMatch(/\/CPPF5-Vectors-Reference$/);
+		expect(lesson.contentKind).toBe("reading");
 		expect(lesson.solutionLink).toBeUndefined();
 		expect(lesson.content).toContain(
 			"https://github.com/instruction-material/CPP-Level-1/tree/main/CPPF5-Vectors-Reference"

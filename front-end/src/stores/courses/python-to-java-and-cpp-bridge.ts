@@ -113,6 +113,20 @@ const BRIDGE_PROJECT_FOLDERS = {
 } as const;
 
 type BridgeProject = keyof typeof bridgeProjectBriefs;
+
+const BRIDGE_PROJECT_CHECKS: Record<BridgeProject, string> = {
+	syntax: "Predict labels for 0 and -15 and check both produce FizzBuzz. Run the minimum-integer case separately and confirm it is rejected before negation.",
+	functions:
+		"Check clampScore at -1, 100 and 101. Compare the member price for 42.5 against 38.25 using a tolerance and check that rhythm has zero vowels.",
+	collections:
+		"Use apple, berry, fig and apple in that order. Check the filtered result includes both apples, the first longest result is apple, and the input list is unchanged.",
+	classes:
+		"Start Avery at 125, deposit 25 and withdraw 40. Check the summary is Avery has $110.00. Attempt an overdraft and compare the balance before and after it.",
+	java: "Run with a blank first answer and with immediate EOF. Check the blank line earns no point and reaches question two, while EOF prints Input ended. and ends the quiz.",
+	cpp: "Use a one-token input containing vector and leave the remaining input empty. Check that the program reports one round and one point after EOF.",
+	capstone:
+		"Run the extracted project with the shared console fixture. Record the exact build command and compare task IDs, output order and final totals with the Python baseline."
+};
 type BridgeLesson = [
 	title: string,
 	content: string,
@@ -128,14 +142,10 @@ function projectChoice(
 	const branch =
 		project === "java" || project === "cpp" ? "" : `/${language}`;
 	const label = language === "java" ? "Java" : "C++";
-	const completionCheck =
-		project === "capstone"
-			? "\n\n**Completion checks:** Run the extracted project with the shared console fixture. Record the exact build command and compare task IDs, output order and final totals with the Python baseline."
-			: "";
 	return {
 		title: `${title}: ${label} Starter`,
 		learningPath: "choice",
-		content: `Choose this ${label} starter to complete the shared project above. Only one target is required. The IDE button opens a confirmation before downloading this language’s source and complete README; it imports the starter, not the separate reference. Keep all files together, save and download the project ZIP, then extract and compile it with the README’s native commands. ${language === "java" ? "Use JDK 21; the Java browser runner is a limited preview and native compilation is the completion gate." : "Use a C++17 compiler; the source workspace does not execute C++ in the browser."} Compare the separate ${label} reference after a working draft and fixture record.${completionCheck}`,
+		content: `Choose this ${label} starter to complete the shared project above. Only one target is required. The IDE button opens a confirmation before downloading this language’s source and complete README; it imports the starter, not the separate reference. Keep all files together, save and download the project ZIP, then extract and compile it with the README’s native commands. ${language === "java" ? "Use JDK 21; the Java browser runner is a limited preview and native compilation is the completion gate." : "Use a C++17 compiler; the source workspace does not execute C++ in the browser."} Compare the separate ${label} reference after a working draft and fixture record.\n\n**Completion checks:** ${BRIDGE_PROJECT_CHECKS[project]}`,
 		projectLink: `${BRIDGE_SOURCE_BASE}/${folder}/starter${branch}`,
 		solutionLink: `${BRIDGE_SOURCE_BASE}/${folder}/solution${branch}`
 	};
@@ -220,7 +230,8 @@ export const pythonToJavaAndCppBridgeCourse: RawCourse = {
 				],
 				[
 					"Project: Starter Source Review",
-					"Read the chosen warmup starter’s declarations and README before implementing it. Identify the supplied driver, the unfinished callable methods, parameter types, return types, and the native compile/run command. Explain why the starter can compile while still stopping at an implementation reminder. This is a reading checkpoint within the warmup, not another project or another import. Keep learner changes in the starter and consult its separate target-language reference after a working draft."
+					"Read the chosen warmup starter’s declarations and README before implementing it. Identify the supplied driver, the unfinished callable methods, parameter types, return types, and the native compile/run command. Explain why the starter can compile while still stopping at an implementation reminder. This is a reading checkpoint within the warmup, not another project or another import. Keep learner changes in the starter and consult its separate target-language reference after a working draft.",
+					"reading"
 				],
 				[
 					"Python Readiness and Toolchain Checkpoint",
@@ -231,7 +242,7 @@ export const pythonToJavaAndCppBridgeCourse: RawCourse = {
 			"syntax",
 			[
 				"Workflow Translation Extension Practice",
-				"After a working warmup, port it into the second target and compare the same fixtures. Record the declaration, block and compile/run differences. Reuse the matching starter choice above; this is an optional second-target comparison of the same contract, not another required warmup."
+				"After a working warmup, port it into the second target and compare the same fixtures. Record the declaration, block and compile/run differences. Reuse the matching starter choice above; this is an optional second-target comparison of the same contract, not another required warmup.\n\n**Completion checks:** Create a comparison row for the same input of 15 in both targets. Show the result and the condition that runs first. For the minimum-int case, record the subtype or diagnostic used by each build and explain how both reject an unrepresentable result. Keep the first working port for comparison."
 			]
 		),
 		bridgeModule(
@@ -259,7 +270,7 @@ export const pythonToJavaAndCppBridgeCourse: RawCourse = {
 			"functions",
 			[
 				"Function Signature Transfer Practice",
-				"After the function pack passes, write a type map for each parameter and return value in the other target without reading its reference. Predict a missing-return diagnostic and a wrong-argument-type diagnostic, then verify them in a small disposable example. Keep the original project behavior unchanged."
+				"After the function pack passes, write a type map for each parameter and return value in the other target without reading its reference. Predict a missing-return diagnostic and a wrong-argument-type diagnostic, then verify them in a small disposable example. Keep the original project behavior unchanged.\n\n**Completion checks:** Use countVowels as one example. Predict what a call with an integer argument does at compile time, then restore the correct call and verify an ASCII string with five vowels. Mark the type of the parameter and return value and record any necessary difference between the two targets."
 			]
 		),
 		bridgeModule(
@@ -287,7 +298,7 @@ export const pythonToJavaAndCppBridgeCourse: RawCourse = {
 			"collections",
 			[
 				"Collection Indexing Transfer Practice",
-				"Trace the same collection fixture once with a range loop and once with indexes in the chosen target. Preserve order, duplicates, the first longest tie and unchanged input. Explain which version makes the bounds easier to verify. This optional refactor reuses the completed collection project."
+				"Trace the same collection fixture once with a range loop and once with indexes in the chosen target. Preserve order, duplicates, the first longest tie and unchanged input. Explain which version makes the bounds easier to verify. This optional refactor reuses the completed collection project.\n\n**Completion checks:** Use an empty collection and a list containing apple, berry, fig and apple. Record the first element accepted by each loop, the filtered order and the first longest tie. Compare the original collection before and after both variants. Explain why an indexed loop with a less-than-or-equal guard would overrun the last element."
 			]
 		),
 		bridgeModule(
@@ -319,7 +330,7 @@ export const pythonToJavaAndCppBridgeCourse: RawCourse = {
 			"classes",
 			[
 				"Header Source Extension Practice",
-				"For a completed C++ class port, build only the driver and inspect the missing-definition linker error, then restore the full build command. For Java, draw a reference-alias trace and compare it with a separate new account. Record the language-specific lesson without altering the account contract."
+				"For a completed C++ class port, build only the driver and inspect the missing-definition linker error, then restore the full build command. For Java, draw a reference-alias trace and compare it with a separate new account. Record the language-specific lesson without altering the account contract.\n\n**Completion checks:** Record the build command, the diagnostic or alias trace, and one corrected observation. In C++, rerun the restored build and check that the deposit updates the account. In Java, compare the balances through the alias and through the separately constructed object after a deposit to the first account."
 			]
 		),
 		bridgeModule(
@@ -340,7 +351,7 @@ export const pythonToJavaAndCppBridgeCourse: RawCourse = {
 				],
 				[
 					"Java Specific Adaptation: Verification and Reflection",
-					"Create the full fixture table from the project brief. Verify points stay between zero and two, empty input is distinguished from an empty line, and cancellation does not erase earned points. Record exact native commands, predicted and observed output, and one corrected String comparison mistake. Explain how `Scanner` and `main` adapt the Python workflow. A facilitated walkthrough pauses before reading a line and before changing the score; independent study writes those predictions in the record.",
+					"Create the full fixture table from the project brief. Verify points stay between zero and two, empty input is distinguished from an empty line, and cancellation does not erase earned points. Record exact native commands, predicted and observed output, and one corrected String comparison mistake. Explain how `Scanner` and `main` adapt the Python workflow. A facilitated walkthrough pauses before reading a line and before changing the score; independent study writes those predictions in the record.\n\n**Completion checks:** Include a file containing class followed by EOF. Record the cancellation message and the final score of one out of two, alongside a normal two-answer run.",
 					"assignment"
 				]
 			],
@@ -348,7 +359,7 @@ export const pythonToJavaAndCppBridgeCourse: RawCourse = {
 			"java",
 			[
 				"Java Scanner Transfer Practice",
-				"Using the completed quiz driver, predict a blank answer versus immediate EOF and EOF after one correct answer. Verify the output and explain why a line-availability check precedes reading. This optional input trace reuses the quiz; it does not require another scoring project."
+				"Using the completed quiz driver, predict a blank answer versus immediate EOF and EOF after one correct answer. Verify the output and explain why a line-availability check precedes reading. This optional input trace reuses the quiz; it does not require another scoring project.\n\n**Completion checks:** Prepare three input files containing respectively a blank line followed by equals, no bytes, and class followed by EOF. Run each with the same compiled program. Record how many questions were reached, whether input ended early, and the final score. The expected scores are one, zero and one."
 			]
 		),
 		bridgeModule(
@@ -368,7 +379,7 @@ export const pythonToJavaAndCppBridgeCourse: RawCourse = {
 				],
 				[
 					"C++ Specific Adaptation: Verification and Reflection",
-					"Test exact membership, missing words, case changes, empty/duplicate secret lists, repeated accepted guesses, blank whitespace, immediate EOF and EOF after one match. The last case must score one rather than replaying the previous token. Record the accepted round count and unchanged input vector. Explain why token input differs from Python line input and document the actual native build/run command. Completion requires the whole fixture set and a corrected failure trace, not only a successful three-token sample.",
+					"Test exact membership, missing words, case changes, empty/duplicate secret lists, repeated accepted guesses, blank whitespace, immediate EOF and EOF after one match. The last case must score one rather than replaying the previous token. Record the accepted round count and unchanged input vector. Explain why token input differs from Python line input and document the actual native build/run command. Completion requires the whole fixture set and a corrected failure trace, not only a successful three-token sample.\n\n**Completion checks:** Use vector compile on a single line to show token-based input. Record the accepted round count before EOF and explain whether a blank line supplies a guess.",
 					"assignment"
 				]
 			],
@@ -376,7 +387,7 @@ export const pythonToJavaAndCppBridgeCourse: RawCourse = {
 			"cpp",
 			[
 				"C++ Vector Extension Practice",
-				"Using the completed console port, test duplicated secrets and repeated guesses as separate fixtures, then verify non-mutation and EOF after one match. Explain why membership returns one point per accepted round. This optional trace reuses the console project rather than importing another pack."
+				"Using the completed console port, test duplicated secrets and repeated guesses as separate fixtures, then verify non-mutation and EOF after one match. Explain why membership returns one point per accepted round. This optional trace reuses the console project rather than importing another pack.\n\n**Completion checks:** For a duplicated secret word, call the scoring helper once and check it awards one point. Run the driver with two occurrences of the word vector before EOF to check that repeated guesses are two rounds and EOF adds no round. Record the expected and actual scores and compare the vector before and after the helper."
 			]
 		),
 		bridgeModule(

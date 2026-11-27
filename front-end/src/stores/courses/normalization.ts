@@ -400,23 +400,6 @@ function renameModule(course: RawCourse, fromTitle: string, toTitle: string) {
 	if (module) module.title = toTitle;
 }
 
-function setItemLinks(
-	course: RawCourse,
-	moduleTitle: string,
-	itemTitle: string,
-	links: Pick<RawCourseModuleItem, "projectLink" | "solutionLink">
-) {
-	const module = course.modules.find(module => module.title === moduleTitle);
-	const item = module
-		? [...module.curriculum, ...module.supplementalProjects].find(
-				item => item.title === itemTitle
-			)
-		: null;
-	if (!item) return;
-	if (links.projectLink) item.projectLink = links.projectLink;
-	if (links.solutionLink) item.solutionLink = links.solutionLink;
-}
-
 function cleanTitleText(text: string) {
 	return text
 		.replace(/\(COPY\)/g, "")
@@ -3608,13 +3591,6 @@ function isScienceContext(context: CourseTextContext) {
 function isAppliedStudioContext(context: CourseTextContext) {
 	return /applied studio|applied lab|studio|lab \d+/i.test(
 		`${context.module.title} ${context.item.title}`
-	);
-}
-
-function isAuthoredBridgeCapstone(context: CourseTextContext) {
-	return (
-		context.courseId === "python-to-java-and-cpp-bridge" &&
-		context.module.title.startsWith("Language Bridge Lab 17:")
 	);
 }
 
@@ -8416,7 +8392,7 @@ function rewritePlaceholderCourseText(course: RawCourse, courseId: string) {
 				}
 
 				if (
-					!isAuthoredBridgeCapstone(context) &&
+					courseId !== "python-to-java-and-cpp-bridge" &&
 					isAppliedStudioContext(context) &&
 					wordCount(item.content) < 90
 				) {
@@ -8491,11 +8467,12 @@ function addMissingMathModuleLessonBackbones(
 }
 
 function normalizeCourseTextQuality(course: RawCourse, courseId: string) {
+	// The bridge supplies its own checkpoints and a choice of target language.
+	if (courseId === "python-to-java-and-cpp-bridge") return;
 	for (const module of course.modules) {
 		for (const section of ["curriculum", "supplementalProjects"] as const) {
 			for (const item of module[section]) {
 				const context = { courseId, course, module, item, section };
-				if (isAuthoredBridgeCapstone(context)) continue;
 				item.content =
 					contextualizeGenericRepresentationPrompt(context);
 
@@ -8651,36 +8628,6 @@ function normalizeJavaScriptLevel2(course: RawCourse) {
 		"JSM14 Quiz Game",
 		"JSM15 Master Project"
 	]);
-}
-
-function normalizePythonLevel1(course: RawCourse) {
-	setItemLinks(course, "Check-In #2", "Check-In #2 Overview", {
-		solutionLink: githubTree(
-			"Python-Level-1",
-			"GRS-Check-in-Two-Updated/solution"
-		)
-	});
-	setItemLinks(
-		course,
-		"Check-In #2",
-		"Check-In #2: Additional Practice Project",
-		{
-			projectLink: githubTree(
-				"Python-Level-1",
-				"Check-in-Two-Practice-Project/starter"
-			),
-			solutionLink: githubTree(
-				"Python-Level-1",
-				"Check-in-Two-Additional-Practice-ProjectUpdated/solution"
-			)
-		}
-	);
-	setItemLinks(course, "Check-In #3", "Check-In #3 Overview", {
-		solutionLink: githubTree(
-			"Python-Level-1",
-			"GRS-Check-in-Three-Updated/solution"
-		)
-	});
 }
 
 function applyCourseLearningPaths(course: RawCourse) {
@@ -8991,7 +8938,7 @@ function pythonLevel1ClassroomTemplate(itemTitle: string) {
 	if (/Square Spiral|Spirals?/i.test(itemTitle)) return "spiral-galaxy";
 	if (/Turtle Race/i.test(itemTitle)) return "turtle-race";
 	if (/Rainbow Flower|Flower Garden/i.test(itemTitle)) return "flower-garden";
-	if (/Stay Inbounds|Maze Explorer/i.test(itemTitle)) return "maze-explorer";
+	if (/Maze Explorer/i.test(itemTitle)) return "maze-explorer";
 	return "classroom-project";
 }
 
@@ -9561,8 +9508,6 @@ const normalizers: Record<string, (course: RawCourse) => void> = {
 	"low-level-security": normalizeLowLevelSecurity,
 	"low-level-security-part-2": normalizeLowLevelSecurityPart2,
 	"machine-learning": normalizeMachineLearning,
-	"python-level-1": normalizePythonLevel1,
-	"python-level-1-classroom": normalizePythonLevel1,
 	"python-to-java-and-cpp-bridge": normalizePythonBridge,
 	"pythonic-design-patterns": normalizePythonicDesignPatterns,
 	"rust-systems-security": normalizeRustSystemsSecurity

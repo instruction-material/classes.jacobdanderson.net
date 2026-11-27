@@ -13,8 +13,10 @@ export const swiftNetworkingRevision =
 export const swiftNetworkingPack = "SAD6-API-Reference-App";
 export const swiftNetworkingRoot = `https://github.com/instruction-material/Swift/tree/${swiftNetworkingRevision}/${swiftNetworkingPack}`;
 
-export const swiftTrackerRevision = "355afb7e8d3a9cc47e1d7ebb0ca714cf207e2dac";
+export const swiftTrackerRevision = "1934e48d0b523fc6a92cc12474bc2d5df9a4d815";
+const swiftDataTrackerRevision = "355afb7e8d3a9cc47e1d7ebb0ca714cf207e2dac";
 const swiftTrackerEarlierRevisions = [
+	swiftDataTrackerRevision,
 	"23e1cae59dd989b6f97d8d13ebb5f4718223424d",
 	"73fdbeaf3f3358d4a3ce6bb8086612d52689e41a",
 	"ff14c210700f7297d69ddfcab570a0315e9ac234",
@@ -23,7 +25,7 @@ const swiftTrackerEarlierRevisions = [
 export const swiftTrackerPack = "SAD5-Simple-Tracker-App";
 export const swiftTrackerRoot = `https://github.com/instruction-material/Swift/tree/${swiftTrackerRevision}/${swiftTrackerPack}`;
 export const swiftDataTrackerPack = "SAD5-SwiftData-Tracker-App";
-export const swiftDataTrackerRoot = `https://github.com/instruction-material/Swift/tree/${swiftTrackerRevision}/${swiftDataTrackerPack}`;
+export const swiftDataTrackerRoot = `https://github.com/instruction-material/Swift/tree/${swiftDataTrackerRevision}/${swiftDataTrackerPack}`;
 
 export const swiftCanonicalProjectsRevision =
 	"18bb2a5055a144cf545fa416f6bde6f00e863f36";
@@ -215,7 +217,7 @@ const swiftPacks = [
 	},
 	{
 		pack: swiftDataTrackerPack,
-		revision: swiftTrackerRevision,
+		revision: swiftDataTrackerRevision,
 		projectKey: "swiftdata-tracker",
 		roleFiles: [
 			"ContentView.swift",
