@@ -1412,6 +1412,19 @@ const returnLessonHash = computed(() => {
 		? `#${lesson}`
 		: `#${requestedCourseId.value}`;
 });
+const returnLessonRoute = computed(() => {
+	const course = requestedCourseId.value;
+	const hash = returnLessonHash.value;
+	return {
+		path: "/courses",
+		hash,
+		// Classroom editions can share their original lesson IDs with another course.
+		query:
+			hash === `#${course}` || hash.startsWith(`#${course}-`)
+				? undefined
+				: { course }
+	};
+});
 const requestedCourseProjectKey = computed(() =>
 	typeof route.query.projectKey === "string" ? route.query.projectKey : ""
 );
@@ -8258,10 +8271,7 @@ defineExpose({ stop: stopCurrentProject, runIsolated, releaseIsolatedPointer });
 				data-testid="ide-run-status"
 				>{{ runMessage }}</strong
 			>
-			<RouterLink
-				v-if="requestedCourseId"
-				:to="{ path: '/courses', hash: returnLessonHash }"
-			>
+			<RouterLink v-if="requestedCourseId" :to="returnLessonRoute">
 				Return to lesson
 			</RouterLink>
 		</WorkspaceHeader>
