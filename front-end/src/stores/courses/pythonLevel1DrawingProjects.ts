@@ -6,6 +6,9 @@ const drawingSource =
 const loopStateSource =
 	"https://github.com/instruction-material/Python-Level-1/tree/7ae88632fdd8788a8ec739fb345662e083294f31";
 
+const nestedLoopsSource =
+	"https://github.com/instruction-material/Python-Level-1/tree/0295dc97c52e6de3360606dcba77d3466c4a75c6";
+
 interface DrawingBrief {
 	task: string;
 	classroom: string;
@@ -15,6 +18,94 @@ interface DrawingBrief {
 }
 
 const briefs = {
+	"Nested-Loops-Exploration": {
+		source: nestedLoopsSource,
+		task: `Run the starter and trace a single square from (0, 0). Four 90-degree turns restore its starting heading. The three outer passes currently retrace that square. Complete the update after the inner loop so the lengths are 30, 50, and 70. Keep one length for all four sides of a square.
+
+**Checkpoints:** Count three completed squares and 12 forward moves. After each inner loop the pen is back at (0, 0) facing right.`,
+		classroom: `**Normal:** In \`normal_addition()\`, print the lengths used by the three squares and the next length. Expect [30, 50, 70] and 90.
+
+**Hard:** In \`hard_addition()\`, place the pen at (-90, -55) and draw a second group of three squares using lengths 10, 20, and 30. Run the inner loop four times for each length and report the final position.
+
+**Checkpoints:** The second group has 12 strokes and closes at (-90, -55).`
+	},
+	"Square-Inception": {
+		source: nestedLoopsSource,
+		task: `The middle loop draws three squares from the origin with lengths 30, 50, and 70. Complete the turn at the end of the outer loop so each finished group is followed by a 90-degree clockwise rotation. Keep the size reset inside the quadrant loop and outside the square loop.
+
+**Checkpoints:** The four groups start facing east, south, west, and north. Expect 12 squares and 48 forward moves. The same three lengths appear in each quadrant.`,
+		classroom: `**Normal:** In \`normal_addition()\`, print the number of quadrants, squares, and sides drawn. Expect 4, 12, and 48.
+
+**Hard:** In \`hard_addition()\`, draw two groups of three small triangles at a second origin. Start with sides 8, 13, and 18. Turn 120 degrees per edge and add a separate 180-degree turn after each group.
+
+**Checkpoints:** The triangle groups face opposite ways. Expect 18 new edges and the same three lengths in both groups.`
+	},
+	"GrS5-Pyramid": {
+		source: nestedLoopsSource,
+		task: `Draw ten aligned triangle outlines. Start from the supplied apex (0, 65) facing 300 degrees. The inner loop makes three equal moves with 120-degree right turns. Increase length by 15 after all three sides.
+
+**Checkpoints:** The first side length is 15 and the final one is 150. Each triangle closes at the shared apex. Expect 30 sides.`,
+		classroom: `**Normal:** In \`normal_addition()\`, print the first drawn length, the last drawn length, and the next length. Expect 15, 150, and 165.
+
+**Hard:** In \`hard_addition()\`, place the pen at (105, 40) with heading 300. Draw three outlined triangles sharing this apex with lengths 12, 24, and 36.
+
+**Checkpoints:** Each of the three inner loops returns to (105, 40) with its starting heading.`
+	},
+	"GrS5-Reverse-Pyramid": {
+		source: nestedLoopsSource,
+		task: `Use the same apex as Pyramid and draw filled triangles from largest to smallest. Start with length 150 and subtract 15 after each finished fill. One random color and one fill surround each complete three-side loop.
+
+**Checkpoints:** The final filled triangle uses length 15. Its smaller footprint leaves room to see the preceding layers. Confirm that the pen always returns to the apex.`,
+		classroom: `**Normal:** In \`normal_addition()\`, print the ten lengths in drawing order. Expect [150, 135, 120, 105, 90, 75, 60, 45, 30, 15].
+
+**Hard:** In \`hard_addition()\`, draw a separate stack of three filled triangles with lengths 36, 24, and 12 at (-100, 40). Use three clearly different colors and end each fill before moving to the next length.
+
+**Checkpoints:** All three bands are visible and their triangles share a starting point.`
+	},
+	"GrS5-Reverse-Square-Inception": {
+		source: nestedLoopsSource,
+		task: `Fill three squares in each quadrant. Complete the middle-loop update so the lengths descend from 72 to 52 to 32. Keep the four side commands inside one fill. The color ranges become lighter for smaller layers to keep the boundaries visible.
+
+**Checkpoints:** Expect 12 filled squares and 48 drawn edges. Every quadrant resets to length 72 and turns only after its last square closes.`,
+		classroom: `**Normal:** In \`normal_addition()\`, print the three lengths and the number of sides they require in one quadrant. Expect [72, 52, 32] and 12.
+
+**Hard:** In \`hard_addition()\`, place the pen at (110, 5). Fill three closed squares at that origin with lengths 36, 24, and 12, using three different shades.
+
+**Checkpoints:** The fourth edge closes each shape before the next fill starts. All three layers are visible.`
+	},
+	"GrS5-Rainbow-Flower": {
+		source: nestedLoopsSource,
+		task: `Draw six petals from (0, 0), with starting headings 60 degrees apart. Each petal uses 40 strokes. The turn grows by one degree after each stroke. Complete the blue-channel update by adding five after each stroke. Reset the angle and blue channel at the start of every petal.
+
+**Checkpoints:** Expect 240 strokes. The blue values used by each petal start at 0, reach 5 on the second stroke, and end at 195.`,
+		classroom: `**Normal:** In \`normal_addition()\`, print the six start headings and the first and last blue values. Expect [0, 60, 120, 180, 240, 300] and 0 and 195.
+
+**Hard:** In \`hard_addition()\`, build a separate four-petal design. Start 90 degrees apart and use 20 strokes of length 5 per petal. Track blue changes in steps of 8.
+
+**Checkpoints:** Expect 80 strokes and a last blue value of 152 per petal. Each petal returns to the center with the pen lifted before the next starts.`
+	},
+	"GrS5-Circle-of-Circles": {
+		source: nestedLoopsSource,
+		task: `Draw a small loop using 36 short segments of six pixels. Turn right by ten degrees after each segment. Complete the outer-loop turn of 20 degrees after each finished circle. Keep that extra rotation outside the inner loop.
+
+**Checkpoints:** The inner loop turns through 360 degrees and returns to its start. The 18 outer turns account for a second full revolution. Count 648 short segments.`,
+		classroom: `**Normal:** In \`normal_addition()\`, print 36 times 10, 18 times 20, and 18 times 36. Expect 360, 360, and 648.
+
+**Hard:** In \`hard_addition()\`, draw six smaller loops at (-90, 0). Make each loop from 12 steps of three pixels with a 30-degree turn, then turn 60 degrees to start the next loop.
+
+**Checkpoints:** All six loops share the starting point and use 72 new strokes.`
+	},
+	"GrS3-Spirals": {
+		source: nestedLoopsSource,
+		task: `Draw one spiral in each of the six supplied cells. Lift the pen to reach each randomized start. Each inner loop uses 32 forward strokes and a 123-degree left turn. Complete the growth step so each stroke is one pixel longer than the preceding stroke.
+
+**Checkpoints:** There are 192 strokes and no travel lines between cells. A spiral starting at length 4 ends with a drawn length of 35.`,
+		classroom: `**Normal:** In \`normal_addition()\`, compute the move count and the last drawn length for a 32-stroke spiral starting at length 4. Expect 192 for all six cells and 35 for that spiral.
+
+**Hard:** In \`hard_addition()\`, create a comparison at (0, 0) using 12 strokes starting at 4 and growing by two. Keep the 123-degree left turn. Print the final drawn length for the new and original growth rules after 12 strokes.
+
+**Checkpoints:** Expect 26 and 15 as the final drawn lengths. Verify that both use exactly 12 turns.`
+	},
 	"GrS2-Basic-Shapes": {
 		task: `The starter draws the square. Add the three 60-pixel sides at (80, -40) using left turns of 120 degrees. Finish with pen.circle(30) at (-100, 40). Check that the square and triangle return to their starting points and that the pen stays lifted when it moves between shapes.`,
 		classroom: `**Normal:** In \`normal_addition()\`, place the pen at (80, 5) and draw a 30-pixel triangle. Compare its final position with (80, 5). Three 120-degree turns restore its starting heading.

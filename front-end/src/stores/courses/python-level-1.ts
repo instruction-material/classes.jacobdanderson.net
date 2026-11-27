@@ -451,20 +451,14 @@ Complete the explanations and one short variable-based drawing example. This rec
 		{
 			title: "GrS6 Nested Loops Part 1",
 			curriculum: [
-				{
+				pythonLevel1DrawingProject("Nested-Loops-Exploration", {
 					title: "GrS6 Project 1: Nested Loops Exploration",
-					content:
-						"Learn what nested loops are by drawing repeated squares with changing sizes and identifying what repeats inside the outer pattern versus inside each shape.",
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/Nested-Loops-Exploration/solution"
-				},
-				{
+					content: ""
+				}),
+				pythonLevel1DrawingProject("Square-Inception", {
 					title: "GrS6 Project 2: Square Inception",
-					content:
-						"Use multiple layers of repetition to draw groups of squares and practice placing code in the correct loop so each action runs the right number of times.",
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/Square-Inception/solution"
-				},
+					content: ""
+				}),
 				{
 					title: "GrS6 Project 3: Open Ended Project - Nested Loop Pattern",
 					content:
@@ -472,48 +466,30 @@ Complete the explanations and one short variable-based drawing example. This rec
 				}
 			],
 			supplementalProjects: [
-				{
+				pythonLevel1DrawingProject("GrS5-Pyramid", {
 					title: "GrS6 Supplemental Project 1: Pyramid",
-					content:
-						"Draw a triangle pyramid that grows a little larger each time. Use one loop to repeat the triangle and a changing size or position value to make the growth rule visible. The final pyramid has aligned layers rather than a cluster of unrelated triangles.",
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS5-Pyramid/solution"
-				},
-				{
+					content: ""
+				}),
+				pythonLevel1DrawingProject("GrS5-Reverse-Pyramid", {
 					title: "GrS6 Supplemental Project 2: Reverse Pyramid",
-					content:
-						"Reverse the pyramid order and fill each triangle with a random color. Keep the same pyramid idea, but change the loop values so the largest or smallest triangle appears first as required. Store random colors cleanly and verify that fill blocks start and end around exactly one triangle at a time.",
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS5-Reverse-Pyramid/solution"
-				},
-				{
+					content: ""
+				}),
+				pythonLevel1DrawingProject("GrS5-Reverse-Square-Inception", {
 					title: "GrS6 Supplemental Project 3: Reverse Square Inception",
-					content:
-						"Draw the largest square first in each quadrant and fill each square with a random color. Use nested loops to manage the repeated squares and the repeated quadrant positions separately. The finished image makes the reversal obvious: each quadrant begins with the largest square and builds inward.",
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS5-Reverse-Square-Inception/solution"
-				},
-				{
+					content: ""
+				}),
+				pythonLevel1DrawingProject("GrS5-Rainbow-Flower", {
 					title: "GrS6 Supplemental Project 4: Rainbow Flower",
-					content:
-						"Combine nested loops and gradual color changes to create a multicolored flower pattern. One loop repeats the petal or circle shape, and another rotates or repositions the group to build the flower. Use controlled changes to color values so the rainbow effect follows the structure of the drawing instead of appearing random.",
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS5-Rainbow-Flower/solution"
-				},
-				{
+					content: ""
+				}),
+				pythonLevel1DrawingProject("GrS5-Circle-of-Circles", {
 					title: "GrS6 Supplemental Project 5: Circle of Circles",
-					content:
-						"Build a larger circular pattern from many smaller circles. Use a loop to draw each small circle, then rotate or move by a consistent amount before drawing the next one. Verify that the repeated circles form one intentional overall shape instead of drifting away from the center.",
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS5-Circle-of-Circles/solution"
-				},
-				{
+					content: ""
+				}),
+				pythonLevel1DrawingProject("GrS3-Spirals", {
 					title: "GrS6 Supplemental Project 6: Spirals",
-					content:
-						"Draw many randomly sized, colored, and positioned spiral shapes across the screen. Use one loop or helper pattern to create a single spiral, then another loop to repeat that spiral at different locations. Keep the random ranges controlled so the screen looks intentionally filled rather than cluttered by shapes outside the visible area.",
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS3-Spirals/solution"
-				}
+					content: ""
+				})
 			]
 		},
 		{
