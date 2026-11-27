@@ -402,50 +402,32 @@ Complete the explanations and one short variable-based drawing example. This rec
 		{
 			title: "GrS5 Loops with Variables",
 			curriculum: [
-				{
+				pythonLevel1DrawingProject("GrS5-Fireworks", {
 					title: "GrS5 Project 1: Fireworks",
-					content:
-						"Combine loops with reassignment so a value changes on every repetition. Use a `lineLength` variable that grows over time to create an expanding fireworks pattern.",
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS5-Fireworks/solution"
-				},
-				{
+					content: ""
+				}),
+				pythonLevel1DrawingProject("While-Loops-Exploration", {
 					title: "GrS5 Project 2: While Loops Exploration",
-					content:
-						"Compare `while` loops with `for` loops, build loops that stop based on coordinates, and use `write()`, `clear()`, and coordinate checks to animate a turtle moving toward a stop sign.",
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/While-Loops-Exploration/solution"
-				},
-				{
+					content: ""
+				}),
+				pythonLevel1DrawingProject("GrS5-Square-Spiral", {
 					title: "GrS5 Project 3: Square Spiral",
-					content:
-						"Use a counter-controlled `while` loop plus a changing line length to create a square spiral with gradually changing properties. Track the loop counter, current line length, and turn direction separately so the stopping condition is easy to explain. The final spiral shows steady growth rather than disconnected squares.",
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS5-Square-Spiral/solution"
-				}
+					content: ""
+				})
 			],
 			supplementalProjects: [
-				{
+				pythonLevel1DrawingProject("GrS5-Rainbow-Ninja-Star", {
 					title: "GrS5 Supplemental Project 1: Rainbow Ninja Star",
-					content:
-						"Draw a ninja star pattern that starts from the center and gradually shifts through color values. Use variables for length, turn amount, and color components so the visual change is produced by reassignment inside the loop. The finished pattern makes both the repeated geometry and the color progression visible.",
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS5-Rainbow-Ninja-Star/solution"
-				},
-				{
+					content: ""
+				}),
+				pythonLevel1DrawingProject("GrS5-Into-the-Void", {
 					title: "GrS5 Supplemental Project 2: Into the Void",
-					content:
-						"Draw a growing sequence of rotated squares using a loop that changes size and rotation in a predictable pattern. The final drawing makes the growth rule visible, and the code keeps the repeated drawing steps inside the loop rather than manually duplicating square commands.",
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS5-Into-the-Void/solution"
-				},
-				{
+					content: ""
+				}),
+				pythonLevel1DrawingProject("GrS5-Out-of-the-Void", {
 					title: "GrS5 Supplemental Project 3: Out of the Void",
-					content:
-						"Create a spiral triangle pattern and experiment with negative movement values. Before running the full drawing, predict how a negative movement changes the turtle's direction compared with turning. The final code uses a loop, a changing size value, and one short comment explaining why the spiral moves outward or inward.",
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS5-Out-of-the-Void/solution"
-				},
+					content: ""
+				}),
 				{
 					title: "GrS5 Supplemental Project 4: Turtle Race",
 					content:

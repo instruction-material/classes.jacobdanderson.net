@@ -8933,6 +8933,8 @@ function pythonLevel1ClassroomTemplate(itemTitle: string) {
 	if (/Picasso/i.test(itemTitle)) return "picasso";
 	if (/Triangle Motion/i.test(itemTitle)) return "triangle-motion";
 	if (/Random Walk|Neon Trail/i.test(itemTitle)) return "neon-trail";
+	if (/^GrS5 Project (?:1: Fireworks|3: Square Spiral)$/i.test(itemTitle))
+		return "classroom-project";
 	if (/Fireworks?/i.test(itemTitle)) return "firework-festival";
 	if (/Square Spiral|Spirals?/i.test(itemTitle)) return "spiral-galaxy";
 	if (/Turtle Race/i.test(itemTitle)) return "turtle-race";

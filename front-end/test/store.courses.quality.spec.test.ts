@@ -3358,7 +3358,12 @@ describe("course text quality normalization", () => {
 			/Draw a staircase pattern that spirals outward\./
 		);
 		expect(corpus).toContain("query examples");
-		expect(corpus).toContain("loop that changes size and rotation");
+		const spiral = courses[2]?.modules
+			.flatMap(module => module.supplementalProjects)
+			.find(item => item.title.endsWith("Into the Void"));
+		expect(spiral?.content).toContain("adds increase to length");
+		expect(spiral?.content).toContain("same length sequence");
+		expect(spiral?.content).toContain("change the alignment");
 	});
 
 	it("keeps Java Level 3 review modules substantive instead of one-line prompts", async () => {

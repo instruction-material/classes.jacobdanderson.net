@@ -3,11 +3,15 @@ import type { RawCourseModuleItem } from "./types";
 const drawingSource =
 	"https://github.com/instruction-material/Python-Level-1/tree/5445f3f97e45f732a6049fab6152b49017c95f82";
 
+const loopStateSource =
+	"https://github.com/instruction-material/Python-Level-1/tree/7ae88632fdd8788a8ec739fb345662e083294f31";
+
 interface DrawingBrief {
 	task: string;
 	classroom: string;
 	title?: string;
 	previousId?: string;
+	source?: string;
 }
 
 const briefs = {
@@ -172,6 +176,86 @@ const briefs = {
 **Hard:** In \`hard_addition()\`, test outside_box with (100, 100), (101, 0), (0, -101), and (-100, 0). Explain the exact boundary and which condition lets either coordinate trigger a change.
 
 **Checkpoints:** The results are False, True, True, False. The axis case does not claim a quadrant.`
+	},
+	"GrS5-Fireworks": {
+		source: loopStateSource,
+		task: `Grow the ray length through reassignment. The starter draws 72 rays from the center and turns 5 degrees between them. Complete the update that increases length by 1 after each ray. Leave the pen up for the return to (0, 0) and lower it before drawing the next ray.
+
+**Checkpoints:** Record the first three lengths, 8, 9, and 10. After 72 rays, the last drawn length is 79 and the next length is 80. The heading completes one turn. Change the starting length to 12 and predict the new first and last lengths before running.`,
+		classroom: `Run the finished burst. Find the update that changes the following ray and trace how the turtle returns to the same center.
+
+**Course flow:** Trace a reassignment in a counted loop before using a while condition to stop motion.
+
+**Normal:** In \`normal_addition()\`, print the first length, last length, and next length using the existing variables. Expect 8, 79, and 80.
+
+**Hard:** In \`hard_addition()\`, draw a shorter burst at (75, 55) with six 60-degree turns. Begin each ray from that center. Record the lengths and check the heading after the last ray.
+
+**Checkpoints:** The additional rays share a center and the pen-up returns leave the bursts separate.`
+	},
+	"While-Loops-Exploration": {
+		source: loopStateSource,
+		task: `Use a while loop when the stopping rule depends on a changing position. In walk_positions, replace False with x < 0. Each loop pass adds the smaller of step and the remaining distance to zero. The supplied replay moves the turtle through that trace. It uses clear() and write() to show one position label at a time.
+
+**Checkpoints:** From -150 in steps of 5, expect 30 moves and a final position of 0. From -151, the final move is one unit and the loop takes 31 moves. From 0 or 7, the loop runs zero times. Trace the condition before and after the last update.`,
+		classroom: `Run the working stop-sign example and follow the position label to zero. Separate the while loop that calculates the trace from the timer that displays it.
+
+**Normal:** In \`normal_addition()\`, print walk_positions(-20, 5). Expect [-15, -10, -5, 0]. Explain which comparison ends the loop.
+
+**Hard:** In \`hard_addition()\`, run the same check from -151 and print the move count and final three positions. Test a start at zero too. Expect 31 moves, final positions [-6, -1, 0], and an empty list from zero.
+
+**Checkpoints:** The last step is clipped to zero. The replay updates one label per position and stops at the same boundary.`
+	},
+	"GrS5-Square-Spiral": {
+		source: loopStateSource,
+		task: `Use a counter-controlled while loop to draw the square spiral. Keep counter as the number of sides already drawn and side as the next length. Complete the reassignment that adds increase to side after every right turn. The supplied counter update advances toward the limit.
+
+**Checkpoints:** Start at length 10 and add 5 per side. The fiftieth side uses length 255, while the next length is 260. Test a limit of zero for no marks and an unchanged length. Predict the next length for a smaller test of eight sides and an increase of 2.`,
+		classroom: `Run the completed spiral. Trace the counter and side length as separate values. Pause the trace after the first three right turns and predict the next length.
+
+**Normal:** In \`normal_addition()\`, print sides_drawn and next_side. Expect 50 and 260. Calculate the length used on the last side.
+
+**Hard:** In \`hard_addition()\`, draw a separate smaller spiral with spiral(10, 2, 8). Reposition with the pen up before starting. Compare the reported count and next length with a run at a zero limit.
+
+**Checkpoints:** Eight sides give next length 26. Zero sides leave the initial length unchanged.`
+	},
+	"GrS5-Rainbow-Ninja-Star": {
+		source: loopStateSource,
+		task: `Draw the repeated arms and control the color progression with reassignment inside the loop. Complete the update that takes the value returned by next_channel and stores it in blue. The helper uses (current + 2) % 256 to keep the channel between 0 and 255. Lift the pen before returning to the center.
+
+**Checkpoints:** The values begin 0, 2, and 4. After 254 the next value is 0, followed by 2. The last of 180 arms uses 102 and the next value would be 104. Check both a normal update and the wrap point.`,
+		classroom: `Run the reference and trace the blue channel as it reaches the top of the RGB range and cycles back. The two other channels stay fixed while the star is drawn.
+
+**Normal:** In \`normal_addition()\`, print next_channel for 0, 252, and 254. Expect 2, 254, and 0.
+
+**Hard:** In \`hard_addition()\`, trace five successive values starting at 250. Store each value before updating it and print the sequence. Compare the printed values with the color changes in the reference.
+
+**Checkpoints:** The sequence is [250, 252, 254, 0, 2], with a next value of 4. Every displayed channel remains within the RGB range.`
+	},
+	"GrS5-Into-the-Void": {
+		source: loopStateSource,
+		task: `Draw an expanding spiral using near-quarter turns. Complete the update that adds increase to length after each movement. The supplied limits begin at 30, draw 120 segments, and turn right by 91 degrees. Compare the tilted spiral with a separate run turning exactly 90 degrees.
+
+**Checkpoints:** Trace the first three lengths, 30, 31, and 32. The last drawn segment uses 149 and the next length is 150. The two angles produce the same length sequence but change the alignment of successive passes.`,
+		classroom: `Run the finished expanding design. Identify what the near-quarter turn changes while the growth rule stays the same.
+
+**Normal:** In \`normal_addition()\`, print after_last and compare it with the length of the final drawn segment. Expect 150 and 149.
+
+**Hard:** In \`hard_addition()\`, draw two three-step samples using length 10, increase 2, and turns of 90 and 91 degrees. Give them separate start positions and compare their final headings and returned lengths.
+
+**Checkpoints:** Both samples return next length 16. Their final headings differ by 3 degrees.`
+	},
+	"GrS5-Out-of-the-Void": {
+		source: loopStateSource,
+		task: `Build an inward spiral with a positive movement length. Complete the update that subtracts shrink from length. The loop checks length > 0 before drawing each segment, so it stops at the first zero or negative next value. Use the supplied turn of 119 degrees to rotate the triangle-like spiral.
+
+**Checkpoints:** From length 160 with shrink 3, the last segment has length 1. The loop ends after 54 moves with a next value of -2. An initial length of zero gives zero moves. In a separate comparison with the pen lifted, face right and try forward(-12). The turtle moves left while its heading stays the same.`,
+		classroom: `Run the inward design and trace the last two lengths. The loop sends a positive distance to forward on each pass.
+
+**Normal:** In \`normal_addition()\`, print steps and final_length. Expect 54 and -2. Explain why the final value ends the loop before the next drawing command.
+
+**Hard:** In \`hard_addition()\`, run inward_spiral(0, 3, 119) and compare it with a separate pen-up forward(-12) from (0, 0) with heading zero. Record the move count, x-coordinate, and heading.
+
+**Checkpoints:** The zero-length spiral draws nothing. The separate backward move reaches x = -12 while heading stays at 0.`
 	}
 } satisfies Record<string, DrawingBrief>;
 
@@ -180,25 +264,27 @@ export function pythonLevel1DrawingProject(
 	item: RawCourseModuleItem
 ): RawCourseModuleItem {
 	const brief: DrawingBrief = briefs[folder];
+	const source = brief.source ?? drawingSource;
 	return {
 		...item,
 		title: brief.title ?? item.title,
 		id: brief.previousId ?? item.id,
-		content: brief.title
-			? brief.task
-			: [item.content, brief.task].join("\n\n"),
+		content:
+			brief.title || !item.content
+				? brief.task
+				: [item.content, brief.task].join("\n\n"),
 		contentKind: "assignment",
 		preserveInstructions: true,
 		ideImport: true,
-		projectLink: `${drawingSource}/${folder}/starter`,
-		solutionLink: `${drawingSource}/${folder}/solution`
+		projectLink: `${source}/${folder}/starter`,
+		solutionLink: `${source}/${folder}/solution`
 	};
 }
 
 export function pythonLevel1ClassroomDrawingContent(item: RawCourseModuleItem) {
-	for (const [folder, brief] of Object.entries(briefs)) {
-		if (item.solutionLink !== `${drawingSource}/${folder}/solution`)
-			continue;
+	for (const [folder, brief] of Object.entries<DrawingBrief>(briefs)) {
+		const source = brief.source ?? drawingSource;
+		if (item.solutionLink !== `${source}/${folder}/solution`) continue;
 		return folder === "GrS2-Basic-Shapes"
 			? [item.content, brief.classroom].join("\n\n")
 			: brief.classroom;
