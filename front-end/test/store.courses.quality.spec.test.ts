@@ -4711,9 +4711,17 @@ describe("course text quality normalization", () => {
 			[
 				"python-level-2",
 				[
-					"collection choice",
-					"Text files, CSV-like rows",
-					"Data-backed capstone"
+					"Change Machine to trace remainders",
+					"a dictionary for lookups, and a set for membership",
+					"Finish by validating a menu command"
+				]
+			],
+			[
+				"python-level-2-classroom",
+				[
+					"working projects to run and explain",
+					"Normal and Hard checkpoints",
+					"demonstrated in its working framework"
 				]
 			],
 			[

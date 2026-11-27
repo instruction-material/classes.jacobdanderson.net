@@ -295,6 +295,10 @@ describe("research-backed course family expansions", () => {
 				);
 				expect(roadmapModule, courseId).toBeDefined();
 				const roadmapText = moduleText(roadmapModule!);
+				const roadmapItems = [
+					...roadmapModule!.curriculum,
+					...roadmapModule!.supplementalProjects
+				];
 				if (courseId === "network-systems") {
 					const items = [
 						...roadmapModule!.curriculum,
@@ -526,12 +530,8 @@ describe("research-backed course family expansions", () => {
 					expect(roadmapText).toContain("Binary search assumes sorted input");
 					expect(roadmapText).toContain("GateLog.java counts the observations");
 				}
-				else if (profile.family === "C++ Levels 1-3") {
-					const readings = [
-						...roadmapModule!.curriculum,
-						...roadmapModule!.supplementalProjects
-					];
-					expect(readings.map(item => item.title)).toEqual([
+				else if (roadmapItems.every(item => profile.guideReadings?.[item.title])) {
+					expect(roadmapItems.map(item => item.title)).toEqual([
 						"Follow-Up Path",
 						"Resource Map",
 						"Module Alignment Guide",
@@ -539,8 +539,10 @@ describe("research-backed course family expansions", () => {
 						"Prerequisite Map",
 						"Resource Inventory"
 					].map(title => `${courseLabel} ${title}`));
-					for (const item of readings)
+					for (const item of roadmapItems) {
 						expect(item.contentKind, item.title).toBe("reading");
+						expect(item.content, item.title).toBe(profile.guideReadings?.[item.title]);
+					}
 				}
 				else {
 					for (const label of [
