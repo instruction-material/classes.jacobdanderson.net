@@ -550,27 +550,9 @@ const usacoSilverSourceCourse: RawCourse = {
 					title: "Support Labs and Late Silver Bank",
 					content:
 						"Support and late-Silver folders include `US5 Custom Classes with HashSets and HashMaps`, `US6 DFS`, `US6 Stacks`, `US7 BFS`, `US7 Queues`, `US23 Secret Cow Code`, `US34 Rental Service`, `US37 Subset Equality`, `US38 Redistributing Gifts`, `US39 Closest Cow Wins`, and `US-Wormhole-Sort`."
-				},
-				{
-					title: "Unit 7: Optional Silver Problem Bank: Core Project",
-					content: buildProjectGuidance({
-						courseFamily: "USACO Silver",
-						moduleTitle: "Unit 7: Optional Silver Problem Bank",
-						projectKind: "core",
-						hasReference: false
-					}),
-					projectLink:
-						"https://github.com/instruction-material/USACO-Silver/tree/main"
 				}
 			],
 			supplementalProjects: [
-				{
-					title: "Problem Bank: Full Silver Repo",
-					content:
-						"Browse the full Silver repo bank when the public spine is not enough practice and you want the larger contest-library view.",
-					projectLink:
-						"https://github.com/instruction-material/USACO-Silver/tree/main"
-				},
 				{
 					title: "Problem: Floodfill",
 					content:
@@ -1403,6 +1385,8 @@ const USACO_SILVER_FLOW: Record<
 		estimatedTime: string;
 		keyBlocks: string[];
 		flowNote: string;
+		workedExample: string;
+		masteryCheck: string;
 	}
 > = {
 	"USS0 Setup and Silver Transition": {
@@ -1417,7 +1401,11 @@ const USACO_SILVER_FLOW: Record<
 			"problem log"
 		],
 		flowNote:
-			"Verify independent Bronze accuracy, establish one reliable Silver language and standard-I/O workflow, read the live contest rules, and use protected practice before adding new algorithm families."
+			"Verify independent Bronze accuracy, establish one reliable Silver language and standard-I/O workflow, read the live contest rules, and use protected practice before adding new algorithm families.",
+		workedExample:
+			"A practice problem asks for the number of distinct IDs. The first line gives the count, and each remaining line gives one ID. For four IDs `8, 1, 8, 5`, the visited set grows to `{8}`, `{8, 1}`, stays unchanged, and then gains `5`. The only output is `3` followed by a newline. At 200,000 IDs, comparing every pair can take about 20 billion comparisons. A hash set takes expected linear time and at most one entry per input.",
+		masteryCheck:
+			"Trace four copies of ID 8 before running the program. The output is `1`. If a judge reports an output-format error despite finding the right count, compare the literal output for prompts, labels, or extra lines. In a walkthrough, have one person read the input contract and the other predict each insertion."
 	},
 	"Unit 1: Data Structures and Problem Modeling": {
 		title: "Unit 1: Maps, Sets, and Problem Modeling",
@@ -1431,7 +1419,11 @@ const USACO_SILVER_FLOW: Record<
 			"structured trace"
 		],
 		flowNote:
-			"Choose arrays, maps, sets, or structured records from the value range and required operations. Define what each structure contains at every step, then test the representation independently from the algorithm that uses it."
+			"Choose arrays, maps, sets, or structured records from the value range and required operations. Define what each structure contains at every step, then test the representation independently from the algorithm that uses it.",
+		workedExample:
+			"Count unordered pairs of distinct positions with equal IDs in `[900000000, 4, 900000000, 900000000]`. A hash map stores each ID's frequency among the positions already read. Before increasing the current frequency, add its old value to the pair total because each earlier occurrence forms one new pair. The four increments are `0, 0, 1, 2`, giving `3`. An array indexed by raw ID would allocate space for an enormous sparse domain.",
+		masteryCheck:
+			"Predict the count for four equal IDs, then verify it by listing the six pairs. Explain why incrementing first makes each position pair with itself. The counting algorithm takes expected `O(n)` time and `O(k)` space for `k` distinct IDs. Use a 64-bit total when `n(n-1)/2` can exceed a 32-bit integer."
 	},
 	"Unit 2: DFS, BFS, and Graph Traversal": {
 		title: "Unit 2: DFS, BFS, Flood Fill, Trees, and Functional Graphs",
@@ -1445,7 +1437,11 @@ const USACO_SILVER_FLOW: Record<
 			"visited-state invariant"
 		],
 		flowNote:
-			"Translate stories and grids into nodes, edges, and states; choose DFS, BFS, or flood fill from the guarantee needed; and extend traversal reasoning to trees and one-outgoing-edge functional graphs."
+			"Translate stories and grids into nodes, edges, and states; choose DFS, BFS, or flood fill from the guarantee needed; and extend traversal reasoning to trees and one-outgoing-edge functional graphs.",
+		workedExample:
+			"Use four-direction moves on a grid with rows `S.#`, `#..`, and `..G`, where `#` blocks a cell. From zero-based start `(0,0)`, BFS discovers `(0,1)` at distance 1 and `(1,1)` at distance 2. Distance 3 contains `(1,2)` and `(2,1)`. Both can reach the goal at distance 4, but marking cells when enqueued records the goal only once. The queue handles all distance-3 cells before any distance-4 cell.",
+		masteryCheck:
+			"Block `(1,1)` and predict the outcome before rescanning. The start can reach only `(0,1)`, so the goal is unreachable. Compare BFS with a stack-based DFS on the original grid. Both can mark all reachable cells, and BFS layers give a shortest number of equal-cost moves. Each cell enters at most once, so a grid with `R × C` cells costs `O(RC)` time and space."
 	},
 	"Unit 3: Sorting, Searching, and Binary Search": {
 		title: "Unit 3: Sorting, Two Pointers, Compression, and Binary Search",
@@ -1459,7 +1455,11 @@ const USACO_SILVER_FLOW: Record<
 			"boundary invariant"
 		],
 		flowNote:
-			"Sort to expose structure, scan monotone ranges with two pointers, compress large coordinates when only order matters, and use binary search only after stating a monotone predicate and boundary invariant."
+			"Sort to expose structure, scan monotone ranges with two pointers, compress large coordinates when only order matters, and use binary search only after stating a monotone predicate and boundary invariant.",
+		workedExample:
+			"Find the smallest capacity that ships weights `[2, 5, 3, 4]` in order in at most two trips. For each capacity, fill a trip until the next item would overflow. This consumes the longest possible prefix per trip, leaving at most as much work as stopping earlier. Capacity `7` makes trips `[2,5]` and `[3,4]`. Capacity `6` needs four trips, so `7` is the first feasible capacity. A larger capacity can always reproduce any feasible packing.",
+		masteryCheck:
+			"Start with known-infeasible `lo = 4` and known-feasible `hi = 14`. Test midpoint `9`, then `6`, then `7`. Stop when `hi - lo = 1` and return `hi`. With one allowed trip, the answer is `14`. Explain why sorting would violate this problem's fixed order and why each tested capacity costs one linear scan."
 	},
 	"Unit 4: Prefix Sums, Ranges, and Counting": {
 		title: "Unit 4: Prefix and Difference Sums, Ranges, and Sliding Windows",
@@ -1473,7 +1473,11 @@ const USACO_SILVER_FLOW: Record<
 			"aggregate input bound"
 		],
 		flowNote:
-			"Represent repeated range work with prefix or difference structures, extend the invariant to grids, and use sliding windows only when the entering and leaving updates are both explicit."
+			"Represent repeated range work with prefix or difference structures, extend the invariant to grids, and use sliding windows only when the entering and leaving updates are both explicit.",
+		workedExample:
+			"For `[4, -1, 3, 2]`, define `prefix[i]` as the sum before index `i`. The prefix array is `[0, 4, 3, 6, 8]`. The half-open range `[1,3)` therefore sums to `prefix[3] - prefix[1] = 2`. For a separate update that adds 5 to this range, put `+5` at index 1 and `-5` at index 3 in a difference array. Running totals recover the per-index additions `[0, 5, 5, 0]`. A difference array with one extra entry can also store a stop at the exclusive end of the entire array.",
+		masteryCheck:
+			"Verify that `[2,2)` sums to zero and `[0,4)` sums to eight. Then consider finding the longest segment with sum at most 3 in `[5, -2]`. Dropping 5 as soon as the sum exceeds 3 loses the valid two-element segment. Explain why the usual shrink-on-overflow rule for nonnegative values fails here. A fixed-width window can still add the entering value and subtract the leaving one regardless of signs."
 	},
 	"Unit 5: Greedy and Structured Simulation": {
 		title: "Unit 5: Greedy, Priority Queues, Bitwise, and Structured Simulation",
@@ -1487,7 +1491,11 @@ const USACO_SILVER_FLOW: Record<
 			"counterexample"
 		],
 		flowNote:
-			"Justify local choices with an exchange or no-regret argument, use priority queues for the next relevant event, and treat bitwise or constructive tasks as explicit state design rather than memorized tricks."
+			"Justify local choices with an exchange or no-regret argument, use priority queues for the next relevant event, and treat bitwise or constructive tasks as explicit state design rather than memorized tricks.",
+		workedExample:
+			"Select as many non-overlapping bookings as possible, allowing a new booking to begin exactly when one ends. From `[0,5)`, `[1,3)`, `[3,4)`, and `[4,6)`, choose `[1,3)`, `[3,4)`, and `[4,6)` in finish-time order. Choosing the earliest start first leaves room for only one booking. The exchange argument replaces the first booking of an optimal schedule with the earliest-finishing booking. Every later booking remains feasible because the replacement ends no later.",
+		masteryCheck:
+			"Trace the sorted list using `start >= lastEnd` as the acceptance rule. What changes when bookings cannot share an endpoint? The rule becomes `start > lastEnd`, which excludes the original three-booking sequence. Sorting once costs `O(n log n)`. A heap is useful when new events enter while the schedule is being processed."
 	},
 	"Unit 6: Silver Capstone Sets": {
 		title: "Unit 6: Protected Silver Sets, Postmortems, and Gold Readiness",
@@ -1501,7 +1509,11 @@ const USACO_SILVER_FLOW: Record<
 			"Gold readiness"
 		],
 		flowNote:
-			"Calibrate against a recent official Silver set, complete protected mocks under the active-contest boundary, repair misses through delayed independent rewrites, and move to Gold only after Silver pattern recognition is repeatable."
+			"Calibrate against a recent official Silver set, complete protected mocks under the active-contest boundary, repair misses through delayed independent rewrites, and move to Gold only after Silver pattern recognition is repeatable.",
+		workedExample:
+			"After a timed set, suppose the program answers inclusive range-sum queries using `prefix[r] - prefix[l]`, where `prefix[i]` sums entries before index `i`. It passes a sample with a trailing zero but fails on the one-element input `[5]` with query `[0,0]`. The expected result is 5, and the program returns 0. The invariant stayed valid, but the query forgot the right endpoint. The repaired formula is `prefix[r + 1] - prefix[l]`.",
+		masteryCheck:
+			"Preserve the failing attempt, identify the smallest counterexample, and add first, last, and whole-array query tests. In the next session, rewrite from an empty file and explain why the corrected query is constant time after the prefix pass. Compare the new run with the original judge result. During protected practice, record the result and save any guided review for after the timer."
 	}
 };
 
@@ -1729,7 +1741,12 @@ function decorateSilverModule(
 		...item,
 		content:
 			index === 0
-				? `**Course flow:** ${flow.flowNote}\n\n${item.content}`
+				? [
+						`**Course flow:** ${flow.flowNote}`,
+						item.content,
+						`**Worked example**\n\n${flow.workedExample}`,
+						`**Mastery check**\n\n${flow.masteryCheck}`
+					].join("\n\n")
 				: item.content
 	}));
 
@@ -1766,8 +1783,17 @@ function buildSilverProblemBankAppendix(
 		curriculum: [
 			{
 				title: "Problem Bank Scope Guide",
-				content:
-					"**Course flow:** The full repository bank is optional practice, not another required sequence. Choose a problem because a unit gate or postmortem identified a pattern gap. Preserve the first attempt, use hints or solutions only after diagnosis, and complete a later rewrite from an empty file.",
+				aliases: [
+					"usaco-silver-optional-silver-problem-bank-supplemental-core-project-optional-silver-problem-bank",
+					"usaco-silver-optional-silver-problem-bank-supplemental-problem-bank-full-silver-repo"
+				],
+				contentKind: "reading",
+				preserveInstructions: true,
+				preserveAssignment: true,
+				content: [
+					"Choose an optional problem to practice a skill identified in a unit or postmortem. For example, use Floodfill to check when cells become visited, or Cities and States to practice counting complementary keys without counting pairs twice. Open the starter from the selected problem card.",
+					"Keep the first attempt and write a small failing case before opening its reference. In a later session, rewrite from an empty file and check the new result against that case. The [full Silver problem library](https://github.com/instruction-material/USACO-Silver/tree/main) includes more training problems."
+				].join("\n\n"),
 				learningPath: "core"
 			}
 		],

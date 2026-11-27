@@ -655,27 +655,9 @@ const usacoGoldSourceCourse: RawCourse = {
 					title: "Late Gold Counting and Structure Bank",
 					content:
 						"Additional late-Gold folders include `UG25 Sleepy Cow Sorting`, `UG27 Snow Boots`, `UG28 Cow Poetry`, `UG29 Cowpatibility`, `UG32 Stamp Painting`, `UG36 Circular Barn Revisited`, `UG37 Circular Barn`, `UG38 Bovine Genomics`, `UG-Milk-Visits`, and `UG-Time-is-Mooney`."
-				},
-				{
-					title: "Unit 8: Optional Gold Problem Bank: Core Project",
-					content: buildProjectGuidance({
-						courseFamily: "USACO Gold",
-						moduleTitle: "Unit 8: Optional Gold Problem Bank",
-						projectKind: "core",
-						hasReference: false
-					}),
-					projectLink:
-						"https://github.com/instruction-material/USACO-Gold/tree/main"
 				}
 			],
 			supplementalProjects: [
-				{
-					title: "Problem Bank: Full Gold Repo",
-					content:
-						"Browse the full Gold repo library when the core sequence is not enough and you want the wider advanced-problem inventory.",
-					projectLink:
-						"https://github.com/instruction-material/USACO-Gold/tree/main"
-				},
 				{
 					id: roadblockSavedItemId,
 					title: "Problem: Roadblock",
@@ -1446,6 +1428,8 @@ const USACO_GOLD_FLOW: Record<
 		estimatedTime: string;
 		keyBlocks: string[];
 		flowNote: string;
+		workedExample: string;
+		masteryCheck: string;
 	}
 > = {
 	"USG0 Setup and Gold Mindset": {
@@ -1460,7 +1444,11 @@ const USACO_GOLD_FLOW: Record<
 			"protected practice"
 		],
 		flowNote:
-			"Verify independent Silver fluency, establish one reliable Gold contest language and standard-I/O workflow, read the live Gold and certified-result rules, and begin a proof-and-counterexample log before adding advanced algorithms."
+			"Verify independent Silver fluency, establish one reliable Gold contest language and standard-I/O workflow, read the live Gold and certified-result rules, and begin a proof-and-counterexample log before adding advanced algorithms.",
+		workedExample:
+			"Count pairs `i < j` with `a[i] > a[j]` in `[3,1,2]`. Direct enumeration finds two pairs. A merge-based count splits the array into `[3]` and `[1,2]`. When the merge takes 1, the remaining 3 adds one pair. Taking 2 adds another. In a larger merge, taking a right-side value smaller than the first unused left value adds one pair for every unused left value, since that half is sorted. Counting during merges costs `O(n log n)` time and `O(n)` extra space.",
+		masteryCheck:
+			"Compare both methods on `[2,2,1]`. The result is 2 because equal values form no pair. At 200,000 values, a direct scan over all pairs can take about 20 billion comparisons. Use the direct count as an independent oracle for small inputs and store the full-size answer in a 64-bit integer."
 	},
 	"Unit 1: Dynamic Programming Foundations": {
 		title: "Unit 1: Dynamic Programming, Knapsack, and State Design",
@@ -1474,7 +1462,11 @@ const USACO_GOLD_FLOW: Record<
 			"slow oracle"
 		],
 		flowNote:
-			"Design states from the minimum information needed for future choices, prove transitions and evaluation order, validate against a slow oracle, and transfer the same discipline to knapsack and grid-state problems."
+			"Design states from the minimum information needed for future choices, prove transitions and evaluation order, validate against a slow oracle, and transfer the same discipline to knapsack and grid-state problems.",
+		workedExample:
+			"With capacity 5, choose each of the weight-value pairs `(2,4)`, `(3,5)`, and `(4,7)` at most once. Define `best[c]` as the greatest value possible within capacity `c` using only the items processed so far. Start with all zeros. For an item of weight `w` and value `v`, compare the current `best[c]` with `best[c-w] + v`. Process capacities from largest to smallest so `best[c-w]` still belongs to the previous step. The first item yields `[0,0,4,4,4,4]`, and the second yields `[0,0,4,5,5,9]`. The final item raises `best[4]` to 7 while `best[5]` stays 9.",
+		masteryCheck:
+			"Trace the first item with capacities visited in ascending order. Capacity 4 reads the new value at capacity 2 and incorrectly gives 8 by reusing the same item. Enumerate all eight subsets to verify the final answer of 9. The table uses `O(capacity)` space and the updates take `O(items × capacity)` time."
 	},
 	"Unit 2: Shortest Paths and Weighted Graphs": {
 		title: "Unit 2: Shortest Paths, DAGs, and Weighted Graphs",
@@ -1488,7 +1480,11 @@ const USACO_GOLD_FLOW: Record<
 			"complexity proof"
 		],
 		flowNote:
-			"Choose a shortest-path method from edge weights, source count, and graph size; reject stale priority-queue work; and use topological order when dependencies form a DAG."
+			"Choose a shortest-path method from edge weights, source count, and graph size; reject stale priority-queue work; and use topological order when dependencies form a DAG.",
+		workedExample:
+			"Use directed edges `A→B:6`, `A→C:2`, `C→B:1`, `B→D:3`, and `C→D:8`. From A, the heap first records tentative distances 6 to B and 2 to C. Popping C lowers B to 3 and discovers D at 10. Popping B at 3 lowers D to 6. Skip the older B entry at 6 and the older D entry at 10 because their keys differ from the current best distances. With nonnegative weights, a minimum current heap entry cannot be improved through a later vertex.",
+		masteryCheck:
+			"Change `A→B` to 2, `A→C` to 5, and `C→B` to −4. Finalizing B at distance 2 would miss the distance 1 through C. This graph is still acyclic, so relax in the topological order A, C, B, D. That gives distances 0, 5, 1, and 4 in that order. Include a disconnected vertex and mark its distance unreachable."
 	},
 	"Unit 3: MSTs, DSU, and Connectivity Optimization": {
 		title: "Unit 3: MSTs, DSU, and Connectivity Proofs",
@@ -1502,7 +1498,11 @@ const USACO_GOLD_FLOW: Record<
 			"connectivity threshold"
 		],
 		flowNote:
-			"Maintain an exact disjoint-set component invariant, compare Kruskal and Prim from the graph representation, and justify every accepted edge with a cut or exchange argument."
+			"Maintain an exact disjoint-set component invariant, compare Kruskal and Prim from the graph representation, and justify every accepted edge with a cut or exchange argument.",
+		workedExample:
+			"Sort undirected edges `AB:1`, `BC:2`, `AC:2`, `CD:4`, and `BD:5` by weight. Initially each vertex is a separate disjoint-set component. Accept AB, then accept one of BC or AC. Reject the other weight-2 edge since its endpoints already share a component. Accept CD to join the two remaining components. The three chosen edges form a spanning tree of weight 7. A minimum-weight edge across a cut that separates a current component from the rest can be added by exchanging it for an edge of no smaller weight.",
+		masteryCheck:
+			"Swap the tie order of AC and BC. Check that the selected edges may differ and the total stays 7. Then remove every edge touching D. The algorithm ends with two components and a minimum spanning forest of weight 3. The edge count and component count show why that result fails a spanning-tree requirement."
 	},
 	"Unit 4: Fenwick Trees, Ordering, and Range Structure": {
 		title: "Unit 4: Fenwick and Segment Trees, Ordering, and Range Structure",
@@ -1516,7 +1516,11 @@ const USACO_GOLD_FLOW: Record<
 			"inversion counting"
 		],
 		flowNote:
-			"Choose the smallest range structure whose updates and queries match the statement, derive index boundaries before coding, and connect compressed order statistics to inversion and sweep problems."
+			"Choose the smallest range structure whose updates and queries match the statement, derive index boundaries before coding, and connect compressed order statistics to inversion and sweep problems.",
+		workedExample:
+			"Store `[2,1,4,3]` in a one-based Fenwick tree for sums. Entry `i` covers the last `i & -i` positions ending at `i`, so the four tree entries are `[2,3,4,10]`. Prefix 3 reads entries 3 and 2, yielding 7. The inclusive range from 2 to 3 has sum `prefix(3) - prefix(1) = 5`. Adding 5 at index 2 changes tree entries 2 and 4 to 8 and 15. The same range query now gives 10. Prefix queries subtract the lowest set bit to reach the previous block, while updates add it to reach the next covering block.",
+		masteryCheck:
+			"Trace a prefix ending at 0 and a sum over the entire array after the update. The results are 0 and 15. For a range-minimum query, subtracting two prefix minima fails to recover the requested minimum. Use a segment tree whose parent stores the smaller minimum of its two child intervals. Both structures support their respective point updates and range queries in logarithmic time."
 	},
 	"Unit 5: Advanced Graph Modeling and Geometry-Flavored Problems": {
 		title: "Unit 5: Tree Algorithms, Euler Tours, and Advanced Graph Modeling",
@@ -1530,7 +1534,11 @@ const USACO_GOLD_FLOW: Record<
 			"state-graph modeling"
 		],
 		flowNote:
-			"Root trees only when it clarifies state, flatten subtrees into ranges with Euler-tour timestamps, build and reroot tree DP, and preserve the existing graph and geometry projects as model-selection practice."
+			"Root trees only when it clarifies state, flatten subtrees into ranges with Euler-tour timestamps, build and reroot tree DP, and preserve the existing graph and geometry projects as model-selection practice.",
+		workedExample:
+			"Root a tree at A with edges AB, AC, BD, and BE. Give A, B, C, D, and E weights 2, 3, 5, 7, and 11. A depth-first preorder A, B, D, E, C gives the flat array `[2,3,7,11,5]`. Record an entry timestamp before visiting children and an exclusive exit timestamp after visiting all descendants. B occupies `[1,4)`, so its subtree sum is 21. A's interval is `[0,5)`, and a leaf occupies exactly one index.",
+		masteryCheck:
+			"Reroot at E and predict B's subtree sum before drawing a new traversal. It now contains B, D, A, and C and sums to 17. For a separate rerooting check, compute the sum of distances from A as 6. Moving the root from A to B shortens the distance to the three nodes in B's original subtree by one and lengthens the other two by one, giving 5. Compare this with the distances counted directly from B."
 	},
 	"Unit 6: Advanced DP and Combinatorics": {
 		title: "Unit 6: Advanced DP, Bitmask State, and Combinatorics",
@@ -1544,7 +1552,11 @@ const USACO_GOLD_FLOW: Record<
 			"transition proof"
 		],
 		flowNote:
-			"Extend state design to subsets and other compact dimensions, separate counting logic from modular implementation, and use range or digit DP only when the state and complexity genuinely fit."
+			"Extend state design to subsets and other compact dimensions, separate counting logic from modular implementation, and use range or digit DP only when the state and complexity genuinely fit.",
+		workedExample:
+			"Assign three people to separate tasks using cost rows `[2,4,7]`, `[3,1,6]`, and `[5,8,2]`. Let `best[mask]` be the minimum cost of assigning the first `popcount(mask)` people to exactly the occupied tasks. Initialize the empty mask to zero and the other states to infinity. For each unused bit, add that task to the mask, add its cost for the next person, and keep the smaller candidate. Number tasks from 0. Choosing tasks 0, 1, and 2 in order visits masks `001`, `011`, and `111` with costs 2, 3, and 5.",
+		masteryCheck:
+			"Enumerate the six assignments to verify that 5 is the minimum. Change person 0's cost for task 0 to 10. The new optimum is 9 by choosing tasks 1, 0, and 2. Explain why the mask already identifies the next person and why there are `2^n` states with up to `n` transitions each."
 	},
 	"Unit 7: Gold Capstone Sets": {
 		title: "Unit 7: Protected Gold Sets, Postmortems, and Platinum Readiness",
@@ -1558,7 +1570,11 @@ const USACO_GOLD_FLOW: Record<
 			"Gold or Platinum next step"
 		],
 		flowNote:
-			"Calibrate with recent official Gold tasks, complete protected four-hour sets, repair failures through delayed independent rewrites, and use repeated evidence—not one cutoff or one lucky solve—to choose continued Gold work or a Platinum transition."
+			"Calibrate with recent official Gold tasks, complete protected four-hour sets, repair failures through delayed independent rewrites, and use repeated results to choose continued Gold work or a Platinum transition.",
+		workedExample:
+			"Suppose a shortest-path solution passes the tiny sample and then fails on large weights. A three-vertex path with two edges of weight 1,500,000,000 is enough to expose the issue. Each edge fits a signed 32-bit integer, but the total distance of 3,000,000,000 exceeds its maximum. Trace the relaxation in the type actually used for the addition and for the heap key. Both must carry the same valid distance. Choose a 64-bit representation and a sentinel above the maximum feasible path total, and avoid adding an edge to an unreachable distance.",
+		masteryCheck:
+			"Keep the failing source and case in the postmortem. Then verify the rewrite on that path, an unreachable vertex, and a competing shorter route. Classify the failure as a representation error because the relaxation argument stayed valid. Explain the path-weight bound before the next timed set. Keep any shared diagnosis and solution comparison outside the protected timer."
 	}
 };
 
@@ -1793,7 +1809,12 @@ function decorateGoldModule(
 		...item,
 		content:
 			index === 0
-				? `**Course flow:** ${flow.flowNote}\n\n${item.content}`
+				? [
+						`**Course flow:** ${flow.flowNote}`,
+						item.content,
+						`**Worked example**\n\n${flow.workedExample}`,
+						`**Mastery check**\n\n${flow.masteryCheck}`
+					].join("\n\n")
 				: item.content
 	}));
 
@@ -1828,8 +1849,17 @@ function buildGoldProblemBankAppendix(
 		curriculum: [
 			{
 				title: "Problem Bank Scope Guide",
-				content:
-					"**Course flow:** The full Gold repository bank is optional practice, not a ninth required unit. Choose a problem because a unit gate or postmortem identified a specific algorithm, proof, or implementation gap. Preserve the first attempt, delay solution study until diagnosis, and later rewrite from an empty file.",
+				aliases: [
+					"usaco-gold-optional-gold-problem-bank-supplemental-core-project-optional-gold-problem-bank",
+					"usaco-gold-optional-gold-problem-bank-supplemental-problem-bank-full-gold-repo"
+				],
+				contentKind: "reading",
+				preserveInstructions: true,
+				preserveAssignment: true,
+				content: [
+					"Choose an optional problem to practice an algorithm, proof, or implementation skill identified in a unit or postmortem. Use Roadblock to explain which edge changes can affect a shortest path, or Sleepy Cow Sorting to trace how insertion positions change while sorting. Open the starter from the selected problem card.",
+					"Preserve the first attempt and diagnose a concrete failure before comparing it with the reference. In a later session, rewrite from an empty file and verify both the repair and its complexity. The [full Gold problem library](https://github.com/instruction-material/USACO-Gold/tree/main) includes more training problems."
+				].join("\n\n"),
 				learningPath: "core"
 			}
 		],

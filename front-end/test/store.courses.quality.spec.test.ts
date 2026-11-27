@@ -3004,6 +3004,44 @@ describe("course text quality normalization", () => {
 		expect(duplicateGroups).toEqual([]);
 	});
 
+	it.each([
+		["usaco-silver", 7],
+		["usaco-gold", 8]
+	] as const)("keeps the authored examples visible in %s", async (id, count) => {
+		const course = await loadRawCourse(id);
+		const modules = course?.modules.slice(0, count) ?? [];
+		expect(modules).toHaveLength(count);
+
+		for (const module of modules) {
+			const reading = module.curriculum.find(item =>
+				item.title.endsWith("Core Concepts")
+			);
+			expect(reading?.content, module.title).toContain("**Worked example**");
+			expect(reading?.content, module.title).toContain("**Mastery check**");
+			expect(reading?.content, module.title).not.toContain("**Concept path:**");
+		}
+
+		const tier = id.slice("usaco-".length);
+		const bank = course?.modules.find(module =>
+			module.title.endsWith("Problem Bank")
+		);
+		const guide = bank?.curriculum.find(
+			item => item.title === "Problem Bank Scope Guide"
+		);
+		const legacyIdPrefix = `${id}-optional-${tier}-problem-bank-supplemental`;
+		expect(guide?.aliases).toEqual([
+			`${legacyIdPrefix}-core-project-optional-${tier}-problem-bank`,
+			`${legacyIdPrefix}-problem-bank-full-${tier}-repo`
+		]);
+		expect(guide?.projectLink).toBeUndefined();
+		expect(guide?.content.match(/\/tree\/main\)/g)).toHaveLength(1);
+		expect(
+			bank?.supplementalProjects.some(item =>
+				item.projectLink?.endsWith("/tree/main")
+			)
+		).toBe(false);
+	});
+
 	it("keeps USACO practice blocks contest-specific instead of scaffold-labeled", async () => {
 		const courses = await Promise.all([
 			loadRawCourse("usaco-bronze"),

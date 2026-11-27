@@ -104,13 +104,15 @@ describe("USACO Gold learner flow", () => {
 		);
 
 		expect(curriculumTitles).toHaveLength(61);
-		expect(optionTitles).toHaveLength(96);
+		expect(optionTitles).toHaveLength(94);
+		expect(moduleText("Optional Gold Problem Bank")).toContain(
+			"[full Gold problem library]"
+		);
 		for (const title of [
 			"Native Input/Output Retry",
 			"MooTube: Offline Connectivity Practice",
 			"MooTube: Changed-Case Retry",
 			"Snow Boots: Offline Sweep Extension",
-			"Problem Bank: Full Gold Repo",
 			"Problem: Roadblock",
 			"Superbull: Maximum Elimination Score",
 			"Fenced In: Minimum Fence Removal",

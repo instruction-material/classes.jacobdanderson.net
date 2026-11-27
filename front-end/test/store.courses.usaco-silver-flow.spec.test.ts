@@ -98,9 +98,11 @@ describe("USACO Silver learner flow", () => {
 		);
 
 		expect(curriculumTitles).toHaveLength(50);
-		expect(optionTitles).toHaveLength(97);
+		expect(optionTitles).toHaveLength(95);
+		expect(moduleText("Optional Silver Problem Bank")).toContain(
+			"[full Silver problem library]"
+		);
 		for (const title of [
-			"Problem Bank: Full Silver Repo",
 			"Problem: Floodfill",
 			"Problem: Cities and States",
 			"Problem: Moocast",
