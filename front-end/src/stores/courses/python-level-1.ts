@@ -10,6 +10,7 @@ import {
 	pythonLevel1SpaceEaterProject
 } from "./pythonLevel1ArcadeProjects";
 import { pythonLevel1CheckIn } from "./pythonLevel1CheckInProjects";
+import { pythonLevel1DrawingProject } from "./pythonLevel1DrawingProjects";
 import { pythonLevel1GameMechanicsProjects } from "./pythonLevel1GameMechanicsProjects";
 import { pythonLevel1ListProjects } from "./pythonLevel1ListProjects";
 
@@ -147,7 +148,7 @@ Command details: [Python Turtle reference](https://docs.python.org/3/library/tur
 		{
 			title: "GrS2 Loops",
 			curriculum: [
-				{
+				pythonLevel1DrawingProject("GrS2-Basic-Shapes", {
 					title: "GrS2 Project 1: Basic Shapes",
 					preserveInstructions: true,
 					content: `Learn how \`for\` loops repeat code and use them to draw a square, triangle, and circle more efficiently. Compare repeated code with loop-based code and explore how shape sides and turn angles work together.
@@ -195,17 +196,13 @@ For the required triangle, travel pen-up to \`(80, -40)\`, face right with \`pen
 
 Finish with the square, triangle and circle in separate places. Keep travel lines absent and identify which statements repeat. Change a side length or starting position, predict the endpoints, then compare the drawing with that prediction. Continue with Smiley Face and the original loop drawing as the remaining required projects. More Shapes and Bullseye are optional practice.
 
-Language details: [Python for loops and range](https://docs.python.org/3/tutorial/controlflow.html#for-statements).`,
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS2-Basic-Shapes/solution"
-				},
-				{
+Language details: [Python for loops and range](https://docs.python.org/3/tutorial/controlflow.html#for-statements).`
+				}),
+				pythonLevel1DrawingProject("Smiley-Face", {
 					title: "GrS2 Project 2: Smiley Face",
 					content:
-						"Combine loops, shape planning, colors, and background changes to draw a smiley face with features such as rectangular eyes and a curved mouth.",
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/Smiley-Face/solution"
-				},
+						"Combine loops, shape planning, colors, and background changes to draw a smiley face with features such as rectangular eyes and a curved mouth."
+				}),
 				{
 					title: "GrS2 Project 3: Open Ended Project - Drawing with Loops",
 					content:
@@ -213,48 +210,34 @@ Language details: [Python for loops and range](https://docs.python.org/3/tutoria
 				}
 			],
 			supplementalProjects: [
-				{
+				pythonLevel1DrawingProject("GrS2-More-Shapes", {
 					title: "GrS2 Supplemental Project 1: More Shapes",
 					content:
-						"Draw a magenta hexagon, a purple decagon, and a teal star on different parts of a black screen. Use loops for the repeated sides, calculate or choose turns intentionally, and move between shapes with the pen lifted so the travel lines do not appear. Verify that each shape has the correct number of visible points or sides.",
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS2-More-Shapes/solution"
-				},
-				{
+						"Draw a magenta hexagon, a purple decagon, and a teal star on different parts of a black screen. Use loops for the repeated sides, calculate or choose turns intentionally, and move between shapes with the pen lifted so the travel lines do not appear. Verify that each shape has the correct number of visible points or sides."
+				}),
+				pythonLevel1DrawingProject("GrS2-Bullseye", {
 					title: "GrS2 Supplemental Project 2: Bullseye",
 					content:
-						"Draw a target made of alternating red and white circles. Keep the circles centered by returning to a predictable position before each ring, and use a loop or repeated helper pattern so the radius changes consistently. The final target shows clear alternating colors and rings that stay aligned around the same center point.",
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS2-Bullseye/solution"
-				},
-				{
+						"Draw a target made of alternating red and white circles. Keep the circles centered by returning to a predictable position before each ring, and use a loop or repeated helper pattern so the radius changes consistently. The final target shows clear alternating colors and rings that stay aligned around the same center point."
+				}),
+				pythonLevel1DrawingProject("GrS2-Watermelon-Slice", {
 					title: "GrS2 Supplemental Project 3: Watermelon Slice",
 					content:
-						"Use loops and fills to draw a watermelon slice with rind, fruit, and seeds. Separate the drawing into layers: outer rind, inner fruit, and repeated seed shapes. The repeated seeds follow a clear pattern rather than random placement, and the fill colors make each layer easy to distinguish.",
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS2-Watermelon-Slice/solution"
-				},
-				{
+						"Use loops and fills to draw a watermelon slice with rind, fruit, and seeds. Separate the drawing into layers: outer rind, inner fruit, and repeated seed shapes. The repeated seeds follow a clear pattern rather than random placement, and the fill colors make each layer easy to distinguish."
+				}),
+				pythonLevel1DrawingProject("GrS2-Taxi", {
 					title: "GrS2 Supplemental Project 4: Taxi",
 					content:
-						"Draw a taxi using basic Turtle shapes for the body, wheels, windows, and at least one extra detail such as a sign, headlights, or road line. Experiment with thicker pen sizes for bolder outlines, but keep the fill colors and outlines readable. The finished drawing makes the taxi recognizable from separate planned pieces, not one continuous accidental path.",
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS2-Taxi/solution"
-				},
-				{
+						"Draw a taxi using basic Turtle shapes for the body, wheels, windows, and at least one extra detail such as a sign, headlights, or road line. Experiment with thicker pen sizes for bolder outlines, but keep the fill colors and outlines readable. The finished drawing makes the taxi recognizable from separate planned pieces, not one continuous accidental path."
+				}),
+				pythonLevel1DrawingProject("GrS2-Captain-America-Shield", {
 					title: "GrS2 Supplemental Project 5: Captain America Shield",
-					content:
-						"Use concentric circles and a centered star to build a layered shield design. The circles share a center point, shrink in a predictable order, and alternate colors cleanly. Finish by checking that the star is centered inside the smallest circle and that the layer order does not hide important parts of the shield.",
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS2-Captain-America-Shield/solution"
-				},
-				{
+					content: ""
+				}),
+				pythonLevel1DrawingProject("GrS2-Minion", {
 					title: "GrS2 Supplemental Project 6: Minion",
-					content:
-						"Combine loop-based drawing ideas to create a more complex character illustration. Break the minion into body, eye or goggles, clothing, arms, and facial details before coding. Use loops for repeated features such as eyes, buttons, hair, or clothing details, and verify that the drawing still works if one size or position variable changes slightly.",
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS2-Minion/solution"
-				},
+					content: ""
+				}),
 				{
 					title: "GrS2 Supplemental Project 7: Loops Recap",
 					content:
@@ -269,21 +252,17 @@ Language details: [Python for loops and range](https://docs.python.org/3/tutoria
 		{
 			title: "GrS3 Variables and Random Numbers",
 			curriculum: [
-				{
+				pythonLevel1DrawingProject("GrS3-Awesome-Angles", {
 					title: "GrS3 Project 1: Awesome Angles",
 					content:
-						"Use variables such as `length` and `degrees` to control turtle movement, compare assignment in code with equality in math, and experiment with changing variable values to alter the drawing.",
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS3-Awesome-Angles/solution"
-				},
-				{
+						"Use variables such as `length` and `degrees` to control turtle movement, compare assignment in code with equality in math, and experiment with changing variable values to alter the drawing."
+				}),
+				pythonLevel1DrawingProject("Surprise-Me-Square", {
 					title: "GrS3 Project 2: Surprise Me Square",
 					content: `Replace hardcoded coordinates, side lengths, and RGB values with variables, then use \`random.randint()\` to generate random locations, sizes, and colors for a square.
 
-Color reference: compare Turtle color names and RGB values with ${TURTLE_COLOR_REFERENCE}`,
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/Surprise-Me-Square/solution"
-				},
+Color reference: compare Turtle color names and RGB values with ${TURTLE_COLOR_REFERENCE}`
+				}),
 				{
 					title: "GrS3 Guided Project: User Input Shape Designer",
 					content: `Use \`screen.textinput()\` and \`screen.numinput()\` to let the user choose a shape color and size before Turtle draws. Store each response in a descriptively named variable, provide a safe default when the user cancels, and validate the size before using it.
@@ -302,13 +281,11 @@ Test a typical color and size, the smallest accepted size, a value outside the a
 				}
 			],
 			supplementalProjects: [
-				{
+				pythonLevel1DrawingProject("GrS3-Random-Bowtie", {
 					title: "GrS3 Supplemental Project 1: Random Bowtie",
 					content:
-						"Draw a bowtie with random colors for each half and a randomly chosen background color. Store the random choices in variables before drawing so the color decisions can be printed, reused, or debugged. The two halves stay symmetric in shape while color changes from run to run.",
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS3-Random-Bowtie/solution"
-				},
+						"Draw a bowtie with random colors for each half and a randomly chosen background color. Store the random choices in variables before drawing so the color decisions can be printed, reused, or debugged. The two halves stay symmetric in shape while color changes from run to run."
+				}),
 				{
 					title: "GrS3 Supplemental Project 2: Debugging Practice",
 					content:
@@ -342,20 +319,16 @@ Complete the explanations and one short variable-based drawing example. This rec
 		{
 			title: "GrS4 Conditionals Part 1",
 			curriculum: [
-				{
+				pythonLevel1DrawingProject("GrS4-Surprise-Shape", {
 					title: "GrS4 Project 1: Surprise Shape",
 					content:
-						"Learn booleans, comparison operators, and `if` statements by generating a random number and using conditionals to choose which shape to draw.",
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS4-Surprise-Shape/solution"
-				},
-				{
+						"Learn booleans, comparison operators, and `if` statements by generating a random number and using conditionals to choose which shape to draw."
+				}),
+				pythonLevel1DrawingProject("GrS4-Find-Your-Turtle", {
 					title: "GrS4 Project 2: Find Your Turtle",
 					content:
-						"Use the coordinate plane, comparison operators, `and`, `or`, `xcor()`, and `ycor()` to detect where a turtle is and react differently in different regions of the canvas.",
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS4-Find-Your-Turtle/solution"
-				}
+						"Use the coordinate plane, comparison operators, `and`, `or`, `xcor()`, and `ycor()` to detect where a turtle is and react differently in different regions of the canvas."
+				})
 			],
 			supplementalProjects: [
 				{

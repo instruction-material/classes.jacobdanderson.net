@@ -184,18 +184,19 @@ describe("python Turtle foundation teaching", () => {
 			});
 		}
 	}
-	it("keeps the classroom task tied to the actual Triangle Motion template", async () => {
+	it("opens the Basic Shapes reference with matching classroom tasks", async () => {
 		const raw = (await loadRawCourse("python-level-1-classroom"))!;
 		const item = raw.modules
 			.flatMap(module => module.curriculum)
 			.find(item => item.title === titles[1])!;
 		const url = new URL(item.projectLink!, "https://example.invalid");
-		expect(url.searchParams.get("template")).toBe("triangle-motion");
-		expect(item.content).toContain(
-			"**Normal:** Complete `draw_triangle()`"
+		expect(url.searchParams.get("template")).toBe("classroom-project");
+		expect(url.searchParams.get("classroomSource")).toMatch(
+			/\/tree\/[a-f0-9]{40}\/GrS2-Basic-Shapes\/solution$/
 		);
+		expect(item.content).toContain("draw a 30-pixel triangle");
 		expect(item.content).toContain(
-			"**Hard:** Complete `add_triangle_detail()`"
+			"Predict the exterior turn, 72 degrees"
 		);
 	});
 });

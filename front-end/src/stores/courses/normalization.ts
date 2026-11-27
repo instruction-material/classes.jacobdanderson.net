@@ -8931,8 +8931,7 @@ function isClassroomProject(
 function pythonLevel1ClassroomTemplate(itemTitle: string) {
 	if (/Color Circle Art/i.test(itemTitle)) return "circle-art";
 	if (/Picasso/i.test(itemTitle)) return "picasso";
-	if (/Triangle Motion|Basic Shapes/i.test(itemTitle))
-		return "triangle-motion";
+	if (/Triangle Motion/i.test(itemTitle)) return "triangle-motion";
 	if (/Random Walk|Neon Trail/i.test(itemTitle)) return "neon-trail";
 	if (/Fireworks?/i.test(itemTitle)) return "firework-festival";
 	if (/Square Spiral|Spirals?/i.test(itemTitle)) return "spiral-galaxy";

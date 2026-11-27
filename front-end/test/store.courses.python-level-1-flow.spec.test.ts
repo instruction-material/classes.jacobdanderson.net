@@ -314,7 +314,7 @@ describe("python Level 1 learner flow", () => {
 		expect(inputProject?.content).toContain("outside the accepted range");
 	});
 
-	it("preserves project progress IDs in the core listing", async () => {
+	it("preserves core and supplemental progress IDs when attaching new drawing sources", async () => {
 		const course = await useCoursesStore().loadCourseById("python-level-1");
 		expect(course).not.toBeNull();
 
@@ -329,6 +329,27 @@ describe("python Level 1 learner flow", () => {
 			"python-level-1-grs2-loops-curriculum-grs2-project-2-smiley-face"
 		);
 		expect(smiley?.aliases).toBeUndefined();
+		expect(smiley?.projectLink).toMatch(
+			/\/tree\/[a-f0-9]{40}\/Smiley-Face\/starter$/
+		);
+		for (const [title, oldId, folder] of [
+			[
+				"Compass Badge",
+				"5-captain-america-shield",
+				"GrS2-Captain-America-Shield"
+			],
+			["Robot Portrait", "6-minion", "GrS2-Minion"]
+		]) {
+			const item = loops?.supplementalProjects.find(row =>
+				row.title.endsWith(title)
+			);
+			expect(item?.id, title).toBe(
+				`python-level-1-grs2-loops-supplemental-grs2-supplemental-project-${oldId}`
+			);
+			expect(item?.projectLink, title).toMatch(
+				new RegExp(`/tree/[a-f0-9]{40}/${folder}/starter$`)
+			);
+		}
 	});
 
 	it("keeps references and the normalized learner path intact", async () => {
