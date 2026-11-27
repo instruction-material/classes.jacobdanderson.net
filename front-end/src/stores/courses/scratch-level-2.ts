@@ -12,6 +12,7 @@ import {
 } from "./scratchAdvancedGameLessons";
 import { scratchBroadcastingReview } from "./scratchBroadcastingLesson";
 import { scratchFunctionLesson } from "./scratchFunctionLesson";
+import { scratchLevel2StudioGuidance } from "./scratchLevel2StudioGuidance";
 import { scratchListLesson } from "./scratchListLesson";
 import { scratchNestedLoopLesson } from "./scratchNestedLoopLesson";
 import { scratchOperatorLesson } from "./scratchOperatorLesson";
@@ -1045,7 +1046,12 @@ Finally, share the project!`,
 					content: `For your Master Project, you now have the skills and knowledge to design and build a game of your own! Spend some time brainstorming what kind of game to make, thinking about the past projects created and different elements to incorporate. Make sure to include lists and functions in the project.
 				Once there is an idea, discuss the plan for programming the game. Helpful questions include: what does each sprite do? How do we control it? How does each sprite react to certain events? What variables do we need to keep track of? How does the game end?
 				Create a new Scratch project and add a comment to write out the different steps of what we will need to code.
-				Program the game as independently as possible! As described above, this may take approximately two classes to complete.`
+				Program the game as independently as possible! As described above, this may take approximately two classes to complete.`,
+					projectLink: "/ide?mode=scratch&starter=blank"
+				},
+				{
+					title: "GM14 Master Project: Course Flow",
+					...scratchLevel2StudioGuidance.capstone.plan
 				},
 				{
 					title: "Master Project Presentation",
@@ -1054,8 +1060,7 @@ Finally, share the project!`,
 				},
 				{
 					title: "Course Recap",
-					content:
-						"End the course by reviewing the major Scratch concepts: events, loops, conditionals, complex conditionals, variables, broadcasting, cloning, lists, functions, coordinates, game states, and project planning.\nConnect those ideas to the next text-based programming course. The same logic skills carry over into Python, but the blocks become typed code."
+					...scratchLevel2StudioGuidance.capstone.recap
 				},
 				{
 					title: "Optional Extra Practice: Typing and Code Fluency",
@@ -1120,47 +1125,39 @@ Scratch Level 2 already uses larger designs, lists, functions, and coordinated g
 				{
 					title: "Arcade Systems Concepts",
 					aliases: ["Core Concepts"],
-					content:
-						"An arcade system depends on reusable structure: clone creation, list-backed state, custom blocks, broadcasts, and conditionals work together instead of living in separate one-off scripts. The project makes spawn rules, collisions, scoring, levels, and game-over cleanup traceable from the green flag."
+					...scratchLevel2StudioGuidance.arcade.concepts
 				},
 				{
 					title: "Design and Planning Map",
-					content:
-						"Plan the project by listing the sprites, backdrops, variables, messages, custom blocks, controls, and end conditions. A clear map prevents a large Scratch project from becoming a collection of disconnected scripts."
+					...scratchLevel2StudioGuidance.arcade.plan
 				},
 				{
 					title: "Arcade Build Requirements",
 					aliases: ["Build Requirements"],
-					content:
-						"Build spawn rules, collision rules, level progression, score state, difficulty changes, and game-over cleanup. Test the full game loop from green flag to restart so the systems can be inspected together."
+					...scratchLevel2StudioGuidance.arcade.build
 				},
 				{
 					title: "Debugging and Test Pass",
-					content:
-						"Test the start state, normal play path, boundary case, and ending state. Record at least one bug or confusing behavior, the likely cause, and the exact Scratch block or script change that fixed it."
+					...scratchLevel2StudioGuidance.arcade.debug
 				},
 				{
 					title: "Share and Explain",
-					content:
-						"Prepare a short explanation of how the project works. Name the most important event, variable, loop, conditional, and message or custom block, then explain how those pieces cooperate."
+					...scratchLevel2StudioGuidance.arcade.share
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "Checkpoint: Trace the Project State",
-					content:
-						"Pick one moment during the project and name the current sprite positions, visible variables, active loops, and next event. This checks whether the project is understood as a system rather than as scattered blocks."
+					...scratchLevel2StudioGuidance.arcade.check
 				},
 				{
 					title: "Arcade Bug Patterns",
 					aliases: ["Common Bug Patterns"],
-					content:
-						"Look for scripts that do not reset on the green flag, messages that fire too early, variables that keep old values, clones that never delete, and forever loops that prevent the ending from appearing."
+					...scratchLevel2StudioGuidance.arcade.pitfalls
 				},
 				{
 					title: "Extension Project: Arcade Systems Game",
-					content:
-						"Create an arcade game with reusable reset, spawn, scoring, and level systems. Add one feature, clean up one repeated script pattern, and explain how the systems cooperate."
+					...scratchLevel2StudioGuidance.arcade.extension
 				}
 			]
 		},
@@ -1170,47 +1167,39 @@ Scratch Level 2 already uses larger designs, lists, functions, and coordinated g
 				{
 					title: "Simulation Concepts",
 					aliases: ["Core Concepts"],
-					content:
-						"A Scratch simulation uses variables and lists to represent a changing system over time. The important pieces are the starting values, repeated update rule, random or user-controlled event, visible display, and summary result that explains what happened."
+					...scratchLevel2StudioGuidance.simulation.concepts
 				},
 				{
 					title: "Design and Planning Map",
-					content:
-						"Plan the project by listing the sprites, backdrops, variables, messages, custom blocks, controls, and end conditions. A clear map prevents a large Scratch project from becoming a collection of disconnected scripts."
+					...scratchLevel2StudioGuidance.simulation.plan
 				},
 				{
 					title: "Simulation Build Requirements",
 					aliases: ["Build Requirements"],
-					content:
-						"Build population changes, resource collection, random events, graph-like list displays, and repeated trials. Run multiple trials from the green flag and compare how the data changes."
+					...scratchLevel2StudioGuidance.simulation.build
 				},
 				{
 					title: "Debugging and Test Pass",
-					content:
-						"Test the start state, normal play path, boundary case, and ending state. Record at least one bug or confusing behavior, the likely cause, and the exact Scratch block or script change that fixed it."
+					...scratchLevel2StudioGuidance.simulation.debug
 				},
 				{
 					title: "Share and Explain",
-					content:
-						"Prepare a short explanation of how the project works. Name the most important event, variable, loop, conditional, and message or custom block, then explain how those pieces cooperate."
+					...scratchLevel2StudioGuidance.simulation.share
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "Checkpoint: Trace the Project State",
-					content:
-						"Pick one moment during the project and name the current sprite positions, visible variables, active loops, and next event. This checks whether the project is understood as a system rather than as scattered blocks."
+					...scratchLevel2StudioGuidance.simulation.check
 				},
 				{
 					title: "Simulation Bug Patterns",
 					aliases: ["Common Bug Patterns"],
-					content:
-						"Look for scripts that do not reset on the green flag, messages that fire too early, variables that keep old values, clones that never delete, and forever loops that prevent the ending from appearing."
+					...scratchLevel2StudioGuidance.simulation.pitfalls
 				},
 				{
 					title: "Extension Project: Interactive Data Simulation",
-					content:
-						"Create an interactive simulation with visible data, a summary statistic, and an explanation of randomness. Add one feature, clean up one repeated update rule, and explain what the data shows."
+					...scratchLevel2StudioGuidance.simulation.extension
 				}
 			]
 		},
@@ -1220,47 +1209,39 @@ Scratch Level 2 already uses larger designs, lists, functions, and coordinated g
 				{
 					title: "Organization Concepts",
 					aliases: ["Core Concepts"],
-					content:
-						"Larger Scratch projects need organization before they become difficult to debug. Named custom blocks, consistent broadcasts, reset scripts, and small subsystems make it possible to explain what starts the project, what changes state, what repeats, and what ends or advances the experience."
+					...scratchLevel2StudioGuidance.debugging.concepts
 				},
 				{
 					title: "Design and Planning Map",
-					content:
-						"Plan the project by listing the sprites, backdrops, variables, messages, custom blocks, controls, and end conditions. A clear map prevents a large Scratch project from becoming a collection of disconnected scripts."
+					...scratchLevel2StudioGuidance.debugging.plan
 				},
 				{
 					title: "Refactor Build Requirements",
 					aliases: ["Build Requirements"],
-					content:
-						"Repair duplicated scripts, unclear message names, stale variable state, hidden clones, and custom blocks that do too many things. Test each subsystem separately, then test the whole project from the green flag."
+					...scratchLevel2StudioGuidance.debugging.build
 				},
 				{
 					title: "Debugging and Test Pass",
-					content:
-						"Test the start state, normal play path, boundary case, and ending state. Record at least one bug or confusing behavior, the likely cause, and the exact Scratch block or script change that fixed it."
+					...scratchLevel2StudioGuidance.debugging.debug
 				},
 				{
 					title: "Share and Explain",
-					content:
-						"Prepare a short explanation of how the project works. Name the most important event, variable, loop, conditional, and message or custom block, then explain how those pieces cooperate."
+					...scratchLevel2StudioGuidance.debugging.share
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "Checkpoint: Trace the Project State",
-					content:
-						"Pick one moment during the project and name the current sprite positions, visible variables, active loops, and next event. This checks whether the project is understood as a system rather than as scattered blocks."
+					...scratchLevel2StudioGuidance.debugging.check
 				},
 				{
 					title: "Organization Bug Patterns",
 					aliases: ["Common Bug Patterns"],
-					content:
-						"Look for scripts that do not reset on the green flag, messages that fire too early, variables that keep old values, clones that never delete, and forever loops that prevent the ending from appearing."
+					...scratchLevel2StudioGuidance.debugging.pitfalls
 				},
 				{
 					title: "Extension Project: Refactored Scratch Project",
-					content:
-						"Create a refactored Scratch project with a before-and-after explanation. Add one feature only after the cleanup is complete, and explain why the refactor makes the project easier to test."
+					...scratchLevel2StudioGuidance.debugging.extension
 				}
 			]
 		},
@@ -1270,47 +1251,39 @@ Scratch Level 2 already uses larger designs, lists, functions, and coordinated g
 				{
 					title: "Programming Bridge Concepts",
 					aliases: ["Core Concepts"],
-					content:
-						"Advanced Scratch concepts map directly to Python readiness: lists store collections, custom blocks behave like functions, inputs resemble parameters, loops repeat actions, conditionals branch, and variables preserve state. The explanation translates a Scratch system into text-code terms without losing how the original project behaves."
+					...scratchLevel2StudioGuidance.bridge.concepts
 				},
 				{
 					title: "Design and Planning Map",
-					content:
-						"Plan the project by listing the sprites, backdrops, variables, messages, custom blocks, controls, and end conditions. A clear map prevents a large Scratch project from becoming a collection of disconnected scripts."
+					...scratchLevel2StudioGuidance.bridge.plan
 				},
 				{
 					title: "Bridge Build Requirements",
 					aliases: ["Build Requirements"],
-					content:
-						"Translate Scratch custom blocks into functions, list operations into Python-style list work, and broadcasts into function calls or state changes. Include a trace showing how one Scratch event becomes a text-code sequence."
+					...scratchLevel2StudioGuidance.bridge.build
 				},
 				{
 					title: "Debugging and Test Pass",
-					content:
-						"Test the start state, normal play path, boundary case, and ending state. Record at least one bug or confusing behavior, the likely cause, and the exact Scratch block or script change that fixed it."
+					...scratchLevel2StudioGuidance.bridge.debug
 				},
 				{
 					title: "Share and Explain",
-					content:
-						"Prepare a short explanation of how the project works. Name the most important event, variable, loop, conditional, and message or custom block, then explain how those pieces cooperate."
+					...scratchLevel2StudioGuidance.bridge.share
 				}
 			],
 			supplementalProjects: [
 				{
 					title: "Checkpoint: Trace the Project State",
-					content:
-						"Pick one moment during the project and name the current sprite positions, visible variables, active loops, and next event. This checks whether the project is understood as a system rather than as scattered blocks."
+					...scratchLevel2StudioGuidance.bridge.check
 				},
 				{
 					title: "Bridge Pitfalls",
 					aliases: ["Common Bug Patterns"],
-					content:
-						"Look for scripts that do not reset on the green flag, messages that fire too early, variables that keep old values, clones that never delete, and forever loops that prevent the ending from appearing."
+					...scratchLevel2StudioGuidance.bridge.pitfalls
 				},
 				{
 					title: "Extension Project: Scratch-to-Python Bridge Portfolio",
-					content:
-						"Create a bridge portfolio that translates one Scratch game mechanic into pseudocode and Python-style code. Include the original Scratch behavior, the translated steps, and one explanation of what was easier or harder to express in text."
+					...scratchLevel2StudioGuidance.bridge.extension
 				}
 			]
 		}
@@ -1552,9 +1525,7 @@ const SCRATCH_LEVEL_2_FLOW: ScratchLevel2FlowConfig[] = [
 			"variables and lists",
 			"custom blocks",
 			"broadcasts and clones"
-		],
-		projectThread:
-			"Plan and ship an original minimum playable version before optional art, levels, or polish. The final presentation must explain one state system, one reusable block, one bug fixed, and one tested edge case."
+		]
 	},
 	{
 		oldTitle: "GM15 Text-Based Programming Bridge",

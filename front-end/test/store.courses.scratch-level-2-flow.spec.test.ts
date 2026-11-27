@@ -176,6 +176,32 @@ describe("Scratch Level 2 learner flow", () => {
 		expect(typingPractice?.content).toContain("score = score + 1");
 	});
 
+	it("gives each studio its own worked practice and launches blank builds", async () => {
+		const course = await useCoursesStore().loadCourseById("scratch-level-2");
+		expect(course).not.toBeNull();
+		const cases = [
+			["GM11 Arcade Systems Studio", "Arcade Build Requirements", "one level change"],
+			["GM12 Simulation and Data Studio", "Simulation Build Requirements", "the token fraction is 0.5"],
+			["GM13 Code Organization and Debugging Studio", "Refactor Build Requirements", "two consecutive flag restarts"],
+			["GM15 Scratch-to-Python Bridge", "Bridge Build Requirements", "def count_tokens(outcomes):"]
+		] as const;
+
+		for (const [moduleTitle, title, expected] of cases) {
+			const module = course!.modules.find(row => row.title === moduleTitle);
+			const activity = module?.curriculum.find(row => row.title === title);
+			expect(activity?.content, title).toContain(expected);
+			expect(activity?.contentKind, title).toBe("assignment");
+			expect(activity?.learningPath, title).toBe("core");
+		}
+
+		const builds = course!.modules.flatMap(module => module.curriculum);
+		for (const title of ["Simulation Build Requirements", "GM14 Project 1: Master Project"]) {
+			const activity = builds.find(item => item.title === title);
+			expect(activity?.projectLink, title).toBe("/ide?mode=scratch&starter=blank");
+			expect(activity, title).toBeDefined();
+		}
+	});
+
 	it("preserves progress IDs while adding aliases for the new sequence", async () => {
 		const course =
 			await useCoursesStore().loadCourseById("scratch-level-2");

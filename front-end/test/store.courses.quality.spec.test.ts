@@ -6403,10 +6403,10 @@ describe("course text quality normalization", () => {
 
 		const scratchLevel2Bridge = scratchLevel2!.modules
 			.find(module => module.title === "GM15 Scratch-to-Python Bridge")
-			?.curriculum.find(item => /Core Concepts$/i.test(item.title));
+			?.curriculum.find(item => item.content.includes("A Scratch list uses position 1"));
 		expect(scratchLevel2Bridge).toBeDefined();
 		expect(scratchLevel2Bridge!.content).toContain(
-			"Advanced Scratch concepts map directly to Python readiness"
+			"A Scratch list uses position 1"
 		);
 		expect(scratchLevel2Bridge!.content).not.toMatch(/\bmappings\b/i);
 
