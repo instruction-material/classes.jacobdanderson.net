@@ -5,6 +5,7 @@ import type {
 	RawCourseModuleItem
 } from "./types";
 import { isCoreProjectTitle } from "./projectGrouping";
+import { pythonLevel1ListProjects } from "./pythonLevel1ListProjects";
 
 const TURTLE_REFERENCE = "/course-assets/python/turtle-project-reference.md";
 const TURTLE_COMMAND_REFERENCE = `${TURTLE_REFERENCE}#turtle-command-reference`;
@@ -12,8 +13,6 @@ const TURTLE_BOUNDARY_REFERENCE = `${TURTLE_REFERENCE}#boundaries-and-in-bounds-
 const TURTLE_SCORE_REFERENCE = `${TURTLE_REFERENCE}#score-turtle-pattern`;
 const TURTLE_GAME_TEMPLATE_REFERENCE = `${TURTLE_REFERENCE}#game-template-with-score-boundaries-and-moving-triangles`;
 const TURTLE_COLOR_REFERENCE = "https://trinket.io/docs/colors";
-const PYTHON_LIST_METHOD_REFERENCE =
-	"https://www.w3schools.com/python/python_ref_list.asp";
 
 export const pythonLevel1Course: RawCourse = {
 	name: "Python Level 1",
@@ -894,27 +893,29 @@ Include one original example with at least three possible outcomes. A strong rec
 			title: "GrS12 Lists",
 			curriculum: [
 				{
-					title: "GrS12 Project 1: List Exploration",
-					content: `Create empty lists, append values, loop through list items, and check whether a value is present with the \`in\` operator.
+					title: "Lists: Order, Indexes and Membership",
+					contentKind: "reading",
+					preserveInstructions: true,
+					content: `A list keeps values in the order they were added. Use a for loop to visit every value, an index to select one position, and in to ask whether a value is present.
 
-Method reference: use W3Schools' Python list methods page when checking what list operations such as \`.append()\` and \`.remove()\` do: ${PYTHON_LIST_METHOD_REFERENCE}`,
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS12-List-Exploration/solution"
+\`\`\`python
+colors = []
+colors.append("red")
+colors.append("purple")
+
+for color in colors:
+    print(color)
+print(colors[0])
+print("purple" in colors)
+\`\`\`
+
+The loop prints red and then purple. Index 0 prints red again. The last line prints True. On an empty list, the loop prints nothing and the membership check returns False. An index has to name an item that exists, so check the list length before reading position 0.
+
+Predict what changes after appending green. The order becomes red, purple, green. The first value and the membership result stay the same. In the next project, the loop draws with each color instead of printing it.
+
+[Python list method reference](https://www.w3schools.com/python/python_ref_list.asp)`
 				},
-				{
-					title: "GrS12 Project 2: Which Way Turtles",
-					content:
-						"Store multiple turtles in a list and iterate through that list so each turtle can be positioned and moved using the same loop.",
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS12-Which-Way-Turtles/solution"
-				},
-				{
-					title: "GrS12 Project 3: Random Number Lists",
-					content:
-						"Build lists of random numbers, iterate through them, and use the stored data to display multiple lines of output based on those values.",
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS12-Random-Number-Lists/solution"
-				}
+				...pythonLevel1ListProjects
 			],
 			supplementalProjects: [
 				{
@@ -1375,9 +1376,8 @@ const PYTHON_LEVEL_1_FLOW: PythonLevel1FlowConfig[] = [
 			"index",
 			"in"
 		],
-		choiceCurriculumTitles: ["GrS12 Project 3: Random Number Lists"],
 		projectThread:
-			"Explore list creation and mutation, then use Which Way Turtles to apply one command to many objects. Random Number Lists is a data-focused choice after iteration is reliable."
+			"Explore list creation and mutation, then use Which Way Turtles to apply one command to many objects. In Random Number Lists, keep the original values while drawing two transformed rows."
 	},
 	{
 		title: "GrS13 Game Mechanics",

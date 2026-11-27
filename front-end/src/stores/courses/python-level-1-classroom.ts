@@ -1,5 +1,6 @@
 import type { RawCourse, RawCourseModule, RawCourseModuleItem } from "./types";
 import { pythonLevel1Course } from "./python-level-1";
+import { pythonLevel1ClassroomListContent } from "./pythonLevel1ListProjects";
 
 function copyItem(item: RawCourseModuleItem): RawCourseModuleItem {
 	let content =
@@ -33,7 +34,7 @@ function copyItem(item: RawCourseModuleItem): RawCourseModuleItem {
 
 	return {
 		...item,
-		content,
+		content: pythonLevel1ClassroomListContent(item.title) ?? content,
 		aliases: item.aliases ? [...item.aliases] : undefined
 	};
 }

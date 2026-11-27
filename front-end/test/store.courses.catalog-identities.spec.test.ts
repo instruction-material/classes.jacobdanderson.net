@@ -49,6 +49,11 @@ const publishedAPModuleOrder = JSON.parse(
 const scratchCapstoneModule = "scratch-level-1-gs13-master-project";
 const scratchTypingId =
 	"scratch-level-1-gs13-master-project-curriculum-optional-extra-practice-typing-games";
+const pythonListsReading = {
+	moduleId: "python-level-1-grs12-lists",
+	id: "python-level-1-grs12-lists-curriculum-lists-order-indexes-and-membership",
+	section: "core"
+};
 
 // Keep the published baseline immutable; account for a deliberate addition
 // separately so changes to any original assignment still fail the digest.
@@ -73,7 +78,14 @@ const addedIdentities: Record<
 	"middle-school-a-literature": restoredLiteratureProjects,
 	"introduction-to-public-speaking": restoredSpeakingProjects,
 	...restoredWritingProjects,
-	...restoredPythonRecaps,
+	"python-level-1": [
+		...restoredPythonRecaps["python-level-1"],
+		pythonListsReading
+	],
+	"python-level-1-classroom": [
+		...restoredPythonRecaps["python-level-1-classroom"],
+		pythonListsReading
+	],
 	"scratch-level-1": [
 		{
 			moduleId: scratchCapstoneModule,

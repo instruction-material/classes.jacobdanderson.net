@@ -50,6 +50,41 @@ describe("python Level 1 learner flow", () => {
 		).toBe(false);
 	});
 
+	it("opens each Lists project with the source assigned to its edition", async () => {
+		const examples = [
+			["List Exploration", "GrS12-List-Exploration", "5 and True"],
+			["Which Way Turtles", "GrS12-Which-Way-Turtles", "ten position reports"],
+			["Random Number Lists", "GrS12-Random-Number-Lists", "[10, 14, 20]"]
+		] as const;
+		for (const id of ["python-level-1", "python-level-1-classroom"]) {
+			const course = await loadRawCourse(id);
+			const module = course?.modules.find(row => row.title === "GrS12 Lists");
+			expect(module?.curriculum[0]?.content, id).toContain(
+				id.endsWith("-classroom") ? "later_headings.append" : "colors.append"
+			);
+			for (const [title, folder, normalExample] of examples) {
+				const item = module?.curriculum.find(row => row.title.endsWith(title));
+				expect(item?.learningPath, title).toBe("core");
+				expect(item?.contentKind, title).toBe("assignment");
+				expect(item?.solutionLink, title).toMatch(
+					new RegExp(`/tree/[a-f0-9]{40}/${folder}/solution$`)
+				);
+				if (id.endsWith("-classroom")) {
+					const query = new URLSearchParams(item?.projectLink?.split("?")[1]);
+					expect(query.get("mode")).toBe("turtle");
+					expect(query.get("classroomSource")).toMatch(
+						new RegExp(`/tree/[a-f0-9]{40}/${folder}/solution$`)
+					);
+					expect(item?.content, title).toContain(normalExample);
+				} else {
+					expect(item?.projectLink, title).toMatch(
+						new RegExp(`/tree/[a-f0-9]{40}/${folder}/starter$`)
+					);
+				}
+			}
+		}
+	});
+
 	it("gives every teaching module pacing, command targets, and explicit paths", () => {
 		for (const module of pythonLevel1Course.modules) {
 			expect(module.estimatedTime, module.title).toMatch(/session/);
@@ -83,7 +118,7 @@ describe("python Level 1 learner flow", () => {
 			0
 		);
 
-		expect(requiredCount).toBe(66);
+		expect(requiredCount).toBe(67);
 		expect(choiceAndChallengeCount).toBe(58);
 
 		const loops = requireSourceModule("GrS2 Loops");
