@@ -330,11 +330,11 @@
 			},
 			{
 				"id": "cpp-level-2-c-levels-1-3-concept-matrix-and-placement-curriculum-cs235-cs236-concept-extraction",
-				"title": "CS235/CS236 Concept Extraction"
+				"title": "Representation by Example"
 			},
 			{
 				"id": "cpp-level-2-c-levels-1-3-concept-matrix-and-placement-curriculum-no-ai-ml-boundary",
-				"title": "No AI/ML Boundary"
+				"title": "Value and Lifetime Boundaries"
 			},
 			{
 				"id": "cpp-level-2-c-levels-1-3-concept-matrix-and-placement-curriculum-placement-check",
@@ -348,7 +348,7 @@
 			},
 			{
 				"id": "cpp-level-2-c-levels-1-3-concept-matrix-and-placement-supplemental-matrix-project-cs235-cs236-inspired-mini-build",
-				"title": "Matrix Project: CS235/CS236-Inspired Mini Build"
+				"title": "Matrix Project: Input and Data Mini Build"
 			}
 		]
 	},
@@ -366,7 +366,7 @@
 			},
 			{
 				"id": "cpp-level-2-modern-three-course-c-spine-curriculum-manual-memory-safety-rule",
-				"title": "Manual Memory Safety Rule"
+				"title": "Object Lifetimes and Ownership"
 			},
 			{
 				"id": "cpp-level-2-modern-three-course-c-spine-curriculum-branch-readiness",

@@ -446,7 +446,7 @@ describe("implemented course development artifacts", () => {
 			"AP CSA Exam Alignment and FRQ Practice Map"
 		);
 		expect(allText(await requireCourse("cpp-level-3"))).toContain(
-			"CS235/CS236-Inspired Mini Build"
+			"Matrix Project: Input and Data Mini Build"
 		);
 		expect(allText(await requireCourse("machine-learning"))).toContain(
 			"Datasets and Model Reports"
@@ -1235,7 +1235,7 @@ describe("implemented course development artifacts", () => {
 				expect(text, courseId).toContain(
 					"Modern Three-Course C++ Spine"
 				);
-				expect(text, courseId).toContain("Manual Memory Safety Rule");
+				expect(text, courseId).toContain("Object Lifetimes and Ownership");
 			}
 
 			for (const courseId of [

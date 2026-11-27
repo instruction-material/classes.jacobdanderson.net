@@ -3038,10 +3038,10 @@ describe("course text quality normalization", () => {
 
 	it("keeps C++ placement appendices level-specific across Levels 1-3", async () => {
 		const courseIds = ["c-level-1", "cpp-level-2", "cpp-level-3"] as const;
-		const courseLevels: Record<(typeof courseIds)[number], string> = {
-			"c-level-1": "Level 1",
-			"cpp-level-2": "Level 2",
-			"cpp-level-3": "Level 3"
+		const courseEvidence = {
+			"c-level-1": ["the caller observes 7", "position 2"],
+			"cpp-level-2": ["row 1 starts at index 3", "expected sum 19"],
+			"cpp-level-3": ["rejected for its missing argument", "blue and red once each"]
 		};
 		const appendixTitles = [
 			"C++ Levels 1-3 Concept Matrix and Placement",
@@ -3059,10 +3059,15 @@ describe("course text quality normalization", () => {
 			expect(course, courseId).not.toBeNull();
 			if (!course) continue;
 
-			const text = allCourseText(course);
-			const level = courseLevels[courseId];
-			expect(text, courseId).toContain(`${level} uses this as`);
-			expect(text, courseId).toContain(`For ${level}`);
+			const text = course.modules
+				.filter(module => appendixTitles.includes(module.title))
+				.flatMap(module => [...module.curriculum, ...module.supplementalProjects])
+				.map(item => item.content)
+				.join("\n");
+			for (const evidence of courseEvidence[courseId]) {
+				expect(text.toLowerCase(), courseId).toContain(evidence);
+			}
+			expect(text, courseId).not.toMatch(/AI\/ML|CS235|CS236/);
 		}
 
 		for (const appendixTitle of appendixTitles) {

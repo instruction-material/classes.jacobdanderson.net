@@ -5,6 +5,7 @@ import type {
 	RawCourseModuleItem
 } from "./types";
 import { algebra2CheckInFocus } from "./algebra2CheckInFocus";
+import { cppPlacementModules } from "./cppPlacementReadings";
 import { cppToolchainGuidance } from "./cppToolchainGuidance";
 import { researchBackedExpansionProfiles } from "./research-expansions";
 
@@ -465,14 +466,6 @@ const apCsaUnitMap = [
 	"FRQ Family 3 Data Analysis with ArrayList: object-list traversal, filtering, aggregation, mutation, and summary statistics.",
 	"FRQ Family 4 2D Array: row/column traversal, boundary checks, nested loops, and grid reasoning.",
 	"Digital exam routine: typed responses without compiler feedback, indentation discipline, row-scored review, and error-log correction."
-];
-
-const cppConceptMatrix = [
-	"Original Level 1 baseline: variables, I/O, loops, functions, classes, vectors, references, 2D vectors, and state-machine project work.",
-	"Level 2 bridge: pointers, addresses, raw arrays, pointer arithmetic, 2D arrays, dynamic memory, custom dynamic arrays, matrix classes, and ownership reflection.",
-	"Level 3 CS235/CS236-inspired expansion: command architecture, file persistence, scanners/parsers, recursion, STL containers, relation-style views, RAII, templates, interfaces, and state-machine architecture.",
-	"DS&A follow-up boundary: linked structures, trees, heaps, hashing, graph algorithms, dynamic programming, and complexity-first implementation.",
-	"Explicit exclusion: AI and ML concepts stay in AI/Data Science/Machine Learning courses rather than the C++ pathway."
 ];
 
 function systemsSecurityPolicy(courseLabel: string) {
@@ -2136,106 +2129,6 @@ function addUnityRebuildModules(courseId: string, course: RawCourse) {
 	}
 }
 
-function addCppMatrixModule(courseId: string, course: RawCourse) {
-	if (!["c-level-1", "cpp-level-2", "cpp-level-3"].includes(courseId)) {
-		return;
-	}
-
-	const placementNotes: Record<
-		string,
-		{
-			matrixUse: string;
-			extractionUse: string;
-			boundary: string;
-			placementCheck: string;
-			evidenceProject: string;
-			miniBuild: string;
-		}
-	> = {
-		"c-level-1": {
-			matrixUse:
-				"Level 1 uses this as an acceleration and placement map: confirm syntax, functions, vectors, structs/classes, and file I/O before moving into memory-heavy Level 2 work.",
-			extractionUse:
-				"Level 1 borrows only the smallest CS235/CS236 ideas: representation vocabulary, simple invariants, and tiny command formats.",
-			boundary:
-				"Level 1 stays focused on C++ fluency and small program structure; AI/ML examples do not replace basic compile/run/debug evidence.",
-			placementCheck:
-				"Level 1 placement emphasizes whether fundamentals can be accelerated or whether syntax, functions, vectors, and classes still need direct practice.",
-			evidenceProject:
-				"For Level 1, the evidence sheet proves readiness to leave introductory repetition behind rather than jump straight to unsafe memory work.",
-			miniBuild:
-				"For Level 1, keep the mini build small: a relation-style lookup, simple parser, or command loop is enough if the representation and invalid-input path are clear."
-		},
-		"cpp-level-2": {
-			matrixUse:
-				"Level 2 uses this as a memory and ownership placement map: confirm pointers, arrays, copy behavior, destructors, RAII, and STL fluency before larger architecture work.",
-			extractionUse:
-				"Level 2 extracts CS235 discipline around containers, ownership, copy/move behavior, and data-structure invariants.",
-			boundary:
-				"Level 2 stays focused on ownership, lifetime, and standard-library reasoning; AI/ML examples do not hide pointer or resource-lifetime evidence.",
-			placementCheck:
-				"Level 2 placement emphasizes whether manual memory and RAII are understood well enough to support DS&A or Level 3 architecture.",
-			evidenceProject:
-				"For Level 2, the evidence sheet includes at least one lifetime or ownership trace and one container-choice justification.",
-			miniBuild:
-				"For Level 2, choose a mini build that exposes ownership or container tradeoffs, such as a managed dynamic array, index, or relation container."
-		},
-		"cpp-level-3": {
-			matrixUse:
-				"Level 3 uses this as an architecture placement map: confirm templates, interfaces, polymorphism, parsers, state machines, and medium-size project boundaries.",
-			extractionUse:
-				"Level 3 preserves the deeper CS235/CS236 ideas: scanner/parser design, relation operations, command architecture, and invariants across modules.",
-			boundary:
-				"Level 3 can build search-style tools and state machines, but the grading target remains C++ architecture, correctness, and maintainability rather than model training.",
-			placementCheck:
-				"Level 3 placement emphasizes readiness for DS&A, C Systems, Assembly, Design Patterns, or Low-Level Security based on architecture and ownership evidence.",
-			evidenceProject:
-				"For Level 3, the evidence sheet includes an interface or parser boundary, invalid-input behavior, and a medium-size project organization note.",
-			miniBuild:
-				"For Level 3, choose a mini build with a real command surface, parser, relation query, undo/redo state machine, or serialization round trip."
-		}
-	};
-	const placement = placementNotes[courseId];
-
-	appendModule(course, {
-		kind: "appendix",
-		title: "C++ Levels 1-3 Concept Matrix and Placement",
-		curriculum: [
-			{
-				title: "Baseline and Progression Matrix",
-				content: [
-					"**Concept path:** This matrix helps choose the next C++ direction after the original C++ Level 1 material or after Python/Java prerequisites.",
-					`**Current course use:** ${placement.matrixUse}`,
-					`**Matrix:**\n${bullets(cppConceptMatrix)}`,
-					"**Evidence target:** the next lesson direction is identifiable: syntax fluency, memory reasoning, standard-library design, parser/state-machine architecture, or DS&A."
-				].join("\n\n")
-			},
-			{
-				title: "CS235/CS236 Concept Extraction",
-				content: `**Concept path:** Extract CS235-style object, container, and data-structure discipline into Level 3/DS&A, and CS236-style scanner/parser, relation, and state-machine ideas into Level 3 command architecture. Keep the projects smaller than college assignments but preserve the core reasoning: representation choices, invariants, invalid-input handling, and the difference between a convenient demo and a maintainable design.\n\n**Current course use:** ${placement.extractionUse}\n\n**Evidence target:** The extracted idea has a smaller first build and a clear path to a deeper follow-up.`
-			},
-			{
-				title: "No AI/ML Boundary",
-				content: `**Concept path:** Do not use C++ Level 3 as an AI/ML course. C++ work can include parsers, command simulations, state machines, search-style architecture, and data-structure choices, but model training and ML evaluation belong in AI/Data Science/Machine Learning. This boundary keeps C++ focused on language fluency, architecture, ownership, and testable program design.\n\n**Current course boundary:** ${placement.boundary}\n\n**Evidence target:** C++ Level 3 projects are evaluated on program structure and correctness evidence, not prediction accuracy.`
-			},
-			{
-				title: "Placement Check",
-				content: `**Readiness check:** The placement check asks for a pointer/reference explanation, an appropriate vector or map use, a recursive trace, and a command parser rejection path. The weakest answer determines the next module because a gap in memory, containers, recursion, or parsing will become more expensive inside a larger C++ project.\n\n**Current course emphasis:** ${placement.placementCheck}\n\n**Evidence of proficiency:** The explanation includes the failure-mode check, not only the successful path.`
-			}
-		],
-		supplementalProjects: [
-			{
-				title: "Matrix Project: Placement Evidence",
-				content: `**Project goal:** Create a C++ placement evidence sheet. Include one example each for syntax/control flow, memory, containers, recursion, and architecture. Each example includes the prompt, a short answer or code sketch, and a note explaining what the evidence proves about readiness.\n\n**Current course use:** ${placement.evidenceProject}\n\n**Completion checks:**\n- The sheet names strengths and gaps.\n- The recommended next module follows from evidence.\n- AI/ML topics are not used as C++ placement criteria.`
-			},
-			{
-				title: "Matrix Project: CS235/CS236-Inspired Mini Build",
-				content: `**Project goal:** Choose either a relation-style container view or a scanner/parser mini build and implement the smallest useful version. The build preserves the college-level idea in miniature: a defined representation, a narrow command or query surface, and a clear response to invalid input.\n\n**Current course use:** ${placement.miniBuild}\n\n**Completion checks:**\n- The project has a clear input format.\n- Invalid input is rejected safely.\n- The work explains which college-level idea was simplified.`
-			}
-		]
-	});
-}
-
 function addApCsaAlignmentModule(courseId: string, course: RawCourse) {
 	if (courseId !== "ap-computer-science-a") return;
 
@@ -3086,118 +2979,6 @@ function addJavaBridgeModernModule(courseId: string, course: RawCourse) {
 		title: track.title,
 		curriculum: [...track.curriculum],
 		supplementalProjects: [...track.supplementalProjects]
-	});
-}
-
-function addCppThreeCourseSpineModule(courseId: string, course: RawCourse) {
-	if (!["c-level-1", "cpp-level-2", "cpp-level-3"].includes(courseId)) {
-		return;
-	}
-
-	const levelFocus: Record<string, string[]> = {
-		"c-level-1": [
-			"C++ reset and functions: compilation model, headers/source files, const/reference basics, function design.",
-			"Strings, vectors, structs, safe iteration, and raw arrays only as contrast.",
-			"Classes, representation invariants, composition, enums, and file I/O.",
-			"Recursion fundamentals and small multi-file projects."
-		],
-		"cpp-level-2": [
-			"Object lifetime, destructors, copy/move intuition, Rule of Zero, and why copy-control exists.",
-			"Pointers, raw arrays, pointer decay, dynamic memory, shallow/deep copy, and manual dynamic arrays.",
-			"RAII, unique_ptr/shared_ptr/weak_ptr, ownership graphs, and exception-safe cleanup.",
-			"STL containers, iterators, algorithms, lambdas, span, and recursive data structures."
-		],
-		"cpp-level-3": [
-			"Function and class templates, light concepts/constraints, and reusable utilities.",
-			"Operator overloading for conventional value-like types.",
-			"Pure abstract interfaces, virtual destructors, dynamic dispatch, composition vs inheritance, and slicing avoidance.",
-			"State machines, command objects, undo/redo, parsers, ASTs, malformed input, and serialization round trips."
-		]
-	};
-	const spineNotes: Record<
-		string,
-		{
-			testingBar: string;
-			memoryRule: string;
-			branchReadiness: string;
-			harnessProject: string;
-			ownershipProject: string;
-		}
-	> = {
-		"c-level-1": {
-			testingBar:
-				"Level 1 keeps the harness approachable: documented compile/run commands, simple Make/CMake exposure when useful, warning-clean builds, and sample inputs that prove the program is not dependent on IDE state.",
-			memoryRule:
-				"Level 1 treats raw arrays and pointers as vocabulary and contrast. Prefer string, vector, references, and value semantics until ownership and lifetime can be explained without guessing.",
-			branchReadiness:
-				"Level 1 readiness means syntax, functions, vectors, files, structs/classes, and small recursion examples are steady enough to accelerate instead of repeating fundamentals.",
-			harnessProject:
-				"For Level 1, the harness can be a README plus one build command and a small run script or sample transcript that demonstrates normal input and one invalid-input case.",
-			ownershipProject:
-				"For Level 1, the review identifies which values are copied, which references alias existing data, and which classes own their own fields."
-		},
-		"cpp-level-2": {
-			testingBar:
-				"Level 2 raises the bar: manual-memory assignments need sanitizer, Valgrind-style, or explicit trace evidence when the toolchain supports it, plus edge cases for empty, copied, moved, and destroyed states.",
-			memoryRule:
-				"Level 2 deliberately exposes manual ownership before returning to RAII. Allocation, transfer, copy/move behavior, destructor behavior, and exception-safety risks are visible.",
-			branchReadiness:
-				"Level 2 readiness means ownership diagrams, copy-control explanations, container choices, iterators, and recursive structure traces are strong enough for DS&A or Level 3 architecture.",
-			harnessProject:
-				"For Level 2, the harness includes a leak or sanitizer check where possible and at least one test that would expose shallow-copy or lifetime bugs.",
-			ownershipProject:
-				"For Level 2, the review traces construction, copying, moving, destruction, and non-owning access through a pointer-heavy or RAII-backed class."
-		},
-		"cpp-level-3": {
-			testingBar:
-				"Level 3 treats build/test tooling as architecture evidence: parser fixtures, command transcripts, state-machine regression cases, and invalid-input suites are reproducible from a clean checkout.",
-			memoryRule:
-				"Level 3 hides raw ownership behind interfaces, RAII types, containers, or explicit ownership wrappers so the main work stays focused on architecture and correctness boundaries.",
-			branchReadiness:
-				"Level 3 readiness means templates, interfaces, virtual dispatch, parser boundaries, state transitions, serialization, and project organization are strong enough for systems/security/design-pattern work.",
-			harnessProject:
-				"For Level 3, the harness runs representative command, parser, or state-machine scenarios and preserves a regression case for at least one malformed input.",
-			ownershipProject:
-				"For Level 3, the review focuses on public contracts, polymorphic ownership, plugin or command boundaries, and whether modules can change without breaking unrelated code."
-		}
-	};
-	const spine = spineNotes[courseId];
-
-	appendModule(course, {
-		kind: "appendix",
-		title: "Modern Three-Course C++ Spine",
-		curriculum: [
-			{
-				title: "Level-Specific Focus",
-				content: [
-					"**Concept path:** This spine keeps the three C++ courses from collapsing into one oversized repo. Each level has a distinct language and design responsibility.",
-					`**Focus:**\n${bullets(levelFocus[courseId])}`,
-					"**Evidence target:** The work demonstrates the ability to explain which C++ level owns the next concept and why it is not being moved into DS&A, C Systems, or AI/ML."
-				].join("\n\n")
-			},
-			{
-				title: "Testing and Build Bar",
-				content: `**Concept path:** Multi-file assignments use CMake or a documented Makefile, out-of-source or clean build guidance, warning-clean builds, and a test target or explicit run script. Manual-memory work includes sanitizer or Valgrind-style evidence when available. Build tooling is part of the course because it teaches how source files, headers, warnings, and tests become one reproducible program.\n\n**Build and testing bar:** ${spine.testingBar}\n\n**Evidence target:** A fresh checkout has a repeatable build/run/test path.`
-			},
-			{
-				title: "Manual Memory Safety Rule",
-				content: `**Concept path:** Raw arrays and explicit new/delete are controlled contrast points, then the course returns to RAII, vector/array/span, and smart-pointer ownership. Do not normalize hidden ownership in raw pointers. Manual memory work makes allocation, ownership transfer, copy behavior, and cleanup visible before safer abstractions are reintroduced.\n\n**Current course boundary:** ${spine.memoryRule}\n\n**Evidence target:** The work demonstrates the ability to draw ownership and cleanup responsibility before implementing pointer-heavy code.`
-			},
-			{
-				title: "Branch Readiness",
-				content: `**Readiness check:** DS&A follows Level 2 readiness; C Systems, Assembly, Design Patterns, and Low-Level Security assume Level 3-style architecture and ownership discipline unless course placement explicitly accelerates the path. Branch placement is based on evidence from code, diagrams, and explanation rather than course completion labels alone.\n\n**Branch readiness:** ${spine.branchReadiness}\n\n**Evidence of proficiency:** The work demonstrates the ability to use containers, reason about lifetime, trace recursion, and explain an interface or parser boundary.`
-			}
-		],
-		supplementalProjects: [
-			{
-				title: "C++ Spine Project: Build-Test Harness",
-				content: `**Project goal:** Add a repeatable build and test harness to one C++ project. The harness reduces ambiguity: one command builds, one command runs a standard scenario, and one command runs tests or edge-case checks. For manual-memory or parser work, include sanitizer output or a deliberately failing input when the local toolchain supports it.\n\n**Current course use:** ${spine.harnessProject}\n\n**Completion checks:**\n- The README names build/run/test commands.\n- At least one edge case is tested.\n- The work demonstrates the ability to explain what the compiler or sanitizer is checking.\n- A fresh checkout can reproduce the same result without relying on hidden IDE state.`
-			},
-			{
-				title: "C++ Spine Project: Ownership and Interface Review",
-				content: `**Project goal:** Review one project for ownership, copying, interfaces, and source organization. The review identifies where data is created, who owns it, who may mutate it, what happens on copy or move, and which public methods must preserve representation invariants.\n\n**Current course use:** ${spine.ownershipProject}\n\n**Completion checks:**\n- Owning and non-owning references are identified.\n- At least one interface or class invariant is documented.\n- The review names one concrete refactor.\n- The refactor improves lifetime clarity, testability, or module boundaries rather than only changing style.`
-			}
-		]
 	});
 }
 
@@ -4325,8 +4106,8 @@ export function applyCourseImplementationArtifacts(
 	addUnityRebuildModules(courseId, course);
 	addUnityFullProjectWorkflowModules(courseId, course);
 	finalizeUnityLearningFlow(courseId, course);
-	addCppMatrixModule(courseId, course);
-	addCppThreeCourseSpineModule(courseId, course);
+	for (const module of cppPlacementModules(courseId))
+		appendModule(course, module);
 	addApCsaAlignmentModule(courseId, course);
 	addDataCatalogModule(courseId, course);
 	addDataAiMlBoundaryModule(courseId, course);
