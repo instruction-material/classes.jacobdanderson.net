@@ -1050,6 +1050,7 @@ Finally, share the project!`,
 					projectLink: "/ide?mode=scratch&starter=blank"
 				},
 				{
+					id: "scratch-level-2-gm14-master-project-curriculum-gm14-master-project-course-flow",
 					title: "GM14 Master Project: Course Flow",
 					...scratchLevel2StudioGuidance.capstone.plan
 				},
