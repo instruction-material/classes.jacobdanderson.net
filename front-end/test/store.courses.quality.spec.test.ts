@@ -3016,6 +3016,7 @@ describe("course text quality normalization", () => {
 			const reading = module.curriculum.find(item =>
 				item.title.endsWith("Core Concepts")
 			);
+			expect(reading?.contentKind, module.title).toBe("reading");
 			expect(reading?.content, module.title).toContain("**Worked example**");
 			expect(reading?.content, module.title).toContain("**Mastery check**");
 			expect(reading?.content, module.title).not.toContain("**Concept path:**");
@@ -3855,6 +3856,7 @@ describe("course text quality normalization", () => {
 				"usaco-gold-pending-static-assets-curriculum-usaco-gold-asset-status"
 		);
 		expect(goldItem?.title).toBe("Treasure Chest Sample Input");
+		expect(goldItem?.contentKind).toBe("reading");
 		const goldContent = goldItem?.content ?? "";
 
 		const studioId = "usaco-gold-optional-historical-and-applied-gold-studios";

@@ -30,7 +30,7 @@ describe("Silver native Java lessons", () => {
 			).toHaveLength(42);
 			expect(
 				course.modules.flatMap(module => module.supplementalProjects)
-			).toHaveLength(106);
+			).toHaveLength(104);
 			for (const pack of silverJavaPacks)
 				for (const assignment of pack.assignments) {
 					const module = course.modules.find(

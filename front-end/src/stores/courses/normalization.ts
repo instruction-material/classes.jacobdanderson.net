@@ -1521,7 +1521,8 @@ function conceptGroupTitle(
 function groupConceptLessons(
 	course: RawCourse,
 	module: RawCourseModule,
-	items: RawCourseModuleItem[]
+	items: RawCourseModuleItem[],
+	coreContentKind?: RawCourseModuleItem["contentKind"]
 ) {
 	const groupedItem = (
 		label: "Core Concepts" | "Application Check",
@@ -1550,6 +1551,8 @@ function groupConceptLessons(
 		return {
 			title,
 			aliases: [...new Set([label, ...aliases])],
+			contentKind:
+				label === "Core Concepts" ? coreContentKind : undefined,
 			content: lessonArcContent(lessons)
 		};
 	};
@@ -1614,7 +1617,10 @@ function normalizeModuleLessonShape(course: RawCourse, courseId: string) {
 		const groupedConcepts = groupConceptLessons(
 			course,
 			module,
-			conceptItems
+			conceptItems,
+			courseId === "usaco-silver" || courseId === "usaco-gold"
+				? "reading"
+				: undefined
 		);
 		const nextCurriculum: RawCourseModuleItem[] = [];
 		let insertedConceptGroup = false;

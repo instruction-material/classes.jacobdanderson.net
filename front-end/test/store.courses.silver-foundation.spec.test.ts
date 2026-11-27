@@ -56,7 +56,7 @@ describe("Silver foundation native imports", () => {
 			).toHaveLength(42);
 			expect(
 				course.modules.flatMap(module => module.supplementalProjects)
-			).toHaveLength(106);
+			).toHaveLength(104);
 			for (const identity of prior) {
 				const module = course.modules.find(
 					module => module.id === identity.module

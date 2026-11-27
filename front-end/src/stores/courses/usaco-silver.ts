@@ -1739,6 +1739,7 @@ function decorateSilverModule(
 
 	curriculum = curriculum.map((item, index) => ({
 		...item,
+		contentKind: index === 0 ? "reading" : item.contentKind,
 		content:
 			index === 0
 				? [

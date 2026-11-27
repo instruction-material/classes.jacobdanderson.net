@@ -21,7 +21,7 @@ describe("required Gold projects and changed-case retries", () => {
 			usacoGoldCourse.modules.flatMap(
 				module => module.supplementalProjects
 			)
-		).toHaveLength(96);
+		).toHaveLength(94);
 		for (const pack of goldRequiredCorePacks)
 			for (const assignment of pack.assignments) {
 				const module = course.modules.find(

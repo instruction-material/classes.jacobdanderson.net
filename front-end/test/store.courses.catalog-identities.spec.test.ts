@@ -159,8 +159,47 @@ it("preserves published assignment identities across the complete catalog", asyn
 				id
 			).toHaveLength(1);
 		}
-		expect(actual.length, id).toBe(identities.items + additions.length);
+		const tier = id === "usaco-silver" || id === "usaco-gold" ? id.slice(6) : "";
+		const bankId = `${id}-optional-${tier}-problem-bank`;
+		const consolidatedBankCards = tier
+			? [
+					`${bankId}-supplemental-core-project-optional-${tier}-problem-bank`,
+					`${bankId}-supplemental-problem-bank-full-${tier}-repo`
+				]
+			: [];
+		expect(actual.length, id).toBe(
+			identities.items + additions.length - consolidatedBankCards.length
+		);
 		const originalIdentities = actual.filter(item => !isAddition(item));
+
+		if (consolidatedBankCards.length) {
+			const guide = staff.modules
+				.find(module => module.id === bankId)
+				?.curriculum.find(
+					item => item.id === `${bankId}-curriculum-problem-bank-scope-guide`
+				);
+			expect(guide?.contentKind, id).toBe("reading");
+			expect(guide?.aliases, id).toEqual(
+				expect.arrayContaining(consolidatedBankCards)
+			);
+			expect(actual.some(item => consolidatedBankCards.includes(item.id))).toBe(
+				false
+			);
+			const firstPractice = originalIdentities.findIndex(
+				item => item.moduleId === bankId && item.section === "optional"
+			);
+			expect(firstPractice, id).toBeGreaterThanOrEqual(0);
+			// Both older aliases follow the four bank overview entries.
+			originalIdentities.splice(
+				firstPractice + 4,
+				0,
+				...consolidatedBankCards.map(id => ({
+					moduleId: bankId,
+					id,
+					section: "optional"
+				}))
+			);
+		}
 
 		// Typing moved from the last core slot to the first optional slot.
 		// Verify its current placement and normalize that one historical field.

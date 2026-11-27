@@ -1384,6 +1384,7 @@ const usacoGoldSourceCourse: RawCourse = {
 				{
 					id: `${usacoGoldTreasureInputAppendixId}-curriculum-usaco-gold-asset-status`,
 					title: "Treasure Chest Sample Input",
+					contentKind: "reading",
 					content: [
 						`Open the [Treasure Chest project](/courses#${treasureChestStudioId}-${treasureChestItemId}) and import its starter into the IDE. The supplied \`treasure.in\` contains four coins worth 30, 25, 10 and 35. A completed program writes 60 to \`treasure.out\`.`,
 						"To trace a second case, replace `treasure.in` with the following. The first line gives the coin count. Each remaining line gives one coin value in order.",
@@ -1807,6 +1808,7 @@ function decorateGoldModule(
 
 	curriculum = curriculum.map((item, index) => ({
 		...item,
+		contentKind: index === 0 ? "reading" : item.contentKind,
 		content:
 			index === 0
 				? [
