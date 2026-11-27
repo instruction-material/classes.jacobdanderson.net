@@ -8985,7 +8985,7 @@ function pythonLevel1ClassroomTemplate(itemTitle: string) {
 	if (/Square Spiral|Spirals?/i.test(itemTitle)) return "spiral-galaxy";
 	if (/Turtle Race/i.test(itemTitle)) return "turtle-race";
 	if (/Rainbow Flower|Flower Garden/i.test(itemTitle)) return "flower-garden";
-	if (/Stay Inbounds|Maze Explorer/i.test(itemTitle)) return "maze-explorer";
+	if (/Maze Explorer/i.test(itemTitle)) return "maze-explorer";
 	return "classroom-project";
 }
 

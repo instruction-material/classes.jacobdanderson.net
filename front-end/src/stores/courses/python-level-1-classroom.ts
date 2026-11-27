@@ -1,5 +1,6 @@
 import type { RawCourse, RawCourseModule, RawCourseModuleItem } from "./types";
 import { pythonLevel1Course } from "./python-level-1";
+import { pythonLevel1ClassroomMotionContent } from "./pythonLevel1GameMechanicsProjects";
 import { pythonLevel1ClassroomListContent } from "./pythonLevel1ListProjects";
 
 function copyItem(item: RawCourseModuleItem): RawCourseModuleItem {
@@ -34,7 +35,10 @@ function copyItem(item: RawCourseModuleItem): RawCourseModuleItem {
 
 	return {
 		...item,
-		content: pythonLevel1ClassroomListContent(item.title) ?? content,
+		content:
+			pythonLevel1ClassroomListContent(item.title) ??
+			pythonLevel1ClassroomMotionContent(item.title) ??
+			content,
 		aliases: item.aliases ? [...item.aliases] : undefined
 	};
 }

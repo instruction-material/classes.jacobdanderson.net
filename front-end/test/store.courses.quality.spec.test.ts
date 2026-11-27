@@ -3865,7 +3865,7 @@ describe("course text quality normalization", () => {
 			},
 			{
 				title: /^GrS13 Project 5: Turtle Collision$/,
-				required: ["hitbox", "boundary cases", "barely touching"]
+				required: ["strictly below 10", "previous one did not", "40-frame run"]
 			},
 			{
 				title: /^GrS14 Supplemental Project 3: Pong$/,

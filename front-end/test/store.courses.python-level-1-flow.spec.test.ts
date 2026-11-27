@@ -85,6 +85,42 @@ describe("python Level 1 learner flow", () => {
 		}
 	});
 
+	it("opens the assigned game mechanics source in both editions", async () => {
+		const folders = [
+			"GrS13-Perpetual-Motion",
+			"GrS13-Stay-Inbounds",
+			"Python-Level-1-ScreenUpdate",
+			"GrS13-Bouncy-Ball-Room",
+			"GrS14-Turtle-Collision"
+		];
+		for (const id of ["python-level-1", "python-level-1-classroom"]) {
+			const course = await loadRawCourse(id);
+			const module = course?.modules.find(row => row.title === "GrS13 Game Mechanics");
+			expect(module?.curriculum.map(item => item.learningPath), id).toEqual(
+				folders.map(() => "core")
+			);
+			for (const [index, folder] of folders.entries()) {
+				const item = module?.curriculum[index];
+				expect(item?.solutionLink, folder).toMatch(
+					new RegExp(`/tree/[a-f0-9]{40}/${folder}/solution$`)
+				);
+				if (id.endsWith("-classroom")) {
+					const query = new URLSearchParams(item?.projectLink?.split("?")[1]);
+					expect(query.get("template"), folder).toBe("classroom-project");
+					expect(query.get("classroomSource"), folder).toMatch(
+						new RegExp(`/tree/[a-f0-9]{40}/${folder}/solution$`)
+					);
+					expect(item?.content, folder).toContain("**Normal:**");
+					expect(item?.content, folder).toContain("**Hard:**");
+				} else {
+					expect(item?.projectLink, folder).toMatch(
+						new RegExp(`/tree/[a-f0-9]{40}/${folder}/starter$`)
+					);
+				}
+			}
+		}
+	});
+
 	it("gives every teaching module pacing, command targets, and explicit paths", () => {
 		for (const module of pythonLevel1Course.modules) {
 			expect(module.estimatedTime, module.title).toMatch(/session/);

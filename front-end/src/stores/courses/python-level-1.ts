@@ -5,12 +5,11 @@ import type {
 	RawCourseModuleItem
 } from "./types";
 import { isCoreProjectTitle } from "./projectGrouping";
+import { pythonLevel1GameMechanicsProjects } from "./pythonLevel1GameMechanicsProjects";
 import { pythonLevel1ListProjects } from "./pythonLevel1ListProjects";
 
 const TURTLE_REFERENCE = "/course-assets/python/turtle-project-reference.md";
 const TURTLE_COMMAND_REFERENCE = `${TURTLE_REFERENCE}#turtle-command-reference`;
-const TURTLE_BOUNDARY_REFERENCE = `${TURTLE_REFERENCE}#boundaries-and-in-bounds-checks`;
-const TURTLE_SCORE_REFERENCE = `${TURTLE_REFERENCE}#score-turtle-pattern`;
 const TURTLE_GAME_TEMPLATE_REFERENCE = `${TURTLE_REFERENCE}#game-template-with-score-boundaries-and-moving-triangles`;
 const TURTLE_COLOR_REFERENCE = "https://trinket.io/docs/colors";
 
@@ -957,48 +956,7 @@ For each example, explain what kind of problem it solves. The recap makes clear 
 		},
 		{
 			title: "GrS13 Game Mechanics",
-			curriculum: [
-				{
-					title: "GrS13 Project 1: Perpetual Motion",
-					content:
-						"Use `while True` loops to create continuous movement and pair that loop with event listeners that let the player turn the turtle in real time.",
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS13-Perpetual-Motion/solution"
-				},
-				{
-					title: "GrS13 Project 2: Stay Inbounds",
-					content:
-						"Draw a boundary, monitor a turtle's coordinates, and use a conditional plus `break` to end the game when the turtle leaves the allowed area.",
-					datasetLink: TURTLE_BOUNDARY_REFERENCE,
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS13-Stay-Inbounds/solution"
-				},
-				{
-					title: "GrS13 Project 3: Fluid Motion",
-					content: `Use \`screen.tracer(0)\` and \`screen.update()\` to control when the Turtle screen redraws. This makes animations smoother because the program can move objects first and then update the screen once per frame.
-
-Build a small animation loop that moves one or more turtles, calls \`screen.update()\`, and pauses briefly if needed. Compare the result with and without manual screen updates so the reason for the pattern is visible, not just memorized.`,
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/Python-Level-1-ScreenUpdate/solution"
-				},
-				{
-					title: "GrS13 Project 4: Bouncy Ball Room",
-					content:
-						"Create many moving turtles inside a boundary box, store them in a list, and write a collision helper that turns them around when they hit the walls.",
-					datasetLink: TURTLE_GAME_TEMPLATE_REFERENCE,
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS13-Bouncy-Ball-Room/solution"
-				},
-				{
-					title: "GrS13 Project 5: Turtle Collision",
-					content: `Detect collisions by comparing two turtles' positions. Use absolute value or distance calculations to decide when their x and y coordinates are close enough to count as a hitbox overlap.
-
-Start with two turtles and print or display a message when they collide. Then test boundary cases: barely touching, almost touching, clearly overlapping, and far apart. A reliable collision check behaves consistently before it is added to a larger game.`,
-					datasetLink: TURTLE_SCORE_REFERENCE,
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS14-Turtle-Collision/solution"
-				}
-			],
+			curriculum: pythonLevel1GameMechanicsProjects,
 			supplementalProjects: [
 				{
 					title: "GrS13 Supplemental Project 1: Light the Stars",
@@ -1383,14 +1341,14 @@ const PYTHON_LEVEL_1_FLOW: PythonLevel1FlowConfig[] = [
 		title: "GrS13 Game Mechanics",
 		estimatedTime: "4–5 sessions · 45–60 minutes each",
 		keyBlocks: [
-			"while True",
+			"screen.ontimer()",
 			"screen.tracer() / update()",
 			"boundary checks",
 			"object lists",
 			"collision helper"
 		],
 		projectThread:
-			"Build the real-time game loop in layers: continuous motion, boundaries, manual screen updates, many moving objects, then collision detection. Test each mechanic before combining it with the next."
+			"Schedule a short movement frame and let key handlers run between frames. Add a stopping boundary, one redraw per frame, reflected movement, and a collision transition. Test each mechanic before combining it with the next."
 	},
 	{
 		title: "Check-In #3",
