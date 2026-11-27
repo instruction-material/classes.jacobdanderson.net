@@ -121,6 +121,69 @@ describe("python Level 1 learner flow", () => {
 		}
 	});
 
+	it("keeps the arcade capstone in the core and the transfer games optional", async () => {
+		const layouts = [
+			{
+				moduleTitle: "GrS13 Game Mechanics",
+				section: "supplementalProjects",
+				index: 0,
+				folder: "GrS14-Light-the-Stars",
+				checkpoint: "final frame lights the star"
+			},
+			{
+				moduleTitle: "GrS13 Game Mechanics",
+				section: "supplementalProjects",
+				index: 1,
+				folder: "Grs13-Dodgeball",
+				checkpoint: "only one life is lost"
+			},
+			{
+				moduleTitle: "GrS14 Space Eater",
+				section: "curriculum",
+				index: 0,
+				folder: "GrS14-Space-Eater",
+				checkpoint: "reuse the running timer"
+			}
+		] as const;
+		for (const id of ["python-level-1", "python-level-1-classroom"]) {
+			const course = await loadRawCourse(id);
+			for (const {
+				moduleTitle,
+				section,
+				index,
+				folder,
+				checkpoint
+			} of layouts) {
+				const item = course?.modules.find(
+					row => row.title === moduleTitle
+				)?.[section][index];
+				const solution = new RegExp(
+					`/tree/[a-f0-9]{40}/${folder}/solution$`
+				);
+				expect(item?.learningPath === "core", folder).toBe(
+					section === "curriculum"
+				);
+				expect(item?.solutionLink, folder).toMatch(solution);
+				if (id.endsWith("-classroom")) {
+					const query = new URLSearchParams(
+						item?.projectLink?.split("?")[1]
+					);
+					expect(query.get("template"), folder).toBe(
+						"classroom-project"
+					);
+					expect(query.get("classroomSource"), folder).toMatch(
+						solution
+					);
+					expect(item?.content, folder).toContain(checkpoint);
+				} else {
+					expect(item?.projectLink, folder).toMatch(
+						new RegExp(`/tree/[a-f0-9]{40}/${folder}/starter$`)
+					);
+				}
+			}
+		}
+	});
+
 	it("gives every teaching module pacing, command targets, and explicit paths", () => {
 		for (const module of pythonLevel1Course.modules) {
 			expect(module.estimatedTime, module.title).toMatch(/session/);

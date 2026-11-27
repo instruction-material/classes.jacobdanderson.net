@@ -5,6 +5,10 @@ import type {
 	RawCourseModuleItem
 } from "./types";
 import { isCoreProjectTitle } from "./projectGrouping";
+import {
+	pythonLevel1ArcadeSupplementalProjects,
+	pythonLevel1SpaceEaterProject
+} from "./pythonLevel1ArcadeProjects";
 import { pythonLevel1GameMechanicsProjects } from "./pythonLevel1GameMechanicsProjects";
 import { pythonLevel1ListProjects } from "./pythonLevel1ListProjects";
 
@@ -958,22 +962,7 @@ For each example, explain what kind of problem it solves. The recap makes clear 
 			title: "GrS13 Game Mechanics",
 			curriculum: pythonLevel1GameMechanicsProjects,
 			supplementalProjects: [
-				{
-					title: "GrS13 Supplemental Project 1: Light the Stars",
-					content: `Create a timed sky scene where the player controls a turtle and lights stars before time runs out. The game combines keyboard movement, a list of star objects or positions, collision checks, and a visible timer or changing background state.
-
-Keep the game state explicit: which stars are still unlit, how time is represented, and what condition ends the game. Test both outcomes, winning by lighting enough stars and losing when time expires.`,
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS14-Light-the-Stars/solution"
-				},
-				{
-					title: "GrS13 Supplemental Project 2: Dodgeball",
-					content: `Turn Bouncy Ball Room into a dodgeball game. Keep the bouncing-object logic, then add a player turtle, keyboard controls, collision checks between the player and each ball, a lives counter, and a game-over state.
-
-Build the game in layers: movement first, then bouncing balls, then player collision, then lives and ending behavior. This makes bugs easier to isolate because each mechanic can be tested before the next one is added.`,
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/Grs13-Dodgeball/solution"
-				},
+				...pythonLevel1ArcadeSupplementalProjects,
 				{
 					title: "GrS13 Supplemental Project 3: Game Mechanics Recap",
 					preserveInstructions: true,
@@ -1038,12 +1027,8 @@ Use conditionals or collision checks to decide whether the launch succeeds. Incl
 			title: "GrS14 Space Eater",
 			curriculum: [
 				{
-					title: "GrS14 Project 1: Space Eater",
-					content:
-						"Bring together movement, lists, event listeners, collision logic, boundaries, scoring, and continuous loops to build a complete game where a player turtle eats moving targets.",
-					datasetLink: TURTLE_GAME_TEMPLATE_REFERENCE,
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS14-Space-Eater/solution"
+					...pythonLevel1SpaceEaterProject,
+					datasetLink: TURTLE_GAME_TEMPLATE_REFERENCE
 				}
 			],
 			supplementalProjects: [
