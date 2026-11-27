@@ -116,7 +116,7 @@ const cases = [
 	{
 		id: "python-to-java-and-cpp-bridge",
 		source: pythonToJavaAndCppBridgeCourse,
-		readings: 8,
+		readings: 9,
 		additions: []
 	},
 	{
@@ -1181,7 +1181,7 @@ it.each(
 			expect(modules).toHaveLength(7);
 			expect(modules.filter(module => module.kind === "transition"))
 				.toHaveLength(2);
-			expect(modules.flatMap(module => module.projects)).toHaveLength(28);
+			expect(modules.flatMap(module => module.projects)).toHaveLength(27);
 			expect(modules.flatMap(module => module.optional)).toHaveLength(7);
 		}
 		else if (unity) {
@@ -1362,7 +1362,7 @@ it.each(
 			}
 			else if (id === "python-to-java-and-cpp-bridge") {
 				expect(module.readings, module.title).toHaveLength(
-					module.title.startsWith("PTJ4 ") ? 2 : 1
+					/^PTJ[04] /.test(module.title) ? 2 : 1
 				);
 			}
 			else if (
