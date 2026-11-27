@@ -3802,26 +3802,31 @@ describe("course text quality normalization", () => {
 		expect(content).not.toContain("static.junilearning.com");
 	});
 
-	it("reserves pending USACO Gold assets on the class static host", async () => {
+	it("provides an importable USACO Gold Treasure Chest example", async () => {
 		const gold = await loadRawCourse("usaco-gold");
 		expect(gold).not.toBeNull();
 
 		const goldModule = gold!.modules.find(
-			module => module.title === "Pending Static Assets"
+			module => module.id === "usaco-gold-pending-static-assets"
 		);
 		expect(goldModule?.kind).toBe("appendix");
 
 		const goldItem = goldModule?.curriculum.find(
-			item => item.title === "USACO Gold Asset Status"
+			item =>
+				item.id ===
+				"usaco-gold-pending-static-assets-curriculum-usaco-gold-asset-status"
 		);
-		expect(goldItem).toBeDefined();
+		expect(goldItem?.title).toBe("Treasure Chest Sample Input");
 		const goldContent = goldItem?.content ?? "";
 
-		expect(goldContent).toContain(staticMediaUrl("treasure.txt"));
-		expect(hasPendingStaticMediaNotice(goldContent, "treasure.txt")).toBe(
-			true
+		const studioId = "usaco-gold-optional-historical-and-applied-gold-studios";
+		expect(goldContent).toContain(
+			`/courses#${studioId}-${studioId}-supplemental-treasure-chest`
 		);
-		expect(goldContent).not.toContain("static.junilearning.com");
+		expect(goldContent).toContain("`treasure.in`");
+		expect(goldContent).toContain("`treasure.out`");
+		expect(goldContent).toContain("4\n8\n15\n3\n7");
+		expect(goldContent).not.toContain("treasure.txt");
 	});
 
 	it("keeps generated guidance references with spaced hyphens Markdown-safe", () => {

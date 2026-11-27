@@ -65,8 +65,9 @@ describe("USACO Gold learner flow", () => {
 				title: "Optional Historical and Applied Gold Studios"
 			},
 			{
+				id: "usaco-gold-pending-static-assets",
 				kind: "appendix",
-				title: "Pending Static Assets"
+				title: "Treasure Chest Worked Example"
 			}
 		]);
 	});
@@ -128,7 +129,9 @@ describe("USACO Gold learner flow", () => {
 		expect(
 			moduleText("Optional Historical and Applied Gold Studios")
 		).toContain("complete guided practice collection");
-		expect(moduleText("Pending Static Assets")).toContain("treasure.txt");
+		expect(moduleText("Treasure Chest Worked Example")).toContain(
+			"Taking 15 gives a total of 22"
+		);
 	});
 
 	it("covers the current Gold algorithm and implementation map", () => {

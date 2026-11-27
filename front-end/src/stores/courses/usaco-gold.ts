@@ -22,19 +22,12 @@ import {
 } from "../../modules/usacoSpanningIntervalPacks";
 import { buildImplementationLabGuidance } from "./implementationLabGuidance";
 import { buildProjectGuidance } from "./projectGuidance";
-import { pendingStaticMediaNotice, staticMediaUrl } from "./staticMedia";
 import { placeGoldSetupProjects } from "./usacoGoldSetupPlacement";
 
-const usacoGoldPendingSourceAssets = ["treasure.txt"] as const;
-
-function pendingUsacoGoldAssetList(filenames: readonly string[]) {
-	return filenames
-		.map(
-			filename =>
-				`- ${staticMediaUrl(filename)}\n\n${pendingStaticMediaNotice(filename)}`
-		)
-		.join("\n\n");
-}
+const usacoGoldTreasureInputAppendixId = "usaco-gold-pending-static-assets";
+const treasureChestStudioId =
+	"usaco-gold-optional-historical-and-applied-gold-studios";
+const treasureChestItemId = `${treasureChestStudioId}-supplemental-treasure-chest`;
 
 const usacoGoldSourceCourse: RawCourse = {
 	name: "USACO Gold",
@@ -1402,14 +1395,18 @@ const usacoGoldSourceCourse: RawCourse = {
 			]
 		},
 		{
+			id: usacoGoldTreasureInputAppendixId,
 			kind: "appendix",
-			title: "Pending Static Assets",
+			title: "Treasure Chest Worked Example",
 			curriculum: [
 				{
-					title: "USACO Gold Asset Status",
+					id: `${usacoGoldTreasureInputAppendixId}-curriculum-usaco-gold-asset-status`,
+					title: "Treasure Chest Sample Input",
 					content: [
-						"This course lists the pending data file below. The entry keeps a stable static media URL so the matching file can be added without changing course links.",
-						pendingUsacoGoldAssetList(usacoGoldPendingSourceAssets)
+						`Open the [Treasure Chest project](/courses#${treasureChestStudioId}-${treasureChestItemId}) and import its starter into the IDE. The supplied \`treasure.in\` contains four coins worth 30, 25, 10 and 35. A completed program writes 60 to \`treasure.out\`.`,
+						"To trace a second case, replace `treasure.in` with the following. The first line gives the coin count. Each remaining line gives one coin value in order.",
+						"```text\n4\n8\n15\n3\n7\n```",
+						"Take 7 from the right. The opponent can take 8 or 3, leaving 15 exposed in either case. Taking 15 gives a total of 22. If the first move takes 8 instead, the opponent can take 15 and hold the first player to 15. Predict the result before running the program, then compare the two first moves in a walkthrough."
 					].join("\n\n")
 				}
 			],
@@ -1892,18 +1889,18 @@ const usacoGoldStudios = usacoGoldSourceCourse.modules.filter(
 	module =>
 		!USACO_GOLD_PRIMARY_TITLES.has(module.title) &&
 		module.title !== "Unit 8: Optional Gold Problem Bank" &&
-		module.title !== "Pending Static Assets"
+		module.id !== usacoGoldTreasureInputAppendixId
 );
-const usacoGoldAssetAppendix = usacoGoldSourceCourse.modules.find(
-	module => module.title === "Pending Static Assets"
+const usacoGoldInputAppendix = usacoGoldSourceCourse.modules.find(
+	module => module.id === usacoGoldTreasureInputAppendixId
 );
 
 if (!usacoGoldProblemBank) {
 	throw new Error("USACO Gold optional problem bank is missing.");
 }
 
-if (!usacoGoldAssetAppendix) {
-	throw new Error("USACO Gold pending-static-assets appendix is missing.");
+if (!usacoGoldInputAppendix) {
+	throw new Error("USACO Gold Treasure Chest example is missing.");
 }
 
 export const usacoGoldCourse: RawCourse = {
@@ -1912,7 +1909,7 @@ export const usacoGoldCourse: RawCourse = {
 		...usacoGoldPrimaryModules,
 		buildGoldProblemBankAppendix(usacoGoldProblemBank),
 		buildGoldStudioAppendix(usacoGoldStudios),
-		usacoGoldAssetAppendix
+		usacoGoldInputAppendix
 	]
 };
 
