@@ -9,6 +9,7 @@ import {
 	pythonLevel1ArcadeSupplementalProjects,
 	pythonLevel1SpaceEaterProject
 } from "./pythonLevel1ArcadeProjects";
+import { pythonLevel1CheckIn } from "./pythonLevel1CheckInProjects";
 import { pythonLevel1GameMechanicsProjects } from "./pythonLevel1GameMechanicsProjects";
 import { pythonLevel1ListProjects } from "./pythonLevel1ListProjects";
 
@@ -385,13 +386,7 @@ Complete the explanations and one short variable-based drawing example. This rec
 		{
 			title: "Check-In #1",
 			curriculum: [
-				{
-					title: "Check-In #1 Overview",
-					content:
-						"This check-in is a guided review of Turtle basics, loops, variables, random numbers, and conditionals. Try each prompt independently first, then revisit any topics that need more practice.",
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/Check-in-1/solution"
-				},
+				pythonLevel1CheckIn("Check-In #1 Overview"),
 				{
 					title: "Check-In #1: Basics with Turtle",
 					content:
@@ -420,16 +415,16 @@ Complete the explanations and one short variable-based drawing example. This rec
 						"https://github.com/instruction-material/Python-Level-1/tree/main/Reflection-Template-Updated/starter",
 					solutionLink:
 						"https://github.com/instruction-material/Python-Level-1/tree/main/Reflection-Template-Updated/solution"
-				},
-				{
-					title: "Check-In #1: Additional Practice Project",
-					content:
-						"Create a zigzagging line with about 30 turns, then extend it by connecting the zigzag to one or more original shapes. Use variables for repeated values such as turn amount, step length, and number of turns so the pattern can be adjusted without rewriting the loop. Verify that the extension is connected intentionally rather than added as unrelated drawing code.",
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS-Check-in-1-Additional-Practice-Project/solution"
 				}
 			],
-			supplementalProjects: []
+			supplementalProjects: [
+				{
+					...pythonLevel1CheckIn(
+						"Check-In #1: Additional Practice Project"
+					),
+					id: "python-level-1-check-in-1-curriculum-check-in-1-additional-practice-project"
+				}
+			]
 		},
 		{
 			title: "GrS5 Loops with Variables",
@@ -669,11 +664,7 @@ Complete the explanations and one short variable-based drawing example. This rec
 		{
 			title: "Check-In #2",
 			curriculum: [
-				{
-					title: "Check-In #2 Overview",
-					content:
-						"This review revisits advanced loops, functions, and event listeners. Focus on explaining not just how the code works, but why each structure is useful."
-				},
+				pythonLevel1CheckIn("Check-In #2 Overview"),
 				{
 					title: "Check-In #2: Advanced Loops",
 					content:
@@ -699,16 +690,16 @@ The reflection is specific. Instead of saying "loops are easier," explain what c
 						"https://github.com/instruction-material/Python-Level-1/tree/main/Reflection-Template-Updated/starter",
 					solutionLink:
 						"https://github.com/instruction-material/Python-Level-1/tree/main/Reflection-Template-Updated/solution"
-				},
-				{
-					title: "Check-In #2: Additional Practice Project",
-					content:
-						"Build an event-driven drawing program where different keys move the turtle to random locations or draw layered diamonds, pyramids, and circles in changing colors.",
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/Check-in-Two-Additional-Practice-ProjectUpdated/solution"
 				}
 			],
-			supplementalProjects: []
+			supplementalProjects: [
+				{
+					...pythonLevel1CheckIn(
+						"Check-In #2: Additional Practice Project"
+					),
+					id: "python-level-1-check-in-2-curriculum-check-in-2-additional-practice-project"
+				}
+			]
 		},
 		{
 			title: "GrS9 Functions Part 2",
@@ -982,11 +973,7 @@ Explain which value changes on each iteration and why each loop eventually stops
 		{
 			title: "Check-In #3",
 			curriculum: [
-				{
-					title: "Check-In #3 Overview",
-					content:
-						"This module reviews nested loops, game mechanics, advanced conditionals, and lists. Treat it as a progress snapshot and a chance to strengthen weaker topics."
-				},
+				pythonLevel1CheckIn("Check-In #3 Overview"),
 				{
 					title: "Check-In #3: Nested Loops and Game Mechanics",
 					content:
@@ -1012,14 +999,7 @@ The check-in shows that only one branch of an \`if\`/\`elif\`/\`else\` chain run
 					solutionLink:
 						"https://github.com/instruction-material/Python-Level-1/tree/main/Reflection-Template-Updated/solution"
 				},
-				{
-					title: "Check-In #3: Additional Practice Project",
-					content: `Create a simple target game with a spinning turtle, a randomly placed goal, and a spacebar-controlled launch mechanic. The player waits for the turtle to face a useful direction, presses space, and sees whether the launch reaches the target.
-
-Use conditionals or collision checks to decide whether the launch succeeds. Include a clear reset or replay path so the game can be tested several times without restarting the whole program.`,
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS-Check-in-2-Practice-Project/solution"
-				}
+				pythonLevel1CheckIn("Check-In #3: Additional Practice Project")
 			],
 			supplementalProjects: []
 		},

@@ -181,6 +181,21 @@ it("preserves published assignment identities across the complete catalog", asyn
 			typing[0].section = "core";
 		}
 
+		// Check-Ins 1 and 2 keep their published exercise IDs when practice
+		// moves to the first optional slot. Check the new placement before
+		// restoring the two historical section fields for the digest.
+		if (id === "python-level-1" || id === "python-level-1-classroom") {
+			for (const number of [1, 2]) {
+				const moduleId = `python-level-1-check-in-${number}`;
+				const practiceId = `${moduleId}-curriculum-check-in-${number}-additional-practice-project`;
+				const firstOptional = originalIdentities.find(
+					item => item.moduleId === moduleId && item.section === "optional"
+				);
+				expect(firstOptional?.id, id).toBe(practiceId);
+				firstOptional!.section = "core";
+			}
+		}
+
 		// AP's authored progression replaces the stale display order. Reconstruct
 		// only its published module order to verify every original identity and
 		// section; the AP flow regression separately checks the corrected order.

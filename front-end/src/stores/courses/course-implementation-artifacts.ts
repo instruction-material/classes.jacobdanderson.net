@@ -4076,11 +4076,24 @@ function ensureSupplementalProjectFloor(courseId: string, course: RawCourse) {
 			continue;
 		}
 
-		while (module.supplementalProjects.length < 2) {
+		// These two authored practice projects moved from core to optional.
+		// Keep their review checkpoints and published progress IDs in both editions.
+		const movedCheckInPracticeCount =
+			(courseId === "python-level-1" ||
+				courseId === "python-level-1-classroom") &&
+			/^Check-In #[12]$/.test(module.title)
+				? 1
+				: 0;
+		while (
+			module.supplementalProjects.length - movedCheckInPracticeCount <
+			2
+		) {
 			module.supplementalProjects.push(
 				supplementalProjectFor(
 					module,
-					module.supplementalProjects.length + 1,
+					module.supplementalProjects.length -
+						movedCheckInPracticeCount +
+						1,
 					courseId
 				)
 			);

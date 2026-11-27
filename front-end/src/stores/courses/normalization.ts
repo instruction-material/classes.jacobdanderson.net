@@ -400,23 +400,6 @@ function renameModule(course: RawCourse, fromTitle: string, toTitle: string) {
 	if (module) module.title = toTitle;
 }
 
-function setItemLinks(
-	course: RawCourse,
-	moduleTitle: string,
-	itemTitle: string,
-	links: Pick<RawCourseModuleItem, "projectLink" | "solutionLink">
-) {
-	const module = course.modules.find(module => module.title === moduleTitle);
-	const item = module
-		? [...module.curriculum, ...module.supplementalProjects].find(
-				item => item.title === itemTitle
-			)
-		: null;
-	if (!item) return;
-	if (links.projectLink) item.projectLink = links.projectLink;
-	if (links.solutionLink) item.solutionLink = links.solutionLink;
-}
-
 function cleanTitleText(text: string) {
 	return text
 		.replace(/\(COPY\)/g, "")
@@ -8647,36 +8630,6 @@ function normalizeJavaScriptLevel2(course: RawCourse) {
 	]);
 }
 
-function normalizePythonLevel1(course: RawCourse) {
-	setItemLinks(course, "Check-In #2", "Check-In #2 Overview", {
-		solutionLink: githubTree(
-			"Python-Level-1",
-			"GRS-Check-in-Two-Updated/solution"
-		)
-	});
-	setItemLinks(
-		course,
-		"Check-In #2",
-		"Check-In #2: Additional Practice Project",
-		{
-			projectLink: githubTree(
-				"Python-Level-1",
-				"Check-in-Two-Practice-Project/starter"
-			),
-			solutionLink: githubTree(
-				"Python-Level-1",
-				"Check-in-Two-Additional-Practice-ProjectUpdated/solution"
-			)
-		}
-	);
-	setItemLinks(course, "Check-In #3", "Check-In #3 Overview", {
-		solutionLink: githubTree(
-			"Python-Level-1",
-			"GRS-Check-in-Three-Updated/solution"
-		)
-	});
-}
-
 function applyCourseLearningPaths(course: RawCourse) {
 	for (const module of course.modules) {
 		if (module.kind === "appendix") continue;
@@ -9555,8 +9508,6 @@ const normalizers: Record<string, (course: RawCourse) => void> = {
 	"low-level-security": normalizeLowLevelSecurity,
 	"low-level-security-part-2": normalizeLowLevelSecurityPart2,
 	"machine-learning": normalizeMachineLearning,
-	"python-level-1": normalizePythonLevel1,
-	"python-level-1-classroom": normalizePythonLevel1,
 	"python-to-java-and-cpp-bridge": normalizePythonBridge,
 	"pythonic-design-patterns": normalizePythonicDesignPatterns,
 	"rust-systems-security": normalizeRustSystemsSecurity

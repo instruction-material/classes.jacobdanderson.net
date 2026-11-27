@@ -184,6 +184,65 @@ describe("python Level 1 learner flow", () => {
 		}
 	});
 
+	it("opens working check-in sources and keeps practice under its original ID", async () => {
+		const reviews = [
+			["Check-in-1", "GrS-Check-in-1-Additional-Practice-Project"],
+			[
+				"GRS-Check-in-Two-Updated",
+				"Check-in-Two-Additional-Practice-ProjectUpdated"
+			],
+			["GRS-Check-in-Three-Updated", "GrS-Check-in-2-Practice-Project"]
+		] as const;
+		for (const id of ["python-level-1", "python-level-1-classroom"]) {
+			const course = await loadRawCourse(id);
+			for (const [index, folders] of reviews.entries()) {
+				const number = index + 1;
+				const prefix = `python-level-1-check-in-${number}-curriculum-check-in-${number}`;
+				const module = course?.modules.find(
+					row => row.title === `Check-In #${number}`
+				);
+				const practice =
+					number < 3
+						? module?.supplementalProjects
+						: module?.curriculum;
+				const items = [
+					module?.curriculum.find(
+						row => row.id === `${prefix}-overview`
+					),
+					practice?.find(
+						row =>
+							row.id === `${prefix}-additional-practice-project`
+					)
+				];
+				expect(
+					items.map(row => row?.learningPath),
+					id
+				).toEqual(["core", number < 3 ? "choice" : "core"]);
+				for (const [position, folder] of folders.entries()) {
+					const item = items[position];
+					const reference = new RegExp(
+						`/tree/[a-f0-9]{40}/${folder}/solution$`
+					);
+					expect(item?.solutionLink, folder).toMatch(reference);
+					if (id.endsWith("-classroom")) {
+						const query = new URLSearchParams(
+							item?.projectLink?.split("?")[1]
+						);
+						expect(query.get("classroomSource"), folder).toMatch(
+							reference
+						);
+						expect(item?.content, folder).toContain("**Normal:**");
+						expect(item?.content, folder).toContain("**Hard:**");
+					} else {
+						expect(item?.projectLink, folder).toMatch(
+							new RegExp(`/tree/[a-f0-9]{40}/${folder}/starter$`)
+						);
+					}
+				}
+			}
+		}
+	});
+
 	it("gives every teaching module pacing, command targets, and explicit paths", () => {
 		for (const module of pythonLevel1Course.modules) {
 			expect(module.estimatedTime, module.title).toMatch(/session/);
@@ -207,7 +266,7 @@ describe("python Level 1 learner flow", () => {
 		}
 	});
 
-	it("keeps authored projects core and only supplemental work optional", () => {
+	it("keeps numbered projects core and separates optional check-in practice", () => {
 		const requiredCount = pythonLevel1Course.modules.reduce(
 			(total, module) => total + module.curriculum.length,
 			0
@@ -217,8 +276,8 @@ describe("python Level 1 learner flow", () => {
 			0
 		);
 
-		expect(requiredCount).toBe(67);
-		expect(choiceAndChallengeCount).toBe(58);
+		expect(requiredCount).toBe(65);
+		expect(choiceAndChallengeCount).toBe(60);
 
 		const loops = requireSourceModule("GrS2 Loops");
 		expect(loops.curriculum.map(item => item.title)).toEqual([
