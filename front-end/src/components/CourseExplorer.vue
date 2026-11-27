@@ -504,7 +504,10 @@ watch(
 		const requestedCourseId = courseIdFromLocation(
 			allCourses.value.map(course => course.id)
 		);
-		const learnerForCourse = preferredLearnerIdForCourse(value, requestedCourseId);
+		const learnerForCourse = preferredLearnerIdForCourse(
+			value,
+			requestedCourseId
+		);
 		const storedLearnerId = readStoredValue(LEARNER_SELECTION_STORAGE_KEY);
 		const storedLearner = value.find(user => user._id === storedLearnerId);
 		const storedAllLearners = isAllLearnersSelection(storedLearnerId);
@@ -541,7 +544,10 @@ watch(
 			selectedStillValid &&
 			(!requestedCourseId ||
 				isAllLearnersContext.value ||
-				learnerCanAccessCourse(selectedLearner.value, requestedCourseId))
+				learnerCanAccessCourse(
+					selectedLearner.value,
+					requestedCourseId
+				))
 		) {
 			return;
 		}
