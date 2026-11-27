@@ -32,7 +32,11 @@ def select_failed_result(bundle):
     failure = failures[0]
     assert failure["role"] in {"starter", "solution"}
     assert failure["size"] in {"small", "large"}
-    variants = {"standard", "long-note"} if course == "welcome" else {"standard", "largest-text"}
+    variants = {
+        "welcome": {"standard", "long-note"},
+        "tracker": {"standard", "largest-text", "long-text"},
+        "swiftdata": {"standard", "largest-text", "long-text", "open-failure", "read-only"},
+    }.get(course, {"standard", "largest-text"})
     assert failure["variant"] in variants
     profile = "-".join(failure[key] for key in ("role", "size", "variant"))
     prefix = "" if course == "welcome" else course + "/"
