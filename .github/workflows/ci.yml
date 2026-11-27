@@ -825,8 +825,15 @@ jobs:
             - name: Prepare the disposable Linux user manager and journal
               if: ${{ matrix.course == 'linux' }}
               run: |
-                  sudo apt-get update
-                  sudo apt-get install --no-install-recommends --yes dbus-user-session logrotate iproute2 iputils-ping curl dnsutils coreutils util-linux tar
+                  ubuntu_sources=/etc/apt/sources.list.d/ubuntu.sources
+                  test -s "$ubuntu_sources"
+                  apt_sources=(-o "Dir::Etc::SourceList=$ubuntu_sources" -o Dir::Etc::SourceParts=-)
+                  packages=(dbus-user-session logrotate iproute2 iputils-ping curl dnsutils coreutils util-linux tar)
+                  if ! command -v nginx >/dev/null 2>&1 || ! command -v apache2 >/dev/null 2>&1; then
+                    packages+=(nginx apache2-bin)
+                  fi
+                  sudo apt-get "${apt_sources[@]}" update
+                  sudo apt-get "${apt_sources[@]}" install --no-install-recommends --yes "${packages[@]}"
                   native_lab_uid=$(id -u)
                   native_lab_user=$(id -un)
                   native_lab_runtime=/run/user/$native_lab_uid
@@ -838,12 +845,7 @@ jobs:
 
             - name: Verify exported Linux lab contracts
               if: ${{ matrix.course == 'linux' }}
-              run: |
-                  if ! command -v nginx >/dev/null 2>&1 || ! command -v apache2 >/dev/null 2>&1; then
-                    sudo apt-get update
-                    sudo apt-get install --no-install-recommends --yes nginx apache2-bin
-                  fi
-                  python3 test/linux-exported-contracts.py --archives output/linux-exports --proof output/linux-exports/exported-contracts.json
+              run: python3 test/linux-exported-contracts.py --archives output/linux-exports --proof output/linux-exports/exported-contracts.json
 
             - name: Retain Linux workflow and native validation
               if: ${{ always() && matrix.course == 'linux' }}
