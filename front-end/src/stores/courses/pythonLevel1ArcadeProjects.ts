@@ -27,7 +27,7 @@ const projects = {
 
 1. Finish touching(first, second) with an absolute difference below 10 on each axis.
 2. In advance, check contact after every ball has moved. On the first hit, subtract one life, move the player to (0, 0), and break out of the collision loop.
-3. Use the supplied lives display and timer check. They should show the new count during play and Game over when it reaches zero.
+3. Use the supplied lives display and timer check. The display shows the updated lives count during play and Game over at zero.
 
 **Checkpoints:** Put two balls where they can touch the player on the same frame. The count must go down by one. Set lives to 1 and force another hit. Motion should stop on the same frame the game-over message appears.`,
 		classroom: `Run the prepared dodgeball game. Trace the movement loop separately from the contact loop. Left and Right steer the player.
