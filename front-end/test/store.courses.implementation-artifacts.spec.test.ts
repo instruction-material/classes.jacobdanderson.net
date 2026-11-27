@@ -534,10 +534,10 @@ describe("implemented course development artifacts", () => {
 		);
 		const rootOnlyLinks = [
 			...serializedCourse.matchAll(
-				/https:\/\/github\.com\/instruction-material\/Python-Level-1\/tree\/main\/([^"]+)/g
+				/https:\/\/github\.com\/instruction-material\/Python-Level-1\/tree\/(?:main|[a-f0-9]{40})\/([^"\s)\\]+)/g
 			)
 		]
-			.map(match => match[1].replace(/\\+$/, ""))
+			.map(match => match[1])
 			.filter(
 				urlPath =>
 					!urlPath.endsWith("/starter") &&
@@ -545,14 +545,17 @@ describe("implemented course development artifacts", () => {
 			);
 
 		expect(rootOnlyLinks).toHaveLength(0);
-		expect(serializedCourse).toContain(
-			"Python-Level-1/tree/main/GrS2-Basic-Shapes/solution"
+		expect(serializedCourse).toMatch(
+			/Python-Level-1\/tree\/[a-f0-9]{40}\/GrS2-Basic-Shapes\/starter/
+		);
+		expect(serializedCourse).toMatch(
+			/Python-Level-1\/tree\/[a-f0-9]{40}\/GrS2-Basic-Shapes\/solution/
 		);
 		expect(serializedCourse).toContain(
 			"Python-Level-1/tree/main/Reflection-Template-Updated/starter"
 		);
-		expect(serializedCourse).toContain(
-			"Python-Level-1/tree/main/GRS-Check-in-Three-Updated/solution"
+		expect(serializedCourse).toMatch(
+			/Python-Level-1\/tree\/[a-f0-9]{40}\/GRS-Check-in-Three-Updated\/solution/
 		);
 	});
 
