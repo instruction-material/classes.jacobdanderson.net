@@ -495,20 +495,14 @@ Complete the explanations and one short variable-based drawing example. This rec
 		{
 			title: "GrS7 Functions Part 1",
 			curriculum: [
-				{
+				pythonLevel1DrawingProject("GrS6-Build-a-Neighborhood", {
 					title: "GrS7 Project 1: Build a Neighborhood",
-					content:
-						"Discover why functions are useful by drawing several houses in a neighborhood. First notice which commands repeat for every house, such as drawing the body, roof, door, or windows. Then move that repeated code into a reusable `drawHouse()` function and call it at different positions or sizes. The final code makes it easier to add another house without duplicating the entire drawing sequence.",
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS6-Build-a-Neighborhood/solution"
-				},
-				{
+					content: ""
+				}),
+				pythonLevel1DrawingProject("GrS7-Basic-Functions", {
 					title: "GrS7 Project 2: Basic Functions",
-					content:
-						"Write helper functions for common Turtle actions such as moving to a random location, choosing a random color, and resetting the canvas. Practice the difference between defining a function and calling it.",
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS7-Basic-Functions/solution"
-				}
+					content: ""
+				})
 			],
 			supplementalProjects: [
 				{
@@ -537,50 +531,32 @@ Complete the explanations and one short variable-based drawing example. This rec
 		{
 			title: "GrS8 Event Listeners",
 			curriculum: [
-				{
+				pythonLevel1DrawingProject("Event-Listener-Discovery", {
 					title: "GrS8 Project 1: Event Listener Discovery",
-					content:
-						"Learn what event listeners are by connecting key presses to functions. Define small movement or drawing functions, bind them to keys with `screen.onkey()`, and enable keyboard input with `screen.listen()`. Test one key at a time and keep each callback focused on one action so it is clear which function runs when a key is pressed.",
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/Event-Listener-Discovery/solution"
-				},
-				{
+					content: ""
+				}),
+				pythonLevel1DrawingProject("Etch-A-Sketch", {
 					title: "GrS8 Project 2: Etch A Sketch",
-					content:
-						"Use four event listeners to move and turn the turtle, turning the canvas into a simple interactive drawing toy. Each key calls a named function, and the screen listens continuously for input. Test every direction key and verify that the turtle responds immediately without needing to rerun the program.",
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/Etch-A-Sketch/solution"
-				},
-				{
+					content: ""
+				}),
+				pythonLevel1DrawingProject("Picasso-Game", {
 					title: "GrS8 Project 3: Picasso Game",
-					content:
-						"Use key presses to draw different shapes and create more surprising patterns through interactive input. Map each key to a clear drawing function, and include at least one key that changes color, position, or size before drawing. The project functions as a small interactive art tool rather than a fixed drawing.",
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/Picasso-Game/solution"
-				}
+					content: ""
+				})
 			],
 			supplementalProjects: [
-				{
+				pythonLevel1DrawingProject("GrS9-Polka-Dots", {
 					title: "GrS8 Supplemental Project 1: Polka Dot Game",
-					content:
-						"Move and turn the turtle with arrow keys, then press space to stamp circles with random sizes and colors. Separate movement functions from the stamping function so each key has one clear responsibility. Verify that repeated spacebar presses create different dots without breaking movement controls.",
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS9-Polka-Dots/solution"
-				},
-				{
+					content: ""
+				}),
+				pythonLevel1DrawingProject("GrS8-Fruit-Stand", {
 					title: "GrS8 Supplemental Project 2: Fruit Stand",
-					content:
-						"Bind number keys to drawing different fruit shapes. Each fruit has its own function, and each function draws enough detail to make the fruit recognizable. Test every number key, then add one shared helper such as move-to-random-location or choose-random-color if the fruit functions repeat setup code.",
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS8-Fruit-Stand/solution"
-				},
-				{
+					content: ""
+				}),
+				pythonLevel1DrawingProject("GrS8-Picasso-Game", {
 					title: "GrS8 Supplemental Project 3: Open Ended Project - Interactive Drawing",
-					content:
-						"Create an interactive drawing that reveals different pieces only when certain keys are pressed in a chosen order. Plan the key map before coding, name each function after the part it reveals, and include at least one reset, clear, or surprise action. The finished program is understandable from the controls as well as from the code.",
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS8-Picasso-Game/solution"
-				},
+					content: ""
+				}),
 				{
 					title: "GrS8 Supplemental Project 4: Event Listener Recap",
 					content:

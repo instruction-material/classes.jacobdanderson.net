@@ -3548,9 +3548,9 @@ describe("course text quality normalization", () => {
 			{
 				title: /^GrS7 Project 1: Build a Neighborhood$/,
 				required: [
-					"drawHouse()",
-					"different positions or sizes",
-					"without duplicating"
+					"draw_house(x, y)",
+					"Call the same function",
+					"Count three matching houses"
 				]
 			},
 			{
@@ -3559,11 +3559,15 @@ describe("course text quality normalization", () => {
 			},
 			{
 				title: /^GrS8 Project 1: Event Listener Discovery$/,
-				required: ["screen.onkey()", "screen.listen()", "callback"]
+				required: [
+					'screen.onkey(draw_square, "s")',
+					"screen.listen()",
+					"pointer callback receives x and y"
+				]
 			},
 			{
 				title: /Fruit Stand/,
-				required: ["own function", "Test every number key"]
+				required: ["1 for the orange", "2 for starfruit", "3 for the cherry"]
 			}
 		];
 

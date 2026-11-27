@@ -9,6 +9,9 @@ const loopStateSource =
 const nestedLoopsSource =
 	"https://github.com/instruction-material/Python-Level-1/tree/0295dc97c52e6de3360606dcba77d3466c4a75c6";
 
+const functionsEventsSource =
+	"https://github.com/instruction-material/Python-Level-1/tree/31948d78c17d1d3496e6ff02d6cf54d03362ea4f";
+
 interface DrawingBrief {
 	task: string;
 	classroom: string;
@@ -18,6 +21,120 @@ interface DrawingBrief {
 }
 
 const briefs = {
+	"GrS6-Build-a-Neighborhood": {
+		source: functionsEventsSource,
+		task: `The starter contains a function that draws a 32-pixel square body from the given coordinates. In \`draw_house(x, y)\`, place a second outline with its base on top of the body at \`(x, y + 32)\`. Use three 32-pixel moves and left turns of 120 degrees to close the roof. Lift the pen between parts with \`move_to\`.
+
+Call the same function at (-85, -35), (-16, -35), and (53, -35). Trace one call from the first argument through both shapes before running all three.
+
+**Checkpoints:** Count three matching houses and 21 edges. Each roof meets its own 32-pixel body. The spaces between houses stay clear.`,
+		classroom: `**Concept focus:** A definition gives the body-and-roof steps one name. During a call the arguments determine where those same steps run. Trace how \`draw_house(-16, -35)\` carries x unchanged from the body to the roof and adds 32 only to y.
+
+**Normal:** In \`normal_addition()\`, use the existing function to place a fourth house at (-85, 35). Run the program and confirm that the new roof starts at y = 67.
+
+**Hard:** In \`hard_addition()\`, write a two-argument door helper and call it for every house in the first row. Use an 8-by-13 outline, position it away from the edge, and lift the pen between houses.
+
+**Checkpoints:** Three matching doors appear in the first row. The fourth house stays intact and the last door closes at its starting coordinate.`
+	},
+	"GrS7-Basic-Functions": {
+		source: functionsEventsSource,
+		task: `Trace the line where \`all_random()\` calls \`random_spot()\`. Add the call to \`random_color()\` inside the same function. Each call moves the pen to a fresh position with the pen lifted, chooses one RGB color, and leaves drawing to the outer loop. The supplied \`reset()\` clears old marks and restores the origin, black color, and heading zero.
+
+**Checkpoints:** Count five separate 24-pixel strokes. Identify which function starts a new color, which moves to a new position, and which restores the pen. Call \`reset()\` and check that the previous picture disappears.`,
+		classroom: `**Normal:** In \`normal_addition()\`, call \`all_random()\` twice and draw one short stroke after each call. Print each sampled start position so the two executions can be traced separately.
+
+**Hard:** In \`hard_addition()\`, use \`reset()\`, then draw three new strokes using one loop. Print the position and heading immediately after the reset. Update the screen after the new drawing.
+
+Read the two helper bodies side by side. Predict which values remain unchanged when the pen moves, then print its heading before and after one call to \`all_random()\`.
+
+**Checkpoints:** The reset reports (0, 0) and heading 0. The new picture has three strokes and clear gaps between their random starts.`
+	},
+	"Event-Listener-Discovery": {
+		source: functionsEventsSource,
+		task: `Run the starter and click or tap the canvas near its center. The pointer callback receives x and y, moves with the pen lifted, and calls the square function. Add \`screen.onkey(draw_square, "s")\` before \`screen.listen()\` to call that same function from the keyboard. Pass the function name so Turtle can call it when the key is released.
+
+**Checkpoints:** Focus the canvas and press s. The square starts and ends at the current pen position. Clicking another point makes the next square start there. One action prints one confirmation.`,
+		classroom: `**Concept focus:** Calling \`draw_square()\` executes it immediately. Passing \`draw_square\` to \`screen.onkey()\` gives Turtle the function so it can run it on release. Use one direct call and then one key press to observe the difference in timing.
+
+**Normal:** In \`normal_addition()\`, call \`draw_square()\` once from the origin and verify that its endpoint and heading match the start.
+
+**Hard:** In \`hard_addition()\`, bind a new key to a named callback that draws a closed three-sided figure. Register the function before the screen starts listening. Check that the original s key and pointer action still draw squares.
+
+Tell the two square inputs apart by reporting the starting point before each. The key uses the current point, while the pointer supplies a new point.
+
+**Checkpoints:** The added key draws once per release. The new callback uses three exterior turns of 120 degrees.`
+	},
+	"Etch-A-Sketch": {
+		source: functionsEventsSource,
+		task: `Connect the Right arrow to the supplied \`turn_right\` callback. Use Up and Down for a 14-pixel forward or backward movement. Left and Right turn by 30 degrees. Each callback handles one action, so turns change direction while leaving the pen position alone.
+
+Focus the canvas for the arrow keys. For touch input, tap near a canvas edge. Top and bottom move, and left and right turn. The pointer callback selects the axis farther from the center.
+
+**Checkpoints:** Starting at the origin, Up then Down returns to (0, 0). Left then Right restores the starting heading. A forward move after a turn makes a new angled segment without restarting the program.`,
+		classroom: `**Normal:** In \`normal_addition()\`, call \`move_forward()\` and \`move_backward()\` once each. Print the final point and current heading. Expect (0, 0) and heading 0.
+
+**Hard:** In \`hard_addition()\`, bind c to a clear-and-home callback. Clear with \`pen.clear()\`, lift the pen before returning to (0, 0), restore heading 0, and lower the pen again.
+
+Turn Left once before pressing Up. Record the new heading and explain why repeating Up advances along the same slanted line until a turn changes it.
+
+**Checkpoints:** After using c, the canvas is clean and the original arrows still respond. Moving from the reset position leaves no stray travel line.`
+	},
+	"Picasso-Game": {
+		source: functionsEventsSource,
+		task: `Make an art tool that can draw a square, octagon, burst, and circle. The starter sets a new bounded position and color at the beginning of each mark. Connect the Right arrow to \`draw_circle\`. The Up, Down, and Left keys already draw the first three marks.
+
+Focus the canvas for keys. Tap top left for a square, top right for an octagon, bottom left for a burst, and bottom right for a circle.
+
+**Checkpoints:** Each action shows one new mark. A square has four edges, an octagon has eight, and a burst has twelve rays with no return strokes. Travel between marks leaves no lines.`,
+		classroom: `**Normal:** In \`normal_addition()\`, draw one square and one octagon using the existing callbacks. Count their four and eight sides.
+
+**Hard:** In \`hard_addition()\`, bind t to a new triangle callback. Use the shared setup for placement and color, then close the outline with three sides and 120-degree turns.
+
+Trace \`start_mark\` on two separate calls. Each call samples fresh x and y values and a color. The number of sides stays fixed within each shape callback.
+
+**Checkpoints:** The new key draws a third kind of polygon and the original four actions are still available.`
+	},
+	"GrS9-Polka-Dots": {
+		source: functionsEventsSource,
+		task: `Change the fixed dot diameter in \`stamp_dot()\` to a random integer between 8 and 26 chosen on each call. Keep the random color in the same callback. Focus the canvas and use arrows to move or turn, then use Space to stamp. Clicking or tapping places a dot directly at that point.
+
+**Checkpoints:** Stamping twice at one spot can draw dots with different diameters. Arrow movement leaves the canvas clean until a dot is stamped. Confirm that all diameters stay within the allowed range.`,
+		classroom: `**Normal:** In \`normal_addition()\`, move to the right with one \`move_forward()\` call, then call \`stamp_dot()\`. Report the current coordinates. Expect (12, 0) with no travel stroke.
+
+**Hard:** In \`hard_addition()\`, bind c to clear the marks while keeping the pen at its current coordinates. Preserve the arrow keys and Space.
+
+Log the sampled diameter once per stamp. Moving the pen should leave the count of logged diameters unchanged, while a touch should add one new value.
+
+**Checkpoints:** After c, the next Space stamps at the same point. Tap a different position and check that the dot is centered on the tap.`
+	},
+	"GrS8-Fruit-Stand": {
+		source: functionsEventsSource,
+		task: `Complete the binding from number 3 to \`cherry\`. Use 1 for the orange, 2 for starfruit, and 3 for the cherry. Each fruit uses a shared positioning helper with the pen lifted. A tap chooses fruit by column, from left to right.
+
+Trace number 2 from \`screen.onkey()\` to \`starfruit()\`. A 144-degree turn walks the five outer points in a crossing path. The other two callbacks use circular marks.
+
+**Checkpoints:** The orange is a closed circle in the left column. The middle column shows a five-point fruit. The right column shows a red cherry with a green stem. No lines connect the three columns.`,
+		classroom: `**Normal:** In \`normal_addition()\`, call all three fruit functions directly. Trace how \`move_fruit\` gives each one a different starting position.
+
+**Hard:** In \`hard_addition()\`, bind 4 to a new fruit shape in a second row. Use the positioning helper for at least two parts of that fruit and keep the first three bindings working.
+
+Compare the second-row start to the first three y-coordinates. Place it far enough away for the whole new mark to fit without crossing another fruit.
+
+**Checkpoints:** All original fruit remain separate. The fourth fruit has its own visible outline and position.`
+	},
+	"GrS8-Picasso-Game": {
+		source: functionsEventsSource,
+		task: `Complete the example's binding from number 3 to \`reveal_petals\`. The three stage functions reveal a base, a stem, and petals in order. Try pressing 2 first, then 1, 2, 3, and r. A key for the wrong stage leaves the picture unchanged. Tap the canvas to advance, or tap near the bottom edge to reset.
+
+Plan an original three-part design using the same ordered state. Name the key, expected state, and next state for each part before replacing the drawing functions.
+
+**Checkpoints:** Repeating a completed stage has no effect. Reset removes every part and allows the first action again. List the three controls and the reset key in a comment.`,
+		classroom: `**Normal:** In \`normal_addition()\`, call \`reveal_stem()\` before \`reveal_base()\` and print the current stage after each action. Expect 0 and 1. Reset before demonstrating the complete sequence.
+
+**Hard:** Extend the scene with a fourth gated part, such as two leaves after the petals. Bind a new key within \`hard_addition()\` and check that the fourth action is ignored until stage 3. Add the same action to the tap sequence.
+
+**Checkpoints:** Run the sequence with keys and again with taps. Repeating an action should add nothing, and reset returns the stage to 0.`
+	},
 	"Nested-Loops-Exploration": {
 		source: nestedLoopsSource,
 		task: `Run the starter and trace a single square from (0, 0). Four 90-degree turns restore its starting heading. The three outer passes currently retrace that square. Complete the update after the inner loop so the lengths are 30, 50, and 70. Keep one length for all four sides of a square.
@@ -27,16 +144,22 @@ const briefs = {
 
 **Hard:** In \`hard_addition()\`, place the pen at (-90, -55) and draw a second group of three squares using lengths 10, 20, and 30. Run the inner loop four times for each length and report the final position.
 
+Mark the first inner-loop entry and final exit in a trace table. The side length stays constant on every row belonging to the same square.
+
 **Checkpoints:** The second group has 12 strokes and closes at (-90, -55).`
 	},
 	"Square-Inception": {
 		source: nestedLoopsSource,
 		task: `The middle loop draws three squares from the origin with lengths 30, 50, and 70. Complete the turn at the end of the outer loop so each finished group is followed by a 90-degree clockwise rotation. Keep the size reset inside the quadrant loop and outside the square loop.
 
+Make a trace table with one row per quadrant. Enter the starting heading and the reset length before drawing the first square. Fill the third row while stepping through the example.
+
 **Checkpoints:** The four groups start facing east, south, west, and north. Expect 12 squares and 48 forward moves. The same three lengths appear in each quadrant.`,
 		classroom: `**Normal:** In \`normal_addition()\`, print the number of quadrants, squares, and sides drawn. Expect 4, 12, and 48.
 
 **Hard:** In \`hard_addition()\`, draw two groups of three small triangles at a second origin. Start with sides 8, 13, and 18. Turn 120 degrees per edge and add a separate 180-degree turn after each group.
+
+Predict the heading at the start of each small triangle. Three 120-degree turns restore it, so only the outer turn changes the direction for the second group.
 
 **Checkpoints:** The triangle groups face opposite ways. Expect 18 new edges and the same three lengths in both groups.`
 	},
@@ -44,10 +167,14 @@ const briefs = {
 		source: nestedLoopsSource,
 		task: `Draw ten aligned triangle outlines. Start from the supplied apex (0, 65) facing 300 degrees. The inner loop makes three equal moves with 120-degree right turns. Increase length by 15 after all three sides.
 
+With the first triangle in view, compare one point at the end of the first side with the same point on the final triangle. Both lie on the same ray from the apex, at different distances.
+
 **Checkpoints:** The first side length is 15 and the final one is 150. Each triangle closes at the shared apex. Expect 30 sides.`,
 		classroom: `**Normal:** In \`normal_addition()\`, print the first drawn length, the last drawn length, and the next length. Expect 15, 150, and 165.
 
 **Hard:** In \`hard_addition()\`, place the pen at (105, 40) with heading 300. Draw three outlined triangles sharing this apex with lengths 12, 24, and 36.
+
+Trace length 12 for three consecutive moves. Write length 24 on the next row only after returning to the apex. The first side of each triangle follows the same direction.
 
 **Checkpoints:** Each of the three inner loops returns to (105, 40) with its starting heading.`
 	},
@@ -55,10 +182,14 @@ const briefs = {
 		source: nestedLoopsSource,
 		task: `Use the same apex as Pyramid and draw filled triangles from largest to smallest. Start with length 150 and subtract 15 after each finished fill. One random color and one fill surround each complete three-side loop.
 
+Trace the largest fill and the next fill on two rows. Record the side length and exact starting coordinate for each. The second shape covers only the smaller region at the shared apex.
+
 **Checkpoints:** The final filled triangle uses length 15. Its smaller footprint leaves room to see the preceding layers. Confirm that the pen always returns to the apex.`,
 		classroom: `**Normal:** In \`normal_addition()\`, print the ten lengths in drawing order. Expect [150, 135, 120, 105, 90, 75, 60, 45, 30, 15].
 
 **Hard:** In \`hard_addition()\`, draw a separate stack of three filled triangles with lengths 36, 24, and 12 at (-100, 40). Use three clearly different colors and end each fill before moving to the next length.
+
+Before adding the separate stack, trace the reference's first two calls to \`end_fill()\`. Compare which region is covered by each and which edge remains visible.
 
 **Checkpoints:** All three bands are visible and their triangles share a starting point.`
 	},
@@ -66,16 +197,22 @@ const briefs = {
 		source: nestedLoopsSource,
 		task: `Fill three squares in each quadrant. Complete the middle-loop update so the lengths descend from 72 to 52 to 32. Keep the four side commands inside one fill. The color ranges become lighter for smaller layers to keep the boundaries visible.
 
+Trace the three fill calls in one quadrant. Record color only when a new layer begins and keep the color constant during the four draws that close it.
+
 **Checkpoints:** Expect 12 filled squares and 48 drawn edges. Every quadrant resets to length 72 and turns only after its last square closes.`,
 		classroom: `**Normal:** In \`normal_addition()\`, print the three lengths and the number of sides they require in one quadrant. Expect [72, 52, 32] and 12.
 
 **Hard:** In \`hard_addition()\`, place the pen at (110, 5). Fill three closed squares at that origin with lengths 36, 24, and 12, using three different shades.
+
+Record the colors in drawing order and verify them by looking from the outside toward the origin. Each smaller shape exposes at least one boundary of the preceding larger one.
 
 **Checkpoints:** The fourth edge closes each shape before the next fill starts. All three layers are visible.`
 	},
 	"GrS5-Rainbow-Flower": {
 		source: nestedLoopsSource,
 		task: `Draw six petals from (0, 0), with starting headings 60 degrees apart. Each petal uses 40 strokes. The turn grows by one degree after each stroke. Complete the blue-channel update by adding five after each stroke. Reset the angle and blue channel at the start of every petal.
+
+Trace angle values 0, 1, and 2 for the first three strokes separately from the color values 0, 5, and 10. Each update prepares the next stroke.
 
 **Checkpoints:** Expect 240 strokes. The blue values used by each petal start at 0, reach 5 on the second stroke, and end at 195.`,
 		classroom: `**Normal:** In \`normal_addition()\`, print the six start headings and the first and last blue values. Expect [0, 60, 120, 180, 240, 300] and 0 and 195.
@@ -88,16 +225,22 @@ const briefs = {
 		source: nestedLoopsSource,
 		task: `Draw a small loop using 36 short segments of six pixels. Turn right by ten degrees after each segment. Complete the outer-loop turn of 20 degrees after each finished circle. Keep that extra rotation outside the inner loop.
 
+Predict the difference between putting the 20-degree turn in the inner loop and putting it after the inner loop. Try just one circle first and check whether the pen returns to the starting point.
+
 **Checkpoints:** The inner loop turns through 360 degrees and returns to its start. The 18 outer turns account for a second full revolution. Count 648 short segments.`,
 		classroom: `**Normal:** In \`normal_addition()\`, print 36 times 10, 18 times 20, and 18 times 36. Expect 360, 360, and 648.
 
 **Hard:** In \`hard_addition()\`, draw six smaller loops at (-90, 0). Make each loop from 12 steps of three pixels with a 30-degree turn, then turn 60 degrees to start the next loop.
+
+The first inner loop uses 12 times 30 degrees. Predict the starting heading of the second loop after that full turn and the separate 60-degree rotation.
 
 **Checkpoints:** All six loops share the starting point and use 72 new strokes.`
 	},
 	"GrS3-Spirals": {
 		source: nestedLoopsSource,
 		task: `Draw one spiral in each of the six supplied cells. Lift the pen to reach each randomized start. Each inner loop uses 32 forward strokes and a 123-degree left turn. Complete the growth step so each stroke is one pixel longer than the preceding stroke.
+
+Record the first five lengths and compare the finished spiral with the constant-length starter. The direction changes by the same amount in both, so the changing length causes the outward spread.
 
 **Checkpoints:** There are 192 strokes and no travel lines between cells. A spiral starting at length 4 ends with a drawn length of 35.`,
 		classroom: `**Normal:** In \`normal_addition()\`, compute the move count and the last drawn length for a 32-stroke spiral starting at length 4. Expect 192 for all six cells and 35 for that spiral.
