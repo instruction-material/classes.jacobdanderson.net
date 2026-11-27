@@ -860,46 +860,26 @@ The check-in shows that only one branch of an \`if\`/\`elif\`/\`else\` chain run
 				}
 			],
 			supplementalProjects: [
-				{
+				pythonLevel1DrawingProject("GrS14-Turtle-Run", {
 					title: "GrS14 Supplemental Project 1: Turtle Run",
-					content: `Create a lane-based game where the player avoids moving enemies and collects targets for points. Organize the screen into lanes, decide how enemies move through those lanes, and give the player controls that feel predictable.
-
-The game tracks score, detects collisions with enemies, detects successful collection of targets, and defines a clear win or loss condition. Test slow and fast enemy speeds so the game is challenging but still playable.`,
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS14-Turtle-Run/solution"
-				},
-				{
+					content: ""
+				}),
+				pythonLevel1DrawingProject("GrS14-Target-Practice", {
 					title: "GrS14 Supplemental Project 2: Target Practice",
-					content: `Build a turning-and-firing game where the player aims from the center of the screen. Keyboard controls rotate the player, and a launch key sends a projectile or turtle forward toward a target.
-
-Use coordinate checks, distance checks, or a target radius to decide whether the shot hits. Add feedback for hit and miss outcomes, then verify edge cases where the shot passes close to the target but does not count as a hit.`,
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS14-Target-Practice/solution"
-				},
-				{
+					content: ""
+				}),
+				pythonLevel1DrawingProject("GrS14-Pong", {
 					title: "GrS14 Supplemental Project 3: Pong",
-					content: `Program a two-player version of Pong with two paddles, a moving ball, wall bounces, paddle collision, scoring, and a reset after each point.
-
-Keep the ball state explicit: position, direction, speed, and what changes after a collision. Completion means both players can control their paddles, the ball bounces from the correct surfaces, missed balls update the score, and the game can continue after a point.`,
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS14-Pong/solution"
-				},
-				{
+					content: ""
+				}),
+				pythonLevel1DrawingProject("GrS14-Fidget-Spinner", {
 					title: "GrS14 Supplemental Project 4: Fidget Spinner",
-					content: `Animate a fidget spinner whose turn speed changes based on keyboard input. Store the current speed in a variable, update that variable when keys are pressed, and use an animation loop to rotate the spinner.
-
-The program makes the relationship between input and state clear: one key can speed up, another can slow down, and the spinner eventually stops or slows toward a minimum speed if that rule is included. Test repeated key presses to make sure the speed does not jump unpredictably.`,
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS14-Fidget-Spinner/solution"
-				},
-				{
+					content: ""
+				}),
+				pythonLevel1DrawingProject("GrS14-Snake", {
 					title: "GrS14 Supplemental Project 5: Snake",
-					content: `Create a Snake game using a list of turtle segments to represent the growing body. The head moves on a steady loop, food appears at random positions, and the body list grows when food is collected.
-
-Track the game-over conditions explicitly: hitting a wall, colliding with the snake's own body, or any other rule chosen for the game. Test movement, food collection, body following, growth, wall collision, and self-collision separately before treating the full game as complete.`,
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS14-Snake/solution"
-				}
+					content: ""
+				})
 			]
 		},
 		{
@@ -1206,7 +1186,7 @@ const PYTHON_LEVEL_1_FLOW: PythonLevel1FlowConfig[] = [
 ];
 
 const PYTHON_LEVEL_1_CHALLENGE_PROJECT_RE =
-	/open ended|advanced|dodgeball|snake|pong|target practice|turtle run|light the stars|turtle launch with lists|bullseye with nested loops|reverse|winter wonderland|dizzy hexagon|circle of circles|spirals|minion|captain america|taxi|watermelon|haphazard|boolean bonanza/i;
+	/open ended|advanced|dodgeball|snake|trail collector|pong|paddle rally|target practice|beacon hop|turtle run|light the stars|turtle launch with lists|bullseye with nested loops|reverse|winter wonderland|dizzy hexagon|circle of circles|spirals|minion|captain america|taxi|watermelon|haphazard|boolean bonanza/i;
 const PYTHON_LEVEL_1_COMBINING_MARKS_RE = /[\u0300-\u036F]/g;
 const PYTHON_LEVEL_1_NON_ALPHANUMERIC_RE = /[^a-z0-9]+/g;
 const PYTHON_LEVEL_1_LEADING_HYPHENS_RE = /^-+/;

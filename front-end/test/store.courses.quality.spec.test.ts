@@ -3877,11 +3877,11 @@ describe("course text quality normalization", () => {
 				required: ["strictly below 10", "previous one did not", "40-frame run"]
 			},
 			{
-				title: /^GrS14 Supplemental Project 3: Pong$/,
+				title: /^GrS14 Supplemental Project 3: Paddle Rally$/,
 				required: ["two paddles", "scoring", "reset after each point"]
 			},
 			{
-				title: /^GrS14 Supplemental Project 5: Snake$/,
+				title: /^GrS14 Supplemental Project 5: Trail Collector$/,
 				required: [
 					"body list",
 					"self-collision",

@@ -18,6 +18,9 @@ const parameterGeometrySource =
 const conditionalsListsSource =
 	"https://github.com/instruction-material/Python-Level-1/tree/3291fc8e5ad1c8596b868b834441847b55e91d8b";
 
+const spaceEaterSupplementsSource =
+	"https://github.com/instruction-material/Python-Level-1/tree/2220e072b031c3e2636ef889205ddf61c8e91b7b";
+
 interface DrawingBrief {
 	task: string;
 	classroom: string;
@@ -27,6 +30,80 @@ interface DrawingBrief {
 }
 
 const briefs = {
+	"GrS14-Turtle-Run": {
+		source: spaceEaterSupplementsSource,
+		task: `Start the run with Space or tap the canvas. Move among three lanes with Left and Right, or tap the left or right side. Each timer frame brings one object down a lane. The object is resolved once when it reaches the player's row. The starter already ends the run when the player meets a blocker.
+
+Complete the score update for a matched gem. Trace one matching gem, one gem in a different lane, and one blocker before playing the full five-object route.
+
+**Checkpoints:** The first gem appears in the middle lane. The working route collects three gems without meeting a blocker. Restarting clears the previous score.`,
+		classroom: `**Normal:** In \`normal_addition()\`, verify that a gem in the current lane adds one point and a gem in another lane leaves the score alone. Restore the score before starting the timed run. Confirm that meeting a blocker still ends the run.
+
+**Hard:** Compare speeds of eight and 16 pixels per timer frame. Count how many frames an object takes to reach the player's row in each case. Keep the collision check inclusive at the boundary.
+
+**Checkpoints:** From y = 66 to y = -62, the two speeds take 16 and eight frames. The first three successful gem contacts end the run.`
+	},
+	"GrS14-Target-Practice": {
+		source: spaceEaterSupplementsSource,
+		title: "GrS14 Supplemental Project 2: Beacon Hop",
+		previousId:
+			"python-level-1-grs14-space-eater-supplemental-grs14-supplemental-project-2-target-practice",
+		task: `Guide a moving marker from the center to the colored beacon. Left and Right change the heading in 15-degree steps, and Space starts the move. With touch input, tap the outer left or right area to turn and the middle to start. The moving marker advances eight pixels per frame and stops after a hit or a length of 120 pixels.
+
+Complete the comparison in \`reaches_beacon\` to include the edge of the 12-pixel radius. Use the center (92, 0) to test points just outside, on, and inside the edge.
+
+**Checkpoints:** At y = 0, x = 79.9 misses, x = 80 is on the edge, and x = 80.1 is inside. Try heading 0 for a hit and 90 for a miss.`,
+		classroom: `**Normal:** In \`normal_addition()\`, print the results for x = 79.9, 80, and 80.1 with y = 0. Read the comparison from the source and predict the three results before running it.
+
+**Hard:** Change the beacon radius to 16 for one trial. Move the same marker along heading 0 and record where it first enters the circle. Try heading 90 again using the same radius.
+
+**Checkpoints:** At heading 0 the marker first enters the enlarged beacon at x = 80. At heading 90 it misses. Repeating a trial starts from the center each time.`
+	},
+	"GrS14-Pong": {
+		source: spaceEaterSupplementsSource,
+		title: "GrS14 Supplemental Project 3: Paddle Rally",
+		previousId:
+			"python-level-1-grs14-space-eater-supplemental-grs14-supplemental-project-3-pong",
+		task: `Control two paddles. Use W and S on the left and Up and Down on the right. Tap the center to start on a touchscreen, then tap the left or right half at a height to move that paddle.
+
+The ball reflects from the top and bottom walls. At a paddle, a return requires crossing its x-coordinate and reaching within 25 pixels of its center. Add the missing scoring step when the ball passes a side. The player on the opposite side earns one point.
+
+**Checkpoints:** Check a return, a wall bounce, and a miss separately. Verify the reset after each point and that the match stops at five points.`,
+		classroom: `**Normal:** In \`normal_addition()\`, start the ball at (110, 0) moving right with x-speed 7. Set the right paddle to y = 0 and advance one frame. Expect x = 107 and x-speed -7. Repeat farther away from the paddle to verify that the ball continues past it.
+
+**Hard:** Start the ball near the right scoring edge and force one miss. Check the left score and the new ball position, then repeat near the left edge. Reset the scores before starting a real match.
+
+**Checkpoints:** Each side miss credits the other player once and puts the ball back at the center.`
+	},
+	"GrS14-Fidget-Spinner": {
+		source: spaceEaterSupplementsSource,
+		task: `Press Space or tap the right half to increase speed by eight. Press Down or tap the left half to reduce speed by four. The timer adds the current speed to the angle and draws the spinner again. A pending flag prevents repeated input from starting two timers at once.
+
+Complete the friction step so every frame reduces speed by one until it reaches zero. Keep speed between zero and 24, and wrap the angle after a complete turn.
+
+**Checkpoints:** After a single boost from rest, the first frame moves eight degrees and leaves speed seven. Repeated boosts stop at 24. The timer stops issuing frames when speed reaches zero.`,
+		classroom: `**Normal:** In \`normal_addition()\`, give the spinner two boosts before the first frame, then print speed and whether a frame is pending. Expect speed 16 with one pending frame. Measure the speed after one frame and expect 15.
+
+**Hard:** Compare decay by one unit with decay by two units. Reset both trials to the same starting speed and count their frames until stopping. Keep the same limits and preserve the pending-frame guard.
+
+**Checkpoints:** From speed eight, the trials stop in eight and four frames. A brake at zero keeps the speed at zero.`
+	},
+	"GrS14-Snake": {
+		source: spaceEaterSupplementsSource,
+		title: "GrS14 Supplemental Project 5: Trail Collector",
+		previousId:
+			"python-level-1-grs14-space-eater-supplemental-grs14-supplemental-project-5-snake",
+		task: `Collect five lights by moving a trail through a grid. Start with Space or tap the canvas. Use the arrow keys or tap toward a canvas edge to steer. The body list stores positions from head to tail. A frame inserts the new head first. Complete the missing step for an ordinary move by removing the old tail. A move onto a light leaves the old tail in place and increases the score.
+
+Compare ordinary moves with collection, then test the game-over conditions. A new head outside the grid is a wall collision. A new head on a retained body tile is self-collision.
+
+**Checkpoints:** The trail grows only when it collects a light. A tail tile about to be removed can be used on an ordinary move. Five lights end the round.`,
+		classroom: `**Normal:** In \`normal_addition()\`, run a move onto the first light and then make one ordinary move with food elsewhere. Print the length after each move. Both lengths should be four.
+
+**Hard:** Put the light on a different tile, then use prepared trail lists to compare moving into the old tail with moving into a retained body tile. Check the edge condition with a separate setup. Restore the starting list and light before using the normal controls.
+
+**Checkpoints:** The old tail can vacate its tile during the move. The retained tile and the outer boundary each stop movement without inserting a new head.`
+	},
 	"GRS11-Advanced-Conditionals-Exploration": {
 		source: conditionalsListsSource,
 		task: `**Concept focus:** An \`if\` chain tests conditions from top to bottom and selects the first match. Only the final \`else\` runs when no condition matches. The starter draws the choices in a row so the original input and the resulting shape are both visible.
