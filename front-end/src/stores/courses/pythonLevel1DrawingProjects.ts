@@ -15,6 +15,9 @@ const functionsEventsSource =
 const parameterGeometrySource =
 	"https://github.com/instruction-material/Python-Level-1/tree/0cd00416bfde88d8036a3c9b77585acaa829bb42";
 
+const conditionalsListsSource =
+	"https://github.com/instruction-material/Python-Level-1/tree/3291fc8e5ad1c8596b868b834441847b55e91d8b";
+
 interface DrawingBrief {
 	task: string;
 	classroom: string;
@@ -24,6 +27,86 @@ interface DrawingBrief {
 }
 
 const briefs = {
+	"GRS11-Advanced-Conditionals-Exploration": {
+		source: conditionalsListsSource,
+		task: `**Concept focus:** An \`if\` chain tests conditions from top to bottom and selects the first match. Only the final \`else\` runs when no condition matches. The starter draws the choices in a row so the original input and the resulting shape are both visible.
+
+Set the \`elif\` condition for the triangle to match choice 1. Trace choices 0, 1, 2, and 3. Predict which branch runs and the number of edges before each result appears.
+
+**Checkpoints:** Choice 0 draws a square, choice 1 draws a triangle, and choices 2 and 3 each draw a circle. Every input draws exactly one outline.`,
+		classroom: `**Concept focus:** The finished \`draw_choice\` makes one decision per call. The conditions belong to one chain so the second condition is considered only if the first one fails.
+
+**Normal:** In \`normal_addition()\`, predict the outcomes for -1, 0, 1, and 2. Draw the four cases in separate positions and report one branch name per call.
+
+**Hard:** Add a separate branch for choice 3 that draws a five-sided outline. Keep the circle as a fallback for other values and test both 3 and 4.
+
+**Checkpoints:** A pentagon uses five turns of 72 degrees. Choice 4 still draws one circle.`
+	},
+	"Random-Age": {
+		source: conditionalsListsSource,
+		task: `The program samples one turtle age from 0 to 80 and passes it to \`age_group\`. The conditions use upper bounds in ascending order. When a condition fails, the program continues to the next test. Replace the placeholder label for the group reached at ages 12 through 17 with \`Teen turtle\`.
+
+Use pairs of inputs on either side of each boundary. For example, compare 11 with 12, then compare 17 with 18.
+
+**Checkpoints:** Age 11 gives Young turtle, 12 and 17 give Teen turtle, and 18 gives Adult turtle. The on-canvas label and console report agree.`,
+		classroom: `**Normal:** In \`normal_addition()\`, report outcomes for ages 1, 2, 4, 5, 11, 12, 17, 18, 49, and 50. Place each boundary pair on the same line. Explain why age 50 reaches the final branch.
+
+**Hard:** Add a separate text label for the number of age groups reached by the ten tested values. Include age 0 and age 80 in a second run and report which earlier groups those endpoints share.
+
+**Checkpoints:** All six groups appear. Each test input receives a single label and the current random sample still appears on the canvas.`
+	},
+	"GrS9-Turtle-Launch": {
+		source: conditionalsListsSource,
+		task: `The turtle starts at x = -120. The horizontal movement adds the travel distance to that start. The result counts as a landing if the final x-coordinate is 70 through 100, including both endpoints. Fix the upper comparison in \`classify\` so an endpoint at 100 is accepted.
+
+Press Space with the canvas focused, or tap the canvas, to repeat with a random distance. Use direct calls to \`launch\` for boundary checks.
+
+**Checkpoints:** Distances 189, 190, 220, and 221 end at 69, 70, 100, and 101. The results are undershoot, landed, landed, and overshoot.`,
+		classroom: `**Normal:** In \`normal_addition()\`, print \`classify\` results for endpoints 69, 70, 100, and 101. Explain how one condition rules out all values below the landing zone before the second condition runs.
+
+**Hard:** In \`hard_addition()\`, make a second controlled launch key that alternates between the two landing boundaries. Use the same launch helper for both distances, then check that the random launch controls still work.
+
+**Checkpoints:** Both controlled launches land. The marker ends on the corresponding edge of the line and the previous result is cleared.`
+	},
+	"GrS9-Bullseye-with-Nested-Loops": {
+		source: conditionalsListsSource,
+		task: `Use \`index % 2\` to alternate two colors. The function currently returns crimson for both cases. Set odd indexes to white. The outer loop picks one ring size and color, while the inner loop draws 36 equal edges with 10-degree turns. Keep the positioning that places each ring on the same center.
+
+Trace five ring colors, beginning with index 0. Then draw a fresh target with four rings and compare which color appears last.
+
+**Checkpoints:** Five rings end crimson and four rings end white. The centers line up. Each new layer is smaller than the one behind it.`,
+		classroom: `**Normal:** In \`normal_addition()\`, print the ring colors for indexes 0 through 5. Predict the last color of a four-ring and a five-ring target from those results.
+
+**Hard:** In \`hard_addition()\`, change the first color while preserving the parity rule and run the same checks again. Compare 0, 1, and 2 rings in separate runs after clearing the pen.
+
+**Checkpoints:** Zero rings draw nothing. One ring draws only the first color. Two rings leave both colors visible, with a common center. Record the radius and color on each outer pass.`
+	},
+	"GrS12-Turtle-Launch-with-Lists": {
+		source: conditionalsListsSource,
+		task: `The setup creates four distinct turtle objects and appends each to \`fleet\`. Each turtle starts at a different y-coordinate but the same x-coordinate. Remove the slice that visits only the first member. Iterate over the whole list and pass the current turtle to \`launch\`, then append the returned label to \`outcomes\`.
+
+Compare the list length with the result count. Draw a trace showing which turtle owns each horizontal line.
+
+**Checkpoints:** Four separate turtles leave four lines at y = 45, 15, -15, and -45. There is one result label per list member, in the same order.`,
+		classroom: `**Normal:** In \`normal_addition()\`, print the size of \`fleet\`, its y-coordinates, and the number of results. Expect four start lanes and four recorded outcomes. Compare the first result with the first line's end position.
+
+**Hard:** Add one more turtle in a new lane, then use the existing launch loop with a short list of chosen distances. Include both landing endpoints from the earlier single-turtle project.
+
+**Checkpoints:** One turtle is created for each lane instead of reusing the same object. The added lane generates its own line and result without a new copy of the launch routine.`
+	},
+	"GrS12-Rainbow-Path": {
+		source: conditionalsListsSource,
+		task: `The palette stores seven color names in the order they should appear. Remove the slice that limits the path to one color. Set the pen color once for each list member, choose a heading between -20 and 20 degrees, then move 24 pixels. The heading can change between segments while keeping the path moving right.
+
+Predict the third color, then swap it with the last one and run again. The list order should be visible independently of the random headings.
+
+**Checkpoints:** The original path has seven segments from crimson through purple. Each segment stays 24 pixels long. The second run follows the new order.`,
+		classroom: `**Normal:** In \`normal_addition()\`, print the palette length and the first and last names. Then repeat the loop with a short three-color list of your choice in an empty band below the first path.
+
+**Hard:** Use an empty palette and a two-color palette in separate runs. Explain their different outcomes and draw a new two-color path with fixed headings to isolate the color order.
+
+**Checkpoints:** An empty loop creates zero segments. The shorter path creates exactly two turns and two 24-pixel segments. The original drawing stays intact.`
+	},
 	"GrS8-Build-a-Snowman": {
 		source: parameterGeometrySource,
 		task: `**Concept focus:** A parameter gives one function a named input. Here \`disk(x, y, radius)\` takes the center and size each time. Turtle begins a positive-radius circle at its bottom, so the helper moves to \`(x, y - radius)\` and faces right before drawing.

@@ -706,38 +706,27 @@ Finish with one small original example: a function with at least one parameter, 
 		{
 			title: "GrS11 Conditionals Part 2",
 			curriculum: [
-				{
-					title: "GrS11 Project 1: Advanced Conditionals Exploration",
-					content:
-						"Learn how `elif` and `else` connect to an `if` statement and use them to handle several mutually exclusive outcomes cleanly.",
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GRS11-Advanced-Conditionals-Exploration/solution"
-				},
-				{
+				pythonLevel1DrawingProject(
+					"GRS11-Advanced-Conditionals-Exploration",
+					{
+						title: "GrS11 Project 1: Advanced Conditionals Exploration",
+						content: ""
+					}
+				),
+				pythonLevel1DrawingProject("Random-Age", {
 					title: "GrS11 Project 2: Random Age",
-					content:
-						"Generate a random age, group it into named age ranges with `if`/`elif`/`else`, and display the result with Turtle writing commands.",
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/Random-Age/solution"
-				}
+					content: ""
+				})
 			],
 			supplementalProjects: [
-				{
+				pythonLevel1DrawingProject("GrS9-Turtle-Launch", {
 					title: "GrS11 Supplemental Project 1: Turtle Launch",
-					content: `Create a launch simulation where a turtle travels toward a target moon. Use a random or chosen launch distance, then compare the turtle's final position to the target zone with conditionals.
-
-The program clearly distinguishes at least three outcomes: undershoot, successful landing, and overshoot. Use color, text, or turtle position to show the result, and test boundary values close to the target so the conditional ranges are not accidentally overlapping or leaving gaps.`,
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS9-Turtle-Launch/solution"
-				},
-				{
+					content: ""
+				}),
+				pythonLevel1DrawingProject("GrS9-Bullseye-with-Nested-Loops", {
 					title: "GrS11 Supplemental Project 2: Bullseye with Nested Loops",
-					content: `Draw a bullseye target using a loop and the modulo operator. Each ring is drawn from the same repeated structure, while the ring size and color change from one iteration to the next.
-
-Use \`i % 2\` or a similar expression to alternate colors predictably. Verify the pattern by changing the number of rings and checking that the alternating rule still works for both even and odd totals.`,
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS9-Bullseye-with-Nested-Loops/solution"
-				},
+					content: ""
+				}),
 				{
 					title: "GrS11 Supplemental Project 3: Advanced Conditionals Recap",
 					content: `Create a recap for advanced conditionals. Explain when to use separate \`if\` statements, when to use an \`if\`/\`elif\`/\`else\` chain, and why the order of conditions matters when ranges overlap.
@@ -779,22 +768,14 @@ Predict what changes after appending green. The order becomes red, purple, green
 				...pythonLevel1ListProjects
 			],
 			supplementalProjects: [
-				{
+				pythonLevel1DrawingProject("GrS12-Turtle-Launch-with-Lists", {
 					title: "GrS12 Supplemental Project 1: Turtle Launch with Lists",
-					content: `Upgrade Turtle Launch so several turtles can launch in one simulation. Store the turtle objects in a list, then iterate through the list so every turtle receives the same launch process while still getting its own random distance or result.
-
-The list removes repeated launch code. Completion means adding another turtle only requires adding it to the list, not copying the entire movement and conditional section again.`,
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS12-Turtle-Launch-with-Lists/solution"
-				},
-				{
+					content: ""
+				}),
+				pythonLevel1DrawingProject("GrS12-Rainbow-Path", {
 					title: "GrS12 Supplemental Project 2: Rainbow Path",
-					content: `Store color strings in a list and iterate through them to create a path with changing colors and random turns.
-
-Color reference: choose color strings from ${TURTLE_COLOR_REFERENCE}`,
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS12-Rainbow-Path/solution"
-				},
+					content: ""
+				}),
 				{
 					title: "GrS12 Supplemental Project 3: Debugging Lists",
 					content:
