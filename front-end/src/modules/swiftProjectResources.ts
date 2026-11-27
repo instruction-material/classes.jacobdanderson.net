@@ -29,7 +29,7 @@ export const swiftDataTrackerRoot = `https://github.com/instruction-material/Swi
 
 export const swiftCanonicalProjectsRevision =
 	"18bb2a5055a144cf545fa416f6bde6f00e863f36";
-export const swiftGalleryRevision = "e8f0eeb79a4c00258277fd440ee2f6f89610c467";
+export const swiftGalleryRevision = "22ac163cb6274b7d9c698942b417551ccba4d6b2";
 export const swiftGalleryRoot = `https://github.com/instruction-material/Swift/tree/${swiftGalleryRevision}/SAD2-Media-Gallery-App`;
 export const swiftHobbyRevision = "9c4599f12037847388a7760e82409c4481e0faf7";
 export const swiftHobbyRoot = `https://github.com/instruction-material/Swift/tree/${swiftHobbyRevision}/SAD3-Multi-Tab-Hobby-App`;
@@ -270,7 +270,10 @@ export function swiftCourseResource(url: string) {
 					? [swiftInteractionRevision]
 					: []),
 				...(pack.projectKey === "media-gallery"
-					? ["507812397086107078b67dc193507e7c220f57a3"]
+					? [
+							"e8f0eeb79a4c00258277fd440ee2f6f89610c467",
+							"507812397086107078b67dc193507e7c220f57a3"
+						]
 					: []),
 				...(pack.projectKey === "map-places"
 					? ["a373ffaf1d3b34fe3476137ea357c787f433f21a"]
