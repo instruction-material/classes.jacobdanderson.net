@@ -12,6 +12,9 @@ const nestedLoopsSource =
 const functionsEventsSource =
 	"https://github.com/instruction-material/Python-Level-1/tree/31948d78c17d1d3496e6ff02d6cf54d03362ea4f";
 
+const parameterGeometrySource =
+	"https://github.com/instruction-material/Python-Level-1/tree/0cd00416bfde88d8036a3c9b77585acaa829bb42";
+
 interface DrawingBrief {
 	task: string;
 	classroom: string;
@@ -21,6 +24,168 @@ interface DrawingBrief {
 }
 
 const briefs = {
+	"GrS8-Build-a-Snowman": {
+		source: parameterGeometrySource,
+		task: `**Concept focus:** A parameter gives one function a named input. Here \`disk(x, y, radius)\` takes the center and size each time. Turtle begins a positive-radius circle at its bottom, so the helper moves to \`(x, y - radius)\` and faces right before drawing.
+
+Add a head centered at (0, 58) with radius 19 using the same helper as the body. Lift the pen, place two navy eyes at x = -6 and 6 with y = 62, then place an orange nose at (0, 52).
+
+**Checkpoints:** The three radii are 37, 27, and 19. All centers share x = 0, and the adjacent disks meet. Changing the head radius changes the head only.`,
+		classroom: `**Concept focus:** Trace each call to the same function body. The center and radius are new for each call, and the expression y minus radius picks the bottom edge.
+
+**Normal:** In \`normal_addition()\`, print the bottom y-coordinate for the body disks and head. Expect -89, -15, and 39. Match those positions to the reference scene.
+
+**Hard:** In \`hard_addition()\`, draw a second smaller snowman at x = 85 with centers y = -45, -15, and 6. Use radii 17, 13, and 8. Add the same two eye positions relative to its center.
+
+**Checkpoints:** Adjacent circles touch and the first snowman stays visible. The original helper is called for all six circles.`
+	},
+	"GrS8-More-Functions": {
+		source: parameterGeometrySource,
+		task: `The program has a square helper and a triangle helper. Each accepts \`length\` and leaves the pen at its starting position. The start position and color come from the separate \`place\` function, which lifts the pen before moving it.
+
+Use the current parameter values to draw a triangle after each square. The three columns use lengths 18, 30, and 42. In each column, compare the lower square and upper triangle before moving to the next size.
+
+**Checkpoints:** Count 12 square edges and nine triangle edges. Change only the 30 argument to 34 and check the two shapes in that column.`,
+		classroom: `**Normal:** In \`normal_addition()\`, draw one square with length 20 and one triangle with length 36 at separate positions above the two rows. Report the pen position at the end of each outline. Each endpoint should match the position passed to the placement helper.
+
+**Hard:** In \`hard_addition()\`, swap the square and triangle sizes in a new pair. Keep their centers and colors easy to distinguish from the original three pairs.
+
+**Checkpoints:** Observe that the number of sides comes from the function. The argument changes how long each edge is.`
+	},
+	"GrS9-Polka-Dots-Parameterized": {
+		source: parameterGeometrySource,
+		task: `Pass the click coordinates, dot diameter, and color as arguments to \`draw_dot\`. In the callback, replace the constant diameter with \`10 + min(20, abs(round(x)) // 5)\`. It grows in steps of one pixel with horizontal distance and reaches a maximum diameter of 30. The left half uses orchid and the right half uses teal.
+
+Use clicks or taps at the center, edges, and corners. Compare points the same distance left and right of the center.
+
+**Checkpoints:** x = 0 gives diameter 10. x = -40 and x = 40 both give diameter 18 but different colors. The dots remain centered on the clicks.`,
+		classroom: `**Normal:** In \`normal_addition()\`, call \`place_dot\` at (-40, 20), (0, 20), and (40, 20). Match printed diameters 18, 10, and 18 to the three marks. Confirm the coordinates are passed to the helper without rounding away their sign.
+
+**Hard:** In \`hard_addition()\`, write a new callback that uses distance from the horizontal axis for diameter and changes color by the sign of y. Register it with \`screen.onclick\`.
+
+**Checkpoints:** Tap at two settings above and below the axis to compare size and color. The new marks still use the same drawing helper.`
+	},
+	"GrS9-Click-and-Draw-Rectangle": {
+		source: parameterGeometrySource,
+		task: `Use \`dimensions(x, y)\` to convert the click coordinates into positive side lengths. Width already uses the magnitude of x and stays between 12 and 105. Give height the same calculation with y and bounds 12 and 72. The callback passes the two values to \`draw_rectangle\`, which centers the result and reports its dimensions.
+
+Trace four clicks with x = 40 or -40 and y = 30 or -30. Then try the center and a point near the edge.
+
+**Checkpoints:** All four sign combinations give 40 by 30. A click near the origin cannot produce zero sides. A very large click produces no side beyond its cap.`,
+		classroom: `**Normal:** In \`normal_addition()\`, print \`dimensions(-40, 30)\`, \`dimensions(0, 0)\`, and \`dimensions(200, -200)\`. Expect (40, 30), (12, 12), and (105, 72). Draw one of those pairs directly to distinguish the click conversion from the drawing helper.
+
+**Hard:** In \`hard_addition()\`, bind another pointer callback with height capped at 48. Keep the existing rectangle drawing routine in use. Compare its color choices for one wide and one tall click.
+
+**Checkpoints:** A click with a large vertical magnitude stays within the new cap, and all four corners still close.`
+	},
+	"GrS7-Any-Shape-Staircase": {
+		source: parameterGeometrySource,
+		task: `Complete \`draw_shape(length, sides)\` by setting the exterior turn to 360 divided by the number of sides. The caller places each shape one step higher and to the right. It passes a fixed length of 23 and successive side counts 3, 4, 5, and 6. Keep positioning outside the helper.
+
+Draw one triangle first and compare where the pen starts and ends. Repeat for all four shapes. Predict the turn for each before running.
+
+**Checkpoints:** The turns are 120, 90, 72, and 60 degrees. The complete staircase has 18 edges. Every outline returns to its own starting point.`,
+		classroom: `**Normal:** In \`normal_addition()\`, draw a pentagon with length 15 at (-100, 55) using the shape helper. Print the calculated turn and the final coordinates. Expect 72 and the starting point.
+
+**Hard:** In \`hard_addition()\`, draw two more steps using two different side lengths and side counts. Give each step a planned coordinate and predict the turn once per shape before the program runs.
+
+**Checkpoints:** Print the result of each closure check. Only the caller changes size or position between steps, and the existing helper handles all supported polygons.`
+	},
+	"GrS7-Square-Inception-with-Functions": {
+		source: parameterGeometrySource,
+		task: `A square can be drawn by one function, \`draw_square(length, red, green, blue)\`. The current starter repeats length 18 for every call. Pass the current value from the size loop so each group has sides 18, 34, and 50. The outer loop supplies a group color and turns after each finished group.
+
+Trace how the color changes between groups while size changes within a group. List the first four values passed into the helper and describe the job of each parameter.
+
+**Checkpoints:** Expect 12 squares and 48 edges. Changing one size argument should affect that layer across all four groups.`,
+		classroom: `**Normal:** In \`normal_addition()\`, use the helper to draw one 24-pixel square in a separate location with an RGB color of your choice. Then draw it again with length 36 and the same color at that location. Follow the two calls through the same four-edge function.
+
+**Hard:** In \`hard_addition()\`, place a second group at a different origin. Keep the supplied size sequence and compute a different color for each size. The helper should remain unchanged.
+
+**Checkpoints:** Expect two independent patterns and three distinguishable layers in the added group.`
+	},
+	"Rainbow-Square-Inception": {
+		source: parameterGeometrySource,
+		task: `**Concept focus:** The outer loop sets a color and a group heading. The middle loop selects one of four lengths. The inner loop draws four equal sides and returns to its starting heading. Together the loops draw 24 groups with 15-degree turns between them.
+
+Add 23 to blue after a group and use the remainder after division by 256 as the next blue channel. Every channel passed to Turtle must be between 0 and 255.
+
+**Checkpoints:** Start at blue 20. The eleventh group uses 250 and the next uses 17. Count 96 squares and 384 edges. Each group resets the size sequence.`,
+		classroom: `**Concept focus:** Track length and blue in separate columns. Length resets from the same four values each group, while blue carries forward and wraps at 256.
+
+**Normal:** In \`normal_addition()\`, print blue for groups 11 and 12. Expect 250 and 17. Report the shape and edge totals as 96 and 384.
+
+**Hard:** In \`hard_addition()\`, draw a small four-group inset. Turn 90 degrees between groups and start its blue channel at 240, increasing by 23 for each group. Use two lengths per group to make the layers easy to see.
+
+**Checkpoints:** The inset uses blue values 240, 7, 30, and 53. Its total is eight squares.`
+	},
+	Snowflake: {
+		source: parameterGeometrySource,
+		task: `**Concept focus:** One arm contains six levels. A level moves along the main ray, draws a twig on each side, and returns to the ray after both twigs. The top-level loop repositions the pen at the center and rotates the starting direction for the next arm.
+
+Change the twig argument from zero to 10. Start each arm in one of six directions 60 degrees apart. Trace one twig as a forward and backward pair, then compare its endpoint with the point before the pair.
+
+**Checkpoints:** Count six arms and 12 twigs per arm. Each arm ends 54 pixels from the center. Pen-up moves leave no lines between arms.`,
+		classroom: `**Concept focus:** Each twig is a round trip along one direction. The pair adds visible strokes without advancing the pen down the central ray.
+
+**Normal:** In \`normal_addition()\`, draw a single shorter arm at (85, -45) with step 5 and twig 6. Set its heading to zero and measure its last point. Expect x = 115 with the same y-coordinate.
+
+**Hard:** In \`hard_addition()\`, add a four-arm inset around another center. Use short dimensions, lift the pen to recenter, and set a 90-degree change in heading for each arm.
+
+**Checkpoints:** The four-arm version has 48 twigs and the rays reach the same distance from their new center.`
+	},
+	"GrS10-Winter-Wonderland": {
+		source: parameterGeometrySource,
+		task: `Call \`draw_flake\` once at each of six supplied centers. The starter samples three values but passes constant values into the function. Pass the sampled arm count, length, and twig size instead. The ranges are 5 to 7 arms, 20 to 38 pixels for the main ray, and 4 to 7 pixels per twig.
+
+Trace the first flake's center and sampled values. Predict how many main steps it draws using five per arm. Run again and confirm that a new sample changes the shapes without moving the centers.
+
+**Checkpoints:** Expect six centers and consistent placement on every run. The main steps add up to the supplied arm length.`,
+		classroom: `**Normal:** In \`normal_addition()\`, draw a fixed sample at (0, 0) with five arms, length 20, and twig 4. Check that each main arm advances four pixels per level and that its last point is 20 pixels from the center.
+
+**Hard:** In \`hard_addition()\`, use a trace table and draw a comparison pair with equal length but different arm counts. Put the pair in clear positions between the original rows and use small dimensions.
+
+**Checkpoints:** Arm counts change the angle between rays. Equal total length gives the same distance from each center after the final level.`
+	},
+	"GrS6-Spiral-Staircase": {
+		source: parameterGeometrySource,
+		task: `The outer loop draws 24 rotated squares. Inside each loop, keep the same side length for its four edges and return to the starting point. Change length by three after each square. A 15-degree turn between squares makes the increasingly large outlines resemble a spiral staircase.
+
+Trace lengths 12, 15, and 18 on the first three outer passes. Compare the repeated drawing with the starter, where the square size remains fixed. Keep color independent from length.
+
+**Checkpoints:** The last square has side length 81 and the value after the final update is 84. Count 96 edges.`,
+		classroom: `**Normal:** In \`normal_addition()\`, print the first drawn length, the last drawn length, and the next unused value. Expect 12, 81, and 84. Explain which loop boundary must be reached before the size changes.
+
+**Hard:** In \`hard_addition()\`, add a small four-square sample with start length 8 and an increase of two. Compare its 30-degree group turns to the reference's 15-degree turns. Place it away from the larger pattern.
+
+**Checkpoints:** The sample uses lengths 8, 10, 12, and 14. Changing the turn does not change the length sequence.`
+	},
+	"GrS6-Dizzy-Hexagon": {
+		source: parameterGeometrySource,
+		task: `Draw 100 hexagons. Each starts from a new position by lifting the pen, returning to the origin, setting its heading to 12 times the index, and traveling index divided by four pixels. Complete the pen-up movement before drawing. Then use six moves with 60-degree turns to close the current hexagon.
+
+Start by tracing indices 0, 4, and 8. The length grows in steps of one every four shapes. The center sweeps around while the distance from the origin grows.
+
+**Checkpoints:** A four-shape run has 24 edges, and the full run has 600. No travel line connects different starts.`,
+		classroom: `**Normal:** In \`normal_addition()\`, print start distances for indices 0, 4, and 8 and the side lengths for those indices. Expect 0, 1, and 2 for distance and 18, 19, and 20 for side length.
+
+**Hard:** In \`hard_addition()\`, draw a short six-hexagon comparison near (100, 0), with a constant length and an increasing pen-up radius. Explain which of those rules affects the outline and which affects its placement.
+
+**Checkpoints:** The comparison has six closed outlines, six separately traceable starts, and no connector segments.`
+	},
+	"GrS6-Dot-Grid": {
+		source: parameterGeometrySource,
+		task: `The outer loop selects a row and the inner loop selects a column. Complete the y-coordinate so each new row subtracts \`row * spacing\` from the initial height. Keep the pen lifted while moving between points and use the supplied dot size. The x-coordinate starts at -88 and grows by 25 for each column.
+
+Trace the first and last dot of row zero before adding the rest. Change the row count independently of the column count and predict the resulting number of dots.
+
+**Checkpoints:** The default grid has 40 dots. The last point is (87, -50). Each new row restarts at x = -88.`,
+		classroom: `**Normal:** In \`normal_addition()\`, print all y-coordinates and count all dots. Expect [50, 25, 0, -25, -50] and 40. Identify why moving to a new column leaves the current y-coordinate unchanged.
+
+**Hard:** In \`hard_addition()\`, use two nested loops to draw a smaller two-by-three marker grid with spacing 12. Use a distinct color, avoid overlapping the original dots, and print the first and last points.
+
+**Checkpoints:** The small grid has six dots and no lines between them. The original grid still has five rows of eight.`
+	},
 	"GrS6-Build-a-Neighborhood": {
 		source: functionsEventsSource,
 		task: `The starter contains a function that draws a 32-pixel square body from the given coordinates. In \`draw_house(x, y)\`, place a second outline with its base on top of the body at \`(x, y + 32)\`. Use three 32-pixel moves and left turns of 120 degrees to close the roof. Lift the pen between parts with \`move_to\`.

@@ -3852,15 +3852,15 @@ describe("course text quality normalization", () => {
 				title: /^GrS9 Project 2: More Functions$/,
 				required: [
 					"parameter values",
-					"different sizes",
-					"Verify the design"
+					"12 square edges and nine triangle edges",
+					"only the 30 argument"
 				]
 			},
 			{
 				title: /^GrS9 Project 3: Polka Dots$/,
 				required: [
-					"mouse clicks",
 					"click coordinates",
+					"10 + min(20, abs(round(x)) // 5)",
 					"edges, and corners"
 				]
 			},

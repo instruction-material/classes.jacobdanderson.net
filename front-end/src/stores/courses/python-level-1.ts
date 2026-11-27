@@ -611,47 +611,28 @@ The reflection is specific. Instead of saying "loops are easier," explain what c
 		{
 			title: "GrS9 Functions Part 2",
 			curriculum: [
-				{
+				pythonLevel1DrawingProject("GrS8-Build-a-Snowman", {
 					title: "GrS9 Project 1: Build a Snowman",
-					content:
-						"See why function parameters matter by first writing several similar circle-drawing functions, then simplifying them into one reusable function that accepts size as an input.",
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS8-Build-a-Snowman/solution"
-				},
-				{
+					content: ""
+				}),
+				pythonLevel1DrawingProject("GrS8-More-Functions", {
 					title: "GrS9 Project 2: More Functions",
-					content: `Create reusable shape functions, then use parameter values to control the finished drawing. Write \`drawSquare(sideLength)\` and \`drawTriangle(sideLength)\` so the same function can draw small, medium, and large versions of the shape.
-
-After both functions work independently, call them repeatedly with different sizes, positions, or colors to build a pattern. Verify the design by changing one argument and checking that only the intended shape size changes, not the whole program structure.`,
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS8-More-Functions/solution"
-				},
-				{
+					content: ""
+				}),
+				pythonLevel1DrawingProject("GrS9-Polka-Dots-Parameterized", {
 					title: "GrS9 Project 3: Polka Dots",
-					content: `Build an interactive drawing that reacts to mouse clicks. Use \`screen.onclick()\` to connect the canvas to a function that receives the click coordinates, moves the turtle to that position, and draws a circle or dot.
-
-The dot function uses parameters or random values for details such as size, color, or pen width. Test clicks near the center, edges, and corners of the canvas so the final program feels responsive and does not assume every click happens in one easy location.`,
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/blob/main/GrS9-Polka-Dots/solution/main.py"
-				},
-				{
+					content: ""
+				}),
+				pythonLevel1DrawingProject("GrS9-Click-and-Draw-Rectangle", {
 					title: "GrS9 Project 4: Click and Draw Rectangles",
-					content: `Use mouse coordinates as input data for a drawing function. The click handler receives \`x\` and \`y\`, then draws a rectangle whose width and height are based on the distance from a reference point such as the center of the screen.
-
-Plan how negative coordinates behave before coding. A strong version handles clicks in all four quadrants, labels or comments the coordinate logic, and verifies that the rectangle changes shape predictably when the click location changes.`,
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS9-Click-and-Draw-Rectangle/solution"
-				}
+					content: ""
+				})
 			],
 			supplementalProjects: [
-				{
+				pythonLevel1DrawingProject("GrS7-Any-Shape-Staircase", {
 					title: "GrS9 Supplemental Project 1: Any Shape Staircase",
-					content: `Write a general polygon helper, \`drawShape(sideLength, numSides)\`, and use it as the foundation for a staircase of shapes. The function calculates the turn angle from the number of sides instead of hard-coding one shape.
-
-Build the staircase by changing at least one value each step, such as side length, position, color, or number of sides. Completion means the code can draw several different polygons from the same helper and the staircase rule is visible from the loop structure.`,
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS7-Any-Shape-Staircase/solution"
-				},
+					content: ""
+				}),
 				{
 					title: "GrS9 Supplemental Project 2: Debugging Functions",
 					content: `Debug a function-based snowman program by reading one error at a time and connecting each error to the relevant function definition or function call.
@@ -672,14 +653,13 @@ Before coding, decide how each row differs from the previous one. The finished p
 					solutionLink:
 						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS7-Pyramid-with-Functions/solution"
 				},
-				{
-					title: "GrS9 Supplemental Project 4: Square Inception with Functions",
-					content: `Remake Square Inception with a helper function that accepts both size and color information: \`drawSquare(sideLength, r, g, b)\`.
-
-This removes repeated square-drawing code while keeping the visual effect from the earlier project. Use a loop to call the helper with changing side lengths and RGB values, then verify that changing the loop rule changes the whole pattern without editing the helper body.`,
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS7-Square-Inception-with-Functions/solution"
-				},
+				pythonLevel1DrawingProject(
+					"GrS7-Square-Inception-with-Functions",
+					{
+						title: "GrS9 Supplemental Project 4: Square Inception with Functions",
+						content: ""
+					}
+				),
 				{
 					title: "GrS9 Supplemental Project 5: Functions Part 2 Recap",
 					content: `Create a short study guide for function parameters, reusable helpers, and click-driven programs. Include the difference between defining a function and calling it, why parameters make a function more flexible, and how event listeners pass information such as mouse coordinates into a callback function.
@@ -695,52 +675,32 @@ Finish with one small original example: a function with at least one parameter, 
 		{
 			title: "GrS10 Nested Loops Part 2",
 			curriculum: [
-				{
+				pythonLevel1DrawingProject("Rainbow-Square-Inception", {
 					title: "GrS10 Project 1: Rainbow Square Inception",
-					content:
-						"Extend earlier nested loop work by increasing the number of shapes, adjusting turn amounts, and gradually changing color values to create a rainbow effect.",
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/Rainbow-Square-Inception/solution"
-				},
-				{
+					content: ""
+				}),
+				pythonLevel1DrawingProject("Snowflake", {
 					title: "GrS10 Project 2: Snowflake",
-					content:
-						"Use nested loops to build a snowflake from repeated branches and side branches, then adjust branch lengths, counts, and pen settings to customize the design.",
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/Snowflake/solution"
-				},
-				{
+					content: ""
+				}),
+				pythonLevel1DrawingProject("GrS10-Winter-Wonderland", {
 					title: "GrS10 Project 3: Winter Wonderland",
-					content:
-						"Turn a snowflake drawing into a reusable function with multiple parameters, then call it many times with random arguments to create a full winter scene.",
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS10-Winter-Wonderland/solution"
-				}
+					content: ""
+				})
 			],
 			supplementalProjects: [
-				{
+				pythonLevel1DrawingProject("GrS6-Spiral-Staircase", {
 					title: "GrS10 Supplemental Project 1: Spiral Staircase",
-					content:
-						"Draw a staircase pattern that spirals outward by combining movement, turns, and a changing step length. Keep the rule for changing the step size explicit in the loop, and verify that the final image shows a consistent outward spiral rather than disconnected line segments.",
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS6-Spiral-Staircase/solution"
-				},
-				{
+					content: ""
+				}),
+				pythonLevel1DrawingProject("GrS6-Dizzy-Hexagon", {
 					title: "GrS10 Supplemental Project 2: Dizzy Hexagon",
-					content: `Draw a spiral made from 100 hexagons. Each repetition draws one hexagon, rotates or moves the turtle, then prepares for the next hexagon so the final image grows into a controlled spiral instead of stacking shapes on top of each other.
-
-Use random colors to add variety, but keep the movement rule deterministic enough to debug. If the drawing looks messy, test with fewer hexagons first, confirm one hexagon is correct, then increase the loop count gradually.`,
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS6-Dizzy-Hexagon/solution"
-				},
-				{
+					content: ""
+				}),
+				pythonLevel1DrawingProject("GrS6-Dot-Grid", {
 					title: "GrS10 Supplemental Project 3: Dot Grid",
-					content: `Use nested loops to generate a dot grid with configurable rows, columns, and spacing. The outer loop controls rows, while the inner loop draws dots across a row.
-
-Store the row count, column count, dot size, and spacing in variables near the top of the program. Completion means those variables can be changed to create a wider, taller, denser, or more spread-out grid without rewriting the loop logic.`,
-					solutionLink:
-						"https://github.com/instruction-material/Python-Level-1/tree/main/GrS6-Dot-Grid/solution"
-				}
+					content: ""
+				})
 			]
 		},
 		{

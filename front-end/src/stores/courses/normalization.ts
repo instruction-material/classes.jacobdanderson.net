@@ -8945,6 +8945,8 @@ function pythonLevel1ClassroomTemplate(itemTitle: string) {
 		return "classroom-project";
 	}
 	if (/Fireworks?/i.test(itemTitle)) return "firework-festival";
+	if (itemTitle === "GrS10 Supplemental Project 1: Spiral Staircase")
+		return "classroom-project";
 	if (/Square Spiral|Spirals?/i.test(itemTitle)) return "spiral-galaxy";
 	if (/Turtle Race/i.test(itemTitle)) return "turtle-race";
 	if (/Rainbow Flower|Flower Garden/i.test(itemTitle)) return "flower-garden";
