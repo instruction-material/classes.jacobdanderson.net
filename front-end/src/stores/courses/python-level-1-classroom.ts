@@ -1,16 +1,13 @@
 import type { RawCourse, RawCourseModule, RawCourseModuleItem } from "./types";
 import { pythonLevel1Course } from "./python-level-1";
+import { pythonLevel1ClassroomArcadeContent } from "./pythonLevel1ArcadeProjects";
+import { pythonLevel1ClassroomCheckIn } from "./pythonLevel1CheckInProjects";
+import { pythonLevel1ClassroomDrawingContent } from "./pythonLevel1DrawingProjects";
+import { pythonLevel1ClassroomMotionContent } from "./pythonLevel1GameMechanicsProjects";
+import { pythonLevel1ClassroomListContent } from "./pythonLevel1ListProjects";
 
 function copyItem(item: RawCourseModuleItem): RawCourseModuleItem {
-	let content =
-		item.title === "GrS2 Project 1: Basic Shapes"
-			? [
-					item.content,
-					"**Classroom project:** The examples above explain the drawing commands. The project button opens the prepared Triangle Motion framework. Keep its movement and redraw callbacks in place.",
-					"**Normal:** Complete `draw_triangle()` with three equal sides and 120-degree turns. Check that the outline closes before adding a fill.",
-					"**Hard:** Complete `add_triangle_detail()` with a detail that moves with the triangle. Verify all four arrow keys and the absence of travel lines."
-				].join("\n\n")
-			: item.content;
+	let content = item.content;
 
 	if (
 		item.title ===
@@ -33,7 +30,13 @@ function copyItem(item: RawCourseModuleItem): RawCourseModuleItem {
 
 	return {
 		...item,
-		content,
+		content:
+			pythonLevel1ClassroomListContent(item.title) ??
+			pythonLevel1ClassroomMotionContent(item.title) ??
+			pythonLevel1ClassroomDrawingContent(item) ??
+			pythonLevel1ClassroomArcadeContent(item.title) ??
+			pythonLevel1ClassroomCheckIn(item.title) ??
+			content,
 		aliases: item.aliases ? [...item.aliases] : undefined
 	};
 }

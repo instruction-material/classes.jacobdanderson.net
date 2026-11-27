@@ -61,7 +61,7 @@ describe("optional recursion evidence worksheet", () => {
 				(count, item) => count + item.supplementalProjects.length,
 				0
 			)
-		).toBe(8);
+		).toBe(14);
 	});
 
 	it("reopens the normal saved maze key and tells separate-pack users to select their attempt", () => {

@@ -82,6 +82,7 @@ describe("canonical Swift app workspaces", () => {
 	});
 	it.each([
 		"507812397086107078b67dc193507e7c220f57a3",
+		"e8f0eeb79a4c00258277fd440ee2f6f89610c467",
 		"18bb2a5055a144cf545fa416f6bde6f00e863f36",
 		"58d17abb7a09185558a74c44f0ba2e43a18f42c2"
 	])("retains the earlier Gallery source at %s", revision => {

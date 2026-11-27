@@ -4,8 +4,10 @@ import { createPinia, setActivePinia } from "pinia";
 import { expect, it } from "vitest";
 import {
 	pyGamesCoreResource,
-	pyGamesCoreSourceRevision
+	pyGamesCoreSourceRevision,
+	pyGamesLightControlRevision
 } from "@/modules/pyGamesCoreProjectResources";
+import { lessonContentSections } from "@/modules/courseLessonPresentation";
 import { useAppStore } from "@/stores/app";
 import { useCoursesStore } from "@/stores/courses";
 
@@ -107,6 +109,40 @@ it.each(views)(
 					"solution"
 				);
 			else expect(item.solutionLink).toBeUndefined();
+		}
+		const light = items.get(
+			"pygames-pyg3-object-oriented-programming-advanced-actors-curriculum-pyg3-project-2-light-control"
+		)!;
+		const lightRoute = new URL(light.projectLink!, "https://classes.local")
+			.searchParams;
+		const lightSource = pyGamesCoreResource(lightRoute.get("starterUrl")!);
+		expect(lightSource?.pack).toBe("PG-CORE-Light-Control");
+		expect(lightSource?.resource.ref).toBe(pyGamesLightControlRevision);
+		expect(lightSource?.role).toBe(classroom ? "solution" : "starter");
+		expect(lightRoute.get("classroom")).toBe(classroom ? "1" : null);
+		expect(light.learningPath).toBe("core");
+		expect(light.content).toContain("observations.md");
+		if (classroom) {
+			expect(
+				lessonContentSections(light.content, light.contentKind)
+			).toEqual(
+				expect.arrayContaining([
+					expect.objectContaining({
+						label: "Normal",
+						kind: "assignment"
+					}),
+					expect.objectContaining({ label: "Hard", kind: "optional" })
+				])
+			);
+		} else {
+			expect(light.content).toContain("transition(touching, powered)");
+		}
+		if (!classroom && view.staff) {
+			expect(pyGamesCoreResource(light.solutionLink!)?.role).toBe(
+				"solution"
+			);
+		} else {
+			expect(light.solutionLink).toBeUndefined();
 		}
 		const master = items.get(
 			"pygames-pyg12-master-project-curriculum-pyg12-project-1-master-project"

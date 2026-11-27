@@ -36,7 +36,7 @@ function requireModule(title: string) {
 }
 
 describe("Java Level 2 learner flow", () => {
-	it("keeps thirteen OOP modules followed by concurrency, practice, and media appendices", () => {
+	it("keeps thirteen OOP modules followed by concurrency, practice, and walkthrough appendices", () => {
 		expect(
 			javaLevel2Course.modules.slice(0, 13).map(module => module.title)
 		).toEqual(EXPECTED_PRIMARY_SEQUENCE);
@@ -52,7 +52,7 @@ describe("Java Level 2 learner flow", () => {
 			},
 			{
 				kind: "appendix",
-				title: "Pending Demo Media"
+				title: "Project Walkthroughs"
 			}
 		]);
 	});

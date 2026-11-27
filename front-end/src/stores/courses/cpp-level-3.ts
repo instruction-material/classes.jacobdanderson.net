@@ -1,15 +1,24 @@
 import type { RawCourse } from "./types";
-import { cppBuildDebugProjectBrief } from "./cppBuildDebugProjectBrief";
+import {
+	cppBuildDebugProjectBrief,
+	cppBuildPositioningReading,
+	cppBuildReadinessBrief
+} from "./cppBuildDebugProjectBrief";
 import { cppCapstoneLessons } from "./cppCapstoneLessons";
 import { cppContainerAuditWorksheet } from "./cppContainerAuditWorksheet";
 import { cppContainerLessons } from "./cppContainerLessons";
 import { cppDebugEvidenceNotebookBrief } from "./cppDebugEvidenceNotebookBrief";
+import { cppLevel3TransferPractice } from "./cppLevel3TransferPractice";
 import { cppMazeSearchBriefs } from "./cppMazeSearchBriefs";
 import { cppRecursionTraceWorksheet } from "./cppRecursionTraceWorksheet";
 import { cppResourceSafetyLessons } from "./cppResourceSafetyLessons";
 import { cppRowImportProjectBrief } from "./cppRowImportProjectBrief";
 import { cppTaskManagerBriefs } from "./cppTaskManagerBriefs";
 import { cppValueTemplateLessons } from "./cppValueTemplateLessons";
+import cppMiniCommandScannerBrief from "./readings/cpp-level-3/mini-command-scanner.md?raw";
+
+const cppMiniScannerSource =
+	"https://github.com/instruction-material/CPP-Level-3/tree/5695d18a91ab249b7db4003df49cd4dc47d8c480/CPPI1-Mini-Command-Scanner";
 
 const cppLevel3SourceCourse: RawCourse = {
 	name: "C++ Level 3",
@@ -19,8 +28,9 @@ const cppLevel3SourceCourse: RawCourse = {
 			curriculum: [
 				{
 					title: "Bridge Course Goals, Scale, and Tooling",
-					content:
-						"Position `C++ Level 3` as the bridge between beginner/manual-memory C++ and larger idiomatic C++ work. Cover the assumed baseline from Levels 1-2, what makes a program medium-size instead of just longer, why command structure and file-backed state matter, how standard-library fluency connects to recursion and RAII, and how repeatable build commands, warnings, debugger stepping, and trace output provide evidence. By the end of this setup module, the expected outcome is a compiled multi-file program, one explained warning or runtime failure, and a clear description of the structure needed before moving into data structures or design patterns."
+					content: cppBuildPositioningReading,
+					contentKind: "reading",
+					preserveInstructions: true
 				},
 				{
 					title: "CPPI0 Project: Build and Debug Checkpoint",
@@ -41,7 +51,8 @@ const cppLevel3SourceCourse: RawCourse = {
 						"https://github.com/instruction-material/CPP-Level-3/blob/main/CPPI0-Warnings-and-Debugger-Notebook/starter/EVIDENCE.md",
 					solutionLink:
 						"https://github.com/instruction-material/CPP-Level-3/blob/main/CPPI0-Warnings-and-Debugger-Notebook/solution/EVIDENCE.md"
-				}
+				},
+				cppLevel3TransferPractice.build
 			]
 		},
 		{
@@ -77,12 +88,12 @@ const cppLevel3SourceCourse: RawCourse = {
 				},
 				{
 					title: "CPPI1 Project 3: Mini Command Scanner",
-					content:
-						"Build a small tokenizer for task-manager-style commands. It recognizes words, numbers, quoted strings, punctuation, comments, line numbers, and malformed input before any command mutates application state.",
-					projectLink:
-						"https://github.com/instruction-material/CPP-Level-3/tree/main/CPPI1-Mini-Command-Scanner/starter",
-					solutionLink:
-						"https://github.com/instruction-material/CPP-Level-3/tree/main/CPPI1-Mini-Command-Scanner/solution"
+					content: cppMiniCommandScannerBrief,
+					contentKind: "assignment",
+					preserveInstructions: true,
+					ideImport: true,
+					projectLink: `${cppMiniScannerSource}/starter`,
+					solutionLink: `${cppMiniScannerSource}/solution`
 				}
 			]
 		},
@@ -98,7 +109,9 @@ const cppLevel3SourceCourse: RawCourse = {
 					content: cppMazeSearchBriefs.backtracking
 				},
 				{
-					title: "CPPI2 Project: Recursive Maze or Word Search",
+					id: "cpp-level-3-cppi2-recursion-and-the-call-stack-curriculum-cppi2-project-recursive-maze-or-word-search",
+					title: "CPPI2 Project: Recursive Maze Search",
+					aliases: ["CPPI2 Project: Recursive Maze or Word Search"],
 					content: cppMazeSearchBriefs.project,
 					ideImport: true,
 					projectLink:
@@ -116,7 +129,8 @@ const cppLevel3SourceCourse: RawCourse = {
 						"https://github.com/instruction-material/CPP-Level-3/blob/main/CPPI2-Recursion-Trace-Drill/starter/WORKSHEET.md",
 					solutionLink:
 						"https://github.com/instruction-material/CPP-Level-3/blob/main/CPPI2-Recursion-Trace-Drill/solution/WORKED-TRACE.md"
-				}
+				},
+				cppLevel3TransferPractice.maze
 			]
 		},
 		{
@@ -153,7 +167,8 @@ const cppLevel3SourceCourse: RawCourse = {
 						"https://github.com/instruction-material/CPP-Level-3/blob/main/CPPI3-Container-Tradeoff-Audit/starter/WORKSHEET.md",
 					solutionLink:
 						"https://github.com/instruction-material/CPP-Level-3/blob/main/CPPI3-Container-Tradeoff-Audit/solution/WORKED-AUDIT.md"
-				}
+				},
+				cppLevel3TransferPractice.inventory
 			]
 		},
 		{
@@ -186,7 +201,8 @@ const cppLevel3SourceCourse: RawCourse = {
 						"https://github.com/instruction-material/CPP-Level-3/blob/main/CPPI4-Ownership-Rewrite-Reflection/starter/NOTES.md",
 					solutionLink:
 						"https://github.com/instruction-material/CPP-Level-3/blob/main/CPPI4-Ownership-Rewrite-Reflection/solution/WORKED.md"
-				}
+				},
+				cppLevel3TransferPractice.files
 			]
 		},
 		{
@@ -201,7 +217,9 @@ const cppLevel3SourceCourse: RawCourse = {
 					content: cppValueTemplateLessons.templates
 				},
 				{
-					title: "CPPI5 Project: Score or Fraction Toolkit",
+					id: "cpp-level-3-cppi5-value-types-operator-overloading-and-templates-curriculum-cppi5-project-score-or-fraction-toolkit",
+					title: "CPPI5 Project: Fraction Toolkit",
+					aliases: ["CPPI5 Project: Score or Fraction Toolkit"],
 					content: cppValueTemplateLessons.project,
 					ideImport: true,
 					projectLink:
@@ -219,7 +237,8 @@ const cppLevel3SourceCourse: RawCourse = {
 						"https://github.com/instruction-material/CPP-Level-3/blob/main/CPPI5-Template-Error-Reading-Drill/WORKSHEET.md",
 					solutionLink:
 						"/ide?course=cpp-level-3&mode=cpp&projectKey=cpp-level-3%3Acppi5-template-diagnostic%3Areference-pack-v1&starterUrl=https%3A%2F%2Fgithub.com%2Finstruction-material%2FCPP-Level-3%2Ftree%2Fmain%2FCPPI5-Template-Error-Reading-Drill%2Fsolution&starterTitle=CPPI5+Project+2%3A+Template+Error+Reading+Drill&starterLabel=Worked+reference&lesson=cpp-level-3-cppi5-value-types-operator-overloading-and-templates"
-				}
+				},
+				cppLevel3TransferPractice.fractions
 			]
 		},
 		{
@@ -252,7 +271,8 @@ const cppLevel3SourceCourse: RawCourse = {
 						"https://github.com/instruction-material/CPP-Level-3/blob/main/CPPI6-Enum-vs-Polymorphic-State-Review/WORKSHEET.md",
 					solutionLink:
 						"/ide?course=cpp-level-3&mode=cpp&projectKey=cpp-level-3%3Acppi6-state-review%3Areference-pack-v1&starterUrl=https%3A%2F%2Fgithub.com%2Finstruction-material%2FCPP-Level-3%2Ftree%2Fmain%2FCPPI6-Enum-vs-Polymorphic-State-Review%2Fsolution&starterTitle=CPPI6+Project+2%3A+Enum+State+versus+Polymorphic+State+Review&starterLabel=Worked+reference&lesson=cpp-level-3-cppi6-polymorphism-and-bridge-to-advanced-c"
-				}
+				},
+				cppLevel3TransferPractice.rover
 			]
 		}
 	]
@@ -305,7 +325,7 @@ const CPP_LEVEL_3_MODULE_FLOW: Record<string, CppLevel3ModuleFlow> = {
 			"backtracking invariant"
 		],
 		flowNote:
-			"Draw representative stack frames before implementation, then keep search state small enough to verify by hand. The maze or word search must terminate on blocked, visited, boundary, solved, and unsolved cases and restore backtracked state deliberately."
+			"Draw representative stack frames before implementation, then trace the maze by hand. Check out-of-bounds, wall, and visited neighbors, a maze with a route, and a valid maze with no route. Remove failed branches from the current path as the calls return."
 	},
 	"CPPI3 STL Containers, Iterators, and Algorithms": {
 		estimatedTime: "4 sessions · 45–60 minutes each",
@@ -353,7 +373,7 @@ const CPP_LEVEL_3_MODULE_FLOW: Record<string, CppLevel3ModuleFlow> = {
 			"regression suite"
 		],
 		flowNote:
-			"Build the capstone as a sequence of working vertical slices with a narrow interface and composition as the default. Prove accepted and rejected commands, every state transition, recursive or algorithmic edge cases, save/reload equivalence, corrupted-file recovery, and clean polymorphic destruction before selecting the next C++ pathway."
+			"Build the rover in stages: command parsing, phase transitions, movement, recursive route search, then loading saved state. For each stage, predict the output and state before running a successful and a rejected or boundary case."
 	}
 };
 
@@ -378,13 +398,9 @@ function decorateCppLevel3Module(
 	if (module.title === "CPPI0 Bridge Course Setup and Positioning") {
 		curriculum.splice(1, 0, {
 			title: "CPPI0 Project 0: Reproducible Build and Test Readiness",
-			content: [
-				"**Completion evidence:**",
-				"- Compiler name and version plus one documented C++20 configure/build/test/run path from a clean checkout.",
-				"- Warning-clean output using `-Wall -Wextra -Wpedantic` or the closest supported equivalent.",
-				"- A small deterministic test or command harness that exits unsuccessfully when a regression is introduced.",
-				"- One debugger, trace, sanitizer, or failed-test artifact connected to the exact code change that resolved it."
-			].join("\n"),
+			content: cppBuildReadinessBrief,
+			contentKind: "assignment",
+			preserveInstructions: true,
 			learningPath: "core"
 		});
 	}
@@ -393,12 +409,15 @@ function decorateCppLevel3Module(
 		curriculum.push({
 			title: "CPPI6 Capstone Completion Contract",
 			content: [
-				"**Completion evidence:**",
-				"- Clean C++20 build and deterministic regression command from a fresh checkout.",
-				"- Tests or transcripts for accepted command, unknown command, missing and extra arguments, every state transition, recursive base and failure cases, empty state, and quit behavior.",
-				"- Save/reload round-trip equivalence plus malformed or corrupted-file recovery that preserves the previous valid state.",
-				"- Interface and ownership diagram showing composition choices, virtual destruction, no object slicing, and one limitation or deferred feature."
+				"**Completion evidence**",
+				"- Build the exported source with `make CXX=c++ main`. Record the compiler version, command, standard output, standard error, and exit status for each transcript run.",
+				"- Run the worked transcript in the project brief. Record one accepted and one rejected movement. Check unknown commands and missing or extra arguments, the five legal phase transitions, rejected phase/event pairs, empty input, and `quit`.",
+				"- Compare three recursive route traces: the current zone as the target, a reachable target in a graph with a cycle, and a registered but unreachable target. Run `show` before and after the route queries to check that they leave the phase, position, move count, and graph unchanged.",
+				"- Check save/reload round-trip equivalence. Save a running rover at `lab` after one move, load it in a fresh process, and compare the complete `show` output. Load a malformed copy and verify that a rejection preserves those same fields.",
+				"- Draw the ownership diagram and explain the graph owned by `Rover`, the short-lived command object, virtual destruction, and one limitation of the file or command contract."
 			].join("\n"),
+			contentKind: "assignment",
+			preserveInstructions: true,
 			learningPath: "core"
 		});
 	}

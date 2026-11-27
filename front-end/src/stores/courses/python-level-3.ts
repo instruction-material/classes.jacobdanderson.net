@@ -10,6 +10,12 @@ import {
 } from "./classroomReferenceGuides";
 import { isKnownPendingStaticMedia, staticMediaUrl } from "./staticMedia";
 
+const authoredReading = {
+	contentKind: "reading",
+	preserveAssignment: true,
+	preserveInstructions: true
+} as const;
+
 const SORT_ANIMATIONS = {
 	bubble: staticMediaUrl("py3_bubble_sort_wikimedia.gif"),
 	insertion: staticMediaUrl("py3_insertion_sort_wikimedia.gif"),
@@ -275,6 +281,7 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 				},
 				{
 					title: "Lists",
+					...authoredReading,
 					content:
 						"Review lists as ordered collections of values. Create an empty list with `x = []`, build lists of numbers, mutate list elements, and use `append()` to add values at the end. Compare iterating through a list directly with `for item in myList` versus iterating by index with `for i in range(len(myList))`."
 				},
@@ -472,7 +479,7 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 							"Create the inverse version so it prints the full string first and removes one character at a time.",
 							"Trace where the print statement happens relative to the recursive call. For `cat`, predict `c`, `ca`, `cat` for the growing version and `cat`, `ca`, `c` for the shrinking version.",
 							"Keep each call's substring or position in its parameters; separate growing and shrinking functions need no shared global counter. Printing a cascade is a side effect, so an implicit `None` return is valid here.",
-							"Compare head recursion and tail recursion using the two versions."
+							"Compare head recursion and tail recursion using the two versions. Python keeps the call frames in both cases."
 						],
 						checkpoints: [
 							"A short word produces the expected forward and backward cascades.",
@@ -509,6 +516,7 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 				},
 				{
 					title: "Stacks",
+					...authoredReading,
 					content: [
 						"A stack removes its most recent item first. With a Python list, `append(value)` pushes a value, `stack[-1]` inspects the top, and `pop()` removes and returns it. Check whether the list is empty before inspecting or removing the top.",
 						"Start with an empty stack, push `'('` and then `'['`. A closing `']'` matches the top and removes it. A closing `')'` now matches the remaining opener. If `')'` arrived first, it would mismatch the top even though the stack contains a matching opener farther down."
@@ -704,6 +712,7 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 				},
 				{
 					title: "Runtime Analysis & Big-O Notation",
+					...authoredReading,
 					content: [
 						"Choose an input size and an operation to count. In a search over n elements, count comparisons under the assumption that each comparison takes constant time. A first-item match uses one comparison and an absent target uses n. State which case a bound describes.",
 						"Big-O is an upper bound on growth for sufficiently large input. Theta describes a tight growth class. A loop that performs exactly `3n + 2` operations grows as Theta(n) and has an O(n) upper bound. Doubling n roughly doubles the work once n is large. A tighter upper bound is more informative when several are valid.",
@@ -798,6 +807,7 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 				},
 				{
 					title: "Binary Search Big-O Analysis",
+					...authoredReading,
 					content:
 						"Track the repeated halving: both versions use `O(log n)` comparisons on sorted input. With constant-time indexed access and index bounds, worst-case search time is `O(log n)`. The original recursive reference uses list slices, which copy the selected halves: their total worst-case copying work is `O(n)`, so do not call that implementation's total runtime logarithmic. Preparing or validating sorted input has its own cost, outside the search. Compare these costs with linear search and explain the sorted-data precondition."
 				},
@@ -909,11 +919,13 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 				},
 				{
 					title: "Selection Sort Big-O Analysis",
+					...authoredReading,
 					content:
 						"Count the repeated passes through the shrinking list to show that selection sort performs on the order of `n^2` work. Then compare time complexity with space complexity and discuss the tradeoff between building a new list and sorting in place."
 				},
 				{
 					title: "Insertion Sort Introduction",
+					...authoredReading,
 					content: [
 						"Insertion sort builds a sorted list one item at a time. Each new value is inserted into its proper location among the values already processed, often by swapping backward until the new value is in the correct place.",
 						"Read the algorithm as a growing sorted prefix. The current value moves left only as far as needed, so nearly sorted input produces fewer moves than reversed input. The useful trace records the current index, value being inserted, comparisons made, final position, and list state after the insertion.",
@@ -945,6 +957,7 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 				},
 				{
 					title: "Insertion Sort Big-O Analysis",
+					...authoredReading,
 					content:
 						"Analyze why the worst case for insertion sort occurs on a reversed list. Show that the total number of swaps forms the sum `1 + 2 + ... + (n - 1)`, giving `O(n^2)` time. Then compare this with the near-best case where the list is already almost sorted."
 				}
@@ -1106,6 +1119,7 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 				},
 				{
 					title: "Bubble Sort Big-O Analysis",
+					...authoredReading,
 					content:
 						"Count the repeated adjacent comparisons: basic bubble sort remains `O(n^2)` even on sorted input. Reset a swap flag for each pass and stop after a no-swap pass to obtain a linear best case, while retaining quadratic worst-case time. In-place variants use constant auxiliary space; a sorted-copy helper adds linear space."
 				},
@@ -1215,6 +1229,7 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 				},
 				{
 					title: "Merge Sort Big-O Analysis",
+					...authoredReading,
 					content:
 						"A recursion tree shows why merge sort runs in `O(n log n)` time: indexed merging does `O(n)` total work at each level, and tree height is `O(log n)`. Repeated `pop(0)` would add Python list-shifting costs and invalidate this analysis. Slices and output lists require linear peak auxiliary storage, plus logarithmic recursion depth."
 				}
@@ -1223,6 +1238,7 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 				{
 					id: "merge-sort-frame-reference",
 					title: "Merge Sort Call and Return Trace",
+					preserveInstructions: true,
 					learningPath: "choice",
 					content: mergeSortFrameGuide
 				}
@@ -1286,6 +1302,7 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 				},
 				{
 					title: "Quicksort Big-O Analysis",
+					...authoredReading,
 					content:
 						"Balanced quicksort partitions give `O(n log n)` time; repeatedly poor pivots give `O(n^2)` time and can exceed Python's recursion depth. Random pivots reduce that risk, not eliminate it. This new-list implementation is not in-place: balanced recursion has linear peak list storage plus a logarithmic stack; worst-case retained partitions can use quadratic storage and a linear stack. Optional `shuffle` mutates by a nonnegative integer number of random swaps and returns None; empty input is safe, but fixed swaps are not a uniform permutation. Optional `shuffle2` returns a random permutation in a new list and empties its input."
 				},
@@ -1318,8 +1335,18 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 			curriculum: [
 				{
 					title: "Writing to a File",
-					content:
-						'Use `with open("output.txt", "w", encoding="utf-8", newline="\\n") as f:` and `f.write(...)` to store text. The context manager closes the file on success or an error. Validate and format the whole input before opening: write mode deliberately truncates existing output. UTF-8 and LF make the byte format explicit; `w+` adds reading access this task does not need. An I/O failure after opening may leave partial output, so use a working copy for experiments.'
+					...authoredReading,
+					content: [
+						"Validate and format the entire input before opening the destination. Write mode truncates an existing file as soon as it opens. The context manager closes the file even if a write fails.",
+						[
+							"~~~python",
+							'text = "A\\n"',
+							'with open("output.txt", "w", encoding="utf-8", newline="\\n") as output:',
+							"    output.write(text)",
+							"~~~"
+						].join("\n"),
+						"This produces two bytes, the letter A and one LF. Predict the contents after repeating the code with the letter B, then reopen the file to check. Use a working copy because an I/O failure after opening can leave partial output."
+					].join("\n\n")
 				},
 				{
 					title: "AM12 Project 1: Crazy Name Tags Printer",
@@ -1349,8 +1376,12 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 				},
 				{
 					title: "Reading From a File",
-					content:
-						"`f.read()` handles the full file as one string, while `f.readlines()` returns a list of lines. Newline characters often appear in file input, so `strip()` is useful when a program needs the text without surrounding whitespace."
+					...authoredReading,
+					content: [
+						"Open a UTF-8 text file with a context manager. With default newline handling, Python converts line endings to LF. `read()` returns one string for the whole file. `readlines()` returns one string per record. Reopen the file before comparing them, because the first call consumes the input.",
+						'For a file containing `b"  Ada \\r\\n\\r\\nZ"`, `readlines()` gives `["  Ada \\n", "\\n", "Z"]`. Removing only the terminal LF gives `["  Ada ", "", "Z"]`. The blank line remains a record and the final record has no newline.',
+						'Use `line.removesuffix("\\n")` to keep literal spaces in a record. Use `strip()` when the contract calls for trimming field whitespace, as in the dictionary project. Predict the result for a line containing one space before comparing the two operations.'
+					].join("\n\n")
 				},
 				{
 					title: "AM12 Project 2: File IO and Dictionaries",
@@ -1518,8 +1549,12 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 			curriculum: [
 				{
 					title: "Introduction to Conway's Game of Life",
-					content:
-						"Conway's Game of Life is a cellular automaton. On a finite nonwrapping grid, count eight surrounding neighbors, excluding the cell: a dead cell is born with exactly three; a live cell survives with two or three (B3/S23). Compute every next cell from the same current generation. Complete the required Boolean simulation before the required ownership/strategy extension, predicting a small pattern before running."
+					...authoredReading,
+					content: [
+						"Conway's Game of Life is a cellular automaton. On a finite nonwrapping grid, count the eight surrounding positions and ignore positions outside the board. B3/S23 means a dead cell is born with exactly three live neighbors and a live cell survives with two or three. Read every neighbor from the same current generation.",
+						"Start with a 3 by 3 board whose middle row is live. The two live end cells each have one live neighbor and die. The center survives with two live neighbors. The dead cells above and below it each have three live neighbors and become live. The result is a live middle column. Predict the next generation before running the project.",
+						"The first project builds the simulation. The second adds ownership, a pair of edits per turn and decisions about when the game ends."
+					].join("\n\n")
 				},
 				{
 					title: "AM13 Project 1: Conway's Game of Life",
@@ -1590,8 +1625,12 @@ export const pythonLevel3Course: RawCourse = withSourceProjectMedia({
 			curriculum: [
 				{
 					title: "Introduction to Artificial Intelligence",
-					content:
-						"Artificial intelligence can be described as making a computer act rationally for a specific task. In this module, the goal is to design a Tic Tac Toe program that chooses strong moves instead of playing randomly."
+					...authoredReading,
+					content: [
+						"A Tic Tac Toe program can choose a move by testing possible next boards against a rule. Use a legal random player as a baseline, then implement and compare tactical rules.",
+						"With zero-based coordinates, let row 0 contain O, O, empty and row 1 contain X, X, empty. Leave row 2 empty. On O's turn, a copy with O at (0, 2) wins immediately. A separate copy with O at (1, 2) blocks X but does not win. Predict the chosen move before evaluating the candidates and keep the original board unchanged.",
+						"The four projects build a playable game, a basic strategy, a repeatable evaluation and a fork-aware strategy. A win rate from sampled games measures performance against the tested opponent. Checking every legal reply can establish a guarantee for a stated board and starting order."
+					].join("\n\n")
 				},
 				{
 					title: "AM14 Project 1: Tic Tac Toe UI",

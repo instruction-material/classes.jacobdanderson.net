@@ -1,32 +1,7 @@
 import type { RawCourse, RawCourseModuleItem } from "./types";
 import { javaObjectWorkbookURL } from "@/modules/javaSearchResources";
 import { isCoreProjectTitle } from "./projectGrouping";
-import { pendingStaticMediaNotice, staticMediaUrl } from "./staticMedia";
 import { buildSupportSectionGuidance } from "./supportSectionGuidance";
-
-const JAVA_LEVEL_2_ORIGINAL_MEDIA = [
-	"jm_1_dog_class.mp4",
-	"jm_2_book_class.mp4",
-	"jm_2_person_class.mp4",
-	"jm_3_house_class.mp4",
-	"jm_3_quiz_class.mp4",
-	"jm_4_book_and_picturebook.mp4",
-	"jm_4_lesson_and_dancelesson.mp4",
-	"jm_4_rectangle_and_square.mp4",
-	"jm_5_first_train_class.mp4",
-	"jm_5_train_class.mp4",
-	"jm_6_mrs_pacman.mp4",
-	"jm_6_pacman_class.mp4",
-	"jm_7_bubble_maker.mp4",
-	"jm_7_click_circle.mp4",
-	"jm_8_disco_ball.mp4",
-	"jm_8_pacman_eater.mp4",
-	"jm_8_pacman_eater_animated.mp4",
-	"jm_9_block_game.mp4",
-	"jm_9_disco_floor.mp4",
-	"jm_9_falling_blocks.mp4",
-	"jm_10_tic_tac_toe.mp4"
-];
 
 const javaLevel2SourceCourse: RawCourse = {
 	name: "Java Level 2",
@@ -2680,18 +2655,18 @@ const javaLevel2SourceCourse: RawCourse = {
 			]
 		},
 		{
-			title: "Pending Demo Media",
+			id: "java-level-2-pending-demo-media",
+			title: "Project Walkthroughs",
 			kind: "appendix",
 			curriculum: [
 				{
-					title: "Pending Java Level 2 Demo Media",
+					id: "java-level-2-pending-demo-media-curriculum-pending-java-level-2-demo-media",
+					title: "Written Project Walkthroughs",
 					content: [
-						"This course lists pending demonstration videos below. Each entry keeps a stable static media URL so the matching file can be added without changing course links.",
-						"",
-						...JAVA_LEVEL_2_ORIGINAL_MEDIA.map(
-							filename =>
-								`- ${staticMediaUrl(filename)} - ${pendingStaticMediaNotice(filename)}`
-						)
+						"- [Dog Class](/courses#java-level-2-jm1-instance-variables-constructors-and-methods-java-level-2-jm1-instance-variables-constructors-and-methods-curriculum-jm1-project-1-dog-class)",
+						"- [File I/O and Maps](/courses#java-level-2-jm8-file-i-o-java-level-2-jm8-file-i-o-curriculum-jm8-project-2-file-io-and-maps)",
+						"- [Quiz Game worked example](/courses#java-level-2-optional-java-level-2-practice-and-reference-archive-java-level-2-optional-java-level-2-practice-and-reference-archive-supplemental-jm-master-project-example-quiz-game-guided-example)",
+						"- [Master Project completion checks](/courses#java-level-2-jm10-master-project-java-level-2-jm10-master-project-curriculum-master-project-definition-of-done)"
 					].join("\n")
 				}
 			],
@@ -3206,7 +3181,7 @@ const javaLevel2ArchiveModules = javaLevel2SourceCourse.modules.slice(
 	JAVA_LEVEL_2_PRIMARY_MODULE_COUNT,
 	-1
 );
-const javaLevel2PendingMediaModule = javaLevel2SourceCourse.modules.at(-1)!;
+const javaLevel2WalkthroughModule = javaLevel2SourceCourse.modules.at(-1)!;
 
 export const javaLevel2Course: RawCourse = {
 	...javaLevel2SourceCourse,
@@ -3215,11 +3190,11 @@ export const javaLevel2Course: RawCourse = {
 		buildOptionalJavaConcurrencyExtension(),
 		buildJavaLevel2PracticeArchive(javaLevel2ArchiveModules),
 		{
-			...javaLevel2PendingMediaModule,
+			...javaLevel2WalkthroughModule,
 			kind: "appendix",
 			estimatedTime: "Reference only",
-			keyBlocks: ["stable media URL", "pending asset"],
-			curriculum: javaLevel2PendingMediaModule.curriculum.map(item => ({
+			keyBlocks: ["worked examples", "project checks"],
+			curriculum: javaLevel2WalkthroughModule.curriculum.map(item => ({
 				...item,
 				learningPath: "core"
 			}))

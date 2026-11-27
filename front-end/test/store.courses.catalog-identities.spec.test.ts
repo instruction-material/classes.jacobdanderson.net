@@ -49,6 +49,11 @@ const publishedAPModuleOrder = JSON.parse(
 const scratchCapstoneModule = "scratch-level-1-gs13-master-project";
 const scratchTypingId =
 	"scratch-level-1-gs13-master-project-curriculum-optional-extra-practice-typing-games";
+const pythonListsReading = {
+	moduleId: "python-level-1-grs12-lists",
+	id: "python-level-1-grs12-lists-curriculum-lists-order-indexes-and-membership",
+	section: "core"
+};
 
 // Keep the published baseline immutable; account for a deliberate addition
 // separately so changes to any original assignment still fail the digest.
@@ -73,7 +78,14 @@ const addedIdentities: Record<
 	"middle-school-a-literature": restoredLiteratureProjects,
 	"introduction-to-public-speaking": restoredSpeakingProjects,
 	...restoredWritingProjects,
-	...restoredPythonRecaps,
+	"python-level-1": [
+		...restoredPythonRecaps["python-level-1"],
+		pythonListsReading
+	],
+	"python-level-1-classroom": [
+		...restoredPythonRecaps["python-level-1-classroom"],
+		pythonListsReading
+	],
 	"scratch-level-1": [
 		{
 			moduleId: scratchCapstoneModule,
@@ -167,6 +179,21 @@ it("preserves published assignment identities across the complete catalog", asyn
 			);
 			expect(firstOptional?.id).toBe(scratchTypingId);
 			typing[0].section = "core";
+		}
+
+		// Check-Ins 1 and 2 keep their published exercise IDs when practice
+		// moves to the first optional slot. Check the new placement before
+		// restoring the two historical section fields for the digest.
+		if (id === "python-level-1" || id === "python-level-1-classroom") {
+			for (const number of [1, 2]) {
+				const moduleId = `python-level-1-check-in-${number}`;
+				const practiceId = `${moduleId}-curriculum-check-in-${number}-additional-practice-project`;
+				const firstOptional = originalIdentities.find(
+					item => item.moduleId === moduleId && item.section === "optional"
+				);
+				expect(firstOptional?.id, id).toBe(practiceId);
+				firstOptional!.section = "core";
+			}
 		}
 
 		// AP's authored progression replaces the stale display order. Reconstruct

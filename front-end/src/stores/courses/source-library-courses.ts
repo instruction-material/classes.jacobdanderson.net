@@ -6947,16 +6947,6 @@ ${scratchBootcampTask("608770708")}`,
 		name: "USACO Bronze: On Demand",
 		area: "self-paced competitive programming",
 		focus: "USACO setup, modern standard input and output, legacy file input and output, simulation, complete search, greedy reasoning, counting, grids, strings, arrays, intervals, constructive output, and contest postmortems",
-		staticAssets: [
-			"UB1.png",
-			"UB2.png",
-			"UB3.png",
-			"UB4.png",
-			"UB5.png",
-			"UB6.png",
-			"missionTitle2.png",
-			"nextStepTitle.png"
-		],
 		modules: [
 			"UB0 Welcome to USACO Bronze!",
 			"UB1 Square Pasture",
@@ -7381,10 +7371,6 @@ const usacoBronzeOnDemandSourceCourse =
 const usacoBronzeOnDemandSourceModules =
 	usacoBronzeOnDemandSourceCourse.modules.filter(
 		module => module.kind !== "appendix"
-	);
-const usacoBronzeOnDemandStaticAssets =
-	usacoBronzeOnDemandSourceCourse.modules.find(
-		module => module.title === "Pending Static Assets"
 	);
 
 function requireUsacoOnDemandSourceModule(title: string) {
@@ -7855,17 +7841,36 @@ const usacoBronzeOnDemandArchives = [
 	)
 ];
 
-if (!usacoBronzeOnDemandStaticAssets) {
-	throw new Error(
-		"USACO Bronze: On Demand static-asset appendix is missing."
-	);
-}
+const usacoBronzeOnDemandWorkedTraces: RawCourseModule = {
+	id: "usaco-bronze-on-demand-pending-static-assets",
+	title: "Worked Traces",
+	kind: "appendix",
+	curriculum: [
+		{
+			id: "usaco-bronze-on-demand-pending-static-assets-curriculum-pending-static-assets",
+			title: "Four Bronze Traces",
+			contentKind: "reading",
+			preserveInstructions: true,
+			content: [
+				"## Square Pasture",
+				"Rectangles (0, 0)–(1, 2) and (3, 0)–(4, 1) span 4 units on the x-axis and 2 on the y-axis. The enclosing square needs the larger span as its side, so its area is 16. Swapping the input lines leaves both spans unchanged.",
+				"## Transformations",
+				"For a 3-by-3 grid, a clockwise turn moves (row, column) to (column, 2 − row). The upper-left cell lands at (0, 2). A left-right reflection also sends that cell there, so trace another cell before choosing. For example, (1, 2) turns to (2, 1) and reflects to (1, 0).",
+				"## Milking Cows",
+				"Sort the intervals 10–14, 1–4, and 4–7 by their start. The first two sorted intervals meet at 4 and merge into one run from 1 to 7. The second run starts at 10. The longest milking run lasts 6 units, and the longest idle gap lasts 3.",
+				"## Wormholes",
+				"Pair the holes at (0, 0) and (2, 0). Starting at the right hole teleports to the left, then walking right reaches the same entrance again. This pairing loops. Move the right hole to (2, 1) and neither hole has a next hole on the same row. The pairing then has no loop."
+			].join("\n\n")
+		}
+	],
+	supplementalProjects: []
+};
 
 export const usacoBronzeOnDemandCourse: RawCourse = {
 	...usacoBronzeOnDemandSourceCourse,
 	modules: [
 		...usacoBronzeOnDemandPrimaryModules,
 		...usacoBronzeOnDemandArchives,
-		usacoBronzeOnDemandStaticAssets
+		usacoBronzeOnDemandWorkedTraces
 	]
 };

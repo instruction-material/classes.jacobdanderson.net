@@ -47,6 +47,38 @@ function installLocalStorageStub() {
 }
 
 describe("CourseExplorer.vue", () => {
+	it.each([
+		["python-level-2-classroom", "python-level-2-classroom"],
+		["python-level-1-classroom", "python-level-2"]
+	])("resolves the shared Python lesson with course %s", async (course, expected) => {
+		const pinia = createPinia();
+		setActivePinia(pinia);
+		useAppStore().setCurrentUser({
+			_id: "shared-course-learner",
+			name: "Learner",
+			email: "learner@example.invalid",
+			age: 14,
+			state: "GA",
+			courseAccess: ["python-level-2", "python-level-2-classroom"],
+			courseProgress: [],
+			editUsers: false,
+			saveEdit: "Save"
+		});
+		vi.mocked(api.get).mockResolvedValue({ data: [] });
+		const anchor = "python-level-2-ps1-variables-strings-and-input-python-level-2-ps1-variables-strings-and-input-curriculum-ps1-project-1-mad-libs";
+		window.history.replaceState({}, "", `/courses?course=${course}#${anchor}`);
+		const wrapper = mount(CourseExplorer, { global: { plugins: [pinia] } });
+		try {
+			await vi.waitFor(() => {
+				expect(wrapper.get<HTMLSelectElement>("#course-select").element.value).toBe(expected);
+				expect(wrapper.get(`#${anchor} h5`).text()).toBe("PS1 Project 1: Mad Libs");
+			});
+		} finally {
+			wrapper.unmount();
+			window.history.replaceState({}, "", "/courses");
+		}
+	});
+
 	it("shows the title number once for a numbered module", async () => {
 		const pinia = createPinia();
 		setActivePinia(pinia);

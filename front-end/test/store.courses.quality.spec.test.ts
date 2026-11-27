@@ -35,7 +35,8 @@ import {
 import { pictureBookTaskInputs } from "@/stores/courses/pictureBookTaskInputs";
 import {
 	pyGamesCoreResource,
-	pyGamesCoreSourceRevision
+	pyGamesCoreSourceRevision,
+	pyGamesLightControlRevision
 } from "@/modules/pyGamesCoreProjectResources";
 import {
 	pyGamesPinnedSourceUrl,
@@ -3037,10 +3038,10 @@ describe("course text quality normalization", () => {
 
 	it("keeps C++ placement appendices level-specific across Levels 1-3", async () => {
 		const courseIds = ["c-level-1", "cpp-level-2", "cpp-level-3"] as const;
-		const courseLevels: Record<(typeof courseIds)[number], string> = {
-			"c-level-1": "Level 1",
-			"cpp-level-2": "Level 2",
-			"cpp-level-3": "Level 3"
+		const courseEvidence = {
+			"c-level-1": ["the caller observes 7", "position 2"],
+			"cpp-level-2": ["row 1 starts at index 3", "expected sum 19"],
+			"cpp-level-3": ["rejected for its missing argument", "blue and red once each"]
 		};
 		const appendixTitles = [
 			"C++ Levels 1-3 Concept Matrix and Placement",
@@ -3058,10 +3059,15 @@ describe("course text quality normalization", () => {
 			expect(course, courseId).not.toBeNull();
 			if (!course) continue;
 
-			const text = allCourseText(course);
-			const level = courseLevels[courseId];
-			expect(text, courseId).toContain(`${level} uses this as`);
-			expect(text, courseId).toContain(`For ${level}`);
+			const text = course.modules
+				.filter(module => appendixTitles.includes(module.title))
+				.flatMap(module => [...module.curriculum, ...module.supplementalProjects])
+				.map(item => item.content)
+				.join("\n");
+			for (const evidence of courseEvidence[courseId]) {
+				expect(text.toLowerCase(), courseId).toContain(evidence);
+			}
+			expect(text, courseId).not.toMatch(/AI\/ML|CS235|CS236/);
 		}
 
 		for (const appendixTitle of appendixTitles) {
@@ -3352,7 +3358,12 @@ describe("course text quality normalization", () => {
 			/Draw a staircase pattern that spirals outward\./
 		);
 		expect(corpus).toContain("query examples");
-		expect(corpus).toContain("loop that changes size and rotation");
+		const spiral = courses[2]?.modules
+			.flatMap(module => module.supplementalProjects)
+			.find(item => item.title.endsWith("Into the Void"));
+		expect(spiral?.content).toContain("adds increase to length");
+		expect(spiral?.content).toContain("same length sequence");
+		expect(spiral?.content).toContain("change the alignment");
 	});
 
 	it("keeps Java Level 3 review modules substantive instead of one-line prompts", async () => {
@@ -3537,9 +3548,9 @@ describe("course text quality normalization", () => {
 			{
 				title: /^GrS7 Project 1: Build a Neighborhood$/,
 				required: [
-					"drawHouse()",
-					"different positions or sizes",
-					"without duplicating"
+					"draw_house(x, y)",
+					"Call the same function",
+					"Count three matching houses"
 				]
 			},
 			{
@@ -3548,11 +3559,15 @@ describe("course text quality normalization", () => {
 			},
 			{
 				title: /^GrS8 Project 1: Event Listener Discovery$/,
-				required: ["screen.onkey()", "screen.listen()", "callback"]
+				required: [
+					'screen.onkey(draw_square, "s")',
+					"screen.listen()",
+					"pointer callback receives x and y"
+				]
 			},
 			{
 				title: /Fruit Stand/,
-				required: ["own function", "Test every number key"]
+				required: ["1 for the orange", "2 for starfruit", "3 for the cherry"]
 			}
 		];
 
@@ -3787,25 +3802,9 @@ describe("course text quality normalization", () => {
 		expect(content).not.toContain("static.junilearning.com");
 	});
 
-	it("reserves pending USACO assets on the class static host", async () => {
-		const bronzeOnDemand = await loadRawCourse("usaco-bronze-on-demand");
+	it("reserves pending USACO Gold assets on the class static host", async () => {
 		const gold = await loadRawCourse("usaco-gold");
-		expect(bronzeOnDemand).not.toBeNull();
 		expect(gold).not.toBeNull();
-
-		const bronzeModule = bronzeOnDemand!.modules.find(
-			module => module.title === "Pending Static Assets"
-		);
-		const bronzeContent =
-			bronzeModule?.curriculum.map(item => item.content).join("\n\n") ??
-			"";
-
-		for (const filename of ["missionTitle2.png", "nextStepTitle.png"]) {
-			expect(bronzeContent).toContain(staticMediaUrl(filename));
-			expect(hasPendingStaticMediaNotice(bronzeContent, filename)).toBe(
-				true
-			);
-		}
 
 		const goldModule = gold!.modules.find(
 			module => module.title === "Pending Static Assets"
@@ -3853,15 +3852,15 @@ describe("course text quality normalization", () => {
 				title: /^GrS9 Project 2: More Functions$/,
 				required: [
 					"parameter values",
-					"different sizes",
-					"Verify the design"
+					"12 square edges and nine triangle edges",
+					"only the 30 argument"
 				]
 			},
 			{
 				title: /^GrS9 Project 3: Polka Dots$/,
 				required: [
-					"mouse clicks",
 					"click coordinates",
+					"10 + min(20, abs(round(x)) // 5)",
 					"edges, and corners"
 				]
 			},
@@ -3875,14 +3874,14 @@ describe("course text quality normalization", () => {
 			},
 			{
 				title: /^GrS13 Project 5: Turtle Collision$/,
-				required: ["hitbox", "boundary cases", "barely touching"]
+				required: ["strictly below 10", "previous one did not", "40-frame run"]
 			},
 			{
-				title: /^GrS14 Supplemental Project 3: Pong$/,
+				title: /^GrS14 Supplemental Project 3: Paddle Rally$/,
 				required: ["two paddles", "scoring", "reset after each point"]
 			},
 			{
-				title: /^GrS14 Supplemental Project 5: Snake$/,
+				title: /^GrS14 Supplemental Project 5: Trail Collector$/,
 				required: [
 					"body list",
 					"self-collision",
@@ -4348,59 +4347,42 @@ describe("course text quality normalization", () => {
 		expect(content).not.toContain("static.junilearning.com");
 	});
 
-	it("reserves pending Java Level 2 media on the class static host", async () => {
-		const course = await loadRawCourse("java-level-2");
-		expect(course).not.toBeNull();
+	it.each([
+		["java-level-2", "Dog Class", "Master Project completion checks"],
+		[
+			"java-level-3",
+			"Binary search with iteration",
+			"Street Searcher completion checks"
+		]
+	])(
+		"keeps the %s walkthrough appendix on its existing route",
+		async (id, first, last) => {
+			const course = await loadRawCourse(id);
+			expect(course).not.toBeNull();
 
-		const mediaModule = course!.modules.find(
-			module => module.title === "Pending Demo Media"
-		);
-		expect(mediaModule?.kind).toBe("appendix");
-
-		const mediaItem = mediaModule?.curriculum.find(
-			item => item.title === "Pending Java Level 2 Demo Media"
-		);
-		expect(mediaItem).toBeDefined();
-		const content = mediaItem?.content ?? "";
-
-		for (const filename of [
-			"jm_1_dog_class.mp4",
-			"jm_6_pacman_class.mp4",
-			"jm_10_tic_tac_toe.mp4"
-		]) {
-			expect(content).toContain(staticMediaUrl(filename));
-			expect(hasPendingStaticMediaNotice(content, filename)).toBe(true);
+			const appendix = course!.modules.find(
+				module => module.title === "Project Walkthroughs"
+			);
+			expect(appendix).toMatchObject({
+				id: id + "-pending-demo-media",
+				kind: "appendix"
+			});
+			const reading = appendix?.curriculum[0];
+			expect(reading?.id).toBe(
+				id +
+					"-pending-demo-media-curriculum-pending-" +
+					id +
+					"-demo-media"
+			);
+			expect(reading?.content).toContain(
+				"[" + first + "](/courses#" + id
+			);
+			expect(reading?.content).toContain("[" + last + "](/courses#" + id);
+			expect(reading?.content).not.toMatch(
+				/\.mp4|static\.classes\.jacobdanderson\.net/
+			);
 		}
-
-		expect(content).not.toContain("static.junilearning.com");
-	});
-
-	it("reserves pending Java Level 3 media on the class static host", async () => {
-		const course = await loadRawCourse("java-level-3");
-		expect(course).not.toBeNull();
-
-		const mediaModule = course!.modules.find(
-			module => module.title === "Pending Demo Media"
-		);
-		expect(mediaModule?.kind).toBe("appendix");
-
-		const mediaItem = mediaModule?.curriculum.find(
-			item => item.title === "Pending Java Level 3 Demo Media"
-		);
-		expect(mediaItem).toBeDefined();
-		const content = mediaItem?.content ?? "";
-
-		for (const filename of [
-			"aj_1_chatbot.mp4",
-			"aj_14_BST.mp4",
-			"aj_check-in_4.mp4"
-		]) {
-			expect(content).toContain(staticMediaUrl(filename));
-			expect(hasPendingStaticMediaNotice(content, filename)).toBe(true);
-		}
-
-		expect(content).not.toContain("static.junilearning.com");
-	});
+	);
 
 	it("keeps PyGame media on project cards and pending media out of the learner flow", async () => {
 		const course = await loadRawCourse("pygames");
@@ -4743,9 +4725,17 @@ describe("course text quality normalization", () => {
 			[
 				"python-level-2",
 				[
-					"collection choice",
-					"Text files, CSV-like rows",
-					"Data-backed capstone"
+					"Change Machine to trace remainders",
+					"a dictionary for lookups, and a set for membership",
+					"Finish by validating a menu command"
+				]
+			],
+			[
+				"python-level-2-classroom",
+				[
+					"working projects to run and explain",
+					"Normal and Hard checkpoints",
+					"demonstrated in its working framework"
 				]
 			],
 			[
@@ -5606,14 +5596,18 @@ describe("course text quality normalization", () => {
 			expect(generatedPracticeItem?.content).toContain(
 				"**Required variation:**"
 			);
-			expect(completePackItems).toHaveLength(7);
+			expect(completePackItems).toHaveLength(8);
 			for (const { item, starter } of completePackItems) {
 				const source = pyGamesCoreResource(starter);
 				expect(source).not.toBeNull();
 				expect(source?.role).toBe("starter");
-				expect(source?.resource.ref).toBe(pyGamesCoreSourceRevision);
+				const expectedRevision =
+					source?.pack === "PG-CORE-Light-Control"
+						? pyGamesLightControlRevision
+						: pyGamesCoreSourceRevision;
+				expect(source?.resource.ref).toBe(expectedRevision);
 				expect(item.solutionLink).toBe(
-					`https://github.com/instruction-material/PyGames/tree/${pyGamesCoreSourceRevision}/${source?.pack}/solution`
+					`https://github.com/instruction-material/PyGames/tree/${expectedRevision}/${source?.pack}/solution`
 				);
 			}
 			const selfContainedCoreItems = completePackItems.filter(
@@ -6418,10 +6412,10 @@ describe("course text quality normalization", () => {
 
 		const scratchLevel2Bridge = scratchLevel2!.modules
 			.find(module => module.title === "GM15 Scratch-to-Python Bridge")
-			?.curriculum.find(item => /Core Concepts$/i.test(item.title));
+			?.curriculum.find(item => item.content.includes("A Scratch list uses position 1"));
 		expect(scratchLevel2Bridge).toBeDefined();
 		expect(scratchLevel2Bridge!.content).toContain(
-			"Advanced Scratch concepts map directly to Python readiness"
+			"A Scratch list uses position 1"
 		);
 		expect(scratchLevel2Bridge!.content).not.toMatch(/\bmappings\b/i);
 
@@ -9101,44 +9095,22 @@ describe("course text quality normalization", () => {
 		}
 	});
 
-	it("reserves source-library static assets from original source files", async () => {
-		const expectedAssetsByCourse = {
-			"usaco-bronze-on-demand": [
-				"UB1.png",
-				"UB2.png",
-				"UB3.png",
-				"UB4.png",
-				"UB5.png",
-				"UB6.png",
-				"missionTitle2.png",
-				"nextStepTitle.png"
-			]
-		} as const;
-
-		for (const [courseId, filenames] of Object.entries(
-			expectedAssetsByCourse
-		)) {
-			const course = await loadRawCourse(courseId);
-			expect(course).not.toBeNull();
-			if (!course) continue;
-
-			const mediaModule = course.modules.find(
-				module => module.title === "Pending Static Assets"
-			);
-			expect(mediaModule?.kind).toBe("appendix");
-			const content =
-				mediaModule?.curriculum
-					.map(item => item.content)
-					.join("\n\n") ?? "";
-
-			for (const filename of filenames) {
-				expect(content).toContain(staticMediaUrl(filename));
-				expect(hasPendingStaticMediaNotice(content, filename)).toBe(
-					true
-				);
-			}
-			expect(content).not.toContain("static.junilearning.com");
-		}
+	it("keeps the Bronze On Demand trace appendix on its original route", async () => {
+		const course = await loadRawCourse("usaco-bronze-on-demand");
+		const appendix = course?.modules.find(
+			module => module.title === "Worked Traces"
+		);
+		expect(appendix).toMatchObject({
+			id: "usaco-bronze-on-demand-pending-static-assets",
+			kind: "appendix"
+		});
+		const reading = appendix?.curriculum[0];
+		expect(reading?.id).toBe(
+			"usaco-bronze-on-demand-pending-static-assets-curriculum-pending-static-assets"
+		);
+		expect(reading?.contentKind).toBe("reading");
+		expect(reading?.content?.match(/^## /gm)).toHaveLength(4);
+		expect(reading?.content).not.toContain("static.classes.jacobdanderson.net");
 	});
 
 	it("adds Pre-Algebra A reference archive from the math sequence", async () => {

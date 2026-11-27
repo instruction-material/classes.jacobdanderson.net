@@ -1,6 +1,8 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
+import { createPinia, setActivePinia } from "pinia";
 import { describe, expect, it } from "vitest";
+import { useCoursesStore } from "@/stores/courses";
 import { courseCatalog, loadRawCourse } from "@/stores/courses/index";
 import {
 	javaBinaryTreeURL,
@@ -444,7 +446,7 @@ describe("implemented course development artifacts", () => {
 			"AP CSA Exam Alignment and FRQ Practice Map"
 		);
 		expect(allText(await requireCourse("cpp-level-3"))).toContain(
-			"CS235/CS236-Inspired Mini Build"
+			"Matrix Project: Input and Data Mini Build"
 		);
 		expect(allText(await requireCourse("machine-learning"))).toContain(
 			"Datasets and Model Reports"
@@ -532,10 +534,10 @@ describe("implemented course development artifacts", () => {
 		);
 		const rootOnlyLinks = [
 			...serializedCourse.matchAll(
-				/https:\/\/github\.com\/instruction-material\/Python-Level-1\/tree\/main\/([^"]+)/g
+				/https:\/\/github\.com\/instruction-material\/Python-Level-1\/tree\/(?:main|[a-f0-9]{40})\/([^"\s)\\]+)/g
 			)
 		]
-			.map(match => match[1].replace(/\\+$/, ""))
+			.map(match => match[1])
 			.filter(
 				urlPath =>
 					!urlPath.endsWith("/starter") &&
@@ -543,14 +545,17 @@ describe("implemented course development artifacts", () => {
 			);
 
 		expect(rootOnlyLinks).toHaveLength(0);
-		expect(serializedCourse).toContain(
-			"Python-Level-1/tree/main/GrS2-Basic-Shapes/solution"
+		expect(serializedCourse).toMatch(
+			/Python-Level-1\/tree\/[a-f0-9]{40}\/GrS2-Basic-Shapes\/starter/
+		);
+		expect(serializedCourse).toMatch(
+			/Python-Level-1\/tree\/[a-f0-9]{40}\/GrS2-Basic-Shapes\/solution/
 		);
 		expect(serializedCourse).toContain(
 			"Python-Level-1/tree/main/Reflection-Template-Updated/starter"
 		);
-		expect(serializedCourse).toContain(
-			"Python-Level-1/tree/main/GRS-Check-in-Three-Updated/solution"
+		expect(serializedCourse).toMatch(
+			/Python-Level-1\/tree\/[a-f0-9]{40}\/GRS-Check-in-Three-Updated\/solution/
 		);
 	});
 
@@ -1041,6 +1046,33 @@ describe("implemented course development artifacts", () => {
 		}
 	});
 
+	it.each([
+		["c-level-1", "c++ -std=c++20", "Hello, C++!"],
+		["cpp-level-2", "make main main-debug", "Morgan at 100"],
+		["cpp-level-3", "make checkpoint checkpoint-debug", "expects 180"]
+	])("gives %s a runnable toolchain check and expected result", async (id, command, output) => {
+		setActivePinia(createPinia());
+		const course = (await useCoursesStore().loadCourseById(id))!;
+		const appendix = course.modules.find(module =>
+			module.title.endsWith("Toolchain and Version Assumptions")
+		);
+		expect(appendix?.kind).toBe("appendix");
+		expect(appendix?.curriculum).toHaveLength(4);
+		expect(appendix?.supplementalProjects).toHaveLength(2);
+		const smoke = appendix?.supplementalProjects.find(item =>
+			item.title.endsWith("First-Run Smoke Test")
+		);
+		expect(smoke?.contentKind).toBe("assignment");
+		expect(smoke?.content).toContain(command);
+		expect(smoke?.content).toContain(output);
+		const href = smoke?.content.match(/\/courses#([a-z0-9-]+)/)?.[1];
+		const exerciseAnchors = course.modules.flatMap(module =>
+			module.curriculum.map(item => `${module.id}-${item.id}`)
+		);
+		expect(href).toBeTruthy();
+		expect(exerciseAnchors).toContain(href);
+	});
+
 	it(
 		"attaches standards, source, assessment, toolchain, safety, and capstone metadata to every course",
 		async () => {
@@ -1206,7 +1238,7 @@ describe("implemented course development artifacts", () => {
 				expect(text, courseId).toContain(
 					"Modern Three-Course C++ Spine"
 				);
-				expect(text, courseId).toContain("Manual Memory Safety Rule");
+				expect(text, courseId).toContain("Object Lifetimes and Ownership");
 			}
 
 			for (const courseId of [

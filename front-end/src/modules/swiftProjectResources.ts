@@ -13,8 +13,10 @@ export const swiftNetworkingRevision =
 export const swiftNetworkingPack = "SAD6-API-Reference-App";
 export const swiftNetworkingRoot = `https://github.com/instruction-material/Swift/tree/${swiftNetworkingRevision}/${swiftNetworkingPack}`;
 
-export const swiftTrackerRevision = "355afb7e8d3a9cc47e1d7ebb0ca714cf207e2dac";
+export const swiftTrackerRevision = "1934e48d0b523fc6a92cc12474bc2d5df9a4d815";
+const swiftDataTrackerRevision = "355afb7e8d3a9cc47e1d7ebb0ca714cf207e2dac";
 const swiftTrackerEarlierRevisions = [
+	swiftDataTrackerRevision,
 	"23e1cae59dd989b6f97d8d13ebb5f4718223424d",
 	"73fdbeaf3f3358d4a3ce6bb8086612d52689e41a",
 	"ff14c210700f7297d69ddfcab570a0315e9ac234",
@@ -23,11 +25,11 @@ const swiftTrackerEarlierRevisions = [
 export const swiftTrackerPack = "SAD5-Simple-Tracker-App";
 export const swiftTrackerRoot = `https://github.com/instruction-material/Swift/tree/${swiftTrackerRevision}/${swiftTrackerPack}`;
 export const swiftDataTrackerPack = "SAD5-SwiftData-Tracker-App";
-export const swiftDataTrackerRoot = `https://github.com/instruction-material/Swift/tree/${swiftTrackerRevision}/${swiftDataTrackerPack}`;
+export const swiftDataTrackerRoot = `https://github.com/instruction-material/Swift/tree/${swiftDataTrackerRevision}/${swiftDataTrackerPack}`;
 
 export const swiftCanonicalProjectsRevision =
 	"18bb2a5055a144cf545fa416f6bde6f00e863f36";
-export const swiftGalleryRevision = "e8f0eeb79a4c00258277fd440ee2f6f89610c467";
+export const swiftGalleryRevision = "22ac163cb6274b7d9c698942b417551ccba4d6b2";
 export const swiftGalleryRoot = `https://github.com/instruction-material/Swift/tree/${swiftGalleryRevision}/SAD2-Media-Gallery-App`;
 export const swiftHobbyRevision = "9c4599f12037847388a7760e82409c4481e0faf7";
 export const swiftHobbyRoot = `https://github.com/instruction-material/Swift/tree/${swiftHobbyRevision}/SAD3-Multi-Tab-Hobby-App`;
@@ -215,7 +217,7 @@ const swiftPacks = [
 	},
 	{
 		pack: swiftDataTrackerPack,
-		revision: swiftTrackerRevision,
+		revision: swiftDataTrackerRevision,
 		projectKey: "swiftdata-tracker",
 		roleFiles: [
 			"ContentView.swift",
@@ -268,7 +270,10 @@ export function swiftCourseResource(url: string) {
 					? [swiftInteractionRevision]
 					: []),
 				...(pack.projectKey === "media-gallery"
-					? ["507812397086107078b67dc193507e7c220f57a3"]
+					? [
+							"e8f0eeb79a4c00258277fd440ee2f6f89610c467",
+							"507812397086107078b67dc193507e7c220f57a3"
+						]
 					: []),
 				...(pack.projectKey === "map-places"
 					? ["a373ffaf1d3b34fe3476137ea357c787f433f21a"]

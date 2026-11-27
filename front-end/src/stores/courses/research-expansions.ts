@@ -1,4 +1,11 @@
 import type { RawCourse, RawCourseModule } from "./types";
+import { bronzeCourseGuideReadings } from "./bronzeCourseGuideReadings";
+import { cppCourseGuideReadings } from "./cppCourseGuideReadings";
+import { cppPracticeGuide } from "./cppPracticeGuide";
+import {
+	pythonLevel2GuideReadings,
+	pythonLevel2PracticeBriefs
+} from "./pythonLevel2GuideReadings";
 
 type ExpansionPriority = "urgent" | "soon" | "later";
 
@@ -678,12 +685,13 @@ function projectOptionCheckpoints(
 
 function buildExpansionModules(
 	profile: ResearchExpansionProfile,
-	courseLabel: string
+	courseLabel: string,
+	projectGuide = buildProjectModule(profile, courseLabel)
 ) {
 	const modules = [
 		buildStandardsModule(profile, courseLabel),
 		buildSequencingModule(profile, courseLabel),
-		buildProjectModule(profile, courseLabel)
+		projectGuide
 	];
 	if (profile.guideReadings) {
 		for (const module of modules) {
@@ -2197,10 +2205,19 @@ export const researchBackedExpansionProfiles: Record<
 	]),
 	"ap-computer-science-a": apCsaProfile,
 	assembly: assemblyProfile,
-	"c-level-1": cppProfile,
+	"c-level-1": {
+		...cppProfile,
+		guideReadings: cppCourseGuideReadings["c-level-1"]
+	},
 	"c-systems-engineering": cSystemsProfile,
-	"cpp-level-2": cppProfile,
-	"cpp-level-3": cppProfile,
+	"cpp-level-2": {
+		...cppProfile,
+		guideReadings: cppCourseGuideReadings["cpp-level-2"]
+	},
+	"cpp-level-3": {
+		...cppProfile,
+		guideReadings: cppCourseGuideReadings["cpp-level-3"]
+	},
 	"data-science-in-python": dataScienceProfile,
 	"data-structures-and-algorithms-in-cpp": dsaProfile,
 	"design-patterns-in-cpp": cppDesignPatternsProfile,
@@ -2259,8 +2276,16 @@ export const researchBackedExpansionProfiles: Record<
 	"pygames-classroom": pyGameProfile,
 	"python-level-1": pythonLevel1Profile,
 	"python-level-1-classroom": pythonLevel1Profile,
-	"python-level-2": pythonLevel2Profile,
-	"python-level-2-classroom": pythonLevel2Profile,
+	"python-level-2": {
+		...pythonLevel2Profile,
+		guideReadings: pythonLevel2GuideReadings.individual,
+		projectBriefs: pythonLevel2PracticeBriefs.individual
+	},
+	"python-level-2-classroom": {
+		...pythonLevel2Profile,
+		guideReadings: pythonLevel2GuideReadings.classroom,
+		projectBriefs: pythonLevel2PracticeBriefs.classroom
+	},
 	"python-level-3": pythonLevel3Profile,
 	"pythonic-design-patterns": designPatternsProfile,
 	"rust-systems-security": rustProfile,
@@ -2269,7 +2294,8 @@ export const researchBackedExpansionProfiles: Record<
 	"unity-game-development": unityProfile,
 	"usaco-bronze": {
 		...usacoProfile,
-		projectBriefs: bronzePracticeProjectBriefs
+		projectBriefs: bronzePracticeProjectBriefs,
+		guideReadings: bronzeCourseGuideReadings
 	},
 	"usaco-gold": usacoProfile,
 	"usaco-silver": usacoProfile,
@@ -2306,5 +2332,11 @@ export function applyResearchBackedExpansions(
 
 	if (alreadyExpanded) return;
 
-	course.modules.push(...buildExpansionModules(profile, label));
+	course.modules.push(
+		...buildExpansionModules(
+			profile,
+			label,
+			cppPracticeGuide(courseId, label)
+		)
+	);
 }

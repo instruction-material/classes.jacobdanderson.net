@@ -374,6 +374,38 @@ export const cppFoundationProjectBriefs = {
 };
 
 export const cppFoundationLessonBriefs = {
+	whileLoops: [
+		"Each `while` loop tests a condition before running its body. In this worked example, the body prints a value or changes an accumulator, then an update moves the loop toward its stopping condition.",
+		"",
+		"## Trace before running",
+		"",
+		"| Pass | Initial state | Continue while | Update |",
+		"| --- | --- | --- | --- |",
+		"| Count up | `i = 0` | `i <= 10` | Add one |",
+		"| Even numbers | `i = 0` | `i <= 10` | Add two |",
+		"| Count down | `i = 10` | `i >= 0` | Subtract one |",
+		"| Read characters forward | `index = 0` | `index < word.length()` | Print at `index`, then add one |",
+		"| Read characters backward | `index = word.length()` | `index > 0` | Print at `index - 1`, then subtract one |",
+		"",
+		"For each pass, predict the first and last value and the first condition that fails. The ascending counts print 0 through 10 and 0, 2, 4, 6, 8, 10. The countdown ends at 0 after 11 iterations.",
+		"",
+		"## Run and compare",
+		"",
+		"Open the worked example in the IDE, export it, and run these commands in the extracted folder.",
+		"",
+		"```sh",
+		"c++ -std=c++20 -Wall -Wextra -Wpedantic main.cpp -o app",
+		"./app",
+		"```",
+		"",
+		"Enter the ASCII word `cat`. The forward and backward passes produce `c, a, t` and `t, a, c`, one character per line. End input before typing a word to check that both passes skip their bodies and the program still reaches the two accumulator results.",
+		"",
+		"The sum starts at zero and adds each integer from 0 through 100, yielding 5050. The factorial starts at one and multiplies by each integer from 1 through 10, yielding 3628800.",
+		"",
+		"## Change a starting value",
+		"",
+		"Save a copy. Change the first loop's initial `i` to 10, then to 11, and rebuild after each edit. Predict one printed value and then zero. During a walkthrough, pause at the condition and ask which value the next iteration will test. Compare each result with an equivalent `for` loop before starting Number Games."
+	].join("\n"),
 	setup: [
 		"## A first compiled program",
 		"",

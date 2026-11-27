@@ -1,4 +1,7 @@
+import { createPinia, setActivePinia } from "pinia";
 import { describe, expect, it } from "vitest";
+import { pythonIdeModeForCourseResource } from "@/modules/pythonIde";
+import { useCoursesStore } from "@/stores/courses";
 import { loadRawCourse } from "@/stores/courses/index";
 import {
 	researchBackedExpansionCourseIds,
@@ -6,6 +9,91 @@ import {
 } from "@/stores/courses/research-expansions";
 
 const COURSE_SWEEP_TIMEOUT = 180000;
+
+it("gives each C++ level a course map with its own readiness and project evidence", async () => {
+	setActivePinia(createPinia());
+	const store = useCoursesStore();
+	const links = new Set<string>();
+	const targets = new Set<string>();
+	const readings = new Set<string>();
+
+	for (const [courseId, evidence] of [
+		["c-level-1", "CPPF7, trace a rectangular grid"],
+		["cpp-level-2", "which variables an alias can change"],
+		["cpp-level-3", "ordered rows and sorted projections"]
+	]) {
+		const course = (await store.loadCourseById(courseId))!;
+		for (const module of course.modules) {
+			targets.add(module.id);
+			for (const item of [
+				...module.curriculum,
+				...module.supplementalProjects
+			]) {
+				targets.add(`${module.id}-${item.id}`);
+			}
+		}
+		for (const name of ["Standards Map", "Course Roadmap"]) {
+			const module = course.modules.find(candidate => candidate.title === name)!;
+			expect(module.kind).toBe("appendix");
+			const items = [...module.curriculum, ...module.supplementalProjects];
+			expect(items).toHaveLength(6);
+			for (const item of items) {
+				expect(item.contentKind).toBe("reading");
+				readings.add(item.content);
+				for (const match of item.content.matchAll(/\/courses#([^\s)]+)/g)) {
+					links.add(match[1]);
+				}
+			}
+			if (name === "Course Roadmap") {
+				expect(items.map(item => item.content).join("\n")).toContain(evidence);
+			}
+		}
+	}
+
+	expect(readings.size).toBe(36);
+	expect(links.size).toBe(6);
+	expect([...links].filter(anchor => !targets.has(anchor))).toEqual([]);
+});
+
+it("gives the three C++ levels distinct source-linked practice at their own level", async () => {
+	setActivePinia(createPinia());
+	const courses = useCoursesStore();
+	const optionTitles = new Set<string>();
+	const sharedPriorFirstOption =
+		"project-practice-guide-supplemental-practice-project-command-line-task-tracker-with-file-persistence";
+	for (const [id, repo, first] of [
+		["c-level-1", "CPP-Level-1", "Count Matches in a Range"],
+		["cpp-level-2", "CPP-Level-2", "Trace a Different Call Order"],
+		["cpp-level-3", "CPP-Level-3", "Test Task Ordering After Save and Reload"]
+	]) {
+		const course = (await courses.loadCourseById(id))!;
+		const guide = course.modules.find(
+			module => module.title === "Project Practice Guide"
+		)!;
+		expect(guide.kind).toBe("appendix");
+		expect(guide.curriculum).toHaveLength(4);
+		expect(guide.supplementalProjects).toHaveLength(5);
+		expect(guide.supplementalProjects[0]?.id).toBe(
+			`${id}-${sharedPriorFirstOption}`
+		);
+		expect(guide.supplementalProjects[0]?.title).toBe(
+			`Practice Project: ${first}`
+		);
+		for (const option of guide.supplementalProjects) {
+			optionTitles.add(option.title);
+			expect(option.learningPath).toBe("choice");
+			expect(option.contentKind).toBe("assignment");
+			expect(option.content).toContain("**Checkpoints:**");
+			expect(option.ideImport).toBe(true);
+			expect(option.projectLink).toMatch(
+				new RegExp(`/${repo}/tree/[0-9a-f]{40}/`)
+			);
+			expect(pythonIdeModeForCourseResource(id, option.projectLink!)).toBe("cpp");
+			expect(option.solutionLink).toBeUndefined();
+		}
+	}
+	expect(optionTitles.size).toBe(15);
+});
 
 function allText(
 	course: NonNullable<Awaited<ReturnType<typeof loadRawCourse>>>
@@ -207,6 +295,10 @@ describe("research-backed course family expansions", () => {
 				);
 				expect(roadmapModule, courseId).toBeDefined();
 				const roadmapText = moduleText(roadmapModule!);
+				const roadmapItems = [
+					...roadmapModule!.curriculum,
+					...roadmapModule!.supplementalProjects
+				];
 				if (courseId === "network-systems") {
 					const items = [
 						...roadmapModule!.curriculum,
@@ -438,6 +530,20 @@ describe("research-backed course family expansions", () => {
 					expect(roadmapText).toContain("Binary search assumes sorted input");
 					expect(roadmapText).toContain("GateLog.java counts the observations");
 				}
+				else if (roadmapItems.every(item => profile.guideReadings?.[item.title])) {
+					expect(roadmapItems.map(item => item.title)).toEqual([
+						"Follow-Up Path",
+						"Resource Map",
+						"Module Alignment Guide",
+						"Reference Map",
+						"Prerequisite Map",
+						"Resource Inventory"
+					].map(title => `${courseLabel} ${title}`));
+					for (const item of roadmapItems) {
+						expect(item.contentKind, item.title).toBe("reading");
+						expect(item.content, item.title).toBe(profile.guideReadings?.[item.title]);
+					}
+				}
 				else {
 					for (const label of [
 						"Map purpose",
@@ -549,7 +655,9 @@ describe("research-backed course family expansions", () => {
 
 		expect(corpus).toContain("NIST AI RMF");
 		expect(corpus).toContain("ACS Chemistry Guidelines");
-		expect(corpus).toContain("ISO C++ Core Guidelines");
+		expect(corpus).toContain(
+			"[C++ Core Guidelines](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#s-functions)"
+		);
 		expect(corpus).toContain("OWASP Web Security Testing Guide");
 		expect(corpus).toContain(
 			"https://scikit-learn.org/stable/modules/model_evaluation.html"

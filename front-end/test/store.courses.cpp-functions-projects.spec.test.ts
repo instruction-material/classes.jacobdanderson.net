@@ -93,7 +93,8 @@ describe("original C++ functions assignments", () => {
 		const reference = module.curriculum.find(
 			item => item.title === sequence[2]
 		);
-		expect(reference?.projectLink).toBeUndefined();
+		expect(reference?.projectLink).toMatch(/\/CPPF3-rand-Reference$/);
+		expect(reference?.contentKind).toBe("reading");
 		expect(reference?.solutionLink).toBeUndefined();
 		expect(reference?.content).toContain(
 			"[documented random-number reference](https://github.com/instruction-material/CPP-Level-1/tree/main/CPPF3-rand-Reference)"
@@ -102,10 +103,8 @@ describe("original C++ functions assignments", () => {
 		const rawReference = raw!.modules
 			.find(module => module.title === "CPPF3 Functions")!
 			.curriculum.find(item => item.title === sequence[2]);
-		expect(rawReference?.projectLink).toBeUndefined();
-		expect(rawReference?.solutionLink).toBe(
-			"https://github.com/instruction-material/CPP-Level-1/tree/main/CPPF3-rand-Reference"
-		);
+		expect(rawReference?.projectLink).toMatch(/\/CPPF3-rand-Reference$/);
+		expect(rawReference?.solutionLink).toBeUndefined();
 	});
 
 	it("retains old project and concept identities as progress aliases", async () => {

@@ -3,13 +3,102 @@ import { githubRawUrl, parseGitHubResource } from "./codePreview";
 
 export const pyGamesCoreSourceRevision =
 	"16643ac61f4f30dd0f5127ac7bbc418f62246bb4";
+export const pyGamesLightControlRevision =
+	"3bafb2d36d2e6a64edc95d1dda094da7bfc3cf78";
 export const pyGamesCorePacks = [
 	{ pack: "PG-CORE-Workspace-and-Assets", task: "workspace_config.py" },
 	{ pack: "PG-CORE-Image-Anchors", task: "geometry.py" },
-	{ pack: "PG-CORE-Arena-Capstone", task: "game_logic.py" }
+	{ pack: "PG-CORE-Arena-Capstone", task: "game_logic.py" },
+	{
+		pack: "PG-CORE-Light-Control",
+		task: "contact.py",
+		revision: pyGamesLightControlRevision,
+		assets: [
+			"images/battery.png",
+			"images/off_bulb.png",
+			"images/on_bulb.png",
+			"sounds/buzz.ogg"
+		]
+	}
 ] as const;
 
 const sourceFiles: Record<string, { sha256: string; byteLength: number }> = {
+	"PG-CORE-Light-Control/README.md": {
+		sha256: "bbbda4f39a7abc7255f360dc23aff431fbd5a3c3ab79f700bd1801b7bcd8f653",
+		byteLength: 1261
+	},
+	"PG-CORE-Light-Control/solution/contact.py": {
+		sha256: "504c314fb52d6634b02f3975a6723e3e4d17a9e486b3cecde78d609b3a280703",
+		byteLength: 158
+	},
+	"PG-CORE-Light-Control/solution/contracts.py": {
+		sha256: "233e4a0d5c608f4690422f62ca836e65b93c65788fd3349fe2eb20a0ddfe20cc",
+		byteLength: 442
+	},
+	"PG-CORE-Light-Control/solution/images/battery.png": {
+		sha256: "af3be388928561d62bb422779051785e4816c5e7519b4c61f37da1d87a41a26f",
+		byteLength: 2666
+	},
+	"PG-CORE-Light-Control/solution/images/off_bulb.png": {
+		sha256: "b0a5630ca5c06a3fe6755a603810fc8dbd6a774d2cd2f666b727fab05cc78227",
+		byteLength: 9844
+	},
+	"PG-CORE-Light-Control/solution/images/on_bulb.png": {
+		sha256: "11a50a5b51de7cb6329ec52a13462fe1beb641e80ec171fab5267cd3bfa0ce6c",
+		byteLength: 12757
+	},
+	"PG-CORE-Light-Control/solution/main.py": {
+		sha256: "4bb250d9836d3294bf80cacf6a25e0742976e7e34afdbb6a2ff5a0c69845197a",
+		byteLength: 915
+	},
+	"PG-CORE-Light-Control/solution/observations.md": {
+		sha256: "d6ae71da930635bc015e68f3d9bffbc28683828748c24796ef2e7c7e11395b2e",
+		byteLength: 227
+	},
+	"PG-CORE-Light-Control/solution/requirements.txt": {
+		sha256: "6d8a387bf21716f17eb957096d5d52f6936d37cfc09fb99f77de325f32eff169",
+		byteLength: 41
+	},
+	"PG-CORE-Light-Control/solution/sounds/buzz.ogg": {
+		sha256: "621c7c225139ad7594734acdeeb42e4ec9f7d175254f020b8bf7f910f62e28c2",
+		byteLength: 110988
+	},
+	"PG-CORE-Light-Control/starter/contact.py": {
+		sha256: "a493b982321024497100c9b60a658392b1083e579227733107a185974d05165b",
+		byteLength: 101
+	},
+	"PG-CORE-Light-Control/starter/contracts.py": {
+		sha256: "233e4a0d5c608f4690422f62ca836e65b93c65788fd3349fe2eb20a0ddfe20cc",
+		byteLength: 442
+	},
+	"PG-CORE-Light-Control/starter/images/battery.png": {
+		sha256: "af3be388928561d62bb422779051785e4816c5e7519b4c61f37da1d87a41a26f",
+		byteLength: 2666
+	},
+	"PG-CORE-Light-Control/starter/images/off_bulb.png": {
+		sha256: "b0a5630ca5c06a3fe6755a603810fc8dbd6a774d2cd2f666b727fab05cc78227",
+		byteLength: 9844
+	},
+	"PG-CORE-Light-Control/starter/images/on_bulb.png": {
+		sha256: "11a50a5b51de7cb6329ec52a13462fe1beb641e80ec171fab5267cd3bfa0ce6c",
+		byteLength: 12757
+	},
+	"PG-CORE-Light-Control/starter/main.py": {
+		sha256: "4bb250d9836d3294bf80cacf6a25e0742976e7e34afdbb6a2ff5a0c69845197a",
+		byteLength: 915
+	},
+	"PG-CORE-Light-Control/starter/observations.md": {
+		sha256: "d6ae71da930635bc015e68f3d9bffbc28683828748c24796ef2e7c7e11395b2e",
+		byteLength: 227
+	},
+	"PG-CORE-Light-Control/starter/requirements.txt": {
+		sha256: "6d8a387bf21716f17eb957096d5d52f6936d37cfc09fb99f77de325f32eff169",
+		byteLength: 41
+	},
+	"PG-CORE-Light-Control/starter/sounds/buzz.ogg": {
+		sha256: "621c7c225139ad7594734acdeeb42e4ec9f7d175254f020b8bf7f910f62e28c2",
+		byteLength: 110988
+	},
 	"PG-CORE-Image-Anchors/README.md": {
 		sha256: "6acc0ebc7d0a6b5f14a058ccef1f902e62a697f98efe2bbdab40f430dfe5b273",
 		byteLength: 4672
@@ -168,11 +257,18 @@ const sourceFiles: Record<string, { sha256: string; byteLength: number }> = {
 	}
 };
 
+type CorePack = (typeof pyGamesCorePacks)[number];
+
+function packRevision(pack: CorePack) {
+	return "revision" in pack ? pack.revision : pyGamesCoreSourceRevision;
+}
+
 export function pyGamesCoreUrl(
-	pack: (typeof pyGamesCorePacks)[number]["pack"],
+	pack: CorePack["pack"],
 	role: "starter" | "solution"
 ) {
-	return `https://github.com/instruction-material/PyGames/tree/${pyGamesCoreSourceRevision}/${pack}/${role}`;
+	const selected = pyGamesCorePacks.find(entry => entry.pack === pack)!;
+	return `https://github.com/instruction-material/PyGames/tree/${packRevision(selected)}/${pack}/${role}`;
 }
 
 export function pyGamesCoreResource(url: string) {
@@ -181,8 +277,7 @@ export function pyGamesCoreResource(url: string) {
 		!resource ||
 		resource.mode !== "tree" ||
 		resource.owner.toLowerCase() !== "instruction-material" ||
-		resource.repo.toLowerCase() !== "pygames" ||
-		resource.ref !== pyGamesCoreSourceRevision
+		resource.repo.toLowerCase() !== "pygames"
 	) {
 		return null;
 	}
@@ -190,7 +285,13 @@ export function pyGamesCoreResource(url: string) {
 	if (parts.length !== 2) return null;
 	const selected = pyGamesCorePacks.find(pack => pack.pack === parts[0]);
 	const role = parts[1];
-	if (!selected || (role !== "starter" && role !== "solution")) return null;
+	if (
+		!selected ||
+		resource.ref !== packRevision(selected) ||
+		(role !== "starter" && role !== "solution")
+	) {
+		return null;
+	}
 	return { ...selected, resource, role };
 }
 
@@ -203,7 +304,7 @@ export function pyGamesCoreImportFiles(url: string) {
 		"contracts.py",
 		"requirements.txt",
 		"observations.md",
-		"images/alien.png",
+		...("assets" in selected ? selected.assets : ["images/alien.png"]),
 		"README.md"
 	].map(name => {
 		const path =
@@ -217,7 +318,7 @@ export function pyGamesCoreImportFiles(url: string) {
 			path,
 			rawUrl: githubRawUrl(selected.resource, path),
 			...expected,
-			encoding: name.endsWith(".png")
+			encoding: /\.(?:png|ogg)$/.test(name)
 				? ("base64" as const)
 				: ("text" as const)
 		};
@@ -251,6 +352,13 @@ async function readProjectBytes(
 	return bytes.buffer;
 }
 
+const pyGamesImageDimensions: Record<string, [number, number]> = {
+	"images/alien.png": [66, 92],
+	"images/battery.png": [80, 48],
+	"images/off_bulb.png": [76, 120],
+	"images/on_bulb.png": [84, 120]
+};
+
 export async function loadPyGamesCoreFiles(
 	url: string
 ): Promise<PythonIdeFile[] | null> {
@@ -282,19 +390,36 @@ export async function loadPyGamesCoreFiles(
 				);
 			}
 			if (file.encoding === "base64") {
-				const signature = [137, 80, 78, 71, 13, 10, 26, 10];
-				const header = new DataView(buffer);
-				if (
-					!signature.every((byte, index) => bytes[index] === byte) ||
-					header.getUint32(16) !== 66 ||
-					header.getUint32(20) !== 92
+				if (file.name.endsWith(".png")) {
+					const signature = [137, 80, 78, 71, 13, 10, 26, 10];
+					const [width, height] = pyGamesImageDimensions[file.name]!;
+					const header = new DataView(buffer);
+					if (
+						!signature.every(
+							(byte, index) => bytes[index] === byte
+						) ||
+						header.getUint32(16) !== width ||
+						header.getUint32(20) !== height
+					) {
+						throw new Error(
+							"The required project image is invalid."
+						);
+					}
+				} else if (
+					String.fromCharCode(...bytes.subarray(0, 4)) !== "OggS"
 				) {
-					throw new Error("The required project image is invalid.");
+					throw new Error("The required project audio is invalid.");
+				}
+				let binary = "";
+				for (let start = 0; start < bytes.length; start += 8192) {
+					binary += String.fromCharCode(
+						...bytes.subarray(start, start + 8192)
+					);
 				}
 				files.push({
 					name: file.name,
 					encoding: "base64",
-					content: btoa(String.fromCharCode(...bytes))
+					content: btoa(binary)
 				});
 			} else {
 				const content = new TextDecoder("utf-8", {
