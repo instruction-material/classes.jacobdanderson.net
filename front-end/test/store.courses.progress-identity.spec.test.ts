@@ -569,7 +569,7 @@ describe("saved course progress identities", () => {
 				const checkInNumber = suffix.match(/check-in-(\d+)/u)?.[1];
 				const previousId = `${courseId}-${suffix}-curriculum-check-in-${checkInNumber}-additional-practice-project`;
 				const owners = course?.modules.flatMap(module =>
-					module.curriculum
+					[...module.curriculum, ...module.supplementalProjects]
 						.filter(
 							item =>
 								item.id === previousId ||
@@ -581,6 +581,14 @@ describe("saved course progress identities", () => {
 				expect(owners?.[0].item.title, previousId).toContain(
 					"Practice Project"
 				);
+				const owner = owners![0];
+				const movedToOptional =
+					courseId === "python-level-1" &&
+					(checkInNumber === "1" || checkInNumber === "2");
+				const section = movedToOptional
+					? owner.module.supplementalProjects
+					: owner.module.curriculum;
+				expect(section, previousId).toContain(owner.item);
 				checkedIds++;
 			}
 		}
