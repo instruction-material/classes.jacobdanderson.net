@@ -1626,7 +1626,6 @@ export const KNOWN_PENDING_STATIC_MEDIA_FILENAMES = [
 	"pab14_0.png",
 	"pab22_0.png",
 	"ted_ed_release.pdf",
-	"treasure.txt",
 	"WhileLoopsExploration(1).mp4",
 	"wyb1_proj1_plotempty.png",
 	...geometryAStaticFilenames,
