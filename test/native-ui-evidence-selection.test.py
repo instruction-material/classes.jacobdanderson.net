@@ -81,6 +81,21 @@ class NativeResultSelectionTests(unittest.TestCase):
         self.assertEqual(selected["testId"], "TrackerUITests/testTrackerWorkflow()")
         self.assertEqual(len(selected["selected"]), 2)
 
+    def test_selects_current_tracker_export_variants(self):
+        for course, variant in [
+            ("tracker", "long-text"),
+            ("swiftdata", "long-text"),
+            ("swiftdata", "open-failure"),
+            ("swiftdata", "read-only"),
+        ]:
+            with self.subTest(course=course, variant=variant), archive(
+                course=course, size="large", variant=variant
+            ) as bundle:
+                selected = inspector.select_failed_result(bundle)
+                self.assertEqual(selected["result"],
+                                 f"{course}/results/solution-large-{variant}.xcresult")
+                self.assertEqual(selected["testId"], "TrackerUITests/testTrackerWorkflow()")
+
     def test_rejects_mixed_tracker_and_swiftdata_proofs(self):
         with archive(course="swiftdata", second_course="tracker") as bundle:
             with self.assertRaises(AssertionError):
