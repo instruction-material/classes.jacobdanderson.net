@@ -35,62 +35,7 @@ import { buildJavaStreetSearcherModule } from "./javaStreetSearcherTeaching";
 import { buildJavaSustainableProgrammingModule } from "./javaSustainableTeaching";
 import { isCoreProjectTitle } from "./projectGrouping";
 import { buildProjectGuidance } from "./projectGuidance";
-import { pendingStaticMediaNotice, staticMediaUrl } from "./staticMedia";
 import { buildSupportSectionGuidance } from "./supportSectionGuidance";
-
-const JAVA_LEVEL_3_ORIGINAL_MEDIA = [
-	"aj_1_chatbot.mp4",
-	"aj_2_array_practice.mp4",
-	"aj_2_arraylist_practice.mp4",
-	"aj_2_matrix_addition.mp4",
-	"aj_2_sandwich_orders.mp4",
-	"aj_2_test_scores.mp4",
-	"aj_2_two_dimensional_array_practice.mp4",
-	"aj_3_baked_good.mp4",
-	"aj_3_student_class.mp4",
-	"aj_4_divisible_by_7.mp4",
-	"aj_4_recursion_practice.mp4",
-	"aj_5_linear_search.mp4",
-	"aj_6_binary_search.mp4",
-	"aj_6_binary_search_recursion.mp4",
-	"aj_6_precise_square_roots.mp4",
-	"aj_7_biggest_smallest_bookshelf.mp4",
-	"aj_7_insertion_sort.mp4",
-	"aj_7_selection_sort.mp4",
-	"aj_8_alphabetical_order.mp4",
-	"aj_8_bubble_sort.mp4",
-	"aj_9_merge.mp4",
-	"aj_9_merge_sort.mp4",
-	"aj_9_split.mp4",
-	"aj_10_anything_array.mp4",
-	"aj_10_exception_practice.mp4",
-	"aj_10_juni_bakery.mp4",
-	"aj_11_doubly_linked_list.mp4",
-	"aj_11_linked_list.mp4",
-	"aj_12_calculator_with_stacks.mp4",
-	"aj_12_deque.mp4",
-	"aj_12_queue.mp4",
-	"aj_12_stack.mp4",
-	"aj_12_valid_parenthesis.mp4",
-	"aj_13_class_rank.mp4",
-	"aj_13_letter_frequencies.mp4",
-	"aj_14_basic_BST.mp4",
-	"aj_14_BST.mp4",
-	"aj_14_BST_traversals.mp4",
-	"aj_15_hashmap.mp4",
-	"aj_15_juni_search_engine.mp4",
-	"aj_16_dijkstras_shortest_path.mp4",
-	"aj_16_eulerian_mail_circuit.mp4",
-	"aj_16_simple_graph.mp4",
-	"aj_17_loading_data.mp4",
-	"aj_17_street_searcher.mp4",
-	"aj_17_weighted_graph.mp4",
-	"aj_check-in_1.mp4",
-	"aj_check-in_2.mp4",
-	"aj_check-in_3.mp4",
-	"aj_check-in_4.mp4",
-	"am_1_mad_libs.mp4"
-];
 
 const javaLevel3SourceCourse: RawCourse = {
 	name: "Java Level 3",
@@ -707,18 +652,18 @@ const javaLevel3SourceCourse: RawCourse = {
 		buildJavaPipelinesModule(),
 		buildJavaConcurrencySimulationModule(),
 		{
-			title: "Pending Demo Media",
+			id: "java-level-3-pending-demo-media",
+			title: "Project Walkthroughs",
 			kind: "appendix",
 			curriculum: [
 				{
-					title: "Pending Java Level 3 Demo Media",
+					id: "java-level-3-pending-demo-media-curriculum-pending-java-level-3-demo-media",
+					title: "Written Project Walkthroughs",
 					content: [
-						"This course lists pending demonstration videos below. Each entry keeps a stable static media URL so the matching file can be added without changing course links.",
-						"",
-						...JAVA_LEVEL_3_ORIGINAL_MEDIA.map(
-							filename =>
-								`- ${staticMediaUrl(filename)} - ${pendingStaticMediaNotice(filename)}`
-						)
+						"- [Binary search with iteration](/courses#java-level-3-aj6-binary-search-java-level-3-aj6-binary-search-curriculum-aj6-project-1-binary-search-with-iteration)",
+						"- [Merge Sort](/courses#java-level-3-aj9-merge-sort-java-level-3-aj9-merge-sort-curriculum-aj9-project-3-merge-sort)",
+						"- [Binary search trees](/courses#java-level-3-aj14-binary-search-trees-java-level-3-aj14-binary-search-trees-curriculum-binary-search-trees)",
+						"- [Street Searcher completion checks](/courses#java-level-3-aj17-master-project-google-maps-java-level-3-aj17-master-project-google-maps-curriculum-street-searcher-capstone-definition-of-done)"
 					].join("\n")
 				}
 			],
@@ -1219,7 +1164,7 @@ const javaLevel3PrimaryModules = javaLevel3SourceCourse.modules
 		module =>
 			!JAVA_LEVEL_3_OPTIONAL_MODULES.has(module.title) &&
 			!JAVA_LEVEL_3_ADVANCED_MODULES.has(module.title) &&
-			module.title !== "Pending Demo Media"
+			module.id !== "java-level-3-pending-demo-media"
 	)
 	.map(decorateJavaLevel3Module);
 const javaLevel3PlacementArchiveModules = javaLevel3SourceCourse.modules
@@ -1228,7 +1173,7 @@ const javaLevel3PlacementArchiveModules = javaLevel3SourceCourse.modules
 const javaLevel3AdvancedModules = javaLevel3SourceCourse.modules.filter(
 	module => JAVA_LEVEL_3_ADVANCED_MODULES.has(module.title)
 );
-const javaLevel3PendingMediaModule = javaLevel3SourceCourse.modules.at(-1)!;
+const javaLevel3WalkthroughModule = javaLevel3SourceCourse.modules.at(-1)!;
 
 const previousJavaPracticeModules = new Set([
 	"AJ1 Review: Variables, Strings, and Input",
@@ -1292,11 +1237,11 @@ export const javaLevel3Course: RawCourse = {
 		buildJavaLevel3PlacementArchive(javaLevel3PlacementArchiveModules),
 		buildAdvancedJavaEngineeringArchive(javaLevel3AdvancedModules),
 		{
-			...javaLevel3PendingMediaModule,
+			...javaLevel3WalkthroughModule,
 			kind: "appendix",
 			estimatedTime: "Reference only",
-			keyBlocks: ["stable media URL", "pending asset"],
-			curriculum: javaLevel3PendingMediaModule.curriculum.map(item => ({
+			keyBlocks: ["worked examples", "project checks"],
+			curriculum: javaLevel3WalkthroughModule.curriculum.map(item => ({
 				...item,
 				learningPath: "core"
 			}))

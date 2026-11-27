@@ -4349,59 +4349,42 @@ describe("course text quality normalization", () => {
 		expect(content).not.toContain("static.junilearning.com");
 	});
 
-	it("reserves pending Java Level 2 media on the class static host", async () => {
-		const course = await loadRawCourse("java-level-2");
-		expect(course).not.toBeNull();
+	it.each([
+		["java-level-2", "Dog Class", "Master Project completion checks"],
+		[
+			"java-level-3",
+			"Binary search with iteration",
+			"Street Searcher completion checks"
+		]
+	])(
+		"keeps the %s walkthrough appendix on its existing route",
+		async (id, first, last) => {
+			const course = await loadRawCourse(id);
+			expect(course).not.toBeNull();
 
-		const mediaModule = course!.modules.find(
-			module => module.title === "Pending Demo Media"
-		);
-		expect(mediaModule?.kind).toBe("appendix");
-
-		const mediaItem = mediaModule?.curriculum.find(
-			item => item.title === "Pending Java Level 2 Demo Media"
-		);
-		expect(mediaItem).toBeDefined();
-		const content = mediaItem?.content ?? "";
-
-		for (const filename of [
-			"jm_1_dog_class.mp4",
-			"jm_6_pacman_class.mp4",
-			"jm_10_tic_tac_toe.mp4"
-		]) {
-			expect(content).toContain(staticMediaUrl(filename));
-			expect(hasPendingStaticMediaNotice(content, filename)).toBe(true);
+			const appendix = course!.modules.find(
+				module => module.title === "Project Walkthroughs"
+			);
+			expect(appendix).toMatchObject({
+				id: id + "-pending-demo-media",
+				kind: "appendix"
+			});
+			const reading = appendix?.curriculum[0];
+			expect(reading?.id).toBe(
+				id +
+					"-pending-demo-media-curriculum-pending-" +
+					id +
+					"-demo-media"
+			);
+			expect(reading?.content).toContain(
+				"[" + first + "](/courses#" + id
+			);
+			expect(reading?.content).toContain("[" + last + "](/courses#" + id);
+			expect(reading?.content).not.toMatch(
+				/\.mp4|static\.classes\.jacobdanderson\.net/
+			);
 		}
-
-		expect(content).not.toContain("static.junilearning.com");
-	});
-
-	it("reserves pending Java Level 3 media on the class static host", async () => {
-		const course = await loadRawCourse("java-level-3");
-		expect(course).not.toBeNull();
-
-		const mediaModule = course!.modules.find(
-			module => module.title === "Pending Demo Media"
-		);
-		expect(mediaModule?.kind).toBe("appendix");
-
-		const mediaItem = mediaModule?.curriculum.find(
-			item => item.title === "Pending Java Level 3 Demo Media"
-		);
-		expect(mediaItem).toBeDefined();
-		const content = mediaItem?.content ?? "";
-
-		for (const filename of [
-			"aj_1_chatbot.mp4",
-			"aj_14_BST.mp4",
-			"aj_check-in_4.mp4"
-		]) {
-			expect(content).toContain(staticMediaUrl(filename));
-			expect(hasPendingStaticMediaNotice(content, filename)).toBe(true);
-		}
-
-		expect(content).not.toContain("static.junilearning.com");
-	});
+	);
 
 	it("keeps PyGame media on project cards and pending media out of the learner flow", async () => {
 		const course = await loadRawCourse("pygames");
