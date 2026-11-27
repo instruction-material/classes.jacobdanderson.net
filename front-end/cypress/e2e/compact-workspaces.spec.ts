@@ -140,7 +140,7 @@ context("Compact content-first workspaces", () => {
 			}
 		}).as("recentNotes");
 		cy.intercept("POST", `**/api/users/${studentId}/session-notes`, {
-			body: { sessionNote: { _id: noteId, studentId } }
+			body: { sessionNote: { _id: noteId } }
 		}).as("saveNote");
 		cy.intercept("POST", "**/api/admin-mail/send", {
 			body: {
@@ -205,7 +205,9 @@ context("Compact content-first workspaces", () => {
 		cy.get("@sendNote")
 			.its("request.body")
 			.should("not.have.property", "reviewWarnings");
-		cy.contains(".result", "Session note sent.").should("be.visible");
+		cy.contains(
+			"Submitted successfully; Sent copy saved. Recipient delivery is not tracked."
+		).should("be.visible");
 		cy.get('[data-testid="live-preview"]').should("not.exist");
 	});
 	it("uses compact stacked course and learner selectors, and puts search beside them", () => {
